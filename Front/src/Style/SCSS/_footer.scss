@@ -1,0 +1,45 @@
+@import "variables.scss";
+
+
+.footer {
+    color: $color-white;
+    background-color: $bg-ligherDark;
+
+    .desc-container{
+        max-width: $n-400px;
+        @include fs-13-color-light-grey;
+    }
+
+    .contact{
+        @include fs-13-color-light-grey;
+    }
+
+    &-links{
+        @include fs-13-color-light-grey;
+    }
+
+    .instagram-icon {
+        fill: $color-black;
+        transition: $trans-all-03-eio;
+
+        &:hover {
+            fill: red;
+        }
+    }
+
+    .facebook-icon {
+        fill: $color-black;
+        transition:$trans-all-03-eio;
+
+        &:hover {
+            fill: rgb(17, 144, 243);
+        }
+
+    }
+
+}
+.copyright {
+    @include fs-13-color-light-grey;
+    background-color: $bg-dark;
+    
+}

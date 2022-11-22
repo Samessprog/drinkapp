@@ -1,0 +1,33 @@
+@import "setingsPopup.scss";
+@import "loginPopup.scss";
+@import "navbar.scss";
+@import "specialPopup.scss";
+@import "drinksDetails.scss";
+@import "drink.scss";
+@import "footer.scss";
+
+
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+
+    .testt{
+        position: sticky;
+        top:80%;
+    
+        .arrow-up{
+            fill: rgb(214, 214, 214);
+    
+        }
+    }
+   

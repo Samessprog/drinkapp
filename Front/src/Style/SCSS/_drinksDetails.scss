@@ -1,0 +1,59 @@
+
+@import "variables.scss";
+
+.drink-holder {
+    color: $color-white;
+
+
+
+    .drink-main-container {
+
+        .star {
+            fill: $color-gold;
+        }
+
+        .drink-img {
+            max-height: $n-500px;
+            min-height: $n-500px;
+            max-width: $n-450px;
+            min-width: $n-450px;
+        }
+
+        .description-holder {
+            max-width: 700px;
+            max-height: 300px;
+        }
+
+        .ingrediets-list {
+            max-width: 350px;
+            max-height: 250px;
+
+            &-elm {
+                list-style-type: disc;
+            }
+        }
+
+        .preparation-holder{
+            height: $n-400px;
+            max-height: $n-400px;
+        } 
+
+        
+        .basic-information-drink{
+           
+            .drink-creator {
+                color: $color-black;
+            }
+
+            .diff-level{
+                background-color: $color-light-l-green;
+                color: $color-black;
+            }
+            
+            .drink-taste {
+                background-color: $color-light-d-green;
+                color: $color-black;    
+            }
+        }
+    }
+}

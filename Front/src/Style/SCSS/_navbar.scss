@@ -1,0 +1,108 @@
+//variables
+@import "variables.scss";
+
+.NavBar {
+    z-index: 1;
+    &ContentHolder {
+        background-color: rgb(37, 37, 37);
+        color: $color-white;
+        padding-bottom: 0rem;
+
+
+        //POPRWAIC!
+        .brand-name-SCROLL {
+            display: $d-flex;
+
+            @media (max-width:575px) {
+                & {
+                    display: $d-none;
+                }
+            }
+        }
+
+        .hamburger-SCROLL {
+            display: $d-none;
+
+            @media (max-width:575px) {
+                & {
+                    display: $d-flex;
+                }
+            }
+        }
+
+        //hamburger
+        .helper {
+            width: 30px;
+            height: 21px;
+
+            .bar {
+                height: 3px;
+            }
+        }
+
+        //Hamburger and logo resp ////////
+
+        .searching-holder {
+
+            .searching-input {
+                outline: $d-none;
+                background-color: $bg-dark;
+                color: $color-white;
+                box-shadow: 0px 6px 4px 0px black;
+            }
+
+            .searching-icon-holder {
+                background-color: $bg-dark;
+                top: 15%;
+                right: 2%;
+                color: $color-white;
+
+                .icon {
+                    fill: $color-white;
+                }
+
+            }
+        }
+
+        .options-holder {
+
+            .settings-button {
+                background-color: $bg-ligherDark;
+            }
+
+            .options-icon {
+                fill: $color-white;
+            }
+        }
+
+    }
+
+    .main-options-holder {
+        display: $d-flex;
+        background-color: $bg-ligherDark;
+
+        //zmioenić!
+        @media (max-width:575px) {
+            & {
+                display:$d-flex;
+                position: sticky;
+                width: 100%;
+            }
+        }
+
+        .options-list {
+
+            .elm-contents {
+                color: $color-white;
+                transition: $trans-all-03-eio;
+
+                &:hover {
+                    background-color: rgb(30, 30, 30);
+                }
+            }
+
+
+        }
+    }
+
+}
