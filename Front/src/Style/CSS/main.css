@@ -198,11 +198,13 @@
 .drink-holder .drink-main-container .star {
   fill: gold;
 }
-.drink-holder .drink-main-container .drink-img {
-  max-height: 500px;
-  min-height: 500px;
-  max-width: 450px;
-  min-width: 450px;
+.drink-holder .drink-main-container .img-holder {
+  height: 30px;
+  width: 500px;
+}
+.drink-holder .drink-main-container .img-holder .drink-img {
+  height: 100%;
+  width: 100%;
 }
 .drink-holder .drink-main-container .description-holder {
   max-width: 700px;

@@ -5,7 +5,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Footer from "../footer/Footer";
 
 
-function DrinkDetails({ userScroll, setDrinkDetailsPopup }) {
+function DrinkDetails({ userScroll, setDrinkDetailsPopup,drinkDatas }) {
+
 
 
     return (
@@ -77,12 +78,12 @@ function DrinkDetails({ userScroll, setDrinkDetailsPopup }) {
                         </div>
 
                     </div>
-
-                    <div className="card">
+        
+                    <div className=" img-holder ">
                         <LazyLoadImage
                             src={"https://www.acouplecooks.com/wp-content/uploads/2021/06/Strawberry-Water-006.jpg"}
                             effect="blur"
-                            className="drink-img card" alt="Img error"
+                            className="drink-img" alt="Img error"
 
                         />
                     </div>

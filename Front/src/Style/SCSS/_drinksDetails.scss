@@ -1,4 +1,3 @@
-
 @import "variables.scss";
 
 .drink-holder {
@@ -12,11 +11,14 @@
             fill: $color-gold;
         }
 
-        .drink-img {
-            max-height: $n-500px;
-            min-height: $n-500px;
-            max-width: $n-450px;
-            min-width: $n-450px;
+        .img-holder {
+            height: 300px;
+            width: $n-500px;
+
+            .drink-img {
+             height: 100%;
+             width: 100%;
+            }
         }
 
         .description-holder {
@@ -33,26 +35,26 @@
             }
         }
 
-        .preparation-holder{
+        .preparation-holder {
             height: $n-400px;
             max-height: $n-400px;
-        } 
+        }
 
-        
-        .basic-information-drink{
-           
+
+        .basic-information-drink {
+
             .drink-creator {
                 color: $color-black;
             }
 
-            .diff-level{
+            .diff-level {
                 background-color: $color-light-l-green;
                 color: $color-black;
             }
-            
+
             .drink-taste {
                 background-color: $color-light-d-green;
-                color: $color-black;    
+                color: $color-black;
             }
         }
     }

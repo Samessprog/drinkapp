@@ -25,6 +25,9 @@ function App() {
   const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
 
 
+
+
+  //ADD USE EFFECT
   const setFixed = () => {
     if (window.scrollY >= 1) {
       setUserScroll(true)
@@ -33,7 +36,28 @@ function App() {
       setUserScroll(false)
     }
   }
+
   window.addEventListener("scroll", setFixed)
+
+  const [drinkDatas, setDrinkData] = React.useState([])
+
+
+  React.useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const datas = await fetch("http://localhost:3000/api.php")
+        const drinkData = await datas.json();
+        setDrinkData(drinkData)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchData();
+  }, [])
+
+
 
 
 
@@ -73,9 +97,11 @@ function App() {
             />
           }
 
-          <MainPage  
+          <MainPage
             setDrinkDetailsPopup={setDrinkDetailsPopup}
             userScroll={userScroll}
+            drinkDatas={drinkDatas}
+            drinkDetailsPopup={drinkDetailsPopup}
           />
           <Footer />
 
@@ -87,7 +113,7 @@ function App() {
 
       {drinkDetailsPopup &&
         <DrinkDetails
-
+          drinkDatas={drinkDatas}
           drinkDetailsPopup={drinkDetailsPopup}
           setDrinkDetailsPopup={setDrinkDetailsPopup}
           userScroll={userScroll}
