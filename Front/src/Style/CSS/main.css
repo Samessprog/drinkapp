@@ -246,6 +246,9 @@
   height: 350px;
   width: 100%;
 }
+.main .drin-window .basic-information-drink .drink-name {
+  color: white;
+}
 .main .drin-window .basic-information-drink .drink-creator {
   color: black;
 }

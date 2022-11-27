@@ -4,6 +4,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 function DrinkDetails({elm}) {
    
     console.log(elm) 
+    
+
+
+
     return (
         <div className="drink-holder">
            
