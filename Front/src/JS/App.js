@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "./NavBarComponents/NavBar";
-import LoginPopup from "./NavBarComponents/LoginPopup";
-import SpecialDrinks from "./NavBarComponents/SpecialDrinks";
-import MainPage from "./MainPage";
 import DrinkDetails from "./drinksComponents/DrinkDetails";
 import Footer from "./footer/Footer";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { Route, Routes } from "react-router-dom"
+import Home from "./Home";
+
 
 function App() {
 
@@ -58,69 +58,49 @@ function App() {
   }, [])
 
 
-
-
-
   return (
     <div className=".container-fluid">
 
-      {/*do poprawienia wyświtlanie detali  */}
+
+      <NavBar
+
+        Popupsetings={Popupsetings}
+        setPopupSetings={setPopupSetings}
+        loginPopup={loginPopup}
+        setLoginPopup={setLoginPopup}
+        setSpecialOptionsPopup={setSpecialOptionsPopup}
+        specialOptionsPopup={specialOptionsPopup}
+        userScroll={userScroll}
+
+      />
 
 
-      {!drinkDetailsPopup &&
-        <div>
+    
+      <Routes>
+        <Route path="/" element={
 
-          <NavBar
+        <Home 
+           ingredientText={ingredientText}
+           setIngredientText={setIngredientText}
+           ingredient={ingredient}
+           setingredient={setingredient}
+           setSpecialOptionsPopup={setSpecialOptionsPopup}
+           specialOptionsPopup={specialOptionsPopup}
 
-            Popupsetings={Popupsetings}
-            setPopupSetings={setPopupSetings}
-            loginPopup={loginPopup}
-            setLoginPopup={setLoginPopup}
-            setSpecialOptionsPopup={setSpecialOptionsPopup}
-            specialOptionsPopup={specialOptionsPopup}
-
-            userScroll={userScroll}
-
-          />
-
-
-          {specialOptionsPopup &&
-
-            <SpecialDrinks
-
-              ingredientText={ingredientText}
-              setIngredientText={setIngredientText}
-              ingredient={ingredient}
-              setingredient={setingredient}
-              setSpecialOptionsPopup={setSpecialOptionsPopup}
-
-            />
-          }
-
-          <MainPage
-            setDrinkDetailsPopup={setDrinkDetailsPopup}
-            userScroll={userScroll}
-            drinkDatas={drinkDatas}
-            drinkDetailsPopup={drinkDetailsPopup}
-          />
-          <Footer />
-
-        </div>
+           setDrinkDetailsPopup={setDrinkDetailsPopup}
+           userScroll={userScroll}
+           drinkDatas={drinkDatas}
+           drinkDetailsPopup={drinkDetailsPopup}
+        
+        />}>
 
 
-      }
+        </Route>
+        
+        <Route path="/drinkDetail/:id" element={<DrinkDetails  drinkDatas={drinkDatas} />}></Route>
+      </Routes>
 
-
-      {drinkDetailsPopup &&
-        <DrinkDetails
-          drinkDatas={drinkDatas}
-          drinkDetailsPopup={drinkDetailsPopup}
-          setDrinkDetailsPopup={setDrinkDetailsPopup}
-          userScroll={userScroll}
-
-        />
-
-      }
+      <Footer />
 
     </div>
   );

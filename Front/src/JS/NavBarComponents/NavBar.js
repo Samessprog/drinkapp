@@ -100,7 +100,7 @@ function NavBar({ setDrinkDetailsPopup, userScroll ,specialOptionsPopup, setSpec
 
                     <ul className="d-flex options-list ps-0 ">
                         <li className=" ms-2 mt-1 mt-sm-2" >
-                            <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none rounded p-2"  href="#">Home</a>
+                            <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none rounded p-2"  href="/">Home</a>
                         </li>
 
                         <li className="ms-2 mt-1 mt-sm-2">

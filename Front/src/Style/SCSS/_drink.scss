@@ -4,6 +4,7 @@
     color: $color-white; 
 
     .drin-window{
+      
         background-color: $bg-ligherDark;
         box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
         cursor: pointer;
@@ -20,20 +21,25 @@
            
             .drink-creator {
                 color: $color-black;
+               
             }
 
             .diff-level{
                 background-color: $color-light-l-green;
                 color: $color-black;
+               
+               
             }
 
             .rate{
                 color: $color-gold;
                 font-size: 20px;
+               
 
 
                 .star{
                     fill: gold;
+                    
                 }
             }
 

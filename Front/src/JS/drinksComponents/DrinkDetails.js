@@ -1,26 +1,18 @@
 import React from "react";
-import NavBar from "../NavBarComponents/NavBar";
-import MainPage from "../MainPage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Footer from "../footer/Footer";
 
-
-function DrinkDetails({ userScroll, setDrinkDetailsPopup,drinkDatas }) {
-
-
-
+function DrinkDetails({elm}) {
+   
+    console.log(elm) 
     return (
         <div className="drink-holder">
-            <NavBar
-                userScroll={userScroll}
-                setDrinkDetailsPopup={setDrinkDetailsPopup}
-            />
+           
             <div className="drink-main-container mt-5 ms-4 me-4">
                 <div className="d-flex justify-content-between flex-lg-row flex-column">
                     <div className=" ">
                         <div className="d-flex  align-items-center">
                             <header>
-                                <div className="drink-name fs-3 fw-bolder">Sex on the beach</div>
+                                <div className="drink-name fs-3 fw-bolder">drinkDatas</div>
                             </header>
                             <div className="d-flex ms-4">
 
@@ -106,12 +98,12 @@ function DrinkDetails({ userScroll, setDrinkDetailsPopup,drinkDatas }) {
                     </div>
                     <div className="d-flex justify-content-center mt-4">
 
-                        <ul class="pagination mb-1 ">
-                            <li class="page-item " ><a className="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        <ul className="pagination mb-1 ">
+                            <li className="page-item " ><a className="page-link" href="#">Previous</a></li>
+                            <li className="page-item"><a className="page-link" href="#">1</a></li>
+                            <li className="page-item"><a className="page-link" href="#">2</a></li>
+                            <li className="page-item"><a className="page-link" href="#">3</a></li>
+                            <li className="page-item"><a className="page-link" href="#">Next</a></li>
                         </ul>
 
                     </div>
@@ -121,7 +113,7 @@ function DrinkDetails({ userScroll, setDrinkDetailsPopup,drinkDatas }) {
 
 
             </div>
-            <Footer />
+         
         </div>
     )
 

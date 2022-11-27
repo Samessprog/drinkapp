@@ -1,9 +1,8 @@
 import React from "react";
 import Drink from "./drinksComponents/Drink";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import NavBar from "./NavBarComponents/NavBar";
 
-function MainPage({ setDrinkDetailsPopup, userScroll, drinkDatas,  }) {
+
+function MainPage({ setDrinkDetailsPopup, userScroll, drinkDatas, }) {
 
     return (
 
@@ -17,15 +16,14 @@ function MainPage({ setDrinkDetailsPopup, userScroll, drinkDatas,  }) {
             </div>
 
             {drinkDatas.map((elm) =>
-                <Drink
-                   
-                    setDrinkDetailsPopup={setDrinkDetailsPopup}
-                    elm={elm}
-                />
+
+                    <Drink
+                        key={elm.ID_Drink}
+                        setDrinkDetailsPopup={setDrinkDetailsPopup}
+                        elm={elm}
+
+                    />
             )}
-
-
-
 
 
         </main >
