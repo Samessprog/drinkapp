@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useParams } from "react-router-dom";
 
-function DrinkDetails({elm}) {
-   
-    console.log(elm) 
+function DrinkDetails({ drinkDatas }) {
+
+    const { id } = useParams()
+    const [drinksDetail, setDrinkDetail] = React.useState({})
+
+
+    React.useEffect(() => {
+        
+        const result = drinkDatas.filter((elm) => {
+            if (elm.ID_Drink === id) {
+                setDrinkDetail(elm)
+                return elm;
+            }
+        })
+
+
+
+    },[id])
+
     
-
-
+    console.log(drinksDetail)
 
     return (
         <div className="drink-holder">
-           
+
             <div className="drink-main-container mt-5 ms-4 me-4">
                 <div className="d-flex justify-content-between flex-lg-row flex-column">
                     <div className=" ">
                         <div className="d-flex  align-items-center">
                             <header>
-                                <div className="drink-name fs-3 fw-bolder">drinkDatas</div>
+                                <div className="drink-name fs-3 fw-bolder">XD</div>
                             </header>
                             <div className="d-flex ms-4">
 
@@ -59,7 +75,7 @@ function DrinkDetails({elm}) {
                             <div className="mt-5">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
-                                    {/*Wyświuetlanie z Bazy danych będzie*/}
+
 
                                     <li className="ingrediets-list-elm">wódka - 80 ml</li>
                                     <li className="ingrediets-list-elm">likier brzoskwiniowy - 40 ml</li>
@@ -74,7 +90,7 @@ function DrinkDetails({elm}) {
                         </div>
 
                     </div>
-        
+
                     <div className=" img-holder ">
                         <LazyLoadImage
                             src={"https://www.acouplecooks.com/wp-content/uploads/2021/06/Strawberry-Water-006.jpg"}
@@ -117,7 +133,7 @@ function DrinkDetails({elm}) {
 
 
             </div>
-         
+
         </div>
     )
 

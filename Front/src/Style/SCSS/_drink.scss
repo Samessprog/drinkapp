@@ -9,56 +9,45 @@
         box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
         cursor: pointer;
 
-       
 
-            .img-holder {
+        .img-holder {
 
-                .drink-img {
-                    max-height: 350px;
-                    height: 350px;
-                    width: 100%;
+            .drink-img {
+                max-height: 350px;
+                height: 350px;
+                width: 100%;
+            }
+        }
+
+        .basic-information-drink {
+
+            .drink-name {
+                color: white;
+            }
+
+            .drink-creator {
+                color: $color-black;
+            }
+
+            .diff-level {
+                background-color: $color-light-l-green;
+                color: $color-black;
+            }
+
+            .rate {
+                color: $color-gold;
+                font-size: 20px;
+
+                .star {
+                    fill: gold;
                 }
             }
 
-            .basic-information-drink {
-
-                .drink-name{
-                    color: white;
-                }
-
-                .drink-creator {
-                    color: $color-black;
-
-                }
-
-                .diff-level {
-                    background-color: $color-light-l-green;
-                    color: $color-black;
-
-
-                }
-
-                .rate {
-                    color: $color-gold;
-                    font-size: 20px;
-                    
-
-
-                    .star {
-                        fill: gold;
-
-                    }
-                }
-
-                .drink-taste {
-                    background-color: $color-light-d-green;
-                    color: $color-black;
-
-                }
-              
+            .drink-taste {
+                background-color: $color-light-d-green;
+                color: $color-black;
 
             }
-        
-
+        }
     }
 }

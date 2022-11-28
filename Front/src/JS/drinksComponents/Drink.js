@@ -8,7 +8,6 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
     return (
 
-
         <div onClick={() => setDrinkDetailsPopup(true)} className=" drin-window col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3 ">
             <Link className="text-decoration-none " to={`drinkDetail/${elm.ID_Drink}`} >
                 <div className="img-holder card  overflow-hidden ">
@@ -16,7 +15,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                     <LazyLoadImage
                         src={elm.IMG}
                         effect="blur"
-                        className="drink-img  " alt="Img error"
+                        className="drink-img img-flui" alt="Img error"
 
                     />
 
@@ -37,24 +36,11 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                         <label className="bg-primary rounded-pill p-1 fw-bolder drink-taste">{elm.DrinkType}</label>
                     </div>
 
-
-
-
-
-
                 </div>
             </Link>
         </div>
 
-
-
-
-
     )
-
-
-
-
 }
 
 export default Drink;

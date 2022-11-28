@@ -25,9 +25,6 @@ function App() {
   const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
 
 
-
-
-  //ADD USE EFFECT
   const setFixed = () => {
     if (window.scrollY >= 1) {
       setUserScroll(true)
@@ -40,7 +37,6 @@ function App() {
   window.addEventListener("scroll", setFixed)
 
   const [drinkDatas, setDrinkData] = React.useState([])
-
 
   React.useEffect(() => {
 
@@ -57,7 +53,7 @@ function App() {
     fetchData();
   }, [])
 
-
+  
   return (
     <div className=".container-fluid">
 
@@ -75,29 +71,30 @@ function App() {
       />
 
 
-    
+
       <Routes>
         <Route path="/" element={
 
-        <Home 
-           ingredientText={ingredientText}
-           setIngredientText={setIngredientText}
-           ingredient={ingredient}
-           setingredient={setingredient}
-           setSpecialOptionsPopup={setSpecialOptionsPopup}
-           specialOptionsPopup={specialOptionsPopup}
+          <Home
+            ingredientText={ingredientText}
+            setIngredientText={setIngredientText}
+            ingredient={ingredient}
+            setingredient={setingredient}
+            setSpecialOptionsPopup={setSpecialOptionsPopup}
+            specialOptionsPopup={specialOptionsPopup}
 
-           setDrinkDetailsPopup={setDrinkDetailsPopup}
-           userScroll={userScroll}
-           drinkDatas={drinkDatas}
-           drinkDetailsPopup={drinkDetailsPopup}
-        
-        />}>
+            setDrinkDetailsPopup={setDrinkDetailsPopup}
+            userScroll={userScroll}
+            drinkDatas={drinkDatas}
+            drinkDetailsPopup={drinkDetailsPopup}
+
+          />}>
 
 
         </Route>
-        
-        <Route path="/drinkDetail/:id" element={<DrinkDetails  drinkDatas={drinkDatas} />}></Route>
+
+        <Route path="/drinkDetail/:id" element={<DrinkDetails drinkDatas={drinkDatas} />}></Route>
+
       </Routes>
 
       <Footer />
