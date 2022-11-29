@@ -195,16 +195,14 @@
 .drink-holder {
   color: white;
 }
+.drink-holder .drink-main-container .rate {
+  color: gold;
+}
 .drink-holder .drink-main-container .star {
   fill: gold;
 }
 .drink-holder .drink-main-container .img-holder {
   height: 300px;
-  width: 500px;
-}
-.drink-holder .drink-main-container .img-holder .drink-img {
-  height: 100%;
-  width: 100%;
 }
 .drink-holder .drink-main-container .description-holder {
   max-width: 700px;
@@ -217,7 +215,10 @@
 .drink-holder .drink-main-container .ingrediets-list-elm {
   list-style-type: disc;
 }
-.drink-holder .drink-main-container .preparation-holder {
+.drink-holder .drink-main-container .mt-20 {
+  margin-top: 200px;
+}
+.drink-holder .drink-main-container .mt-20 .preparation-holder {
   height: 400px;
   max-height: 400px;
 }

@@ -93,7 +93,7 @@ function App() {
 
         </Route>
 
-        <Route path="/drinkDetail/:id" element={<DrinkDetails drinkDatas={drinkDatas} />}></Route>
+        <Route path="/drinkDetail/:id" element={<DrinkDetails  drinkDatas={drinkDatas} />}></Route>
 
       </Routes>
 

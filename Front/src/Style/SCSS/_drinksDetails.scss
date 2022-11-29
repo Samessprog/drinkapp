@@ -7,24 +7,25 @@
 
     .drink-main-container {
 
+        .rate {
+            color: gold;
+
+        }
+
         .star {
             fill: $color-gold;
         }
 
         .img-holder {
             height: 300px;
-            width: $n-500px;
-
-            .drink-img {
-             height: 100%;
-             width: 100%;
-            }
         }
 
         .description-holder {
             max-width: 700px;
             max-height: 300px;
         }
+
+
 
         .ingrediets-list {
             max-width: 350px;
@@ -35,11 +36,15 @@
             }
         }
 
-        .preparation-holder {
-            height: $n-400px;
-            max-height: $n-400px;
-        }
 
+        .mt-20 {
+            margin-top: 200px;
+            .preparation-holder {
+                height: $n-400px;
+                max-height: $n-400px;
+            }
+
+        }
 
         .basic-information-drink {
 
