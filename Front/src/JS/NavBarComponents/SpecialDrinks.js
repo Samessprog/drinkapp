@@ -23,7 +23,7 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
     }
 
 
-    //console.log(ingredient)
+   
 
     return (
         <div className="special-drinks-holder  col-12 col-md-10 mt-5">

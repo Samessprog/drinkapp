@@ -15,6 +15,10 @@ function App() {
   const [loginPopup, setLoginPopup] = React.useState(false)
   const [specialOptionsPopup, setSpecialOptionsPopup] = React.useState(false)
 
+  //Searching
+  const [searchingDrink, setSearchingDrink] = React.useState([])
+
+
   const [userScroll, setUserScroll] = React.useState(false);
 
   //Special drinks hooks
@@ -67,6 +71,11 @@ function App() {
         setSpecialOptionsPopup={setSpecialOptionsPopup}
         specialOptionsPopup={specialOptionsPopup}
         userScroll={userScroll}
+        drinkDatas={drinkDatas}
+
+        searchingDrink={searchingDrink}
+        setSearchingDrink={setSearchingDrink}
+
 
       />
 
