@@ -2,7 +2,9 @@ import React from "react";
 import Drink from "./drinksComponents/Drink";
 
 
-function MainPage({ setDrinkDetailsPopup, userScroll, drinkDatas, }) {
+function MainPage({searchingDrink, setDrinkDetailsPopup, userScroll, drinkDatas, }) {
+
+    console.log(searchingDrink)
 
     return (
 
@@ -15,7 +17,7 @@ function MainPage({ setDrinkDetailsPopup, userScroll, drinkDatas, }) {
                 </a>
             </div>
 
-            {drinkDatas.map((elm) =>
+            {searchingDrink.map((elm) =>
 
                     <Drink
                         key={elm.ID_Drink}

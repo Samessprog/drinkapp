@@ -49,6 +49,7 @@ function App() {
         const datas = await fetch("http://localhost:3000/api.php")
         const drinkData = await datas.json();
         setDrinkData(drinkData)
+        setSearchingDrink(drinkData)
       } catch (err) {
         console.log(err)
       }
@@ -85,6 +86,9 @@ function App() {
         <Route path="/" element={
 
           <Home
+
+          searchingDrink={searchingDrink}
+
             ingredientText={ingredientText}
             setIngredientText={setIngredientText}
             ingredient={ingredient}

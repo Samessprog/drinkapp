@@ -4,9 +4,9 @@ import LoginPopup from "./LoginPopup";
 
 
 
-function NavBar({setSearchingDrink,searchingDrink,drinkDatas, setDrinkDetailsPopup, userScroll ,specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
-    
-   
+function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
+
+
 
     const loginHandler = () => {
         if (Popupsetings === true || specialOptionsPopup === true) {
@@ -32,30 +32,29 @@ function NavBar({setSearchingDrink,searchingDrink,drinkDatas, setDrinkDetailsPop
 
 
     const [inputDrinkText, setInputDrinkText] = React.useState("");
-    
 
     const setDrinkName = (event) => {
         setInputDrinkText(event.target.value)
     }
-        
-    console.log(drinkDatas)
 
 
+    React.useEffect(() => {
 
-    React.useEffect(()=>{
-        
         const searchingResults = drinkDatas.filter((elm) => {
-            console.log(elm.DrinkName)
 
-            if( elm.DrinkName === inputDrinkText) {
-                setSearchingDrink(elm)
+            if (elm.DrinkName === inputDrinkText) {
+                setSearchingDrink([elm])
                 return elm;
             }
+
+            if (inputDrinkText === "") {
+                setSearchingDrink(drinkDatas)
+
+            }
         })
-    })
+    }, [inputDrinkText])
 
-    console.log(searchingDrink)
-
+ 
     return (
         <nav className="NavBar position-sticky top-0 ">
             <div className="NavBarContentHolder p-3 pb-0">
@@ -116,7 +115,7 @@ function NavBar({setSearchingDrink,searchingDrink,drinkDatas, setDrinkDetailsPop
                             setLoginPopup={setLoginPopup}
                         />
                     }
-                    
+
 
                 </div>
 
@@ -124,7 +123,7 @@ function NavBar({setSearchingDrink,searchingDrink,drinkDatas, setDrinkDetailsPop
 
                     <ul className="d-flex options-list ps-0 ">
                         <li className=" ms-2 mt-1 mt-sm-2" >
-                            <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none rounded p-2"  href="/">Home</a>
+                            <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none rounded p-2" href="/">Home</a>
                         </li>
 
                         <li className="ms-2 mt-1 mt-sm-2">

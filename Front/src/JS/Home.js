@@ -2,7 +2,7 @@ import React from "react";
 import SpecialDrinks from "./NavBarComponents/SpecialDrinks";
 import MainPage from "./MainPage";
 
-export default function Home({ setingredient, specialOptionsPopup, drinkDetailsPopup, drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText, ingredient, setSpecialOptionsPopup }) {
+export default function Home({ searchingDrink,setingredient, specialOptionsPopup, drinkDetailsPopup, drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText, ingredient, setSpecialOptionsPopup }) {
 
     return (
 
@@ -25,6 +25,8 @@ export default function Home({ setingredient, specialOptionsPopup, drinkDetailsP
                 userScroll={userScroll}
                 drinkDatas={drinkDatas}
                 drinkDetailsPopup={drinkDetailsPopup}
+
+                searchingDrink={searchingDrink}
             />
 
         </div>
