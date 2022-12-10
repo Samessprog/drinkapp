@@ -8,10 +8,12 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
     return (
 
-        <div onClick={() => setDrinkDetailsPopup(true)} className=" drin-window col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3 ">
+        <div onClick={() => setDrinkDetailsPopup(true)} className="  drin-window col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 col p-1 rounded m-3 ">
+            
+            {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none " to={`drinkDetail/${elm.ID_Drink}`} >
-                <div className="img-holder card  overflow-hidden ">
-
+                <div className="img-holder card  overflow-hidden position-relative  ">
+                    
                     <LazyLoadImage
                         src={elm.IMG}
                         effect="blur"
@@ -29,7 +31,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                     </div>
 
 
-                    <div className="d-flex  mt-3  justify-content-evenly">
+                    <div className="d-flex  mt-3  justify-content-evenly ">
                         <label className="bg-light rounded-pill p-1 fw-bolder drink-creator ">{elm.Creator}</label>
                         <label className="diff-level rounded-pill p-1 fw-bolder ">{elm.DifficultyLevel}</label>
                         <label className="drink-taste rounded-pill p-1 fw-bolder ">{elm.Taste}</label>

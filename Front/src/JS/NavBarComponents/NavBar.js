@@ -7,6 +7,7 @@ import LoginPopup from "./LoginPopup";
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
 
 
+    
 
     const loginHandler = () => {
         if (Popupsetings === true || specialOptionsPopup === true) {
@@ -37,21 +38,21 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         setInputDrinkText(event.target.value)
     }
 
-
+     //Poprawić wyszukiwanie
     React.useEffect(() => {
 
         const searchingResults = drinkDatas.filter((elm) => {
 
-            if (elm.DrinkName === inputDrinkText) {
-                setSearchingDrink([elm])
+            if (elm.DrinkName === inputDrinkText) {  
                 return elm;
             }
 
             if (inputDrinkText === "") {
-                setSearchingDrink(drinkDatas)
-
+                return drinkDatas
             }
         })
+        
+        setSearchingDrink(searchingResults)
     }, [inputDrinkText])
 
  
@@ -98,6 +99,9 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     setPopupSetings={setPopupSetings}
                                     setSpecialOptionsPopup={setSpecialOptionsPopup}
                                     specialOptionsPopup={specialOptionsPopup}
+
+                                    drinkDatas={drinkDatas}
+                                    setSearchingDrink={setSearchingDrink}
                                 />
 
                             )}

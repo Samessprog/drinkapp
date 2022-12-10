@@ -84,7 +84,7 @@ function DrinkDetails({ drinkDatas }) {
                         <LazyLoadImage
                             src={drinksDetail.IMG}
                             effect="blur"
-                            className="img-fluid " alt="Img error"
+                            className="img-fluid img-helper " alt="Img error"
 
                         />
                     </div>

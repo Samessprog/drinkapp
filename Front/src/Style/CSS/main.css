@@ -204,6 +204,9 @@
 .drink-holder .drink-main-container .img-holder {
   height: 300px;
 }
+.drink-holder .drink-main-container .img-holder .img-helper {
+  box-shadow: 5px 0px 5px 0px white;
+}
 .drink-holder .drink-main-container .description-holder {
   max-width: 700px;
   max-height: 300px;
@@ -241,6 +244,9 @@
   background-color: rgb(37, 37, 37);
   box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
   cursor: pointer;
+}
+.main .drin-window .img-holder .favourite {
+  z-index: 1;
 }
 .main .drin-window .img-holder .drink-img {
   max-height: 350px;

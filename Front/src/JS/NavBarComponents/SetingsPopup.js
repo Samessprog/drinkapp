@@ -1,11 +1,52 @@
 import React from "react";
 import SpecialDrinks from "./SpecialDrinks";
 
- function SetingsPopup(props) {
+function SetingsPopup(props) {
+
+
 
     const specialOptionsHandler = () => {
         props.setSpecialOptionsPopup(!props.specialOptionsPopup)
     }
+
+
+    {/*Settings Handler */ }
+
+    {/*Settings States (do zmiany) */ }
+    const [alcocholic, setAlcocholic] = React.useState(false)
+
+
+
+    React.useEffect(() => {
+
+        const res = props.drinkDatas.filter((elm) => {
+
+            if (elm.DrinkType === 'Alcocholic') {
+                return elm
+            }
+
+            if(!alcocholic){
+                return props.drinkDatas
+            }
+
+            {/* Dodac obsługę jak nie znajdzie nic może jakiś element?*/}
+            // if(elm.DrinkType !== 'Alcocholic'){
+            //     console.log('nie znaleziono drinków')
+            //     
+            // }
+            
+
+        })
+
+        props.setSearchingDrink(res)
+    }, [alcocholic])
+
+
+
+
+
+
+
 
 
     return (
@@ -20,7 +61,7 @@ import SpecialDrinks from "./SpecialDrinks";
                 <div className="d-flex justify-content-center">Settings</div>
 
                 <form >
-                    <div  className="options-holder mt-3 d-flex font ">
+                    <div className="options-holder mt-3 d-flex font ">
                         <div className="">
                             <div className="d-flex mt-1">
                                 <input type="checkbox" ></input>
@@ -28,7 +69,7 @@ import SpecialDrinks from "./SpecialDrinks";
                             </div>
 
                             <div className="d-flex mt-1">
-                                <input type="checkbox" ></input>
+                                <input onClick={() => setAlcocholic(!alcocholic)} type="checkbox" ></input>
                                 <label className="ms-1">Alcoholic</label>
                             </div>
 
