@@ -32,10 +32,10 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
 
                     <div className="d-flex  mt-3  justify-content-evenly ">
-                        <label className="bg-light rounded-pill p-1 fw-bolder drink-creator ">{elm.Creator}</label>
-                        <label className="diff-level rounded-pill p-1 fw-bolder ">{elm.DifficultyLevel}</label>
-                        <label className="drink-taste rounded-pill p-1 fw-bolder ">{elm.Taste}</label>
-                        <label className="bg-primary rounded-pill p-1 fw-bolder drink-taste">{elm.DrinkType}</label>
+                        <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator ">{elm.Creator}</label>
+                        <label className="diff-level rounded-pill p-1 ps-2 pe-2 fw-bolder ">{elm.DifficultyLevel}</label>
+                        <label className="drink-taste rounded-pill p-1 ps-2 pe-2 fw-bolder ">{elm.Taste}</label>
+                        <label className="bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste">{elm.DrinkType}</label>
                     </div>
 
                 </div>

@@ -29,6 +29,7 @@ function SetingsPopup(props) {
                 return props.drinkDatas
             }
 
+            
             {/* Dodac obsługę jak nie znajdzie nic może jakiś element?*/}
             // if(elm.DrinkType !== 'Alcocholic'){
             //     console.log('nie znaleziono drinków')
