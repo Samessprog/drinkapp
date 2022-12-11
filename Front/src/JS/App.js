@@ -17,7 +17,7 @@ function App() {
 
   //Searching
   const [searchingDrink, setSearchingDrink] = React.useState([])
-
+  
 
   const [userScroll, setUserScroll] = React.useState(false);
 
@@ -41,6 +41,7 @@ function App() {
   window.addEventListener("scroll", setFixed)
 
   const [drinkDatas, setDrinkData] = React.useState([])
+ 
 
   React.useEffect(() => {
 
@@ -73,10 +74,9 @@ function App() {
         specialOptionsPopup={specialOptionsPopup}
         userScroll={userScroll}
         drinkDatas={drinkDatas}
-
+        
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
-
 
       />
 

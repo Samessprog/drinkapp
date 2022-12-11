@@ -5,8 +5,8 @@ import LoginPopup from "./LoginPopup";
 
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
-
-
+    
+   
     
 
     const loginHandler = () => {
@@ -99,9 +99,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     setPopupSetings={setPopupSetings}
                                     setSpecialOptionsPopup={setSpecialOptionsPopup}
                                     specialOptionsPopup={specialOptionsPopup}
-
+                                    searchingDrink={searchingDrink}
                                     drinkDatas={drinkDatas}
                                     setSearchingDrink={setSearchingDrink}
+                                   
+                                    
                                 />
 
                             )}

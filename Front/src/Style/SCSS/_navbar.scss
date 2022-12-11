@@ -3,12 +3,13 @@
 
 .NavBar {
     z-index: 1;
+
     &ContentHolder {
         background-color: rgb(37, 37, 37);
         color: $color-white;
         padding-bottom: 0rem;
 
-        
+
         .brand-name-SCROLL {
             display: $d-flex;
 
@@ -83,7 +84,7 @@
         //zmioenić!
         @media (max-width:575px) {
             & {
-                display:$d-flex;
+                display: $d-flex;
                 position: sticky;
                 width: 100%;
             }

@@ -9,7 +9,6 @@
 
         .rate {
             color: gold;
-
         }
 
         .star {
@@ -18,7 +17,8 @@
 
         .img-holder {
             height: 300px;
-            .img-helper{
+
+            .img-helper {
 
                 box-shadow: 5px 0px 5px 0px white;
             }
@@ -44,6 +44,7 @@
 
         .mt-20 {
             margin-top: 200px;
+
             .preparation-holder {
                 height: $n-400px;
                 max-height: $n-400px;

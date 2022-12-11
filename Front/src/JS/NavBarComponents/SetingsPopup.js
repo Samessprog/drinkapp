@@ -11,41 +11,70 @@ function SetingsPopup(props) {
 
 
     {/*Settings Handler */ }
+    {/*Settings States (do zmiany) useReducer zmienić podczas Refaktoryzacji */ }
 
-    {/*Settings States (do zmiany) */ }
     const [alcocholic, setAlcocholic] = React.useState(false)
+    const [softDrinks, setSoftDrinks] = React.useState(false)
 
-
+    const [highlyRated, setHighlyRated] = React.useState(false)
+    const [alphabetical, setAlphabetical] = React.useState(false)
 
     React.useEffect(() => {
 
         const res = props.drinkDatas.filter((elm) => {
 
-            if (elm.DrinkType === 'Alcocholic') {
-                return elm
+            if (alcocholic) {
+                if (elm.DrinkType === 'Alcocholic') {
+                    return elm
+                }
             }
 
-            if(!alcocholic){
+            if (softDrinks) {
+                if (elm.DrinkType === 'Soft') {
+                    return elm
+                }
+            }
+            console.log(elm)
+            if (!alcocholic && !softDrinks) {
                 return props.drinkDatas
             }
 
-            
-            {/* Dodac obsługę jak nie znajdzie nic może jakiś element?*/}
-            // if(elm.DrinkType !== 'Alcocholic'){
-            //     console.log('nie znaleziono drinków')
-            //     
-            // }
-            
-
         })
 
+        if (!highlyRated) {
+            const sort = props.drinkDatas.sort((a, b) => b.Rate - a.Rate)
+        } else {
+            const shuffledArray = props.drinkDatas.sort((a, b) => 0.5 - Math.random());
+        }
+
+        if (!alphabetical) {
+            const sort = props.drinkDatas.sort((a, b) => {
+                const nameA = a.DrinkName.toUpperCase(); 
+                const nameB = b.DrinkName.toUpperCase(); 
+
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            })
+        } else {
+            const shuffledArray = props.drinkDatas.sort((a, b) => 0.5 - Math.random());
+        }
+
         props.setSearchingDrink(res)
-    }, [alcocholic])
+    }, [alcocholic, softDrinks, highlyRated, alphabetical])
 
 
 
 
-
+    // {/* Dodac obsługę jak nie znajdzie nic może jakiś element?*/}
+    // if(el+m.DrinkType !== 'Alcocholic'){
+    //     console.log('nie znaleziono drinków')
+    //     
+    // }
 
 
 
@@ -75,19 +104,19 @@ function SetingsPopup(props) {
                             </div>
 
                             <div className="d-flex mt-1">
-                                <input type="checkbox" ></input>
+                                <input type="checkbox" onClick={() => setSoftDrinks(!softDrinks)} ></input>
                                 <label className="ms-1">Soft drinks</label>
                             </div>
 
 
                             <div className="d-flex mt-1">
-                                <input type="checkbox" ></input>
+                                <input type="checkbox" onClick={() => setHighlyRated(!highlyRated)} ></input>
                                 <label className="ms-1">Highly rated </label>
                             </div>
 
 
                             <div className="d-flex mt-1">
-                                <input type="checkbox" ></input>
+                                <input type="checkbox" onClick={() => setAlphabetical(!alphabetical)}></input>
                                 <label className="ms-1">Alphabetically</label>
                             </div>
 
