@@ -16,8 +16,8 @@ function SetingsPopup(props) {
     const [alcocholic, setAlcocholic] = React.useState(false)
     const [softDrinks, setSoftDrinks] = React.useState(false)
 
-    const [highlyRated, setHighlyRated] = React.useState(false)
-    const [alphabetical, setAlphabetical] = React.useState(false)
+    const [highlyRated, setHighlyRated] = React.useState(true)
+
 
     React.useEffect(() => {
 
@@ -34,47 +34,43 @@ function SetingsPopup(props) {
                     return elm
                 }
             }
-            console.log(elm)
+
             if (!alcocholic && !softDrinks) {
                 return props.drinkDatas
             }
 
         })
 
-        if (!highlyRated) {
-            const sort = props.drinkDatas.sort((a, b) => b.Rate - a.Rate)
-        } else {
-            const shuffledArray = props.drinkDatas.sort((a, b) => 0.5 - Math.random());
-        }
+        const sort = highlyRated ? props.drinkDatas.sort((a, b) => b.Rate - a.Rate) : shuffledArrayDrink(props.drinkDatas)
 
-        if (!alphabetical) {
-            const sort = props.drinkDatas.sort((a, b) => {
-                const nameA = a.DrinkName.toUpperCase(); 
-                const nameB = b.DrinkName.toUpperCase(); 
-
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-            })
-        } else {
-            const shuffledArray = props.drinkDatas.sort((a, b) => 0.5 - Math.random());
-        }
 
         props.setSearchingDrink(res)
-    }, [alcocholic, softDrinks, highlyRated, alphabetical])
+    }, [alcocholic, softDrinks, highlyRated])
+
+    const shuffledArrayDrink = (drinkData) => {
+        return (drinkData.sort(() => 0.5 - Math.random()))
+    }
+
+    //Dodać szukanie alfabetycznie
 
 
+    const multiOptionsHandler = (event) => {
+        const results = props.drinkDatas.filter((elm) => {
+
+            if (event.target.value === 'All') {
+                return props.drinkDatas
+
+            } else if (elm.DifficultyLevel === event.target.value) {
+                return elm;
+            } else if (elm.Taste === event.target.value) {
+                return elm
+            }
+        })
+
+        props.setSearchingDrink(results)
+    }
 
 
-    // {/* Dodac obsługę jak nie znajdzie nic może jakiś element?*/}
-    // if(el+m.DrinkType !== 'Alcocholic'){
-    //     console.log('nie znaleziono drinków')
-    //     
-    // }
 
 
 
@@ -114,34 +110,27 @@ function SetingsPopup(props) {
                                 <label className="ms-1">Highly rated </label>
                             </div>
 
-
-                            <div className="d-flex mt-1">
-                                <input type="checkbox" onClick={() => setAlphabetical(!alphabetical)}></input>
-                                <label className="ms-1">Alphabetically</label>
-                            </div>
-
-
                         </div>
 
                         <div className="ms-2 multi-options">
                             <div className="d-flex">
                                 <label className="">Level: </label>
-                                <select className=" ms-1 test">
-                                    <option>All</option>
-                                    <option>Easy</option>
-                                    <option>Medium</option>
-                                    <option>Difficult</option>
+                                <select className=" ms-1 test" onChange={multiOptionsHandler}>
+                                    <option value={'All'}>All</option>
+                                    <option value={'Easy'}>Easy</option>
+                                    <option value={'Medium'}>Medium</option>
+                                    <option value={'Hard'}>Hard</option>
                                 </select>
                             </div>
 
 
                             <div className="d-flex mt-2">
                                 <label className=" ">Taste: </label>
-                                <select className=" ms-1 test">
-                                    <option >All</option>
-                                    <option >Sour</option>
-                                    <option > Sweet</option>
-                                    <option >Bitter</option>
+                                <select className=" ms-1 test" onChange={multiOptionsHandler}>
+                                    <option value={'All'}>All</option>
+                                    <option value={'Sour'}>Sour</option>
+                                    <option value={'Sweet'}> Sweet</option>
+                                    <option value={'Bitter'}>Bitter</option>
                                 </select>
                             </div>
                         </div>

@@ -29,6 +29,8 @@ export default function Home({ searchingDrink,setingredient, specialOptionsPopup
                 searchingDrink={searchingDrink}
             />
 
+
+
         </div>
     )
 }
