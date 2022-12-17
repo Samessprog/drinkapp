@@ -41,7 +41,7 @@ function SetingsPopup(props) {
 
         })
 
-        const sort = highlyRated ? props.drinkDatas.sort((a, b) => b.Rate - a.Rate) : shuffledArrayDrink(props.drinkDatas)
+        const sort = highlyRated ? props.drinkDatas.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate) : shuffledArrayDrink(props.drinkDatas)
 
 
         props.setSearchingDrink(res)
@@ -54,25 +54,31 @@ function SetingsPopup(props) {
     //Dodać szukanie alfabetycznie
 
 
-    const multiOptionsHandler = (event) => {
+
+    const [drinkLevel, setDrinkLevel] = React.useState('All')
+    const [drinkTaste, setDrinkTaste] = React.useState('All')
+
+    React.useEffect(() => {
         const results = props.drinkDatas.filter((elm) => {
 
-            if (event.target.value === 'All') {
-                return props.drinkDatas
+            if (drinkLevel === 'All' && drinkTaste === 'All') { return props.drinkDatas }
+            if (drinkLevel === elm.DifficultyLevel && drinkTaste === 'All') { return elm }
+            if (drinkTaste === elm.Taste && drinkLevel === 'All') { return elm }
+            if (drinkLevel === elm.DifficultyLevel && drinkTaste === elm.Taste) { return elm }
 
-            } else if (elm.DifficultyLevel === event.target.value) {
-                return elm;
-            } else if (elm.Taste === event.target.value) {
-                return elm
-            }
         })
 
         props.setSearchingDrink(results)
+    }, [drinkLevel, drinkTaste])
+
+
+    const levelHandler = (event) => {
+        setDrinkLevel(event.target.value)
     }
 
-
-
-
+    const tasteHandler = (event) => {
+        setDrinkTaste(event.target.value)
+    }
 
 
     return (
@@ -115,7 +121,7 @@ function SetingsPopup(props) {
                         <div className="ms-2 multi-options">
                             <div className="d-flex">
                                 <label className="">Level: </label>
-                                <select className=" ms-1 test" onChange={multiOptionsHandler}>
+                                <select className=" ms-1 test" onChange={levelHandler}>
                                     <option value={'All'}>All</option>
                                     <option value={'Easy'}>Easy</option>
                                     <option value={'Medium'}>Medium</option>
@@ -126,7 +132,7 @@ function SetingsPopup(props) {
 
                             <div className="d-flex mt-2">
                                 <label className=" ">Taste: </label>
-                                <select className=" ms-1 test" onChange={multiOptionsHandler}>
+                                <select className=" ms-1 test" onChange={tasteHandler}>
                                     <option value={'All'}>All</option>
                                     <option value={'Sour'}>Sour</option>
                                     <option value={'Sweet'}> Sweet</option>
