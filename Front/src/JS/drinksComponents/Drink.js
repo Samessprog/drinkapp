@@ -17,7 +17,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                     <LazyLoadImage
                         src={elm.IMG}
                         effect="blur"
-                        className="drink-img img-flui" alt="Img error"
+                        className="drink-img img-flui" alt="Loading error"
 
                     />
 

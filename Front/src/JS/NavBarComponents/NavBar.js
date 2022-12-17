@@ -6,8 +6,7 @@ import LoginPopup from "./LoginPopup";
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
     
-   
-    
+    const [inputDrinkText, setInputDrinkText] = React.useState("");
 
     const loginHandler = () => {
         if (Popupsetings === true || specialOptionsPopup === true) {
@@ -25,14 +24,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         setPopupSetings(!Popupsetings)
     }
 
-
     const hamburgerMenu = () => {
         const navbarLinks = document.getElementsByClassName('main-options-holder')[0]
         navbarLinks.classList.toggle('d-none')
     }
-
-
-    const [inputDrinkText, setInputDrinkText] = React.useState("");
 
     const setDrinkName = (event) => {
         setInputDrinkText(event.target.value)

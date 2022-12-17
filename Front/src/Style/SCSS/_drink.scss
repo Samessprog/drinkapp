@@ -27,7 +27,7 @@
         .basic-information-drink {
 
             .drink-name {
-                color: white;
+                color: $color-white;
             }
 
             .drink-creator {
@@ -44,7 +44,7 @@
                 font-size: 20px;
 
                 .star {
-                    fill: gold;
+                    fill: $color-gold;
                 }
             }
 

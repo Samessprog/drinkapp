@@ -4,20 +4,17 @@ import Ingreadinet from "./Ingreadinet";
 
 
 function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, setIngredientText, setingredient }) {
-    const unique_id = uuid();
 
-    //onKeyPress={submitIngreadinetsHandler}
-
+  
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
 
-    const submitIngreadinetsHandler = (event) => {
-
-        event.preventDefault()
+    const submitIngreadinetsHandler = () => {
+        
         setingredient([
             ...ingredient,
-            { text: ingredientText, id: unique_id }
+            { text: ingredientText, id: uuid() }
         ])
         setIngredientText("")
     }
@@ -26,7 +23,7 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
    
 
     return (
-        <div className="special-drinks-holder  col-12 col-md-10 mt-5">
+        <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5">
             <div className="col-6 helper rounded p-3">
                 <div className="d-flex flex-row-reverse ">
                     <svg onClick={() => setSpecialOptionsPopup(false)} className="close-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20">

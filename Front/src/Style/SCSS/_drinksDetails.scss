@@ -2,13 +2,11 @@
 
 .drink-holder {
     color: $color-white;
-
-
-
+    
     .drink-main-container {
 
         .rate {
-            color: gold;
+            color: $color-gold;
         }
 
         .star {
@@ -20,17 +18,14 @@
 
             .img-helper {
 
-                box-shadow: 5px 0px 5px 0px white;
+                box-shadow: 5px 0px 5px 0px $color-white;
             }
         }
-
 
         .description-holder {
             max-width: 700px;
             max-height: 300px;
         }
-
-
 
         .ingrediets-list {
             max-width: 350px;
@@ -40,7 +35,6 @@
                 list-style-type: disc;
             }
         }
-
 
         .mt-20 {
             margin-top: 200px;

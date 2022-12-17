@@ -25,12 +25,9 @@ export default function Home({ searchingDrink,setingredient, specialOptionsPopup
                 userScroll={userScroll}
                 drinkDatas={drinkDatas}
                 drinkDetailsPopup={drinkDetailsPopup}
-
                 searchingDrink={searchingDrink}
             />
-
-
-
+            
         </div>
     )
 }

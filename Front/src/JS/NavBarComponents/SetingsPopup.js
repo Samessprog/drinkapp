@@ -3,20 +3,15 @@ import SpecialDrinks from "./SpecialDrinks";
 
 function SetingsPopup(props) {
 
-
-
-    const specialOptionsHandler = () => {
-        props.setSpecialOptionsPopup(!props.specialOptionsPopup)
-    }
-
-
-    {/*Settings Handler */ }
-    {/*Settings States (do zmiany) useReducer zmienić podczas Refaktoryzacji */ }
+    {/* Settings Handler */ }
+    {/* Settings States  */ }
 
     const [alcocholic, setAlcocholic] = React.useState(false)
     const [softDrinks, setSoftDrinks] = React.useState(false)
-
     const [highlyRated, setHighlyRated] = React.useState(true)
+
+    const [drinkLevel, setDrinkLevel] = React.useState('All')
+    const [drinkTaste, setDrinkTaste] = React.useState('All')
 
 
     React.useEffect(() => {
@@ -24,41 +19,27 @@ function SetingsPopup(props) {
         const res = props.drinkDatas.filter((elm) => {
 
             if (alcocholic) {
-                if (elm.DrinkType === 'Alcocholic') {
-                    return elm
-                }
+                if (elm.DrinkType === 'Alcocholic') { return elm }
             }
 
             if (softDrinks) {
-                if (elm.DrinkType === 'Soft') {
-                    return elm
-                }
+                if (elm.DrinkType === 'Soft') { return elm }
             }
 
-            if (!alcocholic && !softDrinks) {
-                return props.drinkDatas
-            }
+            if (!alcocholic && !softDrinks) { return props.drinkDatas }
 
         })
 
-        const sort = highlyRated ? props.drinkDatas.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate) : shuffledArrayDrink(props.drinkDatas)
-
+        const sort = highlyRated ? props.drinkDatas.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate) : props.drinkDatas.sort(() => 0.5 - Math.random())
 
         props.setSearchingDrink(res)
     }, [alcocholic, softDrinks, highlyRated])
 
-    const shuffledArrayDrink = (drinkData) => {
-        return (drinkData.sort(() => 0.5 - Math.random()))
-    }
 
     //Dodać szukanie alfabetycznie
 
-
-
-    const [drinkLevel, setDrinkLevel] = React.useState('All')
-    const [drinkTaste, setDrinkTaste] = React.useState('All')
-
     React.useEffect(() => {
+
         const results = props.drinkDatas.filter((elm) => {
 
             if (drinkLevel === 'All' && drinkTaste === 'All') { return props.drinkDatas }
@@ -71,15 +52,8 @@ function SetingsPopup(props) {
         props.setSearchingDrink(results)
     }, [drinkLevel, drinkTaste])
 
-
-    const levelHandler = (event) => {
-        setDrinkLevel(event.target.value)
-    }
-
-    const tasteHandler = (event) => {
-        setDrinkTaste(event.target.value)
-    }
-
+    const levelHandler = (event) => { setDrinkLevel(event.target.value) }
+    const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
 
     return (
         <div className="position-absolute SetingsPopupHolder  mt-5 ">
@@ -146,10 +120,9 @@ function SetingsPopup(props) {
                 <div className="d-flex justify-content-center mt-3">
                     <button onClick={() => {
 
-                        specialOptionsHandler()
+                        props.setSpecialOptionsPopup(!props.specialOptionsPopup)
                         props.setPopupSetings(false)
-                    }
-                    }
+                    }}
 
                         type="button" className=" special-button rounded">
                         Provide the ingredients

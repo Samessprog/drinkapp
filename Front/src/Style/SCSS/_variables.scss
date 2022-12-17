@@ -1,13 +1,13 @@
-
 //colors
 $bg-dark: rgb(22, 22, 22);
 $bg-ligherDark: rgb(37, 37, 37);
 $color-light-l-green: rgb(6, 212, 6);
 $color-light-d-green: rgb(7, 243, 125);
 $color-white: white;
-$color-black:black;
+$color-black: black;
 $color-gold: gold;
-$color-light-grey:rgb(185, 184, 184);
+$color-red: red;
+$color-light-grey: rgb(185, 184, 184);
 
 //transitions
 $trans-all-03-eio: all .3s ease-in-out;
@@ -33,10 +33,11 @@ $d-none: none;
 
 //font-sizes
 
-$font-size-13:13px;
+$font-size-13: 13px;
 
 
-@mixin fs-13-color-light-grey{
+
+@mixin fs-13-color-light-grey {
     font-size: $font-size-13;
-    color: $color-light-grey;     
+    color: $color-light-grey;
 }

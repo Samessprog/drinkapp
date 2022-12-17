@@ -14,20 +14,17 @@ function App() {
   const [Popupsetings, setPopupSetings] = React.useState(false)
   const [loginPopup, setLoginPopup] = React.useState(false)
   const [specialOptionsPopup, setSpecialOptionsPopup] = React.useState(false)
-
   //Searching
   const [searchingDrink, setSearchingDrink] = React.useState([])
-  
-
+  //scroll
   const [userScroll, setUserScroll] = React.useState(false);
-
   //Special drinks hooks
   const [ingredientText, setIngredientText] = React.useState("")
   const [ingredient, setingredient] = React.useState([])
-
-  //Drink details (zrobić inaczej)
+  //Drink details 
   const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
-
+  //Drink datas
+  const [drinkDatas, setDrinkData] = React.useState([])
 
   const setFixed = () => {
     if (window.scrollY >= 1) {
@@ -40,8 +37,7 @@ function App() {
 
   window.addEventListener("scroll", setFixed)
 
-  const [drinkDatas, setDrinkData] = React.useState([])
- 
+
 
   React.useEffect(() => {
 
@@ -55,29 +51,24 @@ function App() {
         console.log(err)
       }
     }
-
     fetchData();
   }, [])
 
-  
-  return (
-    <div className=".container-fluid">
 
+  return (
+    <div className="">
 
       <NavBar
-
         Popupsetings={Popupsetings}
         setPopupSetings={setPopupSetings}
         loginPopup={loginPopup}
         setLoginPopup={setLoginPopup}
-        setSpecialOptionsPopup={setSpecialOptionsPopup}
         specialOptionsPopup={specialOptionsPopup}
-        userScroll={userScroll}
+        setSpecialOptionsPopup={setSpecialOptionsPopup}
         drinkDatas={drinkDatas}
-        
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
-
+        userScroll={userScroll}
       />
 
 
@@ -86,28 +77,22 @@ function App() {
         <Route path="/" element={
 
           <Home
-
-          searchingDrink={searchingDrink}
-
+            drinkDatas={drinkDatas}
+            searchingDrink={searchingDrink}
             ingredientText={ingredientText}
-            setIngredientText={setIngredientText}
             ingredient={ingredient}
             setingredient={setingredient}
+            setIngredientText={setIngredientText}
             setSpecialOptionsPopup={setSpecialOptionsPopup}
             specialOptionsPopup={specialOptionsPopup}
-
             setDrinkDetailsPopup={setDrinkDetailsPopup}
-            userScroll={userScroll}
-            drinkDatas={drinkDatas}
             drinkDetailsPopup={drinkDetailsPopup}
+            userScroll={userScroll}
 
           />}>
 
-
         </Route>
-
-        <Route path="/drinkDetail/:id" element={<DrinkDetails  drinkDatas={drinkDatas} />}></Route>
-
+        <Route path="/drinkDetail/:id" element={<DrinkDetails drinkDatas={drinkDatas} />}></Route>
       </Routes>
 
       <Footer />

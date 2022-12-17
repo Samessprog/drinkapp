@@ -5,12 +5,10 @@ import React from "react";
 function Footer() {
 
 
-
     return (
         <footer className="mt-5">
             <div className="footer pt-5 ps-3 d-flex flex-column   align-items-center  align-items-md-start flex-md-row  justify-content-evenly pe-4">
                
-
                 <div className="mb-2">
                     <label>BRANDLOGO</label>
                     <div className="mt-2 desc-container">
@@ -38,17 +36,16 @@ function Footer() {
 
                 </div>
                
-                    <div id="contact" className="mb-2">
-                        <label className="fw-bolder">contact details:</label>
+                    <div id="contact" className="">
+                        <div className="fw-bolder">contact details:</div>
                         <div className="contact mt-2">test@dom.pl</div>
                         <div className="contact">xxx-xxx-xxx</div>
                         <a className="footer-links" href="https://github.com/Samessprog" target="_blank">Github</a>
                     </div>
-               
-                
+        
             </div>
 
-            <div className="d-flex justify-content-center p-1 copyright p-1 ">
+            <div className="d-flex justify-content-center p-1 copyright">
                 © 2022 - Sames All rights reserved
             </div>
 
@@ -56,6 +53,5 @@ function Footer() {
     )
 
 }
-
 
 export default Footer;
