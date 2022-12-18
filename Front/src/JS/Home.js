@@ -3,8 +3,11 @@ import SpecialDrinks from "./NavBarComponents/SpecialDrinks";
 import MainPage from "./MainPage";
 
 export default function Home({ searchingDrink,setingredient, specialOptionsPopup, drinkDetailsPopup, drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText, ingredient, setSpecialOptionsPopup }) {
-
-    return (
+    
+    
+    {/* Do FAKTORYZACJI */}
+    
+     return (
 
         <div>
 

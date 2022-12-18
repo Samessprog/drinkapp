@@ -5,20 +5,28 @@ import { useParams } from "react-router-dom";
 function DrinkDetails({ drinkDatas }) {
 
     const { id } = useParams()
+
+    {/* Do FAKTORYZACJI */}
     const [drinksDetail, setDrinkDetail] = React.useState({})
+    const [ing, setIng] = React.useState([])
+    const [prep,setPrep ] = React.useState([])
+
 
     React.useEffect(() => {
         const result = drinkDatas.filter((elm) => {
             if (elm.ID_Drink === id) {
+                setIng(elm.Ingredients.split('.'))
                 setDrinkDetail(elm)
+                setPrep(elm.Preparation.split('.')) 
                 return elm;
             }
         })
-           
-    })
-    {/* [id] */ }
 
+    },[id])
+    
+    {/*Naprawić ID*/}
 
+   
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
@@ -62,12 +70,13 @@ function DrinkDetails({ drinkDatas }) {
 
                             </div>
 
-                            <div className="mt-5">
+                            <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
 
-                                    {drinksDetail.Ingredients}
-
+                                    {ing.map((ingredient, key) =>
+                                        <li key={key}>{ingredient}</li>
+                                    )}
 
                                 </ul>
                             </div>
@@ -86,11 +95,14 @@ function DrinkDetails({ drinkDatas }) {
 
                 {/* Sposów przygotowania drinku */}
 
-                <div className="d-flex mt-20  justify-content-center  fs-3 fw-bolder">Preparation</div>
+                <div className="d-flex mt-5  justify-content-center  fs-3 fw-bolder">Preparation</div>
                 <div className="mt-2 border rounded pt-4 ps-4 pe-4">
                     <div className="overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
 
-                        <div>{drinksDetail.Preparation}</div>
+                        <div>
+                                {prep.map((prep,key) => <div key={key}>{prep}</div>)}
+
+                        </div>
 
                         <div className="mt-4">
                             <img alt="ERR"></img>

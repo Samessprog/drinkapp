@@ -9,7 +9,7 @@ import Home from "./Home";
 
 function App() {
 
-
+   {/* Do FAKTORYZACJI */}
   //navbar PopUps
   const [Popupsetings, setPopupSetings] = React.useState(false)
   const [loginPopup, setLoginPopup] = React.useState(false)
