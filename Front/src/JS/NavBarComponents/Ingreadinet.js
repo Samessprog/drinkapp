@@ -3,8 +3,7 @@ import React from "react";
 
  function Ingreadinet({ ing, setingredient, ingredient }) {
 
-    console.log(ingredient)
-
+    
     const deleteHandler = () => {
         setingredient(ingredient.filter((el) => el.id !== ing.id))
     }

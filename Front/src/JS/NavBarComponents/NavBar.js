@@ -4,8 +4,10 @@ import LoginPopup from "./LoginPopup";
 
 
 
-function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
-    
+function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
+    userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
+    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound }) {
+
     const [inputDrinkText, setInputDrinkText] = React.useState("");
 
     const loginHandler = () => {
@@ -33,24 +35,34 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         setInputDrinkText(event.target.value)
     }
 
-     //Poprawić wyszukiwanie
+
     React.useEffect(() => {
-
-        const searchingResults = drinkDatas.filter((elm) => {
-
-            if (elm.DrinkName === inputDrinkText) {  
-                return elm;
+        const searchDrinks = async () => {
+          const searchingResults = await drinkDatas.filter((elm) => {
+            const drinkName = elm.DrinkName.toLowerCase();
+            const inputText = inputDrinkText.toLowerCase();
+      
+            if (drinkName.includes(inputText)) {
+              return elm;
             }
+          });
+      
+          setSearchingDrink(searchingResults);
+        };
+      
+        searchDrinks();
+      }, [drinkDatas, inputDrinkText, setSearchingDrink]);
+      
+      React.useEffect(() => {
+        if (searchingDrink.length === 0) {
+          setDrinkNotFound(true);
+        } else {
+          setDrinkNotFound(false);
+        }
+      }, [searchingDrink, setDrinkNotFound]);
 
-            if (inputDrinkText === "") {
-                return drinkDatas
-            }
-        })
-        
-        setSearchingDrink(searchingResults)
-    }, [inputDrinkText])
 
- 
+
     return (
         <nav className="NavBar position-sticky top-0 ">
             <div className="NavBarContentHolder p-3 pb-0">
@@ -97,10 +109,9 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     searchingDrink={searchingDrink}
                                     drinkDatas={drinkDatas}
                                     setSearchingDrink={setSearchingDrink}
-                                   
-                                    
-                                />
+                                    setDrinkNotFound={setDrinkNotFound}
 
+                                />
                             )}
 
                         </div>
@@ -108,7 +119,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                     </div>
 
                     <div className="">
-                        <button onClick={loginHandler} type="button" className="btn btn-dark">Sign in</button>
+                        <button onClick={() => setLoginPopup(!loginPopup)} type="button" className="btn btn-dark">Sign in</button>
                     </div>
 
                     {loginPopup &&

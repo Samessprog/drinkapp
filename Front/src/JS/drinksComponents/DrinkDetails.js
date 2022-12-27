@@ -11,7 +11,6 @@ function DrinkDetails({ drinkDatas }) {
     const [ing, setIng] = React.useState([])
     const [prep,setPrep ] = React.useState([])
 
-
     React.useEffect(() => {
         const result = drinkDatas.filter((elm) => {
             if (elm.ID_Drink === id) {
@@ -100,7 +99,7 @@ function DrinkDetails({ drinkDatas }) {
                     <div className="overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
 
                         <div>
-                                {prep.map((prep,key) => <div key={key}>{prep}</div>)}
+                                {prep.map((prep,key) => ( <div key={key}>{prep}</div> ))}
 
                         </div>
 

@@ -1,10 +1,8 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import DrinkDetails from "./DrinkDetails";
 import { Link } from "react-router-dom";
 
 function Drink({ setDrinkDetailsPopup, elm }) {
-
 
     return (
 

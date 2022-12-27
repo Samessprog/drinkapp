@@ -1,5 +1,7 @@
 import React from "react";
 import SpecialDrinks from "./SpecialDrinks";
+import DDE from '../drinksComponents/DDE';
+
 
 function SetingsPopup(props) {
 
@@ -14,43 +16,45 @@ function SetingsPopup(props) {
     const [drinkTaste, setDrinkTaste] = React.useState('All')
 
 
-    React.useEffect(() => {
+    // const [state, setState] = React.useState({
+    //     alcocholic: false,
+    //     softDrinks: false,
+    //     writtenRated: true,
+    //     drinkLevel: 'All',
+    //     drinkTaste: 'All',
+    // });
 
-        const res = props.drinkDatas.filter((elm) => {
-
-            if (alcocholic) {
-                if (elm.DrinkType === 'Alcocholic') { return elm }
-            }
-
-            if (softDrinks) {
-                if (elm.DrinkType === 'Soft') { return elm }
-            }
-
-            if (!alcocholic && !softDrinks) { return props.drinkDatas }
-
-        })
-
-        const sort = highlyRated ? props.drinkDatas.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate) : props.drinkDatas.sort(() => 0.5 - Math.random())
-
-        props.setSearchingDrink(res)
-    }, [alcocholic, softDrinks, highlyRated])
-
-
-    //Dodać szukanie alfabetycznie
 
     React.useEffect(() => {
-
         const results = props.drinkDatas.filter((elm) => {
+          if (
+            (alcocholic && elm.DrinkType === 'Alcocholic') ||
+            (softDrinks && elm.DrinkType === 'Soft') ||
+            (!alcocholic && !softDrinks)
+          ) {
+            if (drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel) {
+              if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
+                return elm;
+              }
+            }
+          }
+        });
+      
+        const sort = highlyRated
+          ? results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate)
+          : results.sort(() => 0.5 - Math.random());
+      
+        props.setSearchingDrink(sort);
+      }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, props.drinkDatas, props.setSearchingDrink]);
+      
+      React.useEffect(() => {
+        if (props.searchingDrink.length === 0) {
+          props.setDrinkNotFound(true);
+        } else {
+          props.setDrinkNotFound(false);
+        }
+      }, [props.searchingDrink, props.setDrinkNotFound]);
 
-            if (drinkLevel === 'All' && drinkTaste === 'All') { return props.drinkDatas }
-            if (drinkLevel === elm.DifficultyLevel && drinkTaste === 'All') { return elm }
-            if (drinkTaste === elm.Taste && drinkLevel === 'All') { return elm }
-            if (drinkLevel === elm.DifficultyLevel && drinkTaste === elm.Taste) { return elm }
-
-        })
-
-        props.setSearchingDrink(results)
-    }, [drinkLevel, drinkTaste])
 
     const levelHandler = (event) => { setDrinkLevel(event.target.value) }
     const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
@@ -73,6 +77,7 @@ function SetingsPopup(props) {
                                 <input type="checkbox" ></input>
                                 <label className="ms-1">Favorite</label>
                             </div>
+
 
                             <div className="d-flex mt-1">
                                 <input onClick={() => setAlcocholic(!alcocholic)} type="checkbox" ></input>

@@ -18,10 +18,7 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
         ])
         setIngredientText("")
     }
-
-
-   
-
+    
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5">
             <div className="col-6 helper rounded p-3">

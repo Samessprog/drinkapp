@@ -5,11 +5,11 @@ import Footer from "./footer/Footer";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Route, Routes } from "react-router-dom"
 import Home from "./Home";
-
+import axios from 'axios';
 
 function App() {
 
-   {/* Do FAKTORYZACJI */}
+  {/* Do FAKTORYZACJI */ }
   //navbar PopUps
   const [Popupsetings, setPopupSetings] = React.useState(false)
   const [loginPopup, setLoginPopup] = React.useState(false)
@@ -26,33 +26,34 @@ function App() {
   //Drink datas
   const [drinkDatas, setDrinkData] = React.useState([])
 
-  const setFixed = () => {
-    if (window.scrollY >= 1) {
-      setUserScroll(true)
-
-    } else {
-      setUserScroll(false)
-    }
-  }
-
-  window.addEventListener("scroll", setFixed)
-
+  //isSet
+  const [drinkNotFound, setDrinkNotFound] = React.useState(false)
 
 
   React.useEffect(() => {
+    const setFixed = () => {
+      setUserScroll(window.scrollY >= 1);
+    };
+    window.addEventListener("scroll", setFixed);
+  
+    return () => window.removeEventListener("scroll", setFixed);
+  }, []);
 
+
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const datas = await fetch("http://localhost:3000/api.php")
-        const drinkData = await datas.json();
-        setDrinkData(drinkData)
-        setSearchingDrink(drinkData)
+        const { data } = await axios.get("http://localhost:3000/api.php");
+        setDrinkData(data);
+        setSearchingDrink(data);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
+
+
 
 
   return (
@@ -69,6 +70,7 @@ function App() {
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
+        setDrinkNotFound={setDrinkNotFound}
       />
 
 
@@ -88,6 +90,7 @@ function App() {
             setDrinkDetailsPopup={setDrinkDetailsPopup}
             drinkDetailsPopup={drinkDetailsPopup}
             userScroll={userScroll}
+            drinkNotFound={drinkNotFound}
 
           />}>
 
