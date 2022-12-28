@@ -1,24 +1,26 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { v4 as uuid } from 'uuid';
-import Ingreadinet from "./Ingreadinet";
+import { ErrorBoundary } from "react-error-boundary";
 
+import ErrorFallback from "../Components/ErrorBoundary";
+const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, setIngredientText, setingredient }) {
 
-  
+
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
 
     const submitIngreadinetsHandler = () => {
-        
+
         setingredient([
             ...ingredient,
             { text: ingredientText, id: uuid() }
         ])
         setIngredientText("")
     }
-    
+
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5">
             <div className="col-6 helper rounded p-3">
@@ -44,8 +46,11 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
 
                     <ul className="ms-0  ">
                         {ingredient.map((ing, key) => (
-                            <Ingreadinet ing={ing} key={key} setingredient={setingredient} ingredient={ingredient} />
-
+                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                                <Suspense>
+                                    <Ingreadinet ing={ing} key={key} setingredient={setingredient} ingredient={ingredient} />
+                                </Suspense>
+                            </ErrorBoundary>
                         ))}
 
                     </ul>

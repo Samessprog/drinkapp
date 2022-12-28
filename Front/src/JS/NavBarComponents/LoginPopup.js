@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function LoginPopup({ setLoginPopup }) {
 
     return (
@@ -32,7 +31,7 @@ function LoginPopup({ setLoginPopup }) {
                     </div>
 
                     <div className="mt-4 mb-4">
-                        <button type="button" class="btn btn-dark">Login</button>
+                        <button type="button" className="btn btn-dark">Login</button>
                     </div>
                 </form>
 

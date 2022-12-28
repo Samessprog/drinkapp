@@ -1,7 +1,4 @@
 import React from "react";
-import SpecialDrinks from "./SpecialDrinks";
-import DDE from '../drinksComponents/DDE';
-
 
 function SetingsPopup(props) {
 
@@ -78,7 +75,6 @@ function SetingsPopup(props) {
                                 <label className="ms-1">Favorite</label>
                             </div>
 
-
                             <div className="d-flex mt-1">
                                 <input onClick={() => setAlcocholic(!alcocholic)} type="checkbox" ></input>
                                 <label className="ms-1">Alcoholic</label>
@@ -88,7 +84,6 @@ function SetingsPopup(props) {
                                 <input type="checkbox" onClick={() => setSoftDrinks(!softDrinks)} ></input>
                                 <label className="ms-1">Soft drinks</label>
                             </div>
-
 
                             <div className="d-flex mt-1">
                                 <input type="checkbox" onClick={() => setHighlyRated(!highlyRated)} ></input>

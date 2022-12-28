@@ -1,11 +1,15 @@
-import React from "react";
-import NavBar from "./NavBarComponents/NavBar";
-import DrinkDetails from "./drinksComponents/DrinkDetails";
-import Footer from "./footer/Footer";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import React, {Suspense} from "react";
 import { Route, Routes } from "react-router-dom"
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { ErrorBoundary } from "react-error-boundary";
+
+import ErrorFallback from "./Components/ErrorBoundary";
+import NavBar from "./NavBarComponents/NavBar";
+import Footer from "./footer/Footer";
 import Home from "./Home";
 import axios from 'axios';
+
+const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 
 function App() {
 
@@ -25,7 +29,6 @@ function App() {
   const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
   //Drink datas
   const [drinkDatas, setDrinkData] = React.useState([])
-
   //isSet
   const [drinkNotFound, setDrinkNotFound] = React.useState(false)
 
@@ -52,7 +55,6 @@ function App() {
     };
     fetchData();
   }, []);
-
 
 
 
@@ -95,7 +97,7 @@ function App() {
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<DrinkDetails drinkDatas={drinkDatas} />}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 
       <Footer />

@@ -1,7 +1,9 @@
-import React from "react";
-import SetingsPopup from "./SetingsPopup";
-import LoginPopup from "./LoginPopup";
+import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "../Components/ErrorBoundary";
 
+const LoginPopup = React.lazy(() => import("./LoginPopup"))
+const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
 
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
@@ -38,28 +40,28 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
     React.useEffect(() => {
         const searchDrinks = async () => {
-          const searchingResults = await drinkDatas.filter((elm) => {
-            const drinkName = elm.DrinkName.toLowerCase();
-            const inputText = inputDrinkText.toLowerCase();
-      
-            if (drinkName.includes(inputText)) {
-              return elm;
-            }
-          });
-      
-          setSearchingDrink(searchingResults);
+            const searchingResults = await drinkDatas.filter((elm) => {
+                const drinkName = elm.DrinkName.toLowerCase();
+                const inputText = inputDrinkText.toLowerCase();
+
+                if (drinkName.includes(inputText)) {
+                    return elm;
+                }
+            });
+
+            setSearchingDrink(searchingResults);
         };
-      
+
         searchDrinks();
-      }, [drinkDatas, inputDrinkText, setSearchingDrink]);
-      
-      React.useEffect(() => {
+    }, [drinkDatas, inputDrinkText, setSearchingDrink]);
+
+    React.useEffect(() => {
         if (searchingDrink.length === 0) {
-          setDrinkNotFound(true);
+            setDrinkNotFound(true);
         } else {
-          setDrinkNotFound(false);
+            setDrinkNotFound(false);
         }
-      }, [searchingDrink, setDrinkNotFound]);
+    }, [searchingDrink, setDrinkNotFound]);
 
 
 
@@ -101,17 +103,21 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                             </button>
 
                             {Popupsetings && (
-                                <SetingsPopup
-                                    Popupsetings={Popupsetings}
-                                    setPopupSetings={setPopupSetings}
-                                    setSpecialOptionsPopup={setSpecialOptionsPopup}
-                                    specialOptionsPopup={specialOptionsPopup}
-                                    searchingDrink={searchingDrink}
-                                    drinkDatas={drinkDatas}
-                                    setSearchingDrink={setSearchingDrink}
-                                    setDrinkNotFound={setDrinkNotFound}
+                                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                        <SetingsPopup
+                                            Popupsetings={Popupsetings}
+                                            setPopupSetings={setPopupSetings}
+                                            setSpecialOptionsPopup={setSpecialOptionsPopup}
+                                            specialOptionsPopup={specialOptionsPopup}
+                                            searchingDrink={searchingDrink}
+                                            drinkDatas={drinkDatas}
+                                            setSearchingDrink={setSearchingDrink}
+                                            setDrinkNotFound={setDrinkNotFound}
 
-                                />
+                                        />
+                                    </Suspense>
+                                </ErrorBoundary>
                             )}
 
                         </div>
@@ -123,11 +129,14 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                     </div>
 
                     {loginPopup &&
-                        <LoginPopup
-                            setLoginPopup={setLoginPopup}
-                        />
+                        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <LoginPopup
+                                    setLoginPopup={setLoginPopup}
+                                />
+                            </Suspense>
+                        </ErrorBoundary>
                     }
-
 
                 </div>
 

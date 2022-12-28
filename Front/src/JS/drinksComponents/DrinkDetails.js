@@ -24,8 +24,7 @@ function DrinkDetails({ drinkDatas }) {
     },[id])
     
     {/*Naprawić ID*/}
-
-   
+    
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">

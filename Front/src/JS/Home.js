@@ -1,28 +1,35 @@
-import React from "react";
-import SpecialDrinks from "./NavBarComponents/SpecialDrinks";
+import React, { Suspense} from "react";
 import MainPage from "./MainPage";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./Components/ErrorBoundary";
 
-export default function Home({ searchingDrink,setingredient, specialOptionsPopup, drinkDetailsPopup, 
-    drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText, 
-    ingredient, setSpecialOptionsPopup,drinkNotFound }) {
-    
-    
-    {/* Do FAKTORYZACJI */}
-    
-     return (
+const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
+
+
+export default function Home({ searchingDrink, setingredient, specialOptionsPopup, drinkDetailsPopup,
+    drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText,
+    ingredient, setSpecialOptionsPopup, drinkNotFound }) {
+
+
+
+    return (
 
         <div>
 
             {specialOptionsPopup &&
+                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={()=>{}}>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <SpecialDrinks
+                            ingredientText={ingredientText}
+                            setIngredientText={setIngredientText}
+                            ingredient={ingredient}
+                            setingredient={setingredient}
+                            setSpecialOptionsPopup={setSpecialOptionsPopup}
 
-                <SpecialDrinks
-                    ingredientText={ingredientText}
-                    setIngredientText={setIngredientText}
-                    ingredient={ingredient}
-                    setingredient={setingredient}
-                    setSpecialOptionsPopup={setSpecialOptionsPopup}
+                        />
+                    </Suspense>
+                </ErrorBoundary>
 
-                />
             }
 
             <MainPage
@@ -33,7 +40,7 @@ export default function Home({ searchingDrink,setingredient, specialOptionsPopup
                 searchingDrink={searchingDrink}
                 drinkNotFound={drinkNotFound}
             />
-            
+
         </div>
     )
 }

@@ -1,9 +1,13 @@
-import React from "react";
-import DDE from "./drinksComponents/DDE";
+import React, { Suspense } from "react";
 import Drink from "./drinksComponents/Drink";
+import { ErrorBoundary } from "react-error-boundary";
+
+import ErrorFallback from "./Components/ErrorBoundary";
+const DDE = React.lazy(() => import("./drinksComponents/DDE"))
+//const Drink = React.lazy(() => import("./drinksComponents/Drink"))
 
 
-function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll,drinkNotFound }) {
+function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFound }) {
 
     return (
 
@@ -16,16 +20,25 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll,drinkNotFou
             </div>
 
             {searchingDrink.map((elm) => (
+
                 <Drink
                     key={elm.ID_Drink}
                     setDrinkDetailsPopup={setDrinkDetailsPopup}
                     elm={elm}
                 />
-            ))}
 
-                {drinkNotFound && 
-                    <DDE />
-                }
+            ))
+            }
+
+            {
+                drinkNotFound &&
+                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <DDE />
+                    </Suspense>
+                </ErrorBoundary>
+
+            }
 
 
         </main >
