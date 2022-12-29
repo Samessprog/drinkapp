@@ -1,30 +1,53 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
+import Pagination from 'react-paginate';
+
+
 
 function DrinkDetails({ drinkDatas }) {
 
     const { id } = useParams()
 
-    {/* Do FAKTORYZACJI */}
+    {/* Do FAKTORYZACJI */ }
     const [drinksDetail, setDrinkDetail] = React.useState({})
     const [ing, setIng] = React.useState([])
-    const [prep,setPrep ] = React.useState([])
+    const [prep, setPrep] = React.useState([])
 
     React.useEffect(() => {
         const result = drinkDatas.filter((elm) => {
             if (elm.ID_Drink === id) {
                 setIng(elm.Ingredients.split('.'))
                 setDrinkDetail(elm)
-                setPrep(elm.Preparation.split('.')) 
+                setPrep(elm.Preparation.split('.'))
                 return elm;
             }
         })
 
-    },[id])
-    
-    {/*Naprawić ID*/}
-    
+    }, [id])
+
+
+
+    {/*Paginacja*/ }
+
+
+    const [offset, setOffset] = React.useState(0);
+
+    const itemPerPage = 1; //ilosc elm na stronie
+    const pageCount = Math.ceil(prep.length / itemPerPage);  // ilosc stron
+    const currentData = prep.slice(offset, offset + itemPerPage);
+
+    const handlePageClick = (data) => {
+        const selectedPage = data.selected;
+        const offset = selectedPage * itemPerPage;
+
+        setOffset(offset);
+    };
+
+
+
+    {/*Naprawić ID*/ }
+
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
@@ -82,12 +105,14 @@ function DrinkDetails({ drinkDatas }) {
                     </div>
 
                     <div className=" img-holder mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
+
                         <LazyLoadImage
                             src={drinksDetail.IMG}
                             effect="blur"
                             className="img-fluid img-helper " alt="Img error"
 
                         />
+
                     </div>
                 </div>
 
@@ -95,29 +120,36 @@ function DrinkDetails({ drinkDatas }) {
 
                 <div className="d-flex mt-5  justify-content-center  fs-3 fw-bolder">Preparation</div>
                 <div className="mt-2 border rounded pt-4 ps-4 pe-4">
-                    <div className="overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
+                    <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
+
 
                         <div>
-                                {prep.map((prep,key) => ( <div key={key}>{prep}</div> ))}
+                            {currentData.map((prep, key) => (
+                                <div key={key}>{prep}</div>
+                            ))}
 
+                            <div className="mt-5 d-flex justify-content-center col align-items-center">
+                                <img alt="ERR"></img>
+                            </div>
+                            
+                            <div className="d-flex justify-content-center">
+
+                                <Pagination
+                                    pageCount={pageCount}
+                                    onPageChange={handlePageClick}
+                                    forcePage={offset / itemPerPage}
+                                    className="position-absolute bottom-0 d-flex  pagination align-items-center"
+                                    nextLabel={<svg  xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path  className="nextPageArrow" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"/></svg>}
+                                    previousLabel={<svg  xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow"  d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"/></svg>}
+                                />
+
+                            </div>
                         </div>
 
-                        <div className="mt-4">
-                            <img alt="ERR"></img>
-                        </div>
+
 
                     </div>
-                    <div className="d-flex justify-content-center mt-4 mt-xl-20" >
 
-                        <ul className="pagination mb-1 ">
-                            <li className="page-item " ><a className="page-link" href="#">Previous</a></li>
-                            <li className="page-item"><a className="page-link" href="#">1</a></li>
-                            <li className="page-item"><a className="page-link" href="#">2</a></li>
-                            <li className="page-item"><a className="page-link" href="#">3</a></li>
-                            <li className="page-item"><a className="page-link" href="#">Next</a></li>
-                        </ul>
-
-                    </div>
                 </div>
             </div>
         </div>
