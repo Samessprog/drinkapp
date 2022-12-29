@@ -1,9 +1,9 @@
 import React, {Suspense} from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 
-import ErrorFallback from "./Components/ErrorBoundary";
 import NavBar from "./NavBarComponents/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./Home";

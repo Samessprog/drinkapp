@@ -35,16 +35,47 @@
                 list-style-type: disc;
             }
         }
-
-        .mt-20 {
-            margin-top: 200px;
+        
+        
 
             .preparation-holder {
                 height: $n-400px;
                 max-height: $n-400px;
+
+                .nextPageArrow{
+                    fill: aliceblue;
+                    &:hover{
+                        fill: rgb(163, 161, 161);
+
+                    }
+                }
+
+
+                .pagination{
+
+                    a {
+                        padding-left: 7px;
+                        font-size: 20px;
+                        font-weight: 700;
+                        &:hover{
+                            color: rgb(163, 161, 161);
+
+                        }
+
+                       
+                  
+                    }
+                    .selected{
+                        color: rgb(185, 128, 128);
+                    }
+                  
+                
+                }
+                
+                
             }
 
-        }
+        
 
         .basic-information-drink {
 
@@ -64,3 +95,4 @@
         }
     }
 }
+
