@@ -5,7 +5,35 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../Components/ErrorBoundary";
 const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
-function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, setIngredientText, setingredient }) {
+function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
+    setIngredientText, setingredient, drinkDatas }) {
+
+
+    const [drinkCounter, setDrinkCounter] = React.useState(0)
+
+    React.useEffect(() => {
+
+        const result = searchingDrink.filter((elm) => {
+            let match = false;
+
+            for (const elmIng of ingredient) {
+
+                const ingredientName = elm.Ingredients.toLowerCase();
+                const inputText = elmIng.text.toLowerCase();
+                
+                if (ingredientName.includes(inputText)) {
+                    console.log(elm)
+                    match = true;
+                    break;
+                }
+            }
+            return match;
+        });
+
+        setDrinkCounter(result.length)
+        setSearchingDrink(result.length === 0 ? drinkDatas : result)
+
+    }, [ingredient])
 
 
     const inputTextHandler = (event) => {
@@ -20,6 +48,7 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
         ])
         setIngredientText("")
     }
+
 
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5">
@@ -60,8 +89,8 @@ function SpecialDrinks({ setSpecialOptionsPopup, ingredient, ingredientText, set
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">
                     <label>The amount of drinks we have with these ingredients:</label>
-                    <label className="drink-results mt-1 mb-1  d-flex justify-content-center "> X</label>
-                    <button className="search-special-drink-button rounded-pill">Search</button>
+                    <label className="drink-results mt-1 mb-1  d-flex justify-content-center ">{drinkCounter}</label>
+                 
                 </div>
 
             </div>

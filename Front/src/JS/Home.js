@@ -6,11 +6,13 @@ import ErrorFallback from "./Components/ErrorBoundary";
 const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
-export default function Home({ searchingDrink, setingredient, specialOptionsPopup, drinkDetailsPopup,
+export default function Home({ searchingDrink,  setSearchingDrink ,setingredient, specialOptionsPopup, drinkDetailsPopup,
     drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText,
-    ingredient, setSpecialOptionsPopup, drinkNotFound }) {
+    ingredient, setSpecialOptionsPopup, drinkNotFound,drinksCounter,setDrinksCounter }) {
 
-
+       
+      
+      
 
     return (
 
@@ -25,11 +27,14 @@ export default function Home({ searchingDrink, setingredient, specialOptionsPopu
                             ingredient={ingredient}
                             setingredient={setingredient}
                             setSpecialOptionsPopup={setSpecialOptionsPopup}
-
+                            searchingDrink = { searchingDrink}
+                            setSearchingDrink = {setSearchingDrink}
+                            drinksCounter= {drinksCounter}
+                            setDrinksCounter = {setDrinksCounter}
+                            drinkDatas={drinkDatas}
                         />
                     </Suspense>
                 </ErrorBoundary>
-
             }
 
             <MainPage

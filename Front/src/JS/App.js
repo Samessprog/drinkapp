@@ -31,7 +31,8 @@ function App() {
   const [drinkDatas, setDrinkData] = React.useState([])
   //isSet
   const [drinkNotFound, setDrinkNotFound] = React.useState(false)
-
+  //Drinks counter
+  const [drinksCounter, setDrinksCounter] = React.useState(0)
 
   React.useEffect(() => {
     const setFixed = () => {
@@ -93,6 +94,9 @@ function App() {
             drinkDetailsPopup={drinkDetailsPopup}
             userScroll={userScroll}
             drinkNotFound={drinkNotFound}
+            setSearchingDrink={setSearchingDrink}
+            drinksCounter= {drinksCounter}
+            setDrinksCounter ={setDrinksCounter}
 
           />}>
 

@@ -83,7 +83,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                         <div className="searching-holder position-relative pb-3 col-sm-12">
 
-                            <input onChange={setDrinkName} type="text" className="searching-input  border-0 rounded-pill p-2 ps-3 col-sm-12" placeholder="drink name" />
+                            <input onChange={setDrinkName} type="text" className="searching-input  border-0 rounded-pill p-2 ps-3 col-sm-12" placeholder=" Enter drink name" />
 
                             <button className="searching-icon-holder  border-0 p-0 m-0 position-absolute ">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" >
@@ -114,6 +114,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                             drinkDatas={drinkDatas}
                                             setSearchingDrink={setSearchingDrink}
                                             setDrinkNotFound={setDrinkNotFound}
+                                            
 
                                         />
                                     </Suspense>

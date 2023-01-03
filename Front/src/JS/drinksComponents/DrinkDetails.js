@@ -8,8 +8,7 @@ import Pagination from 'react-paginate';
 function DrinkDetails({ drinkDatas }) {
 
     const { id } = useParams()
-
-    {/* Do FAKTORYZACJI */ }
+    
     const [drinksDetail, setDrinkDetail] = React.useState({})
     const [ing, setIng] = React.useState([])
     const [prep, setPrep] = React.useState([])
@@ -20,16 +19,14 @@ function DrinkDetails({ drinkDatas }) {
                 setIng(elm.Ingredients.split('.'))
                 setDrinkDetail(elm)
                 setPrep(elm.Preparation.split('.'))
-                return elm;
+                
             }
         })
 
     }, [id])
 
 
-
     {/*Paginacja*/ }
-
 
     const [offset, setOffset] = React.useState(0);
 
@@ -46,7 +43,7 @@ function DrinkDetails({ drinkDatas }) {
 
 
 
-    {/*Naprawić ID*/ }
+   
 
     return (
         <div className="drink-holder">

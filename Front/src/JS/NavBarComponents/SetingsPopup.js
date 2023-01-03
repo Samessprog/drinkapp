@@ -7,7 +7,7 @@ function SetingsPopup(props) {
 
     const [alcocholic, setAlcocholic] = React.useState(false)
     const [softDrinks, setSoftDrinks] = React.useState(false)
-    const [highlyRated, setHighlyRated] = React.useState(true)
+    const [highlyRated, setHighlyRated] = React.useState(false)
 
     const [drinkLevel, setDrinkLevel] = React.useState('All')
     const [drinkTaste, setDrinkTaste] = React.useState('All')
@@ -21,36 +21,37 @@ function SetingsPopup(props) {
     //     drinkTaste: 'All',
     // });
 
-
+   
+   
     React.useEffect(() => {
         const results = props.drinkDatas.filter((elm) => {
-          if (
-            (alcocholic && elm.DrinkType === 'Alcocholic') ||
-            (softDrinks && elm.DrinkType === 'Soft') ||
-            (!alcocholic && !softDrinks)
-          ) {
-            if (drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel) {
-              if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
-                return elm;
-              }
+            if (
+                (alcocholic && elm.DrinkType === 'Alcocholic') ||
+                (softDrinks && elm.DrinkType === 'Soft') ||
+                (!alcocholic && !softDrinks)
+            ) {
+                if (drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel) {
+                    if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
+                        return elm;
+                    }
+                }
             }
-          }
         });
-      
+
         const sort = highlyRated
-          ? results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate)
-          : results.sort(() => 0.5 - Math.random());
-      
+            ? results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate)
+            : results.sort(() => 0.5 - Math.random());
+
         props.setSearchingDrink(sort);
-      }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, props.drinkDatas, props.setSearchingDrink]);
-      
-      React.useEffect(() => {
+    }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste]);
+
+    React.useEffect(() => {
         if (props.searchingDrink.length === 0) {
-          props.setDrinkNotFound(true);
+            props.setDrinkNotFound(true);
         } else {
-          props.setDrinkNotFound(false);
+            props.setDrinkNotFound(false);
         }
-      }, [props.searchingDrink, props.setDrinkNotFound]);
+    }, [props.searchingDrink, props.setDrinkNotFound]);
 
 
     const levelHandler = (event) => { setDrinkLevel(event.target.value) }
