@@ -7,7 +7,6 @@
 @import "footer.scss";
 
 
-
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -20,6 +19,9 @@ li {
     list-style: none;
 }
 
+.pagination {
+    @include pagination;
+}
 
 .arrowUP-holder {
     top: 80%;

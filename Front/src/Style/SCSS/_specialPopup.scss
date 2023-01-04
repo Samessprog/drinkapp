@@ -20,7 +20,7 @@
         .ingredients-input {
 
             @media (max-width: 575px) {
-                width: 120px;
+                width: $n-120px;
             }
 
         }
@@ -31,8 +31,7 @@
         }
 
         .test {
-
-            max-height: 150px;
+            max-height: $n-150px;
 
             .drink-ingredient {
                 background-color: $color-white;
@@ -49,12 +48,8 @@
             background-color: $color-black;
             color: $color-white;
 
-
-
-
         }
 
     }
-
 
 }

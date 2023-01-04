@@ -33,6 +33,11 @@ function App() {
   const [drinkNotFound, setDrinkNotFound] = React.useState(false)
   //Drinks counter
   const [drinksCounter, setDrinksCounter] = React.useState(0)
+  //Pagiantion offset
+  const [offset, setOffset] = React.useState(0);
+
+
+
 
   React.useEffect(() => {
     const setFixed = () => {
@@ -74,6 +79,7 @@ function App() {
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
         setDrinkNotFound={setDrinkNotFound}
+
       />
 
 
@@ -97,11 +103,15 @@ function App() {
             setSearchingDrink={setSearchingDrink}
             drinksCounter= {drinksCounter}
             setDrinksCounter ={setDrinksCounter}
+            offset ={offset} 
+            setOffset= {setOffset}
+
+            
 
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails drinkDatas={drinkDatas} offset ={offset} setOffset= {setOffset} /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 
       <Footer />

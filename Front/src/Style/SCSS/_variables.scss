@@ -8,6 +8,8 @@ $color-black: black;
 $color-gold: gold;
 $color-red: red;
 $color-light-grey: rgb(185, 184, 184);
+$color-rgb-163-161-161: rgb(163, 161, 161);
+
 
 //transitions
 $trans-all-03-eio: all .3s ease-in-out;
@@ -20,11 +22,15 @@ $proc-20 : 20%;
 
 
 //numbers PX
-
-$n-400px: 400px;
-$n-450px: 450px;
+$n-700px: 700px;
 $n-500px: 500px;
-
+$n-450px: 450px;
+$n-400px: 400px;
+$n-350px: 350px;
+$n-300px: 300px;
+$n-250px: 250px;
+$n-150px: 150px;
+$n-120px: 120px;
 
 
 //displays
@@ -32,7 +38,7 @@ $d-flex: flex;
 $d-none: none;
 
 //font-sizes
-
+$font-size-15: 15px;
 $font-size-13: 13px;
 
 
@@ -40,4 +46,22 @@ $font-size-13: 13px;
 @mixin fs-13-color-light-grey {
     font-size: $font-size-13;
     color: $color-light-grey;
+}
+
+
+@mixin pagination {
+    a {
+        font-size: 20px;
+        font-weight: 700;
+        padding-left: 3.5px;
+        padding-right: 3.5px;
+        margin-top: 20px;
+        position: relative;
+        a:hover {
+            color: $color-rgb-163-161-161;
+        }
+        .selected {
+            color: rgb(185, 128, 128);
+        }
+    }
 }

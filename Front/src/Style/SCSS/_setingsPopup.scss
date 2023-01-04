@@ -8,9 +8,9 @@
     .options-holder {
 
         @media (max-width: 992px) {
-            flex-direction: column;
+           
             transition: font-size 0.3s ease-in-out;
-            font-size: 15px;
+            font-size: $font-size-15;
         }
 
         @media (max-width: 576px) {
@@ -40,7 +40,7 @@
         color: $color-white;
         background-color: rgba(15, 15, 15, 0.795);
         transition: $trans-all-03-eio;
-        font-size: 15px;
+        font-size: $font-size-15;
 
         &:hover {
             background-color: $color-black;

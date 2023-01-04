@@ -5,7 +5,7 @@ import Pagination from 'react-paginate';
 
 
 
-function DrinkDetails({ drinkDatas }) {
+function DrinkDetails({ drinkDatas,setOffset,offset }) {
 
     const { id } = useParams()
     
@@ -15,11 +15,12 @@ function DrinkDetails({ drinkDatas }) {
 
     React.useEffect(() => {
         const result = drinkDatas.filter((elm) => {
+
             if (elm.ID_Drink === id) {
                 setIng(elm.Ingredients.split('.'))
                 setDrinkDetail(elm)
-                setPrep(elm.Preparation.split('.'))
-                
+                setPrep(elm.Preparation.split('.')) 
+      
             }
         })
 
@@ -28,22 +29,20 @@ function DrinkDetails({ drinkDatas }) {
 
     {/*Paginacja*/ }
 
-    const [offset, setOffset] = React.useState(0);
-
     const itemPerPage = 1; //ilosc elm na stronie
     const pageCount = Math.ceil(prep.length / itemPerPage);  // ilosc stron
     const currentData = prep.slice(offset, offset + itemPerPage);
 
+   
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
         const offset = selectedPage * itemPerPage;
 
         setOffset(offset);
     };
+    
 
 
-
-   
 
     return (
         <div className="drink-holder">
@@ -101,7 +100,7 @@ function DrinkDetails({ drinkDatas }) {
                         </div>
                     </div>
 
-                    <div className=" img-holder mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
+                    <div  className=" col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}

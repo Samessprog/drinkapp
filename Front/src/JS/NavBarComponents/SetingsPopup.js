@@ -69,7 +69,7 @@ function SetingsPopup(props) {
                 <div className="d-flex justify-content-center">Settings</div>
 
                 <form >
-                    <div className="options-holder mt-3 d-flex font ">
+                    <div className="options-holder flex-lg-row flex-column mt-3 d-flex font ">
                         <div className="">
                             <div className="d-flex mt-1">
                                 <input type="checkbox" ></input>

@@ -2,7 +2,7 @@
 
 .drink-holder {
     color: $color-white;
-    
+
     .drink-main-container {
 
         .rate {
@@ -13,69 +13,42 @@
             fill: $color-gold;
         }
 
-        .img-holder {
-            height: 300px;
-
-            .img-helper {
-
-                box-shadow: 5px 0px 5px 0px $color-white;
-            }
+        .img-helper {
+            box-shadow: 5px 0px 5px 0px $color-white;
         }
 
         .description-holder {
-            max-width: 700px;
-            max-height: 300px;
+            max-width: $n-700px;
+            max-height: $n-300px;
         }
 
         .ingrediets-list {
-            max-width: 350px;
-            max-height: 250px;
+            max-width: $n-350px;
+            max-height: $n-250px;
 
             &-elm {
                 list-style-type: disc;
             }
         }
-        
-        
 
-            .preparation-holder {
-                height: $n-400px;
-                max-height: $n-400px;
+        .preparation-holder {
+            height: $n-400px;
+            max-height: $n-400px;
 
-                .nextPageArrow{
-                    fill: aliceblue;
-                    &:hover{
-                        fill: rgb(163, 161, 161);
+            .nextPageArrow {
+                fill: aliceblue;
 
-                    }
+                &:hover {
+                    fill: $color-rgb-163-161-161;
+
                 }
-
-
-                .pagination{
-
-                    a {
-                        padding-left: 7px;
-                        font-size: 20px;
-                        font-weight: 700;
-                        &:hover{
-                            color: rgb(163, 161, 161);
-
-                        }
-
-                       
-                  
-                    }
-                    .selected{
-                        color: rgb(185, 128, 128);
-                    }
-                  
-                
-                }
-                
-                
             }
 
-        
+            .pagination {
+                @include pagination;
+            }
+        }
+
 
         .basic-information-drink {
 
@@ -95,4 +68,3 @@
         }
     }
 }
-

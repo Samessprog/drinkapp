@@ -7,8 +7,6 @@
     &ContentHolder {
         background-color: rgb(37, 37, 37);
         color: $color-white;
-        padding-bottom: 0rem;
-
 
         .brand-name-SCROLL {
             display: $d-flex;
@@ -30,7 +28,6 @@
             }
         }
 
-        //hamburger
         .helper {
             width: 30px;
             height: 21px;
@@ -40,10 +37,7 @@
             }
         }
 
-        //Hamburger and logo resp ////////
-
         .searching-holder {
-
             .searching-input {
                 outline: $d-none;
                 background-color: $bg-dark;
@@ -60,7 +54,6 @@
                 .icon {
                     fill: $color-white;
                 }
-
             }
         }
 
@@ -74,14 +67,12 @@
                 fill: $color-white;
             }
         }
-
     }
 
     .main-options-holder {
         display: $d-flex;
         background-color: $bg-ligherDark;
 
-        //zmioenić!
         @media (max-width:575px) {
             & {
                 display: $d-flex;
@@ -90,19 +81,15 @@
             }
         }
 
-        .options-list {
+        .elm-contents {
+            color: $color-white;
+            transition: $trans-all-03-eio;
 
-            .elm-contents {
-                color: $color-white;
-                transition: $trans-all-03-eio;
-
-                &:hover {
-                    background-color: rgb(30, 30, 30);
-                }
+            &:hover {
+                background-color: rgb(30, 30, 30);
             }
-
-
         }
+
     }
 
 }
