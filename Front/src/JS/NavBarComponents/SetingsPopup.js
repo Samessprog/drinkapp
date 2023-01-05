@@ -12,17 +12,6 @@ function SetingsPopup(props) {
     const [drinkLevel, setDrinkLevel] = React.useState('All')
     const [drinkTaste, setDrinkTaste] = React.useState('All')
 
-
-    // const [state, setState] = React.useState({
-    //     alcocholic: false,
-    //     softDrinks: false,
-    //     writtenRated: true,
-    //     drinkLevel: 'All',
-    //     drinkTaste: 'All',
-    // });
-
-   
-   
     React.useEffect(() => {
         const results = props.drinkDatas.filter((elm) => {
             if (
@@ -38,12 +27,13 @@ function SetingsPopup(props) {
             }
         });
 
-        const sort = highlyRated
-            ? results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate)
-            : results.sort(() => 0.5 - Math.random());
+        if (highlyRated) {
+            results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
+        }
 
-        props.setSearchingDrink(sort);
-    }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste]);
+        props.setSearchingDrink(results);
+    }, [alcocholic, softDrinks,highlyRated , drinkLevel, drinkTaste, props.drinkDatas]);
+
 
     React.useEffect(() => {
         if (props.searchingDrink.length === 0) {
@@ -51,7 +41,7 @@ function SetingsPopup(props) {
         } else {
             props.setDrinkNotFound(false);
         }
-    }, [props.searchingDrink, props.setDrinkNotFound]);
+    }, [props.searchingDrink]);
 
 
     const levelHandler = (event) => { setDrinkLevel(event.target.value) }

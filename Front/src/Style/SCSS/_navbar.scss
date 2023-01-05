@@ -81,15 +81,18 @@
             }
         }
 
-        .elm-contents {
-            color: $color-white;
-            transition: $trans-all-03-eio;
+        .navbar-menu {
+            list-style: none;
+            
+            .elm-contents {
+                color: $color-white;
+                transition: $trans-all-03-eio;
 
-            &:hover {
-                background-color: rgb(30, 30, 30);
+                &:hover {
+                    background-color: rgb(30, 30, 30);
+                }
             }
         }
-
     }
 
 }

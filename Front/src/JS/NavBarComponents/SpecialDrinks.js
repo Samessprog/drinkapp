@@ -7,8 +7,7 @@ const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
     setIngredientText, setingredient, drinkDatas }) {
-
-
+        
     const [drinkCounter, setDrinkCounter] = React.useState(0)
 
     React.useEffect(() => {
@@ -20,9 +19,8 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
 
                 const ingredientName = elm.Ingredients.toLowerCase();
                 const inputText = elmIng.text.toLowerCase();
-                
+
                 if (ingredientName.includes(inputText)) {
-                    console.log(elm)
                     match = true;
                     break;
                 }
@@ -35,7 +33,7 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
 
     }, [ingredient])
 
-
+    
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
@@ -90,7 +88,7 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                 <div className="d-flex flex-column  justify-content-between align-items-center ">
                     <label>The amount of drinks we have with these ingredients:</label>
                     <label className="drink-results mt-1 mb-1  d-flex justify-content-center ">{drinkCounter}</label>
-                 
+
                 </div>
 
             </div>

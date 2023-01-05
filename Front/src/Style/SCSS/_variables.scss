@@ -50,6 +50,7 @@ $font-size-13: 13px;
 
 
 @mixin pagination {
+   
     a {
         font-size: 20px;
         font-weight: 700;
@@ -57,11 +58,16 @@ $font-size-13: 13px;
         padding-right: 3.5px;
         margin-top: 20px;
         position: relative;
-        a:hover {
+
+        &:hover {
             color: $color-rgb-163-161-161;
         }
-        .selected {
-            color: rgb(185, 128, 128);
-        }
+
     }
+    .selected {
+        color: rgb(185, 128, 128);
+    }
+       
+
+    
 }

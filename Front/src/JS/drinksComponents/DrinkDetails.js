@@ -5,42 +5,42 @@ import Pagination from 'react-paginate';
 
 
 
-function DrinkDetails({ drinkDatas,setOffset,offset }) {
+function DrinkDetails({ drinkDatas }) {
 
-    const { id } = useParams()
-    
+    let { id } = useParams()
+
+    const [currentPage, setCurrentPage] = React.useState(0)
+
+
     const [drinksDetail, setDrinkDetail] = React.useState({})
     const [ing, setIng] = React.useState([])
     const [prep, setPrep] = React.useState([])
 
+
     React.useEffect(() => {
-        const result = drinkDatas.filter((elm) => {
-
-            if (elm.ID_Drink === id) {
-                setIng(elm.Ingredients.split('.'))
-                setDrinkDetail(elm)
-                setPrep(elm.Preparation.split('.')) 
-      
-            }
-        })
-
-    }, [id])
+        const result = drinkDatas.filter(elm => elm.ID_Drink === id)[0];
+        setIng(result.Ingredients.split('.'));
+        setPrep(result.Preparation.split('.'));
+        setDrinkDetail(result);
+    }, [id]);
 
 
     {/*Paginacja*/ }
 
-    const itemPerPage = 1; //ilosc elm na stronie
-    const pageCount = Math.ceil(prep.length / itemPerPage);  // ilosc stron
-    const currentData = prep.slice(offset, offset + itemPerPage);
+    const itemPerPage = 1;
+    const pageCount = Math.ceil(prep.length / itemPerPage);
+    const currentData = prep.slice(currentPage, currentPage + itemPerPage);
 
-   
+
+    console.log(currentPage)
+
+
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
-        const offset = selectedPage * itemPerPage;
+        const currentPage = selectedPage * itemPerPage;
 
-        setOffset(offset);
+         setCurrentPage(currentPage);
     };
-    
 
 
 
@@ -87,12 +87,15 @@ function DrinkDetails({ drinkDatas,setOffset,offset }) {
 
                             </div>
 
+                           
+
+
                             <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
 
                                     {ing.map((ingredient, key) =>
-                                        <li key={key}>{ingredient}</li>
+                                        <li  key={key}>{ingredient}</li>
                                     )}
 
                                 </ul>
@@ -100,7 +103,7 @@ function DrinkDetails({ drinkDatas,setOffset,offset }) {
                         </div>
                     </div>
 
-                    <div  className=" col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
+                    <div className="img-holder-details col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}
@@ -127,16 +130,16 @@ function DrinkDetails({ drinkDatas,setOffset,offset }) {
                             <div className="mt-5 d-flex justify-content-center col align-items-center">
                                 <img alt="ERR"></img>
                             </div>
-                            
+
                             <div className="d-flex justify-content-center">
 
                                 <Pagination
                                     pageCount={pageCount}
                                     onPageChange={handlePageClick}
-                                    forcePage={offset / itemPerPage}
-                                    className="position-absolute bottom-0 d-flex  pagination align-items-center"
-                                    nextLabel={<svg  xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path  className="nextPageArrow" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"/></svg>}
-                                    previousLabel={<svg  xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow"  d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"/></svg>}
+                                    forcePage={currentPage / itemPerPage}
+                                    className="position-absolute bottom-0 d-flex pagination align-items-center"
+                                    nextLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
+                                    previousLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                                 />
 
                             </div>

@@ -143,7 +143,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                 <div className={userScroll ? 'main-options-holder d-none' : ' main-options-holder d-flex'} >
 
-                    <ul className="d-flex ps-0 ">
+                    <ul className="d-flex ps-0 navbar-menu">
                         <li className=" ms-2 mt-1 mt-sm-2" >
                             <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none rounded p-2" href="/">Home</a>
                         </li>

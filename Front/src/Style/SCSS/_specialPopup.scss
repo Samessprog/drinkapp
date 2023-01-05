@@ -3,6 +3,7 @@
 .special-drinks-holder {
     left: 30%;
     z-index: 1;
+    
 
     @media (max-width: 768px) {
         font-size: $font-size-13;
@@ -11,6 +12,7 @@
     .helper {
         background-color: rgb(41, 41, 41);
         color: $color-white;
+        box-shadow: 0px 0px 10px 7px $color-black;
 
         .close-icon {
             fill: $color-red;
