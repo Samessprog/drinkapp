@@ -82,7 +82,6 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
 
                     </ul>
 
-
                 </div>
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">

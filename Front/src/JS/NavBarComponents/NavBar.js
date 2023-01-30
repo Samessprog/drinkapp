@@ -10,7 +10,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound }) {
 
-    const [inputDrinkText, setInputDrinkText] = React.useState("");
+
 
     const loginHandler = () => {
         if (Popupsetings === true || specialOptionsPopup === true) {
@@ -33,13 +33,18 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         navbarLinks.classList.toggle('d-none')
     }
 
+
+
+
+    const [inputDrinkText, setInputDrinkText] = React.useState("");
+
     const setDrinkName = (event) => {
         setInputDrinkText(event.target.value)
     }
 
-
     React.useEffect(() => {
         const searchDrinks = async () => {
+
             const searchingResults = await drinkDatas.filter((elm) => {
                 const drinkName = elm.DrinkName.toLowerCase();
                 const inputText = inputDrinkText.toLowerCase();
@@ -53,7 +58,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         };
 
         searchDrinks();
-    }, [drinkDatas, inputDrinkText, setSearchingDrink]);
+    }, [inputDrinkText, setSearchingDrink]);
+
+
+
 
     React.useEffect(() => {
         if (searchingDrink.length === 0) {
@@ -62,6 +70,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
             setDrinkNotFound(false);
         }
     }, [searchingDrink, setDrinkNotFound]);
+
+
+
+
 
 
 
@@ -80,6 +92,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                     </div>
 
                     <div className="d-flex col-sm-5">
+
+                        {/*Wyszukiwarka drinków  */}
 
                         <div className="searching-holder position-relative pb-3 col-sm-12">
 
@@ -114,7 +128,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                             drinkDatas={drinkDatas}
                                             setSearchingDrink={setSearchingDrink}
                                             setDrinkNotFound={setDrinkNotFound}
-                                            
 
                                         />
                                     </Suspense>

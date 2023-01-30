@@ -31,18 +31,12 @@ function DrinkDetails({ drinkDatas }) {
     const pageCount = Math.ceil(prep.length / itemPerPage);
     const currentData = prep.slice(currentPage, currentPage + itemPerPage);
 
-
-    console.log(currentPage)
-
-
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
         const currentPage = selectedPage * itemPerPage;
 
          setCurrentPage(currentPage);
     };
-
-
 
     return (
         <div className="drink-holder">
@@ -86,9 +80,6 @@ function DrinkDetails({ drinkDatas }) {
                                 </div>
 
                             </div>
-
-                           
-
 
                             <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
@@ -144,8 +135,6 @@ function DrinkDetails({ drinkDatas }) {
 
                             </div>
                         </div>
-
-
 
                     </div>
 

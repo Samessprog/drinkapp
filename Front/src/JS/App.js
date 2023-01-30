@@ -19,7 +19,7 @@ function App() {
   const [loginPopup, setLoginPopup] = React.useState(false)
   const [specialOptionsPopup, setSpecialOptionsPopup] = React.useState(false)
   //Searching
-  const [searchingDrink, setSearchingDrink] = React.useState([])
+  let [searchingDrink, setSearchingDrink] = React.useState([])
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Special drinks hooks
@@ -35,6 +35,10 @@ function App() {
   const [drinksCounter, setDrinksCounter] = React.useState(0)
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
+  
+//do zaminy
+
+  
 
 
 

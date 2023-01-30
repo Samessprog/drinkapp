@@ -12,27 +12,35 @@ function SetingsPopup(props) {
     const [drinkLevel, setDrinkLevel] = React.useState('All')
     const [drinkTaste, setDrinkTaste] = React.useState('All')
 
+
+
+
     React.useEffect(() => {
-        const results = props.drinkDatas.filter((elm) => {
+        let results = props.drinkDatas.filter((elm) => {
             if (
                 (alcocholic && elm.DrinkType === 'Alcocholic') ||
                 (softDrinks && elm.DrinkType === 'Soft') ||
                 (!alcocholic && !softDrinks)
             ) {
+
                 if (drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel) {
                     if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
+                        console.log(elm)
                         return elm;
                     }
                 }
             }
+
         });
 
         if (highlyRated) {
             results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
         }
 
+      
         props.setSearchingDrink(results);
-    }, [alcocholic, softDrinks,highlyRated , drinkLevel, drinkTaste, props.drinkDatas]);
+    }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste]);
+
 
 
     React.useEffect(() => {
@@ -46,6 +54,12 @@ function SetingsPopup(props) {
 
     const levelHandler = (event) => { setDrinkLevel(event.target.value) }
     const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
+
+
+
+
+
+
 
     return (
         <div className="position-absolute SetingsPopupHolder  mt-5 ">
