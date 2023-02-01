@@ -1,15 +1,37 @@
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../Components/ErrorBoundary";
+import Navbarfunctions from "../Components/Navbarfunctions";
+import Searching from "../Components/Searching";
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
+
+
+
+
+/* <input
+  type='file'
+  className='d-none'
+  id='torrent-file-input'
+  onInput={element => this.handleFileInput(element)} 
+  multiple
+/>
+
+<input
+type='text'
+className='form-control'
+placeholder='File, Magnet or InfoHash'
+value={this.state.value}
+onInput={element => this.handleTextInput(element)}
+/> */
 
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound }) {
 
+    const [inputDrinkText, setInputDrinkText] = React.useState("");
 
 
     const loginHandler = () => {
@@ -34,51 +56,29 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
     }
 
 
-
-
-    const [inputDrinkText, setInputDrinkText] = React.useState("");
-
     const setDrinkName = (event) => {
         setInputDrinkText(event.target.value)
     }
 
-    React.useEffect(() => {
-        const searchDrinks = async () => {
-
-            const searchingResults = await drinkDatas.filter((elm) => {
-                const drinkName = elm.DrinkName.toLowerCase();
-                const inputText = inputDrinkText.toLowerCase();
-
-                if (drinkName.includes(inputText)) {
-                    return elm;
-                }
-            });
-
-            setSearchingDrink(searchingResults);
-        };
-
-        searchDrinks();
-    }, [inputDrinkText, setSearchingDrink]);
-
-
-
-
-    React.useEffect(() => {
-        if (searchingDrink.length === 0) {
-            setDrinkNotFound(true);
-        } else {
-            setDrinkNotFound(false);
-        }
-    }, [searchingDrink, setDrinkNotFound]);
-
-
-
-
-
-
 
     return (
         <nav className="NavBar position-sticky top-0 ">
+
+
+         
+
+            <Searching 
+                 setSearchingDrink={setSearchingDrink}
+                 inputDrinkText={inputDrinkText}
+                 setInputDrinkText={setInputDrinkText}
+                 searchingDrink={searchingDrink}
+                 setDrinkNotFound={setDrinkNotFound}
+                 drinkDatas={drinkDatas}
+                
+            />
+
+
+
             <div className="NavBarContentHolder p-3 pb-0">
                 <div className="d-flex justify-content-between col-sm-12 align-items-center">
                     <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-sm-flex'}>BRANDLOGO</div>
