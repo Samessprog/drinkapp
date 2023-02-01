@@ -1,14 +1,10 @@
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../Components/ErrorBoundary";
-import Navbarfunctions from "../Components/Navbarfunctions";
 import Searching from "../Components/Searching";
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
-
-
-
 
 /* <input
   type='file'
@@ -26,21 +22,11 @@ value={this.state.value}
 onInput={element => this.handleTextInput(element)}
 /> */
 
-
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound }) {
 
     const [inputDrinkText, setInputDrinkText] = React.useState("");
-
-
-    const loginHandler = () => {
-        if (Popupsetings === true || specialOptionsPopup === true) {
-            setPopupSetings(false)
-            setSpecialOptionsPopup(false)
-        }
-        setLoginPopup(!loginPopup)
-    }
 
     const setingsMenu = () => {
         if (loginPopup === true || specialOptionsPopup === true) {
@@ -50,22 +36,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         setPopupSetings(!Popupsetings)
     }
 
-    const hamburgerMenu = () => {
-        const navbarLinks = document.getElementsByClassName('main-options-holder')[0]
-        navbarLinks.classList.toggle('d-none')
-    }
-
-
-    const setDrinkName = (event) => {
-        setInputDrinkText(event.target.value)
-    }
-
-
     return (
         <nav className="NavBar position-sticky top-0 ">
-
-
-         
 
             <Searching 
                  setSearchingDrink={setSearchingDrink}
@@ -77,13 +49,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 
             />
 
-
-
             <div className="NavBarContentHolder p-3 pb-0">
                 <div className="d-flex justify-content-between col-sm-12 align-items-center">
                     <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-sm-flex'}>BRANDLOGO</div>
                     {/* hamburger */}
-                    <div className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={hamburgerMenu}>
+                    <div className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={ (() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
@@ -97,7 +67,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                         <div className="searching-holder position-relative pb-3 col-sm-12">
 
-                            <input onChange={setDrinkName} type="text" className="searching-input  border-0 rounded-pill p-2 ps-3 col-sm-12" placeholder=" Enter drink name" />
+                            <input onChange={ ( event ) => setInputDrinkText( event.target.value ) } type="text" className="searching-input  border-0 rounded-pill p-2 ps-3 col-sm-12" placeholder=" Enter drink name" />
 
                             <button className="searching-icon-holder  border-0 p-0 m-0 position-absolute ">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" >
