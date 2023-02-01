@@ -5,7 +5,7 @@ import Pagination from 'react-paginate';
 
 
 
-function DrinkDetails({ drinkDatas }) {
+function DrinkDetails({searchingDrink }) {
 
     let { id } = useParams()
 
@@ -18,7 +18,7 @@ function DrinkDetails({ drinkDatas }) {
 
 
     React.useEffect(() => {
-        const result = drinkDatas.filter(elm => elm.ID_Drink === id)[0];
+        const result =  searchingDrink.filter(elm => elm.ID_Drink === id)[0];
         setIng(result.Ingredients.split('.'));
         setPrep(result.Preparation.split('.'));
         setDrinkDetail(result);

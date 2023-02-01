@@ -13,13 +13,13 @@ const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 
 function App() {
 
-  {/* Do FAKTORYZACJI */ }
+
   //navbar PopUps
   const [Popupsetings, setPopupSetings] = React.useState(false)
   const [loginPopup, setLoginPopup] = React.useState(false)
   const [specialOptionsPopup, setSpecialOptionsPopup] = React.useState(false)
   //Searching
-  let [searchingDrink, setSearchingDrink] = React.useState([])
+  const [searchingDrink, setSearchingDrink] = React.useState([])
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Special drinks hooks
@@ -36,12 +36,6 @@ function App() {
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
   
-//do zaminy
-
-  
-
-
-
 
   React.useEffect(() => {
     const setFixed = () => {
@@ -86,8 +80,6 @@ function App() {
 
       />
 
-
-
       <Routes>
         <Route path="/" element={
 
@@ -110,12 +102,10 @@ function App() {
             offset ={offset} 
             setOffset= {setOffset}
 
-            
-
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails drinkDatas={drinkDatas} offset ={offset} setOffset= {setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink = {searchingDrink} offset ={offset} setOffset= {setOffset} /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 
       <Footer />
