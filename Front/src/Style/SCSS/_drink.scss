@@ -9,11 +9,15 @@
         box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
         cursor: pointer;
 
+        @media (min-width: 1854px) {
+            width: calc(100% / 5);
+        }
+
 
         .img-holder {
-                background-color: transparent;
-                border:  rgb(48, 48, 48) 3px solid;
-                
+            background-color: transparent;
+            border: rgb(48, 48, 48) 3px solid;
+
             .drink-img {
                 max-height: 350px;
                 height: 350px;
@@ -29,11 +33,52 @@
 
             .drink-creator {
                 color: $color-black;
+
             }
 
             .diff-level {
                 background-color: $color-light-l-green;
                 color: $color-black;
+            }
+
+            .softClass {
+                @include drinks;
+                background-color: rgb(154, 246, 249);
+            }
+
+            .alkoClass {
+                @include drinks;
+                background-color: rgb(255, 0, 0);
+            }
+
+            .sourClass {
+                @include drinks;
+                background-color: rgb(218, 255, 32);
+            }
+
+            .sweetClass {
+                @include drinks;
+                background-color: rgb(247, 71, 124);
+            }
+
+            .bitterClass {
+                @include drinks;
+                background-color: rgb(123, 98, 98);
+            }
+
+            .easyLevelClass {
+                @include drinks;
+                background-color: rgb(10, 226, 10)
+            }
+
+            .mediumLevelClass {
+                @include drinks;
+                background-color: rgb(239, 212, 14)
+            }
+
+            .hardLevelClass {
+                @include drinks;
+                background-color: rgb(255, 111, 0)
             }
 
             .rate {

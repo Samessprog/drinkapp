@@ -1,10 +1,17 @@
 import React from "react";
 
-function Searching({ alcocholic,  softDrinks, highlyRated,  drinkLevel, drinkTaste,  drinkDatas,
+function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
   setSearchingDrink, searchingDrink, setDrinkNotFound, inputDrinkText }) {
 
+
   React.useEffect(() => {
+
     const filterDrinks = () => {
+
+      setSearchingDrink(drinkDatas)  
+      console.log(drinkDatas)
+      console.log(searchingDrink)
+    
       let results = searchingDrink.filter((elm) => {
 
         if (alcocholic && elm.DrinkType === 'Alcocholic' || softDrinks && elm.DrinkType === 'Soft' || !alcocholic && !softDrinks) {
@@ -12,7 +19,9 @@ function Searching({ alcocholic,  softDrinks, highlyRated,  drinkLevel, drinkTas
             if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
               return elm;
             }
+         
           }
+         
         }
       });
 
@@ -20,10 +29,12 @@ function Searching({ alcocholic,  softDrinks, highlyRated,  drinkLevel, drinkTas
         results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
       }
 
-      setSearchingDrink(results);
+      setSearchingDrink(results)
+
     };
 
-    const searchDrinks = async () => {
+
+    const drinkInput = async () => {
 
       if (inputDrinkText) {
         const searchingResults = searchingDrink.filter((elm) => {
@@ -41,14 +52,30 @@ function Searching({ alcocholic,  softDrinks, highlyRated,  drinkLevel, drinkTas
     };
 
     filterDrinks();
-    searchDrinks();
+    drinkInput();
+
 
     if (inputDrinkText === '') {
       filterDrinks()
       setSearchingDrink(drinkDatas)
     }
 
-  }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText, setSearchingDrink, drinkDatas]);
+
+  }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   React.useEffect(() => {
     setDrinkNotFound(searchingDrink.length === 0);

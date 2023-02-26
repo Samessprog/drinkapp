@@ -50,12 +50,12 @@ $font-size-13: 13px;
 
 
 @mixin pagination {
-   
+
     a {
         font-size: 20px;
         font-weight: 700;
         padding-left: 3.5px;
-        padding-right: 3.5px;
+        padding-right: 5px;
         margin-top: 20px;
         position: relative;
 
@@ -64,10 +64,25 @@ $font-size-13: 13px;
         }
 
     }
-    .selected {
-        color: rgb(185, 128, 128);
-    }
-       
 
-    
+    .selected {
+        color: rgb(245, 234, 113);
+        border: 2px solid rgb(186, 186, 186);
+        border-radius: 50%;
+        padding-left: 2px;
+        padding-right: 2px;
+
+    }
+
+
+
+}
+
+@mixin drinks {
+    border-radius: 18px;
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-weight: 600;
+    color: $color-black;
 }
