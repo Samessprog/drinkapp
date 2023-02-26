@@ -18,23 +18,18 @@
         @include fs-13-color-light-grey;
     }
 
-    .instagram-icon {
-        fill: $color-black;
-        transition: $trans-all-03-eio;
-
-        &:hover {
-            fill: $color-red;
-        }
-    }
-
+    .instagram-icon  {
+       cursor: pointer; 
+      }
+      
     .facebook-icon {
-        fill: $color-black;
-        transition: $trans-all-03-eio;
+        cursor: pointer; 
+        transition: all 0.3s ;
 
         &:hover {
-            fill: rgb(17, 144, 243);
-        }
+            fill: rgb(25, 119, 243)
 
+         }
     }
 
 }

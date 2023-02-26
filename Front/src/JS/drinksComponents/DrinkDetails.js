@@ -72,11 +72,11 @@ function DrinkDetails({searchingDrink }) {
 
                                 <div className="d-flex  mt-3 basic-information-drink">
 
-                                    <label className="bg-light rounded-pill p-1  fw-bolder drink-creator">{drinksDetail.Creator}</label>
-                                    <label className="diff-level rounded-pill p-1 ms-2 fw-bolder ">{drinksDetail.DifficultyLevel}</label>
-                                    <label className="drink-taste rounded-pill p-1  ms-2 fw-bolder ">{drinksDetail.Taste}</label>
-                                    <label className="bg-primary rounded-pill p-1  ms-2 fw-bolder ">{drinksDetail.DrinkType}</label>
-
+                                <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{drinksDetail.Creator}</label>
+                                    <label className={drinksDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : drinksDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : drinksDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinksDetail.DifficultyLevel}</label>
+                                    {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${drinksDetail.drinkType === 'Sour' ? 'bg-success' : drinksDetail.drinkType === 'Alko' ? 'bg-danger' : drinksDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
+                                    <label className={drinksDetail.Taste === 'Sour' ? 'sourClass me-2' : drinksDetail.Taste === 'Sweet' ? 'sweetClass me-2' : drinksDetail.drinkType === 'Bitter' ? 'bitterClass me-2' : ''}>{drinksDetail.Taste}</label>
+                                    <label className={drinksDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{drinksDetail.DrinkType}</label>
                                 </div>
 
                             </div>
@@ -129,8 +129,8 @@ function DrinkDetails({searchingDrink }) {
                                     onPageChange={handlePageClick}
                                     forcePage={currentPage / itemPerPage}
                                     className="position-absolute bottom-0 d-flex pagination align-items-center"
-                                    nextLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                                    previousLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="nextPageArrow" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
+                                    nextLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
+                                    previousLabel={<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                                 />
 
                             </div>

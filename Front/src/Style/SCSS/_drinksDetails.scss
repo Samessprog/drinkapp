@@ -36,7 +36,7 @@
 
             &>li::before {
                 content: "-";
-                color: rgb(59, 247, 147);
+                color: rgb(255, 255, 255);
                 font-weight: bold;
                 display: inline-block;
                 width: 1em;
@@ -60,20 +60,7 @@
         }
 
         .basic-information-drink {
-
-            .drink-creator {
-                color: $color-black;
-            }
-
-            .diff-level {
-                background-color: $color-light-l-green;
-                color: $color-black;
-            }
-
-            .drink-taste {
-                background-color: $color-light-d-green;
-                color: $color-black;
-            }
+          @include basicDrinksInf
         }
     }
 }
