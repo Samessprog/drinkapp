@@ -51,6 +51,20 @@ $font-size-13: 13px;
 
 @mixin pagination {
 
+    li:first-child, li:last-child  {
+        a {
+            background-color: transparent !important;
+            border: none;
+            margin: 0;
+        }
+    }
+
+    li {  
+        &:hover {
+            color: black;
+        }
+    }
+
     a {
         font-size: 20px;
         font-weight: 700;
@@ -58,23 +72,22 @@ $font-size-13: 13px;
         padding-right: 5px;
         margin-top: 20px;
         position: relative;
+        border: 2px solid white;
+        border-radius: 4px;
+        margin-left: 3px;
+        margin-right: 3px;
+        transition:  all 0.25s ease-in-out;
 
         &:hover {
-            color: $color-rgb-163-161-161;
+            background-color: rgb(191, 181, 181);
         }
 
     }
 
     .selected {
-        color: rgb(245, 234, 113);
-        border: 2px solid rgb(186, 186, 186);
-        border-radius: 50%;
-        padding-left: 2px;
-        padding-right: 2px;
+        color: rgb(248, 170, 13);
 
     }
-
-
 
 }
 
@@ -85,4 +98,10 @@ $font-size-13: 13px;
     padding-right: 0.5rem;
     font-weight: 600;
     color: $color-black;
+}
+
+.arrowPagination {
+    fill: white;
+    background-color: transparent;
+
 }

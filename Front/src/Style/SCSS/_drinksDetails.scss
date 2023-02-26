@@ -49,7 +49,8 @@
             max-height: $n-400px;
 
             .nextPageArrow {
-                fill: aliceblue;
+                background-color: green($color: #000000);
+                fill: red;
 
                 &:hover {
                     fill: $color-rgb-163-161-161;

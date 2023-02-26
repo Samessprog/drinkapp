@@ -27,7 +27,6 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                         </label>
                     </div>
                          
-
                     <div className="d-flex  mt-3  justify-content-evenly ">
                         <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator ">{elm.Creator}</label>
                         <label className= {elm.DifficultyLevel === 'Easy' ? 'easyLevelClass' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass' : elm.DifficultyLevel=== 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
