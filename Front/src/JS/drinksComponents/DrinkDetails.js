@@ -5,7 +5,13 @@ import Pagination from 'react-paginate';
 
 
 
-function DrinkDetails({searchingDrink }) {
+function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,setLoginPopup }) {
+
+    if (Popupsetings === true || loginPopup == true ) {
+        setPopupSetings(false)
+        setLoginPopup(false)
+    }
+
 
     let { id } = useParams()
 

@@ -77,6 +77,7 @@ function App() {
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
         setDrinkNotFound={setDrinkNotFound}
+        drinkDetailsPopup={drinkDetailsPopup}
 
       />
 
@@ -105,7 +106,7 @@ function App() {
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink = {searchingDrink} offset ={offset} setOffset= {setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink = {searchingDrink} Popupsetings={Popupsetings} setPopupSetings = {setPopupSetings} loginPopup = {loginPopup}  setLoginPopup = {setLoginPopup} offset ={offset} setOffset= {setOffset}  /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 
       <Footer />
