@@ -7,35 +7,21 @@ const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
     setIngredientText, setingredient, drinkDatas }) {
-        
+
     const [drinkCounter, setDrinkCounter] = React.useState(0)
 
     React.useEffect(() => {
 
-        const result = searchingDrink.filter((elm) => {
-            let match = false;
-
-            for (const elmIng of ingredient) {
-
-                const ingredientName = elm.Ingredients.toLowerCase();
-                const inputText = elmIng.text.toLowerCase();
-
-                if (ingredientName.includes(inputText)) {
-                    match = true;
-                    break;
-                }
-            }
-            return match;
+        const result = drinkDatas.filter((drink) => {
+            const drinkIngredients = drink.Ingredients.toLowerCase();
+            return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
         });
-
-        setDrinkCounter(result.length)
-        setSearchingDrink(result.length === 0 ? drinkDatas : result)
-
-    }, [ingredient])
-
+        setDrinkCounter(result.length);
+        setSearchingDrink(result.length === 0 ? drinkDatas : result);
     
+    }, [ingredient]);
 
-    
+
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
