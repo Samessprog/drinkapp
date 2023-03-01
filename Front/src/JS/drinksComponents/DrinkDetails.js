@@ -5,9 +5,9 @@ import Pagination from 'react-paginate';
 
 
 
-function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,setLoginPopup }) {
+function DrinkDetails({ searchingDrink, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
 
-    if (Popupsetings === true || loginPopup == true ) {
+    if (Popupsetings === true || loginPopup == true) {
         setPopupSetings(false)
         setLoginPopup(false)
     }
@@ -21,10 +21,10 @@ function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,s
     const [drinksDetail, setDrinkDetail] = React.useState({})
     const [ing, setIng] = React.useState([])
     const [prep, setPrep] = React.useState([])
-
+    const [ingChecked, setIngChecked] = React.useState([]);
 
     React.useEffect(() => {
-        const result =  searchingDrink.filter(elm => elm.ID_Drink === id)[0];
+        const result = searchingDrink.filter(elm => elm.ID_Drink === id)[0];
         setIng(result.Ingredients.split('.'));
         setPrep(result.Preparation.split('.'));
         setDrinkDetail(result);
@@ -41,8 +41,21 @@ function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,s
         const selectedPage = data.selected;
         const currentPage = selectedPage * itemPerPage;
 
-         setCurrentPage(currentPage);
+        setCurrentPage(currentPage);
     };
+
+
+    function crossOutIng(key) {
+        const checkedIndex = ingChecked.indexOf(key);
+        const newIngChecked = [...ingChecked];
+        if (checkedIndex === -1) {
+            newIngChecked.push(key);
+        } else {
+            newIngChecked.splice(checkedIndex, 1);
+        }
+        setIngChecked(newIngChecked);
+    }
+
 
     return (
         <div className="drink-holder">
@@ -78,7 +91,7 @@ function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,s
 
                                 <div className="d-flex  mt-3 basic-information-drink">
 
-                                <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{drinksDetail.Creator}</label>
+                                    <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{drinksDetail.Creator}</label>
                                     <label className={drinksDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : drinksDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : drinksDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinksDetail.DifficultyLevel}</label>
                                     {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${drinksDetail.drinkType === 'Sour' ? 'bg-success' : drinksDetail.drinkType === 'Alko' ? 'bg-danger' : drinksDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
                                     <label className={drinksDetail.Taste === 'Sour' ? 'sourClass me-2' : drinksDetail.Taste === 'Sweet' ? 'sweetClass me-2' : drinksDetail.drinkType === 'Bitter' ? 'bitterClass me-2' : ''}>{drinksDetail.Taste}</label>
@@ -91,9 +104,9 @@ function DrinkDetails({searchingDrink,Popupsetings, setPopupSetings,loginPopup,s
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
 
-                                    {ing.map((ingredient, key) =>
-                                        <li  key={key}>{ingredient}</li>
-                                    )}
+                                    {ing.map((ingredient, key) => (
+                                        <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
+                                    ))}
 
                                 </ul>
                             </div>

@@ -34,6 +34,26 @@
             list-style: none;
             font-size: 18px;
 
+            .ing {
+                cursor: pointer;
+
+            }
+
+            .crossedOut {
+                text-decoration: line-through;
+                color: rgb(255, 3, 3);
+                text-decoration-thickness: 3px;
+               
+
+                span {
+                    text-decoration: none;
+                    color: white;
+                    cursor: pointer;
+                }
+
+            }
+
+
             &>li::before {
                 content: "-";
                 color: rgb(255, 255, 255);
@@ -60,7 +80,8 @@
         }
 
         .basic-information-drink {
-          @include basicDrinksInf
+            @include basicDrinksInf
         }
     }
+
 }

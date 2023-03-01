@@ -40,12 +40,9 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         if ( specialOptionsPopup  || Popupsetings ) {
             setSpecialOptionsPopup(false)
             setPopupSetings(false)
-
         }
         setLoginPopup(!loginPopup)
     }
-
-
 
     return (
         <nav className="NavBar position-sticky top-0 ">
@@ -74,7 +71,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                     <div className="d-flex col-sm-5">
 
-                        {/*Wyszukiwarka drinków  */}
+                        {/* Wyszukiwarka drinków  */}
 
                         <div className="searching-holder position-relative  pb-3 col-sm-12">
 
@@ -102,7 +99,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     </svg>
                                 </button>
                             }
-
 
                             {Popupsetings && (
                                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
@@ -168,7 +164,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
             </div>
         </nav >
     );
-
 }
 
 export default NavBar;
