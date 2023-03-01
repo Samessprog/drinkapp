@@ -34,6 +34,8 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
     }, [ingredient])
 
     
+
+    
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
