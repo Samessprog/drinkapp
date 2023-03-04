@@ -53,7 +53,8 @@ $font-size-13: 13px;
 
 @mixin pagination {
 
-    li:first-child, li:last-child  {
+    li:first-child,
+    li:last-child {
         a {
             background-color: transparent !important;
             border: none;
@@ -61,7 +62,7 @@ $font-size-13: 13px;
         }
     }
 
-    li {  
+    li {
         &:hover {
             color: black;
         }
@@ -78,7 +79,7 @@ $font-size-13: 13px;
         border-radius: 4px;
         margin-left: 3px;
         margin-right: 3px;
-        transition:  all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
 
         &:hover {
             background-color: rgb(191, 181, 181);
@@ -92,6 +93,21 @@ $font-size-13: 13px;
     }
 
 }
+
+.arrowPagination {
+    fill: white;
+    background-color: transparent;
+}
+
+.arroPagi{
+    fill: white;
+    transition: fill 0.2s ease-in-out;
+    &:hover path {
+        fill: rgb(191, 181, 181);
+    }
+}
+
+
 
 @mixin drinks {
     border-radius: 18px;
@@ -160,7 +176,3 @@ $font-size-13: 13px;
 }
 
 
-.arrowPagination {
-    fill: white;
-    background-color: transparent;
-}

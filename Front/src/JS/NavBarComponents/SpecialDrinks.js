@@ -74,7 +74,7 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">
                     <label>The amount of drinks we have with these ingredients:</label>
-                    <label className="drink-results mt-1 mb-1  d-flex justify-content-center ">{drinkCounter}</label>
+                    <label className="drink-results mt-1 mb-1  d-flex justify-content-center fs-3 fw-bold">{drinkCounter}</label>
 
                 </div>
 
