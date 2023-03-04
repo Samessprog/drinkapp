@@ -30,7 +30,7 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
     const drinkInput = () => {
 
       if (inputDrinkText) {
-        const searchingResults = searchingDrink.filter((elm) => {
+        const searchingResults = drinkDatas.filter((elm) => {
           const drinkName = elm.DrinkName.toLowerCase();
           const inputText = inputDrinkText.toLowerCase();
 

@@ -1,47 +1,50 @@
 @import "variables.scss";
 
-.main {
-    color: $color-white;
-
-    .drin-window {
-
-        background-color: $bg-ligherDark;
-        box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
-        cursor: pointer;
-
-        @media (min-width: 1854px) {
-            width: calc(100% / 5);
-        }
 
 
-        .img-holder {
-            background-color: transparent;
-            border: rgb(48, 48, 48) 3px solid;
+    .main {
+        color: $color-white;
 
-            .drink-img {
-                max-height: 350px;
-                height: 350px;
-                width: 100%;
+        .drin-window {
+            
+            background-color: $bg-ligherDark;
+            box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
+            cursor: pointer;
+
+            @media (min-width: 1854px) {
+                width: calc(100% / 5);
             }
-        }
 
-        .basic-information-drink {
-            @include basicDrinksInf;
-        
-            .rate {
-                color: $color-gold;
-                font-size: 20px;
 
-                .star {
-                    fill: $color-gold;
+            .img-holder {
+                background-color: transparent;
+                border: rgb(48, 48, 48) 3px solid;
+
+                .drink-img {
+                    max-height: 350px;
+                    height: 350px;
+                    width: 100%;
+
                 }
             }
 
-            .drink-taste {
-                background-color: $color-light-d-green;
-                color: $color-black;
+            .basic-information-drink {
+                @include basicDrinksInf;
 
+                .rate {
+                    color: $color-gold;
+                    font-size: 20px;
+
+                    .star {
+                        fill: $color-gold;
+                    }
+                }
+
+                .drink-taste {
+                    background-color: $color-light-d-green;
+                    color: $color-black;
+
+                }
             }
         }
     }
-}

@@ -33,11 +33,13 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
             </div>
 
             {currentData.map((elm) => (
-                <Drink
-                    key={elm.ID_Drink}
-                    setDrinkDetailsPopup={setDrinkDetailsPopup}
-                    elm={elm}
-                />
+                
+                    <Drink
+                        key={elm.ID_Drink}
+                        setDrinkDetailsPopup={setDrinkDetailsPopup}
+                        elm={elm}
+                    />
+                
             ))}
 
             {!drinkNotFound &&
@@ -47,8 +49,8 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
                     onPageChange={handlePageClick}
                     forcePage={offset / itemsPerPage}
                     className=" d-flex align-items-center justify-content-center pagination pt-5"
-                    nextLabel={<svg className= "arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className= "arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                    previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className= "arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
+                    nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
+                    previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                 />
 
             }
