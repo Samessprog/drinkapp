@@ -24,12 +24,12 @@ onInput={element => this.handleTextInput(element)}
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
-    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound, drinkDetailsPopup }) {
+    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound, drinkDetailsPopup, drinkNotFound }) {
 
     const [inputDrinkText, setInputDrinkText] = React.useState("");
 
     const setingsMenu = () => {
-        if (loginPopup || specialOptionsPopup ) {
+        if (loginPopup || specialOptionsPopup) {
             setLoginPopup(false)
             setSpecialOptionsPopup(false)
         }
@@ -37,7 +37,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
     }
 
     const loginHandler = () => {
-        if ( specialOptionsPopup  || Popupsetings ) {
+        if (specialOptionsPopup || Popupsetings) {
             setSpecialOptionsPopup(false)
             setPopupSetings(false)
         }
@@ -112,6 +112,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                             drinkDatas={drinkDatas}
                                             setSearchingDrink={setSearchingDrink}
                                             setDrinkNotFound={setDrinkNotFound}
+                                           
 
                                         />
                                     </Suspense>

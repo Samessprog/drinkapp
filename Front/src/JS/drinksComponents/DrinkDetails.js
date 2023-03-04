@@ -112,7 +112,7 @@ function DrinkDetails({ searchingDrink, Popupsetings, setPopupSetings, loginPopu
                         </div>
                     </div>
 
-                    <div className="img-holder-details col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-3 ">
+                    <div className="img-holder-details col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-4 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}

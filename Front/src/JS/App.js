@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -35,14 +35,14 @@ function App() {
   const [drinksCounter, setDrinksCounter] = React.useState(0)
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
-  
+
 
   React.useEffect(() => {
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1);
     };
     window.addEventListener("scroll", setFixed);
-  
+
     return () => window.removeEventListener("scroll", setFixed);
   }, []);
 
@@ -80,6 +80,7 @@ function App() {
         userScroll={userScroll}
         setDrinkNotFound={setDrinkNotFound}
         drinkDetailsPopup={drinkDetailsPopup}
+       
 
       />
 
@@ -100,15 +101,15 @@ function App() {
             userScroll={userScroll}
             drinkNotFound={drinkNotFound}
             setSearchingDrink={setSearchingDrink}
-            drinksCounter= {drinksCounter}
-            setDrinksCounter ={setDrinksCounter}
-            offset ={offset} 
-            setOffset= {setOffset}
-
+            drinksCounter={drinksCounter}
+            setDrinksCounter={setDrinksCounter}
+            offset={offset}
+            setOffset={setOffset}
+            setDrinkNotFound={setDrinkNotFound}
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink = {searchingDrink} Popupsetings={Popupsetings} setPopupSetings = {setPopupSetings} loginPopup = {loginPopup}  setLoginPopup = {setLoginPopup} offset ={offset} setOffset= {setOffset}  /> </Suspense> </ErrorBoundary>}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} Popupsetings={Popupsetings} setPopupSetings={setPopupSetings} loginPopup={loginPopup} setLoginPopup={setLoginPopup} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 
       <Footer />

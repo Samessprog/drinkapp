@@ -6,8 +6,8 @@ import ErrorFallback from "../Components/ErrorBoundary";
 const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
-    setIngredientText, setingredient, drinkDatas }) {
-
+    setIngredientText, setingredient, drinkDatas,drinkNotFound, setDrinkNotFound }) {
+        
     const [drinkCounter, setDrinkCounter] = React.useState(0)
 
     React.useEffect(() => {
@@ -17,11 +17,15 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
             return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
         });
         setDrinkCounter(result.length);
-        setSearchingDrink(result.length === 0 ? drinkDatas : result);
-    
+        setSearchingDrink(result);
+        
+        if (searchingDrink === 0) {
+            setDrinkNotFound(true)
+        }
+
     }, [ingredient]);
 
-
+    
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
@@ -73,16 +77,13 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                 </div>
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">
+
                     <label>The amount of drinks we have with these ingredients:</label>
-                    <label className="drink-results mt-1 mb-1  d-flex justify-content-center fs-3 fw-bold">{drinkCounter}</label>
+                    <label className={`drink-results mt-1 mb-1 d-flex justify-content-center fs-3 fw-bold ${drinkCounter === 0 && 'text-danger'}`}>{drinkCounter}</label>
 
                 </div>
-
             </div>
-
-
         </div>
-
     )
 }
 

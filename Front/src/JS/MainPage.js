@@ -8,7 +8,7 @@ import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = React.lazy(() => import("./drinksComponents/DDE"))
 //const Drink = React.lazy(() => import("./drinksComponents/Drink"))
 
-function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFound, offset, setOffset }) {
+function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFound, offset, setOffset, setDrinkNotFound }) {
 
     const itemsPerPage = 4; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
@@ -21,7 +21,12 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
         setOffset(offset);
     };
 
-    
+
+    React.useEffect(() => {
+        setDrinkNotFound(searchingDrink.length === 0);
+    },[]);
+
+
     return (
 
         <main className="main d-flex row justify-content-center me-0 ">
@@ -33,13 +38,13 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
             </div>
 
             {currentData.map((elm) => (
-                
-                    <Drink
-                        key={elm.ID_Drink}
-                        setDrinkDetailsPopup={setDrinkDetailsPopup}
-                        elm={elm}
-                    />
-                
+
+                <Drink
+                    key={elm.ID_Drink}
+                    setDrinkDetailsPopup={setDrinkDetailsPopup}
+                    elm={elm}
+                />
+
             ))}
 
             {!drinkNotFound &&

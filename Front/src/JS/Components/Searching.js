@@ -3,8 +3,7 @@ import React from "react";
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
   setSearchingDrink, searchingDrink, setDrinkNotFound, inputDrinkText }) {
 
-
-
+  
   React.useEffect(() => {
 
     const filterDrinks = () => {
@@ -51,22 +50,10 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
 
     };
 
-
-
-
-
     filterDrinks();
     drinkInput();
 
   }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText]);
-
-
-
-
-
-  React.useEffect(() => {
-    setDrinkNotFound(searchingDrink.length === 0);
-  }, [searchingDrink, setDrinkNotFound]);
 
 }
 

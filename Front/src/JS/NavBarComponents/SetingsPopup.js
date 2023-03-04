@@ -2,7 +2,7 @@ import React from "react";
 import Searching from "../Components/Searching";
 
 function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsPopup, searchingDrink,
-    drinkDatas, setSearchingDrink, setDrinkNotFound }) {
+    drinkDatas, setSearchingDrink, setDrinkNotFound}) {
 
    
     {/* Settings States  */ }
