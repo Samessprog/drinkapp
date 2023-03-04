@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../Components/ErrorBoundary";
 import Searching from "../Components/Searching";
+import Registers from "../Register/Register";
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
@@ -24,7 +25,10 @@ onInput={element => this.handleTextInput(element)}
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
-    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound, drinkDetailsPopup, drinkNotFound }) {
+    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound,
+    drinkDetailsPopup, drinkNotFound, registerPopup, setRegisterPopup }) {
+
+
 
     const [inputDrinkText, setInputDrinkText] = React.useState("");
 
@@ -112,7 +116,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                             drinkDatas={drinkDatas}
                                             setSearchingDrink={setSearchingDrink}
                                             setDrinkNotFound={setDrinkNotFound}
-                                           
+
 
                                         />
                                     </Suspense>
@@ -130,6 +134,18 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                             <Suspense fallback={<div>Loading...</div>}>
                                 <LoginPopup
                                     setLoginPopup={setLoginPopup}
+                                    setRegisterPopup={setRegisterPopup}
+                                />
+                            </Suspense>
+                        </ErrorBoundary>
+                    }
+        
+                    {registerPopup &&
+                        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Registers
+                                  setLoginPopup={setLoginPopup}
+                                  setRegisterPopup={setRegisterPopup}
                                 />
                             </Suspense>
                         </ErrorBoundary>

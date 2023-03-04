@@ -4,12 +4,18 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 
+
 import NavBar from "./NavBarComponents/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./Home";
 import axios from 'axios';
 
+import Registers from "./Register/Register";
+
 const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
+
+
+
 
 function App() {
 
@@ -35,7 +41,8 @@ function App() {
   const [drinksCounter, setDrinksCounter] = React.useState(0)
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
-
+  //RegisterPopup
+  const [registerPopup, setRegisterPopup] = React.useState(false)
 
   React.useEffect(() => {
     const setFixed = () => {
@@ -80,7 +87,8 @@ function App() {
         userScroll={userScroll}
         setDrinkNotFound={setDrinkNotFound}
         drinkDetailsPopup={drinkDetailsPopup}
-       
+        registerPopup={registerPopup}
+        setRegisterPopup={setRegisterPopup}
 
       />
 
@@ -110,6 +118,9 @@ function App() {
 
         </Route>
         <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} Popupsetings={Popupsetings} setPopupSetings={setPopupSetings} loginPopup={loginPopup} setLoginPopup={setLoginPopup} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+
+        <Route path="/register" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <Registers offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}> </Route>
+
       </Routes>
 
       <Footer />

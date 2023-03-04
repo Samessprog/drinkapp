@@ -66,9 +66,7 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
                         <DDE />
                     </Suspense>
                 </ErrorBoundary>
-
             }
-
         </main >
     )
 }

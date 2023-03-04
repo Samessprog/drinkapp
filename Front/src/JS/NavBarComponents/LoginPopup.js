@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function LoginPopup({ setLoginPopup }) {
+function LoginPopup({ setLoginPopup, setRegisterPopup  }) {
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column col ">
@@ -15,17 +16,15 @@ function LoginPopup({ setLoginPopup }) {
 
                 <form className=" d-flex  flex-column align-items-center">
 
-                    <div className="test col-4 d-flex  justify-content-center flex-column align-items-center mt-5">
+                    <div className="test col-4 d-flex  justify-content-center flex-column align-items-center mt-5  logRegHolder">
 
                         <div className="fs-5 color-black">Login</div>
 
                         <div className="mt-3">
-                            <label className="">Login</label>
                             <input className="ps-2 rounded" type="text" placeholder="login"></input>
                         </div>
 
-                        <div className="">
-                            <label>Password</label>
+                        <div className="mt-3">
                             <input className="ps-2 rounded" type="password" placeholder="password"></input>
                         </div>
                     </div>
@@ -36,7 +35,9 @@ function LoginPopup({ setLoginPopup }) {
                 </form>
 
                 <div className="color-black ms-2 me-2 mb-3 d-flex  flex-column align-items-center">
-                    If you do not have an account, <p className=" "><a className="" href="#">register</a></p>
+                    If you do not have an account, <p className=" ">
+                        <div className="registerLink" onClick={() => { setRegisterPopup(true); setLoginPopup(false)}}>register</div>
+                    </p>
                 </div>
 
             </div>
