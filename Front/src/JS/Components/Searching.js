@@ -1,9 +1,9 @@
 import React from "react";
 
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
-  setSearchingDrink, searchingDrink, setDrinkNotFound, inputDrinkText }) {
+  setSearchingDrink, searchingDrink, inputDrinkText }) {
 
-  
+    
   React.useEffect(() => {
 
     const filterDrinks = () => {

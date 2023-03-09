@@ -17,6 +17,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                         effect="blur"
                         className="drink-img img-flui" alt="Loading error"
                     />
+          
 
                 </div>
                 <div className="basic-information-drink p-2">

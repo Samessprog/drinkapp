@@ -10,8 +10,6 @@ import Footer from "./footer/Footer";
 import Home from "./Home";
 import axios from 'axios';
 
-import Registers from "./Register/Register";
-
 const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 
 
@@ -118,8 +116,6 @@ function App() {
 
         </Route>
         <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} Popupsetings={Popupsetings} setPopupSetings={setPopupSetings} loginPopup={loginPopup} setLoginPopup={setLoginPopup} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
-
-        <Route path="/register" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <Registers offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}> </Route>
 
       </Routes>
 
