@@ -1,0 +1,8 @@
+.user-drink-holder {
+    @include drinksHolder;
+
+    .star{
+        fill: $color-gold;
+    }
+
+}

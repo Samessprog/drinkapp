@@ -107,7 +107,12 @@ $font-size-13: 13px;
     }
 }
 
+@mixin drinksHolder{
+    background-color: $bg-ligherDark;
+    box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
+    cursor: pointer;
 
+}
 
 @mixin drinks {
     border-radius: 18px;

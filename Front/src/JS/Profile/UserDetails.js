@@ -4,12 +4,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 function UserDetails() {
 
 
-
-
     return (
-        <div className="user-details-holder col mt-3">
+        <div className=" col mt-3">
             <div class="d-flex justify-content-between p-5">
-
                 <div className=" d-flex align-items-center ">
                     <div className=" ">
                         <LazyLoadImage
@@ -22,39 +19,17 @@ function UserDetails() {
                         <input className="user-data-input" placeholder="Mail"></input>
                         <input className="mt-3 user-data-input" placeholder="User Name"></input>
                         <input className="mt-3 user-data-input" placeholder="Nick"></input>
-                        <button type="button" className="btn btn-secondary mt-3">Change your Data</button>
+                        <button type="button" className="user-data-button-submit mt-3">Change your Data</button>
                     </div>
                 </div>
                 <div className="badges-holder col-4 p-3">
                     <label className="badges-start">Your badges:</label>
-                    <div>
+                    <div className="d-flex  justify-content-center">
                         No badges
                     </div>
                 </div>
             </div>
 
-            <div className="user-favourite-frinks-holder">
-                <label className="border-bottom"> YOUR FAVORITE</label>
-                <div className="user-favourite-frinks d-flex justify-content-center pb-5">
-                    DRINKIII
-                </div>
-
-            </div>
-
-            <div className="user-favourite-frinks-holder">
-                <label className="border-bottom"> Create your own drink</label>
-                <div className="user-favourite-frinks d-flex justify-content-center">
-                    DRINKIII
-                </div>
-            </div>
-            <div className="d-flex">
-                <div className="ms-3">
-                    <button type="button" className="bt btn-info  ">Add your drink</button>
-                </div>
-                <div className="ms-3">
-                    <button type="button" className="bt btn-info  ">Delete your drink</button>
-                </div>
-            </div>
         </div>
     )
 

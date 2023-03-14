@@ -30,7 +30,7 @@ onInput={element => this.handleTextInput(element)}
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound,
-    drinkDetailsPopup, drinkNotFound, registerPopup, setRegisterPopup }) {
+    drinkDetailsPopup, registerPopup, setRegisterPopup }) {
 
 
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
@@ -62,7 +62,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
                 drinkDatas={drinkDatas}
-
             />
 
             <div className="NavBarContentHolder p-3 pb-0">

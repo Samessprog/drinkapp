@@ -1,15 +1,10 @@
 @import "variables.scss";
 
-
-
     .main {
         color: $color-white;
 
         .drin-window {
-         
-            background-color: $bg-ligherDark;
-            box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
-            cursor: pointer;
+            @include drinksHolder;
 
             @media (min-width: 1854px) {
                 width: calc(100% / 5);

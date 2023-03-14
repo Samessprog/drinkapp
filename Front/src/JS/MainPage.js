@@ -22,9 +22,9 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
     };
 
 
-    // React.useEffect(() => {
-    //     setDrinkNotFound(searchingDrink.length === 0);
-    // },[]);
+    React.useEffect(() => {
+        setDrinkNotFound(searchingDrink.length === 0);
+    },[searchingDrink]);
 
 
     return (
