@@ -27,6 +27,8 @@
 
     .badges-holder {
         border: solid white 1px;
+       height: 300px;
+       overflow-y: auto;
 
         .badges-start {
             font-size: 20px;
@@ -34,11 +36,19 @@
     }
 
     .user-favourite-frinks-holder {
-        margin-top: 7rem;
+        margin-top: 4rem;
         margin-left: 1rem;
         overflow: auto;
-
-        .user-favourite-frinks {}
     }
+    .add-your-drink-button {
+        background-color: rgb(7, 201, 7);
+        border-radius: 15px;
+        color: $color-black;
 
+    }
+    .edit-your-drink-button {
+        background-color: yellow;
+        border-radius: 15px;
+        color: $color-black;
+    }
 }

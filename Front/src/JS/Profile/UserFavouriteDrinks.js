@@ -7,7 +7,7 @@ function UserFavouriteDrinks() {
     return (
         <div>
             <div className="user-favourite-frinks-holder">
-                <label className="border-bottom"> YOUR FAVORITE</label>
+                <label className="border-bottom fw-bolder"> YOUR FAVORITE</label>
                 <div className="user-favourite-frinks d-flex justify-content-center pb-5 ">
                     {/* Dodać mapowanie ulubionych */}
 
@@ -16,8 +16,6 @@ function UserFavouriteDrinks() {
                     <FavouriteDrinks />
                     
                    
-
-
                 </div>
             </div>
         </div>

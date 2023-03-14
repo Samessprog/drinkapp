@@ -5,6 +5,7 @@
     background-color: rgb(31, 31, 31);
     color: $color-white;
     padding: 0;
+    z-index: 1;
   
     &-elm {
       border: 1px solid white;

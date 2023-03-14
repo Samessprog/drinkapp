@@ -98,6 +98,7 @@
     .main-options-holder {
         display: $d-flex;
         background-color: $bg-ligherDark;
+        z-index: 0;
 
         @media (max-width:575px) {
             & {
