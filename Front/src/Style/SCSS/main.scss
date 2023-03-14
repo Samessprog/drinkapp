@@ -1,13 +1,13 @@
-@import "setingsPopup.scss";
-@import "loginPopup.scss";
-@import "navbar.scss";
-@import "specialPopup.scss";
-@import "drinksDetails.scss";
-@import "drink.scss";
-@import "footer.scss";
-@import "userProfile.scss";
-@import "userProfiil.scss";
-@import "userDrinks.scss";
+@import "./navbarComponentsStyles/setingsPopup";
+@import "./navbarComponentsStyles/loginPopup";
+@import "./navbarComponentsStyles/navbar";
+@import "./navbarComponentsStyles/specialPopup";
+@import "./drinksComponentsStyles/drinksDetails";
+@import "./drinksComponentsStyles/drink";
+@import "footer";
+@import "./userComponentsStyles/userProfiil";
+@import "./drinksComponentsStyles/userDrinks";
+@import "./userComponentsStyles/userProfile";
 
 body {
     margin: 0 !important;
