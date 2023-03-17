@@ -1,4 +1,5 @@
 @import "../variables.scss";
+
 .user-details-holder {
     color: $color-white;
 
@@ -28,25 +29,39 @@
 
     .badges-holder {
         border: solid white 1px;
-       height: 300px;
-       overflow-y: auto;
+        height: 300px;
+        overflow-y: auto;
 
         .badges-start {
             font-size: 20px;
         }
     }
 
+    .scroll-arrow-fav-own {
+        fill: white;
+        cursor: pointer;
+    }
+
     .user-favourite-frinks-holder {
         margin-top: 4rem;
         margin-left: 1rem;
-        overflow: auto;
+        overflow: hidden;
+        margin-left: 50px;
+        margin-right: 50px;
+
+        .user-favourite-frinks {
+            padding-left: 100px;
+
+        }
     }
+
     .add-your-drink-button {
         background-color: rgb(7, 201, 7);
         border-radius: 15px;
         color: $color-black;
 
     }
+
     .edit-your-drink-button {
         background-color: yellow;
         border-radius: 15px;
