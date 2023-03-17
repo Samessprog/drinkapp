@@ -2,15 +2,10 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-paginate';
+import { useLocation } from 'react-router-dom';
 
 
-
-function DrinkDetails({ searchingDrink, Popupsetings, setPopupSetings, loginPopup, setLoginPopup }) {
-
-    if (Popupsetings === true || loginPopup == true) {
-        setPopupSetings(false)
-        setLoginPopup(false)
-    }
+function DrinkDetails({ searchingDrink }) {
 
 
     let { id } = useParams()

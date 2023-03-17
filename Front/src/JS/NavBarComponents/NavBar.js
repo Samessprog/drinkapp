@@ -1,10 +1,9 @@
 import React, { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Link } from "react-router-dom";
 import ErrorFallback from "../Components/ErrorBoundary";
 import OptionsProfile from "../Profile/OptionsProfile";
 import Searching from "../Components/Searching";
-
+import { useLocation } from 'react-router-dom';
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
@@ -33,6 +32,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
     drinkDetailsPopup, registerPopup, setRegisterPopup }) {
 
 
+    const location = useLocation();
+    
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
     const [inputDrinkText, setInputDrinkText] = React.useState("");
 
@@ -79,52 +80,56 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                     <div className="d-flex col-sm-5">
 
                         {/* Wyszukiwarka drinków  */}
+                        {location.key.startsWith('default') &&
 
-                        <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3">
+                            <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3">
 
-                            <input
-                                onChange={event => setInputDrinkText(event.target.value)}
-                                type="text"
-                                className="searching-input border-0 rounded-pill ps-4 pe-5 ps-3 col-sm-12"
-                                placeholder="Enter drink name"
-                            />
+                                <input
+                                    onChange={event => setInputDrinkText(event.target.value)}
+                                    type="text"
+                                    className="searching-input border-0 rounded-pill ps-4 pe-5 ps-3 col-sm-12"
+                                    placeholder="Enter drink name"
+                                />
 
-                            <button className="searching-icon-holder border-0 p-0 m-0 position-absolute right-0 top-50% transform: translateY(-50%) " id="SignIn" data-testid="SignIn" >
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
-                                    <path className="icon" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                                </svg>
-                            </button>
-
-                        </div>
-
-                        <div className="options-holder d-flex ms-4 mb-2 ">
-                            { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!Popupsetings) */}
-                            {!drinkDetailsPopup &&
-                                <button className="settings-button border-0 " onClick={setingsMenu}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                                        <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
+                                <button className="searching-icon-holder border-0 p-0 m-0 position-absolute right-0 top-50% transform: translateY(-50%) " id="SignIn" data-testid="SignIn" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                        <path className="icon" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
                                     </svg>
                                 </button>
-                            }
 
-                            {Popupsetings && (
-                                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
-                                    <Suspense fallback={<div>Loading...</div>}>
-                                        <SetingsPopup
-                                            Popupsetings={Popupsetings}
-                                            setPopupSetings={setPopupSetings}
-                                            setSpecialOptionsPopup={setSpecialOptionsPopup}
-                                            specialOptionsPopup={specialOptionsPopup}
-                                            searchingDrink={searchingDrink}
-                                            drinkDatas={drinkDatas}
-                                            setSearchingDrink={setSearchingDrink}
-                                            setDrinkNotFound={setDrinkNotFound}
+                            </div>
+                        }
 
-                                        />
-                                    </Suspense>
-                                </ErrorBoundary>
-                            )}
-                        </div>
+                        {location.key.startsWith('default') &&
+                            <div className="options-holder d-flex ms-4 mb-2 ">
+                                { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!Popupsetings) */}
+                                {!drinkDetailsPopup &&
+                                    <button className="settings-button border-0 " onClick={setingsMenu}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                            <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
+                                        </svg>
+                                    </button>
+                                }
+
+                                {Popupsetings && (
+                                    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                                        <Suspense fallback={<div>Loading...</div>}>
+                                            <SetingsPopup
+                                                Popupsetings={Popupsetings}
+                                                setPopupSetings={setPopupSetings}
+                                                setSpecialOptionsPopup={setSpecialOptionsPopup}
+                                                specialOptionsPopup={specialOptionsPopup}
+                                                searchingDrink={searchingDrink}
+                                                drinkDatas={drinkDatas}
+                                                setSearchingDrink={setSearchingDrink}
+                                                setDrinkNotFound={setDrinkNotFound}
+
+                                            />
+                                        </Suspense>
+                                    </ErrorBoundary>
+                                )}
+                            </div>
+                        }
                     </div>
 
                     <div className="">
