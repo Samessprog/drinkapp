@@ -4,7 +4,6 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 
-
 import NavBar from "./NavBarComponents/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./Home";
@@ -13,11 +12,7 @@ import UserProfile from "./Profile/UserProfile";
 
 const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 
-
-
-
 function App() {
-
 
   //navbar PopUps
   const [Popupsetings, setPopupSetings] = React.useState(false)
@@ -67,7 +62,6 @@ function App() {
     };
     fetchData();
   }, []);
-
 
 
   return (

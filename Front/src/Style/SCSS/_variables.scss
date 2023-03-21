@@ -10,16 +10,12 @@ $color-red: red;
 $color-light-grey: rgb(185, 184, 184);
 $color-rgb-163-161-161: rgb(163, 161, 161);
 
-
 //transitions
 $trans-all-03-eio: all .3s ease-in-out;
 $trans-all-05-eio: all .5s ease-in-out;
 
-
-
 //procents %
 $proc-20 : 20%;
-
 
 //numbers PX
 $n-700px: 700px;
@@ -32,7 +28,6 @@ $n-250px: 250px;
 $n-150px: 150px;
 $n-120px: 120px;
 
-
 //displays
 $d-flex: flex;
 $d-none: none;
@@ -41,15 +36,10 @@ $d-none: none;
 $font-size-15: 15px;
 $font-size-13: 13px;
 
-
-
-
-
 @mixin fs-13-color-light-grey {
     font-size: $font-size-13;
     color: $color-light-grey;
 }
-
 
 @mixin pagination {
 
@@ -112,6 +102,11 @@ $font-size-13: 13px;
     box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
     cursor: pointer;
 
+}
+
+@mixin border-1-solid-black{
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 @mixin drinks {

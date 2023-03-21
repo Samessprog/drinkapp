@@ -1,9 +1,9 @@
 import React from "react";
 import FavouriteDrinks from "./UserDrinks/FavouriteDrinks";
 
-function UserOwnDrinks() {
+function UserOwnDrinks({addUserNewDrink, setAddUserNewDrink }) {
 
-
+    
     return (
         <div className="position-relative">
             <div className="user-favourite-frinks-holder">
@@ -11,13 +11,14 @@ function UserOwnDrinks() {
                 <div className="user-favourite-frinks d-flex justify-content-center">
 
                     < FavouriteDrinks />
-          
+
                 </div>
             </div>
             <div className="d-flex mt-4 flex-md-row-reverse me-4 flex-column ">
                 <div className="ms-3">
-                    <button type="button" className="add-your-drink-button">Add your drink</button>
+                    <button onClick={() => setAddUserNewDrink(!addUserNewDrink)} type="button" className="add-your-drink-button">Add your drink</button>
                 </div>
+
                 <div className="ms-3">
                     <button type="button" className="edit-your-drink-button">Edit your drink</button>
                 </div>
@@ -28,7 +29,11 @@ function UserOwnDrinks() {
             <div className="position-absolute top-50 end-0 me-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="scroll-arrow-fav-own" height="48" width="48"><path d="m15.2 43.9-2.8-2.85L29.55 23.9 12.4 6.75l2.8-2.85 20 20Z" /></svg>
             </div>
-        </div>
+
+
+
+        </div >
+
     )
 }
 
