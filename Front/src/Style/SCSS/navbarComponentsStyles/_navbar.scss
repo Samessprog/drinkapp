@@ -1,7 +1,6 @@
 //variables
 @import "../variables.scss";
 
-
 .NavBar {
     z-index: 1;
 
@@ -10,9 +9,9 @@
         color: $color-white;
 
         .brand-name-SCROLL {
-            display: $d-flex;
+            display: $d-none;
 
-            @media (max-width:575px) {
+            @media (max-width:768px) {
                 & {
                     display: $d-none;
                 }
@@ -22,13 +21,14 @@
         .hamburger-SCROLL {
             display: $d-none;
 
-            @media (max-width:575px) {
+            @media (max-width:768px) {
                 & {
                     display: $d-flex;
                 }
             }
         }
-        .Singn-button{
+
+        .Singn-button {
             color: $color-white;
             transition: $trans-all-03-eio;
             background-color: $bg-ligherDark;
@@ -39,12 +39,10 @@
                 background-color: rgb(22, 22, 22);
                 border-radius: 15px;
             }
-
         }
 
         .ProfileButton {
             fill: white;
-
         }
 
         .helper {
@@ -71,7 +69,12 @@
                 background-color: rgb(16, 16, 16);
                 top: 22%;
                 right: 2%;
-               
+                display: flex;
+
+                @media (max-width: 560px) {
+                    display: none;
+                }
+
                 color: $color-white;
 
                 .icon {
@@ -80,18 +83,31 @@
             }
         }
 
-        .options-holder {
-            fill:  $color-white;
-            transition: all .2s ease-in-out;
-          
 
+
+        .options-holder {
+            fill: $color-white;
+            transition: all .2s ease-in-out;
+            margin-bottom: 2rem;
+            display: flex;
+            margin-left: 4rem;
+
+            @media (max-width: 768px) {
+                position: absolute;
+                top: 23%;
+                right: 0;
+                margin-right: 0.3rem;
+            }
             &:hover {
                 fill: rgb(251, 210, 156);
-            } 
-      
+            }
             .settings-button {
                 background-color: $bg-ligherDark;
-               
+
+                @media (max-width: 768px) {
+                    background-color: rgb(16, 16, 16);
+
+                }
             }
         }
     }
@@ -106,21 +122,55 @@
                 display: $d-flex;
                 position: sticky;
                 width: 100%;
+                justify-content: center;
+                align-items: center;
             }
         }
 
-        .navbar-menu {
-            list-style: none;
-            
-            .elm-contents {
-                font-size: 18px;
-                color: $color-white;
-                transition: $trans-all-03-eio;
-                padding: 10px;
+        .Options-Holder-W100 {
+            @media (max-width:575px) {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
 
-                &:hover {
-                    background-color: rgb(21, 21, 21);
-                    border-radius: 15px;
+            .navbar-menu {
+                list-style: none;
+
+                @media (max-width:575px) {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .elm-contents-holder {
+
+                    @media (max-width:575px) {
+                        margin-top: 1rem;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+
+                        &:hover {
+                            background-color: rgb(21, 21, 21);
+                            border-radius: 15px;
+                        }
+                    }
+
+                    .elm-contents {
+                        font-size: 18px;
+                        color: $color-white;
+                        transition: $trans-all-03-eio;
+                        padding: 10px;
+
+
+                        &:hover {
+                            background-color: rgb(21, 21, 21);
+                            border-radius: 15px;
+                        }
+
+                    }
+
                 }
             }
         }

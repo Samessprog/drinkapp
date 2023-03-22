@@ -30,6 +30,9 @@
 
   .dropArrow{
     fill: white;
+    @media (max-width:575px) {
+      display: none;
+  }
   }
   .rotate180{
     transform: rotate(180deg);
