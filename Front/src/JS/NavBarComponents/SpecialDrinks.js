@@ -6,12 +6,12 @@ import ErrorFallback from "../Components/ErrorBoundary";
 const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
-    setIngredientText, setingredient, drinkDatas,drinkNotFound, setDrinkNotFound }) {
+    setIngredientText, setingredient, drinkDatas, setDrinkNotFound }) {
         
     const [drinkCounter, setDrinkCounter] = React.useState(0)
 
     React.useEffect(() => {
-
+        
         const result = drinkDatas.filter((drink) => {
             const drinkIngredients = drink.Ingredients.toLowerCase();
             return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));

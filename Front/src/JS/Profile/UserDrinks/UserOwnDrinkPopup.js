@@ -16,7 +16,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     return (
         <div className="col-12 h-100 align-items-center own-drink-popup-holder">
-
+            
             <div className="users-own-deink  col-11 col-sm-10 col-md-8 col-lg-6 col-xl-7 p-3 mx-auto">
 
                 <div className="d-flex justify-content-end mb-2">

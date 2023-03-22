@@ -1,11 +1,12 @@
 import React from "react";
 import Searching from "../Components/Searching";
-import DrinksOptions from "../Components/DrinksOptions" ;
+import DrinksOptions from "../Components/DrinksOptions";
+import TypeOfDrink from "../Components/TypeOfDrink";
 
 function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsPopup, searchingDrink,
-    drinkDatas, setSearchingDrink, setDrinkNotFound}) {
+    drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
-   
+
     {/* Settings States  */ }
 
     const [alcocholic, setAlcocholic] = React.useState(false)
@@ -58,15 +59,12 @@ function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsP
                                 <label className="ms-1">Favorite</label>
                             </div>
 
-                            <div className="d-flex mt-1">
-                                <input onClick={() => setAlcocholic(!alcocholic)} type="checkbox" ></input>
-                                <label className="ms-1">Alcoholic</label>
-                            </div>
-
-                            <div className="d-flex mt-1">
-                                <input type="checkbox" onClick={() => setSoftDrinks(!softDrinks)} ></input>
-                                <label className="ms-1">Soft drinks</label>
-                            </div>
+                            <TypeOfDrink
+                                alcocholic={alcocholic}
+                                setAlcocholic={setAlcocholic}
+                                softDrinks={softDrinks}
+                                setSoftDrinks={setSoftDrinks}
+                            />
 
                             <div className="d-flex mt-1">
                                 <input type="checkbox" onClick={() => setHighlyRated(!highlyRated)} ></input>
@@ -74,16 +72,14 @@ function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsP
                             </div>
 
                         </div>
-                       <DrinksOptions 
-                            levelHandler={levelHandler}
-                            tasteHandler={tasteHandler}
-                       />
+
+                        <DrinksOptions levelHandler={levelHandler} tasteHandler={tasteHandler} />
+                   
                     </div>
 
                 </form>
                 <div className="d-flex justify-content-center mt-3">
                     <button onClick={() => {
-
                         setSpecialOptionsPopup(!specialOptionsPopup)
                         setPopupSetings(false)
                     }}

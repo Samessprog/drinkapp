@@ -9,12 +9,14 @@ function DrinkDetails({ searchingDrink }) {
 
 
     let { id } = useParams()
-
+    //Pagination
     const [currentPage, setCurrentPage] = React.useState(0)
-
     const [drinksDetail, setDrinkDetail] = React.useState({})
+    //Drink ingredients 
     const [ing, setIng] = React.useState([])
+    //Drink Preparation
     const [prep, setPrep] = React.useState([])
+    //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = React.useState([]);
 
     React.useEffect(() => {
