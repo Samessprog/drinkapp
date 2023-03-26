@@ -1,23 +1,10 @@
 //Poprwawić pozycję... zrobić jakoś inaczej
 @import "../variables.scss";
 
-
 .loginPopupHolder {
-    right: 40%;
-    top: $proc-20;
-    transition: $trans-all-03-eio;
-
-    @media (max-width: 768px) {
-        right: 30%;
-        top: $proc-20;
-        transition: $trans-all-03-eio;
-    }
-
-    @media (max-width: 576px) {
-        right: $proc-20;
-        top: $proc-20;
-        transition: $trans-all-03-eio;
-    }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     .color-black {
         color: $color-black;

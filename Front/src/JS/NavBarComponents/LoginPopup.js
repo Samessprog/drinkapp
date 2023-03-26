@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function LoginPopup({ setLoginPopup, setRegisterPopup  }) {
 
     return (
-        <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column col ">
+        <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column">
 
-            <div className="test col-12 mt-5  rounded">
+            <div className="test col-10 col-md-12 mt-5  rounded">
 
                 <div className="d-flex flex-row-reverse me-2 mt-2">
                     <svg onClick={() => setLoginPopup(false)} className="close-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20">
