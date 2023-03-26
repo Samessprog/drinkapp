@@ -82,7 +82,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                         {/* Wyszukiwarka drinków  */}
                         {location.key.startsWith('default') &&
 
-                            <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3 d-flex">
+                            <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3 d-flex align-items-center ">
 
                                 <div className="col-12 position-relative">
                                     <input
@@ -98,7 +98,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     </button>
                                 </div>
 
-                                <div  className="options-holder ">
+                                <div  className="options-holder">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!Popupsetings) */}
                                     {!drinkDetailsPopup &&
                                         <button className="settings-button border-0 col-12" onClick={setingsMenu}>

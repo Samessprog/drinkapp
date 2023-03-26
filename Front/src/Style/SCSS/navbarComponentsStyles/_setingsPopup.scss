@@ -1,28 +1,49 @@
-
 @import "../variables.scss";
 
 
 .SetingsPopupHolder {
     background-color: rgb(31, 31, 31);
     box-shadow: 5px 5px 6px 3px rgb(24, 24, 24);
+    margin-top: 4rem;
+    right: 10.5%;
 
-    .options-holder {
+    @media (min-width: 1400px) {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 3rem;
+    }
+
+    .options-holder-settings-popup {
+
+        @media (max-width: 1097px) {
+            flex-direction: column;
+        }
 
         @media (max-width: 992px) {
-           
             transition: font-size 0.3s ease-in-out;
             font-size: $font-size-15;
         }
 
-        @media (max-width: 576px) {
-            font-size: 12px;
+       
+
+        @media (max-width: 570px) {
+            font-size: 18px;
+            flex-direction: row;
         }
 
-        .multi-options {
 
-            @media (max-width: 992px) {
+        .multi-options {
+            @media (min-width: 1097px) {
                 margin-top: 0.8rem;
                 margin-left: 0 !important;
+            }
+
+            @media (max-width: 570px) {
+                margin-left: 3rem !important;
+
             }
         }
     }
@@ -52,9 +73,11 @@
 
         }
 
-        @media (max-width: 576px) {
-            font-size: 10px;
+        @media (max-width: 570px) {
+            font-size: 18px;
         }
+
+
     }
 
 }

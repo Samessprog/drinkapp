@@ -7,25 +7,25 @@ const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
     setIngredientText, setingredient, drinkDatas, setDrinkNotFound }) {
-        
+
     const [drinkCounter, setDrinkCounter] = React.useState(0)
 
     React.useEffect(() => {
-        
+
         const result = drinkDatas.filter((drink) => {
             const drinkIngredients = drink.Ingredients.toLowerCase();
             return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
         });
         setDrinkCounter(result.length);
         setSearchingDrink(result);
-        
+
         if (searchingDrink === 0) {
             setDrinkNotFound(true)
         }
 
     }, [ingredient]);
 
-    
+
     const inputTextHandler = (event) => {
         setIngredientText(event.target.value)
     }
@@ -41,8 +41,9 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
 
 
     return (
-        <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5">
-            <div className="col-6 helper rounded p-3">
+
+        <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>
+            <div className="col-10 helper rounded p-3" style={{ margin: "auto" }}>
                 <div className="d-flex flex-row-reverse ">
                     <svg onClick={() => setSpecialOptionsPopup(false)} className="close-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20">
                         <path d="M7.062 14 10 11.062 12.938 14 14 12.938 11.062 10 14 7.062 12.938 6 10 8.938 7.062 6 6 7.062 8.938 10 6 12.938ZM10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.625-3.115.625-1.447 1.719-2.541Q5.438 3.25 6.896 2.625T10 2q1.667 0 3.115.625 1.447.625 2.541 1.719 1.094 1.094 1.719 2.541Q18 8.333 18 10q0 1.646-.625 3.104-.625 1.458-1.719 2.552t-2.541 1.719Q11.667 18 10 18Zm0-1.5q2.708 0 4.604-1.896T16.5 10q0-2.708-1.896-4.604T10 3.5q-2.708 0-4.604 1.896T3.5 10q0 2.708 1.896 4.604T10 16.5Zm0-6.5Z" />
@@ -53,15 +54,14 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                     Please enter the ingredients you have and then click ENTER.If you want to delete a component, click X.
                 </div>
 
-                <div className="mb-4  d-flex mt-4">
+                <div className="mb-4  d-flex mt-4 justify-content-center">
 
-                    <input value={ingredientText} onChange={inputTextHandler} className="col-lg-6 ps-1 ingredients-input rounded  " type="text" placeholder="ingredient"></input>
-                    <button onClick={submitIngreadinetsHandler} className="rounded ms-1 ms-sm-2 enter-button " type="button">Enter</button>
+                    <input value={ingredientText} onChange={inputTextHandler} className="col-8  col-sm-6 col-lg-6 ps-1 ingredients-input rounded  " type="text" placeholder="ingredient"></input>
+                    <button onClick={submitIngreadinetsHandler} className="col-3 col-sm-1   rounded ms-1 ms-sm-2 enter-button " type="button">Enter</button>
 
                 </div>
 
-
-                <div className="mb-3 col-xl-10 test overflow-auto pe-2">
+                <div className=" col-7 test overflow-auto pe-2">
 
                     <ul className="ms-0  ">
                         {ingredient.map((ing, key) => (
@@ -73,7 +73,6 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                         ))}
 
                     </ul>
-
                 </div>
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">
@@ -84,6 +83,7 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                 </div>
             </div>
         </div>
+
     )
 }
 
