@@ -89,22 +89,23 @@ $font-size-13: 13px;
     background-color: transparent;
 }
 
-.arroPagi{
+.arroPagi {
     fill: white;
     transition: fill 0.2s ease-in-out;
+
     &:hover path {
         fill: rgb(191, 181, 181);
     }
 }
 
-@mixin drinksHolder{
+@mixin drinksHolder {
     background-color: $bg-ligherDark;
     box-shadow: 0px 0px 5px 5px rgb(78, 78, 78);
     cursor: pointer;
 
 }
 
-@mixin border-1-solid-black{
+@mixin border-1-solid-black {
     border: 1px solid black;
     border-radius: 5px;
 }
@@ -123,56 +124,82 @@ $font-size-13: 13px;
         color: $color-white;
     }
 
-    .drink-creator {
-        color: $color-black;
+    $drinks: (
+        drinks: true,
+        d-flex-grow-1-text-align-center-screen575: true
+    );
 
+    //drinks info
+.drink-creator,
+.diff-level,
+.sourClass,
+.sweetClass,
+.alkoClass,
+.softClass,
+.bitterClass,
+.easyLevelClass,
+.mediumLevelClass,
+.hardLevelClass {
+    @include drinks;
+    @include d-flex-grow-1-text-align-center-screen575();
+
+    &.sweetClass {
+        background-color: rgb(247, 71, 124);
     }
 
-    .diff-level {
+    &.sourClass {
+        background-color: rgb(218, 255, 32);
+    }
+
+    &.bitterClass {
+        background-color: rgb(123, 98, 98);
+    }
+
+    &.easyLevelClass {
+        background-color: rgb(10, 226, 10);
+    }
+
+    &.mediumLevelClass {
+        background-color: rgb(239, 212, 14);
+    }
+
+    &.hardLevelClass {
+        background-color: rgb(255, 111, 0);
+    }
+
+
+    &.diff-level {
         background-color: $color-light-l-green;
         color: $color-black;
     }
 
-    .softClass {
-        @include drinks;
+    &.drink-creator {
+        color: $color-black;
+    }
+
+    &.softClass {
         background-color: rgb(154, 246, 249);
+
+        @media (max-width: 575px) {
+            margin-top: 0.6rem;
+        }
     }
 
-    .alkoClass {
-        @include drinks;
+    &.alkoClass {
         background-color: rgb(255, 0, 0);
-    }
 
-    .sourClass {
-        @include drinks;
-        background-color: rgb(218, 255, 32);
-    }
+        @media (max-width: 575px) {
+            margin-top: 0.6rem;
+        }
 
-    .sweetClass {
-        @include drinks;
-        background-color: rgb(247, 71, 124);
     }
-
-    .bitterClass {
-        @include drinks;
-        background-color: rgb(123, 98, 98);
-    }
-
-    .easyLevelClass {
-        @include drinks;
-        background-color: rgb(10, 226, 10)
-    }
-
-    .mediumLevelClass {
-        @include drinks;
-        background-color: rgb(239, 212, 14)
-    }
-
-    .hardLevelClass {
-        @include drinks;
-        background-color: rgb(255, 111, 0)
-    }
+}
 
 }
 
-
+@mixin d-flex-grow-1-text-align-center-screen575 {
+    @media (max-width: 768px) {
+        flex-grow: 1;
+        text-align: center;
+    }
+}

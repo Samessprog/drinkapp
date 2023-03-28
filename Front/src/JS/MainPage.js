@@ -3,7 +3,6 @@ import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 
-
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = React.lazy(() => import("./drinksComponents/DDE"))
 //const Drink = React.lazy(() => import("./drinksComponents/Drink"))
@@ -21,11 +20,9 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
         setOffset(offset);
     };
 
-
     React.useEffect(() => {
         setDrinkNotFound(searchingDrink.length === 0);
-    },[searchingDrink]);
-
+    }, [searchingDrink]);
 
     return (
 
@@ -38,12 +35,13 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
             </div>
 
             {currentData.map((elm) => (
-
-                <Drink
-                    key={elm.ID_Drink}
-                    setDrinkDetailsPopup={setDrinkDetailsPopup}
-                    elm={elm}
-                />
+               
+                    <Drink
+                        key={elm.ID_Drink}
+                        setDrinkDetailsPopup={setDrinkDetailsPopup}
+                        elm={elm}
+                    />
+                
 
             ))}
 

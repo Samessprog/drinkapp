@@ -15,26 +15,33 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                     <LazyLoadImage
                         src={elm.IMG}
                         effect="blur"
-                        className="drink-img img-flui" alt="Loading error"
+                        className="drink-img img-fluid" alt="Loading error"
                     />
-          
+
 
                 </div>
-                <div className="basic-information-drink p-2">
-                    <div className="d-flex justify-content-between  align-items-center ">
+                <div className="basic-information-drink p-2 ">
+                    <div className="d-flex flex-column flex-sm-row justify-content-between  align-items-center ">
                         <label className="fs-4 fw-bolder drink-name">{elm.DrinkName}</label>
                         <label className="rounded-circle rate fw-bolder d-flex align-items-center">{elm.Rate}
                             <svg className="star mb-1 ms-1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
                         </label>
                     </div>
 
-                    <div className="d-flex  mt-3  justify-content-evenly ">
-                        <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator ">{elm.Creator}</label>
-                        <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
-                        {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${elm.drinkType === 'Sour' ? 'bg-success' : elm.drinkType === 'Alko' ? 'bg-danger' : elm.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
-                        <label className={elm.Taste === 'Sour' ? 'sourClass' : elm.Taste === 'Sweet' ? 'sweetClass' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
-                        <label className={elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass'}>{elm.DrinkType}</label>
+                    <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator d-flex justify-content-center">{elm.Creator}</label>
+
+                    <div class="d-flex mt-2 y flex-column flex-md-row justify-content-center">
+
+
+                        <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap">
+                            <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
+                            {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${elm.drinkType === 'Sour' ? 'bg-success' : elm.drinkType === 'Alko' ? 'bg-danger' : elm.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
+                            <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
+                        </div>
+                        <label className={elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}>{elm.DrinkType}</label>
+
                     </div>
+
 
                 </div>
             </Link>
