@@ -179,16 +179,14 @@ $font-size-13: 13px;
 
     &.softClass {
         background-color: rgb(154, 246, 249);
-
-        @media (max-width: 575px) {
+        @media (max-width: 768px) {
             margin-top: 0.6rem;
         }
     }
 
     &.alkoClass {
         background-color: rgb(255, 0, 0);
-
-        @media (max-width: 575px) {
+        @media (max-width: 768px) {
             margin-top: 0.6rem;
         }
 

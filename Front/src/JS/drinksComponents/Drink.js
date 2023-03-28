@@ -45,7 +45,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
                 </div>
             </Link>
-
+            
         </div>
 
     )
