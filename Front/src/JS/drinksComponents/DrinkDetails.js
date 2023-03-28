@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 
 function DrinkDetails({ searchingDrink }) {
 
-
     let { id } = useParams()
     //Pagination
     const [currentPage, setCurrentPage] = React.useState(0)
@@ -26,7 +25,6 @@ function DrinkDetails({ searchingDrink }) {
         setDrinkDetail(result);
     }, [id]);
 
-
     {/*Paginacja*/ }
 
     const itemPerPage = 1;
@@ -40,7 +38,6 @@ function DrinkDetails({ searchingDrink }) {
         setCurrentPage(currentPage);
     };
 
-
     function crossOutIng(key) {
         const checkedIndex = ingChecked.indexOf(key);
         const newIngChecked = [...ingChecked];
@@ -52,11 +49,10 @@ function DrinkDetails({ searchingDrink }) {
         setIngChecked(newIngChecked);
     }
 
-
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
-                <div className="d-flex justify-content-between flex-lg-row flex-column align-items-center">
+                <div className="d-flex justify-content-between d-col-1200 align-items-center">
                     <div className=" ">
                         <div className="d-flex  align-items-center">
                             <header>
@@ -74,7 +70,7 @@ function DrinkDetails({ searchingDrink }) {
 
                         <div className="mt-5">
                             <article>
-                                <div className="description-holder overflow-auto">
+                                <div className="description-holder  overflow-auto ">
                                     <section>
                                         <label className="fs-5 fw-bolder">{drinksDetail.DrinkName}</label>
                                         <p>{drinksDetail.Description} </p>
@@ -109,7 +105,7 @@ function DrinkDetails({ searchingDrink }) {
                         </div>
                     </div>
 
-                    <div className="img-holder-details col mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-5 col-md-4 col-lg-4 ">
+                    <div className="img-holder-details  mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-6 col-md-5 col-lg-4 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}
@@ -123,7 +119,7 @@ function DrinkDetails({ searchingDrink }) {
 
                 {/* Sposów przygotowania drinku */}
 
-                <div className="d-flex mt-5  justify-content-center  fs-3 fw-bolder">Preparation</div>
+                <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder">Preparation</div>
                 <div className="mt-2 border rounded pt-4 ps-4 pe-4">
                     <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
 
