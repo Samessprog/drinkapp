@@ -18,7 +18,6 @@ function Drink({ setDrinkDetailsPopup, elm }) {
                         className="drink-img img-fluid" alt="Loading error"
                     />
 
-
                 </div>
                 <div className="basic-information-drink p-2 ">
                     <div className="d-flex flex-column flex-sm-row justify-content-between  align-items-center ">
@@ -45,7 +44,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
                 </div>
             </Link>
-            
+
         </div>
 
     )
