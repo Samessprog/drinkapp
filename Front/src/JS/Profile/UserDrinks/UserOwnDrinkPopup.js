@@ -16,7 +16,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     return (
         <div className="col-12 h-100 align-items-center own-drink-popup-holder">
-            
+
             <div className="users-own-deink  col-11 col-sm-10 col-md-8 col-lg-6 col-xl-7 p-3 mx-auto">
 
                 <div className="d-flex justify-content-end mb-2">
@@ -42,6 +42,18 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     </div>
                 </div>
                 <DrinksOptions />
+                <div className="ms-2 mt-2">
+                    <div className="d-flex mt-1">
+                        <input type="radio" name="drinks" id="alcoholic"></input>
+                        <label className="ms-1" for="alcoholic">Alcoholic</label>
+                    </div>
+
+                    <div className="d-flex mt-1">
+                        <input type="radio" name="drinks" id="soft-drinks"></input>
+                        <label className="ms-1" for="soft-drinks">Soft drinks</label>
+                    </div>
+                </div>
+
                 <div className="d-flex justify-content-end">
                     <button type="button" class="btn btn-success">Add this drink</button>
                 </div>
