@@ -45,16 +45,23 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
             setPopupSetings(false)
         }
 
-        switch (popupName) {
+        const handleHamburger = ( ) => {
+            if (window.innerWidth <= 575 ) { document.getElementsByClassName('main-options-holder')[0].classList.add('d-none') }
+        }
+    
+        switch(popupName) {
             case 'login':
+                handleHamburger()
                 closePopups()
                 setLoginPopup(!loginPopup)
                 break;
             case 'settings':
+                handleHamburger()
                 closePopups()
                 setPopupSetings(!Popupsetings)
                 break;
             case 'userProfile':
+                handleHamburger()
                 closePopups()
                 setUserProfileOptions(!userProfileOptions)
                 break;
@@ -67,7 +74,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 break;
         }
     }
-
+    
     return (
         <nav className="NavBar position-sticky top-0 ">
 
@@ -84,7 +91,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 <div className="d-flex justify-content-between col-sm-12 align-items-center">
                     <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-md-flex'}>BRANDLOGO</div>
                     {/* hamburger */}
-                    <div className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); })}>
+                    <div id="hamburger" className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none');  handlePopup('menu') })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
