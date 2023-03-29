@@ -2,28 +2,57 @@
 @import "../variables.scss";
 
 .loginPopupHolder {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    backdrop-filter: blur(80px);
+    box-shadow: 0 0 30px rgb(69, 69, 69);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media (max-width: 400px) {
+        backdrop-filter: blur(120px);
+    }
 
     .color-black {
         color: $color-black;
     }
 
-    .close-icon {
-        fill: $color-red;
-        cursor: pointer;
+    .close-icon-holder {
+        right: 5%;
+        top: 3%;
+
+        .close-icon {
+            fill: $color-red;
+            cursor: pointer;
+        }
     }
 
-    .test {
-        background-color: rgb(255, 255, 255);
+    .input-box {
+        border-bottom: solid 1px black;
     }
-    .registerLink{
-        color: blue;
+
+    .login-register-input-data {
+        background-color: transparent;
+        border: none;
+        color: rgb(0, 0, 0);
+        outline: none;
+
+        &::placeholder {
+            color: black;
+        }
+
+    }
+
+
+    .registerLink {
+        color: rgb(0, 162, 255);
         text-decoration: underline;
         cursor: pointer;
     }
-    .logRegHolder{
+
+    .logRegHolder {
         padding-left: 3rem;
         padding-right: 3rem;
 
