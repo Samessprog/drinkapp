@@ -16,7 +16,7 @@ function UserFavouriteDrinks() {
   
     return (
       <div className="position-relative">
-        <label className="border-bottom fw-bolder">YOUR FAVORITE</label>
+        <label className="border-bottom fw-bolder ms-3 fs-5">Your favourite</label>
         <div className="user-favourite-frinks-holder d-flex">
           <div
             className="user-favourite-frinks d-flex justify-content-center pb-5"

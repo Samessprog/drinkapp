@@ -1,10 +1,33 @@
 @import "../variables.scss";
 
 .users-own-deink {
-    background-color: rgb(255, 255, 255);
+    background: linear-gradient(to top right, rgb(255, 255, 255), rgb(50, 50, 50));
     border: 2px solid black;
     border-radius: 5px;
     color: $color-black;
+
+    .own-drink-box-input {
+        border-bottom: solid 1px black;
+
+        .own-drink-input-name {
+            background-color: transparent;
+            border: none;
+            color: rgb(0, 0, 0);
+            outline: none;
+
+            &::placeholder {
+                color: black;
+            }
+        }
+    }
+
+
+
+    .file-drink-input {
+        color: red;
+
+    }
+
 }
 
 .own-drink-popup-holder {
@@ -23,16 +46,25 @@
         @include border-1-solid-black;
     }
 
-    .own-drink-img-holder {
-        @include border-1-solid-black;
+    .drink-img-box {
+        background-color: transparent;
 
+        .own-drink-img-holder {
+            background-color: transparent;
+            @include border-1-solid-black;
+
+        }
     }
+
 
     .own-drink-desc {
         height: 200px;
         max-height: 200px;
         min-height: 100px;
-        @include border-1-solid-black;
+        background: linear-gradient(to top right, rgb(255, 255, 255), rgb(172, 172, 172));
+        border: 2px black solid;
+        border-radius: 10px;
+
     }
 
 }
@@ -47,7 +79,7 @@
         border-radius: 10px;
         max-height: 350px;
         width: 100%;
-       
+
     }
 
 }
@@ -71,15 +103,9 @@
 
     }
 
-
     .user-data-button-submit {
-        border-radius: 10px;
-        padding: 0.2rem;
-        padding-left: 0.4rem;
-        padding-right: 0.4rem;
+        @include user-profile-button;
         background-color: rgb(255, 255, 255);
-        color: $color-black;
-
 
         &:active {
             background-color: rgb(216, 216, 216);
@@ -92,7 +118,7 @@
     }
 
     .badges-holder {
-        border: solid white 1px;
+        border: solid white 2px;
         height: 300px;
         overflow-y: auto;
 
@@ -120,15 +146,21 @@
     }
 
     .add-your-drink-button {
-        background-color: rgb(7, 201, 7);
-        border-radius: 15px;
-        color: $color-black;
+        @include user-profile-button;
+        background-color: rgb(100, 253, 110);
 
+        &:active {
+            transform: translateY(2px);
+        }
     }
 
     .edit-your-drink-button {
-        background-color: yellow;
-        border-radius: 15px;
-        color: $color-black;
+        @include user-profile-button;
+        background-color: rgb(217, 255, 103);
+
+        &:active {
+            transform: translateY(2px);
+        }
     }
+
 }

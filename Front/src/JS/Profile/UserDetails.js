@@ -3,7 +3,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function UserDetails() {
 
-    
     return (
         <div className=" col mt-3 ">
             <div class="d-flex justify-content-between p-5 flex-column flex-xl-row align-items-center">
@@ -33,10 +32,11 @@ function UserDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="badges-holder col-4 p-3 mt-5 col col-12 col-xl-5">
+                
+                <div className="badges-holder col-4 p-3 mt-5 col col-12 col-xl-5 rounded">
                     <label className="badges-start">Your badges:</label>
-                    <div className="d-flex  justify-content-center">
-                        No badges
+                    <div className="d-flex  justify-content-center ">
+                        No badges :c
                     </div>
                 </div>
             </div>

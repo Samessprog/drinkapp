@@ -27,17 +27,17 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
                 <div className="d-flex justify-content-between col-12">
                     <div className="col-6">
-                        <div className="mb-3">
+                        <div className="mb-3 own-drink-box-input col-10">
                             <input className="col-10 own-drink-input-name p-1 ps-2" type="text" placeholder="Enter drink name"></input>
                         </div>
                         <div className="col-10">
-                            <textarea className="col-12 p-2 own-drink-desc" type="text"></textarea>
+                            <textarea className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink, inclue history itp"></textarea>
                         </div>
                     </div>
                     <div className="col-6 ">
-                        <div className="col-12 col-lg-12 col-xl-8"><img className="img-fluid own-drink-img-holder " src={imageSrc} alt="Uploaded file" /> </div>
-                        <label className="mt-3">
-                            <input className="" type="file" accept="image/*" capture="user" onChange={handleFileInputChange} />
+                        <div className="col-12 col-lg-12 col-xl-8 drink-img-box"><img className="img-fluid own-drink-img-holder " src={imageSrc} alt="Uploaded file" /> </div>
+                        <label className="mt-3 file-upload">
+                            <input className="file-drink-input" type="file" accept="image/*" capture="user" onChange={handleFileInputChange} />
                         </label>
                     </div>
                 </div>
