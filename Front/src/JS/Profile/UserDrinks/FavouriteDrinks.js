@@ -8,8 +8,7 @@ function FavouriteDrinks( {name}) {
         <div className="user-drink-holder mt-4 col col-4 col-sm-3 col-md-3 col-xl-2  me-3">
             <Link to={"/drinkDetail/1"}>
                 <div className="">
-                    <img className=" img-fluid" src={name}/>
-                    {/* <LazyLoadImage className=" img-fluid" src={name} /> */}
+                    <img className=" img-fluid drink-img-favourite" src={name}/>
                 </div>
             </Link>
             <div className="d-flex justify-content-md-between flex-md-row flex-column align-items-center ">

@@ -1,8 +1,17 @@
 @import "../variables.scss";
+
 .user-drink-holder {
     @include drinksHolder;
+    border-radius: 15px;
 
-    .star{
+    .drink-img-favourite {
+        border-radius: 15px;
+        max-height: 250px;
+        height: 250px;
+        width: 100%;
+    }
+
+    .star {
         fill: $color-gold;
     }
 

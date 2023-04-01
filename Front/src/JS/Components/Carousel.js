@@ -22,15 +22,6 @@ const Carousel = ({ children }) => {
         itemsToShow.push(itemsArray[i % itemsLength]);
       }
 
-      // Jeśli zostały jeszcze elementy, to pobieramy kolejne 4
-      // let i = (startIndex + 4) % itemsLength;
-
-      // while (itemsToShow.length < 4 && i !== startIndex) {
-      //   itemsToShow.push(itemsArray[i]);
-      //   console.log(itemsToShow)
-      //   i = (i + 1) % itemsLength;
-      // }
-
       setShowItems(itemsToShow);
     }
   }, [children, currentIndex]);

@@ -5,7 +5,7 @@ import Carousel from "../Components/Carousel";
 function UserFavouriteDrinks() {
   
   return (
-    <div className="position-relative">
+    <div className="position-relative favourite-holder-user-drink">
       <label className="border-bottom fw-bolder ms-3 fs-5">Your favourite</label>
       <div className="user-favourite-frinks-holder d-flex">
 
