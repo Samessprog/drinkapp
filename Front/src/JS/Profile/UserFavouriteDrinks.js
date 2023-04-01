@@ -1,62 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
 import FavouriteDrinks from "./UserDrinks/FavouriteDrinks";
+import Carousel from "../Components/Carousel";
 
 function UserFavouriteDrinks() {
+  
+  return (
+    <div className="position-relative">
+      <label className="border-bottom fw-bolder ms-3 fs-5">Your favourite</label>
+      <div className="user-favourite-frinks-holder d-flex">
 
-    const [position, setPosition] = useState(0);
-    const [numSlides, setNumSlides] = useState(10); // or however many slides you have
-  
-    const handleLeftClick = () => {
-      setPosition(position - 1);
-    };
-  
-    const handleRightClick = () => {
-      setPosition(position + 1);
-    };
-  
-    return (
-      <div className="position-relative">
-        <label className="border-bottom fw-bolder ms-3 fs-5">Your favourite</label>
-        <div className="user-favourite-frinks-holder d-flex">
-          <div
-            className="user-favourite-frinks d-flex justify-content-center pb-5"
-            style={{ transform: `translateX(${-position * 100}%)` }}
-          >
-            {[...Array(numSlides)].map((_, i) => (
-              <FavouriteDrinks key={i} />
-            ))}
-          </div>
-        </div>
-        <div
-          className="position-absolute start-0 top-50 ms-2"
-          onClick={handleLeftClick}
-        >
-          <svg
-            id="left-arrow"
-            xmlns="http://www.w3.org/2000/svg"
-            className="scroll-arrow-fav-own"
-            height="48"
-            width="48"
-          >
-            <path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z" />
-          </svg>
-        </div>
-        <div
-          className="position-absolute top-50 end-0 me-1"
-          onClick={handleRightClick}
-        >
-          <svg
-            id="right-arrow"
-            xmlns="http://www.w3.org/2000/svg"
-            className="scroll-arrow-fav-own"
-            height="48"
-            width="48"
-          >
-            <path d="m15.2 43.9-2.8-2.85L29.55 23.9 12.4 6.75l2.8-2.85 20 20Z" />
-          </svg>
-        </div>
+        <Carousel>
+
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://pliki.ppe.pl/storage/66824ef0c93f961e8aa6/66824ef0c93f961e8aa6.jpg" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+          <FavouriteDrinks name="https://a.allegroimg.com/s512/1153b7/34215cf84f60b87af446a9c6579e/Plakat-Anime-Jibaku-Shounen-Hanako-kun-jshk_053-A3" />
+
+
+        </Carousel>
+
       </div>
-    );
+
+    </div>
+  );
 }
 
 export default UserFavouriteDrinks;

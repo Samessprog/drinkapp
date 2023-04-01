@@ -2,13 +2,14 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
-function FavouriteDrinks() {
+function FavouriteDrinks( {name}) {
 
     return (
         <div className="user-drink-holder mt-4 col col-4 col-sm-3 col-md-3 col-xl-2  me-3">
             <Link to={"/drinkDetail/1"}>
                 <div className="">
-                    <LazyLoadImage className=" img-fluid" src="https://www.acouplecooks.com/wp-content/uploads/2021/06/Strawberry-Water-006.jpg" />
+                    <img className=" img-fluid" src={name}/>
+                    {/* <LazyLoadImage className=" img-fluid" src={name} /> */}
                 </div>
             </Link>
             <div className="d-flex justify-content-md-between flex-md-row flex-column align-items-center ">
