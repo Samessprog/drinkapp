@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function FavouriteDrinks( {name}) {
 
     return (
-        <div className="user-drink-holder mt-4 col col-4 col-sm-3 col-md-3 col-xl-2  me-3">
+        <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-3">
             <Link to={"/drinkDetail/1"}>
                 <div className="">
                     <img className=" img-fluid drink-img-favourite" src={name}/>

@@ -125,46 +125,39 @@
         }
     }
 
-    .scroll-arrow-fav-own {
-        fill: white;
-        cursor: pointer;
+    .scroll-arrow-fav-own-box {
+        background-color: rgb(26, 24, 24);
+        opacity: 70%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+
+        .scroll-arrow-fav-own {
+            fill: white;
+            cursor: pointer;
+        }
+
     }
+
 
     .favourite-holder-user-drink {
         margin-bottom: 7rem;
         padding: 1.5rem;
         position: relative;
     }
-    
 
-    .favourite-holder-user-drink::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 10px;
-        height: 2px;
-        background-color: red;
-        transform: translateX(-100%);
-        animation: border-move 5s infinite linear ;
-    }
-    
-    
-    @keyframes border-move {
-        from {
-            transform: translateX(0%);
-        }
-        to {
-            transform: translateX(10000%);
-        }
-    }
-    
+
     .user-favourite-frinks-holder {
         margin-top: 4rem;
         margin-left: 1rem;
         overflow: hidden;
         margin-left: 50px;
         margin-right: 50px;
+
+
+        @media (max-width: 576px) {
+            margin-left: 0 !important;
+        }
 
     }
 

@@ -9,6 +9,22 @@
         max-height: 250px;
         height: 250px;
         width: 100%;
+
+        @media (max-width: 576px) {
+            max-height: 150px;
+            height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            max-height: 180px;
+            height: 180px;
+        }
+
+        @media (max-width: 1200px) {
+            max-height: 200px;
+            height: 200px;
+        }
+        
     }
 
     .star {

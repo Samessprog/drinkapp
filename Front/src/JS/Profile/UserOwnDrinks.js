@@ -6,7 +6,7 @@ function UserOwnDrinks({addUserNewDrink, setAddUserNewDrink }) {
     
     return (
         <div className="position-relative ">
-              <label className="border-bottom fw-bolder ms-3 fs-5 mt-3"> Create your own drink</label>
+              <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center"> Create your own drink</label>
             <div className="user-favourite-frinks-holder">
                 <div className="user-favourite-frinks d-flex justify-content-center">
 

@@ -9,8 +9,8 @@ const Carousel = ({ children }) => {
       const itemsLength = itemsArray.length;
       const itemsToShow = [];
 
-      // Jeżeli mniej niż 4 elementy, wyświetl wszystkie i zablokuj przewijanie
-      if (itemsLength <= 3) {
+      // Jeżeli mniej niż 5 elementy, wyświetl wszystkie i zablokuj przewijanie
+      if (itemsLength <= 4) {
         setShowItems(itemsArray);
         return;
       }
@@ -18,7 +18,7 @@ const Carousel = ({ children }) => {
       const startIndex = currentIndex % itemsLength;
 
       // Pobierz pierwsze 4 elementy
-      for (let i = startIndex; i < startIndex + 4; i++) {
+      for (let i = startIndex; i < startIndex + 5; i++) {
         itemsToShow.push(itemsArray[i % itemsLength]);
       }
 
@@ -28,29 +28,29 @@ const Carousel = ({ children }) => {
 
   const handlePrev = () => {
     const itemsCount = React.Children.count(children);
-    const lastIndex = itemsCount - 1;
-    const newIndex = (currentIndex - 4 + itemsCount) % itemsCount;
+    // const lastIndex = itemsCount - 1;
+    const newIndex = (currentIndex - 5 + itemsCount) % itemsCount;
     setCurrentIndex(newIndex);
   };
 
   const handleNext = () => {
-    setCurrentIndex(currentIndex + 4);
+    setCurrentIndex(currentIndex + 5);
   };
 
   return (
-    <div className="carousel">
-      <div className="carousel-items d-flex justify-content-center">
+    <div className="carousel col-12">
+      <div className="carousel-items d-flex justify-content-center mb-2 col-12 ">
         {showItems}
       </div>
 
       <div
-        className="position-absolute start-0 top-50 ms-2"
+        className="position-absolute start-0 top-50  d-none  d-md-flex scroll-arrow-fav-own-box"
         onClick={handlePrev}
       >
         <svg
           id="left-arrow"
           xmlns="http://www.w3.org/2000/svg"
-          className="scroll-arrow-fav-own"
+          className="scroll-arrow-fav-own ps-2"
           height="48"
           width="48"
         >
@@ -58,7 +58,7 @@ const Carousel = ({ children }) => {
         </svg>
       </div>
       <div
-        className="position-absolute top-50 end-0 me-1"
+        className="position-absolute top-50 end-0 me-4 d-none d-md-flex scroll-arrow-fav-own-box"
         onClick={handleNext}
       >
         <svg
