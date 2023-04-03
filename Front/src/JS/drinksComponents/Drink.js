@@ -6,19 +6,20 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
     return (
 
-        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3 ">
+        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
 
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none zz" to={`drinkDetail/${elm.ID_Drink}`} >
-                <div className="img-holder card  overflow-hidden position-relative  ">
-
+                <div className="img-holder card overflow-hidden ">
                     <LazyLoadImage
                         src={elm.IMG}
                         effect="blur"
-                        className="drink-img img-fluid" alt="Loading error"
+                        className="drink-img img-fluid"
+                        alt="Loading error"
                     />
 
                 </div>
+
                 <div className="basic-information-drink p-2 ">
                     <div className="d-flex flex-column flex-sm-row justify-content-between  align-items-center ">
                         <label className="fs-4 fw-bolder drink-name">{elm.DrinkName}</label>
@@ -44,6 +45,11 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
                 </div>
             </Link>
+            <div className="position-absolute top-0 end-0 mt-2 me-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">
+                    <path d="m320 816 160-122 160 122-62.667-197.333 160-113.334H542l-62-204.666-62.667 204.666H222l160 113.334L320 816Zm160 160q-82.333 0-155.333-31.5t-127.334-85.833Q143 804.333 111.5 731.333T80 576q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82.333-31.5 155.333T763 858.667Q709 913 636 944.5T480 976Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666 436.667 146.666 576q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480 576Z" />
+                </svg>
+            </div>
 
         </div>
 
