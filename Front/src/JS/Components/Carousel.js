@@ -4,6 +4,7 @@ const Carousel = ({ children }) => {
   const [showItems, setShowItems] = useState([]);
 
   useEffect(() => {
+    
     if (children) {
       const itemsArray = React.Children.toArray(children);
       const itemsLength = itemsArray.length;
@@ -38,13 +39,13 @@ const Carousel = ({ children }) => {
   };
 
   return (
-    <div className="carousel col-12">
-      <div className="carousel-items d-flex justify-content-center mb-2 col-12 ">
+    <div className="carousel col-12 ">
+      <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
         {showItems}
       </div>
 
       <div
-        className="position-absolute start-0 top-50  d-none  d-md-flex scroll-arrow-fav-own-box"
+        className="position-absolute start-0 top-50 d-none d-md-flex scroll-arrow-fav-own-box"
         onClick={handlePrev}
       >
         <svg
@@ -57,6 +58,7 @@ const Carousel = ({ children }) => {
           <path d="M20 44 0 24 20 4l2.8 2.85L5.65 24 22.8 41.15Z" />
         </svg>
       </div>
+
       <div
         className="position-absolute top-50 end-0 me-4 d-none d-md-flex scroll-arrow-fav-own-box"
         onClick={handleNext}

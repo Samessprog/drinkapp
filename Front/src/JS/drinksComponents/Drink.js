@@ -6,7 +6,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
     return (
 
-        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 col p-1 rounded m-3 ">
+        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3 ">
 
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none zz" to={`drinkDetail/${elm.ID_Drink}`} >

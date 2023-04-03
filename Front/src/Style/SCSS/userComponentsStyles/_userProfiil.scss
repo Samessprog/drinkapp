@@ -34,7 +34,6 @@
     left: 50%;
     transform: translateX(-50%);
 
-
     .close-icon {
         fill: red;
         cursor: pointer;
@@ -54,7 +53,6 @@
         }
     }
 
-
     .own-drink-desc {
         height: 200px;
         max-height: 200px;
@@ -64,7 +62,6 @@
         border-radius: 10px;
 
     }
-
 }
 
 .user-img-holder {
@@ -79,7 +76,6 @@
         width: 100%;
 
     }
-
 }
 
 .user-details-holder {
@@ -98,7 +94,6 @@
                 color: white;
             }
         }
-
     }
 
     .user-data-button-submit {
@@ -139,13 +134,11 @@
 
     }
 
-
     .favourite-holder-user-drink {
         margin-bottom: 7rem;
         padding: 1.5rem;
         position: relative;
     }
-
 
     .user-favourite-frinks-holder {
         margin-top: 4rem;
@@ -153,7 +146,6 @@
         overflow: hidden;
         margin-left: 50px;
         margin-right: 50px;
-
 
         @media (max-width: 576px) {
             margin-left: 0 !important;

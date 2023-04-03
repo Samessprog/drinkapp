@@ -4,6 +4,63 @@
     @include drinksHolder;
     border-radius: 15px;
 
+    .favourite-drink-info-box {
+        bottom: 0;
+        width: 100%;
+        background-color: rgb(7, 7, 7);
+        opacity: 0;
+        height: 60%;
+        z-index: 1;
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transform: translateY(100%);
+        
+        .cc {
+            height: 140px;
+            color: black;
+
+            .drink-creator {
+                background-color: azure;
+                border-radius: 15px;
+                padding: 0.3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .drink-level {
+                background-color: rgb(10, 226, 10);
+                border-radius: 15px;
+                padding: 0.3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .drink-taste {
+                background-color: rgb(218, 255, 32);
+                border-radius: 15px;
+                padding: 0.3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .drink-type {
+                background-color: rgb(255, 0, 0);
+                border-radius: 15px;
+                padding: 0.3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    &:hover .favourite-drink-info-box {
+        opacity: 0.75;
+        transform: translateY(0%);
+    }
+
+
+
+
+
     .drink-img-favourite {
         border-radius: 15px;
         max-height: 250px;
@@ -24,7 +81,7 @@
             max-height: 200px;
             height: 200px;
         }
-        
+
     }
 
     .star {
