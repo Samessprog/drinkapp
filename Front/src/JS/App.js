@@ -51,8 +51,8 @@ function App() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/api.php");
-        // const data = await fetch("http://localhost:3000/api.php")
+        const { data } = await axios.get("http://localhost:3001/drinks");
+        //const data = await fetch("http://localhost:3000/api.php")
         console.log(data)
         setDrinkData(data);
         setSearchingDrink(data);
