@@ -2,7 +2,6 @@ import React from "react";
 
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
   setSearchingDrink, searchingDrink, inputDrinkText }) {
-
     
   React.useEffect(() => {
 

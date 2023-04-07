@@ -53,7 +53,6 @@ function App() {
       try {
         const { data } = await axios.get("http://localhost:3001/drinks");
         //const data = await fetch("http://localhost:3000/api.php")
-        console.log(data)
         setDrinkData(data);
         setSearchingDrink(data);
       } catch (err) {

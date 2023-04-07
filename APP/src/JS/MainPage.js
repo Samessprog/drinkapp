@@ -10,7 +10,7 @@ const DDE = React.lazy(() => import("./drinksComponents/DDE"))
 
 function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFound, offset, setOffset, setDrinkNotFound }) {
 
-    const itemsPerPage = 4; // ilość elementów na stronie
+    const itemsPerPage = 12; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
 
@@ -47,7 +47,6 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
                     setDrinkDetailsPopup={setDrinkDetailsPopup}
                     elm={elm}
                 />
-
 
             ))}
 

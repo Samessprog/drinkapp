@@ -18,8 +18,9 @@ function DrinkDetails({ searchingDrink }) {
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = React.useState([]);
 
+
     React.useEffect(() => {
-        const result = searchingDrink.filter(elm => elm.ID_Drink === id)[0];
+        const result = searchingDrink.filter(elm => elm.ID_Drink === parseInt(id, 10))[0];
         setIng(result.Ingredients.split('.'));
         setPrep(result.Preparation.split('.'));
         setDrinkDetail(result);
@@ -141,7 +142,7 @@ function DrinkDetails({ searchingDrink }) {
                                     forcePage={currentPage / itemPerPage}
                                     className="position-absolute bottom-0 d-flex pagination align-items-center"
                                     nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                                    previousLabel={<svg  className="arroPagi"  xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
+                                    previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                                 />
 
                             </div>

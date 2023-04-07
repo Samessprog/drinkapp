@@ -9,26 +9,32 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
     setIngredientText, setingredient, drinkDatas, setDrinkNotFound }) {
 
     const [drinkCounter, setDrinkCounter] = React.useState(0)
+    const [eachdrinkflag, setEachdrinkflag] = React.useState(false)
 
     React.useEffect(() => {
 
-        const result = drinkDatas.filter((drink) => {
-            const drinkIngredients = drink.Ingredients.toLowerCase();
-            return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
-        });
-        setDrinkCounter(result.length);
-        setSearchingDrink(result);
+        if (ingredient.length !== 0) {
+            const result = drinkDatas.filter((drink) => {
+                const drinkIngredients = drink.Ingredients.toLowerCase();
 
-        if (searchingDrink === 0) {
-            setDrinkNotFound(true)
-        }
+                if (eachdrinkflag) {
+                    return ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()))
+                } else { return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase())) }
 
-    }, [ingredient]);
+            });
 
+            setDrinkCounter(result.length);
+            setSearchingDrink(result);
 
-    const inputTextHandler = (event) => {
-        setIngredientText(event.target.value)
-    }
+            if (result.length === 0) {
+                setDrinkNotFound(true)
+            }
+
+        } else { setSearchingDrink(drinkDatas) }
+
+    }, [ingredient, eachdrinkflag]);
+
+    const inputTextHandler = (event) => { setIngredientText(event.target.value) }
 
     const submitIngreadinetsHandler = () => {
 
@@ -38,6 +44,7 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
         ])
         setIngredientText("")
     }
+
 
 
     return (
@@ -60,7 +67,9 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
                     <button onClick={submitIngreadinetsHandler} className="col-3 col-sm-1   rounded ms-1 ms-sm-2 enter-button " type="button">Enter</button>
 
                 </div>
-
+                <div className="d-flex justify-content-center  align-items-center">
+                    <input type="checkbox" onClick={() => setEachdrinkflag(!eachdrinkflag)} /> <label className="ms-1">search for ALL drinks with the given ingredients</label>
+                </div>
                 <div className=" col-7 test overflow-auto pe-2">
 
                     <ul className="ms-0  ">
