@@ -45,11 +45,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
             setPopupSetings(false)
         }
 
-        const handleHamburger = ( ) => {
-            if (window.innerWidth <= 575 ) { document.getElementsByClassName('main-options-holder')[0].classList.add('d-none') }
+        const handleHamburger = () => {
+            if (window.innerWidth <= 575) { document.getElementsByClassName('main-options-holder')[0].classList.add('d-none') }
         }
-    
-        switch(popupName) {
+
+        switch (popupName) {
             case 'login':
                 handleHamburger()
                 closePopups()
@@ -74,7 +74,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 break;
         }
     }
-    
+
     return (
         <nav className="NavBar position-sticky top-0 ">
 
@@ -91,7 +91,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 <div className="d-flex justify-content-between col-sm-12 align-items-center">
                     <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-md-flex'}>BRANDLOGO</div>
                     {/* hamburger */}
-                    <div id="hamburger" className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none');  handlePopup('menu') })}>
+                    <div id="hamburger" className={userScroll ? 'd-flex' : 'hamburger-SCROLL'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
@@ -122,8 +122,9 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                                 <div className="options-holder">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!Popupsetings) */}
+
                                     {!drinkDetailsPopup &&
-                                        <button className="settings-button border-0 col-12" onClick={() => handlePopup('settings')}>
+                                        <button className="settings-button border-0" onClick={() => handlePopup('settings')}>
                                             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                                 <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                             </svg>

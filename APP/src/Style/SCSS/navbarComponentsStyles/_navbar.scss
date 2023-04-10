@@ -3,6 +3,8 @@
 
 .NavBar {
     z-index: 1;
+    border-bottom: 3px solid rgb(88, 88, 88);
+    margin-bottom: 1.5rem;
 
     &ContentHolder {
         background-color: rgb(37, 37, 37);
@@ -33,11 +35,11 @@
             transition: $trans-all-03-eio;
             background-color: $bg-ligherDark;
             border: none;
-            padding: 8px;
+            padding: 0.5px;
 
             &:hover {
                 background-color: rgb(22, 22, 22);
-                border-radius: 15px;
+                border-radius: 0.938rem;
             }
         }
 
@@ -61,8 +63,9 @@
                 background-color: rgb(16, 16, 16);
                 color: $color-white;
                 box-shadow: 0px 6px 4px 0px $color-black;
-                padding-top: 12px;
-                padding-bottom: 12px;
+                padding-top:  0.75rem;
+                padding-bottom: 0.75rem;
+                margin-bottom: 0.7rem;
             }
 
             .searching-icon-holder {
@@ -83,30 +86,32 @@
             }
         }
 
-
-
         .options-holder {
             fill: $color-white;
             transition: all .2s ease-in-out;
             margin-bottom: 2rem;
             display: flex;
-            margin-left: 4rem;
+            margin: 0 auto;
+            max-width: 800px;
+            margin-left: 2rem;
 
             @media (max-width: 768px) {
                 position: absolute;
+                margin-left: 0;
                 top: 23%;
                 right: 0;
                 margin-right: 0.3rem;
             }
+
             &:hover {
                 fill: rgb(251, 210, 156);
             }
+
             .settings-button {
                 background-color: $bg-ligherDark;
 
                 @media (max-width: 768px) {
                     background-color: rgb(16, 16, 16);
-
                 }
             }
         }
@@ -150,23 +155,21 @@
                         display: flex;
                         justify-content: center;
 
-
                         &:hover {
                             background-color: rgb(21, 21, 21);
-                            border-radius: 15px;
+                            border-radius: 0.938rem;
                         }
                     }
 
                     .elm-contents {
-                        font-size: 18px;
+                        font-size: 1.125rem;
                         color: $color-white;
                         transition: $trans-all-03-eio;
-                        padding: 10px;
-
+                        padding: 0.625rem;
 
                         &:hover {
                             background-color: rgb(21, 21, 21);
-                            border-radius: 15px;
+                            border-radius: 0.938rem;
                         }
 
                     }

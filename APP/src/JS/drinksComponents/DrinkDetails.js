@@ -18,7 +18,6 @@ function DrinkDetails({ searchingDrink }) {
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = React.useState([]);
 
-
     React.useEffect(() => {
         const result = searchingDrink.filter(elm => elm.ID_Drink === parseInt(id, 10))[0];
         setIng(result.Ingredients.split('.'));
@@ -27,7 +26,6 @@ function DrinkDetails({ searchingDrink }) {
     }, [id]);
 
     {/*Paginacja*/ }
-
     const itemPerPage = 1;
     const pageCount = Math.ceil(prep.length / itemPerPage);
     const currentData = prep.slice(currentPage, currentPage + itemPerPage);
