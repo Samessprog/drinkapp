@@ -30,7 +30,7 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
                     <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator d-flex justify-content-center">{elm.Creator}</label>
 
-                    <div class="d-flex mt-2 y flex-column flex-md-row justify-content-center">
+                    <div className="d-flex mt-2 y flex-column flex-md-row justify-content-center">
 
 
                         <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap">

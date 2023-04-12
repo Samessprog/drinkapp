@@ -33,6 +33,14 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
     const location = useLocation();
 
+    //states form SettingsPopup
+    const [alcocholic, setAlcocholic] = React.useState(false)
+    const [softDrinks, setSoftDrinks] = React.useState(false)
+    const [highlyRated, setHighlyRated] = React.useState(false)
+    const [drinkLevel, setDrinkLevel] = React.useState('All')
+    const [drinkTaste, setDrinkTaste] = React.useState('All')
+
+
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
     const [inputDrinkText, setInputDrinkText] = React.useState("");
 
@@ -79,12 +87,21 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
         <nav className="NavBar position-sticky top-0 ">
 
             <Searching
+                alcocholic={alcocholic}
+                setAlcocholic={setAlcocholic}
                 setSearchingDrink={setSearchingDrink}
                 inputDrinkText={inputDrinkText}
                 setInputDrinkText={setInputDrinkText}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
                 drinkDatas={drinkDatas}
+                softDrinks={softDrinks}
+                setSoftDrinks={setSoftDrinks}
+                highlyRated={highlyRated}
+                setHighlyRated={setHighlyRated}
+                drinkLevel={drinkLevel}
+                setDrinkLevel={setDrinkLevel}
+                drinkTaste={drinkTaste}
             />
 
             <div className="NavBarContentHolder p-3 pb-0">
@@ -134,6 +151,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                     {Popupsetings && (
                                         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                                             <Suspense fallback={<div>Loading...</div>}>
+
                                                 <SetingsPopup
                                                     Popupsetings={Popupsetings}
                                                     setPopupSetings={setPopupSetings}
@@ -143,8 +161,21 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                                     drinkDatas={drinkDatas}
                                                     setSearchingDrink={setSearchingDrink}
                                                     setDrinkNotFound={setDrinkNotFound}
+                                                    inputDrinkText={inputDrinkText}
+                                                    alcocholic={alcocholic}
+                                                    setAlcocholic={setAlcocholic}
+                                                    softDrinks={softDrinks}
+                                                    setSoftDrinks={setSoftDrinks}
+                                                    highlyRated={highlyRated}
+                                                    setHighlyRated={setHighlyRated}
+                                                    drinkLevel={drinkLevel}
+                                                    setDrinkLevel={setDrinkLevel}
+                                                    drinkTaste={drinkTaste}
+                                                    setDrinkTaste={setDrinkTaste}
+
                                                 />
                                             </Suspense>
+                                            
                                         </ErrorBoundary>
                                     )}
                                 </div>

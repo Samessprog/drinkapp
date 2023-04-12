@@ -1,60 +1,38 @@
 import React from "react";
 
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
-  setSearchingDrink, searchingDrink, inputDrinkText }) {
-    
-  React.useEffect(() => {
+  setSearchingDrink, inputDrinkText }) {
 
-    const filterDrinks = () => {
+  const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste) => {
 
-      let results = searchingDrink.filter((elm) => {
+    return drinkDatas.filter((elm) => {
 
-        if (alcocholic && elm.DrinkType === 'Alcocholic' || softDrinks && elm.DrinkType === 'Soft' || !alcocholic && !softDrinks) {
-          if (drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel) {
-            if (drinkTaste === 'All' || drinkTaste === elm.Taste) {
-              return elm;
-            }
-          }
-        }
-      });
-
-      if (highlyRated) {
-        results.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
-      }
-
-      setSearchingDrink(results)
-    };
-
-    const drinkInput = () => {
+      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcocholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
+      const isDifficultyLevelMatch = drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel;
+      const isTasteMatch = drinkTaste === 'All' || drinkTaste === elm.Taste;
 
       if (inputDrinkText) {
-        const searchingResults = drinkDatas.filter((elm) => {
-          const drinkName = elm.DrinkName.toLowerCase();
-          const inputText = inputDrinkText.toLowerCase();
+        const drinkName = elm.DrinkName?.toLowerCase();
+        const inputText = inputDrinkText.toLowerCase();
 
-          if (drinkName.includes(inputText)) {
-            return elm;
-          }
+        if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch)) {
+          return elm
+        }
+      } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) {
+        return elm
+      } else { return elm }
 
-        });
+    });
+  };
 
-        setSearchingDrink(searchingResults);
-        console.log(searchingDrink)
-      }
-
-      if (inputDrinkText === '') {
-        filterDrinks()
-        setSearchingDrink(drinkDatas)
-      }
-
-    };
-
-    filterDrinks();
-    drinkInput();
-
+  React.useEffect(() => {
+    const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, highlyRated);
+    if (highlyRated) {
+      searchingResults.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
+    }
+    setSearchingDrink(searchingResults);
   }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText]);
 
 }
 
 export default Searching;
-

@@ -4,15 +4,12 @@ import DrinksOptions from "../Components/DrinksOptions";
 import TypeOfDrink from "../Components/TypeOfDrink";
 
 function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsPopup, searchingDrink,
-    drinkDatas, setSearchingDrink, setDrinkNotFound }) {
+    drinkDatas, setSearchingDrink, setDrinkNotFound, inputDrinkText, alcocholic,
+    setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
+    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated }) {
 
     {/* Settings States  */ }
-    const [alcocholic, setAlcocholic] = React.useState(false)
-    const [softDrinks, setSoftDrinks] = React.useState(false)
-    const [highlyRated, setHighlyRated] = React.useState(false)
 
-    const [drinkLevel, setDrinkLevel] = React.useState('All')
-    const [drinkTaste, setDrinkTaste] = React.useState('All')
 
     const levelHandler = (event) => { setDrinkLevel(event.target.value) }
     const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
@@ -37,6 +34,7 @@ function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsP
                 setSearchingDrink={setSearchingDrink}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
+                inputDrinkText={inputDrinkText}
 
             />
 
