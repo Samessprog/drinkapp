@@ -6,7 +6,7 @@ import TypeOfDrink from "../Components/TypeOfDrink";
 function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsPopup, searchingDrink,
     drinkDatas, setSearchingDrink, setDrinkNotFound, inputDrinkText, alcocholic,
     setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
-    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated }) {
+    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated,ingredient,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
     {/* Settings States  */ }
 
@@ -35,6 +35,11 @@ function SetingsPopup({ setPopupSetings, setSpecialOptionsPopup, specialOptionsP
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
                 inputDrinkText={inputDrinkText}
+                ingredient={ingredient}
+                drinkCounter={drinkCounter}
+                setDrinkCounter={setDrinkCounter}
+                eachdrinkflag={eachdrinkflag}
+                setEachdrinkflag={setEachdrinkflag}
 
             />
 

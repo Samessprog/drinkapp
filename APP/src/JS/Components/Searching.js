@@ -1,7 +1,7 @@
 import React from "react";
 
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
-  setSearchingDrink, inputDrinkText }) {
+  setSearchingDrink, inputDrinkText, ingredient, setDrinkNotFound, eachdrinkflag, setDrinkCounter }) {
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste) => {
 
@@ -33,6 +33,31 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
     }
     setSearchingDrink(searchingResults);
   }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText]);
+
+
+  React.useEffect(() => {
+
+    if (ingredient.length !== 0) {
+        const result = drinkDatas.filter((drink) => {
+            const drinkIngredients = drink.Ingredients.toLowerCase();
+
+            if (eachdrinkflag) {
+                return ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()))
+            } else { return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase())) }
+
+        });
+
+        setDrinkCounter(result.length);
+        setSearchingDrink(result);
+
+        if (result.length === 0) {
+            setDrinkNotFound(true)
+        }
+
+    } else { setSearchingDrink(drinkDatas) }
+
+}, [ingredient, eachdrinkflag]);
+
 
 }
 

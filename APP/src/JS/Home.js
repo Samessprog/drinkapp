@@ -8,7 +8,7 @@ const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"
 
 export default function Home({ searchingDrink,  setSearchingDrink ,setingredient, specialOptionsPopup, drinkDetailsPopup,
     drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText,
-    ingredient, setSpecialOptionsPopup, drinkNotFound,drinksCounter,setDrinksCounter,offset, setOffset, setDrinkNotFound }) {
+    ingredient, setSpecialOptionsPopup, drinkNotFound,drinksCounter,setDrinksCounter,offset, setOffset, setDrinkNotFound,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag  }) {
 
 
     return (
@@ -31,6 +31,11 @@ export default function Home({ searchingDrink,  setSearchingDrink ,setingredient
                             drinkDatas={drinkDatas}
                             drinkNotFound={drinkNotFound}
                             setDrinkNotFound={ setDrinkNotFound}
+
+                            drinkCounter={drinkCounter}
+                            setDrinkCounter={setDrinkCounter}
+                            eachdrinkflag={eachdrinkflag}
+                            setEachdrinkflag={setEachdrinkflag}
                         />
                     </Suspense>
                 </ErrorBoundary>

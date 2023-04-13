@@ -2,37 +2,13 @@ import React, { Suspense } from "react";
 import { v4 as uuid } from 'uuid';
 import { ErrorBoundary } from "react-error-boundary";
 
+
+import Searching from "../Components/Searching";
 import ErrorFallback from "../Components/ErrorBoundary";
 const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
-    setIngredientText, setingredient, drinkDatas, setDrinkNotFound }) {
-
-    const [drinkCounter, setDrinkCounter] = React.useState(0)
-    const [eachdrinkflag, setEachdrinkflag] = React.useState(false)
-
-    React.useEffect(() => {
-
-        if (ingredient.length !== 0) {
-            const result = drinkDatas.filter((drink) => {
-                const drinkIngredients = drink.Ingredients.toLowerCase();
-
-                if (eachdrinkflag) {
-                    return ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()))
-                } else { return ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase())) }
-
-            });
-
-            setDrinkCounter(result.length);
-            setSearchingDrink(result);
-
-            if (result.length === 0) {
-                setDrinkNotFound(true)
-            }
-
-        } else { setSearchingDrink(drinkDatas) }
-
-    }, [ingredient, eachdrinkflag]);
+    setIngredientText, setingredient, drinkDatas, setDrinkNotFound,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
 
@@ -45,11 +21,18 @@ function SpecialDrinks({ searchingDrink, setSearchingDrink, setSpecialOptionsPop
         setIngredientText("")
     }
 
-
-
     return (
-
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>
+
+            <Searching
+                ingredient={ingredient}
+                setDrinkNotFound={setDrinkNotFound}
+                eachdrinkflag={eachdrinkflag}
+                setDrinkCounter={setDrinkCounter}
+                drinkDatas={drinkDatas}
+                setSearchingDrink={setSearchingDrink}
+            />
+
             <div className="col-10 helper rounded p-3" style={{ margin: "auto" }}>
                 <div className="d-flex flex-row-reverse ">
                     <svg onClick={() => setSpecialOptionsPopup(false)} className="close-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20">

@@ -29,12 +29,13 @@ onInput={element => this.handleTextInput(element)}
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound,
-    drinkDetailsPopup, registerPopup, setRegisterPopup,setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
-    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated,alcocholic,inputDrinkText,setInputDrinkText }) {
+    drinkDetailsPopup, registerPopup, setRegisterPopup, setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
+    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated, alcocholic, inputDrinkText, setInputDrinkText,
+    ingredient,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
     const location = useLocation();
 
-    
+
 
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
 
@@ -97,6 +98,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 drinkLevel={drinkLevel}
                 setDrinkLevel={setDrinkLevel}
                 drinkTaste={drinkTaste}
+                ingredient={ingredient}
+                drinkCounter={drinkCounter}
+                setDrinkCounter={setDrinkCounter}
+                eachdrinkflag={eachdrinkflag}
+                setEachdrinkflag={setEachdrinkflag}
             />
 
             <div className="NavBarContentHolder p-3 pb-0">
@@ -167,6 +173,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                                     setDrinkLevel={setDrinkLevel}
                                                     drinkTaste={drinkTaste}
                                                     setDrinkTaste={setDrinkTaste}
+                                                    ingredient={ingredient}
+                                                    drinkCounter={drinkCounter}
+                                                    setDrinkCounter={setDrinkCounter}
+                                                    eachdrinkflag={eachdrinkflag}
+                                                    setEachdrinkflag={setEachdrinkflag}
 
                                                 />
                                             </Suspense>

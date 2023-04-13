@@ -48,6 +48,9 @@ function App() {
   const [inputDrinkText, setInputDrinkText] = React.useState("");
 
 
+  const [drinkCounter, setDrinkCounter] = React.useState(0)
+  const [eachdrinkflag, setEachdrinkflag] = React.useState(false)
+
 
   React.useEffect(() => {
     const setFixed = () => {
@@ -104,6 +107,11 @@ function App() {
         setDrinkLevel={setDrinkLevel}
         drinkTaste={drinkTaste}
         setDrinkTaste={setDrinkTaste}
+        drinkCounter={drinkCounter}
+        setDrinkCounter={setDrinkCounter}
+        eachdrinkflag={eachdrinkflag}
+        setEachdrinkflag={setEachdrinkflag}
+        ingredient={ingredient}
 
       />
 
@@ -140,6 +148,11 @@ function App() {
             drinkLevel={drinkLevel}
             setDrinkLevel={setDrinkLevel}
             drinkTaste={drinkTaste}
+
+            drinkCounter={drinkCounter}
+            setDrinkCounter={setDrinkCounter}
+            eachdrinkflag={eachdrinkflag}
+            setEachdrinkflag={setEachdrinkflag}
 
           />}>
 
