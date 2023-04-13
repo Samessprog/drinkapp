@@ -5,6 +5,8 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste) => {
 
+    //Do optymalizacji
+
     return drinkDatas.filter((elm) => {
 
       const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcocholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
@@ -20,8 +22,7 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
         }
       } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) {
         return elm
-      } else { return elm }
-
+      }
     });
   };
 

@@ -38,6 +38,17 @@ function App() {
   //RegisterPopup
   const [registerPopup, setRegisterPopup] = React.useState(false)
 
+
+  //states for Searching comp
+  const [alcocholic, setAlcocholic] = React.useState(false)
+  const [softDrinks, setSoftDrinks] = React.useState(false)
+  const [highlyRated, setHighlyRated] = React.useState(false)
+  const [drinkLevel, setDrinkLevel] = React.useState('All')
+  const [drinkTaste, setDrinkTaste] = React.useState('All')
+  const [inputDrinkText, setInputDrinkText] = React.useState("");
+
+
+
   React.useEffect(() => {
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1);
@@ -81,6 +92,18 @@ function App() {
         drinkDetailsPopup={drinkDetailsPopup}
         registerPopup={registerPopup}
         setRegisterPopup={setRegisterPopup}
+        alcocholic={alcocholic}
+        setAlcocholic={setAlcocholic}
+        inputDrinkText={inputDrinkText}
+        setInputDrinkText={setInputDrinkText}
+        softDrinks={softDrinks}
+        setSoftDrinks={setSoftDrinks}
+        highlyRated={highlyRated}
+        setHighlyRated={setHighlyRated}
+        drinkLevel={drinkLevel}
+        setDrinkLevel={setDrinkLevel}
+        drinkTaste={drinkTaste}
+        setDrinkTaste={setDrinkTaste}
 
       />
 
@@ -106,6 +129,18 @@ function App() {
             offset={offset}
             setOffset={setOffset}
             setDrinkNotFound={setDrinkNotFound}
+            alcocholic={alcocholic}
+            setAlcocholic={setAlcocholic}
+            inputDrinkText={inputDrinkText}
+            setInputDrinkText={setInputDrinkText}
+            softDrinks={softDrinks}
+            setSoftDrinks={setSoftDrinks}
+            highlyRated={highlyRated}
+            setHighlyRated={setHighlyRated}
+            drinkLevel={drinkLevel}
+            setDrinkLevel={setDrinkLevel}
+            drinkTaste={drinkTaste}
+
           />}>
 
         </Route>

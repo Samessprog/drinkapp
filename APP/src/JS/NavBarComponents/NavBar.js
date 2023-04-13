@@ -29,20 +29,15 @@ onInput={element => this.handleTextInput(element)}
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
     userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
     setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound,
-    drinkDetailsPopup, registerPopup, setRegisterPopup }) {
+    drinkDetailsPopup, registerPopup, setRegisterPopup,setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
+    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated,alcocholic,inputDrinkText,setInputDrinkText }) {
 
     const location = useLocation();
 
-    //states form SettingsPopup
-    const [alcocholic, setAlcocholic] = React.useState(false)
-    const [softDrinks, setSoftDrinks] = React.useState(false)
-    const [highlyRated, setHighlyRated] = React.useState(false)
-    const [drinkLevel, setDrinkLevel] = React.useState('All')
-    const [drinkTaste, setDrinkTaste] = React.useState('All')
-
+    
 
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
-    const [inputDrinkText, setInputDrinkText] = React.useState("");
+
 
     const handlePopup = (popupName) => {
         const closePopups = () => {
@@ -175,7 +170,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                                                 />
                                             </Suspense>
-                                            
+
                                         </ErrorBoundary>
                                     )}
                                 </div>

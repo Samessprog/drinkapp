@@ -6,10 +6,10 @@ function Drink({ setDrinkDetailsPopup, elm }) {
 
     return (
 
-        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
+        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
 
             {/* miejsce na znacznik ulubione */}
-            <Link className="text-decoration-none zz" to={`drinkDetail/${elm.ID_Drink}`} >
+            <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_Drink}`} >
                 <div className="img-holder card overflow-hidden ">
                     <LazyLoadImage
                         src={elm.IMG}

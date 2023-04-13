@@ -9,15 +9,18 @@
             @media (max-width: 400px) {
                 height: 350px;
             }
-
-            @media (min-width: 1854px) {
-                width: calc(100% / 5);
+            @media (min-width: 1800px) {
+                height: 500px;
             }
             
+            @media (min-width: 1200px) {
+                width: calc(100% / 5);
+            }
+
             .img-holder {
                 background-color: transparent;
                 border: rgb(48, 48, 48) 3px solid;
-
+               
                 .drink-img {
                     max-height: 350px;
                     height: 250px;
@@ -26,6 +29,11 @@
                     @media (max-width: 400px) {
                         height: 150px;
                     }
+
+                    @media (min-width: 1800px) {
+                        height: 500px;
+                    }
+
 
                 }
             }
