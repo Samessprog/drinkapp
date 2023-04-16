@@ -1,4 +1,4 @@
-import React, { Suspense} from "react";
+import React, { Suspense } from "react";
 import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -7,17 +7,17 @@ import ErrorFallback from "./Components/ErrorBoundary";
 const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
-export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink ,setingredient,drinkDetailsPopup,
-    drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText,
-    ingredient, setSpecialOptionsPopup, drinkNotFound,drinksCounter,setDrinksCounter,offset, setOffset, setDrinkNotFound,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag  }) {
+export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink, setingredient,
+    drinkDatas, userScroll, ingredientText, setIngredientText,
+    ingredient, setSpecialOptionsPopup, offset, setOffset,  drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
-       
-    return (
         
+    return (
+
         <div>
 
             {specialOptionsPopup &&
-                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={()=>{}}>
+                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <SpecialDrinks
                             ingredientText={ingredientText}
@@ -25,14 +25,10 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
                             ingredient={ingredient}
                             setingredient={setingredient}
                             setSpecialOptionsPopup={setSpecialOptionsPopup}
-                            searchingDrink = { searchingDrink}
-                            setSearchingDrink = {setSearchingDrink}
-                            drinksCounter= {drinksCounter}
-                            setDrinksCounter = {setDrinksCounter}
+                            searchingDrink={searchingDrink}
+                            setSearchingDrink={setSearchingDrink}
                             drinkDatas={drinkDatas}
-                            drinkNotFound={drinkNotFound}
-                            setDrinkNotFound={ setDrinkNotFound}
-
+                            
                             drinkCounter={drinkCounter}
                             setDrinkCounter={setDrinkCounter}
                             eachdrinkflag={eachdrinkflag}
@@ -43,15 +39,12 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
             }
 
             <MainPage
-                setDrinkDetailsPopup={setDrinkDetailsPopup}
                 userScroll={userScroll}
                 drinkDatas={drinkDatas}
-                drinkDetailsPopup={drinkDetailsPopup}
                 searchingDrink={searchingDrink}
-                drinkNotFound={drinkNotFound}
-                offset ={offset} 
-                setOffset= {setOffset}
-                setDrinkNotFound={ setDrinkNotFound}
+                offset={offset}
+                setOffset={setOffset}
+
             />
 
         </div>

@@ -17,7 +17,8 @@ function SetingsPopup({setSpecialOptionsPopup, setPopupSetings, specialOptionsPo
     const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
 
     //({ target }) => setAlcocholic(Boolean(target.value))
-
+     
+    
     return (
         <div className="position-fixed SetingsPopupHolder col-10 col-sm-5  col-md-4 col-xl-3 ">
 

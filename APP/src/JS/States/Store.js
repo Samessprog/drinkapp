@@ -9,7 +9,30 @@ const navbarState = {
   /* Settings States  */
   popupsetings: false,
   specialOptionsPopupp: false,
+  drinkNotFound: false,
 };
+
+
+const drinksState = {
+  searchingDrinks: [],
+  drinkNotFound: false,
+
+};
+
+function drinksReducer(state = drinksState, action) {
+  switch (action.type) {
+    case 'SET_SEARCHING_DRINKS':
+      return {
+        ...state,
+        searchingDrinks: action.payload,
+      };
+    default:
+      return state;
+  }
+}
+
+
+
 // const userState = {
 
 // };
@@ -39,6 +62,11 @@ function navbarReducer(state = navbarState, action) {
         ...state,
         specialOptionsPopupp: action.payload,
       };
+    case 'SET_DRINK_NOT_FOUND_POPUP':
+      return {
+        ...state,
+        drinkNotFound: action.payload,
+      };
 
     default:
       return state;
@@ -47,6 +75,7 @@ function navbarReducer(state = navbarState, action) {
 
 const rootReducer = combineReducers({
   navbar: navbarReducer,
+  drink: drinksReducer,
 });
 
 const store = createStore(rootReducer);

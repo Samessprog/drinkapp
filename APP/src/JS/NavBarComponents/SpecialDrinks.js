@@ -10,6 +10,7 @@ const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
     setIngredientText, setingredient, drinkDatas, setDrinkNotFound, drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
+
     const dispatch = useDispatch();
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
 

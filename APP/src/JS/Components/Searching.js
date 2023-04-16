@@ -1,7 +1,7 @@
 import React from "react";
 
 function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, drinkDatas,
-  setSearchingDrink, inputDrinkText, ingredient, setDrinkNotFound, eachdrinkflag, setDrinkCounter }) {
+  setSearchingDrink, inputDrinkText, ingredient, eachdrinkflag, setDrinkCounter }) {
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
@@ -27,25 +27,25 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
         return elm
 
       } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0) {
-
         if (eachdrinkflag) {
           if (hasMatchingIngredientSome) { return elm }
         } else {
           if (areAllIngredientsIncluded) { return elm }
         }
 
-      } else if (!inputDrinkText && !(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length === 0) {
+      } else if (!inputDrinkText && !(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length !== 0) {
         return elm
-
-      } else {
-        if (eachdrinkflag) {
-          if (hasMatchingIngredientSome) { return elm }
-        } else if (!eachdrinkflag) {
-          if (areAllIngredientsIncluded) { return elm }
-        }
-      }
+      }  //else {
+      //   if (eachdrinkflag) {
+      //     if (hasMatchingIngredientSome) { return elm }
+      //   } else if (!eachdrinkflag) {
+      //     if (areAllIngredientsIncluded) { return elm }
+      //   }
+      // }
     });
   };
+
+
 
   React.useEffect(() => {
     const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient);

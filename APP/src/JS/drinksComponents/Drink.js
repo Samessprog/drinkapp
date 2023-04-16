@@ -2,11 +2,12 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
-function Drink({ setDrinkDetailsPopup, elm }) {
+function Drink({ elm }) {
+
 
     return (
 
-        <div onClick={() => setDrinkDetailsPopup(true)} className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
+        <div  className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
 
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_Drink}`} >

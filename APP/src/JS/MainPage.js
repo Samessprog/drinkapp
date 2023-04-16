@@ -3,18 +3,23 @@ import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector,useDispatch } from "react-redux";
 
+
+import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = React.lazy(() => import("./drinksComponents/DDE"))
-//const Drink = React.lazy(() => import("./drinksComponents/Drink"))
 
-function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFound, offset, setOffset, setDrinkNotFound }) {
+function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
+   
+    const dispatch = useDispatch();
+
+    const  drinkNotFound =  useSelector(state => state.navbar.drinkNotFound);
 
     const itemsPerPage = 12; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
-
-
+  
     const isSmallScreen = useMediaQuery({ maxWidth: 575 });
     
     const handlePageClick = (data) => {
@@ -24,8 +29,10 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
         setOffset(offset);
     };
 
+    
+
     React.useEffect(() => {
-        setDrinkNotFound(searchingDrink.length === 0);
+        dispatch(setDrinkNotFound(searchingDrink.length === 0));
     }, [searchingDrink]);
 
     return (
@@ -44,7 +51,6 @@ function MainPage({ searchingDrink, setDrinkDetailsPopup, userScroll, drinkNotFo
 
                 <Drink
                     key={elm.ID_Drink}
-                    setDrinkDetailsPopup={setDrinkDetailsPopup}
                     elm={elm}
                 />
 

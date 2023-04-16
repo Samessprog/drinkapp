@@ -19,20 +19,8 @@ function App() {
 
 
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
+  //const searchingDrink = useSelector(state => state.drinksState.searchingDrink);
 
-
-
-  //Drink details 
-  const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
-  //Drink datas
-  const [drinkDatas, setDrinkData] = React.useState([])
-  //isSet
-  const [drinkNotFound, setDrinkNotFound] = React.useState(false)
-  //Drinks counter
-  const [drinksCounter, setDrinksCounter] = React.useState(0)
-
-  //Searching
-  const [searchingDrink, setSearchingDrink] = React.useState([])
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Special drinks hooks
@@ -40,6 +28,8 @@ function App() {
   const [ingredient, setingredient] = React.useState([])
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
+
+  
   //states for Searching comp
   const [alcocholic, setAlcocholic] = React.useState(false)
   const [softDrinks, setSoftDrinks] = React.useState(false)
@@ -48,9 +38,10 @@ function App() {
   const [drinkTaste, setDrinkTaste] = React.useState('All')
   const [inputDrinkText, setInputDrinkText] = React.useState("");
 
+  const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkCounter, setDrinkCounter] = React.useState(0)
   const [eachdrinkflag, setEachdrinkflag] = React.useState(false)
-
+  const [drinkDatas, setDrinkData] = React.useState([])
 
 
   React.useEffect(() => {
@@ -88,8 +79,6 @@ function App() {
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
-        setDrinkNotFound={setDrinkNotFound}
-        drinkDetailsPopup={drinkDetailsPopup}
         alcocholic={alcocholic}
         setAlcocholic={setAlcocholic}
         inputDrinkText={inputDrinkText}
@@ -123,16 +112,10 @@ function App() {
             setingredient={setingredient}
             setIngredientText={setIngredientText}
             specialOptionsPopup={specialOptionsPopup}
-            setDrinkDetailsPopup={setDrinkDetailsPopup}
-            drinkDetailsPopup={drinkDetailsPopup}
             userScroll={userScroll}
-            drinkNotFound={drinkNotFound}
             setSearchingDrink={setSearchingDrink}
-            drinksCounter={drinksCounter}
-            setDrinksCounter={setDrinksCounter}
             offset={offset}
             setOffset={setOffset}
-            setDrinkNotFound={setDrinkNotFound}
             alcocholic={alcocholic}
             setAlcocholic={setAlcocholic}
             inputDrinkText={inputDrinkText}
