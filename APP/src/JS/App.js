@@ -3,7 +3,10 @@ import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
+import { useSelector } from "react-redux";
 
+
+import { setSpecialOptionsPopup } from "./States/actions";
 import NavBar from "./NavBarComponents/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./Home";
@@ -14,17 +17,11 @@ const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 
 function App() {
 
-  //navbar PopUps
-  const [Popupsetings, setPopupSetings] = React.useState(false)
-  const [loginPopup, setLoginPopup] = React.useState(false)
-  const [specialOptionsPopup, setSpecialOptionsPopup] = React.useState(false)
-  //Searching
-  const [searchingDrink, setSearchingDrink] = React.useState([])
-  //scroll
-  const [userScroll, setUserScroll] = React.useState(false);
-  //Special drinks hooks
-  const [ingredientText, setIngredientText] = React.useState("")
-  const [ingredient, setingredient] = React.useState([])
+
+  const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
+
+
+
   //Drink details 
   const [drinkDetailsPopup, setDrinkDetailsPopup] = React.useState(false)
   //Drink datas
@@ -33,12 +30,16 @@ function App() {
   const [drinkNotFound, setDrinkNotFound] = React.useState(false)
   //Drinks counter
   const [drinksCounter, setDrinksCounter] = React.useState(0)
+
+  //Searching
+  const [searchingDrink, setSearchingDrink] = React.useState([])
+  //scroll
+  const [userScroll, setUserScroll] = React.useState(false);
+  //Special drinks hooks
+  const [ingredientText, setIngredientText] = React.useState("")
+  const [ingredient, setingredient] = React.useState([])
   //Pagiantion offset
   const [offset, setOffset] = React.useState(0);
-  //RegisterPopup
-  const [registerPopup, setRegisterPopup] = React.useState(false)
-
-
   //states for Searching comp
   const [alcocholic, setAlcocholic] = React.useState(false)
   const [softDrinks, setSoftDrinks] = React.useState(false)
@@ -47,9 +48,9 @@ function App() {
   const [drinkTaste, setDrinkTaste] = React.useState('All')
   const [inputDrinkText, setInputDrinkText] = React.useState("");
 
-
   const [drinkCounter, setDrinkCounter] = React.useState(0)
   const [eachdrinkflag, setEachdrinkflag] = React.useState(false)
+
 
 
   React.useEffect(() => {
@@ -80,12 +81,8 @@ function App() {
   return (
     <div className="">
 
+
       <NavBar
-        Popupsetings={Popupsetings}
-        setPopupSetings={setPopupSetings}
-        loginPopup={loginPopup}
-        setLoginPopup={setLoginPopup}
-        specialOptionsPopup={specialOptionsPopup}
         setSpecialOptionsPopup={setSpecialOptionsPopup}
         drinkDatas={drinkDatas}
         searchingDrink={searchingDrink}
@@ -93,8 +90,6 @@ function App() {
         userScroll={userScroll}
         setDrinkNotFound={setDrinkNotFound}
         drinkDetailsPopup={drinkDetailsPopup}
-        registerPopup={registerPopup}
-        setRegisterPopup={setRegisterPopup}
         alcocholic={alcocholic}
         setAlcocholic={setAlcocholic}
         inputDrinkText={inputDrinkText}
@@ -115,17 +110,18 @@ function App() {
 
       />
 
+
       <Routes>
         <Route path="/" element={
 
           <Home
+            setSpecialOptionsPopup={setSpecialOptionsPopup}
             drinkDatas={drinkDatas}
             searchingDrink={searchingDrink}
             ingredientText={ingredientText}
             ingredient={ingredient}
             setingredient={setingredient}
             setIngredientText={setIngredientText}
-            setSpecialOptionsPopup={setSpecialOptionsPopup}
             specialOptionsPopup={specialOptionsPopup}
             setDrinkDetailsPopup={setDrinkDetailsPopup}
             drinkDetailsPopup={drinkDetailsPopup}
@@ -148,7 +144,6 @@ function App() {
             drinkLevel={drinkLevel}
             setDrinkLevel={setDrinkLevel}
             drinkTaste={drinkTaste}
-
             drinkCounter={drinkCounter}
             setDrinkCounter={setDrinkCounter}
             eachdrinkflag={eachdrinkflag}
@@ -157,7 +152,7 @@ function App() {
           />}>
 
         </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} Popupsetings={Popupsetings} setPopupSetings={setPopupSetings} loginPopup={loginPopup} setLoginPopup={setLoginPopup} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
         <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
       </Routes>
 

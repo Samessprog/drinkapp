@@ -5,13 +5,12 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
-
-
     return drinkDatas.filter((elm) => {
 
       const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcocholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
       const isDifficultyLevelMatch = drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel;
       const isTasteMatch = drinkTaste === 'All' || drinkTaste === elm.Taste;
+      const drinkIngredients = elm.Ingredients.toLowerCase();
       const hasMatchingIngredientSome = ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
 
@@ -29,8 +28,6 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
 
       } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0) {
 
-        const drinkIngredients = elm.Ingredients.toLowerCase();
-
         if (eachdrinkflag) {
           if (hasMatchingIngredientSome) { return elm }
         } else {
@@ -41,7 +38,6 @@ function Searching({ alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste
         return elm
 
       } else {
-        const drinkIngredients = elm.Ingredients.toLowerCase();
         if (eachdrinkflag) {
           if (hasMatchingIngredientSome) { return elm }
         } else if (!eachdrinkflag) {

@@ -7,6 +7,7 @@ import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
 
 function UserProfile() {
     const [addUserNewDrink, setAddUserNewDrink] = React.useState(false)
+    
 
     return (
         <div className="user-details-holder">

@@ -3,16 +3,17 @@ import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./Components/ErrorBoundary";
 
+
 const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
-export default function Home({ searchingDrink,  setSearchingDrink ,setingredient, specialOptionsPopup, drinkDetailsPopup,
+export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink ,setingredient,drinkDetailsPopup,
     drinkDatas, userScroll, setDrinkDetailsPopup, ingredientText, setIngredientText,
     ingredient, setSpecialOptionsPopup, drinkNotFound,drinksCounter,setDrinksCounter,offset, setOffset, setDrinkNotFound,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag  }) {
 
-
+       
     return (
-
+        
         <div>
 
             {specialOptionsPopup &&

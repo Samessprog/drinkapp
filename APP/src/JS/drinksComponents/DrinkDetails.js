@@ -2,7 +2,7 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-paginate';
-import { useLocation } from 'react-router-dom';
+
 
 
 function DrinkDetails({ searchingDrink }) {

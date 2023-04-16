@@ -4,10 +4,14 @@ import ErrorFallback from "../Components/ErrorBoundary";
 import OptionsProfile from "../Profile/OptionsProfile";
 import Searching from "../Components/Searching";
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginPopup, setPopupSetings, setRegisterPopup } from "../States/actions";
+
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
 const Registers = React.lazy(() => import("../Register/Register"))
+
 
 
 /* <input
@@ -26,27 +30,31 @@ value={this.state.value}
 onInput={element => this.handleTextInput(element)}
 /> */
 
-function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,
-    userScroll, specialOptionsPopup, setSpecialOptionsPopup, Popupsetings,
-    setPopupSetings, loginPopup, setLoginPopup, setDrinkNotFound,
-    drinkDetailsPopup, registerPopup, setRegisterPopup, setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
+function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup,setSpecialOptionsPopup,
+    userScroll, setDrinkNotFound,
+    drinkDetailsPopup, setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
     setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated, alcocholic, inputDrinkText, setInputDrinkText,
-    ingredient,drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
+    ingredient, drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
+
 
     const location = useLocation();
-
-
+    const dispatch = useDispatch();
 
     const [userProfileOptions, setUserProfileOptions] = React.useState(false)
 
+    const loginPopup = useSelector(state => state.navbar.loginPopup);
+    const popupSetings = useSelector(state => state.navbar.popupsetings);
+    const registerPopup = useSelector(state => state.navbar.registerPopup);
+
+  
 
     const handlePopup = (popupName) => {
         const closePopups = () => {
             setUserProfileOptions(false)
-            setRegisterPopup(false)
-            setLoginPopup(false)
-            setSpecialOptionsPopup(false)
-            setPopupSetings(false)
+            dispatch(setRegisterPopup(false))
+            dispatch(setLoginPopup(false))
+            dispatch(setSpecialOptionsPopup(false))
+            dispatch(setPopupSetings(false))
         }
 
         const handleHamburger = () => {
@@ -57,12 +65,12 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
             case 'login':
                 handleHamburger()
                 closePopups()
-                setLoginPopup(!loginPopup)
+                dispatch(setLoginPopup(!loginPopup))
                 break;
             case 'settings':
                 handleHamburger()
                 closePopups()
-                setPopupSetings(!Popupsetings)
+                dispatch(setPopupSetings(!popupSetings))
                 break;
             case 'userProfile':
                 handleHamburger()
@@ -71,7 +79,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 break;
             case 'register':
                 closePopups()
-                setRegisterPopup(!registerPopup)
+                dispatch(setRegisterPopup(!registerPopup))
+                console.log(registerPopup)
                 break;
             default:
                 closePopups()
@@ -139,7 +148,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                 </div>
 
                                 <div className="options-holder">
-                                    { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!Popupsetings) */}
+                                    { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
 
                                     {!drinkDetailsPopup &&
                                         <button className="settings-button border-0" onClick={() => handlePopup('settings')}>
@@ -149,15 +158,13 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                         </button>
                                     }
 
-                                    {Popupsetings && (
+                                    {popupSetings && (
                                         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                                             <Suspense fallback={<div>Loading...</div>}>
 
                                                 <SetingsPopup
-                                                    Popupsetings={Popupsetings}
                                                     setPopupSetings={setPopupSetings}
                                                     setSpecialOptionsPopup={setSpecialOptionsPopup}
-                                                    specialOptionsPopup={specialOptionsPopup}
                                                     searchingDrink={searchingDrink}
                                                     drinkDatas={drinkDatas}
                                                     setSearchingDrink={setSearchingDrink}
