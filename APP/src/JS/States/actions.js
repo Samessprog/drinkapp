@@ -7,7 +7,15 @@ export const SET_DRINK_NOT_FOUND_POPUP = 'SET_DRINK_NOT_FOUND_POPUP';
 
 //drinks Actions
 export const SET_SEARCHING_DRINKS = 'SET_SEARCHING_DRINKS';
-
+export const SET_ALCOCHOLIC = 'SET_ALCOCHOLIC';
+export const SET_SOFT_DRINKS = 'SET_SOFT_DRINKS';
+export const SET_HIGHLY_RATED_DRINKS = 'SET_HIGHLY_RATED_DRINKS';
+export const SET_LEVEL_DRINKS = 'SET_LEVEL_DRINKS';
+export const SET_TASTE_DRINKS = 'SET_TASTE_DRINKS';
+export const SET_EACH_FLAG_DRINKS = 'SET_EACH_FLAG_DRINKS';
+export const SET_INPUT_DRINKS_TEXT = 'SET_INPUT_DRINKS_TEXT';
+export const SET_DRINKS_COUNTER = 'SET_DRINKS_COUNTER';
+export const SET_INGREDIENTS = 'SET_INGREDIENTS';
 
 
 
@@ -50,3 +58,60 @@ export function setSearchingDrink(value) {
         payload: value
     };
 }
+
+export function setAlcocholic(value) {
+    return {
+        type: SET_ALCOCHOLIC,
+        payload: value
+    };
+}
+
+export function setSoftDrinks(value) {
+    return {
+        type: SET_SOFT_DRINKS,
+        payload: value
+    };
+}
+
+export function setHighlyRated(value) {
+    return {
+        type: SET_HIGHLY_RATED_DRINKS,
+        payload: value
+    };
+}
+
+export function setDrinkLevel(value) {
+    return {
+        type: SET_LEVEL_DRINKS,
+        payload: value
+    };
+}
+
+export function setDrinkTaste(value) {
+    return {
+        type: SET_TASTE_DRINKS,
+        payload: value
+    };
+}
+
+export function setEachdrinkflag(value) {
+    return {
+        type: SET_EACH_FLAG_DRINKS,
+        payload: value
+    };
+}
+
+export function setDrinkCounter(value) {
+    return {
+        type: SET_DRINKS_COUNTER,
+        payload: value
+    };
+}
+
+export function setingredient(value) {
+    return {
+        type: SET_INGREDIENTS,
+        payload: value
+    };
+}
+

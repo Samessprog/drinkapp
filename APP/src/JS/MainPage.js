@@ -11,7 +11,7 @@ import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = React.lazy(() => import("./drinksComponents/DDE"))
 
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
-   
+    
     const dispatch = useDispatch();
 
     const  drinkNotFound =  useSelector(state => state.navbar.drinkNotFound);

@@ -4,14 +4,13 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./Components/ErrorBoundary";
 
 
+
 const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
-export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink, setingredient,
-    drinkDatas, userScroll, ingredientText, setIngredientText,
-    ingredient, setSpecialOptionsPopup, offset, setOffset,  drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
-
-        
+export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,
+    drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset, eachdrinkflag, setEachdrinkflag }) {
+       
     return (
 
         <div>
@@ -20,17 +19,10 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <SpecialDrinks
-                            ingredientText={ingredientText}
-                            setIngredientText={setIngredientText}
-                            ingredient={ingredient}
-                            setingredient={setingredient}
                             setSpecialOptionsPopup={setSpecialOptionsPopup}
                             searchingDrink={searchingDrink}
                             setSearchingDrink={setSearchingDrink}
                             drinkDatas={drinkDatas}
-                            
-                            drinkCounter={drinkCounter}
-                            setDrinkCounter={setDrinkCounter}
                             eachdrinkflag={eachdrinkflag}
                             setEachdrinkflag={setEachdrinkflag}
                         />

@@ -16,10 +16,8 @@ const Registers = React.lazy(() => import("../Register/Register"))
 
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, setSpecialOptionsPopup,
-    userScroll, setDrinkNotFound,
-    setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
-    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated, alcocholic, inputDrinkText, setInputDrinkText,
-    ingredient, drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
+    userScroll, setDrinkNotFound, inputDrinkText, setInputDrinkText,
+    ingredient }) {
 
 
     const location = useLocation();
@@ -72,31 +70,20 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 break;
         }
     }
-
+    
     return (
         <nav className="NavBar position-sticky top-0 ">
 
             <Searching
-                alcocholic={alcocholic}
-                setAlcocholic={setAlcocholic}
                 setSearchingDrink={setSearchingDrink}
                 inputDrinkText={inputDrinkText}
                 setInputDrinkText={setInputDrinkText}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
                 drinkDatas={drinkDatas}
-                softDrinks={softDrinks}
-                setSoftDrinks={setSoftDrinks}
-                highlyRated={highlyRated}
-                setHighlyRated={setHighlyRated}
-                drinkLevel={drinkLevel}
-                setDrinkLevel={setDrinkLevel}
-                drinkTaste={drinkTaste}
-                ingredient={ingredient}
-                drinkCounter={drinkCounter}
-                setDrinkCounter={setDrinkCounter}
-                eachdrinkflag={eachdrinkflag}
-                setEachdrinkflag={setEachdrinkflag}
+
+
+               
             />
 
             <div className="NavBarContentHolder p-3 pb-0">
@@ -155,21 +142,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                                     setSearchingDrink={setSearchingDrink}
                                                     setDrinkNotFound={setDrinkNotFound}
                                                     inputDrinkText={inputDrinkText}
-                                                    alcocholic={alcocholic}
-                                                    setAlcocholic={setAlcocholic}
-                                                    softDrinks={softDrinks}
-                                                    setSoftDrinks={setSoftDrinks}
-                                                    highlyRated={highlyRated}
-                                                    setHighlyRated={setHighlyRated}
-                                                    drinkLevel={drinkLevel}
-                                                    setDrinkLevel={setDrinkLevel}
-                                                    drinkTaste={drinkTaste}
-                                                    setDrinkTaste={setDrinkTaste}
-                                                    ingredient={ingredient}
-                                                    drinkCounter={drinkCounter}
-                                                    setDrinkCounter={setDrinkCounter}
-                                                    eachdrinkflag={eachdrinkflag}
-                                                    setEachdrinkflag={setEachdrinkflag}
 
                                                 />
                                             </Suspense>

@@ -2,48 +2,36 @@ import React from "react";
 import Searching from "../Components/Searching";
 import DrinksOptions from "../Components/DrinksOptions";
 import TypeOfDrink from "../Components/TypeOfDrink";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setHighlyRated, setDrinkLevel, setDrinkTaste } from "../States/actions";
+
+function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,
+    drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
 
-
-function SetingsPopup({setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,
-    drinkDatas, setSearchingDrink, setDrinkNotFound, inputDrinkText, alcocholic,
-    setAlcocholic, softDrinks, setHighlyRated, drinkLevel,
-    setDrinkLevel, drinkTaste, setDrinkTaste, setSoftDrinks, highlyRated, ingredient, drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
 
     {/* Settings States  */ }
     const dispatch = useDispatch();
-    const levelHandler = (event) => { setDrinkLevel(event.target.value) }
-    const tasteHandler = (event) => { setDrinkTaste(event.target.value) }
+    const levelHandler = (event) => { dispatch(setDrinkLevel(event.target.value)) }
+    const tasteHandler = (event) => { dispatch(setDrinkTaste(event.target.value)) }
 
-    //({ target }) => setAlcocholic(Boolean(target.value))
-     
-    
+
+
+    //Drinks properties states
+    const highlyRated = useSelector(state => state.drink.highlyRated);
+
     return (
         <div className="position-fixed SetingsPopupHolder col-10 col-sm-5  col-md-4 col-xl-3 ">
 
             <Searching
-                alcocholic={alcocholic}
-                setAlcocholic={setAlcocholic}
-                softDrinks={softDrinks}
-                setSoftDrinks={setSoftDrinks}
                 highlyRated={highlyRated}
-                setHighlyRated={setHighlyRated}
-                drinkLevel={drinkLevel}
-                setDrinkLevel={setDrinkLevel}
-                drinkTaste={drinkTaste}
-                setDrinkTaste={setDrinkTaste}
                 drinkDatas={drinkDatas}
                 setSearchingDrink={setSearchingDrink}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
-                inputDrinkText={inputDrinkText}
-                ingredient={ingredient}
-                drinkCounter={drinkCounter}
-                setDrinkCounter={setDrinkCounter}
-                eachdrinkflag={eachdrinkflag}
-                setEachdrinkflag={setEachdrinkflag}
 
+               
             />
 
             <div className="d-flex flex-row-reverse me-2 mt-2 ">
@@ -63,15 +51,10 @@ function SetingsPopup({setSpecialOptionsPopup, setPopupSetings, specialOptionsPo
                             <label className="ms-1">Favorite</label>
                         </div>
 
-                        <TypeOfDrink
-                            alcocholic={alcocholic}
-                            setAlcocholic={setAlcocholic}
-                            softDrinks={softDrinks}
-                            setSoftDrinks={setSoftDrinks}
-                        />
+                        <TypeOfDrink />
 
                         <div className="d-flex mt-1">
-                            <input type="checkbox" onClick={() => setHighlyRated(!highlyRated)} ></input>
+                            <input type="checkbox" onClick={() => dispatch(setHighlyRated(!highlyRated))} ></input>
                             <label className="ms-1">Highly rated </label>
                         </div>
 

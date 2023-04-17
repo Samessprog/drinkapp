@@ -1,15 +1,18 @@
 import React, { Suspense } from "react";
 import { v4 as uuid } from 'uuid';
 import { ErrorBoundary } from "react-error-boundary";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { setEachdrinkflag } from "../States/actions";
 import Searching from "../Components/Searching";
 import ErrorFallback from "../Components/ErrorBoundary";
 const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
 
-function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, ingredient, ingredientText,
-    setIngredientText, setingredient, drinkDatas, setDrinkNotFound, drinkCounter, setDrinkCounter, eachdrinkflag, setEachdrinkflag }) {
+function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, setDrinkNotFound }) {
 
+    const drinkCounter = useSelector(state => state.drink.drinkCounter)
+    const [ingredientText, setIngredientText] = React.useState("")
+    const [ingredient, setingredient] = React.useState([])
 
     const dispatch = useDispatch();
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
@@ -23,6 +26,9 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, ingredient, 
         setIngredientText("")
     }
 
+    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
+
+
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>
 
@@ -30,7 +36,6 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, ingredient, 
                 ingredient={ingredient}
                 setDrinkNotFound={setDrinkNotFound}
                 eachdrinkflag={eachdrinkflag}
-                setDrinkCounter={setDrinkCounter}
                 drinkDatas={drinkDatas}
                 setSearchingDrink={setSearchingDrink}
             />
@@ -53,7 +58,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, ingredient, 
 
                 </div>
                 <div className="d-flex justify-content-center  align-items-center">
-                    <input type="checkbox" onClick={() => setEachdrinkflag(!eachdrinkflag)} /> <label className="ms-1">search for ALL drinks with the given ingredients</label>
+                    <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} /> <label className="ms-1">search for ALL drinks with the given ingredients</label>
                 </div>
                 <div className=" col-7 test overflow-auto pe-2">
 
