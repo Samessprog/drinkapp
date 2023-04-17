@@ -5,20 +5,15 @@ import OptionsProfile from "../Profile/OptionsProfile";
 import Searching from "../Components/Searching";
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { setLoginPopup, setPopupSetings, setRegisterPopup } from "../States/actions";
+import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
 
 
 const LoginPopup = React.lazy(() => import("./LoginPopup"))
 const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
 const Registers = React.lazy(() => import("../Register/Register"))
 
-
-
-
-function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetailsPopup, setSpecialOptionsPopup,
-    userScroll, setDrinkNotFound, inputDrinkText, setInputDrinkText,
-    ingredient }) {
-
+function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
+    setSpecialOptionsPopup, userScroll }) {
 
     const location = useLocation();
     const dispatch = useDispatch();
@@ -70,20 +65,15 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                 break;
         }
     }
-    
+
     return (
         <nav className="NavBar position-sticky top-0 ">
 
             <Searching
                 setSearchingDrink={setSearchingDrink}
-                inputDrinkText={inputDrinkText}
-                setInputDrinkText={setInputDrinkText}
                 searchingDrink={searchingDrink}
-                setDrinkNotFound={setDrinkNotFound}
                 drinkDatas={drinkDatas}
 
-
-               
             />
 
             <div className="NavBarContentHolder p-3 pb-0">
@@ -107,7 +97,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
 
                                 <div className="col-12 position-relative">
                                     <input
-                                        onChange={event => setInputDrinkText(event.target.value)}
+                                        onChange={event => dispatch(setInputDrinkText(event.target.value))}
                                         type="text"
                                         className="searching-input border-0 rounded-pill col-12 ps-4 pe-5 ps-3 "
                                         placeholder="Enter drink name"
@@ -140,8 +130,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                                                     searchingDrink={searchingDrink}
                                                     drinkDatas={drinkDatas}
                                                     setSearchingDrink={setSearchingDrink}
-                                                    setDrinkNotFound={setDrinkNotFound}
-                                                    inputDrinkText={inputDrinkText}
 
                                                 />
                                             </Suspense>
@@ -208,7 +196,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas, setDrinkDetails
                     <div className="Options-Holder-W100">
                         <ul className="d-flex justify-content-center ps-0 navbar-menu">
                             <li className=" ms-2  elm-contents-holder " >
-                                <a onClick={() => setDrinkDetailsPopup(false)} className="elm-contents  text-decoration-none" href="/">Home</a>
+                                <a className="elm-contents  text-decoration-none" href="/">Home</a>
                             </li>
 
                             <li className="ms-2  elm-contents-holder ">

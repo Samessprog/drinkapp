@@ -7,7 +7,7 @@ const navbarState = {
   /* Settings States  */
   popupsetings: false,
   specialOptionsPopupp: false,
-
+  inputDrinkText: "",
 };
 
 const drinksState = {
@@ -17,8 +17,8 @@ const drinksState = {
   alcocholic: false,
   softDrinks: false,
   highlyRated: false,
-  drinkLevel: 'ALL',
-  drinkTaste: 'ALL',
+  drinkLevel: 'All',
+  drinkTaste: 'All',
   eachdrinkflag: false,
   drinkCounter: 0,
   ingredient:[],
@@ -109,6 +109,11 @@ function navbarReducer(state = navbarState, action) {
         ...state,
         drinkNotFound: action.payload,
       };
+      case 'SET_INPUT_DRINK_TEXT':
+        return {
+          ...state,
+          inputDrinkText: action.payload,
+        };
 
     default:
       return state;

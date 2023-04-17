@@ -4,6 +4,7 @@ export const SET_SETTINGS_POPUP = 'SET_SETTINGS_POPUP';
 export const SET_REGISTER_POPUP = 'SET_REGISTER_POPUP';
 export const SET_SPECIAL_OPTIONS_POPUP = 'SET_SPECIAL_OPTIONS_POPUP';
 export const SET_DRINK_NOT_FOUND_POPUP = 'SET_DRINK_NOT_FOUND_POPUP';
+export const SET_INPUT_DRINK_TEXT = 'SET_INPUT_DRINK_TEXT';
 
 //drinks Actions
 export const SET_SEARCHING_DRINKS = 'SET_SEARCHING_DRINKS';
@@ -16,6 +17,7 @@ export const SET_EACH_FLAG_DRINKS = 'SET_EACH_FLAG_DRINKS';
 export const SET_INPUT_DRINKS_TEXT = 'SET_INPUT_DRINKS_TEXT';
 export const SET_DRINKS_COUNTER = 'SET_DRINKS_COUNTER';
 export const SET_INGREDIENTS = 'SET_INGREDIENTS';
+
 
 
 
@@ -111,6 +113,13 @@ export function setDrinkCounter(value) {
 export function setingredient(value) {
     return {
         type: SET_INGREDIENTS,
+        payload: value
+    };
+}
+
+export function setInputDrinkText(value) {
+    return {
+        type: SET_INPUT_DRINK_TEXT,
         payload: value
     };
 }

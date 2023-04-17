@@ -17,7 +17,8 @@ const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 function App() {
 
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
-
+  
+  
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Pagiantion offset
@@ -26,7 +27,7 @@ function App() {
   const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkDatas, setDrinkData] = React.useState([])
   //Drink input text
-  const [inputDrinkText, setInputDrinkText] = React.useState("");
+
 
 
   React.useEffect(() => {
@@ -55,7 +56,7 @@ function App() {
 
 
   return (
-    <div className="">
+    <div >
 
       <NavBar
         setSpecialOptionsPopup={setSpecialOptionsPopup}
@@ -63,8 +64,6 @@ function App() {
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
-        inputDrinkText={inputDrinkText}
-        setInputDrinkText={setInputDrinkText}
 
       />
 
@@ -80,7 +79,7 @@ function App() {
             setSearchingDrink={setSearchingDrink}
             offset={offset}
             setOffset={setOffset}
-            
+
           />}>
 
         </Route>

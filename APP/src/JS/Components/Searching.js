@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setDrinkCounter } from "../States/actions";
 
-function Searching({ highlyRated, drinkDatas,
-  setSearchingDrink, inputDrinkText, eachdrinkflag }) {
+function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }) {
 
 
   const dispatch = useDispatch();
@@ -14,8 +13,7 @@ function Searching({ highlyRated, drinkDatas,
   const drinkLevel = useSelector(state => state.drink.drinkLevel);
   const drinkTaste = useSelector(state => state.drink.drinkTaste);
   const ingredient = useSelector(state => state.drink.ingredient);
-
-
+  const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
@@ -28,11 +26,15 @@ function Searching({ highlyRated, drinkDatas,
       const drinkIngredients = elm.Ingredients.toLowerCase();
       const hasMatchingIngredientSome = ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
+      
+
+      console.log(!inputDrinkText)
 
       //Do optymalizacji i dokończenia
       if (inputDrinkText) {
         const drinkName = elm.DrinkName?.toLowerCase();
         const inputText = inputDrinkText.toLowerCase();
+
 
         if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0)) {
           return elm

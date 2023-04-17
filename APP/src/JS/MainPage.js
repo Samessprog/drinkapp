@@ -5,7 +5,6 @@ import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector,useDispatch } from "react-redux";
 
-
 import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = React.lazy(() => import("./drinksComponents/DDE"))
