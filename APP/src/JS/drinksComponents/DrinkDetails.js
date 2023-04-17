@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-paginate';
@@ -9,16 +9,16 @@ function DrinkDetails({ searchingDrink }) {
 
     let { id } = useParams()
     //Pagination
-    const [currentPage, setCurrentPage] = React.useState(0)
-    const [drinksDetail, setDrinkDetail] = React.useState({})
+    const [currentPage, setCurrentPage] = useState(0)
+    const [drinksDetail, setDrinkDetail] = useState({})
     //Drink ingredients 
-    const [ing, setIng] = React.useState([])
+    const [ing, setIng] = useState([])
     //Drink Preparation
-    const [prep, setPrep] = React.useState([])
+    const [prep, setPrep] = useState([])
     //WAS THE INGREDIENT BEEN PRESSED
-    const [ingChecked, setIngChecked] = React.useState([]);
+    const [ingChecked, setIngChecked] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const result = searchingDrink.filter(elm => elm.ID_Drink === parseInt(id, 10))[0];
         setIng(result.Ingredients.split('.'));
         setPrep(result.Preparation.split('.'));

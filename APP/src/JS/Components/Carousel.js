@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { Children ,useState, useEffect } from "react";
 const Carousel = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
@@ -6,7 +6,7 @@ const Carousel = ({ children }) => {
   useEffect(() => {
     
     if (children) {
-      const itemsArray = React.Children.toArray(children);
+      const itemsArray = Children.toArray(children);
       const itemsLength = itemsArray.length;
       const itemsToShow = [];
 
@@ -28,7 +28,7 @@ const Carousel = ({ children }) => {
   }, [children, currentIndex]);
 
   const handlePrev = () => {
-    const itemsCount = React.Children.count(children);
+    const itemsCount = Children.count(children);
     // const lastIndex = itemsCount - 1;
     const newIndex = (currentIndex - 5 + itemsCount) % itemsCount;
     setCurrentIndex(newIndex);

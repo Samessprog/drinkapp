@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../Components/ErrorBoundary";
 import OptionsProfile from "../Profile/OptionsProfile";
@@ -8,9 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
 
 
-const LoginPopup = React.lazy(() => import("./LoginPopup"))
-const SetingsPopup = React.lazy(() => import("./SetingsPopup"))
-const Registers = React.lazy(() => import("../Register/Register"))
+const LoginPopup = lazy(() => import("./LoginPopup"))
+const SetingsPopup = lazy(() => import("./SetingsPopup"))
+const Registers = lazy(() => import("../Register/Register"))
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
@@ -18,7 +18,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     const location = useLocation();
     const dispatch = useDispatch();
 
-    const [userProfileOptions, setUserProfileOptions] = React.useState(false)
+    const [userProfileOptions, setUserProfileOptions] = useState(false)
 
     const loginPopup = useSelector(state => state.navbar.loginPopup);
     const popupSetings = useSelector(state => state.navbar.popupsetings);

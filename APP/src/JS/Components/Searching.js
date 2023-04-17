@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setDrinkCounter } from "../States/actions";
@@ -26,9 +26,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const drinkIngredients = elm.Ingredients.toLowerCase();
       const hasMatchingIngredientSome = ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
-      
 
-      console.log(!inputDrinkText)
 
       //Do optymalizacji i dokończenia
       if (inputDrinkText) {
@@ -53,18 +51,17 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
 
       } else if (!inputDrinkText && !(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length !== 0) {
         return elm
-      }  //else {
-      //   if (eachdrinkflag) {
-      //     if (hasMatchingIngredientSome) { return elm }
-      //   } else if (!eachdrinkflag) {
-      //     if (areAllIngredientsIncluded) { return elm }
-      //   }
-      // }
+      } else {
+        if (eachdrinkflag) {
+          if (hasMatchingIngredientSome) { return elm }
+          if (areAllIngredientsIncluded) { return elm }
+        }
+      }
     });
   };
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient);
     if (highlyRated) {
       searchingResults.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);

@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./Components/ErrorBoundary";
 
 
 
-const SpecialDrinks = React.lazy(() => import("./NavBarComponents/SpecialDrinks"))
+const SpecialDrinks = lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,

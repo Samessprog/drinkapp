@@ -1,13 +1,14 @@
-import React, { Suspense } from "react";
+import  React,{ Suspense, lazy, useEffect } from "react";
 import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector,useDispatch } from "react-redux";
 
+
 import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
-const DDE = React.lazy(() => import("./drinksComponents/DDE"))
+const DDE = lazy(() => import("./drinksComponents/DDE"))
 
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     
@@ -30,7 +31,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     
 
-    React.useEffect(() => {
+        useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0));
     }, [searchingDrink]);
 

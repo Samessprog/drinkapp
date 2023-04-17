@@ -1,9 +1,9 @@
-import React from "react";
+import  { useState } from "react";
 import DrinksOptions from "../../Components/DrinksOptions";
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //state for drinkImg
-    const [imageSrc, setImageSrc] = React.useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png");
+    const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png");
 
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];

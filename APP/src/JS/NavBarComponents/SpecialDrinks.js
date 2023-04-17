@@ -1,30 +1,36 @@
-import React, { Suspense } from "react";
+import { Suspense, lazy, useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setEachdrinkflag } from "../States/actions";
+import { setEachdrinkflag, setingredient } from "../States/actions";
 import Searching from "../Components/Searching";
 import ErrorFallback from "../Components/ErrorBoundary";
-const Ingreadinet = React.lazy(() => import("./Ingreadinet"))
+const Ingreadinet = lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, setDrinkNotFound }) {
 
     const drinkCounter = useSelector(state => state.drink.drinkCounter)
-    const [ingredientText, setIngredientText] = React.useState("")
-    const [ingredient, setingredient] = React.useState([])
+    const [ingredientText, setIngredientText] = useState("")
+
 
     const dispatch = useDispatch();
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
 
+
+    const ingredient = useSelector(state => state.drink.ingredient)
+
     const submitIngreadinetsHandler = () => {
 
-        setingredient([
+        dispatch(setingredient([
             ...ingredient,
             { text: ingredientText, id: uuid() }
-        ])
+        ]))
+
         setIngredientText("")
     }
+
+
 
     const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
 
@@ -63,15 +69,15 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                 <div className=" col-7 test overflow-auto pe-2">
 
                     <ul className="ms-0  ">
-                        {ingredient.map((ing, key) => (
-                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                        {ingredient.map((ing) => (
+                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }} key={ing.id}>
                                 <Suspense>
-                                    <Ingreadinet ing={ing} key={key} setingredient={setingredient} ingredient={ingredient} />
+                                    <Ingreadinet ing={ing} key={ing.id} setingredient={setingredient} ingredient={ingredient} />
                                 </Suspense>
                             </ErrorBoundary>
                         ))}
-
                     </ul>
+
                 </div>
 
                 <div className="d-flex flex-column  justify-content-between align-items-center ">

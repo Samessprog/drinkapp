@@ -18,9 +18,6 @@ export const SET_INPUT_DRINKS_TEXT = 'SET_INPUT_DRINKS_TEXT';
 export const SET_DRINKS_COUNTER = 'SET_DRINKS_COUNTER';
 export const SET_INGREDIENTS = 'SET_INGREDIENTS';
 
-
-
-
 export function setLoginPopup(value) {
     return {
         type: SET_LOGIN_POPUP,

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import UserDetails from "./UserDetails";
 import UserOwnDrinks from "./UserOwnDrinks";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
@@ -6,7 +6,7 @@ import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
 
 
 function UserProfile() {
-    const [addUserNewDrink, setAddUserNewDrink] = React.useState(false)
+    const [addUserNewDrink, setAddUserNewDrink] = useState(false)
     
 
     return (
