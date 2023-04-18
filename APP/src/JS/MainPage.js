@@ -1,9 +1,9 @@
-import  React,{ Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect,useState } from "react";
 import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 
 import { setDrinkNotFound } from "./States/actions";
@@ -11,17 +11,17 @@ import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = lazy(() => import("./drinksComponents/DDE"))
 
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
-    
+
     const dispatch = useDispatch();
 
-    const  drinkNotFound =  useSelector(state => state.navbar.drinkNotFound);
+    const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
 
     const itemsPerPage = 12; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
-  
+
     const isSmallScreen = useMediaQuery({ maxWidth: 575 });
-    
+
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
         const offset = selectedPage * itemsPerPage;
@@ -29,12 +29,12 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         setOffset(offset);
     };
 
-    
 
-        useEffect(() => {
+
+    useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0));
     }, [searchingDrink]);
-
+    const [favourites, setFavourites] = useState([]);
     return (
 
         <main className="main d-flex row justify-content-center me-0 ">
@@ -50,6 +50,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
             {currentData.map((elm) => (
 
                 <Drink
+                    favourites={favourites}
+                    setFavourites={setFavourites}
                     key={elm.ID_Drink}
                     elm={elm}
                 />

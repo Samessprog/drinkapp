@@ -78,8 +78,6 @@ function drinksReducer(state = drinksState, action) {
   }
 }
 
-
-
 function navbarReducer(state = navbarState, action) {
   switch (action.type) {
     //login & register states
