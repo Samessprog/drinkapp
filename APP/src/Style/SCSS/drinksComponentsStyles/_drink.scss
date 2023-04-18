@@ -54,5 +54,15 @@
 
                 }
             }
+
+            .favouriteStar{
+                fill: gold;
+                transition: $trans-all-02-eio;
+            }
+
+            .un-favouriteStar{
+                fill: black;
+                transition: $trans-all-02-eio;
+            }
         }
     }

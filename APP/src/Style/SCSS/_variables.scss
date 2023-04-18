@@ -11,6 +11,7 @@ $color-light-grey: rgb(185, 184, 184);
 $color-rgb-163-161-161: rgb(163, 161, 161);
 
 //transitions
+$trans-all-02-eio: all .2s ease-in-out;
 $trans-all-03-eio: all .3s ease-in-out;
 $trans-all-05-eio: all .5s ease-in-out;
 
@@ -156,14 +157,17 @@ $font-size-13: 13px;
 
     &.easyLevelClass {
         background-color: rgb(10, 226, 10);
+        margin-right: 0.3rem;
     }
 
     &.mediumLevelClass {
         background-color: rgb(239, 212, 14);
+        margin-right: 0.3rem;
     }
 
     &.hardLevelClass {
         background-color: rgb(255, 111, 0);
+        margin-right: 0.3rem;
     }
 
 

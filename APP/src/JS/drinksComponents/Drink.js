@@ -15,7 +15,7 @@ function Drink({ elm, favourites, setFavourites }) {
     const favouriteHandler = (id) => {
         toggleFavourite(id);
     };
-    
+
     return (
 
         <div className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
@@ -44,8 +44,8 @@ function Drink({ elm, favourites, setFavourites }) {
 
                     <div className="d-flex mt-2 y flex-column flex-md-row justify-content-center">
 
-                        <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap">
-                            <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
+                        <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap me-1">
+                            <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
                             {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${elm.drinkType === 'Sour' ? 'bg-success' : elm.drinkType === 'Alko' ? 'bg-danger' : elm.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
                             <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
                         </div>
@@ -54,10 +54,11 @@ function Drink({ elm, favourites, setFavourites }) {
                     </div>
 
                 </div>
-            </Link>
-            <div onClick={() => favouriteHandler(elm.ID_Drink)} className="position-absolute top-0 end-0 mt-2 me-2">
+            </Link> 
+            
+            <div onClick={() => favouriteHandler(elm.ID_Drink)} className="position-absolute top-0 end-0 mt-2 me-2 ">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">
-                    <path fill={favourites.includes(elm.ID_Drink) ? "gold" : "black"} d="m320 816 160-122 160 122-62.667-197.333 160-113.334H542l-62-204.666-62.667 204.666H222l160 113.334L320 816Zm160 160q-82.333 0-155.333-31.5t-127.334-85.833Q143 804.333 111.5 731.333T80 576q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82.333-31.5 155.333T763 858.667Q709 913 636 944.5T480 976Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666 436.667 146.666 576q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480 576Z" />
+                    <path className= { favourites.includes(elm.ID_Drink) ? "favouriteStar" : "un-favouriteStar" }  d="m320 816 160-122 160 122-62.667-197.333 160-113.334H542l-62-204.666-62.667 204.666H222l160 113.334L320 816Zm160 160q-82.333 0-155.333-31.5t-127.334-85.833Q143 804.333 111.5 731.333T80 576q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82.333-31.5 155.333T763 858.667Q709 913 636 944.5T480 976Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666 436.667 146.666 576q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480 576Z" />
                 </svg>
             </div>
 
