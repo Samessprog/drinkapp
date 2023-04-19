@@ -26,8 +26,23 @@ app.use(cors());
 app.post('/api/register', (req, res) => {
   const { email, password, rePassword, phone } = req.body;
 
+  // Sprawdzenie, czy hasła są zgodne
   if (password !== rePassword) {
     res.status(400).json({ success: false, message: 'Passwords do not match' });
+    return;
+  }
+
+  // Sprawdzenie poprawności numeru telefonu
+  const phoneRegex = /^\+?\d{0,12}$/;
+  if (!phoneRegex.test(phone)) {
+    res.status(400).json({ success: false, message: 'Invalid phone number' });
+    return;
+  }
+
+  // Sprawdzenie poprawności hasła
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    res.status(400).json({ success: false, message: 'Invalid password format' });
     return;
   }
 
@@ -43,7 +58,6 @@ app.post('/api/register', (req, res) => {
     res.json({ success: true });
   });
 });
-
 
 
 //LOGIN
