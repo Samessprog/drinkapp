@@ -21,8 +21,36 @@ const drinksState = {
   drinkTaste: 'All',
   eachdrinkflag: false,
   drinkCounter: 0,
-  ingredient:[],
+  ingredient: [],
 };
+
+const userState = {
+  email: '',
+  password: '',
+};
+
+
+function userReducer(state = userState, action) {
+  switch (action.type) {
+    //login & register states
+    case 'SET_USER_EMAIL':
+      return {
+        ...state,
+        email: action.payload,
+      };
+    case 'SET_USER_PASSWORD':
+      return {
+        ...state,
+        password: action.payload,
+      };
+    /* Settings States  */
+    default:
+      return state;
+  }
+}
+
+
+
 
 
 function drinksReducer(state = drinksState, action) {
@@ -107,11 +135,11 @@ function navbarReducer(state = navbarState, action) {
         ...state,
         drinkNotFound: action.payload,
       };
-      case 'SET_INPUT_DRINK_TEXT':
-        return {
-          ...state,
-          inputDrinkText: action.payload,
-        };
+    case 'SET_INPUT_DRINK_TEXT':
+      return {
+        ...state,
+        inputDrinkText: action.payload,
+      };
 
     default:
       return state;
@@ -121,6 +149,7 @@ function navbarReducer(state = navbarState, action) {
 const rootReducer = combineReducers({
   navbar: navbarReducer,
   drink: drinksReducer,
+  user:userReducer,
 });
 
 const store = createStore(rootReducer);

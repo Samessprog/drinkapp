@@ -18,6 +18,10 @@ const SET_INPUT_DRINKS_TEXT = 'SET_INPUT_DRINKS_TEXT';
 const SET_DRINKS_COUNTER = 'SET_DRINKS_COUNTER';
 const SET_INGREDIENTS = 'SET_INGREDIENTS';
 
+//Users Actions
+const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
+const SET_USER_EMAIL = 'SET_USER_EMAIL';
+
 
 // //Export NavBar Actions
 // export {
@@ -132,4 +136,20 @@ export function setInputDrinkText(value) {
         payload: value
     };
 }
+
+export function setEmail(value) {
+    return {
+        type: SET_USER_EMAIL,
+        payload: value
+    };
+}
+
+
+export function setPassword(value) {
+    return {
+        type: SET_USER_PASSWORD,
+        payload: value
+    };
+}
+
 
