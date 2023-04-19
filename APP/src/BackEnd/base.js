@@ -59,13 +59,9 @@ app.post('/api/register', (req, res) => {
   });
 });
 
-
 //LOGIN
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
-
-  console.log(email)
-  console.log(password)
 
   db.query('SELECT * FROM users WHERE email = ?', email, (err, results) => {
     if (err) {
@@ -80,7 +76,6 @@ app.post('/api/login', (req, res) => {
     }
 
     const user = results[0];
-
 
     if (password !== user.Password) {
       res.status(401).json({ success: false, message: 'Incorrect password' });

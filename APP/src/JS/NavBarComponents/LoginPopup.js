@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
 
 function LoginPopup({ setLoginPopup, setRegisterPopup }) {
     const dispatch = useDispatch();
 
-    const email =  useSelector(state => state.user.email)
-    const password =  useSelector(state => state.user.password)
+    const email = useSelector(state => state.user.email)
+    const password = useSelector(state => state.user.password)
 
-    
-      const handleLogin = (event) => {
+    const [loginError, setLoginError] = useState(null);
+
+    const handleLogin = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
@@ -19,10 +20,16 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
             }
         })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+            .then(data => {
+                if (!data.success) {
+                    throw new Error(data.message);
+                }
+                // Do something with the data
+            })
+            .catch(error => {
+                setLoginError([error.message]);
+            });
     };
-
 
 
 
@@ -54,8 +61,15 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
                         </div>
                     </div>
 
-                    <div className="mt-4 mb-4">
-                        <button  type="submit"  className="btn btn-dark">Login</button>
+                    <div>
+                        <div className="mt-2 text-danger">
+
+                            {loginError}
+                        </div>
+                    </div>
+
+                    <div className="mt-2 mb-4">
+                        <button type="submit" className="btn btn-dark">Login</button>
                     </div>
                 </form>
 
