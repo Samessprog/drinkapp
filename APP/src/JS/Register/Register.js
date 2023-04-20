@@ -79,7 +79,7 @@ function Registers({ setLoginPopup, setRegisterPopup }) {
 
                     </div>
 
-                    <div className="mt-2 text-danger">
+                    <div className="mt-2 login-register-errors ">
 
                         {registerError}
 

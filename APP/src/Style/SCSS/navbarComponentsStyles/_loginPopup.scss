@@ -36,7 +36,7 @@
     .login-register-input-data {
         background-color: transparent;
         border: none;
-        color: rgb(0, 0, 0);
+        color: rgb(221, 221, 221);
         outline: none;
 
         &::placeholder {
@@ -56,5 +56,9 @@
         padding-left: 3rem;
         padding-right: 3rem;
 
+    }
+    .login-register-errors{
+        color: white;
+        border-bottom: 1px solid white;
     }
 }
