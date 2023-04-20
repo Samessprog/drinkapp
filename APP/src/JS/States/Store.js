@@ -27,6 +27,7 @@ const drinksState = {
 const userState = {
   email: '',
   password: '',
+  useSesion: null,
 };
 
 
@@ -43,7 +44,11 @@ function userReducer(state = userState, action) {
         ...state,
         password: action.payload,
       };
-    /* Settings States  */
+      case 'SET_USER_SESSION':
+        return {
+          ...state,
+          useSesion: action.payload,
+        };
     default:
       return state;
   }

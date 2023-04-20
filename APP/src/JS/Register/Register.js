@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setEmail, setPassword } from "../States/actions";
+import { setEmail, setPassword,setRegisterPopup,setLoginPopup } from "../States/actions";
+
+
 
 function Registers({ setLoginPopup, setRegisterPopup }) {
 
@@ -32,6 +34,9 @@ function Registers({ setLoginPopup, setRegisterPopup }) {
           setRegisterError(data.message);
         } else {
           setRegisterError(null);
+          dispatch(setRegisterPopup(false))
+          dispatch(setLoginPopup(true))
+          alert('Registration was successful')
         }
       })
       .catch(error => console.error(error));

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
-
+import { setUserSession,setLoginPopup } from "../States/actions";
 
 
 
@@ -12,8 +12,10 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
     const email = useSelector(state => state.user.email)
     const password = useSelector(state => state.user.password)
 
+
     const [loginError, setLoginError] = useState(null);
-    const [useSesion, setUserSesion] = useState([]);
+
+
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -29,17 +31,15 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
                 if (!data.success) {
                     throw new Error(data.message);
                 }
-                const sessionData = data.session;
                 const user = data.user;
-                setUserSesion(user)
-
+                console.log(user)
+                dispatch(setUserSession(user))
+                dispatch(setLoginPopup(false))
             })
             .catch(error => {
                 setLoginError([error.message]);
             });
     };
-
-    console.log(useSesion)
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column">

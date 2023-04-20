@@ -21,6 +21,7 @@ const SET_INGREDIENTS = 'SET_INGREDIENTS';
 //Users Actions
 const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
 const SET_USER_EMAIL = 'SET_USER_EMAIL';
+const SET_USER_SESSION = 'SET_USER_SESSION';
 
 
 // //Export NavBar Actions
@@ -151,5 +152,16 @@ export function setPassword(value) {
         payload: value
     };
 }
+
+
+export function setUserSession(value) {
+    return {
+        type: SET_USER_SESSION,
+        payload: value
+    };
+}
+
+
+
 
 
