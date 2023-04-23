@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect,useState } from "react";
+import React, { Suspense, lazy, useEffect,useState,useContext } from "react";
 import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
 
 
+import { SessionContext } from "./Session/SessionContext";
 import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = lazy(() => import("./drinksComponents/DDE"))
@@ -13,6 +14,8 @@ const DDE = lazy(() => import("./drinksComponents/DDE"))
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
+    const { userSesion} = useContext(SessionContext);
+
 
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
 

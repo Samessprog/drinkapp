@@ -6,7 +6,9 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useSelector } from "react-redux";
 import axios from 'axios';
 
-import { setSpecialOptionsPopup } from "./States/actions";
+
+import { SessionContext } from "./Session/SessionContext";
+import { setSpecialOptionsPopup, setUserSession } from "./States/actions";
 import NavBar from "./NavBarComponents/NavBar";
 import Footer from "./footer/Footer";
 import Home from "./Home";
@@ -17,8 +19,9 @@ const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 function App() {
 
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
-  
-  
+  const userSesion = useSelector(state => state.user.useSesion)
+
+
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Pagiantion offset
@@ -67,29 +70,30 @@ function App() {
 
       />
 
+      <SessionContext.Provider value={{ userSesion , setUserSession }}>
+        <Routes>
 
-      <Routes>
-        <Route path="/" element={
-          <Home
-            setSpecialOptionsPopup={setSpecialOptionsPopup}
-            drinkDatas={drinkDatas}
-            searchingDrink={searchingDrink}
-            specialOptionsPopup={specialOptionsPopup}
-            userScroll={userScroll}
-            setSearchingDrink={setSearchingDrink}
-            offset={offset}
-            setOffset={setOffset}
+          <Route path="/" element={
+            <Home
+              setSpecialOptionsPopup={setSpecialOptionsPopup}
+              drinkDatas={drinkDatas}
+              searchingDrink={searchingDrink}
+              specialOptionsPopup={specialOptionsPopup}
+              userScroll={userScroll}
+              setSearchingDrink={setSearchingDrink}
+              offset={offset}
+              setOffset={setOffset}
 
-          />}>
+            />}>
 
-        </Route>
-        <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
-        <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
-      </Routes>
-
+          </Route>
+          <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+          <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+        </Routes>
+      </SessionContext.Provider>
       <Footer />
 
-    </div>
+    </div >
   );
 }
 

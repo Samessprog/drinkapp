@@ -1,8 +1,8 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useContext } from "react";
 import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./Components/ErrorBoundary";
-
+import { SessionContext } from "./Session/SessionContext";
 
 
 const SpecialDrinks = lazy(() => import("./NavBarComponents/SpecialDrinks"))
@@ -11,6 +11,7 @@ const SpecialDrinks = lazy(() => import("./NavBarComponents/SpecialDrinks"))
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,
     drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset }) {
 
+        const { userSesion} = useContext(SessionContext);
 
     return (
 

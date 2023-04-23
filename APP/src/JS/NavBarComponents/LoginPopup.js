@@ -12,10 +12,7 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
     const email = useSelector(state => state.user.email)
     const password = useSelector(state => state.user.password)
 
-
     const [loginError, setLoginError] = useState(null);
-
-
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -32,7 +29,6 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
                     throw new Error(data.message);
                 }
                 const user = data.user;
-                console.log(user)
                 dispatch(setUserSession(user))
                 dispatch(setLoginPopup(false))
             })

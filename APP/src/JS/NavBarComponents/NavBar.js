@@ -6,8 +6,7 @@ import Searching from "../Components/Searching";
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
-
-
+import { Link } from "react-router-dom";
 
 
 const LoginPopup = lazy(() => import("./LoginPopup"))
@@ -15,13 +14,12 @@ const SetingsPopup = lazy(() => import("./SetingsPopup"))
 const Registers = lazy(() => import("../Register/Register"))
 
 
-
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
 
     const location = useLocation();
     const dispatch = useDispatch();
-
+    
     const [userProfileOptions, setUserProfileOptions] = useState(false)
 
     const loginPopup = useSelector(state => state.navbar.loginPopup);
@@ -97,7 +95,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 <div className="d-flex col-sm-6 col-sm-6  col-xl-5  col-9">
 
                     {/* Wyszukiwarka drinków  */}
-                    {location.key.startsWith('default') &&
+                    {location.pathname.endsWith('/') &&
 
                         <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3 d-flex align-items-center ">
 
@@ -152,7 +150,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
 
                 <div className="">
                     {userSesion === null &&
-                        <div className=" ms-2 mb-3" onClick={() => handlePopup('login')}>Login</div>
+                        <div className=" ms-2 mb-3 fs-5" onClick={() => handlePopup('login')}>Login</div>
                     }
 
                     {userSesion !== null &&
@@ -208,7 +206,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 <div className="Options-Holder-W100">
                     <ul className="d-flex justify-content-center ps-0 navbar-menu">
                         <li className=" ms-2  elm-contents-holder " >
-                            <a className="elm-contents  text-decoration-none" href="/">Home</a>
+                            <Link className="elm-contents text-decoration-none" to="/">Home</Link>
                         </li>
 
                         <li className="ms-2  elm-contents-holder ">
