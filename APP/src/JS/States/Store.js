@@ -28,6 +28,8 @@ const userState = {
   email: '',
   password: '',
   useSesion: null,
+  phone: '',
+  nick: '',
 };
 
 
@@ -49,6 +51,16 @@ function userReducer(state = userState, action) {
           ...state,
           useSesion: action.payload,
         };
+        case 'SET_USER_PHONE':
+          return {
+            ...state,
+            phone: action.payload,
+          };
+          case 'SET_USER_NICK_NAME':
+            return {
+              ...state,
+              nick: action.payload,
+            };
     default:
       return state;
   }

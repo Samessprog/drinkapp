@@ -20,7 +20,8 @@ async function checkEmailExists(email) {
 }
 
 router.post('/', async (req, res) => {
-  const { email, password, rePassword, phone } = req.body;
+  const { email, password, rePassword, phone, Nick } = req.body;
+
 
   // Sprawdzenie, czy hasła są zgodne
   if (password !== rePassword) {
@@ -32,6 +33,13 @@ router.post('/', async (req, res) => {
     res.status(400).json({ success: false, message: 'The email field must be completed' });
     return;
   }
+
+
+  if (Nick === '') {
+    res.status(400).json({ success: false, message: 'The Nick name field must be completed' });
+    return;
+  }
+
 
   // Sprawdzenie poprawności numeru telefonu
   const phoneRegex = /^\+?\d{1,12}$/;
@@ -54,7 +62,10 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  const user = { email, password, phone };
+
+
+
+  const user = { email, password, phone, Nick };
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {
     if (err) {

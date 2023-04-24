@@ -12,7 +12,7 @@ function UserProfile() {
 
     return (
         <div className="user-details-holder">
-            <UserDetails />
+            <UserDetails userSesion={userSesion} />
             <UserFavouriteDrinks />
             <UserOwnDrinks
                 setAddUserNewDrink={setAddUserNewDrink}

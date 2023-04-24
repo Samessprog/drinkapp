@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
-import { setUserSession,setLoginPopup } from "../States/actions";
+import { setUserSession, setLoginPopup, setRegisterPopup} from "../States/actions";
 
 
 
-function LoginPopup({ setLoginPopup, setRegisterPopup }) {
+function LoginPopup( ) {
     const dispatch = useDispatch();
 
     const email = useSelector(state => state.user.email)
@@ -15,6 +15,7 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
     const [loginError, setLoginError] = useState(null);
 
     const handleLogin = (event) => {
+
         event.preventDefault();
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
@@ -36,6 +37,7 @@ function LoginPopup({ setLoginPopup, setRegisterPopup }) {
                 setLoginError([error.message]);
             });
     };
+
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column">

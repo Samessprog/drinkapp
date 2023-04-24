@@ -22,6 +22,8 @@ const SET_INGREDIENTS = 'SET_INGREDIENTS';
 const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
 const SET_USER_EMAIL = 'SET_USER_EMAIL';
 const SET_USER_SESSION = 'SET_USER_SESSION';
+const SET_USER_PHONE = 'SET_USER_PHONE';
+const SET_USER_NICK_NAME = 'SET_USER_NICK_NAME';
 
 
 // //Export NavBar Actions
@@ -160,6 +162,20 @@ export function setUserSession(value) {
         payload: value
     };
 }
+export function setPhone(value) {
+    return {
+        type: SET_USER_PHONE,
+        payload: value
+    };
+}
+
+export function setUserNick(value) {
+    return {
+        type: SET_USER_NICK_NAME,
+        payload: value
+    };
+}
+
 
 
 
