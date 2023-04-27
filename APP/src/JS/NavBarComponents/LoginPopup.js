@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
-import { setUserSession, setLoginPopup, setRegisterPopup} from "../States/actions";
+import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
 
 
 
-function LoginPopup( ) {
+function LoginPopup() {
     const dispatch = useDispatch();
 
     const email = useSelector(state => state.user.email)

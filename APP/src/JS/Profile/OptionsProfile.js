@@ -29,7 +29,9 @@ function OptionsProfile() {
                 <Link to={"userProfile"} className="kk">
                     <li className="DropdownProfilMenu-elm  position-relative">Profile</li>
                 </Link>
-                <li className="DropdownProfilMenu-elm " onClick={handleLogoutClick}>Log&nbsp;out</li>
+                <Link to={"/"} className="kk">
+                    <li className="DropdownProfilMenu-elm " onClick={handleLogoutClick}>Log&nbsp;out</li>
+                </Link>
             </ul>
         </div>
     )
