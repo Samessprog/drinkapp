@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { setEmail, setPhone, setUserNick } from "../States/actions";
+import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
 
 function UserDetails({ userSesion }) {
 
@@ -12,10 +12,15 @@ function UserDetails({ userSesion }) {
     const email = useSelector(state => state.user.email)
     const phone = useSelector(state => state.user.phone)
     const Nick = useSelector(state => state.user.nick)
+    const password = useSelector(state => state.user.password)
+
     const userID = userSesion.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
+    const [newUserPasswordErrors, setNewUserPasswordErrors] = useState('')
 
+    const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
+    const [newPassword, setNewPassword] = useState('')
 
     const UserDataChange = (event) => {
         event.preventDefault();
@@ -43,21 +48,43 @@ function UserDetails({ userSesion }) {
         const file = event.target.files[0];
         const formData = new FormData();
         formData.append('imageData', file);
-      
+
         fetch('http://localhost:3000/api/uploadImage', {
-          method: 'POST',
-          body: formData
+            method: 'POST',
+            body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response from the server
-          console.log(data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      }
-      
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+
+    const userPasswordChanger = (event) => {
+        event.preventDefault();
+        fetch('http://localhost:3000/api/userPasswordChange', {
+            method: 'POST',
+            body: JSON.stringify({ password, newPassword, userID }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('your details have been changed')
+                    setNewUserPasswordErrors('')
+                } else {
+                    setNewUserPasswordErrors([data.message]);
+                }
+            })
+            .catch(error => {
+                setNewUserPasswordErrors([error.message]);
+            });
+    }
 
 
     return (
@@ -100,11 +127,53 @@ function UserDetails({ userSesion }) {
                                 />
                                 <svg style={{ fill: "white", marginRight: "5px" }} xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M360.113 648Q340 648 326 634.113q-14-13.888-14-34Q312 580 325.887 566q13.888-14 34-14Q380 552 394 565.887q14 13.888 14 34Q408 620 394.113 634q-13.888 14-34 14Zm240 0Q580 648 566 634.113q-14-13.888-14-34Q552 580 565.887 566q13.888-14 34-14Q620 552 634 565.887q14 13.888 14 34Q648 620 634.113 634q-13.888 14-34 14ZM480.458 888q130.458 0 221-91T792 576.24q0-23.24-5-52.74-5-29.5-13-51.5-21 5-38 6.5t-40 1.5q-85.964 0-162.482-33.5T397 350q-37 78-93.5 129T170 556q-1 4-1.5 10t-.5 10q0 130 91 221t221.458 91ZM480 960q-79.376 0-149.188-30Q261 900 208.5 847.5T126 725.042q-30-69.959-30-149.5Q96 496 126 426t82.5-122q52.5-52 122.458-82 69.959-30 149.5-30 79.542 0 149.548 30.24 70.007 30.24 121.792 82.08 51.786 51.84 81.994 121.92T864 576q0 79.376-30 149.188Q804 795 752 847.5T629.869 930Q559.738 960 480 960Zm-55-691q46 63 117 101t154 38q12 0 21-.5t23-2.472Q691 336 625 300t-144.51-36q-12.49 0-26.465 1.5T425 269ZM187 471q57-29 95-71.5T342 298q-63 37-100 78t-55 95Zm238-202Zm-83 29Z" /></svg>
                             </div>
-                            <div className="d-flex justify-content-center mt-3">
-                                <button type="submit" className="user-data-button-submit mt-3">Change your Data</button>
+                            <div className="d-flex justify-content-center mt-3 align-items-center ">
+                                <div>
+                                    <button type="submit" className="user-data-button-submit mt-3">Change your Data</button>
+                                </div>
+
+                                <div onClick={() => setpasswordBoxFlag(!passwordBoxFlag)} className="d-flex  mt-3 ms-3">
+                                    <svg style={{ fill: "white", marginRight: "5px" }} xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                                </div>
                             </div>
                         </form>
+
                         <div className="d-flex align-items-center justify-content-center mt-2"> {userChangesErrors ?? ''} </div>
+
+
+
+                        {passwordBoxFlag &&
+
+                            <form className="mt-2" onSubmit={userPasswordChanger}>
+                                <div className="">
+                                    <div className="user-data-box  d-flex justify-content-between align-items-center mt-3">
+                                        <input
+                                            type="password"
+                                            onChange={(event) => dispatch(setPassword(event.target.value))}
+                                            className=" user-data-box-input ps-2"
+                                            placeholder="Current password"
+                                        />
+                                        <svg style={{ fill: "white", marginRight: "5px" }} xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                                    </div>
+                                    <div className="user-data-box  d-flex justify-content-between align-items-center mt-3">
+                                        <input
+                                            type="password"
+                                            onChange={(event) => setNewPassword(event.target.value)}
+                                            className=" user-data-box-input ps-2"
+                                            placeholder="New Password"
+                                        />
+                                        <svg style={{ fill: "white", marginRight: "5px" }} xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center ">
+                                    <button type="submit" className="user-data-button-submit mt-3">Change your Password</button>
+                                </div>
+                            </form>
+
+                        }
+
+                        <div className="d-flex align-items-center justify-content-center mt-2"> {newUserPasswordErrors ?? ''} </div>
+
                     </div>
 
                 </div>

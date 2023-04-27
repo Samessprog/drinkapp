@@ -40,7 +40,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     const [favourites, setFavourites] = useState([]);
     return (
 
-        <main className="main d-flex row justify-content-center me-0 ">
+        <main className="main d-flex row justify-content-center me-0 main-holder">
 
             <div className={isSmallScreen ? 'd-none' : (userScroll ? 'position-sticky position-sticky arrowUP-holder me-3 d-flex flex-row-reverse' : 'd-none')}>
                 <a href="#">

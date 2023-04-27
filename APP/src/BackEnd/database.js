@@ -8,6 +8,7 @@ const userRegister = require('./userRegister');
 const userLogout = require('./logout');
 const userDateChange = require('./userDataChange');
 const userImgChange = require('./uploadUserImage')
+const userPasswordChanger = require('./userPasswordChange')
 
 const port = 3000;
 
@@ -33,6 +34,8 @@ app.use('/api/login', userLoginRouter);
 app.use('/api/register', userRegister);
 app.use('/api/logout', userLogout)
 app.use('/api/userDataChange', userDateChange)
+app.use('/api/userPasswordChange', userPasswordChanger)
+
 app.use('/api/uploadImage', bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ limit: '50mb', extended: true }), userImgChange)
 
 

@@ -21,14 +21,18 @@ body {
     @include pagination;
 }
 
-.arrowUP-holder {
-    top: 80%;
+.main-holder {
+    min-height: 320px;
 
-    .arrow-up {
-        fill: white;
-        
-        &:hover{
-            fill: rgb(251, 210, 156);
+    .arrowUP-holder {
+        top: 80%;
+
+        .arrow-up {
+            fill: white;
+
+            &:hover {
+                fill: rgb(251, 210, 156);
+            }
         }
     }
 }

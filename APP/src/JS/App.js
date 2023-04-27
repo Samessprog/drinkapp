@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import axios from 'axios';
 
 
+
 import { SessionContext } from "./Session/SessionContext";
 import { setSpecialOptionsPopup, setUserSession } from "./States/actions";
 import NavBar from "./NavBarComponents/NavBar";
@@ -60,7 +61,7 @@ function App() {
 
 
   return (
-    <div >
+    <div className="col-12 kop">
 
       <NavBar
         setSpecialOptionsPopup={setSpecialOptionsPopup}
@@ -86,8 +87,8 @@ function App() {
               setOffset={setOffset}
 
             />}>
-
           </Route>
+
           <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
           <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
         </Routes>

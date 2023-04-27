@@ -4,7 +4,7 @@ function Footer() {
 
 
     return (
-        <footer className="mt-5   ">
+        <footer className="mt-5  col-12 ">
             <div className="footer pt-5 ps-3 d-flex flex-column   align-items-center  align-items-md-start flex-md-row  justify-content-evenly pe-4">
 
                 <div className="mb-2">
