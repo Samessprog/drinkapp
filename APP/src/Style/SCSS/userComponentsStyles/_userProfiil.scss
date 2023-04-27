@@ -1,5 +1,6 @@
 @import "../variables.scss";
 
+
 .users-own-deink {
     background: linear-gradient(to top right, rgb(255, 255, 255), rgb(50, 50, 50));
     border: 2px solid black;
@@ -64,19 +65,49 @@
     }
 }
 
+
 .user-img-holder {
-    padding: 2px;
-    background-color: rgb(26, 26, 26);
-    text-align: center;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    overflow: hidden;
+
+    .overlay-user-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        font-size: 17px;
+        letter-spacing: 1px;
+        border-radius: 10px;
+        opacity: 0%;
+        transition: all .4s ease-in-out;
+
+        &:hover {
+            background-color: black;
+            opacity: 80%;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
 
     .user-img {
-        border: 2px solid rgb(255, 255, 255);
-        border-radius: 10px;
         max-height: 350px;
         width: 100%;
-
     }
 }
+
+
 
 .user-details-holder {
     color: $color-white;

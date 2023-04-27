@@ -16,6 +16,7 @@ function UserDetails({ userSesion }) {
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
 
+
     const UserDataChange = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/api/userDataChange', {
@@ -38,17 +39,39 @@ function UserDetails({ userSesion }) {
             });
     }
 
+    const handleImgChange = (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('imageData', file);
+      
+        fetch('http://localhost:3000/api/uploadImage', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the server
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+      
+
 
     return (
         <div className=" col mt-3 ">
+
             <div class="d-flex justify-content-between p-5 flex-column flex-xl-row align-items-center">
                 <div className=" d-flex align-items-center flex-column flex-md-row justify-content-center">
-                    <div className="d-flex justify-content-center  align-items-center col-md-7 col-10 mb-4 me-4 col-xl-6 user-img-holder">
-                        <LazyLoadImage
-                            src="https://assets.puzzlefactory.pl/puzzle/302/116/original.jpg"
-                            effect="blur"
-                            className="img-fluid user-img" alt="Img error"
-                        />
+
+                    <div class="d-flex justify-content-center  align-items-center  user-img-holder col-md-7 col-10 mb-4 me-4 col-xl-6">
+                        <img src="https://assets.puzzlefactory.pl/puzzle/302/116/original.jpg" alt="Img error" class="img-fluid user-img"></img>
+                        <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
+                            Click to change your img
+                            <input onChange={handleImgChange} type="file" name="file-upload" id="file-upload"></input>
+                        </div>
                     </div>
 
                     <div className="d-flex flex-column col-7">
@@ -93,7 +116,7 @@ function UserDetails({ userSesion }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
