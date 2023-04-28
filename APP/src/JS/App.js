@@ -59,7 +59,6 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(userSesion == null)
 
   return (
     <div className="col-12 kop">

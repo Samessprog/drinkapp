@@ -25,38 +25,45 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const hasMatchingIngredientSome = ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
 
-      //Do optymalizacji i dokończenia
       if (inputDrinkText) {
         const drinkName = elm.DrinkName?.toLowerCase();
         const inputText = inputDrinkText.toLowerCase();
 
-
         if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0)) {
+          return elm
+
+        } else if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0)) {
+          if (eachdrinkflag) {
+            if (hasMatchingIngredientSome) { return elm }
+          } else {
+            if (areAllIngredientsIncluded) { return elm }
+          }
+        }
+
+      } else if (!inputDrinkText) {
+        if (isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0) {
+          return elm
+
+        } else if (isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0) {
+
+          if (eachdrinkflag) {
+            if (hasMatchingIngredientSome) { return elm }
+          } else {
+            if (areAllIngredientsIncluded) { return elm }
+          }
+
+        } else if (!(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length !== 0) {
+          if (eachdrinkflag) {
+            if (hasMatchingIngredientSome) { return elm }
+            if (areAllIngredientsIncluded) { return elm }
+          }
+        }else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0){
           return elm
         }
 
-      } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0) {
-        return elm
-
-      } else if (!inputDrinkText && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0) {
-
-        if (eachdrinkflag) {
-          if (hasMatchingIngredientSome) { return elm }
-        } else {
-          if (areAllIngredientsIncluded) { return elm }
-        }
-
-      } else if (!inputDrinkText && !(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length !== 0) {
-        return elm
-      } else {
-        if (eachdrinkflag) {
-          if (hasMatchingIngredientSome) { return elm }
-          if (areAllIngredientsIncluded) { return elm }
-        }
-      }
+      } else { return elm }
     });
   };
-
 
   useEffect(() => {
     const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient);
