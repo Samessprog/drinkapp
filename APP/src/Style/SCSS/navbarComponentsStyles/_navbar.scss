@@ -42,11 +42,13 @@
                 border-radius: 0.938rem;
             }
         }
-
-        .ProfileButton {
-            fill: white;
+        .profileButton-holder{
+            margin-bottom: 1.2rem;
+            .ProfileButton {
+                fill: white;
+            }
         }
-
+       
         .helper {
             cursor: pointer;
             width: 30px;
@@ -58,6 +60,7 @@
         }
 
         .searching-holder {
+
             .searching-input {
                 outline: $d-none;
                 background-color: rgb(16, 16, 16);
@@ -70,9 +73,10 @@
 
             .searching-icon-holder {
                 background-color: rgb(16, 16, 16);
-                top: 22%;
+                top: 45%;
                 right: 2%;
                 display: flex;
+           
 
                 @media (max-width: 560px) {
                     display: none;
@@ -98,7 +102,7 @@
             @media (max-width: 768px) {
                 position: absolute;
                 margin-left: 0;
-                top: 23%;
+                top: 15%;
                 right: 0;
                 margin-right: 0.3rem;
             }

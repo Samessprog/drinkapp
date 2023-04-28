@@ -7,7 +7,7 @@ import { SessionContext } from "../Session/SessionContext";
 
 function DrinkDetails({ searchingDrink }) {
 
-    const { userSesion} = useContext(SessionContext);
+    const { userSesion } = useContext(SessionContext);
 
     let { id } = useParams()
     //Pagination
@@ -26,6 +26,8 @@ function DrinkDetails({ searchingDrink }) {
         setPrep(result.Preparation.split('.'));
         setDrinkDetail(result);
     }, [id]);
+
+
 
     {/*Paginacja*/ }
     const itemPerPage = 1;
@@ -73,10 +75,20 @@ function DrinkDetails({ searchingDrink }) {
                             <article>
                                 <div className="description-holder  overflow-auto ">
                                     <section>
-                                        <label className="fs-5 fw-bolder">{drinksDetail.DrinkName}</label>
+                                        <label className="fs-4 fw-bolder">{drinksDetail.DrinkName}</label>
                                         <p>{drinksDetail.Description} </p>
                                     </section>
                                 </div>
+
+                                {drinksDetail.drinkHistory &&
+                                    <div className="mt-5">
+                                        <label className="fs-4">History:</label>
+                                        <section>
+                                            <div className="description-holder"> {drinksDetail.drinkHistory}</div>
+                                        </section>
+                                    </div>
+                                }
+
                             </article>
                             <div className="d-flex flex-column d-flex  align-items-center">
 
@@ -92,6 +104,7 @@ function DrinkDetails({ searchingDrink }) {
                                 </div>
 
                             </div>
+                            
 
                             <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
@@ -106,7 +119,7 @@ function DrinkDetails({ searchingDrink }) {
                         </div>
                     </div>
 
-                    <div className="img-holder-details  mt-4 mb-5 mt-lg-0 mb-lg-0 col-8 col-sm-6 col-md-5 col-lg-4 ">
+                    <div className="img-holder-details  mt-4   col-8 col-sm-6 col-md-5 col-lg-4 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}
