@@ -5,7 +5,6 @@ import { setDrinkCounter } from "../States/actions";
 
 function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }) {
 
-
   const dispatch = useDispatch();
 
   const alcocholic = useSelector(state => state.drink.alcocholic);
@@ -17,7 +16,6 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
-
     return drinkDatas.filter((elm) => {
 
       const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcocholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
@@ -26,7 +24,6 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const drinkIngredients = elm.Ingredients.toLowerCase();
       const hasMatchingIngredientSome = ingredient.some((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
-
 
       //Do optymalizacji i dokończenia
       if (inputDrinkText) {

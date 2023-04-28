@@ -5,7 +5,7 @@ import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 import { useSelector } from "react-redux";
 import axios from 'axios';
-
+import PrivateRouteq from "./States/PrivateRoute";
 
 
 import { SessionContext } from "./Session/SessionContext";
@@ -59,6 +59,7 @@ function App() {
     fetchData();
   }, []);
 
+  console.log(userSesion == null)
 
   return (
     <div className="col-12 kop">

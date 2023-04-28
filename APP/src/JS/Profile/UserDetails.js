@@ -7,8 +7,6 @@ function UserDetails({ userSesion }) {
 
     const dispatch = useDispatch();
 
-
-
     const email = useSelector(state => state.user.email)
     const phone = useSelector(state => state.user.phone)
     const Nick = useSelector(state => state.user.nick)
@@ -22,69 +20,70 @@ function UserDetails({ userSesion }) {
     const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
     const [newPassword, setNewPassword] = useState('')
 
-    const UserDataChange = (event) => {
-        event.preventDefault();
-        fetch('http://localhost:3000/api/userDataChange', {
-            method: 'POST',
-            body: JSON.stringify({ email, phone, Nick, userID }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('your details have been changed')
-                    setUserChangesErrors('')
-                } else {
-                    setUserChangesErrors([data.message]);
-                }
-            })
-            .catch(error => {
-                setUserChangesErrors([error.message]);
-            });
-    }
+    const API_URL = 'http://localhost:3000/api/';
 
-    const handleImgChange = (event) => {
+    const setContentTypeHeader = () => {
+        return {
+            'Content-Type': 'application/json'
+        };
+    };
+
+    const UserDataChange = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch(`${API_URL}userDataChange`, {
+                method: 'POST',
+                headers: setContentTypeHeader(),
+                body: JSON.stringify({ email, phone, Nick, userID })
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert('your details have been changed');
+                setUserChangesErrors('');
+            } else {
+                setUserChangesErrors([data.message]);
+            }
+        } catch (error) {
+            setUserChangesErrors([error.message]);
+        }
+    };
+
+    const handleImgChange = async (event) => {
         const file = event.target.files[0];
         const formData = new FormData();
         formData.append('imageData', file);
-
-        fetch('http://localhost:3000/api/uploadImage', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response from the server
-                console.log(data);
-            })
-            .catch(error => {
-                console.error(error);
+        try {
+            const response = await fetch(`${API_URL}uploadImage`, {
+                method: 'POST',
+                body: formData
             });
-    }
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-
-    const userPasswordChanger = (event) => {
+    const userPasswordChanger = async (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/api/userPasswordChange', {
-            method: 'POST',
-            body: JSON.stringify({ password, newPassword, userID }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('your details have been changed')
-                    setNewUserPasswordErrors('')
-                } else {
-                    setNewUserPasswordErrors([data.message]);
-                }
-            })
-            .catch(error => {
-                setNewUserPasswordErrors([error.message]);
+        try {
+            const response = await fetch(`${API_URL}userPasswordChange`, {
+                method: 'POST',
+                headers: setContentTypeHeader(),
+                body: JSON.stringify({ password, newPassword, userID })
             });
-    }
+            const data = await response.json();
+            if (data.success) {
+                alert('your details have been changed');
+                setNewUserPasswordErrors('');
+            } else {
+                setNewUserPasswordErrors([data.message]);
+            }
+        } catch (error) {
+            setNewUserPasswordErrors([error.message]);
+        }
+    };
+
 
 
     return (
@@ -105,6 +104,7 @@ function UserDetails({ userSesion }) {
                         <form onSubmit={UserDataChange}>
                             <div className="user-data-box d-flex justify-content-between align-items-center">
                                 <input
+                                    type="email"
                                     onChange={(event) => dispatch(setEmail(event.target.value))}
                                     className="user-data-box-input ps-2"
                                     value={email || userSesion.email}
@@ -113,6 +113,8 @@ function UserDetails({ userSesion }) {
                             </div>
                             <div className="user-data-box d-flex justify-content-between align-items-center mt-3">
                                 <input
+                                    type="tel"
+                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                     onChange={(event) => dispatch(setPhone(event.target.value))}
                                     className=" user-data-box-input ps-2"
                                     value={phone || userSesion.phone}
@@ -121,6 +123,7 @@ function UserDetails({ userSesion }) {
                             </div>
                             <div className="user-data-box  d-flex justify-content-between align-items-center mt-3">
                                 <input
+                                    type="text"
                                     onChange={(event) => dispatch(setUserNick(event.target.value))}
                                     className=" user-data-box-input ps-2"
                                     value={Nick || userSesion.nick}
