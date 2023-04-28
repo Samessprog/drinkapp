@@ -203,7 +203,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
             </div>
 
             <div className={userScroll && window.innerWidth > 768 ? 'main-options-holder d-none' : 'main-options-holder d-flex'} >
-                <div className="Options-Holder-W100">
+                <div className="Options-Holder-W100 ">
                     <ul className="d-flex justify-content-center ps-0 navbar-menu">
                         <li className=" ms-2  elm-contents-holder " >
                             <Link className="elm-contents text-decoration-none" to="/">Home</Link>
