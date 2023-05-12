@@ -175,7 +175,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                         </div>
                     }
 
-
                 </div>
 
                 {loginPopup &&
