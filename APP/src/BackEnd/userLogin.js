@@ -48,6 +48,9 @@ router.post('/', (req, res) => {
     }
 
     const sessionID = uuidv4();
+
+  
+
     req.session.sessionID = sessionID;
 
     req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, userID: user.ID_User };

@@ -6,7 +6,7 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
 
 router.post('/', (req, res) => {
     const { userID, password, newPassword } = req.body;
-   
+  
 
     db.query('SELECT * FROM users WHERE ID_User = ? AND Password = ?', [userID, password], (err, results) => {
 

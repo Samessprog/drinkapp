@@ -22,9 +22,7 @@ function App() {
   
   const userSesion = useSelector(state => state.user.useSesion)
 
-
   const dispatch = useDispatch();
-
 
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
@@ -33,7 +31,7 @@ function App() {
   //Drinks Datas
   const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkDatas, setDrinkData] = React.useState([])
-  //Drink input text
+
 
 
   useEffect(() => {
@@ -43,7 +41,7 @@ function App() {
         if (data.success) {
           const user = data.user;
           dispatch(setUserSession(user));
-          console.log(userSesion)
+          console.log('D')
         }
       });
   }, []);
@@ -65,7 +63,6 @@ function App() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/drinks");
-        //const data = await fetch("http://localhost:3000/api.php")
         setDrinkData(data);
         setSearchingDrink(data);
       } catch (err) {

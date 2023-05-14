@@ -6,11 +6,9 @@ import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
 import { SessionContext } from "../Session/SessionContext";
 import { Navigate } from "react-router-dom";
 
-
-
 function UserProfile() {
     const [addUserNewDrink, setAddUserNewDrink] = useState(false)
-    const { userSesion } = useContext(SessionContext);
+    const userSesion = useContext(SessionContext).userSesion;
 
     if (userSesion === null) {
         return <Navigate to="/" />;

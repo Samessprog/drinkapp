@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
 
 function UserDetails({ userSesion }) {
@@ -28,6 +26,9 @@ function UserDetails({ userSesion }) {
             'Content-Type': 'application/json'
         };
     };
+
+
+
 
     const UserDataChange = async (event) => {
         event.preventDefault();
