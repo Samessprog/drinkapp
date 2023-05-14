@@ -137,7 +137,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
 
                                             />
                                         </Suspense>
-
                                     </ErrorBoundary>
                                 )}
                             </div>

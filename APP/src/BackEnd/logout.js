@@ -6,10 +6,9 @@ const db = require('./DB');
 
 // Configure session middleware
 router.use(session({
-  secret: 'your-secret-key',
+  secret: 'test',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set secure to true if using HTTPS
 }));
 
 // Use cors middleware
@@ -18,7 +17,7 @@ router.use(cors({
   credentials: true
 }));
 
-// Your logout route
+
 router.post('/', (req, res) => {
   req.session.destroy((err) => {
     if (err) {

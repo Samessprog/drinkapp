@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
@@ -84,8 +85,6 @@ function UserDetails({ userSesion }) {
         }
     };
 
-
-
     return (
         <div className=" col mt-3 ">
 
@@ -116,7 +115,7 @@ function UserDetails({ userSesion }) {
                                     type="tel"
                                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                     onChange={(event) => dispatch(setPhone(event.target.value))}
-                                    className=" user-data-box-input ps-2"
+                                    className="user-data-box-input ps-2"
                                     value={phone || userSesion.phone}
                                 />
                                 <svg style={{ fill: "white", marginRight: "5px" }} xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M264 1008q-29.7 0-50.85-21.15Q192 965.7 192 936V216q0-29.7 21.15-50.85Q234.3 144 264 144h432q29.7 0 50.85 21.15Q768 186.3 768 216v720q0 29.7-21.15 50.85Q725.7 1008 696 1008H264Zm0-216v144h432V792H264Zm215.789 108Q495 900 505.5 889.711q10.5-10.29 10.5-25.5Q516 849 505.711 838.5q-10.29-10.5-25.5-10.5Q465 828 454.5 838.289q-10.5 10.29-10.5 25.5Q444 879 454.289 889.5q10.29 10.5 25.5 10.5ZM264 720h432V336H264v384Zm0-456h432v-48H264v48Zm0 528v144-144Zm0-528v-48 48Z" /></svg>
@@ -142,8 +141,6 @@ function UserDetails({ userSesion }) {
                         </form>
 
                         <div className="d-flex align-items-center justify-content-center mt-2"> {userChangesErrors ?? ''} </div>
-
-
 
                         {passwordBoxFlag &&
 
@@ -193,4 +190,10 @@ function UserDetails({ userSesion }) {
 }
 
 export default UserDetails;
+
+
+
+
+
+
 

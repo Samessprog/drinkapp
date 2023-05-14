@@ -4,14 +4,26 @@ const { v4: uuidv4 } = require('uuid');
 const router = express.Router();
 const db = require('./DB');
 
+router.use((req, res, next) => {
+  console.log('Request headers:', req.headers);
+  console.log('Response headers:', res.getHeaders());
+  next();
+});
+
 router.use(session({
   secret: 'my-secret-key',
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    express: 7 * 24 * 60 * 1000, 
+  },
 }));
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
+  
+  res.cookie('my-cookie', 'cookie-value');
+  console.log('Cookies:', req.cookies);
 
   db.query('SELECT * FROM users WHERE email = ?', email, (err, results) => {
     if (err) {
@@ -38,12 +50,13 @@ router.post('/', (req, res) => {
     const sessionID = uuidv4();
     req.session.sessionID = sessionID;
 
-    req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, sessionID: sessionID, userID: user.ID_User };
+    req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, userID: user.ID_User };
 
+    res.cookie('sessionID', sessionID, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
     res.json({ success: true, user: req.session.user });
-
 
   });
 });
+
 
 module.exports = router;

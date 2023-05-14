@@ -22,7 +22,8 @@ function LoginPopup() {
             body: JSON.stringify({ email, password }),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         })
             .then(response => response.json())
             .then(data => {
@@ -37,6 +38,7 @@ function LoginPopup() {
                 setLoginError([error.message]);
             });
     };
+
 
 
     return (

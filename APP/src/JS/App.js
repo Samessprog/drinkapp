@@ -1,11 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import PrivateRouteq from "./States/PrivateRoute";
 
 
 import { SessionContext } from "./Session/SessionContext";
@@ -24,6 +23,9 @@ function App() {
   const userSesion = useSelector(state => state.user.useSesion)
 
 
+  const dispatch = useDispatch();
+
+
   //scroll
   const [userScroll, setUserScroll] = React.useState(false);
   //Pagiantion offset
@@ -32,6 +34,20 @@ function App() {
   const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkDatas, setDrinkData] = React.useState([])
   //Drink input text
+
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/session', { credentials: 'include' })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const user = data.user;
+          dispatch(setUserSession(user));
+          console.log(userSesion)
+        }
+      });
+  }, []);
+
 
 
 
