@@ -4,19 +4,13 @@ import DrinksOptions from "../Components/DrinksOptions";
 import TypeOfDrink from "../Components/TypeOfDrink";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setHighlyRated, setDrinkLevel, setDrinkTaste } from "../States/actions";
+import { setHighlyRated } from "../States/actions";
 
 function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,
     drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
-
-
-    {/* Settings States  */ }
+    /* Settings States  */ 
     const dispatch = useDispatch();
-    const levelHandler = (event) => { dispatch(setDrinkLevel(event.target.value)) }
-    const tasteHandler = (event) => { dispatch(setDrinkTaste(event.target.value)) }
-
-
 
     //Drinks properties states
     const highlyRated = useSelector(state => state.drink.highlyRated);
@@ -31,7 +25,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
 
-               
+
             />
 
             <div className="d-flex flex-row-reverse me-2 mt-2 ">
@@ -60,7 +54,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
 
                     </div>
 
-                    <DrinksOptions levelHandler={levelHandler} tasteHandler={tasteHandler} />
+                    <DrinksOptions  />
 
                 </div>
 

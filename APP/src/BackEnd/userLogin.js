@@ -23,7 +23,6 @@ router.post('/', (req, res) => {
   const { email, password } = req.body;
   
   res.cookie('my-cookie', 'cookie-value');
-  console.log('Cookies:', req.cookies);
 
   db.query('SELECT * FROM users WHERE email = ?', email, (err, results) => {
     if (err) {
@@ -48,8 +47,6 @@ router.post('/', (req, res) => {
     }
 
     const sessionID = uuidv4();
-
-  
 
     req.session.sessionID = sessionID;
 

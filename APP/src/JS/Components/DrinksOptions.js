@@ -1,13 +1,17 @@
 import React from "react";
 
+import { setDrinkLevel, setDrinkTaste } from "../States/actions";
+import { useDispatch } from 'react-redux';
 
-function DrinksOptions({ tasteHandler, levelHandler }) {
+function DrinksOptions() {
+
+    const dispatch = useDispatch();
 
     return (
         <div className="ms-2 multi-options">
             <div className="d-flex">
                 <label className="">Level: </label>
-                <select className=" ms-1 test" onChange={levelHandler}>
+                <select className=" ms-1 test"  onChange={(e) => dispatch(setDrinkLevel(e.target.value))}>
                     <option value={'All'}>All</option>
                     <option value={'Easy'}>Easy</option>
                     <option value={'Medium'}>Medium</option>
@@ -18,7 +22,7 @@ function DrinksOptions({ tasteHandler, levelHandler }) {
 
             <div className="d-flex mt-2">
                 <label className=" ">Taste: </label>
-                <select className=" ms-1 test" onChange={tasteHandler}>
+                <select className=" ms-1 test" onChange={(e) => dispatch(setDrinkTaste(e.target.value))}>
                     <option value={'All'}>All</option>
                     <option value={'Sour'}>Sour</option>
                     <option value={'Sweet'}> Sweet</option>

@@ -62,9 +62,7 @@ router.post('/', async (req, res) => {
     return;
   }
 
-
-
-
+  
   const user = { email, password, phone, Nick };
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {

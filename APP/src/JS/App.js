@@ -35,13 +35,13 @@ function App() {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/session', { credentials: 'include' })
+    fetch('http://localhost:3000/api/userSession', { credentials: 'include' })
       .then(response => response.json())
       .then(data => {
         if (data.success) {
           const user = data.user;
           dispatch(setUserSession(user));
-          console.log('D')
+          
         }
       });
   }, []);
