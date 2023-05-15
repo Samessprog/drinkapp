@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { SessionContext } from "../../Session/SessionContext";
 
 
@@ -22,13 +22,14 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const [drinkLevel, setDrinkLevel] = useState("")
     const [drinkTaste, setDrinkTaste] = useState("")
 
+
     //const [drinkIMG ,setDrinkIMG] = useState("")
 
     const userSesion = useContext(SessionContext).userSesion;
 
+    const [drinkErrors, setDrinkErrors] = useState(null);
 
     const addNewDrinkHandler = async (event) => {
-
         let userID = userSesion.userID
         let userNick = userSesion.nick
 
@@ -42,12 +43,21 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success === false) {
-
+                if (data.error) {
+                    setDrinkErrors(data.error);
+                } else {
+                    // obsługa sukcesu
+                    console.log("Pomyślnie dodano nowy drink!");
                 }
             })
-            .catch(error => console.error(error));
-    }
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
+
+  
+
 
 
     return (
@@ -112,7 +122,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         </div>
                     </div>
 
-                    <div className="d-flex justify-content-end">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <label className="mt-2 text-danger fw-bolder">{drinkErrors}</label>
                         <button type="submit" class="btn btn-success">Add this drink</button>
                     </div>
                 </form>
