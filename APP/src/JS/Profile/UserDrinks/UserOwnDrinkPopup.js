@@ -39,7 +39,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         fetch('http://localhost:3000/api/addNewDrink', {
             method: 'POST',
-            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory,ingredientsOfNewDrink }),
+            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -76,11 +76,29 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         ]);
         setIngredientsOfNewDrinkText('');
     };
-    console.log(ingredientsOfNewDrink)
+
 
     const submitIngreadinetsDeleteHandler = (id) => {
         setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id));
     }
+
+    const [preparationOfNewDrink, setPreparationOfNewDrink] = useState([])
+    const [preparationOfNewDrinkText, setPreparationOfNewDrinkText] = useState('')
+
+    const submitPreparationHandler = () => {
+        const newPreparationText = preparationOfNewDrinkText.trim() + '.';
+        setPreparationOfNewDrink([
+            ...preparationOfNewDrink,
+            { text: newPreparationText, id: uuid() }
+        ]);
+        setPreparationOfNewDrinkText('');
+
+    }
+
+    const submitPreparationDeleteHandler = (id) => {
+        setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id));
+    }
+
 
 
 
@@ -143,7 +161,41 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div>
+                                <div>
+                                    <div className="d-flex mt-4 align-items-center">
+                                        <input
+                                            className="col-7 ing-input"
+                                            onInput={(e) => {
+                                                const inputValue = e.target.value;
+                                                if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
+                                                    setPreparationOfNewDrinkText(inputValue);
+                                                }
+                                            }}
+                                            value={preparationOfNewDrinkText}
+                                            placeholder="Enter preparation"
+                                        />
+                                        <div>
+                                            <div onClick={submitPreparationHandler} className="ms-2 addison-button">ADD</div >
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column mt-1 ing-container">
+                                        {preparationOfNewDrink.map((elm) => (
+                                            <div className=" d-flex justify-content-between col-7 align-items-center">
+                                                <label className="ing col-12">{elm.text}</label>
+                                                <div onClick={() => submitPreparationDeleteHandler(elm.id)} className="me-2 theX btn">
+                                                    X
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                     <div className="ms-2 multi-options">
                         <div className="d-flex">

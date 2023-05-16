@@ -15,6 +15,7 @@ db.connect((err) => {
   }
 });
 
+
 // My Regex
 const drinkNameRegex = /^[a-zA-Z0-9]{1,15}$/;
 const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
@@ -24,7 +25,6 @@ const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
 
 router.post('/', async (req, res) => {
   const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink } = req.body;
-
 
   const joinedIngredients = ingredientsOfNewDrink.reduce(
     (acc, ingredient) => `${acc}${ingredient.text}`,
