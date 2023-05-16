@@ -18,6 +18,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //states for add new drink
     const [drinkName, setDrinkName] = useState("")
     const [drinkdescription, setDrinkDescription] = useState("")
+    const [drinkHistory, setDrinkHistory] = useState("")
     const [drinkType, setDrinkType] = useState("")
     const [drinkLevel, setDrinkLevel] = useState("")
     const [drinkTaste, setDrinkTaste] = useState("")
@@ -36,7 +37,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         fetch('http://localhost:3000/api/addNewDrink', {
             method: 'POST',
-            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick }),
+            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -77,8 +78,12 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                 <input onChange={(e) => setDrinkName(e.target.value)} className="col-10 own-drink-input-name p-1 ps-2" type="text" placeholder="Enter drink name"></input>
                             </div>
                             <div className="col-10">
-                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink, inclue history itp"></textarea>
+                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink"></textarea>
                             </div>
+                            <div className="col-10">
+                                <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)"></textarea>
+                            </div>
+                            
                         </div>
                         <div className="col-6 ">
                             <div className="col-12 col-lg-12 col-xl-8 drink-img-box"><img className="img-fluid own-drink-img-holder " src={imageSrc} alt="Uploaded file" /> </div>

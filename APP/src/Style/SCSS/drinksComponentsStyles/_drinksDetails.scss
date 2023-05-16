@@ -22,9 +22,11 @@
 
         .img-holder-details {
             margin-bottom: 15rem;
+            max-width: 400px;
             @media (max-width: 400px) {
                 width: 100%;
             }
+
             @media (max-width: 1200px) {
                 margin-bottom: 3rem;
             }
@@ -38,10 +40,12 @@
         }
 
         .description-holder {
-            max-width: $n-700px;
-            max-height: $n-300px;
+            max-width: 700px;
+            max-height: 400px;
             text-align: justify;
             text-justify: inter-word;
+            overflow-y: auto !important;
+            
         }
 
         .ingrediets-list {

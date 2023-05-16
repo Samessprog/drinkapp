@@ -8,11 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
 import { Link } from "react-router-dom";
 
-
 const LoginPopup = lazy(() => import("./LoginPopup"))
 const SetingsPopup = lazy(() => import("./SetingsPopup"))
 const Registers = lazy(() => import("../Register/Register"))
-
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
@@ -99,7 +97,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
 
                         <div className="searching-holder position-relative  pb-3 col-sm-12 ms-3 d-flex align-items-center ">
 
-                            <div className="col-12 position-relative">
+                            <div className="col-12 col-xl-10  position-relative">
                                 <input
                                     onChange={event => dispatch(setInputDrinkText(event.target.value))}
                                     type="text"
@@ -117,7 +115,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                 { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
 
 
-                                <button className="settings-button border-0" onClick={() => handlePopup('settings')}>
+                                <button className="settings-button border-0 mb-md-2" onClick={() => handlePopup('settings')}>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                         <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                     </svg>
@@ -140,11 +138,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                     </ErrorBoundary>
                                 )}
                             </div>
-
                         </div>
                     }
-
-
                 </div>
 
                 <div className="">

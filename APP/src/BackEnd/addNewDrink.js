@@ -20,9 +20,10 @@ const drinkNameRegex = /^[a-zA-Z0-9]{1,15}$/;
 const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
 const drinkLevelAndTasteRegex = /^(?!ALL$).+$/;
 const drinkTypeRegex = /^(Alcoholic|Soft)$/;
+const drinkHistoryRegex =/^[a-zA-Z0-9 ]{0,500}$/;
 
 router.post('/', async (req, res) => {
-  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick } = req.body;
+  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory } = req.body;
 
   // Walidacja pól
   if (!drinkNameRegex.test(drinkName)) {
@@ -31,9 +32,15 @@ router.post('/', async (req, res) => {
   }
 
   if (!drinkdescriptionRegex.test(drinkdescription)) {
-    res.status(400).send({ error: 'Invalid drink description the description should be between 30 and 400 characters' });
+    res.status(400).send({ error: 'Invalid drink description the description should be between 30 and 500 characters' });
     return;
   }
+
+  if (!drinkHistoryRegex.test(drinkHistory)) {
+    res.status(400).send({ error: 'Invalid drink history the description should be maximum 500 characters' });
+    return;
+  }
+
 
   if (!drinkLevelAndTasteRegex.test(drinkLevel) || !drinkLevelAndTasteRegex.test(drinkTaste)) {
     res.status(400).send({ error: 'Invalid drink level or taste' });
@@ -49,12 +56,12 @@ router.post('/', async (req, res) => {
   const IMG = 'https://static.fajnegotowanie.pl/media/uploads/media_image/original/przepis/3626/drink-z-truskawkami.jpg';
   const ING = 'wódka - 80 ml.likier brzoskwiniowy - 40 ml.sok pomarańczowy - 80 ml.sok żurawinowy - 80 ml.kakao.kostki lodu';
   const Prep = 'Brzegi kieliszków przetrzeć kawałkiem limonki i obsypać z zewnętrznej strony solą morską (lub kieliszki postawić do góry dnem w soli rozsypanej na talerzu). Do shakera wsypać kostki lodu, dodać Tequilę, brandy, Cointreau, sour mix oraz sok z limonki i dokładnie wymieszać. Przelać przez sitko do kieliszków. Udekorować plasterkami limonki.';
-  const his = 's';
+
 
 
 
     try {
-        const result = await db.query(`INSERT INTO drink (DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES ('${drinkName}', '${drinkLevel}', '${userNick}', '${drinkTaste}', '${drinkType}', '${drinkdescription}', '${ING}', '${IMG}', '${Prep}', '${his}', '${userID}')`);
+        const result = await db.query(`INSERT INTO drink (DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES ('${drinkName}', '${drinkLevel}', '${userNick}', '${drinkTaste}', '${drinkType}', '${drinkdescription}', '${ING}', '${IMG}', '${Prep}', '${drinkHistory}', '${userID}')`);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);

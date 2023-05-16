@@ -73,7 +73,7 @@ function DrinkDetails({ searchingDrink }) {
 
                         <div className="mt-5">
                             <article>
-                                <div className="description-holder  overflow-auto ">
+                                <div className="description-holder overflow-y-auto"> 
                                     <section>
                                         <label className="fs-4 fw-bolder">{drinksDetail.DrinkName}</label>
                                         <p>{drinksDetail.Description} </p>
@@ -84,7 +84,7 @@ function DrinkDetails({ searchingDrink }) {
                                     <div className="mt-5">
                                         <label className="fs-4">History:</label>
                                         <section>
-                                            <div className="description-holder"> {drinksDetail.drinkHistory}</div>
+                                            <div className="description-holder overflow-auto"> {drinksDetail.drinkHistory}</div>
                                         </section>
                                     </div>
                                 }
@@ -104,7 +104,7 @@ function DrinkDetails({ searchingDrink }) {
                                 </div>
 
                             </div>
-                            
+
 
                             <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
@@ -119,7 +119,7 @@ function DrinkDetails({ searchingDrink }) {
                         </div>
                     </div>
 
-                    <div className="img-holder-details  mt-4   col-8 col-sm-6 col-md-5 col-lg-4 ">
+                    <div className="img-holder-details  mt-4  col-8 col-sm-6 col-md-5 col-lg-4 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}
