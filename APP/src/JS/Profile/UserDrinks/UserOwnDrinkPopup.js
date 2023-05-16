@@ -39,7 +39,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         fetch('http://localhost:3000/api/addNewDrink', {
             method: 'POST',
-            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory }),
+            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory,ingredientsOfNewDrink }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -52,7 +52,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 setDrinkLevel('All')
                 setDrinkTaste('All')
                 setIsSucces(true)
-
+                setIngredientsOfNewDrink([])
                 return response.json()
             })
             .then(data => {
@@ -69,12 +69,17 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
 
     const submitIngreadinetsHandler = () => {
-
+        const newIngredientText = ingredientsOfNewDrinkText.trim() + '.';
         setIngredientsOfNewDrink([
             ...ingredientsOfNewDrink,
-            { text: ingredientsOfNewDrinkText, id: uuid() }
-        ])
-        setIngredientsOfNewDrinkText('')
+            { text: newIngredientText, id: uuid() }
+        ]);
+        setIngredientsOfNewDrinkText('');
+    };
+    console.log(ingredientsOfNewDrink)
+
+    const submitIngreadinetsDeleteHandler = (id) => {
+        setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id));
     }
 
 
@@ -110,14 +115,31 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
                             <div>
                                 <div>
-                                    <div className="d-flex mt-4">
-                                        <input className="col-7" onInput={(e) => setIngredientsOfNewDrinkText(e.target.value)} value={ingredientsOfNewDrinkText} placeholder="type your ingredients"></input>
+                                    <div className="d-flex mt-4 align-items-center">
+                                        <input
+                                            className="col-7 ing-input"
+                                            onInput={(e) => {
+                                                const inputValue = e.target.value;
+                                                if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
+                                                    setIngredientsOfNewDrinkText(inputValue);
+                                                }
+                                            }}
+                                            value={ingredientsOfNewDrinkText}
+                                            placeholder="type your ingredients"
+                                        />
                                         <div>
-                                            <div onClick={submitIngreadinetsHandler}> ADD</div >
+                                            <div onClick={submitIngreadinetsHandler} className="ms-2 addison-button">ADD</div >
                                         </div>
                                     </div>
-                                    <div className="d-flex flex-column mt-1">
-                                        {ingredientsOfNewDrink.map((elm) => <div className="mt-2 d-flex justify-content-between col-8"> <label >{elm.text}</label> <div>X</div></div>)}
+                                    <div className="d-flex flex-column mt-1 ing-container">
+                                        {ingredientsOfNewDrink.map((elm) => (
+                                            <div className=" d-flex justify-content-between col-7 align-items-center">
+                                                <label className="ing col-12">{elm.text}</label>
+                                                <div onClick={() => submitIngreadinetsDeleteHandler(elm.id)} className="me-2 theX btn">
+                                                    X
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
