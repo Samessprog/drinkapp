@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { SessionContext } from "../../Session/SessionContext";
-
+import { v4 as uuid } from 'uuid';
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //state for drinkImg
@@ -30,6 +30,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     const [drinkErrors, setDrinkErrors] = useState(null);
 
+    const [isSucces, setIsSucces] = useState(false)
+
     const addNewDrinkHandler = async (event) => {
         let userID = userSesion.userID
         let userNick = userSesion.nick
@@ -42,22 +44,38 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => response.json())
+            .then(response => {
+                setDrinkName('')
+                setDrinkDescription('')
+                setDrinkHistory('')
+                setDrinkType('')
+                setDrinkLevel('All')
+                setDrinkTaste('All')
+                setIsSucces(true)
+
+                return response.json()
+            })
             .then(data => {
                 if (data.error) {
                     setDrinkErrors(data.error);
-                } else {
-                    // obsługa sukcesu
-                    console.log("Pomyślnie dodano nowy drink!");
+                    setIsSucces(false)
                 }
             })
             .catch(error => {
                 console.error(error);
             });
     };
+    const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
+    const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
 
+    const submitIngreadinetsHandler = () => {
 
-  
+        setIngredientsOfNewDrink([
+            ...ingredientsOfNewDrink,
+            { text: ingredientsOfNewDrinkText, id: uuid() }
+        ])
+        setIngredientsOfNewDrinkText('')
+    }
 
 
 
@@ -75,27 +93,40 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     <div className="d-flex justify-content-between col-12">
                         <div className="col-6">
                             <div className="mb-3 own-drink-box-input col-10">
-                                <input onChange={(e) => setDrinkName(e.target.value)} className="col-10 own-drink-input-name p-1 ps-2" type="text" placeholder="Enter drink name"></input>
+                                <input onChange={(e) => setDrinkName(e.target.value)} className="col-10 own-drink-input-name p-1 ps-2" type="text" placeholder="Enter drink name" value={drinkName} ></input>
                             </div>
                             <div className="col-10">
-                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink"></textarea>
+                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink" value={drinkdescription}></textarea>
                             </div>
                             <div className="col-10">
-                                <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)"></textarea>
+                                <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)" value={drinkHistory}></textarea>
                             </div>
-                            
+
                         </div>
-                        <div className="col-6 ">
-                            <div className="col-12 col-lg-12 col-xl-8 drink-img-box"><img className="img-fluid own-drink-img-holder " src={imageSrc} alt="Uploaded file" /> </div>
+                        <div className="col-6 d-flex flex-column">
                             <label className="mt-3 file-upload">
                                 <input className="file-drink-input" type="file" accept="image/*" capture="user" onChange={handleFileInputChange} />
                             </label>
+
+                            <div>
+                                <div>
+                                    <div className="d-flex mt-4">
+                                        <input className="col-7" onInput={(e) => setIngredientsOfNewDrinkText(e.target.value)} value={ingredientsOfNewDrinkText} placeholder="type your ingredients"></input>
+                                        <div>
+                                            <div onClick={submitIngreadinetsHandler}> ADD</div >
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column mt-1">
+                                        {ingredientsOfNewDrink.map((elm) => <div className="mt-2 d-flex justify-content-between col-8"> <label >{elm.text}</label> <div>X</div></div>)}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="ms-2 multi-options">
                         <div className="d-flex">
                             <label className="">Level: </label>
-                            <select className=" ms-1 test" onChange={(e) => setDrinkLevel(e.target.value)}>
+                            <select className=" ms-1 test" onChange={(e) => setDrinkLevel(e.target.value)} value={drinkLevel}>
                                 <option value={'All'}>All</option>
                                 <option value={'Easy'}>Easy</option>
                                 <option value={'Medium'}>Medium</option>
@@ -106,7 +137,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
                         <div className="d-flex mt-2">
                             <label className=" ">Taste: </label>
-                            <select className=" ms-1 test" onChange={(e) => setDrinkTaste(e.target.value)}>
+                            <select className=" ms-1 test" onChange={(e) => setDrinkTaste(e.target.value)} value={drinkTaste}>
                                 <option value={'All'}>All</option>
                                 <option value={'Sour'}>Sour</option>
                                 <option value={'Sweet'}> Sweet</option>
@@ -116,7 +147,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     </div>
                     <div className="ms-2 mt-2">
                         <div className="d-flex mt-1">
-                            <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="alcoholic" value="Alcoholic"></input>
+                            <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="alcoholic" value="Alcoholic" ></input>
                             <label className="ms-1" for="alcoholic">Alcoholic</label>
                         </div>
 
@@ -128,7 +159,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center">
-                        <label className="mt-2 text-danger fw-bolder">{drinkErrors}</label>
+                        <label className="mt-2 text-danger fw-bolder">{isSucces === true ? '' : drinkErrors} </label>
                         <button type="submit" class="btn btn-success">Add this drink</button>
                     </div>
                 </form>

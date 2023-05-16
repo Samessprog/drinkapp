@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
   }
 
 
-  if (!drinkLevelAndTasteRegex.test(drinkLevel) || !drinkLevelAndTasteRegex.test(drinkTaste)) {
+  if (drinkTaste === 'All' && drinkLevel === 'All') {
     res.status(400).send({ error: 'Invalid drink level or taste' });
     return;
   }

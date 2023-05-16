@@ -15,6 +15,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
 
 
     const dispatch = useDispatch();
+
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
 
 
@@ -30,7 +31,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
         setIngredientText("")
     }
 
-
+    
 
     const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
 
