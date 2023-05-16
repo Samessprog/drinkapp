@@ -24,9 +24,17 @@ const drinkTypeRegex = /^(Alcoholic|Soft)$/;
 const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
 
 router.post('/', async (req, res) => {
-  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink } = req.body;
+  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink,preparationOfNewDrink } = req.body;
+
+
 
   const joinedIngredients = ingredientsOfNewDrink.reduce(
+    (acc, ingredient) => `${acc}${ingredient.text}`,
+    ''
+  );
+
+
+  const joinedPreparation= preparationOfNewDrink.reduce(
     (acc, ingredient) => `${acc}${ingredient.text}`,
     ''
   );
@@ -62,13 +70,12 @@ router.post('/', async (req, res) => {
 
   // Przykładowe dane
   const IMG = 'https://static.fajnegotowanie.pl/media/uploads/media_image/original/przepis/3626/drink-z-truskawkami.jpg';
-  const Prep = 'Brzegi kieliszków przetrzeć kawałkiem limonki i obsypać z zewnętrznej strony solą morską (lub kieliszki postawić do góry dnem w soli rozsypanej na talerzu). Do shakera wsypać kostki lodu, dodać Tequilę, brandy, Cointreau, sour mix oraz sok z limonki i dokładnie wymieszać. Przelać przez sitko do kieliszków. Udekorować plasterkami limonki.';
 
 
 
 
   try {
-    const result = await db.query(`INSERT INTO drink (DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES ('${drinkName}', '${drinkLevel}', '${userNick}', '${drinkTaste}', '${drinkType}', '${drinkdescription}', '${joinedIngredients}', '${IMG}', '${Prep}', '${drinkHistory}', '${userID}')`);
+    const result = await db.query(`INSERT INTO drink (DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES ('${drinkName}', '${drinkLevel}', '${userNick}', '${drinkTaste}', '${drinkType}', '${drinkdescription}', '${joinedIngredients}', '${IMG}', '${joinedPreparation}', '${drinkHistory}', '${userID}')`);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);

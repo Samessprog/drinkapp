@@ -39,7 +39,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         fetch('http://localhost:3000/api/addNewDrink', {
             method: 'POST',
-            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink }),
+            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink,preparationOfNewDrink }),
             headers: {
                 'Content-Type': 'application/json'
             }
