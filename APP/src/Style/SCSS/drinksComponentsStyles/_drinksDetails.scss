@@ -23,6 +23,9 @@
         .img-holder-details {
             margin-bottom: 15rem;
             max-width: 400px;
+            max-height: 600px;
+
+
             @media (max-width: 400px) {
                 width: 100%;
             }
@@ -36,6 +39,8 @@
 
             .img-helper {
                 border: black 2px solid;
+                max-height: 600px;
+
             }
         }
 
@@ -45,7 +50,7 @@
             text-align: justify;
             text-justify: inter-word;
             overflow-y: auto !important;
-            
+
         }
 
         .ingrediets-list {

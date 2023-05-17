@@ -119,12 +119,12 @@ function DrinkDetails({ searchingDrink }) {
                         </div>
                     </div>
 
-                    <div className="img-holder-details  mt-4  col-8 col-sm-6 col-md-5 col-lg-4 ">
+                    <div className="img-holder-details  mt-4  col-8 col-sm-6 col-md-5 col-lg-3 ">
 
                         <LazyLoadImage
                             src={drinksDetail.IMG}
                             effect="blur"
-                            className="img-fluid img-helper " alt="Img error"
+                            className="img-fluid img-helper col-12" alt="Img error"
 
                         />
 

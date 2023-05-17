@@ -22,9 +22,11 @@ const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
 const drinkLevelAndTasteRegex = /^(?!ALL$).+$/;
 const drinkTypeRegex = /^(Alcoholic|Soft)$/;
 const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
+const indANDprepRegex = /^[A-Za-z0-9.]+$/;
+
 
 router.post('/', async (req, res) => {
-  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink,preparationOfNewDrink } = req.body;
+  const { drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink, preparationOfNewDrink } = req.body;
 
 
 
@@ -34,12 +36,12 @@ router.post('/', async (req, res) => {
   );
 
 
-  const joinedPreparation= preparationOfNewDrink.reduce(
+  const joinedPreparation = preparationOfNewDrink.reduce(
     (acc, ingredient) => `${acc}${ingredient.text}`,
     ''
   );
 
- 
+
 
   // Walidacja pól
   if (!drinkNameRegex.test(drinkName)) {
