@@ -13,6 +13,8 @@ router.use(session({
 }));
 
 router.get('/', (req, res, next) => {
+  console.log('hgh')
+
   if (!req.session || !req.session.user) {
       return res.status(401).json({ message: 'Unauthorized' });
   }

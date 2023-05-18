@@ -55,6 +55,7 @@ app.use('/api/uploadImage', bodyParser.json({ limit: '50mb' }), bodyParser.urlen
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
   const user = req.session.user;
+  console.log(user);
   res.json({ sessionId, user });
 });
 

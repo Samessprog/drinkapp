@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -19,7 +19,7 @@ const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
 function App() {
 
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
-  
+
   const userSesion = useSelector(state => state.user.useSesion)
 
   const dispatch = useDispatch();
@@ -34,18 +34,20 @@ function App() {
 
 
 
+  const [userData, setUserData] = useState(null);
+
   useEffect(() => {
-    fetch('http://localhost:3000/api/userSession', { credentials: 'include' })
+    fetch('http://localhost:3000/api/session', {
+      credentials: 'include'
+    })
       .then(response => response.json())
       .then(data => {
-        if (data.success) {
+        if (data.user) {
           const user = data.user;
-          dispatch(setUserSession(user));
-          
+          dispatch(setUserSession(user))
         }
       });
   }, []);
-
 
 
 
@@ -85,7 +87,7 @@ function App() {
 
       />
 
-      <SessionContext.Provider value={{ userSesion , setUserSession }}>
+      <SessionContext.Provider value={{ userSesion, setUserSession }}>
         <Routes>
 
           <Route path="/" element={
