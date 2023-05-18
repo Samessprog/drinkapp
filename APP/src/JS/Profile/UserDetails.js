@@ -27,9 +27,6 @@ function UserDetails({ userSesion }) {
         };
     };
 
-
-
-
     const UserDataChange = async (event) => {
         event.preventDefault();
         try {
