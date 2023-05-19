@@ -33,36 +33,44 @@ function App() {
   const [drinkDatas, setDrinkData] = React.useState([])
 
 
+
   React.useEffect(() => {
+
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1);
     };
 
+    window.addEventListener("scroll", setFixed);
+    return () => window.removeEventListener("scroll", setFixed);
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/session', {
+      credentials: 'include'
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.user) {
+          dispatch(setUserSession(data.user))
+        }
+      });
+  }, []);
+
+
+
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const sessionResponse = await fetch('http://localhost:3000/api/session', {
-          credentials: 'include'
-        });
-        const sessionData = await sessionResponse.json();
-        if (sessionData.user) {
-          dispatch(setUserSession(sessionData.user));
-        }
-
-        const drinksResponse = await axios.get("http://localhost:3001/drinks");
-        const drinksData = drinksResponse.data;
-        setDrinkData(drinksData);
-        setSearchingDrink(drinksData);
+        const { data } = await axios.get("http://localhost:3001/drinks");
+        setDrinkData(data);
+        setSearchingDrink(data);
       } catch (err) {
         console.log(err);
       }
-    };
+      };
+        
 
-    window.addEventListener("scroll", setFixed);
     fetchData();
-
-    return () => {
-      window.removeEventListener("scroll", setFixed);
-    };
   }, []);
 
 

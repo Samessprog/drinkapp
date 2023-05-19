@@ -71,7 +71,7 @@ function DrinkDetails({ searchingDrink }) {
 
                         {/*Opis i składniki do drinku  */}
 
-                        <div className="mt-5">
+                        <div className="mt-5 ">
                             <article>
                                 <div className="description-holder overflow-y-auto"> 
                                     <section>
@@ -91,8 +91,8 @@ function DrinkDetails({ searchingDrink }) {
 
                             </article>
                             <div className="d-flex flex-column d-flex  align-items-center">
-
-                                <label className="fs-4 fw-bolder">Specifications</label>
+ 
+                                <label className="fs-4 fw-bolder mt-5">Specifications</label>
 
                                 <div className="d-flex  mt-3 basic-information-drink">
 

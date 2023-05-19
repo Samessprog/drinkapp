@@ -18,7 +18,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
 
     return drinkDatas.filter((elm) => {
 
-      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcocholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
+      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcoholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
       const isDifficultyLevelMatch = drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel;
       const isTasteMatch = drinkTaste === 'All' || drinkTaste === elm.Taste;
       const drinkIngredients = elm.Ingredients.toLowerCase();

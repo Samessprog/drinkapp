@@ -49,11 +49,13 @@ app.use('/api/userPasswordChange', userPasswordChanger);
 //Apps for drinks 
 app.use('/api/addNewDrink', addNewDrink);
 
-app.use('/api/uploadImage', bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ limit: '50mb', extended: true }), userImgChange);
+app.use('/api/uploadImage', bodyParser.json({ limit: '500mb' }), bodyParser.urlencoded({ limit: '500mb', extended: true }), userImgChange);
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
+
   const user = req.session.user;
+
   res.json({ sessionId, user });
 });
 
