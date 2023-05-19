@@ -6,14 +6,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //state for drinkImg
     const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png");
 
-    const handleFileInputChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setImageSrc(reader.result);
-        };
-    };
 
     //states for add new drink
     const [drinkName, setDrinkName] = useState("")
@@ -32,39 +24,59 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     const [isSucces, setIsSucces] = useState(false)
 
+    const [test, setTest] = useState();
+
+    const handleFileInputChange = (event) => {
+        setTest(event.target.files[0])
+    }
+
     const addNewDrinkHandler = async (event) => {
-        let userID = userSesion.userID
-        let userNick = userSesion.nick
 
         event.preventDefault();
-        fetch('http://localhost:3000/api/addNewDrink', {
-            method: 'POST',
-            body: JSON.stringify({ drinkName, drinkdescription, drinkLevel, drinkTaste, drinkType, userID, userNick, drinkHistory, ingredientsOfNewDrink,preparationOfNewDrink }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                setDrinkName('')
-                setDrinkDescription('')
-                setDrinkHistory('')
-                setDrinkType('')
-                setDrinkLevel('All')
-                setDrinkTaste('All')
-                setIsSucces(true)
-                setIngredientsOfNewDrink([])
-                return response.json()
-            })
-            .then(data => {
-                if (data.error) {
-                    setDrinkErrors(data.error);
-                    setIsSucces(false)
-                }
-            })
-            .catch(error => {
-                console.error(error);
+        
+        const formData = new FormData();
+        formData.append('imageData', test);
+        formData.append('userID', userSesion.userID);
+        formData.append('drinkName', drinkName);
+        formData.append('drinkdescription', drinkdescription);
+        formData.append('drinkLevel', drinkLevel);
+        formData.append('drinkTaste', drinkTaste);
+        formData.append('drinkType', drinkType);
+        formData.append('userNick', userSesion.nick);
+        formData.append('drinkHistory', drinkHistory);
+        formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
+        formData.append('preparationOfNewDrink', preparationOfNewDrink);
+
+        try {
+            const response = await fetch('http://localhost:3000/api/addNewDrink', {
+                method: 'POST',
+                body: formData
             });
+
+            const data = await response.json();
+            setDrinkName('');
+            setDrinkDescription('');
+            setDrinkHistory('');
+            setDrinkType('');
+            setDrinkLevel('All');
+            setDrinkTaste('All');
+            setIsSucces(true);
+            setIngredientsOfNewDrink([]);
+
+            if (data.error) {
+                setDrinkErrors(data.error);
+                setIsSucces(false);
+            } else {
+                console.log(data);
+                alert('Your photo has been changed. Please log out to view it.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+
+
     const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
     const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
 

@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
-
+import { Buffer } from 'buffer';
 
 function DrinkDetails({ searchingDrink }) {
 
@@ -52,6 +52,20 @@ function DrinkDetails({ searchingDrink }) {
         setIngChecked(newIngChecked);
     }
 
+
+    console.log(drinksDetail.IMG)
+
+    const [drinkIMGs, setDrinkIMG] = useState('')
+
+    useEffect(() => {
+        if (drinksDetail.IMG && drinksDetail.IMG.data) {
+            const base64Image = Buffer.from(drinksDetail.IMG.data).toString('base64');
+            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            setDrinkIMG(imageURL)
+        }
+    });
+
+
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
@@ -73,7 +87,7 @@ function DrinkDetails({ searchingDrink }) {
 
                         <div className="mt-5 ">
                             <article>
-                                <div className="description-holder overflow-y-auto"> 
+                                <div className="description-holder overflow-y-auto">
                                     <section>
                                         <label className="fs-4 fw-bolder">{drinksDetail.DrinkName}</label>
                                         <p>{drinksDetail.Description} </p>
@@ -91,7 +105,7 @@ function DrinkDetails({ searchingDrink }) {
 
                             </article>
                             <div className="d-flex flex-column d-flex  align-items-center">
- 
+
                                 <label className="fs-4 fw-bolder mt-5">Specifications</label>
 
                                 <div className="d-flex  mt-3 basic-information-drink">
@@ -122,7 +136,7 @@ function DrinkDetails({ searchingDrink }) {
                     <div className="img-holder-details  mt-4  col-8 col-sm-6 col-md-5 col-lg-3 ">
 
                         <LazyLoadImage
-                            src={drinksDetail.IMG}
+                            src={drinkIMGs}
                             effect="blur"
                             className="img-fluid img-helper col-12" alt="Img error"
 

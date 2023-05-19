@@ -58,6 +58,7 @@ function UserDetails({ userSesion }) {
         const formData = new FormData();
         formData.append('imageData', file);
         formData.append('userID', userID); // Assuming 'userID' is a variable containing the user ID
+        
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
                 method: 'POST',
@@ -73,7 +74,6 @@ function UserDetails({ userSesion }) {
 
 
     useEffect(() => {
-
         if (userSesion.userIMG && userSesion.userIMG.data) {
             const base64Image = Buffer.from(userSesion.userIMG.data).toString('base64');
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
