@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
 import { Buffer } from 'buffer';
@@ -14,11 +14,16 @@ function UserDetails({ userSesion }) {
 
     const userID = userSesion.userID
 
+
     const [userChangesErrors, setUserChangesErrors] = useState('')
     const [newUserPasswordErrors, setNewUserPasswordErrors] = useState('')
 
+    //userPasswords states
     const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
     const [newPassword, setNewPassword] = useState('')
+
+    //userIMG handler 
+    const [imageURL, setImageURL] = useState('');
 
     const API_URL = 'http://localhost:3000/api/';
 
@@ -53,25 +58,29 @@ function UserDetails({ userSesion }) {
         const formData = new FormData();
         formData.append('imageData', file);
         formData.append('userID', userID); // Assuming 'userID' is a variable containing the user ID
-
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
                 method: 'POST',
                 body: formData
             });
-
             const data = await response.json();
             console.log(data);
+            alert('your photo has been changed, please log out to view it')
         } catch (error) {
             console.error(error);
         }
     };
 
 
-    const base64Image = Buffer.from(userSesion.userIMG.data).toString('base64');
-    const imageURL = `data:image/jpeg;base64,${base64Image}`;
-        
-    
+    useEffect(() => {
+
+        if (userSesion.userIMG && userSesion.userIMG.data) {
+            const base64Image = Buffer.from(userSesion.userIMG.data).toString('base64');
+            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            setImageURL(imageURL);
+        }
+    }, [userSesion.userIMG]);
+
 
     const userPasswordChanger = async (event) => {
         event.preventDefault();
@@ -100,7 +109,7 @@ function UserDetails({ userSesion }) {
                 <div className=" d-flex align-items-center flex-column flex-md-row justify-content-center">
 
                     <div class="d-flex justify-content-center  align-items-center  user-img-holder col-md-7 col-10 mb-4 me-4 col-xl-6">
-                        <img src={imageURL}  alt="Img error" class="img-fluid user-img"></img>
+                        <img src={imageURL} alt="Img error" class="img-fluid user-img"></img>
                         <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                             Click to change your img
                             <input onChange={handleImgChange} type="file" name="file-upload" id="file-upload"></input>

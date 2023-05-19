@@ -18,7 +18,6 @@ router.use(cors({
 }));
 
 router.post('/', (req, res) => {
-  console.log('hello')
   req.session.destroy((err) => {
     if (err) {
       console.log(err);

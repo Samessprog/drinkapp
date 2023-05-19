@@ -5,8 +5,6 @@ const router = express.Router();
 const db = require('./DB');
 
 router.use((req, res, next) => {
-  console.log('Request headers:', req.headers);
-  console.log('Response headers:', res.getHeaders());
   next();
 });
 
@@ -51,8 +49,6 @@ router.post('/', (req, res) => {
     req.session.sessionID = sessionID;
 
     req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, userID: user.ID_User, userIMG: user.userIMG  };
-
-    console.log(req.session.user)
 
     res.cookie('sessionID', sessionID, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
     res.json({ success: true, user: req.session.user });
