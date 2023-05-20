@@ -51,21 +51,20 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             });
 
             const data = await response.json();
-            setDrinkName('');
-            setDrinkDescription('');
-            setDrinkHistory('');
-            setDrinkType('');
-            setDrinkLevel('All');
-            setDrinkTaste('All');
-            setIsSucces(true);
-            setIngredientsOfNewDrink([]);
-            setPreparationOfNewDrink([]);
-
             if (data.error) {
                 setDrinkErrors(data.error);
                 setIsSucces(false);
             } else {
                 console.log(data);
+                setDrinkName('');
+                setDrinkDescription('');
+                setDrinkHistory('');
+                setDrinkType('');
+                setDrinkLevel('All');
+                setDrinkTaste('All');
+                setIsSucces(true);
+                setIngredientsOfNewDrink([]);
+                setPreparationOfNewDrink([]);
                 alert('Your photo has been changed. Please log out to view it.');
             }
         } catch (error) {

@@ -24,10 +24,13 @@ const upload = multer();
 // My Regex
 const drinkNameRegex = /^[a-zA-Z0-9]{1,15}$/;
 const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
-const drinkLevelAndTasteRegex = /^(?!ALL$).+$/;
-const drinkTypeRegex = /^(Alcoholic|Soft)$/;
 const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
 const indANDprepRegex = /^[A-Za-z0-9.]+$/;
+const drinkLevelAndTasteRegex = /^(Easy|Medium|Hard|Sour|Sweet|Bitter)$/;
+const drinkTypeRegex = /^(Alcoholic|Soft)$/;
+const validTastesRegex = /^(Sour|Sweet|Bitter)$/;
+const nonEmptyRegex = /^.+$/;
+
 
 router.post('/', upload.single('imageData'), async (req, res) => {
 
@@ -57,12 +60,40 @@ router.post('/', upload.single('imageData'), async (req, res) => {
 
 
 
-  
+  if (!drinkName.match(drinkNameRegex)) {
+    return res.status(400).json({ error: 'Invalid drink name' });
+  }
+
+  if (!drinkdescription.match(drinkdescriptionRegex)) {
+    return res.status(400).json({ error: 'Invalid drink description' });
+  }
+
+  if (!drinkHistory.match(drinkHistoryRegex)) {
+    return res.status(400).json({ error: 'Invalid drink history' });
+  }
+
+  if (!drinkLevelAndTasteRegex.test(drinkLevel)) {
+    return res.status(400).json({ error: 'Error: Incorrect beverage level. Allowed values ​​ up to Easy, Medium or Hard.y' });
+  }
+
+  if (!drinkTypeRegex.test(drinkType)) {
+    return res.status(400).json({ error: 'Error: Invalid drinkType. Allowed values ​​are Alcoholic or Soft.' });
+  }
+
+  if (!validTastesRegex.test(drinkTaste)) {
+    return res.status(400).json({ error: 'Error: Invalid drinkTaste. Allowed values ​​are Sour, Sweet, or Bitter.' });
+  }
+
+  if (!nonEmptyRegex.test(joinedIngredients)) {
+    return res.status(400).json({ error: 'Error: Ingredients cannot be empty.' });
+  }
+
+  if (!nonEmptyRegex.test(joinedPreparation)) {
+    return res.status(400).json({ error: 'Error: Preparation cannot be empty..' });
+  }
 
 
 
-
-  
   try {
     const newDrink = await db.query(
       'INSERT INTO drink ( DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
