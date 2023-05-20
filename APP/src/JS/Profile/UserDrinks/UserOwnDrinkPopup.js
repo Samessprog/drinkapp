@@ -33,7 +33,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const addNewDrinkHandler = async (event) => {
 
         event.preventDefault();
-        
+
         const formData = new FormData();
         formData.append('imageData', test);
         formData.append('userID', userSesion.userID);
@@ -44,8 +44,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         formData.append('drinkType', drinkType);
         formData.append('userNick', userSesion.nick);
         formData.append('drinkHistory', drinkHistory);
+
         formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
-        formData.append('preparationOfNewDrink', preparationOfNewDrink);
+        formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
 
         try {
             const response = await fetch('http://localhost:3000/api/addNewDrink', {
@@ -62,6 +63,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             setDrinkTaste('All');
             setIsSucces(true);
             setIngredientsOfNewDrink([]);
+            setPreparationOfNewDrink([]);
 
             if (data.error) {
                 setDrinkErrors(data.error);
@@ -76,9 +78,10 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     };
 
 
-
     const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
     const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
+
+
 
     const submitIngreadinetsHandler = () => {
         const newIngredientText = ingredientsOfNewDrinkText.trim() + '.';

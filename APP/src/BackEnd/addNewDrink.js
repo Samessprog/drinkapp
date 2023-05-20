@@ -37,13 +37,46 @@ router.post('/', upload.single('imageData'), async (req, res) => {
     drinkType,
     userNick,
     drinkHistory,
-    ingredientsOfNewDrink,
-    preparationOfNewDrink
   } = req.body;
 
   const imageData = req.file.buffer;
 
-  console.log(imageData);
+
+  const ingredientsOfNewDrink = JSON.parse(req.body.ingredientsOfNewDrink);
+  const preparationOfNewDrink = JSON.parse(req.body.preparationOfNewDrink);
+
+  function joinItems(items) {
+    return items.map(item => item.text).join('');
+  }
+
+  const joinedIngredients = joinItems(ingredientsOfNewDrink);
+  const joinedPreparation = joinItems(preparationOfNewDrink);
+
+  // Sprawdzanie poprawności danych
+  if (!drinkName.match(drinkNameRegex)) {
+    return res.status(400).json({ error: 'Invalid drink name' });
+  }
+
+  if (!drinkdescription.match(drinkdescriptionRegex)) {
+    return res.status(400).json({ error: 'Invalid drink description' });
+  }
+
+  if (!drinkLevel.match(drinkLevelAndTasteRegex)) {
+    return res.status(400).json({ error: 'Invalid drink level' });
+  }
+
+  if (!drinkTaste.match(drinkLevelAndTasteRegex)) {
+    return res.status(400).json({ error: 'Invalid drink taste' });
+  }
+
+  if (!drinkType.match(drinkTypeRegex)) {
+    return res.status(400).json({ error: 'Invalid drink type' });
+  }
+
+  if (!drinkHistory.match(drinkHistoryRegex)) {
+    return res.status(400).json({ error: 'Invalid drink history' });
+  }
+
 
   try {
     const newDrink = await db.query(
@@ -55,9 +88,9 @@ router.post('/', upload.single('imageData'), async (req, res) => {
         drinkTaste,
         drinkType,
         drinkdescription,
-        ingredientsOfNewDrink,
+        joinedIngredients,
         imageData,
-        preparationOfNewDrink,
+        joinedPreparation,
         drinkHistory,
         userID,
       ]
