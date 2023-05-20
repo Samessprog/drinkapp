@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
 const multer = require('multer');
 const mysql = require('mysql');
+
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -28,6 +30,7 @@ const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
 const indANDprepRegex = /^[A-Za-z0-9.]+$/;
 
 router.post('/', upload.single('imageData'), async (req, res) => {
+
   const {
     userID,
     drinkName,
@@ -52,32 +55,14 @@ router.post('/', upload.single('imageData'), async (req, res) => {
   const joinedIngredients = joinItems(ingredientsOfNewDrink);
   const joinedPreparation = joinItems(preparationOfNewDrink);
 
-  // Sprawdzanie poprawności danych
-  if (!drinkName.match(drinkNameRegex)) {
-    return res.status(400).json({ error: 'Invalid drink name' });
-  }
-
-  if (!drinkdescription.match(drinkdescriptionRegex)) {
-    return res.status(400).json({ error: 'Invalid drink description' });
-  }
-
-  if (!drinkLevel.match(drinkLevelAndTasteRegex)) {
-    return res.status(400).json({ error: 'Invalid drink level' });
-  }
-
-  if (!drinkTaste.match(drinkLevelAndTasteRegex)) {
-    return res.status(400).json({ error: 'Invalid drink taste' });
-  }
-
-  if (!drinkType.match(drinkTypeRegex)) {
-    return res.status(400).json({ error: 'Invalid drink type' });
-  }
-
-  if (!drinkHistory.match(drinkHistoryRegex)) {
-    return res.status(400).json({ error: 'Invalid drink history' });
-  }
 
 
+  
+
+
+
+
+  
   try {
     const newDrink = await db.query(
       'INSERT INTO drink ( DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, IMG, Preparation, drinkHistory, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',

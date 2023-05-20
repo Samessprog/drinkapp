@@ -52,9 +52,6 @@ function DrinkDetails({ searchingDrink }) {
         setIngChecked(newIngChecked);
     }
 
-
-    console.log(drinksDetail.IMG)
-
     const [drinkIMGs, setDrinkIMG] = useState('')
 
     useEffect(() => {

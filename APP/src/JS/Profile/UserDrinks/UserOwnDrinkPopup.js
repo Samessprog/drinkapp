@@ -3,9 +3,6 @@ import { SessionContext } from "../../Session/SessionContext";
 import { v4 as uuid } from 'uuid';
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
-    //state for drinkImg
-    const [imageSrc, setImageSrc] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png");
-
 
     //states for add new drink
     const [drinkName, setDrinkName] = useState("")
@@ -15,7 +12,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const [drinkLevel, setDrinkLevel] = useState("")
     const [drinkTaste, setDrinkTaste] = useState("")
 
-
     //const [drinkIMG ,setDrinkIMG] = useState("")
 
     const userSesion = useContext(SessionContext).userSesion;
@@ -24,18 +20,19 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     const [isSucces, setIsSucces] = useState(false)
 
-    const [test, setTest] = useState();
+    const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
+    const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
 
-    const handleFileInputChange = (event) => {
-        setTest(event.target.files[0])
-    }
+    const [preparationOfNewDrink, setPreparationOfNewDrink] = useState([])
+    const [preparationOfNewDrinkText, setPreparationOfNewDrinkText] = useState('')
 
     const addNewDrinkHandler = async (event) => {
-
         event.preventDefault();
+        const selectedFile = event.target.querySelector('input[type="file"]').files[0];
+
 
         const formData = new FormData();
-        formData.append('imageData', test);
+        formData.append('imageData', selectedFile);
         formData.append('userID', userSesion.userID);
         formData.append('drinkName', drinkName);
         formData.append('drinkdescription', drinkdescription);
@@ -44,7 +41,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         formData.append('drinkType', drinkType);
         formData.append('userNick', userSesion.nick);
         formData.append('drinkHistory', drinkHistory);
-
         formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
         formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
 
@@ -78,11 +74,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     };
 
 
-    const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
-    const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
-
-
-
     const submitIngreadinetsHandler = () => {
         const newIngredientText = ingredientsOfNewDrinkText.trim() + '.';
         setIngredientsOfNewDrink([
@@ -97,8 +88,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id));
     }
 
-    const [preparationOfNewDrink, setPreparationOfNewDrink] = useState([])
-    const [preparationOfNewDrinkText, setPreparationOfNewDrinkText] = useState('')
 
     const submitPreparationHandler = () => {
         const newPreparationText = preparationOfNewDrinkText.trim() + '.';
@@ -143,9 +132,14 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         </div>
                         <div className="col-6 d-flex flex-column">
                             <label className="mt-3 file-upload">
-                                <input className="file-drink-input" type="file" accept="image/*" capture="user" onChange={handleFileInputChange} />
+                                <input
+                                    className="file-drink-input"
+                                    type="file"
+                                    accept="image/*"
+                                    capture="user"
+                                    onChange={(event) => addNewDrinkHandler(event)}
+                                />
                             </label>
-
                             <div>
                                 <div>
                                     <div className="d-flex mt-4 align-items-center">
