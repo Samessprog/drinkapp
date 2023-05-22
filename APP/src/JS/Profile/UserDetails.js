@@ -14,7 +14,6 @@ function UserDetails({ userSesion }) {
 
     const userID = userSesion.userID
 
-
     const [userChangesErrors, setUserChangesErrors] = useState('')
     const [newUserPasswordErrors, setNewUserPasswordErrors] = useState('')
 
@@ -72,7 +71,6 @@ function UserDetails({ userSesion }) {
         }
     };
 
-
     useEffect(() => {
         if (userSesion.userIMG && userSesion.userIMG.data) {
             const base64Image = Buffer.from(userSesion.userIMG.data).toString('base64');
@@ -80,7 +78,6 @@ function UserDetails({ userSesion }) {
             setImageURL(imageURL);
         }
     }, [userSesion.userIMG]);
-
 
     const userPasswordChanger = async (event) => {
         event.preventDefault();

@@ -21,9 +21,14 @@
         }
 
         .img-holder-details {
-            margin-bottom: 15rem;
-            max-width: 400px;
-            max-height: 600px;
+            margin-bottom: 12rem;
+            height: 450px;
+            width: 450px;
+
+            @media (max-width: 1200px) {
+                width: 350px;
+                height: 350px;
+            }
 
 
             @media (max-width: 400px) {
@@ -39,8 +44,13 @@
 
             .img-helper {
                 border: black 2px solid;
-                max-height: 600px;
+                height: 450px;
+                width: 450px;
 
+                @media (max-width: 1200px) {
+                    width: 350px;
+                    height: 350px;
+                }
             }
         }
 
@@ -50,7 +60,6 @@
             text-align: justify;
             text-justify: inter-word;
             overflow-y: auto !important;
-
         }
 
         .ingrediets-list {

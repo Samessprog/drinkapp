@@ -27,10 +27,7 @@ function DrinkDetails({ searchingDrink }) {
         setDrinkDetail(result);
     }, [id]);
 
-
-
     {/*Paginacja*/ }
-
     const itemPerPage = 1;
     const pageCount = Math.ceil(prep.length / itemPerPage);
     const currentData = prep.slice(currentPage, currentPage + itemPerPage);
@@ -69,13 +66,12 @@ function DrinkDetails({ searchingDrink }) {
         }
     });
 
-
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
                 <div className="d-flex justify-content-between d-col-1200 align-items-center">
                     <div className=" ">
-                        <div className="d-flex  align-items-center">
+                        <div className="d-flex align-items-center">
                             <header>
                                 <div className="drink-name fs-3 fw-bolder">{drinksDetail.DrinkName}</div>
                             </header>
@@ -89,7 +85,7 @@ function DrinkDetails({ searchingDrink }) {
 
                         {/*Opis i składniki do drinku  */}
 
-                        <div className="mt-5 ">
+                        <div className="mt-5">
                             <article>
                                 <div className="description-holder overflow-y-auto">
                                     <section>
@@ -137,12 +133,12 @@ function DrinkDetails({ searchingDrink }) {
                         </div>
                     </div>
 
-                    <div className="img-holder-details  mt-4  col-8 col-sm-6 col-md-5 col-lg-3 ">
+                    <div className="img-holder-details  mt-4 ">
 
                         <LazyLoadImage
                             src={drinkIMGs}
                             effect="blur"
-                            className="img-fluid img-helper col-12" alt="Img error"
+                            className="img-fluid img-helper " alt="Img error"
 
                         />
 
