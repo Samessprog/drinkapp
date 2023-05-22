@@ -5,7 +5,6 @@ import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
 
-
 import { SessionContext } from "./Session/SessionContext";
 import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -16,7 +15,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     const dispatch = useDispatch();
     const { userSesion} = useContext(SessionContext);
 
-
+    const [favourites, setFavourites] = useState([]);
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
 
     const itemsPerPage = 12; // ilość elementów na stronie
@@ -25,6 +24,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const isSmallScreen = useMediaQuery({ maxWidth: 575 });
 
+    //Pagination handler
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
         const offset = selectedPage * itemsPerPage;
@@ -32,12 +32,12 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         setOffset(offset);
     };
 
-
-
+    //check if any drinks are visible
     useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0));
     }, [searchingDrink]);
-    const [favourites, setFavourites] = useState([]);
+
+
     return (
 
         <main className="main d-flex row justify-content-center me-0 main-holder">

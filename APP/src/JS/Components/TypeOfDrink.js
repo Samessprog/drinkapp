@@ -10,7 +10,6 @@ function TypeOfDrink() {
     const alcocholic = useSelector(state => state.drink.alcocholic);
     const softDrinks = useSelector(state => state.drink.softDrinks);
 
-   
 
     return (
         <div>

@@ -1,5 +1,7 @@
 import  { Children ,useState, useEffect } from "react";
 const Carousel = ({ children }) => {
+
+  // states for checking the index and displayed items
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
@@ -10,7 +12,7 @@ const Carousel = ({ children }) => {
       const itemsLength = itemsArray.length;
       const itemsToShow = [];
 
-      // Jeżeli mniej niż 5 elementy, wyświetl wszystkie i zablokuj przewijanie
+      // If less than 5 items, display all and lock scrolling
       if (itemsLength <= 4) {
         setShowItems(itemsArray);
         return;
@@ -18,7 +20,7 @@ const Carousel = ({ children }) => {
 
       const startIndex = currentIndex % itemsLength;
 
-      // Pobierz pierwsze 4 elementy
+      // Download the first 4 items
       for (let i = startIndex; i < startIndex + 5; i++) {
         itemsToShow.push(itemsArray[i % itemsLength]);
       }
@@ -33,7 +35,7 @@ const Carousel = ({ children }) => {
     const newIndex = (currentIndex - 5 + itemsCount) % itemsCount;
     setCurrentIndex(newIndex);
   };
-
+  //enter 5 more indexes, and download 5 more photos
   const handleNext = () => {
     setCurrentIndex(currentIndex + 5);
   };

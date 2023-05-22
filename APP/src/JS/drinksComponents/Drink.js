@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
@@ -6,8 +6,10 @@ import { Buffer } from 'buffer';
 
 function Drink({ elm, favourites, setFavourites }) {
 
+    //state for drinkIMG
     const [drinkIMGs, setDrinkIMG] = useState('')
 
+    //add as favorite drinks
     const toggleFavourite = (id) => {
         if (favourites.includes(id)) {
             setFavourites(favourites.filter((fav) => fav !== id));
@@ -23,9 +25,11 @@ function Drink({ elm, favourites, setFavourites }) {
 
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
+            // Convert the image data to base64
             const base64Image = Buffer.from(elm.IMG.data).toString('base64');
+            // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setDrinkIMG(imageURL)
+            setDrinkIMG(imageURL);
         }
     });
 

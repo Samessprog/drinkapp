@@ -30,10 +30,12 @@ function DrinkDetails({ searchingDrink }) {
 
 
     {/*Paginacja*/ }
+
     const itemPerPage = 1;
     const pageCount = Math.ceil(prep.length / itemPerPage);
     const currentData = prep.slice(currentPage, currentPage + itemPerPage);
 
+    // Function to handle page click
     const handlePageClick = (data) => {
         const selectedPage = data.selected;
         const currentPage = selectedPage * itemPerPage;
@@ -41,17 +43,22 @@ function DrinkDetails({ searchingDrink }) {
         setCurrentPage(currentPage);
     };
 
+    // Function to cross out ingredient
     function crossOutIng(key) {
+        // Find the index of the ingredient in the ingChecked array
         const checkedIndex = ingChecked.indexOf(key);
+        // Create a new copy of the ingChecked array
         const newIngChecked = [...ingChecked];
         if (checkedIndex === -1) {
+            // If the ingredient is not checked, add it to the newIngChecked array
             newIngChecked.push(key);
         } else {
+            // If the ingredient is already checked, remove it from the newIngChecked array
             newIngChecked.splice(checkedIndex, 1);
         }
+        // Update the ingChecked state with the newIngChecked array
         setIngChecked(newIngChecked);
     }
-
     const [drinkIMGs, setDrinkIMG] = useState('')
 
     useEffect(() => {

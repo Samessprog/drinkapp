@@ -5,7 +5,6 @@ import { setEmail, setPassword } from "../States/actions";
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
 
 
-
 function LoginPopup() {
     const dispatch = useDispatch();
 
@@ -15,31 +14,31 @@ function LoginPopup() {
     const [loginError, setLoginError] = useState(null);
 
     const handleLogin = (event) => {
-
-        event.preventDefault();
+        event.preventDefault(); // Prevents the default form submission behavior
+        
+        // Send a POST request to the login API endpoint
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password }), // Convert data to JSON string
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json' // Specify the content type as JSON
             },
-            credentials: 'include'
+            credentials: 'include' // Include cookies in the request
         })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    throw new Error(data.message);
-                }
-                const user = data.user;
-                dispatch(setUserSession(user))
-                dispatch(setLoginPopup(false))
-            })
-            .catch(error => {
-                setLoginError([error.message]);
-            });
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            if (!data.success) {
+                throw new Error(data.message); 
+            }
+            const user = data.user; // Extract the user data from the response
+            dispatch(setUserSession(user)); 
+            dispatch(setLoginPopup(false)); 
+        })
+        .catch(error => {
+            setLoginError([error.message]); // Handle any errors that occur during the login process
+        });
     };
-
-
+    
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column">

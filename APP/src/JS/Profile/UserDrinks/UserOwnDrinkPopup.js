@@ -4,7 +4,10 @@ import { v4 as uuid } from 'uuid';
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
-    //states for add new drink
+    //fetch user session to fetch needed data
+    const userSesion = useContext(SessionContext).userSesion;
+
+    //states for add new drink // drink details
     const [drinkName, setDrinkName] = useState("")
     const [drinkdescription, setDrinkDescription] = useState("")
     const [drinkHistory, setDrinkHistory] = useState("")
@@ -14,22 +17,22 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     //const [drinkIMG ,setDrinkIMG] = useState("")
 
-    const userSesion = useContext(SessionContext).userSesion;
-
+    //arr for drinks err
     const [drinkErrors, setDrinkErrors] = useState(null);
-
+    //flag that checks for errors while adding a drink
     const [isSucces, setIsSucces] = useState(false)
-
+    //ingredient of a new drink
     const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
     const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
-
+    //preparing for a drink
     const [preparationOfNewDrink, setPreparationOfNewDrink] = useState([])
     const [preparationOfNewDrinkText, setPreparationOfNewDrinkText] = useState('')
 
+
+    //sending data from user as data to new drink
     const addNewDrinkHandler = async (event) => {
         event.preventDefault();
         const selectedFile = event.target.querySelector('input[type="file"]').files[0];
-
 
         const formData = new FormData();
         formData.append('imageData', selectedFile);
@@ -55,7 +58,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 setDrinkErrors(data.error);
                 setIsSucces(false);
             } else {
-                console.log(data);
+                //resetting the data to the initial state when adding a drink is successful
                 setDrinkName('');
                 setDrinkDescription('');
                 setDrinkHistory('');
@@ -72,7 +75,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         }
     };
 
-
+    //adding a dot at the end when adding
     const submitIngreadinetsHandler = () => {
         const newIngredientText = ingredientsOfNewDrinkText.trim() + '.';
         setIngredientsOfNewDrink([
@@ -81,13 +84,12 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         ]);
         setIngredientsOfNewDrinkText('');
     };
-
-
+    //component removal ingred
     const submitIngreadinetsDeleteHandler = (id) => {
         setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id));
     }
 
-
+    //adding a dot at the end when adding
     const submitPreparationHandler = () => {
         const newPreparationText = preparationOfNewDrinkText.trim() + '.';
         setPreparationOfNewDrink([
@@ -97,12 +99,10 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         setPreparationOfNewDrinkText('');
 
     }
-
+    //component removal Preparation
     const submitPreparationDeleteHandler = (id) => {
         setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id));
     }
-
-
 
 
     return (
@@ -169,7 +169,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     </div>
                                 </div>
                             </div>
-
 
                             <div>
                                 <div>
