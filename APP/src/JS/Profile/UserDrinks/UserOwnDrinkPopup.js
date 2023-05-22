@@ -34,6 +34,11 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         const selectedFile = event.target.querySelector('input[type="file"]').files[0];
 
+        if (selectedFile === undefined) {
+            setDrinkErrors('No photo selected!');
+            return;
+        }
+
         const formData = new FormData();
         formData.append('imageData', selectedFile);
         formData.append('userID', userSesion.userID);

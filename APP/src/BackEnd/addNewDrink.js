@@ -51,13 +51,17 @@ router.post('/', upload.single('imageData'), async (req, res) => {
   const ingredientsOfNewDrink = JSON.parse(req.body.ingredientsOfNewDrink);
   const preparationOfNewDrink = JSON.parse(req.body.preparationOfNewDrink);
 
+
+  if (ingredientsOfNewDrink.length === 0 || preparationOfNewDrink.length === 0) {
+    return res.status(400).json({ error: 'ingredients or preparation is empty!' });
+  }
+
   function joinItems(items) {
     return items.map(item => item.text).join('');
   }
 
   const joinedIngredients = joinItems(ingredientsOfNewDrink);
   const joinedPreparation = joinItems(preparationOfNewDrink);
-
 
 
   if (!drinkName.match(drinkNameRegex)) {
@@ -91,7 +95,6 @@ router.post('/', upload.single('imageData'), async (req, res) => {
   if (!nonEmptyRegex.test(joinedPreparation)) {
     return res.status(400).json({ error: 'Error: Preparation cannot be empty..' });
   }
-
 
 
   try {
