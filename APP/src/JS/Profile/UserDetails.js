@@ -105,10 +105,10 @@ function UserDetails({ userSesion }) {
     return (
         <div className=" col mt-3 ">
 
-            <div class="d-flex justify-content-between p-5 flex-column flex-xl-row align-items-center">
-                <div className=" d-flex align-items-center flex-column flex-md-row justify-content-center">
+            <div class="d-flex justify-content-between p-5 flex-column flex-xxl-row align-items-center">
+                <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center">
 
-                    <div class="d-flex justify-content-center  align-items-center  user-img-holder col-md-7 col-10 mb-4 me-4 col-xl-6">
+                    <div class="d-flex justify-content-center  align-items-center  user-img-holder col-sm-7 col-md-10 col-10 mb-4 me-4 col-xl-6 ms-5">
                         <img src={imageURL} alt="Img error" class="img-fluid user-img"></img>
                         <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                             Click to change your img
@@ -116,7 +116,7 @@ function UserDetails({ userSesion }) {
                         </div>
                     </div>
 
-                    <div className="d-flex flex-column col-7">
+                    <div className="d-flex flex-column col-md-10 col-sm-7 col-10 col-xl-6">
                         <form onSubmit={UserDataChange}>
                             <div className="user-data-box d-flex justify-content-between align-items-center">
                                 <input
@@ -195,7 +195,7 @@ function UserDetails({ userSesion }) {
 
                 </div>
 
-                <div className="badges-holder col-4 p-3 mt-5 col col-12 col-xl-5 rounded">
+                <div className="badges-holder col-4 p-3 mt-5 col col-12 col-md-12 col-xl-12 col-xxl-4 rounded">
                     <label className="badges-start">Your badges:</label>
                     <div className="d-flex  justify-content-center ">
                         No badges :c
