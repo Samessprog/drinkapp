@@ -53,18 +53,25 @@ function UserDetails({ userSesion }) {
     };
 
     const handleImgChange = async (event) => {
+
         const file = event.target.files[0];
+        const fileSizeInMB = file.size / (1024 * 1024);
+
+        if (fileSizeInMB > 5) {
+            setUserChangesErrors('File size exceeds the limit of 5 MB!');
+            return;
+        }
+
         const formData = new FormData();
         formData.append('imageData', file);
         formData.append('userID', userID); // Assuming 'userID' is a variable containing the user ID
-        
+
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
                 method: 'POST',
                 body: formData
             });
             const data = await response.json();
-            console.log(data);
             alert('your photo has been changed, please log out to view it')
         } catch (error) {
             console.error(error);

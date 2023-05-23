@@ -29,8 +29,8 @@ app.use(session({
 }));
 
 
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '7mb' }));
+app.use(bodyParser.urlencoded({ limit: '7mb', extended: true }));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3006');
@@ -47,9 +47,9 @@ app.use('/api/userDataChange', userDateChange);
 app.use('/api/userPasswordChange', userPasswordChanger);
 
 //Apps for drinks 
-app.use('/api/addNewDrink',  bodyParser.json({ limit: '50mb' }), bodyParser.urlencoded({ limit: '50mb', extended: true }), addNewDrink);
+app.use('/api/addNewDrink', addNewDrink);
 
-app.use('/api/uploadImage', bodyParser.json({ limit: '500mb' }), bodyParser.urlencoded({ limit: '500mb', extended: true }), userImgChange);
+app.use('/api/uploadImage', userImgChange);
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;

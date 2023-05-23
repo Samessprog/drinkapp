@@ -31,7 +31,6 @@ const drinkTypeRegex = /^(Alcoholic|Soft)$/;
 const validTastesRegex = /^(Sour|Sweet|Bitter)$/;
 const nonEmptyRegex = /^.+$/;
 
-
 router.post('/', upload.single('imageData'), async (req, res) => {
 
   const {
@@ -46,6 +45,15 @@ router.post('/', upload.single('imageData'), async (req, res) => {
   } = req.body;
 
   const imageData = req.file.buffer;
+
+  // Get the image data from the request body
+
+  const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB w bajtach
+
+  if (imageData.byteLength > maxSizeInBytes) {
+    res.status(400).json({ message: 'Image size exceeds the limit of 5 MB' });
+    return;
+  }
 
 
   const ingredientsOfNewDrink = JSON.parse(req.body.ingredientsOfNewDrink);

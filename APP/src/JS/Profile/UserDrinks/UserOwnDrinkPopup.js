@@ -34,8 +34,16 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         event.preventDefault();
         const selectedFile = event.target.querySelector('input[type="file"]').files[0];
 
+        const fileSizeInMB = selectedFile.size / (1024 * 1024);
+        console.log(fileSizeInMB)
+
+        if (fileSizeInMB > 5) {
+            setDrinkErrors('File size exceeds the limit of 5 MB!');
+            return;
+        }
+
         if (selectedFile === undefined) {
-            setDrinkErrors('No photo selected!');
+            setDrinkErrors('No photo selected! ');
             return;
         }
 

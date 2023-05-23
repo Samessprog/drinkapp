@@ -12,6 +12,13 @@ router.post('/', upload.single('imageData'), async (req, res) => {
         // Get the image data from the request body
         const imageData = req.file.buffer;
 
+        const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB w bajtach
+
+        if (imageData.byteLength > maxSizeInBytes) {
+            res.status(400).json({ message: 'Image size exceeds the limit of 5 MB' });
+            return;
+        }
+
         // Save the image in the database
         const sql = 'UPDATE users SET userIMG = ? WHERE ID_User = ?';
         const result = await db.query(sql, [imageData, userID]);
