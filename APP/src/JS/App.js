@@ -54,7 +54,6 @@ function App() {
   }, []);
 
 
-
   React.useEffect(() => {
     const fetchData = async () => {
       try {

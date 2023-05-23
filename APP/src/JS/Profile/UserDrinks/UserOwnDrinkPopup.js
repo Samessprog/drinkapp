@@ -35,7 +35,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         const selectedFile = event.target.querySelector('input[type="file"]').files[0];
 
         const fileSizeInMB = selectedFile.size / (1024 * 1024);
-        console.log(fileSizeInMB)
 
         if (fileSizeInMB > 5) {
             setDrinkErrors('File size exceeds the limit of 5 MB!');
@@ -59,13 +58,12 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         formData.append('drinkHistory', drinkHistory);
         formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
         formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
-
+  
         try {
             const response = await fetch('http://localhost:3000/api/addNewDrink', {
                 method: 'POST',
                 body: formData
             });
-
             const data = await response.json();
             if (data.error) {
                 setDrinkErrors(data.error);
@@ -81,7 +79,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 setIsSucces(true);
                 setIngredientsOfNewDrink([]);
                 setPreparationOfNewDrink([]);
-                alert('Your photo has been changed. Please log out to view it.');
             }
         } catch (error) {
             console.error(error);
@@ -253,7 +250,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center">
-                        <label className="mt-2 text-danger fw-bolder">{isSucces === true ? '' : drinkErrors} </label>
+                        <label className="mt-2 text-danger fw-bolder">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                         <button type="submit" class="btn btn-success">Add this drink</button>
                     </div>
                 </form>

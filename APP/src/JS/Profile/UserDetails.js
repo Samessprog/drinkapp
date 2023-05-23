@@ -24,6 +24,8 @@ function UserDetails({ userSesion }) {
     //userIMG handler 
     const [imageURL, setImageURL] = useState('');
 
+    const [isSuccesChnage, setIsSuccesChnage] = useState(false)
+
     const API_URL = 'http://localhost:3000/api/';
 
     const setContentTypeHeader = () => {
@@ -42,9 +44,10 @@ function UserDetails({ userSesion }) {
             });
             const data = await response.json();
             if (data.success) {
-                alert('your details have been changed');
+                setIsSuccesChnage(true)
                 setUserChangesErrors('');
             } else {
+                setIsSuccesChnage(false)
                 setUserChangesErrors([data.message]);
             }
         } catch (error) {
@@ -134,7 +137,6 @@ function UserDetails({ userSesion }) {
                             <div className="user-data-box d-flex justify-content-between align-items-center mt-3">
                                 <input
                                     type="tel"
-                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                     onChange={(event) => dispatch(setPhone(event.target.value))}
                                     className="user-data-box-input ps-2"
                                     value={phone || userSesion.phone}
@@ -161,7 +163,7 @@ function UserDetails({ userSesion }) {
                             </div>
                         </form>
 
-                        <div className="d-flex align-items-center justify-content-center mt-2"> {userChangesErrors ?? ''} </div>
+                        <div className="d-flex align-items-center justify-content-center mt-2">  {isSuccesChnage === true ? 'your details have been changed' : userChangesErrors} </div>
 
                         {passwordBoxFlag &&
 
