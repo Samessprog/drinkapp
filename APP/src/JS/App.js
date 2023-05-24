@@ -6,7 +6,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-
 import { SessionContext } from "./Session/SessionContext";
 import { setSpecialOptionsPopup, setUserSession } from "./States/actions";
 import NavBar from "./NavBarComponents/NavBar";
@@ -64,10 +63,11 @@ function App() {
         console.log(err);
       }
       };
-        
 
     fetchData();
   }, []);
+  
+
 
 
   return (

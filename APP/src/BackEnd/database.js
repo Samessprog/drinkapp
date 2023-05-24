@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 
+const db = require('./DB');
 const userLoginRouter = require('./userLogin');
 const userRegister = require('./userRegister');
 const userLogout = require('./logout');
@@ -32,7 +33,7 @@ app.use(session({
 app.use(bodyParser.json({ limit: '7mb' }));
 app.use(bodyParser.urlencoded({ limit: '7mb', extended: true }));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3006');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', true);
@@ -58,6 +59,28 @@ app.get('/api/session', (req, res) => {
 
   res.json({ sessionId, user });
 });
+
+app.get('/api/userIMG', (req, res) => {
+  const email = req.session.email;
+
+  db.query('SELECT userIMG FROM users WHERE email = ?', email, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    if (results.length > 0) {
+      const userIMGBuffer = results[0].userIMG;
+      res.type('image/png'); // Ustaw odpowiedni typ zawartości na obraz PNG (dostosuj w zależności od typu obrazu)
+      res.send(userIMGBuffer);
+    } else {
+      res.status(404).json({ error: 'Image not found' });
+    }
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

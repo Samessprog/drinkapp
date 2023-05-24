@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UserDetails from "./UserDetails";
 import UserOwnDrinks from "./UserOwnDrinks";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
@@ -10,13 +10,38 @@ function UserProfile() {
     const [addUserNewDrink, setAddUserNewDrink] = useState(false)
     const userSesion = useContext(SessionContext).userSesion;
 
+    const [userIMG, setUserIMG] = useState('')
+
+    useEffect(() => {
+        const fetchUserImage = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/userIMG', {
+              credentials: 'include'
+            });
+      
+            if (!response.ok) {
+              throw new Error('Failed to fetch user image');
+            }
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+            setUserIMG(imageUrl);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchUserImage();
+      }, []);
+      
+
     if (userSesion === null) {
         return <Navigate to="/" />;
     }
 
     return (
         <div className="user-details-holder">
-            <UserDetails userSesion={userSesion} />
+   
+            <UserDetails userSesion={userSesion} userIMG={userIMG} />
             <UserFavouriteDrinks />
             <UserOwnDrinks
                 setAddUserNewDrink={setAddUserNewDrink}

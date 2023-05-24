@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
 import { Buffer } from 'buffer';
 
-function UserDetails({ userSesion }) {
+function UserDetails({ userSesion, userIMG }) {
 
     const dispatch = useDispatch();
 
@@ -67,7 +67,7 @@ function UserDetails({ userSesion }) {
 
         const formData = new FormData();
         formData.append('imageData', file);
-        formData.append('userID', userID); // Assuming 'userID' is a variable containing the user ID
+        formData.append('userID', userID); 
 
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
@@ -116,7 +116,7 @@ function UserDetails({ userSesion }) {
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center">
 
                     <div class="d-flex justify-content-center  align-items-center  user-img-holder col-sm-7 col-md-10 col-10 mb-4 me-4 col-xl-6 ms-5">
-                        <img src={imageURL} alt="Img error" class="img-fluid user-img"></img>
+                        <img src={userIMG} alt="Img error" class="img-fluid user-img"></img>
                         <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                             Click to change your img
                             <input onChange={handleImgChange} type="file" name="file-upload" id="file-upload"></input>
