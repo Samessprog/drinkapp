@@ -67,7 +67,7 @@ function UserDetails({ userSesion, userIMG }) {
 
         const formData = new FormData();
         formData.append('imageData', file);
-        formData.append('userID', userID); 
+        formData.append('userID', userID);
 
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
@@ -99,7 +99,7 @@ function UserDetails({ userSesion, userIMG }) {
             });
             const data = await response.json();
             if (data.success) {
-                alert('your details have been changed');
+                setIsSuccesChnage(true)
                 setNewUserPasswordErrors('');
             } else {
                 setNewUserPasswordErrors([data.message]);
@@ -180,6 +180,7 @@ function UserDetails({ userSesion, userIMG }) {
                                     </div>
                                     <div className="user-data-box  d-flex justify-content-between align-items-center mt-3">
                                         <input
+                                            value={newPassword}
                                             type="password"
                                             onChange={(event) => setNewPassword(event.target.value)}
                                             className=" user-data-box-input ps-2"
