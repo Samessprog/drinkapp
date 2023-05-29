@@ -62,8 +62,9 @@ router.post('/', async (req, res) => {
     return;
   }
 
+  let userImg = 'https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg';
   
-  const user = { email, password, phone, Nick };
+  const user = { email, password, phone, Nick, userImg };
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {
     if (err) {

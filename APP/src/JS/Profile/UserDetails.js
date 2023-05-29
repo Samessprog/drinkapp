@@ -107,8 +107,8 @@ function UserDetails({ userSesion, userIMG }) {
         } catch (error) {
             setNewUserPasswordErrors([error.message]);
         }
-    };
-
+    };  
+    
     return (
         <div className=" col mt-3 ">
 
@@ -192,12 +192,9 @@ function UserDetails({ userSesion, userIMG }) {
                                 <div className="d-flex justify-content-center ">
                                     <button type="submit" className="user-data-button-submit mt-3">Change your Password</button>
                                 </div>
+                                <div className="d-flex align-items-center justify-content-center mt-2"> {newUserPasswordErrors ?? ''} </div>
                             </form>
-
                         }
-
-                        <div className="d-flex align-items-center justify-content-center mt-2"> {newUserPasswordErrors ?? ''} </div>
-
                     </div>
 
                 </div>
