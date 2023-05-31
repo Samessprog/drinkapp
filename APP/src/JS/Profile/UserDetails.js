@@ -109,6 +109,7 @@ function UserDetails({ userSesion, userIMG }) {
         }
     };  
     
+
     return (
         <div className=" col mt-3 ">
 

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
+import { SessionContext } from "../Session/SessionContext";
 
 
 function Drink({ elm, favourites, setFavourites }) {
 
-    //state for drinkIMG
+    const { userSesion } = useContext(SessionContext);
     const [drinkIMGs, setDrinkIMG] = useState('')
 
     //add as favorite drinks
@@ -19,7 +20,31 @@ function Drink({ elm, favourites, setFavourites }) {
     };
 
     const favouriteHandler = (id) => {
+    
+        if (userSesion === null) {
+            alert('To add a drink to your favourites, you must first log in')
+            return
+        }
+        
         toggleFavourite(id);
+        let sessionidx = userSesion.email;
+
+        fetch('http://localhost:3000/api/addToUserFavourite', {
+            method: 'POST',
+            body: JSON.stringify({ id, sessionidx }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === false) {
+
+                } else {
+
+                }
+            })
+            .catch(error => console.error(error));
     };
 
 

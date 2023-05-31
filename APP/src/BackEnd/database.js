@@ -11,6 +11,7 @@ const userDateChange = require('./userDataChange');
 const userImgChange = require('./uploadUserImage');
 const userPasswordChanger = require('./userPasswordChange');
 const addNewDrink = require('./addNewDrink');
+const addFavouriteDrink = require('./addFavouriteDrink');
 
 const port = 3000;
 
@@ -49,8 +50,10 @@ app.use('/api/userPasswordChange', userPasswordChanger);
 
 //Apps for drinks 
 app.use('/api/addNewDrink', addNewDrink);
-
 app.use('/api/uploadImage', userImgChange);
+
+//add to favourite yser drinks
+app.use('/api/addToUserFavourite', addFavouriteDrink);
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
@@ -72,7 +75,7 @@ app.get('/api/userIMG', (req, res) => {
 
     if (results.length > 0) {
       const userIMGBuffer = results[0].userIMG;
-      res.type('image/png'); // Ustaw odpowiedni typ zawartości na obraz PNG (dostosuj w zależności od typu obrazu)
+      res.type('image/png'); 
       res.send(userIMGBuffer);
     } else {
       res.status(404).json({ error: 'Image not found' });
