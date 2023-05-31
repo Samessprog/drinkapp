@@ -52,10 +52,6 @@ app.use('/api/userPasswordChange', userPasswordChanger);
 app.use('/api/addNewDrink', addNewDrink);
 app.use('/api/uploadImage', userImgChange);
 
-// Endpoint dla żądania POST
-app.post('/api/addToUserFavourite', async (req, res) => {
-  // Kod obsługi żądania POST
-});
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
@@ -87,26 +83,32 @@ app.get('/api/userIMG', (req, res) => {
 });
 
 
-// add to favorite user drinks
-app.get('/api/TakeUserFavourite', async (req, res) => {
-  const email = req.session.email;
-  console.log(email);
 
-  db.query('SELECT ID_FavouriteDrink FROM users WHERE email = ?', email, (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
 
-    if (results.length > 0) {
-      const userIMGBuffer = results[0].ID_FavouriteDrink;
-      console.log(userIMGBuffer)
-     
-    } else {
-      res.status(404).json({ error: 'Image not found' });
-    }
-  });
+// Endpoint dla żądania POST
+app.post('/api/addToUserFavourite', async (req, res) => {
+  const { id, sessionidx } = req.body;
+
+  if (sessionidx === null || sessionidx === undefined) {
+    return
+  }
+
+  const query = `
+  UPDATE users
+  SET ID_FavouriteDrink = CONCAT(ID_FavouriteDrink, ',', ${id})
+  WHERE email = '${sessionidx}';
+`;
+
+
+  console.log(query)
+
+  try {
+    await db.query(query);
+    res.status(200).json({ success: true, message: 'ID added to FavouriteDrink' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'An error occurred' });
+  }
 
 });
 

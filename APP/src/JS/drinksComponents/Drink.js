@@ -28,22 +28,22 @@ function Drink({ elm, favourites, setFavourites }) {
         toggleFavourite(id);
 
         let sessionidx = userSesion.email;
+
         try {
-            const response =  fetch('http://localhost:3000/api/TakeUserFavourite', {
-                credentials: 'include'
+           
+             fetch('http://localhost:3000/api/addToUserFavourite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, sessionidx}), 
+                credentials: 'include',
             });
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch user image');
-            }
-            const blob =  response.blob();
-            const imageUrl = URL.createObjectURL(blob);
-      
         } catch (error) {
             console.error(error);
         }
     };
-
 
 
     useEffect(() => {
