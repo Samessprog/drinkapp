@@ -20,32 +20,30 @@ function Drink({ elm, favourites, setFavourites }) {
     };
 
     const favouriteHandler = (id) => {
-    
         if (userSesion === null) {
-            alert('To add a drink to your favourites, you must first log in')
-            return
+            alert('To add a drink to your favourites, you must first log in');
+            return;
         }
-        
+
         toggleFavourite(id);
+
         let sessionidx = userSesion.email;
+        try {
+            const response =  fetch('http://localhost:3000/api/TakeUserFavourite', {
+                credentials: 'include'
+            });
 
-        fetch('http://localhost:3000/api/addToUserFavourite', {
-            method: 'POST',
-            body: JSON.stringify({ id, sessionidx }),
-            headers: {
-                'Content-Type': 'application/json'
+            if (!response.ok) {
+                throw new Error('Failed to fetch user image');
             }
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success === false) {
-
-                } else {
-
-                }
-            })
-            .catch(error => console.error(error));
+            const blob =  response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+      
+        } catch (error) {
+            console.error(error);
+        }
     };
+
 
 
     useEffect(() => {

@@ -52,8 +52,10 @@ app.use('/api/userPasswordChange', userPasswordChanger);
 app.use('/api/addNewDrink', addNewDrink);
 app.use('/api/uploadImage', userImgChange);
 
-//add to favourite yser drinks
-app.use('/api/addToUserFavourite', addFavouriteDrink);
+// Endpoint dla żądania POST
+app.post('/api/addToUserFavourite', async (req, res) => {
+  // Kod obsługi żądania POST
+});
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
@@ -64,6 +66,7 @@ app.get('/api/session', (req, res) => {
 });
 
 app.get('/api/userIMG', (req, res) => {
+
   const email = req.session.email;
 
   db.query('SELECT userIMG FROM users WHERE email = ?', email, (err, results) => {
@@ -75,7 +78,7 @@ app.get('/api/userIMG', (req, res) => {
 
     if (results.length > 0) {
       const userIMGBuffer = results[0].userIMG;
-      res.type('image/png'); 
+      res.type('image/png');
       res.send(userIMGBuffer);
     } else {
       res.status(404).json({ error: 'Image not found' });
@@ -83,6 +86,29 @@ app.get('/api/userIMG', (req, res) => {
   });
 });
 
+
+// add to favorite user drinks
+app.get('/api/TakeUserFavourite', async (req, res) => {
+  const email = req.session.email;
+  console.log(email);
+
+  db.query('SELECT ID_FavouriteDrink FROM users WHERE email = ?', email, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    if (results.length > 0) {
+      const userIMGBuffer = results[0].ID_FavouriteDrink;
+      console.log(userIMGBuffer)
+     
+    } else {
+      res.status(404).json({ error: 'Image not found' });
+    }
+  });
+
+});
 
 
 app.listen(port, () => {
