@@ -83,34 +83,26 @@ app.get('/api/userIMG', (req, res) => {
 });
 
 
-
-
-// Endpoint dla żądania POST
-app.post('/api/addToUserFavourite', async (req, res) => {
+app.use('/api/addToUserFavourite', async (req, res) => {
   const { id, sessionidx } = req.body;
 
-  if (sessionidx === null || sessionidx === undefined) {
-    return
-  }
-
-  const query = `
-  UPDATE users
-  SET ID_FavouriteDrink = CONCAT(ID_FavouriteDrink, ',', ${id})
-  WHERE email = '${sessionidx}';
-`;
-
-
-  console.log(query)
-
   try {
-    await db.query(query);
-    res.status(200).json({ success: true, message: 'ID added to FavouriteDrink' });
+  
+  
+    const insertQuery = `
+      INSERT INTO userfavouritedrink (UserID, DrinkID)
+      VALUES (${sessionidx}, ${id})
+    `;
+
+    await db.query(insertQuery);
+
+    res.status(200).json({ success: true, message: 'Ulubiony drink został dodany do użytkownika' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: 'An error occurred' });
+    res.status(500).json({ success: false, message: 'Wystąpił błąd podczas dodawania ulubionego drinku' });
   }
-
 });
+
 
 
 app.listen(port, () => {

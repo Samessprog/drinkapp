@@ -18,6 +18,7 @@ function Drink({ elm, favourites, setFavourites }) {
             setFavourites([...favourites, id]);
         }
     };
+ 
 
     const favouriteHandler = (id) => {
         if (userSesion === null) {
@@ -27,7 +28,7 @@ function Drink({ elm, favourites, setFavourites }) {
 
         toggleFavourite(id);
 
-        let sessionidx = userSesion.email;
+        let sessionidx = userSesion.userID;
 
         try {
            
@@ -44,7 +45,6 @@ function Drink({ elm, favourites, setFavourites }) {
             console.error(error);
         }
     };
-
 
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
