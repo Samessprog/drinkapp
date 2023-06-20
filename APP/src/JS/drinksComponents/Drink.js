@@ -5,7 +5,7 @@ import { Buffer } from 'buffer';
 import { SessionContext } from "../Session/SessionContext";
 
 
-function Drink({ elm, favourites, setFavourites, userFavouriteDrinks }) {
+function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
     const { userSesion } = useContext(SessionContext);
     const [drinkIMGs, setDrinkIMG] = useState('')
@@ -17,7 +17,7 @@ function Drink({ elm, favourites, setFavourites, userFavouriteDrinks }) {
             return;
         }
 
-
+        setFavourites(id)
         let sessionidx = userSesion.userID;
 
         try {
@@ -35,6 +35,7 @@ function Drink({ elm, favourites, setFavourites, userFavouriteDrinks }) {
             console.error(error);
         }
     };
+
 
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
