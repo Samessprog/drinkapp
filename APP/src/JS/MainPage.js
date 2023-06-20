@@ -1,11 +1,10 @@
-import React, { Suspense, lazy, useEffect,useState,useContext } from "react";
+import React, { Suspense, lazy, useEffect, useState, useContext } from "react";
 import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
 
-import { SessionContext } from "./Session/SessionContext";
 import { setDrinkNotFound } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = lazy(() => import("./drinksComponents/DDE"))
@@ -13,7 +12,7 @@ const DDE = lazy(() => import("./drinksComponents/DDE"))
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
-   
+
 
     const [favourites, setFavourites] = useState([]);
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
@@ -31,6 +30,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         window.scrollTo(0, 0);
         setOffset(offset);
     };
+    
+
 
     //check if any drinks are visible
     useEffect(() => {
@@ -42,25 +43,25 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     useEffect(() => {
         const fetchUserFavouriteDrinks = async () => {
-          try {
-            const response = await fetch('http://localhost:3000/api/takeFavouriteUserDrink', {
-              credentials: 'include'
-            });
-    
-            if (!response.ok) {
-              throw new Error('Failed to fetch user favourites.');
+            try {
+                const response = await fetch('http://localhost:3000/api/takeFavouriteUserDrink', {
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user favourites.');
+                }
+
+                const data = await response.json();
+                setUserFavouriteDrinks(data.drinkIDs);
+            } catch (error) {
+                console.error(error);
             }
-    
-            const data = await response.json();
-            setUserFavouriteDrinks(data.drinkIDs);
-          } catch (error) {
-            console.error(error);
-          }
         };
-    
+
         fetchUserFavouriteDrinks();
-      }, [favourites]);
-     
+    }, [favourites]);
+
 
     return (
 
@@ -77,6 +78,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
             {currentData.map((elm) => (
 
                 <Drink
+                    favourites={favourites}
                     setFavourites={setFavourites}
                     key={elm.ID_Drink}
                     elm={elm}

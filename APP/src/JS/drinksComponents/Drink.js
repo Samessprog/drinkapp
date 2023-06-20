@@ -5,7 +5,7 @@ import { Buffer } from 'buffer';
 import { SessionContext } from "../Session/SessionContext";
 
 
-function Drink({ elm, setFavourites, userFavouriteDrinks }) {
+function Drink({ elm, favourites,setFavourites, userFavouriteDrinks }) {
 
     const { userSesion } = useContext(SessionContext);
     const [drinkIMGs, setDrinkIMG] = useState('')
@@ -16,8 +16,9 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             alert('To add a drink to your favourites, you must first log in');
             return;
         }
+        //Optymalizacjaaaaa
+        setFavourites(prevFavourites => [...prevFavourites, id]);
 
-        setFavourites(id)
         let sessionidx = userSesion.userID;
 
         try {
