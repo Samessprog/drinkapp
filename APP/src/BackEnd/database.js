@@ -11,7 +11,7 @@ const userDateChange = require('./userDataChange');
 const userImgChange = require('./uploadUserImage');
 const userPasswordChanger = require('./userPasswordChange');
 const addNewDrink = require('./addNewDrink');
-const addFavouriteDrink = require('./addFavouriteDrink');
+
 
 const port = 3000;
 
@@ -83,44 +83,43 @@ app.get('/api/userIMG', (req, res) => {
 });
 
 
+
 app.use('/api/addToUserFavourite', async (req, res) => {
   const { id, sessionidx } = req.body;
 
-  try {
-    const checkQuery = `
-      SELECT * FROM userfavouritedrink
-      WHERE UserID = ${sessionidx} AND DrinkID = ${id}
-    `;
-
-    const checkResult = await db.query(checkQuery);
-
-    if (checkResult.length > 0) {
-      // Użytkownik już ma ten ulubiony drink, usuń go z tabeli
-      const deleteQuery = `
-        DELETE FROM userfavouritedrink
-        WHERE UserID = ${sessionidx} AND DrinkID = ${id}
-      `;
-
-      await db.query(deleteQuery);
-
-      res.status(200).json({ success: true, message: 'Ulubiony drink został usunięty z użytkownika' });
+  // Check if the user already has the drink in their favorites
+  const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
+  db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {
+    if (checkError) {
+      console.error(checkError);
+      res.status(500).json({ message: 'Error checking user favorites.' });
     } else {
-      // Użytkownik nie ma jeszcze tego ulubionego drinku, dodaj go do tabeli
-      const insertQuery = `
-        INSERT INTO userfavouritedrink (UserID, DrinkID)
-        VALUES (${sessionidx}, ${id})
-      `;
-
-      await db.query(insertQuery);
-
-      res.status(200).json({ success: true, message: 'Ulubiony drink został dodany do użytkownika' });
+      // If the user already has the drink, remove it from their favorites
+      if (checkResults.length > 0) {
+        const deleteQuery = `DELETE FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
+        db.query(deleteQuery, [sessionidx, id], (deleteError) => {
+          if (deleteError) {
+            console.error(deleteError);
+            res.status(500).json({ message: 'Error removing drink from user favorites.' });
+          } else {
+            res.status(200).json({ message: 'Drink removed from user favorites.' });
+          }
+        });
+      } else {
+        // If the user doesn't have the drink, add it to their favorites
+        const insertQuery = `INSERT INTO userfavouritedrink (UserID, DrinkID) VALUES (?, ?)`;
+        db.query(insertQuery, [sessionidx, id], (insertError) => {
+          if (insertError) {
+            console.error(insertError);
+            res.status(500).json({ message: 'Error adding drink to user favorites.' });
+          } else {
+            res.status(200).json({ message: 'Drink added to user favorites successfully.' });
+          }
+        });
+      }
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: 'Wystąpił błąd podczas dodawania/usuwania ulubionego drinku' });
-  }
+  });
 });
-
 
 
 app.listen(port, () => {
