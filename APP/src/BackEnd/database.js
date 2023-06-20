@@ -64,6 +64,7 @@ app.get('/api/session', (req, res) => {
 app.get('/api/userIMG', (req, res) => {
 
   const email = req.session.email;
+  console.log(email)
 
   db.query('SELECT userIMG FROM users WHERE email = ?', email, (err, results) => {
     if (err) {
@@ -82,19 +83,17 @@ app.get('/api/userIMG', (req, res) => {
   });
 });
 
-
-
 app.use('/api/addToUserFavourite', async (req, res) => {
   const { id, sessionidx } = req.body;
 
-  // Check if the user already has the drink in their favorites
+  console.log(sessionidx)
+
   const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
   db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {
     if (checkError) {
       console.error(checkError);
       res.status(500).json({ message: 'Error checking user favorites.' });
     } else {
-      // If the user already has the drink, remove it from their favorites
       if (checkResults.length > 0) {
         const deleteQuery = `DELETE FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
         db.query(deleteQuery, [sessionidx, id], (deleteError) => {
@@ -106,7 +105,6 @@ app.use('/api/addToUserFavourite', async (req, res) => {
           }
         });
       } else {
-        // If the user doesn't have the drink, add it to their favorites
         const insertQuery = `INSERT INTO userfavouritedrink (UserID, DrinkID) VALUES (?, ?)`;
         db.query(insertQuery, [sessionidx, id], (insertError) => {
           if (insertError) {
@@ -120,6 +118,27 @@ app.use('/api/addToUserFavourite', async (req, res) => {
     }
   });
 });
+
+app.get('/api/takeFavouriteUserDrink', async (req, res) => {
+  const userIDs = req.session.user?.userID;
+
+  // Fetch the DrinkIDs for the given UserID
+  const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
+
+  db.query(query, [userIDs], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error retrieving user favorite drinks.' });
+    } else {
+      // Extract the DrinkID values from the query results
+      const drinkIDs = results.map((row) => row.DrinkID);
+      res.status(200).json({ drinkIDs });
+    }
+  });
+});
+
+
+
 
 
 app.listen(port, () => {

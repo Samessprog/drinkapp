@@ -38,6 +38,30 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     }, [searchingDrink]);
 
 
+    const [userFavouriteDrinks, setUserFavouriteDrinks] = useState([]);
+
+    useEffect(() => {
+        const fetchUserFavouriteDrinks = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/takeFavouriteUserDrink', {
+              credentials: 'include'
+            });
+    
+            if (!response.ok) {
+              throw new Error('Failed to fetch user favourites.');
+            }
+    
+            const data = await response.json();
+            setUserFavouriteDrinks(data.drinkIDs);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchUserFavouriteDrinks();
+      }, [favourites]);
+      console.log(userFavouriteDrinks)
+
     return (
 
         <main className="main d-flex row justify-content-center me-0 main-holder">
@@ -57,6 +81,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                     setFavourites={setFavourites}
                     key={elm.ID_Drink}
                     elm={elm}
+                    userFavouriteDrinks={userFavouriteDrinks}
                 />
 
             ))}
