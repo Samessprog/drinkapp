@@ -13,7 +13,7 @@ const DDE = lazy(() => import("./drinksComponents/DDE"))
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
-    const { userSesion} = useContext(SessionContext);
+   
 
     const [favourites, setFavourites] = useState([]);
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
@@ -60,7 +60,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     
         fetchUserFavouriteDrinks();
       }, [favourites]);
-      console.log(userFavouriteDrinks)
+     
 
     return (
 
@@ -77,7 +77,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
             {currentData.map((elm) => (
 
                 <Drink
-                    favourites={favourites}
                     setFavourites={setFavourites}
                     key={elm.ID_Drink}
                     elm={elm}
