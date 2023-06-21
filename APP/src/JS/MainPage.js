@@ -5,7 +5,7 @@ import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
 
-import { setDrinkNotFound } from "./States/actions";
+import { setDrinkNotFound, setUserFavouriteDrinks } from "./States/actions";
 import ErrorFallback from "./Components/ErrorBoundary";
 const DDE = lazy(() => import("./drinksComponents/DDE"))
 
@@ -16,6 +16,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const [favourites, setFavourites] = useState([]);
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
+    const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
     const itemsPerPage = 12; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
@@ -30,7 +31,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         window.scrollTo(0, 0);
         setOffset(offset);
     };
-    
 
 
     //check if any drinks are visible
@@ -39,7 +39,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     }, [searchingDrink]);
 
 
-    const [userFavouriteDrinks, setUserFavouriteDrinks] = useState([]);
+
 
     useEffect(() => {
         const fetchUserFavouriteDrinks = async () => {
@@ -53,7 +53,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 }
 
                 const data = await response.json();
-                setUserFavouriteDrinks(data.drinkIDs);
+                dispatch(setUserFavouriteDrinks(data.drinkIDs));
             } catch (error) {
                 console.error(error);
             }
@@ -62,6 +62,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         fetchUserFavouriteDrinks();
     }, [favourites]);
 
+    console.log(userFavouriteDrinks)
 
     return (
 

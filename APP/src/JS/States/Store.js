@@ -30,7 +30,9 @@ const userState = {
   useSesion: null,
   phone: '',
   nick: '',
+  userFavouriteDrinks: [],
 };
+
 
 
 function userReducer(state = userState, action) {
@@ -46,21 +48,26 @@ function userReducer(state = userState, action) {
         ...state,
         password: action.payload,
       };
-      case 'SET_USER_SESSION':
-        return {
-          ...state,
-          useSesion: action.payload,
-        };
-        case 'SET_USER_PHONE':
-          return {
-            ...state,
-            phone: action.payload,
-          };
-          case 'SET_USER_NICK_NAME':
-            return {
-              ...state,
-              nick: action.payload,
-            };
+    case 'SET_USER_SESSION':
+      return {
+        ...state,
+        useSesion: action.payload,
+      };
+    case 'SET_FAVOURITE_DRINKS':
+      return {
+        ...state,
+        userFavouriteDrinks: action.payload,
+      };
+    case 'SET_USER_PHONE':
+      return {
+        ...state,
+        phone: action.payload,
+      };
+    case 'SET_USER_NICK_NAME':
+      return {
+        ...state,
+        nick: action.payload,
+      };
     default:
       return state;
   }
@@ -166,7 +173,7 @@ function navbarReducer(state = navbarState, action) {
 const rootReducer = combineReducers({
   navbar: navbarReducer,
   drink: drinksReducer,
-  user:userReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer);

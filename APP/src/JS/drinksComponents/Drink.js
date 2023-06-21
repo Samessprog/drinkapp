@@ -5,7 +5,7 @@ import { Buffer } from 'buffer';
 import { SessionContext } from "../Session/SessionContext";
 
 
-function Drink({ elm, favourites,setFavourites, userFavouriteDrinks }) {
+function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
     const { userSesion } = useContext(SessionContext);
     const [drinkIMGs, setDrinkIMG] = useState('')

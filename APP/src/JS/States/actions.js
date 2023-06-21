@@ -24,6 +24,7 @@ const SET_USER_EMAIL = 'SET_USER_EMAIL';
 const SET_USER_SESSION = 'SET_USER_SESSION';
 const SET_USER_PHONE = 'SET_USER_PHONE';
 const SET_USER_NICK_NAME = 'SET_USER_NICK_NAME';
+const SET_FAVOURITE_DRINKS = 'SET_FAVOURITE_DRINKS';
 
 
 // //Export NavBar Actions
@@ -176,7 +177,13 @@ export function setUserNick(value) {
     };
 }
 
-
+export function setUserFavouriteDrinks(value) {
+    return {
+      type: SET_FAVOURITE_DRINKS,
+      payload: value,
+    };
+  }
+  
 
 
 
