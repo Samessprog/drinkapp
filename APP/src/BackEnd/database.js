@@ -64,7 +64,7 @@ app.get('/api/session', (req, res) => {
 app.get('/api/userIMG', (req, res) => {
 
   const email = req.session.email;
-  console.log(email)
+
 
   db.query('SELECT userIMG FROM users WHERE email = ?', email, (err, results) => {
     if (err) {

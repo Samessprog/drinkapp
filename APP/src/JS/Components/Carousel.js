@@ -1,14 +1,19 @@
-import  { Children ,useState, useEffect } from "react";
-const Carousel = ({ children }) => {
+import { Children, useState, useEffect } from "react";
+
+import FavouriteDrinks from "../Profile/UserDrinks/FavouriteDrinks";
+
+
+const Carousel = ({ elm, favouriteUsersDrink }) => {
+
 
   // states for checking the index and displayed items
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
   useEffect(() => {
-    
-    if (children) {
-      const itemsArray = Children.toArray(children);
+
+    if (elm) {
+      const itemsArray = Children.toArray(elm);
       const itemsLength = itemsArray.length;
       const itemsToShow = [];
 
@@ -27,10 +32,10 @@ const Carousel = ({ children }) => {
 
       setShowItems(itemsToShow);
     }
-  }, [children, currentIndex]);
+  }, [elm, currentIndex]);
 
   const handlePrev = () => {
-    const itemsCount = Children.count(children);
+    const itemsCount = Children.count(elm);
     // const lastIndex = itemsCount - 1;
     const newIndex = (currentIndex - 5 + itemsCount) % itemsCount;
     setCurrentIndex(newIndex);
@@ -43,7 +48,10 @@ const Carousel = ({ children }) => {
   return (
     <div className="carousel col-12 ">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
-        {showItems}
+        {favouriteUsersDrink.map((elm) => (
+          <FavouriteDrinks key={elm.ID_Drink} elm={elm} />
+        ))}
+
       </div>
 
       <div

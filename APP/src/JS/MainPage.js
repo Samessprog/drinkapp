@@ -13,7 +13,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
 
-
     const [favourites, setFavourites] = useState([]);
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
     const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
@@ -39,8 +38,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     }, [searchingDrink]);
 
 
-
-
     useEffect(() => {
         const fetchUserFavouriteDrinks = async () => {
             try {
@@ -62,7 +59,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         fetchUserFavouriteDrinks();
     }, [favourites]);
 
-    console.log(userFavouriteDrinks)
 
     return (
 

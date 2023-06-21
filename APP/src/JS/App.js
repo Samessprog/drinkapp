@@ -29,7 +29,6 @@ function App() {
   const [drinkDatas, setDrinkData] = React.useState([])
 
 
-
   React.useEffect(() => {
 
     const setFixed = () => {
@@ -62,11 +61,11 @@ function App() {
       } catch (err) {
         console.log(err);
       }
-      };
+    };
 
     fetchData();
   }, []);
-  
+
 
 
 
@@ -100,7 +99,7 @@ function App() {
           </Route>
 
           <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
-          <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
+          <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
         </Routes>
       </SessionContext.Provider>
       <Footer />
