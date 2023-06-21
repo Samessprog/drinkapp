@@ -13,7 +13,7 @@
         z-index: 1;
         transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         transform: translateY(100%);
-        
+
         .cc {
             height: 140px;
             color: black;
@@ -49,14 +49,21 @@
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
             }
+
+          
         }
+        
+      
+
     }
 
+   
     &:hover .favourite-drink-info-box {
         opacity: 0.75;
         transform: translateY(0%);
     }
-    
+
+
     .drink-img-favourite {
         border-radius: 15px;
         max-height: 250px;
@@ -77,11 +84,23 @@
             max-height: 200px;
             height: 200px;
         }
+        
 
     }
+    
+   
 
     .star {
         fill: $color-gold;
     }
 
+}
+
+.no-fav-drinks {
+    letter-spacing: 2px;
+    height: 100px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
