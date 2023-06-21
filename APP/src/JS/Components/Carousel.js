@@ -48,9 +48,15 @@ const Carousel = ({ elm, favouriteUsersDrink }) => {
   return (
     <div className="carousel col-12 ">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
-        {favouriteUsersDrink.map((elm) => (
-          <FavouriteDrinks key={elm.ID_Drink} elm={elm} />
-        ))}
+
+        {favouriteUsersDrink.length === 0 ? (
+          <div className="no-fav-drinks fs-4"  >No favorite drinks</div>
+        ) : (
+          favouriteUsersDrink.map((elm) => (
+            <FavouriteDrinks key={elm.ID_Drink} elm={elm} />
+          ))
+        )}
+
 
       </div>
 
