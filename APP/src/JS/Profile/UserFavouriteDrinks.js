@@ -1,5 +1,4 @@
 import React from "react";
-import FavouriteDrinks from "./UserDrinks/FavouriteDrinks";
 import Carousel from "../Components/Carousel";
 
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
@@ -16,20 +15,13 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
     return favouriteDrink;
   })
 
-  
 
   return (
     <div className="favourite-holder-user-drink col-12">
       <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center">Your favourite</label>
       <div className="user-favourite-frinks-holder d-flex justify-content-center col-12 col-sm-11">
 
-    <Carousel favouriteUsersDrink={favouriteUsersDrink}>
-
-    </Carousel>
-
-         
-
-       
+        <Carousel favouriteUsersDrink={favouriteUsersDrink}> </Carousel>
 
       </div>
 
