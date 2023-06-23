@@ -45,8 +45,6 @@ function UserProfile( { drinkDatas } ) {
   if (userSesion === null) {
     return <Navigate to="/" />;
   }
- 
-  
 
   return (
     <div className="user-details-holder">

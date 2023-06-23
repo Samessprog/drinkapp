@@ -1,63 +1,56 @@
-import { Children, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import FavouriteDrinks from "../Profile/UserDrinks/FavouriteDrinks";
 
-
-const Carousel = ({ elm, favouriteUsersDrink }) => {
-
-
-  // states for checking the index and displayed items
+const Carousel = ({ favouriteUsersDrink }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
   useEffect(() => {
-
-    if (elm) {
-      const itemsArray = Children.toArray(elm);
-      const itemsLength = itemsArray.length;
+    if (favouriteUsersDrink) {
+      const itemsLength = favouriteUsersDrink.length;
       const itemsToShow = [];
 
-      // If less than 5 items, display all and lock scrolling
       if (itemsLength <= 4) {
-        setShowItems(itemsArray);
+        setShowItems(favouriteUsersDrink);
         return;
       }
 
       const startIndex = currentIndex % itemsLength;
 
-      // Download the first 4 items
-      for (let i = startIndex; i < startIndex + 5; i++) {
-        itemsToShow.push(itemsArray[i % itemsLength]);
+      // Get the first 4 items
+      for (let i = startIndex; i < startIndex + 4; i++) {
+        const itemIndex = i >= itemsLength ? i - itemsLength : i;
+        itemsToShow.push(favouriteUsersDrink[itemIndex]);
       }
 
       setShowItems(itemsToShow);
     }
-  }, [elm, currentIndex]);
+  }, [favouriteUsersDrink, currentIndex]);
 
   const handlePrev = () => {
-    const itemsCount = Children.count(elm);
-    // const lastIndex = itemsCount - 1;
-    const newIndex = (currentIndex - 5 + itemsCount) % itemsCount;
+    const itemsCount = favouriteUsersDrink.length;
+    const newIndex = (currentIndex - 3 + itemsCount) % itemsCount;
     setCurrentIndex(newIndex);
   };
-  //enter 5 more indexes, and download 5 more photos
+
   const handleNext = () => {
-    setCurrentIndex(currentIndex + 5);
+    const itemsCount = favouriteUsersDrink.length;
+    const newIndex = (currentIndex + 3) % itemsCount;
+    setCurrentIndex(newIndex);
   };
+
 
   return (
     <div className="carousel col-12 ">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
-
-        {favouriteUsersDrink.length === 0 ? (
-          <div className="no-fav-drinks fs-4"  >No favorite drinks</div>
+        {showItems.length === 0 ? (
+          <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
-          favouriteUsersDrink.map((elm) => (
+          showItems.map((elm) => (
             <FavouriteDrinks key={elm.ID_Drink} elm={elm} />
           ))
         )}
-
-
       </div>
 
       <div
