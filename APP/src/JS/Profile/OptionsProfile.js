@@ -21,6 +21,7 @@ function OptionsProfile() {
 
     function handleLogoutClick() {
         logoutUser();
+        window.location.reload();
     }
 
     return (

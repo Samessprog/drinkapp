@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const router = express.Router();
-const db = require('./DB')
+
 
 router.use(session({
   secret: 'my-secret-key',
@@ -16,7 +16,6 @@ router.get('/', (req, res, next) => {
   if (!req.session || !req.session.user) {
       return res.status(401).json({ message: 'Unauthorized' });
   }
-
   const user = req.session.user;
   res.json(user);
 });

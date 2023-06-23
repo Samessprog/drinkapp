@@ -2,24 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
 
-
 function FavouriteDrinks({ elm }) {
 
     const [drinkImg, setDrinkImg] = useState('')
 
     useEffect(() => {
         if (elm?.IMG && elm?.IMG.data) {
-
             const base64Image = Buffer.from(elm?.IMG.data).toString('base64');
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setDrinkImg(imageURL)
-
         }
-    });
-  
+    },[]);
+
     return (
         <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5 ">
-            <Link to={"/drinkDetail/1"}>
+            <Link to={`/drinkDetail/${elm?.ID_Drink}`}>
                 <div className=" position-relative ">
                     <img className=" img-fluid drink-img-favourite" src={drinkImg} />
                     <div className="position-absolute favourite-drink-info-box ">

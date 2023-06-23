@@ -11,7 +11,17 @@ router.post('/', (req, res) => {
 
     const { email, phone, Nick, userID } = req.body;
 
-    // Sprawdź, czy adres email jest już w użyciu
+    if (!Nick.test(nickRegex)) {
+        res.status(400).json({ success: false, message: 'Invalid nick format' });
+        return;
+    }
+
+    if (!email.test(emailRegex)) {
+        res.status(400).json({ success: false, message: 'Invalid email format' });
+        return;
+    }
+
+
     db.query('SELECT * FROM users WHERE email = ? AND ID_User != ?', [email, userID], (err, results) => {
         if (err) {
             console.error(err);

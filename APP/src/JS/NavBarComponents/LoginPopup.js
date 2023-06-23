@@ -33,6 +33,7 @@ function LoginPopup() {
             const user = data.user; // Extract the user data from the response
             dispatch(setUserSession(user)); 
             dispatch(setLoginPopup(false)); 
+            window.location.reload();
         })
         .catch(error => {
             setLoginError([error.message]); // Handle any errors that occur during the login process

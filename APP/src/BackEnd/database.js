@@ -86,7 +86,7 @@ app.get('/api/userIMG', (req, res) => {
 app.use('/api/addToUserFavourite', async (req, res) => {
   const { id, sessionidx } = req.body;
 
-  console.log(sessionidx)
+
 
   const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
   db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {

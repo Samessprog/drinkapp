@@ -25,7 +25,6 @@ const upload = multer();
 const drinkNameRegex = /^[a-zA-Z0-9]{1,15}$/;
 const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
 const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
-const indANDprepRegex = /^[A-Za-z0-9.]+$/;
 const drinkLevelAndTasteRegex = /^(Easy|Medium|Hard|Sour|Sweet|Bitter)$/;
 const drinkTypeRegex = /^(Alcoholic|Soft)$/;
 const validTastesRegex = /^(Sour|Sweet|Bitter)$/;

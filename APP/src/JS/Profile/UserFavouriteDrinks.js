@@ -15,7 +15,6 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
     return favouriteDrink;
   })
 
-
   return (
     <div className="favourite-holder-user-drink col-12">
       <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center">Your favourite</label>
