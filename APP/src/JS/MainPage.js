@@ -31,7 +31,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
         setOffset(offset);
     };
 
-
     //check if any drinks are visible
     useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0));
@@ -73,7 +72,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
             </div>
 
             {currentData.map((elm) => (
-
                 <Drink
                     favourites={favourites}
                     setFavourites={setFavourites}
@@ -81,11 +79,9 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                     elm={elm}
                     userFavouriteDrinks={userFavouriteDrinks}
                 />
-
             ))}
 
-            {!drinkNotFound &&
-
+            {!drinkNotFound && searchingDrink.length > itemsPerPage &&
                 <Pagination
                     pageCount={pageCount}
                     onPageChange={handlePageClick}
@@ -94,7 +90,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                     nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
                     previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                 />
-
             }
 
             {drinkNotFound &&
