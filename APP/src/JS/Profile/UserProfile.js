@@ -8,7 +8,7 @@ import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-function UserProfile( { drinkDatas } ) {
+function UserProfile({ drinkDatas }) {
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
 
@@ -39,7 +39,7 @@ function UserProfile( { drinkDatas } ) {
   }, []);
 
 
- 
+
 
 
   if (userSesion === null) {
@@ -54,9 +54,12 @@ function UserProfile( { drinkDatas } ) {
         userFavouriteDrinks={userFavouriteDrinks}
         drinkDatas={drinkDatas}
       />
+      
       <UserOwnDrinks
         setAddUserNewDrink={setAddUserNewDrink}
-        addUserNewDrink={addUserNewDrink} />
+        drinkDatas={drinkDatas}
+        addUserNewDrink={addUserNewDrink}
+      />
 
       {addUserNewDrink && <UserOwnDrinkPopup addUserNewDrink={addUserNewDrink} setAddUserNewDrink={setAddUserNewDrink} />}
     </div>

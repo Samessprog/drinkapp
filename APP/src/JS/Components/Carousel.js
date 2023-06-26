@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import FavouriteDrinks from "../Profile/UserDrinks/FavouriteDrinks";
+import FavouriteDrinks from "../Profile/UserDrinks/UserDrink";
 
 const Carousel = ({ favouriteUsersDrink }) => {
 
@@ -28,6 +28,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
       setShowItems(itemsToShow);
     }
   }, [currentIndex]);
+
 
   const handlePrev = () => {
     const itemsCount = favouriteUsersDrink.length;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
 
-function FavouriteDrinks({ elm }) {
+function UserDrink({ elm }) {
 
     const [drinkImg, setDrinkImg] = useState('')
 
@@ -45,4 +45,4 @@ function FavouriteDrinks({ elm }) {
     )
 }
 
-export default FavouriteDrinks;
+export default UserDrink;
