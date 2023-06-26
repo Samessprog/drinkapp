@@ -1,7 +1,7 @@
 import React from "react";
 import FavouriteDrinks from "./UserDrinks/FavouriteDrinks";
 
-function UserOwnDrinks({addUserNewDrink, setAddUserNewDrink }) {
+function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink }) {
 
     
     return (

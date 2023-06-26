@@ -14,9 +14,7 @@ function UserProfile( { drinkDatas } ) {
 
   const [userIMG, setUserIMG] = useState('')
 
-
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
-
 
 
   useEffect(() => {
@@ -37,9 +35,11 @@ function UserProfile( { drinkDatas } ) {
         console.error(error);
       }
     };
-
     fetchUserImage();
   }, []);
+
+
+ 
 
 
   if (userSesion === null) {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
-import { Buffer } from 'buffer';
 
 function UserDetails({ userSesion, userIMG }) {
 
@@ -21,8 +20,6 @@ function UserDetails({ userSesion, userIMG }) {
     const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
     const [newPassword, setNewPassword] = useState('')
 
-    //userIMG handler 
-    const [imageURL, setImageURL] = useState('');
 
     const [isSuccesChnage, setIsSuccesChnage] = useState(false)
 
@@ -80,14 +77,6 @@ function UserDetails({ userSesion, userIMG }) {
             console.error(error);
         }
     };
-
-    useEffect(() => {
-        if (userSesion.userIMG && userSesion.userIMG.data) {
-            const base64Image = Buffer.from(userSesion.userIMG.data).toString('base64');
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setImageURL(imageURL);
-        }
-    }, [userSesion.userIMG]);
 
     const userPasswordChanger = async (event) => {
         event.preventDefault();
