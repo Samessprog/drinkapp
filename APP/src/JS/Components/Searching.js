@@ -14,6 +14,18 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   const ingredient = useSelector(state => state.drink.ingredient);
   const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
 
+  const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
+  const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
+
+  useEffect(() => {
+    const favFilter = drinkDatas.filter((allDrinks) => {
+      return userFavouriteDrinks.includes(allDrinks.ID_Drink);
+    });
+    setSearchingDrink(favFilter)
+  }, [favouriteDrink]);
+
+
+
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
     return drinkDatas.filter((elm) => {
@@ -58,7 +70,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
             if (hasMatchingIngredientSome) { return elm }
             if (areAllIngredientsIncluded) { return elm }
           }
-        }else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0){
+        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0) {
           return elm
         }
 

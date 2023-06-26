@@ -17,6 +17,7 @@ const SET_EACH_FLAG_DRINKS = 'SET_EACH_FLAG_DRINKS';
 const SET_INPUT_DRINKS_TEXT = 'SET_INPUT_DRINKS_TEXT';
 const SET_DRINKS_COUNTER = 'SET_DRINKS_COUNTER';
 const SET_INGREDIENTS = 'SET_INGREDIENTS';
+const SET_FAVOURITE_FLAG_DRINKS = 'SET_FAVOURITE_FLAG_DRINKS';
 
 //Users Actions
 const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
@@ -25,6 +26,7 @@ const SET_USER_SESSION = 'SET_USER_SESSION';
 const SET_USER_PHONE = 'SET_USER_PHONE';
 const SET_USER_NICK_NAME = 'SET_USER_NICK_NAME';
 const SET_FAVOURITE_DRINKS = 'SET_FAVOURITE_DRINKS';
+
 
 
 // //Export NavBar Actions
@@ -105,6 +107,13 @@ export function setDrinkLevel(value) {
         payload: value
     };
 }
+
+export function setDrinkFavouriteFlag(value) {
+    return {
+      type: SET_FAVOURITE_FLAG_DRINKS,
+      payload: value
+    };
+  }
 
 export function setDrinkTaste(value) {
     return {

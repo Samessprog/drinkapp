@@ -4,12 +4,17 @@ import DrinksOptions from "../Components/DrinksOptions";
 import TypeOfDrink from "../Components/TypeOfDrink";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setHighlyRated } from "../States/actions";
+import { setHighlyRated, setDrinkFavouriteFlag } from "../States/actions";
 
 function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,
     drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
-    /* Settings States  */ 
+    const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
+
+   
+
+
+    /* Settings States  */
     const dispatch = useDispatch();
 
     //Drinks properties states
@@ -24,8 +29,6 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 setSearchingDrink={setSearchingDrink}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
-
-
             />
 
             <div className="d-flex flex-row-reverse me-2 mt-2 ">
@@ -41,7 +44,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
 
                     <div className="">
                         <div className="d-flex mt-1">
-                            <input type="checkbox" ></input>
+                            <input type="checkbox" onClick={() => dispatch(setDrinkFavouriteFlag(!favouriteDrink))} ></input>
                             <label className="ms-1">Favorite</label>
                         </div>
 
@@ -53,18 +56,14 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                         </div>
 
                     </div>
-
-                    <DrinksOptions  />
-
+                    <DrinksOptions />
                 </div>
-
 
                 <div className="d-flex justify-content-center mt-3">
                     <button onClick={() => {
                         dispatch(setSpecialOptionsPopup(!specialOptionsPopup))
                         dispatch(setPopupSetings(false))
                     }}
-
                         type="button" className=" special-button rounded">
                         Provide the ingredients
                     </button>

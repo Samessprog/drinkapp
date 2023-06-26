@@ -22,6 +22,7 @@ const drinksState = {
   eachdrinkflag: false,
   drinkCounter: 0,
   ingredient: [],
+  favouriteDrink: false,
 };
 
 const userState = {
@@ -32,8 +33,6 @@ const userState = {
   nick: '',
   userFavouriteDrinks: [],
 };
-
-
 
 function userReducer(state = userState, action) {
   switch (action.type) {
@@ -119,6 +118,11 @@ function drinksReducer(state = drinksState, action) {
         ...state,
         drinkCounter: action.payload
       }
+    case 'SET_FAVOURITE_FLAG_DRINKS':
+      return {
+        ...state,
+        favouriteDrink: action.payload
+      };
     case 'SET_INGREDIENTS':
       return {
         ...state,
