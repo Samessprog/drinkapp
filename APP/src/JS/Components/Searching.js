@@ -56,21 +56,18 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
         return false;
 
       } else if (!inputDrinkText) {
-
         const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
 
-        if (isMatchWithoutText && !favouriteDrink) {
-          if (ingredient.length === 0) {
-            return elm;
-          } else if (eachdrinkflag) {
-            if (hasMatchingIngredientSome || areAllIngredientsIncluded) {
+        if (isMatchWithoutText) {
+          if (!favouriteDrink) {
+            if (ingredient.length === 0 || (eachdrinkflag && (hasMatchingIngredientSome || areAllIngredientsIncluded)) || areAllIngredientsIncluded) {
               return elm;
             }
-          } else if (areAllIngredientsIncluded) {
-            return elm;
+          } else {
+            if (ingredient.length === 0 || (eachdrinkflag && (hasMatchingIngredientSome || areAllIngredientsIncluded)) || areAllIngredientsIncluded) {
+              return userFavouriteDrinks.includes(elm.ID_Drink);
+            }
           }
-        } else if (isMatchWithoutText && favouriteDrink) {
-          return userFavouriteDrinks.includes(elm.ID_Drink);
         } else if (!isMatchWithoutText && ingredient.length !== 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
           return elm;
         } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0) {
@@ -78,7 +75,6 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
         }
 
         return false;
-
 
       } else { return elm }
     });
