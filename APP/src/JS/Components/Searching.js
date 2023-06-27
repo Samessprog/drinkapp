@@ -17,11 +17,9 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
     return drinkDatas.filter((elm) => {
-
 
       //filtration conditions
       const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcoholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);

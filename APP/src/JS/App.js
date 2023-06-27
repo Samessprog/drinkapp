@@ -102,7 +102,7 @@ function App() {
           <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
         </Routes>
       </SessionContext.Provider>
-      <Footer />
+      <Footer searchingDrink={searchingDrink} />
 
     </div >
   );
