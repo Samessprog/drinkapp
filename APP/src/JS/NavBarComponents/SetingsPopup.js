@@ -11,9 +11,6 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
 
     const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
 
-   
-
-
     /* Settings States  */
     const dispatch = useDispatch();
 

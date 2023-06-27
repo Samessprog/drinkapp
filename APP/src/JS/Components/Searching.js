@@ -17,18 +17,11 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-  useEffect(() => {
-    const favFilter = drinkDatas.filter((allDrinks) => {
-      return userFavouriteDrinks.includes(allDrinks.ID_Drink);
-    });
-    setSearchingDrink(favFilter)
-  }, [favouriteDrink]);
-
-
 
   const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
 
     return drinkDatas.filter((elm) => {
+
 
       //filtration conditions
       const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcoholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks);
@@ -41,38 +34,51 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       if (inputDrinkText) {
         const drinkName = elm.DrinkName?.toLowerCase();
         const inputText = inputDrinkText.toLowerCase();
+        const isMatch = drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
 
-        if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0)) {
-          return elm
+        if (isMatch && !favouriteDrink && ingredient.length === 0) {
+          return elm;
+        }
 
-        } else if ((drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0)) {
-          if (eachdrinkflag) {
-            if (hasMatchingIngredientSome) { return elm }
-          } else {
-            if (areAllIngredientsIncluded) { return elm }
+        if (isMatch && !favouriteDrink && ingredient.length !== 0) {
+          if (eachdrinkflag && hasMatchingIngredientSome) {
+            return elm;
+          }
+          if (!eachdrinkflag && areAllIngredientsIncluded) {
+            return elm;
           }
         }
+
+        if (isMatch && favouriteDrink) {
+          return userFavouriteDrinks.includes(elm.ID_Drink);
+        }
+
+        return false;
 
       } else if (!inputDrinkText) {
-        if (isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length === 0) {
-          return elm
 
-        } else if (isCategoryMatch && isDifficultyLevelMatch && isTasteMatch && ingredient.length !== 0) {
+        const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
 
-          if (eachdrinkflag) {
-            if (hasMatchingIngredientSome) { return elm }
-          } else {
-            if (areAllIngredientsIncluded) { return elm }
+        if (isMatchWithoutText && !favouriteDrink) {
+          if (ingredient.length === 0) {
+            return elm;
+          } else if (eachdrinkflag) {
+            if (hasMatchingIngredientSome || areAllIngredientsIncluded) {
+              return elm;
+            }
+          } else if (areAllIngredientsIncluded) {
+            return elm;
           }
-
-        } else if (!(isCategoryMatch && isDifficultyLevelMatch && isTasteMatch) && ingredient.length !== 0) {
-          if (eachdrinkflag) {
-            if (hasMatchingIngredientSome) { return elm }
-            if (areAllIngredientsIncluded) { return elm }
-          }
+        } else if (isMatchWithoutText && favouriteDrink) {
+          return userFavouriteDrinks.includes(elm.ID_Drink);
+        } else if (!isMatchWithoutText && ingredient.length !== 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
+          return elm;
         } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0) {
-          return elm
+          return elm;
         }
+
+        return false;
+
 
       } else { return elm }
     });
@@ -88,7 +94,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
     dispatch(setDrinkCounter(searchingResults.length))
 
     setSearchingDrink(searchingResults);
-  }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText, ingredient, eachdrinkflag]);
+  }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText, ingredient, eachdrinkflag, favouriteDrink]);
 
 }
 
