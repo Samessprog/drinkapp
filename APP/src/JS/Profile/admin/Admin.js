@@ -3,10 +3,8 @@ import React from "react";
 
 function Admin() {
 
-
-
-
-    
+    const [driksFlag, setDrinksFlag] = React.useState(true)
+    const [usersFlag, setUsersFlag] = React.useState(false)
 
 
     return (
@@ -22,15 +20,18 @@ function Admin() {
                 </div>
 
             </div>
+            <div className="fs-2 white header-admin ms-3 ">
+                <header>Database of users and drinks</header>
+            </div>
 
             <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 ">
                 <div className="d-flex justify-content-between ">
-                    <div className="d-flex ms-2 mt-0 optional-buttons-holder mt-2">
+                    <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2">
                         <div className="pb-0 me-2">
-                            <button className="optional-buttons">Drinks</button>
+                            <button className="optional-buttons" onClick={() => { setDrinksFlag(true); setUsersFlag(false) }}>Drinks</button>
                         </div>
                         <div className="">
-                            <button className="optional-buttons">Users</button>
+                            <button className="optional-buttons" onClick={() => { setDrinksFlag(false); setUsersFlag(true) }}>Users</button>
                         </div>
                     </div>
 
@@ -45,18 +46,19 @@ function Admin() {
 
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
-                    <div>
-                        BRAK USERÓW
-                    </div>
+                    {usersFlag &&
+                        <div >
+                            BRAK USERÓW
+                        </div>
+                    }
 
-                    <div>
-                        BRAK DRINKÓW
-                    </div>
-
+                    {driksFlag &&
+                        <div>
+                            BRAK DRINKÓW
+                        </div>
+                    }
                 </div>
             </div>
-
-
 
         </div>
     )
