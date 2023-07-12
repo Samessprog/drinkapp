@@ -163,7 +163,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
 
                     <div className="">
                         {userSesion === null &&
-                            <div className=" ms-2 mb-3 fs-5" onClick={() => handlePopup('login')}>Login</div>
+                            <div className=" ms-2 mb-3 fs-4" onClick={() => handlePopup('login')}>Login</div>
                         }
 
                         {userSesion !== null &&
