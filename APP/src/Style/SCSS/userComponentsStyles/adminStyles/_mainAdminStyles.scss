@@ -1,7 +1,12 @@
 @import './\ chartActifityUser';
+@import './adminDB';
 
+.admin-header-holder {
 
-.admin-container{
-    background-color: white;
-
+    .admin-header {
+        color: white;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
 }
+
