@@ -1,0 +1,47 @@
+.drinks-profile-holder {
+    border: 2px solid white;
+    border-radius: 15px;
+}
+
+.drink-profile-holder-IMG {
+    border: 1px solid white;
+    border-radius: 10px;
+
+    .drink-profile-img {
+        border-radius: 10px;
+        max-height: 200px;
+        min-height: 200px;
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+
+}
+
+.drink-name-profile {
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(252, 218, 174);
+
+}
+
+.details-button-holder {
+    position: relative;
+    margin-left: 6rem;
+
+
+    .details-button {
+        background-color: rgb(198, 198, 198);
+        border-radius: 10px;
+        font-size: 17px;
+        letter-spacing: 1px;
+        padding: 3px;
+     
+        
+    }
+
+}
+.delete-profile {
+    justify-content: end;
+
+}

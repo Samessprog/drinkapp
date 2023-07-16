@@ -1,7 +1,7 @@
 import React from "react";
+import DrinksProfile from "./DrinksProfile";
 
-
-function Admin() {
+function Admin({ drinkDatas }) {
 
     const [driksFlag, setDrinksFlag] = React.useState(true)
     const [usersFlag, setUsersFlag] = React.useState(false)
@@ -45,7 +45,7 @@ function Admin() {
                     </div>
 
                 </div>
-                <div className="d-flex justify-content-center align-items-center">
+                <div className="">
                     {usersFlag &&
                         <div >
                             BRAK USERÓW
@@ -53,9 +53,7 @@ function Admin() {
                     }
 
                     {driksFlag &&
-                        <div>
-                            BRAK DRINKÓW
-                        </div>
+                        drinkDatas.map((elm) => <DrinksProfile  elm={elm}/>)
                     }
                 </div>
             </div>
