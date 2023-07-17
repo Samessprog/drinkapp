@@ -1,20 +1,26 @@
 .drinks-profile-holder {
     border: 2px solid white;
     border-radius: 15px;
+    position: relative;
 }
 
-.drink-profile-holder-IMG {
-    border: 1px solid white;
-    border-radius: 10px;
+.data-holder {
+    width: 1000px;
 
-    .drink-profile-img {
+    .drink-profile-holder-IMG {
+        border: 1px solid white;
         border-radius: 10px;
-        max-height: 200px;
-        min-height: 200px;
-        min-width: 250px;
-        max-width: 250px;
-    }
 
+        .drink-profile-img {
+            border-radius: 10px;
+            max-height: 200px;
+            min-height: 200px;
+            min-width: 250px;
+            max-width: 250px;
+        }
+
+
+    }
 
 }
 
@@ -29,19 +35,33 @@
     position: relative;
     margin-left: 6rem;
 
-
     .details-button {
-        background-color: rgb(198, 198, 198);
-        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 15px;
         font-size: 17px;
         letter-spacing: 1px;
-        padding: 3px;
-     
-        
+        padding: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 18px;
+
+
+
     }
 
 }
+
 .delete-profile {
     justify-content: end;
+
+    &-icon {
+        fill: red;
+        cursor: pointer;
+    }
+
+    .block-icon-profile {
+        fill: rgb(255, 132, 0);
+        cursor: pointer;
+    }
 
 }
