@@ -1,53 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Buffer } from 'buffer';
-import { Link } from "react-router-dom";
 
-function DrinksProfile({ elm }) {
 
-    const [drinkProfileIMG, setdrinkProfileIMG] = useState('')
+function UsersAdminControlerProfile({ elm }) {
 
+
+    const [userIMGProfileAdmin, setUserIMGProfileAdmin] = React.useState('')
     useEffect(() => {
-        if (elm.IMG && elm.IMG.data) {
+        if (elm.userIMG) {
             // Convert the image data to base64
-            const base64Image = Buffer.from(elm.IMG.data).toString('base64');
+            const base64Image = Buffer.from(elm.userIMG.data).toString('base64');
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setdrinkProfileIMG(imageURL);
+            setUserIMGProfileAdmin(imageURL);
         }
 
     }, []);
 
-    
+    console.log(elm)
 
     return (
         <div className="mb-3 ms-3 d-flex align-items-center drinks-profile-holder  me-3  justify-content-between">
             <div className="d-flex  align-items-center">
                 <div className="ms-3 me-4 fs-4">
-                    {elm.ID_Drink}.
+                    {elm.ID_User}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center position-relative">
                     <div className="d-flex align-items-center ">
                         <div className="d-flex align-items-center data-holder">
                             <div className=" mt-1 mb-1 drink-profile-holder-IMG">
-                                <img className=" drink-profile-img img-fluid " src={drinkProfileIMG} alt="loadingErr"></img>
+                                <img className=" drink-profile-img img-fluid " src={userIMGProfileAdmin} alt="loadingErr"></img>
                             </div>
-                            <div className="ms-4 drink-name-profile">
-                                {elm.DrinkName}
+                            <div className="ms-4 d-flex align-items-center">
+                                <label className="fs-5">Nick:</label>
+                                <div className="drink-name-profile ms-2">{elm.Nick}</div>
+                            </div>
+
+                            <div className="ms-4 fs-5">
+                                user Email:
+                                <label className="drink-name-profile ms-2">{elm.email}</label>
                             </div>
                             <div className="ms-4 fs-5">
-                                Created by:
-                                <label className="drink-name-profile ms-2">{elm.Creator}</label>
+                                User phone
+                                <label className="drink-name-profile ms-2">{elm.phone}</label>
                             </div>
+
+
                         </div>
                         <div className=" details-button-holder ">
                             <button className="details-button">
-                                <Link to={`/drinkDetail/${elm.ID_Drink}`} target="_blank">show me the details</Link>
+                                Change User Data
                             </button>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
             <div className="d-flex delete-profile me-4">
@@ -64,4 +69,4 @@ function DrinksProfile({ elm }) {
 
 }
 
-export default DrinksProfile;
+export default UsersAdminControlerProfile;

@@ -22,15 +22,15 @@ function DrinkDetails({ searchingDrink }) {
 
     useEffect(() => {
         const result = searchingDrink.filter(elm => elm.ID_Drink === parseInt(id, 10))[0];
-        setIng(result.Ingredients.split('.'));
-        setPrep(result.Preparation.split('.'));
+        setIng(result?.Ingredients.split('.'));
+        setPrep(result?.Preparation.split('.'));
         setDrinkDetail(result);
     }, [id]);
 
     {/*Paginacja*/ }
     const itemPerPage = 1;
-    const pageCount = Math.ceil(prep.length / itemPerPage);
-    const currentData = prep.slice(currentPage, currentPage + itemPerPage);
+    const pageCount = Math.ceil(prep?.length / itemPerPage);
+    const currentData = prep?.slice(currentPage, currentPage + itemPerPage);
 
     // Function to handle page click
     const handlePageClick = (data) => {
@@ -65,6 +65,7 @@ function DrinkDetails({ searchingDrink }) {
             setDrinkIMG(imageURL)
         }
     });
+
 
     return (
         <div className="drink-holder">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DrinksProfile from "./DrinksProfile";
 import Pagination from 'react-paginate';
+import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 
 function Admin({ drinkDatas }) {
     const [drinksFlag, setDrinksFlag] = useState(true);
@@ -8,8 +9,7 @@ function Admin({ drinkDatas }) {
     const [currentPage, setCurrentPage] = useState(0);
 
     const itemsPerPage = 8;
-
-    // Calculate the total number of pages
+    
     const pageCount = Math.ceil(drinkDatas.length / itemsPerPage);
 
     // Get the current page's data
@@ -33,8 +33,8 @@ function Admin({ drinkDatas }) {
             if (response.ok) {
                 const data = await response.json();
                 setUsers(data);
-                setDrinksFlag(false); 
-                setUsersFlag(true); 
+                setDrinksFlag(false);
+                setUsersFlag(true);
             } else {
                 console.error('Error fetching users:', response.status);
             }
@@ -111,20 +111,52 @@ function Admin({ drinkDatas }) {
                     </div>
                 </div>
                 <div className="">
-                    {usersFlag && <div>BRAK USERÓW</div>}
-
-                    {drinksFlag &&
-                        currentItems.map((elm) => <DrinksProfile elm={elm} />)}
-                    <div className="d-flex justify-content-center align-items-center">
-                        <Pagination
-                            nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                            previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
-                            pageCount={pageCount}
-                            onPageChange={handlePageChange}
-                            containerClassName={'pagination'}
-                            activeClassName={'active'}
-                        />
-                    </div>
+                    {usersFlag &&
+                        users.map((elm) => (
+                            <UsersAdminControlerProfile elm={elm} />
+                        ))
+                    }
+                    {drinksFlag && (
+                        <>
+                            {currentItems.map((elm) => (
+                                <DrinksProfile key={elm.id} elm={elm} />
+                            ))}
+                            <div className="d-flex justify-content-center align-items-center">
+                                <Pagination
+                                    nextLabel={
+                                        <svg
+                                            className="arroPagi"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="40"
+                                            width="40"
+                                        >
+                                            <path
+                                                className="arrowPagination"
+                                                d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
+                                            />
+                                        </svg>
+                                    }
+                                    previousLabel={
+                                        <svg
+                                            className="arroPagi"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="40"
+                                            width="40"
+                                        >
+                                            <path
+                                                className="arrowPagination"
+                                                d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
+                                            />
+                                        </svg>
+                                    }
+                                    pageCount={pageCount}
+                                    onPageChange={handlePageChange}
+                                    containerClassName={'pagination'}
+                                    activeClassName={'active'}
+                                />
+                            </div>
+                        </>
+                    )}
 
                 </div>
             </div>

@@ -2,66 +2,65 @@
     border: 2px solid white;
     border-radius: 15px;
     position: relative;
-}
 
-.data-holder {
-    width: 1000px;
 
-    .drink-profile-holder-IMG {
-        border: 1px solid white;
-        border-radius: 10px;
+    .data-holder {
+        width: 1000px;
 
-        .drink-profile-img {
+        .drink-profile-holder-IMG {
+            border: 1px solid white;
             border-radius: 10px;
-            max-height: 200px;
-            min-height: 200px;
-            min-width: 250px;
-            max-width: 250px;
+
+            .drink-profile-img {
+                border-radius: 10px;
+                max-height: 200px;
+                min-height: 200px;
+                min-width: 250px;
+                max-width: 250px;
+            }
+
+
         }
 
+    }
+
+    .drink-name-profile {
+        font-size: 22px;
+        font-weight: 700;
+        color: rgb(252, 218, 174);
 
     }
 
-}
+    .details-button-holder {
+        position: relative;
+        margin-left: 6rem;
 
-.drink-name-profile {
-    font-size: 22px;
-    font-weight: 700;
-    color: rgb(252, 218, 174);
+        .details-button {
+            background-color: rgb(255, 255, 255);
+            border-radius: 15px;
+            font-size: 17px;
+            letter-spacing: 1px;
+            padding: 4px;
+            padding-left: 8px;
+            padding-right: 8px;
+            font-size: 18px;
 
-}
-
-.details-button-holder {
-    position: relative;
-    margin-left: 6rem;
-
-    .details-button {
-        background-color: rgb(255, 255, 255);
-        border-radius: 15px;
-        font-size: 17px;
-        letter-spacing: 1px;
-        padding: 4px;
-        padding-left: 8px;
-        padding-right: 8px;
-        font-size: 18px;
-
-
+        }
 
     }
 
-}
+    .delete-profile {
+        justify-content: end;
 
-.delete-profile {
-    justify-content: end;
+        &-icon {
+            fill: red;
+            cursor: pointer;
+        }
 
-    &-icon {
-        fill: red;
-        cursor: pointer;
+        .block-icon-profile {
+            fill: rgb(255, 132, 0);
+            cursor: pointer;
+        }
+
     }
-
-    .block-icon-profile {
-        fill: rgb(255, 132, 0);
-        cursor: pointer;
-    }
-
 }
