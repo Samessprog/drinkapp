@@ -6,13 +6,12 @@ import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 function Admin({ drinkDatas }) {
     const [drinksFlag, setDrinksFlag] = useState(true);
     const [usersFlag, setUsersFlag] = useState(false);
-    const [currentPage, setCurrentPage] = useState(0);
 
     const itemsPerPage = 8;
-    
-    const pageCount = Math.ceil(drinkDatas.length / itemsPerPage);
+    //Drinks Paginations
+    const [currentPage, setCurrentPage] = useState(0);
 
-    // Get the current page's data
+    const pageCount = Math.ceil(drinkDatas.length / itemsPerPage);
     const currentItems = drinkDatas.slice(
         currentPage * itemsPerPage,
         (currentPage + 1) * itemsPerPage
@@ -21,6 +20,8 @@ function Admin({ drinkDatas }) {
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
     };
+
+
 
     const [users, setUsers] = useState([]);
 
@@ -44,7 +45,18 @@ function Admin({ drinkDatas }) {
 
     };
 
-    console.log(users)
+
+
+    const [currentPageUsers, setCurrentPageUsers] = useState(0);
+    const pageCountUsers = Math.ceil(users.length / itemsPerPage);
+    const currentItemsUsers = users.slice(
+        currentPageUsers * itemsPerPage,
+        (currentPageUsers + 1) * itemsPerPage
+    );
+    const handlePageChangeUsers = ({ selected }) => {
+        setCurrentPageUsers(selected);
+    };
+
 
     return (
         <div className="admin-container p-3 p-sm-4">
@@ -111,11 +123,48 @@ function Admin({ drinkDatas }) {
                     </div>
                 </div>
                 <div className="">
-                    {usersFlag &&
-                        users.map((elm) => (
-                            <UsersAdminControlerProfile elm={elm} />
-                        ))
-                    }
+
+                    {usersFlag && (
+                        <>
+                            {currentItemsUsers.map((elm) => (
+                                <UsersAdminControlerProfile key={elm.id} elm={elm} />
+                            ))}
+                            <div className="d-flex justify-content-center align-items-center">
+                                <Pagination
+                                    nextLabel={
+                                        <svg
+                                            className="arroPagi"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="40"
+                                            width="40"
+                                        >
+                                            <path
+                                                className="arrowPagination"
+                                                d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
+                                            />
+                                        </svg>
+                                    }
+                                    previousLabel={
+                                        <svg
+                                            className="arroPagi"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="40"
+                                            width="40"
+                                        >
+                                            <path
+                                                className="arrowPagination"
+                                                d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
+                                            />
+                                        </svg>
+                                    }
+                                    pageCount={pageCountUsers}
+                                    onPageChange={handlePageChangeUsers}
+                                    containerClassName={'pagination'}
+                                    activeClassName={'active'}
+                                />
+                            </div>
+                        </>
+                    )}
                     {drinksFlag && (
                         <>
                             {currentItems.map((elm) => (
