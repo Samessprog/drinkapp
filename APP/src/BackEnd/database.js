@@ -86,8 +86,6 @@ app.get('/api/userIMG', (req, res) => {
 app.use('/api/addToUserFavourite', async (req, res) => {
   const { id, sessionidx } = req.body;
 
-
-
   const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
   db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {
     if (checkError) {
@@ -137,9 +135,21 @@ app.get('/api/takeFavouriteUserDrink', async (req, res) => {
   });
 });
 
+app.get('/api/getAllUsers', (req, res) => {
+  db.query('SELECT * FROM users', (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
 
-
-
+    if (results.length > 0) {
+      res.status(200).json(results); // Wyślij dane użytkowników do frontendu w formacie JSON
+    } else {
+      res.status(404).json({ error: 'No users found' });
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

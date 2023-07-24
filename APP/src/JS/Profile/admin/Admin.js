@@ -22,6 +22,30 @@ function Admin({ drinkDatas }) {
         setCurrentPage(selected);
     };
 
+    const [users, setUsers] = useState([]);
+
+    const userButtonHandler = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/getAllUsers', {
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUsers(data);
+                setDrinksFlag(false); 
+                setUsersFlag(true); 
+            } else {
+                console.error('Error fetching users:', response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+
+    };
+
+    console.log(users)
+
     return (
         <div className="admin-container p-3 p-sm-4">
             <div className="admin-header-holder">
@@ -56,8 +80,8 @@ function Admin({ drinkDatas }) {
                             <button
                                 className="optional-buttons"
                                 onClick={() => {
-                                    setDrinksFlag(false);
-                                    setUsersFlag(true);
+                                    userButtonHandler();
+
                                 }}
                             >
                                 Users
