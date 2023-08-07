@@ -93,7 +93,6 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     userButtonHandler();
-
                                 }}
                             >
                                 Users

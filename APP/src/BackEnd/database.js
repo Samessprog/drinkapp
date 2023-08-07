@@ -117,6 +117,34 @@ app.use('/api/addToUserFavourite', async (req, res) => {
   });
 });
 
+
+
+app.post('/api/userDataChangerADMIN', async (req, res) => {
+  const { newUserEmail, newUserPass, userID } = req.body;
+
+
+  try {
+    // Aktualizacja adresu e-mail i hasła użytkownika w bazie danych
+    db.query(
+      'UPDATE users SET email = ?, password = ? WHERE ID_User = ?',
+      [newUserEmail, newUserPass, userID],
+      (err, result) => {
+        if (err) {
+          res.status(500).json({ success: false, message: 'Failed to update user data' });
+          return;
+        }
+
+        res.json({ success: true });
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'An error occurred' });
+  }
+});
+
+
+
+
 app.get('/api/takeFavouriteUserDrink', async (req, res) => {
   const userIDs = req.session.user?.userID;
 
@@ -154,3 +182,5 @@ app.get('/api/getAllUsers', (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
+

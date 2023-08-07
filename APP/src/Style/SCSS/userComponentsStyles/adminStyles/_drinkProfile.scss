@@ -32,8 +32,8 @@
     }
 
     .details-button-holder {
-        position: relative;
-        margin-left: 6rem;
+
+
 
         .details-button {
             background-color: rgb(255, 255, 255);
@@ -44,7 +44,21 @@
             padding-left: 8px;
             padding-right: 8px;
             font-size: 18px;
+            margin-left: 8rem;
 
+        }
+
+        .user-data-input {
+            border-radius: 10px;
+            padding-left:  0.6rem;
+            padding-right:  0.6rem;
+            padding-top:  0.3rem;
+            padding-bottom:  0.3rem;
+        }
+
+        .details-change-button {
+            fill: rgb(4, 210, 4);
+            cursor: pointer;
         }
 
     }
