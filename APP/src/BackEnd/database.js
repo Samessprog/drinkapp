@@ -117,11 +117,21 @@ app.use('/api/addToUserFavourite', async (req, res) => {
   });
 });
 
-
-
 app.post('/api/userDataChangerADMIN', async (req, res) => {
   const { newUserEmail, newUserPass, userID } = req.body;
 
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  if (!passwordRegex.test(newUserPass)) {
+    res.status(400).json({ success: false, message: 'Invalid password' });
+    return;
+  }
+
+  if (!emailRegex.test(newUserEmail)) {
+    res.status(400).json({ success: false, message: 'Invalid email' });
+    return;
+  }
 
   try {
     // Aktualizacja adresu e-mail i hasła użytkownika w bazie danych

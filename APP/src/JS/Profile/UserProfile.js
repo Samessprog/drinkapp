@@ -40,8 +40,6 @@ function UserProfile({ drinkDatas }) {
 
 
 
-
-
   if (userSesion === null) {
     return <Navigate to="/" />;
   }

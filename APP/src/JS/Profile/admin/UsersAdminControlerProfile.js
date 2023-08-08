@@ -5,7 +5,15 @@ import { Buffer } from 'buffer';
 function UsersAdminControlerProfile({ elm }) {
     const API_URL = 'http://localhost:3000/api/';
 
+    //User Data changer error
+    const [changingUserDataError, setChangingUserDataError] = React.useState(null)
+    //Take user UMG
     const [userIMGProfileAdmin, setUserIMGProfileAdmin] = React.useState('')
+    const [userDataChanger, setUserDataChanger] = React.useState(false)
+    const [newUserEmail, setNewUserEmail] = React.useState('')
+    const [newUserPass, setNewUserPass] = React.useState('')
+
+
     useEffect(() => {
         if (elm.userIMG) {
             // Convert the image data to base64
@@ -17,11 +25,6 @@ function UsersAdminControlerProfile({ elm }) {
 
     }, []);
 
-    const [userDataChanger, setUserDataChanger] = React.useState(false)
-
-    const [newUserEmail, setNewUserEmail] = React.useState('')
-    const [newUserPass, setNewUserPass] = React.useState('')
-
     const UserDataChange = async (event) => {
         const userID = elm.ID_User;
         event.preventDefault();
@@ -29,15 +32,19 @@ function UsersAdminControlerProfile({ elm }) {
             const response = await fetch(`${API_URL}userDataChangerADMIN`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // Dodaj ten nagłówek
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ newUserEmail, newUserPass, userID })
             });
             const data = await response.json();
             if (data.success) {
-
+                setChangingUserDataError(null)
+                setNewUserEmail('')
+                setNewUserPass('')
+                alert('User Data changes have been made')
+        
             } else {
-
+                setChangingUserDataError(data.message)
             }
         } catch (error) {
 
@@ -75,21 +82,29 @@ function UsersAdminControlerProfile({ elm }) {
                             <button className="details-button" onClick={() => setUserDataChanger(!userDataChanger)}>
                                 Change User Data
                             </button>
+
                             {userDataChanger &&
+                                <form onSubmit={UserDataChange}>
+                                    <div className="d-flex mt-3 align-items-center">
+                                        <div>
+                                            <input className="user-data-input" type="email" placeholder="Email" onChange={(event) => setNewUserEmail(event.target.value)}></input>
+                                        </div>
+                                        <div className="ms-3">
+                                            <input className="user-data-input" type="password" placeholder="Password" onChange={(event) => setNewUserPass(event.target.value)}></input>
+                                        </div>
 
-                                <div className="d-flex mt-3 align-items-center">
-                                    <div>
-                                        <input className="user-data-input" type="text" placeholder="Email" onChange={(event) => setNewUserEmail(event.target.value)}></input>
-                                    </div>
-                                    <div className="ms-3">
-                                        <input className="user-data-input" type="text" placeholder="Password" onChange={(event) => setNewUserPass(event.target.value)}></input>
-                                    </div>
+                                        <button type="submit" onClick={UserDataChange} className="submit-button">
+                                            <svg className="details-change-button" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M379.333-244 154-469.333 201.666-517l177.667 177.667 378.334-378.334L805.333-670l-426 426Z" /></svg>
+                                        </button>
 
-                                    <div className="ms-3" onClick={UserDataChange}>
-                                        <svg className="details-change-button" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M379.333-244 154-469.333 201.666-517l177.667 177.667 378.334-378.334L805.333-670l-426 426Z" /></svg>
-                                    </div>
 
-                                </div>
+                                    </div>
+                                    <label className="userDataChangerError">
+                                        {changingUserDataError != null &&
+                                            changingUserDataError
+                                        }
+                                    </label>
+                                </form>
                             }
                         </div>
                     </div>
@@ -107,7 +122,7 @@ function UsersAdminControlerProfile({ elm }) {
             </div>
 
 
-        </div>
+        </div >
     )
 
 }

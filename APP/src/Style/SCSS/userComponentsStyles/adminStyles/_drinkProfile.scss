@@ -34,7 +34,6 @@
     .details-button-holder {
 
 
-
         .details-button {
             background-color: rgb(255, 255, 255);
             border-radius: 15px;
@@ -48,13 +47,29 @@
 
         }
 
+        .userDataChangerError {
+            margin-left: 8.2rem;
+            color: red;
+            margin-top: 1rem;
+        }
+
         .user-data-input {
             border-radius: 10px;
-            padding-left:  0.6rem;
-            padding-right:  0.6rem;
-            padding-top:  0.3rem;
-            padding-bottom:  0.3rem;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
         }
+
+        .submit-button {
+            font-size: 0;
+            /* Ukrywa tekst wewnątrz przycisku */
+            background: none;
+            /* Opcjonalnie, aby usunąć tło przycisku */
+            border: none;
+            /* Opcjonalnie, aby usunąć obramowanie przycisku */
+        }
+
 
         .details-change-button {
             fill: rgb(4, 210, 4);
