@@ -51,9 +51,8 @@ function UsersAdminControlerProfile({ elm }) {
         }
     };
 
-
     return (
-        <div className="mb-3 ms-3 d-flex  align-items-center drinks-profile-holder  me-3  justify-content-between">
+        <div className="mb-3 ms-3 d-flex  align-items-center drinks-profile-holder  me-3  justify-content-between ">
             <div className="d-flex  align-items-center">
                 <div className="ms-3 me-4 fs-4">
                     {elm.ID_User}.
@@ -120,7 +119,6 @@ function UsersAdminControlerProfile({ elm }) {
                     <svg lassName="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" /></svg>
                 </div>
             </div>
-
 
         </div >
     )
