@@ -49,11 +49,11 @@
                 max-width: 250px;
 
                 @media (max-width: 992px) {
-                    max-width: 500px;
-                    width: 500px;
-
+                    max-width: 400px;
+                    width: 400px;
+                    height: 300px;
+                    max-height: 300px;
                 }
-
                 @media (max-width: 680px) {
                     max-width: 250px;
                     width: 250px;
@@ -72,7 +72,6 @@
     }
 
     .details-button-holder {
-
 
         .details-button {
             background-color: rgb(255, 255, 255);
@@ -115,11 +114,14 @@
             fill: rgb(4, 210, 4);
             cursor: pointer;
         }
-
     }
 
     .delete-profile {
-        justify-content: end;
+       margin-left: 15rem;
+
+       @media (max-width: 1800px) {
+        margin-left: 1rem;
+    }
 
         &-icon {
             fill: red;
