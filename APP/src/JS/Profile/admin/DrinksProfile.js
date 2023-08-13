@@ -17,12 +17,10 @@ function DrinksProfile({ elm }) {
 
     }, []);
 
-
-
     return (
 
         <div className="mb-3 ms-3 d-flex align-items-center drinks-profile-holder  me-3  justify-content-between ">
-            <div className="d-flex align-items-center ">
+            <div className="d-flex align-items-center flex-column flex-xl-row justify-content-center">
                 <div className="ms-3 me-4 fs-4">
                     {elm.ID_Drink}.
                 </div>
