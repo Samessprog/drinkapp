@@ -4,26 +4,51 @@ import Pagination from 'react-paginate';
 import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 
 function Admin({ drinkDatas }) {
+
     const [drinksFlag, setDrinksFlag] = useState(true);
     const [usersFlag, setUsersFlag] = useState(false);
-
-    const itemsPerPage = 8;
-    //Drinks Paginations
     const [currentPage, setCurrentPage] = useState(0);
+    const [inputText, setInputText] = useState('');
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [currentPageUsers, setCurrentPageUsers] = useState(0);
+    const itemsPerPage = 8;
 
-    const pageCount = Math.ceil(drinkDatas.length / itemsPerPage);
-    const currentItems = drinkDatas.slice(
+    const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
+    const currentItems = filteredResults.slice(
         currentPage * itemsPerPage,
         (currentPage + 1) * itemsPerPage
+    );
+
+    const pageCountUsers = Math.ceil(users.length / itemsPerPage);
+    const currentItemsUsers = users.slice(
+        currentPageUsers * itemsPerPage,
+        (currentPageUsers + 1) * itemsPerPage
     );
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
     };
 
+    const handlePageChangeUsers = ({ selected }) => {
+        setCurrentPageUsers(selected);
+    };
 
 
-    const [users, setUsers] = useState([]);
+
+    React.useEffect(() => {
+        const x = drinkDatas.filter((elm) => {
+            const inputTXT = inputText.toLowerCase()
+            const drinkName = elm.DrinkName.toLowerCase()
+
+            if (drinkName.includes(inputTXT)) {
+                return elm;
+            }
+        })
+        setFilteredResults(x)
+    }, [inputText]);
+
+
 
     const userButtonHandler = async () => {
         try {
@@ -43,18 +68,6 @@ function Admin({ drinkDatas }) {
             console.error('Error fetching users:', error);
         }
 
-    };
-
-
-
-    const [currentPageUsers, setCurrentPageUsers] = useState(0);
-    const pageCountUsers = Math.ceil(users.length / itemsPerPage);
-    const currentItemsUsers = users.slice(
-        currentPageUsers * itemsPerPage,
-        (currentPageUsers + 1) * itemsPerPage
-    );
-    const handlePageChangeUsers = ({ selected }) => {
-        setCurrentPageUsers(selected);
     };
 
 
@@ -106,6 +119,7 @@ function Admin({ drinkDatas }) {
                                 className="searching-items-admin ps-3 pe-3 col-12"
                                 type="text"
                                 placeholder="enter the name you are looking for"
+                                onChange={(event) => setInputText(event.target.value)}
                             />
                         </div>
                         <div className="data-filtering-holder">
