@@ -12,6 +12,8 @@ function Admin({ drinkDatas }) {
     const [filteredResults, setFilteredResults] = useState([]);
     const [users, setUsers] = useState([]);
     const [currentPageUsers, setCurrentPageUsers] = useState(0);
+    const [filteredUserResults, setFilteredUserResults] = useState([]);
+
     const itemsPerPage = 8;
 
     const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
@@ -20,8 +22,8 @@ function Admin({ drinkDatas }) {
         (currentPage + 1) * itemsPerPage
     );
 
-    const pageCountUsers = Math.ceil(users.length / itemsPerPage);
-    const currentItemsUsers = users.slice(
+    const pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
+    const currentItemsUsers = filteredUserResults.slice(
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
@@ -34,21 +36,24 @@ function Admin({ drinkDatas }) {
         setCurrentPageUsers(selected);
     };
 
-
-
     React.useEffect(() => {
-        const x = drinkDatas.filter((elm) => {
-            const inputTXT = inputText.toLowerCase()
-            const drinkName = elm.DrinkName.toLowerCase()
 
-            if (drinkName.includes(inputTXT)) {
-                return elm;
-            }
+        const inputTXT = inputText.toLowerCase()
+
+        const drinksFilter = drinkDatas.filter((drnik) => {
+            const drinkName = drnik.DrinkName.toLowerCase()
+            return drinkName.includes(inputTXT)
         })
-        setFilteredResults(x)
+
+        const usersFilter = users.filter((user) => {
+            const userNickName = user.Nick.toLowerCase();
+            return userNickName.includes(inputTXT)
+        })
+
+        setFilteredUserResults(usersFilter)
+        setFilteredResults(drinksFilter)
+
     }, [inputText]);
-
-
 
     const userButtonHandler = async () => {
         try {
@@ -67,7 +72,6 @@ function Admin({ drinkDatas }) {
         } catch (error) {
             console.error('Error fetching users:', error);
         }
-
     };
 
 
@@ -94,6 +98,7 @@ function Admin({ drinkDatas }) {
                             <button
                                 className="optional-buttons"
                                 onClick={() => {
+                                    setInputText('')
                                     setDrinksFlag(true);
                                     setUsersFlag(false);
                                 }}
@@ -105,6 +110,7 @@ function Admin({ drinkDatas }) {
                             <button
                                 className="optional-buttons"
                                 onClick={() => {
+                                    setInputText('')
                                     userButtonHandler();
                                 }}
                             >
@@ -119,6 +125,7 @@ function Admin({ drinkDatas }) {
                                 className="searching-items-admin ps-3 pe-3 col-12"
                                 type="text"
                                 placeholder="enter the name you are looking for"
+                                value={inputText}
                                 onChange={(event) => setInputText(event.target.value)}
                             />
                         </div>
@@ -142,40 +149,47 @@ function Admin({ drinkDatas }) {
                             {currentItemsUsers.map((elm) => (
                                 <UsersAdminControlerProfile key={elm.id} elm={elm} />
                             ))}
-                            <div className="d-flex justify-content-center align-items-center">
-                                <Pagination
-                                    nextLabel={
-                                        <svg
-                                            className="arroPagi"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            height="40"
-                                            width="40"
-                                        >
-                                            <path
-                                                className="arrowPagination"
-                                                d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
-                                            />
-                                        </svg>
-                                    }
-                                    previousLabel={
-                                        <svg
-                                            className="arroPagi"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            height="40"
-                                            width="40"
-                                        >
-                                            <path
-                                                className="arrowPagination"
-                                                d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
-                                            />
-                                        </svg>
-                                    }
-                                    pageCount={pageCountUsers}
-                                    onPageChange={handlePageChangeUsers}
-                                    containerClassName={'pagination'}
-                                    activeClassName={'active'}
-                                />
-                            </div>
+                            {currentItemsUsers.length !== 0 &&
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <Pagination
+                                        nextLabel={
+                                            <svg
+                                                className="arroPagi"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                height="40"
+                                                width="40"
+                                            >
+                                                <path
+                                                    className="arrowPagination"
+                                                    d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
+                                                />
+                                            </svg>
+                                        }
+                                        previousLabel={
+                                            <svg
+                                                className="arroPagi"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                height="40"
+                                                width="40"
+                                            >
+                                                <path
+                                                    className="arrowPagination"
+                                                    d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
+                                                />
+                                            </svg>
+                                        }
+                                        pageCount={pageCountUsers}
+                                        onPageChange={handlePageChangeUsers}
+                                        containerClassName={'pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            }
+
+                            {currentItemsUsers.length === 0 &&
+                                <div className="d-flex align-items-center justify-content-center fs-4">No user with that nickname found</div>
+                            }
+
                         </>
                     )}
                     {drinksFlag && (
@@ -183,40 +197,47 @@ function Admin({ drinkDatas }) {
                             {currentItems.map((elm) => (
                                 <DrinksProfile key={elm.id} elm={elm} />
                             ))}
-                            <div className="d-flex justify-content-center align-items-center">
-                                <Pagination
-                                    nextLabel={
-                                        <svg
-                                            className="arroPagi"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            height="40"
-                                            width="40"
-                                        >
-                                            <path
-                                                className="arrowPagination"
-                                                d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
-                                            />
-                                        </svg>
-                                    }
-                                    previousLabel={
-                                        <svg
-                                            className="arroPagi"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            height="40"
-                                            width="40"
-                                        >
-                                            <path
-                                                className="arrowPagination"
-                                                d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
-                                            />
-                                        </svg>
-                                    }
-                                    pageCount={pageCount}
-                                    onPageChange={handlePageChange}
-                                    containerClassName={'pagination'}
-                                    activeClassName={'active'}
-                                />
-                            </div>
+
+                            {currentItems.length !== 0 &&
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <Pagination
+                                        nextLabel={
+                                            <svg
+                                                className="arroPagi"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                height="40"
+                                                width="40"
+                                            >
+                                                <path
+                                                    className="arrowPagination"
+                                                    d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
+                                                />
+                                            </svg>
+                                        }
+                                        previousLabel={
+                                            <svg
+                                                className="arroPagi"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                height="40"
+                                                width="40"
+                                            >
+                                                <path
+                                                    className="arrowPagination"
+                                                    d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
+                                                />
+                                            </svg>
+                                        }
+                                        pageCount={pageCount}
+                                        onPageChange={handlePageChange}
+                                        containerClassName={'pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            }
+                            {currentItems.length === 0 &&
+                                <div className="d-flex align-items-center justify-content-center fs-4">No drink with that nickname found</div>
+                            }
+
                         </>
                     )}
 
