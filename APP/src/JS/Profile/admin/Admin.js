@@ -5,6 +5,8 @@ import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 
 function Admin({ drinkDatas }) {
 
+
+    //dodać reducera
     const [drinksFlag, setDrinksFlag] = useState(true);
     const [usersFlag, setUsersFlag] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
@@ -16,25 +18,26 @@ function Admin({ drinkDatas }) {
 
     const itemsPerPage = 8;
 
-    const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
-    const currentItems = filteredResults.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-    );
+    React.useEffect(() => {
+        const userButtonHandler = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/getAllUsers', {
+                    credentials: 'include'
+                });
 
-    const pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
-    const currentItemsUsers = filteredUserResults.slice(
-        currentPageUsers * itemsPerPage,
-        (currentPageUsers + 1) * itemsPerPage
-    );
+                if (response.ok) {
+                    const data = await response.json();
+                    setUsers(data);
+                } else {
+                    console.error('Error fetching users:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        userButtonHandler();
+    }, [])
 
-    const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
-    };
-
-    const handlePageChangeUsers = ({ selected }) => {
-        setCurrentPageUsers(selected);
-    };
 
     React.useEffect(() => {
 
@@ -53,26 +56,30 @@ function Admin({ drinkDatas }) {
         setFilteredUserResults(usersFilter)
         setFilteredResults(drinksFilter)
 
-    }, [inputText]);
+    }, [inputText, users, drinkDatas]);
 
-    const userButtonHandler = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/api/getAllUsers', {
-                credentials: 'include'
-            });
 
-            if (response.ok) {
-                const data = await response.json();
-                setUsers(data);
-                setDrinksFlag(false);
-                setUsersFlag(true);
-            } else {
-                console.error('Error fetching users:', response.status);
-            }
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
+    const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
+    const currentItems = filteredResults.slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage
+    );
+
+    const pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
+    const currentItemsUsers = filteredUserResults.slice(
+        currentPageUsers * itemsPerPage,
+        (currentPageUsers + 1) * itemsPerPage
+    );
+
+
+    const handlePageChange = ({ selected }) => {
+        setCurrentPage(selected);
     };
+
+    const handlePageChangeUsers = ({ selected }) => {
+        setCurrentPageUsers(selected);
+    };
+
 
 
     return (
@@ -111,7 +118,8 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    userButtonHandler();
+                                    setDrinksFlag(false);
+                                    setUsersFlag(true);
                                 }}
                             >
                                 Users
