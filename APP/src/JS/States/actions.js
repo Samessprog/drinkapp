@@ -27,6 +27,13 @@ const SET_USER_PHONE = 'SET_USER_PHONE';
 const SET_USER_NICK_NAME = 'SET_USER_NICK_NAME';
 const SET_FAVOURITE_DRINKS = 'SET_FAVOURITE_DRINKS';
 
+//Admin actions
+const SET_DRINKS_ADMIN_FLAG = 'SET_DRINKS_ADMIN_FLAG';
+const SET_USER_ADMIN_FLAG = 'SET_USER_ADMIN_FLAG';
+const SET_FILTER_ADMIN_RESULTS = 'SET_FILTER_ADMIN_RESULTS';
+const SET_FILTER_USER_RESULTS = 'SET_FILTER_USER_RESULTS';
+
+
 
 
 // //Export NavBar Actions
@@ -193,6 +200,39 @@ export function setUserFavouriteDrinks(value) {
     };
   }
   
+
+  export function setDrinksFlag(value) {
+    return {
+      type: SET_DRINKS_ADMIN_FLAG,
+      payload: value,
+    };
+  }
+  
+  export function setUsersFlag(value) {
+    return {
+      type: SET_USER_ADMIN_FLAG,
+      payload: value,
+    };
+  }
+  export function setFilteredResults(value) {
+    return {
+      type: SET_FILTER_ADMIN_RESULTS,
+      payload: value,
+    };
+  }
+  
+  
+  export function setFilteredUserResults(value) {
+    return {
+      type: SET_FILTER_USER_RESULTS,
+      payload: value,
+    };
+  }
+  
+  
+
+
+
 
 
 

@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import DrinksProfile from "./DrinksProfile";
 import Pagination from 'react-paginate';
 import UsersAdminControlerProfile from './UsersAdminControlerProfile'
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
+
 
 function Admin({ drinkDatas }) {
 
+    const dispatch = useDispatch();
 
-    //dodać reducera
-    const [drinksFlag, setDrinksFlag] = useState(true);
-    const [usersFlag, setUsersFlag] = useState(false);
+    const drinksFlag = useSelector(state => state.admin.drinksFlag)
+    const usersFlag = useSelector(state => state.admin.userFlag)
+    const filteredResults = useSelector(state => state.admin.filteredResults)
+    const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
+
     const [currentPage, setCurrentPage] = useState(0);
     const [inputText, setInputText] = useState('');
-    const [filteredResults, setFilteredResults] = useState([]);
     const [users, setUsers] = useState([]);
     const [currentPageUsers, setCurrentPageUsers] = useState(0);
-    const [filteredUserResults, setFilteredUserResults] = useState([]);
 
     const itemsPerPage = 8;
 
@@ -53,8 +58,8 @@ function Admin({ drinkDatas }) {
             return userNickName.includes(inputTXT)
         })
 
-        setFilteredUserResults(usersFilter)
-        setFilteredResults(drinksFilter)
+        dispatch(setFilteredUserResults(usersFilter))
+        dispatch(setFilteredResults(drinksFilter))
 
     }, [inputText, users, drinkDatas]);
 
@@ -70,16 +75,6 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
-
-
-    const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
-    };
-
-    const handlePageChangeUsers = ({ selected }) => {
-        setCurrentPageUsers(selected);
-    };
-
 
 
     return (
@@ -106,8 +101,8 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    setDrinksFlag(true);
-                                    setUsersFlag(false);
+                                    dispatch(setDrinksFlag(true))
+                                    dispatch(setUsersFlag(false))
                                 }}
                             >
                                 Drinks
@@ -118,8 +113,8 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    setDrinksFlag(false);
-                                    setUsersFlag(true);
+                                    dispatch(setDrinksFlag(false))
+                                    dispatch(setUsersFlag(true))
                                 }}
                             >
                                 Users
@@ -187,7 +182,7 @@ function Admin({ drinkDatas }) {
                                             </svg>
                                         }
                                         pageCount={pageCountUsers}
-                                        onPageChange={handlePageChangeUsers}
+                                        onPageChange={ ({ selected }) => setCurrentPageUsers(selected) }
                                         containerClassName={'pagination'}
                                         activeClassName={'active'}
                                     />
@@ -236,7 +231,7 @@ function Admin({ drinkDatas }) {
                                             </svg>
                                         }
                                         pageCount={pageCount}
-                                        onPageChange={handlePageChange}
+                                        onPageChange={({ selected }) => setCurrentPage(selected) }
                                         containerClassName={'pagination'}
                                         activeClassName={'active'}
                                     />

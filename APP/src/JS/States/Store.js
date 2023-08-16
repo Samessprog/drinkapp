@@ -34,6 +34,7 @@ const userState = {
   userFavouriteDrinks: [],
 };
 
+
 function userReducer(state = userState, action) {
   switch (action.type) {
     //login & register states
@@ -174,10 +175,51 @@ function navbarReducer(state = navbarState, action) {
   }
 }
 
+
+const adminStates = {
+  drinksFlag: 'true',
+  userFlag: 'false',
+  filteredResults: [],
+  filteredUserResults: [],
+
+};
+
+function adminReducer(state = adminStates, action) {
+  switch (action.type) {
+    case 'SET_DRINKS_ADMIN_FLA':
+      return {
+        ...state,
+        drinksFlag: action.payload,
+      };
+    case 'SET_USER_ADMIN_FLAG':
+      return {
+        ...state,
+        userFlag: action.payload,
+      };
+    case 'SET_FILTER_ADMIN_RESULTS':
+      return {
+        ...state,
+        filteredResults: action.payload,
+      };
+    case 'SET_FILTER_USER_RESULTS':
+      return {
+        ...state,
+        filteredUserResults: action.payload,
+      };
+
+
+    default:
+      return state;
+  }
+
+}
+
+
 const rootReducer = combineReducers({
   navbar: navbarReducer,
   drink: drinksReducer,
   user: userReducer,
+  admin: adminReducer,
 });
 
 const store = createStore(rootReducer);
