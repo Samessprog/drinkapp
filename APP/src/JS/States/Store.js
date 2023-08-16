@@ -186,7 +186,7 @@ const adminStates = {
 
 function adminReducer(state = adminStates, action) {
   switch (action.type) {
-    case 'SET_DRINKS_ADMIN_FLA':
+    case 'SET_DRINKS_ADMIN_FLAG':
       return {
         ...state,
         drinksFlag: action.payload,

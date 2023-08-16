@@ -77,6 +77,9 @@ function Admin({ drinkDatas }) {
     );
 
 
+   
+
+
     return (
         <div className="admin-container p-3 p-sm-4">
             <div className="admin-header-holder">
@@ -113,8 +116,8 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    dispatch(setDrinksFlag(false))
                                     dispatch(setUsersFlag(true))
+                                    dispatch(setDrinksFlag(false))
                                 }}
                             >
                                 Users
@@ -147,7 +150,7 @@ function Admin({ drinkDatas }) {
                 </div>
                 <div className="">
 
-                    {usersFlag && (
+                    {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
                                 <UsersAdminControlerProfile key={elm.id} elm={elm} />
