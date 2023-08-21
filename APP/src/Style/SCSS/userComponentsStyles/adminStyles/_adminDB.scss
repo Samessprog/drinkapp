@@ -4,7 +4,7 @@
     min-height: 200px;
     color: white;
     font-weight: 600;
-    
+
 }
 
 .optional-buttons-holder {
@@ -40,5 +40,17 @@
     .data-filtering-icon {
         fill: white;
         cursor: pointer;
+    }
+
+    .multi-options-holder-admin {
+        position: absolute;
+        z-index: 1;
+        right: 8%;
+        margin-top: 1.7rem;
+        background-color: rgb(187, 186, 186);
+        width: 400px;
+        color: black;
+        font-size: 17px;
+        border-radius: 15px;
     }
 }

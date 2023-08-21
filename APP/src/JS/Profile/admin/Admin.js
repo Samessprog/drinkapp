@@ -77,7 +77,7 @@ function Admin({ drinkDatas }) {
     );
 
 
-   
+    const [showDrinksOptions, setShowDrinksOptions] = React.useState('false')
 
 
     return (
@@ -125,7 +125,7 @@ function Admin({ drinkDatas }) {
                         </div>
                     </div>
 
-                    <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end ">
+                    <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end position-relative">
                         <div className="me-4 col-8 col-sm-12">
                             <input
                                 className="searching-items-admin ps-3 pe-3 col-12"
@@ -142,9 +142,31 @@ function Admin({ drinkDatas }) {
                                 height="40"
                                 viewBox="0 -960 960 960"
                                 width="40"
+                                onClick={() => setShowDrinksOptions(!showDrinksOptions)}
                             >
                                 <path d="M440-160q-17 0-28.5-11.5T400-200v-240L163.333-742q-14.333-18-4.166-38 10.166-20 32.833-20h576q22.667 0 32.833 20 10.167 20-4.166 38L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-286.666 226.001-286.668H253.999L480-446.666Zm0 0Z" />
                             </svg>
+                            {showDrinksOptions === true && (drinksFlag === true || usersFlag === true) &&
+                                <div className="multi-options-holder-admin">
+                                    <div className="ps-3 pt-3 pb-3">
+                                        <div className="mt-1">
+                                            <input type="checkbox"></input>
+                                            <label className="ms-2">Alphabetic order</label>
+                                        </div>
+                                        <div className="mt-1">
+                                            <input type="checkbox"></input>
+                                            <label className="ms-2">Unalphabetic order</label>
+                                        </div>
+                                        {usersFlag === true &&
+                                            <div className="mt-1">
+                                                <input type="checkbox"></input>
+                                                <label className="ms-2">Show blocked</label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -185,7 +207,7 @@ function Admin({ drinkDatas }) {
                                             </svg>
                                         }
                                         pageCount={pageCountUsers}
-                                        onPageChange={ ({ selected }) => setCurrentPageUsers(selected) }
+                                        onPageChange={({ selected }) => setCurrentPageUsers(selected)}
                                         containerClassName={'pagination'}
                                         activeClassName={'active'}
                                     />
@@ -234,7 +256,7 @@ function Admin({ drinkDatas }) {
                                             </svg>
                                         }
                                         pageCount={pageCount}
-                                        onPageChange={({ selected }) => setCurrentPage(selected) }
+                                        onPageChange={({ selected }) => setCurrentPage(selected)}
                                         containerClassName={'pagination'}
                                         activeClassName={'active'}
                                     />
