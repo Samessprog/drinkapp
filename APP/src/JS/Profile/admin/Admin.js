@@ -50,37 +50,27 @@ function Admin({ drinkDatas }) {
         userButtonHandler();
     }, [])
 
-
-
-
     useEffect(() => {
-        if (!isBlocked) {
-            const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
-
-            if (direction !== 0) {
-                const filterDrinksResults = currentItems.slice().sort((x, y) => {
-                    const drinkNameX = x.DrinkName.toUpperCase();
-                    const drinkNameY = y.DrinkName.toUpperCase();
-
-                    if (drinkNameX < drinkNameY) {
-                        return -1 * direction;
-                    }
-                    if (drinkNameX > drinkNameY) {
-                        return 1 * direction;
-                    }
-                    return 0;
-                });
-
-                dispatch(setFilteredResults(filterDrinksResults));
-            }
-        }else {
-            
+        const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
+        let filteredResults;
+    
+        if (!isBlocked && drinksFlag) {
+            filteredResults = currentItems.slice().sort((x, y) => {
+                const drinkNameX = x.DrinkName.toUpperCase();
+                const drinkNameY = y.DrinkName.toUpperCase();
+                return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction;
+            });
+            dispatch(setFilteredResults(filteredResults));
+        } else {
+            filteredResults = currentItemsUsers.slice().sort((x, y) => {
+                const drinkNameX = x.Nick.toUpperCase();
+                const drinkNameY = y.Nick.toUpperCase();
+                return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction;
+            });
+            dispatch(setFilteredUserResults(filteredResults));
         }
-
-
-    }, [alphabeticalOrder, unAlphabeticalOrder])
-
-
+    }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
+    
 
 
     React.useEffect(() => {
