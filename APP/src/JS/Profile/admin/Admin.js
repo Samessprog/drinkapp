@@ -24,6 +24,12 @@ function Admin({ drinkDatas }) {
 
     const itemsPerPage = 8;
 
+    // Admin database of user and drinks States
+    const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
+    const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
+    const [isBlocked, setIsBlocked] = useState(false)
+
+
     React.useEffect(() => {
         const userButtonHandler = async () => {
             try {
@@ -43,6 +49,38 @@ function Admin({ drinkDatas }) {
         };
         userButtonHandler();
     }, [])
+
+
+
+
+    useEffect(() => {
+        if (!isBlocked) {
+            const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
+
+            if (direction !== 0) {
+                const filterDrinksResults = currentItems.slice().sort((x, y) => {
+                    const drinkNameX = x.DrinkName.toUpperCase();
+                    const drinkNameY = y.DrinkName.toUpperCase();
+
+                    if (drinkNameX < drinkNameY) {
+                        return -1 * direction;
+                    }
+                    if (drinkNameX > drinkNameY) {
+                        return 1 * direction;
+                    }
+                    return 0;
+                });
+
+                dispatch(setFilteredResults(filterDrinksResults));
+            }
+        }else {
+            
+        }
+
+
+    }, [alphabeticalOrder, unAlphabeticalOrder])
+
+
 
 
     React.useEffect(() => {
@@ -78,20 +116,6 @@ function Admin({ drinkDatas }) {
     );
 
 
-    // Admin database of user and drinks States
-    const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
-    const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
-    const [isBlocked, setIsBlocked] = useState(false)
-
-
-    useEffect(() => {
-        if ((alphabeticalOrder === true || unAlphabeticalOrder === true) && isBlocked === false) {
-
-        } else {
-
-        }
-
-    }, [alphabeticalOrder, unAlphabeticalOrder])
 
 
 
