@@ -177,8 +177,8 @@ function navbarReducer(state = navbarState, action) {
 
 
 const adminStates = {
-  drinksFlag: 'true',
-  userFlag: 'false',
+  drinksFlag: true,
+  userFlag: false,
   filteredResults: [],
   filteredUserResults: [],
 

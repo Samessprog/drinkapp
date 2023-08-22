@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DrinksProfile from "./DrinksProfile";
 import Pagination from 'react-paginate';
 import UsersAdminControlerProfile from './UsersAdminControlerProfile'
@@ -15,6 +15,7 @@ function Admin({ drinkDatas }) {
     const usersFlag = useSelector(state => state.admin.userFlag)
     const filteredResults = useSelector(state => state.admin.filteredResults)
     const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
+    const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
 
     const [currentPage, setCurrentPage] = useState(0);
     const [inputText, setInputText] = useState('');
@@ -77,7 +78,22 @@ function Admin({ drinkDatas }) {
     );
 
 
-    const [showDrinksOptions, setShowDrinksOptions] = React.useState('false')
+    // Admin database of user and drinks States
+    const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
+    const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
+    const [isBlocked, setIsBlocked] = useState(false)
+
+
+    useEffect(() => {
+        if ((alphabeticalOrder === true || unAlphabeticalOrder === true) && isBlocked === false) {
+
+        } else {
+
+        }
+
+    }, [alphabeticalOrder, unAlphabeticalOrder])
+
+
 
 
     return (
@@ -150,11 +166,11 @@ function Admin({ drinkDatas }) {
                                 <div className="multi-options-holder-admin">
                                     <div className="ps-3 pt-3 pb-3">
                                         <div className="mt-1">
-                                            <input type="checkbox"></input>
-                                            <label className="ms-2">Alphabetic order</label>
+                                            <input type="checkbox" onChange={() => setAlphabeticalOrder(!alphabeticalOrder)} ></input>
+                                            <label className="ms-2"  >Alphabetic order</label>
                                         </div>
                                         <div className="mt-1">
-                                            <input type="checkbox"></input>
+                                            <input type="checkbox" onChange={() => setUnAlphabeticalOrder(!unAlphabeticalOrder)} ></input>
                                             <label className="ms-2">Unalphabetic order</label>
                                         </div>
                                         {usersFlag === true &&
