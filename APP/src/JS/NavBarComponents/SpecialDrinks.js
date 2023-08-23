@@ -13,11 +13,9 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
     const drinkCounter = useSelector(state => state.drink.drinkCounter)
     const [ingredientText, setIngredientText] = useState("")
 
-
     const dispatch = useDispatch();
 
     const inputTextHandler = (event) => { setIngredientText(event.target.value) }
-
 
     const ingredient = useSelector(state => state.drink.ingredient)
 
@@ -31,10 +29,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
         setIngredientText("")
     }
 
-    
-
     const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
-
 
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>

@@ -58,6 +58,7 @@ function DrinkDetails({ searchingDrink }) {
     }
     const [drinkIMGs, setDrinkIMG] = useState('')
 
+    //Convert drink IMG 
     useEffect(() => {
         if (drinksDetail.IMG && drinksDetail.IMG.data) {
             const base64Image = Buffer.from(drinksDetail.IMG.data).toString('base64');

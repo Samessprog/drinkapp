@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
 
-
 function LoginPopup() {
     const dispatch = useDispatch();
 
+    // take states from storage to login
     const email = useSelector(state => state.user.email)
     const password = useSelector(state => state.user.password)
 

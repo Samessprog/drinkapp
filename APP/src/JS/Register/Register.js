@@ -8,15 +8,14 @@ import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, se
 function Registers( ) {
 
     const dispatch = useDispatch();
-
+    //take user data drom storage 
     const email = useSelector(state => state.user.email)
     const password = useSelector(state => state.user.password)
     const phone = useSelector(state => state.user.phone)
     const Nick = useSelector(state => state.user.nick)
-
+    
     const [rePassword, setRePassword] = useState('');
- 
-
+    //State for display errors 
     const [registerError, setRegisterError] = useState(null);
 
     const handleSubmit = (event) => {

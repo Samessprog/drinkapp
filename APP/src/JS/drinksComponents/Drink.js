@@ -7,20 +7,24 @@ import { SessionContext } from "../Session/SessionContext";
 
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
+    //take suer session
     const { userSesion } = useContext(SessionContext);
+    //drinkIMG state for display IF
     const [drinkIMGs, setDrinkIMG] = useState('')
 
-
+    //ADD your fav drink to DB 
     const favouriteHandler = (id) => {
+
+        //user is not logged in
         if (userSesion === null) {
             alert('To add a drink to your favourites, you must first log in');
             return;
         }
-        //Optymalizacjaaaaa
+
         setFavourites(prevFavourites => [...prevFavourites, id]);
 
         let sessionidx = userSesion.userID;
-
+        //POST drink ID to DB with userID
         try {
 
             fetch('http://localhost:3000/api/addToUserFavourite', {
@@ -37,7 +41,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
         }
     };
 
-
+    //take drink IMG drom DB and convert
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
             // Convert the image data to base64
@@ -46,7 +50,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setDrinkIMG(imageURL);
         }
-    });
+    },[]);
 
     return (
 

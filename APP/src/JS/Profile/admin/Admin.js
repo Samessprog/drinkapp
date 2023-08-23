@@ -72,7 +72,6 @@ function Admin({ drinkDatas }) {
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
     
 
-
     React.useEffect(() => {
 
         const inputTXT = inputText.toLowerCase()
@@ -104,8 +103,6 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
-
-
 
 
 

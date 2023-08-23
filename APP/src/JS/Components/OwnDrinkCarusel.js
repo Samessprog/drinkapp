@@ -3,11 +3,11 @@ import UserOwnDrink from "../Profile/UserDrinks/UserDrink";
 
 function OwnDrinkCarusel({ drinkDatas, creator }) {
 
+    //states for carousel
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showItemsOwn, setShowItemsOwn] = useState([]);
-
+    //User own drinks
     const [userOwnDrinks, setUserOwnDrinks] = useState([])
-
 
     useEffect(() => {
         const ownDrinkFilter = drinkDatas.filter((elm) => elm.Creator == creator);
@@ -15,6 +15,7 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
     }, []);
 
 
+    //show items of carousel
     useEffect(() => {
         if (userOwnDrinks.length > 0) {
             const itemsLength = userOwnDrinks.length;
@@ -24,7 +25,6 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
                 setShowItemsOwn(userOwnDrinks);
                 return;
             }
-
             const startIndex = currentIndex % itemsLength;
 
             // Get the first 4 items
@@ -37,7 +37,7 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
         }
     }, [currentIndex, userOwnDrinks]);
 
-
+     //changes to the carousel and item views
     const handlePrev = () => {
         const itemsCount = userOwnDrinks.length;
         const newIndex = (currentIndex - 3 + itemsCount) % itemsCount;
@@ -49,7 +49,6 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
         const newIndex = (currentIndex + 3) % itemsCount;
         setCurrentIndex(newIndex);
     };
-
 
     return (
         <div className="carousel col-12 ">

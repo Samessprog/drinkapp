@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -29,9 +29,8 @@ function App() {
   const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkDatas, setDrinkData] = React.useState([])
 
-
+  //control screen changes while scrolling
   React.useEffect(() => {
-
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1);
     };
@@ -40,6 +39,7 @@ function App() {
     return () => window.removeEventListener("scroll", setFixed);
   }, []);
 
+  //Faetch session data from DB
   useEffect(() => {
     fetch('http://localhost:3000/api/session', {
       credentials: 'include'
@@ -52,7 +52,7 @@ function App() {
       });
   }, []);
 
-
+  //Faetch drinks data from DB
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +66,6 @@ function App() {
 
     fetchData();
   }, []);
-
 
 
 
@@ -101,7 +100,7 @@ function App() {
 
           <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
           <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
-          <Route path="/admin" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <Admin  drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
+          <Route path="/admin" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <Admin drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
         </Routes>
       </SessionContext.Provider>
       <Footer searchingDrink={searchingDrink} />

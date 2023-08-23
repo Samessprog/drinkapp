@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
 import { Link } from "react-router-dom";
 
+//Lazy imports 
 const LoginPopup = lazy(() => import("./LoginPopup"))
 const SetingsPopup = lazy(() => import("./SetingsPopup"))
 const Registers = lazy(() => import("../Register/Register"))
@@ -15,18 +16,21 @@ const Registers = lazy(() => import("../Register/Register"))
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
 
+
     const location = useLocation();
     const dispatch = useDispatch();
 
     const [userProfileOptions, setUserProfileOptions] = useState(false)
     //fetching values ​​from sotrage
-    //Login
+    //Take login states from storage
     const loginPopup = useSelector(state => state.navbar.loginPopup);
     const popupSetings = useSelector(state => state.navbar.popupsetings);
-    //Register
+    //Take Register states from storage
     const registerPopup = useSelector(state => state.navbar.registerPopup);
     //userSesion
     const userSesion = useSelector(state => state.user.useSesion)
+    // take screen  Width
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
     //check what was clicked
     const handlePopup = (popupName) => {
@@ -69,16 +73,14 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
         }
     }
 
-
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
-
+    //Resize a icons from Navbar
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth < 768);
         };
 
         window.addEventListener('resize', handleResize);
-        
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };

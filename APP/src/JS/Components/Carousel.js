@@ -4,32 +4,33 @@ import FavouriteDrinks from "../Profile/UserDrinks/UserDrink";
 
 const Carousel = ({ favouriteUsersDrink }) => {
 
+  //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
   useEffect(() => {
     if (favouriteUsersDrink) {
-      const itemsLength = favouriteUsersDrink.length;
-      const itemsToShow = [];
+      const favouriteDrinksLength = favouriteUsersDrink.length;
+      const favouriteItemsToShow = [];
 
-      if (itemsLength <= 4) {
+      if (favouriteDrinksLength <= 4) {
         setShowItems(favouriteUsersDrink);
         return;
       }
 
-      const startIndex = currentIndex % itemsLength;
+      const startIndex = currentIndex % favouriteDrinksLength;
 
       // Get the first 4 items
       for (let i = startIndex; i < startIndex + 4; i++) {
-        const itemIndex = i >= itemsLength ? i - itemsLength : i;
-        itemsToShow.push(favouriteUsersDrink[itemIndex]);
+        const itemIndex = i >= favouriteDrinksLength ? i - favouriteDrinksLength : i;
+        favouriteItemsToShow.push(favouriteUsersDrink[itemIndex]);
       }
 
-      setShowItems(itemsToShow);
+      setShowItems(favouriteItemsToShow);
     }
   }, [currentIndex]);
 
-
+  //changes to the carousel and item views
   const handlePrev = () => {
     const itemsCount = favouriteUsersDrink.length;
     const newIndex = (currentIndex - 3 + itemsCount) % itemsCount;
