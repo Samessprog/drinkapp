@@ -27,7 +27,6 @@ const DRINKS_ACTIONS = {
 }
 
 //Users Actions actions type
-
 const USER_ACTIONS = {
     SET_USER_PASSWORD: 'SET_USER_PASSWORD',
     SET_USER_EMAIL: 'SET_USER_EMAIL',
@@ -46,202 +45,82 @@ const ADMIN_ACTIONS = {
     SET_FILTER_USER_RESULTS: 'SET_FILTER_USER_RESULTS',
 }
 
-export function setLoginPopup(value) {
-    return {
-        type: NAVBAR_ACTIONS.SET_LOGIN_POPUP,
-        payload: value
+// Funkcja generująca akcję paska nawigacyjnego
+function createNavbarAction(actionType) {
+    return function (value) {
+        return {
+            type: actionType,
+            payload: value,
+        };
     };
 }
 
-export function setPopupSetings(value) {
-    return {
-        type: NAVBAR_ACTIONS.SET_SETTINGS_POPUP,
-        payload: value
+// Tworzenie funkcji akcji paska nawigacyjnego
+export const setLoginPopup = createNavbarAction(NAVBAR_ACTIONS.SET_LOGIN_POPUP);
+export const setPopupSetings = createNavbarAction(NAVBAR_ACTIONS.SET_SETTINGS_POPUP);
+export const setRegisterPopup = createNavbarAction(NAVBAR_ACTIONS.SET_REGISTER_POPUP);
+export const setSpecialOptionsPopup = createNavbarAction(NAVBAR_ACTIONS.SET_SPECIAL_OPTIONS_POPUP);
+export const setDrinkNotFound = createNavbarAction(NAVBAR_ACTIONS.SET_DRINK_NOT_FOUND_POPUP);
+
+
+// Funkcja generująca akcję napojów
+function createDrinkAction(actionType) {
+    return function (value) {
+        return {
+            type: actionType,
+            payload: value,
+        };
     };
 }
 
-export function setRegisterPopup(value) {
-    return {
-        type: NAVBAR_ACTIONS.SET_REGISTER_POPUP,
-        payload: value
-    };
-}
-export function setSpecialOptionsPopup(value) {
-    return {
-        type: NAVBAR_ACTIONS.SET_SPECIAL_OPTIONS_POPUP,
-        payload: value
-    };
-}
-export function setDrinkNotFound(value) {
-    return {
-        type: NAVBAR_ACTIONS.SET_DRINK_NOT_FOUND_POPUP,
-        payload: value
-    };
-}
+// Tworzenie funkcji akcji napojów
+export const setSearchingDrink = createDrinkAction(DRINKS_ACTIONS.SET_SEARCHING_DRINKS);
+export const setAlcocholic = createDrinkAction(DRINKS_ACTIONS.SET_ALCOCHOLIC);
+export const setSoftDrinks = createDrinkAction(DRINKS_ACTIONS.SET_SOFT_DRINKS);
+export const setHighlyRated = createDrinkAction(DRINKS_ACTIONS.SET_HIGHLY_RATED_DRINKS);
+export const setDrinkLevel = createDrinkAction(DRINKS_ACTIONS.SET_LEVEL_DRINKS);
+export const setDrinkFavouriteFlag = createDrinkAction(DRINKS_ACTIONS.SET_FAVOURITE_FLAG_DRINKS);
+export const setDrinkTaste = createDrinkAction(DRINKS_ACTIONS.SET_TASTE_DRINKS);
+export const setEachdrinkflag = createDrinkAction(DRINKS_ACTIONS.SET_EACH_FLAG_DRINKS);
+export const setDrinkCounter = createDrinkAction(DRINKS_ACTIONS.SET_DRINKS_COUNTER);
+export const setingredient = createDrinkAction(DRINKS_ACTIONS.SET_INGREDIENTS);
+export const setInputDrinkText = createDrinkAction(DRINKS_ACTIONS.SET_INPUT_DRINK_TEXT);
 
-export function setSearchingDrink(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_SEARCHING_DRINKS,
-        payload: value
-    };
-}
 
-export function setAlcocholic(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_ALCOCHOLIC,
-        payload: value
+// Funkcja generująca akcję użytkownika
+function createUserAction(actionType) {
+    return function (value) {
+        return {
+            type: actionType,
+            payload: value,
+        };
     };
 }
 
-export function setSoftDrinks(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_SOFT_DRINKS,
-        payload: value
+// Tworzenie funkcji akcji użytkownika
+export const setEmail = createUserAction(USER_ACTIONS.SET_USER_EMAIL);
+export const setPassword = createUserAction(USER_ACTIONS.SET_USER_PASSWORD);
+export const setUserSession = createUserAction(USER_ACTIONS.SET_USER_SESSION);
+export const setPhone = createUserAction(USER_ACTIONS.SET_USER_PHONE);
+export const setUserNick = createUserAction(USER_ACTIONS.SET_USER_NICK_NAME);
+export const setUserFavouriteDrinks = createUserAction(USER_ACTIONS.SET_FAVOURITE_DRINKS);
+
+
+// Funkcja generująca akcję
+function createAdminAction(actionType) {
+    return function (value) {
+        return {
+            type: actionType,
+            payload: value,
+        };
     };
 }
 
-export function setHighlyRated(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_HIGHLY_RATED_DRINKS,
-        payload: value
-    };
-}
-
-export function setDrinkLevel(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_LEVEL_DRINKS,
-        payload: value
-    };
-}
-
-export function setDrinkFavouriteFlag(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_FAVOURITE_FLAG_DRINKS,
-        payload: value
-    };
-}
-
-export function setDrinkTaste(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_TASTE_DRINKS,
-        payload: value
-    };
-}
-
-export function setEachdrinkflag(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_EACH_FLAG_DRINKS,
-        payload: value
-    };
-}
-
-export function setDrinkCounter(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_DRINKS_COUNTER,
-        payload: value
-    };
-}
-
-export function setingredient(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_INGREDIENTS,
-        payload: value
-    };
-}
-
-export function setInputDrinkText(value) {
-    return {
-        type: DRINKS_ACTIONS.SET_INPUT_DRINK_TEXT,
-        payload: value
-    };
-}
-
-export function setEmail(value) {
-    return {
-        type: DRINKS_ACTIONS.USER_ACTIONS.SET_USER_EMAIL,
-        payload: value
-    };
-}
-
-export function setPassword(value) {
-    return {
-        type: USER_ACTIONS.USER_ACTIONS.SET_USER_PASSWORD,
-        payload: value
-    };
-}
-
-
-export function setUserSession(value) {
-    return {
-        type: USER_ACTIONS.SET_USER_SESSION,
-        payload: value
-    };
-}
-export function setPhone(value) {
-    return {
-        type: USER_ACTIONS.SET_USER_PHONE,
-        payload: value
-    };
-}
-
-export function setUserNick(value) {
-    return {
-        type: USER_ACTIONS.SET_USER_NICK_NAME,
-        payload: value
-    };
-}
-
-export function setUserFavouriteDrinks(value) {
-    return {
-        type: USER_ACTIONS.USER_ACTIONS.SET_FAVOURITE_DRINKS,
-        payload: value,
-    };
-}
-
-export function setDrinksFlag(value) {
-    return {
-        type: ADMIN_ACTIONS.SET_DRINKS_ADMIN_FLAG,
-        payload: value,
-    };
-}
-
-export function setUsersFlag(value) {
-    return {
-        type: ADMIN_ACTIONS.SET_USER_ADMIN_FLAG,
-        payload: value,
-    };
-}
-export function setFilteredResults(value) {
-    return {
-        type: ADMIN_ACTIONS.SET_FILTER_ADMIN_RESULTS,
-        payload: value,
-    };
-}
-
-
-export function setFilteredUserResults(value) {
-    return {
-        type: ADMIN_ACTIONS.SET_FILTER_USER_RESULTS,
-        payload: value,
-    };
-}
-
-
-// function createAdminAction(type) {
-//     return function (value) {
-//         return {
-//             type,
-//             payload: value,
-//         };
-//     };
-// }
-
-// export const setDrinksFlag = createAdminAction(ADMIN_ACTIONS.SET_DRINKS_ADMIN_FLAG);
-// export const setUsersFlag = createAdminAction(ADMIN_ACTIONS.SET_USER_ADMIN_FLAG);
-// export const setFilteredResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_ADMIN_RESULTS);
-// export const setFilteredUserResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_USER_RESULTS);
-
-
+// Tworzenie funkcji akcji
+export const setDrinksFlag = createAdminAction(ADMIN_ACTIONS.SET_DRINKS_ADMIN_FLAG);
+export const setUsersFlag = createAdminAction(ADMIN_ACTIONS.SET_USER_ADMIN_FLAG);
+export const setFilteredResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_ADMIN_RESULTS);
+export const setFilteredUserResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_USER_RESULTS);
 
 
 

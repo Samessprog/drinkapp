@@ -1,29 +1,5 @@
 import { createStore, combineReducers } from 'redux';
 
-const navbarState = {
-  //login & register states
-  loginPopup: false,
-  registerPopup: false,
-  /* Settings States  */
-  popupsetings: false,
-  specialOptionsPopupp: false,
-  inputDrinkText: "",
-};
-
-const drinksState = {
-  searchingDrinks: [],
-  drinkNotFound: false,
-  //Drink Properties States
-  alcocholic: false,
-  softDrinks: false,
-  highlyRated: false,
-  drinkLevel: 'All',
-  drinkTaste: 'All',
-  eachdrinkflag: false,
-  drinkCounter: 0,
-  ingredient: [],
-  favouriteDrink: false,
-};
 
 const userState = {
   email: '',
@@ -33,7 +9,6 @@ const userState = {
   nick: '',
   userFavouriteDrinks: [],
 };
-
 
 function userReducer(state = userState, action) {
   switch (action.type) {
@@ -73,9 +48,20 @@ function userReducer(state = userState, action) {
   }
 }
 
-
-
-
+const drinksState = {
+  searchingDrinks: [],
+  drinkNotFound: false,
+  //Drink Properties States
+  alcocholic: false,
+  softDrinks: false,
+  highlyRated: false,
+  drinkLevel: 'All',
+  drinkTaste: 'All',
+  eachdrinkflag: false,
+  drinkCounter: 0,
+  ingredient: [],
+  favouriteDrink: false,
+};
 
 function drinksReducer(state = drinksState, action) {
   switch (action.type) {
@@ -135,6 +121,16 @@ function drinksReducer(state = drinksState, action) {
   }
 }
 
+const navbarState = {
+  //login & register states
+  loginPopup: false,
+  registerPopup: false,
+  /* Settings States  */
+  popupsetings: false,
+  specialOptionsPopupp: false,
+  inputDrinkText: "",
+};
+
 function navbarReducer(state = navbarState, action) {
   switch (action.type) {
     //login & register states
@@ -175,7 +171,6 @@ function navbarReducer(state = navbarState, action) {
   }
 }
 
-
 const adminStates = {
   drinksFlag: true,
   userFlag: false,
@@ -213,7 +208,6 @@ function adminReducer(state = adminStates, action) {
   }
 
 }
-
 
 const rootReducer = combineReducers({
   navbar: navbarReducer,
