@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { setUserSession } from "../States/actions";
+import { setUserSession, setUserFavouriteDrinks } from "../States/actions";
 import { useDispatch } from 'react-redux';
+
+
 
 function OptionsProfile() {
 
@@ -19,10 +21,10 @@ function OptionsProfile() {
             })
             .catch(error => console.error(error));
     }
-    // reload Window 
+    // reload Window !!Zamiast tego wyczyść state? i daj adnotracje o wylogowaniu się 
     function handleLogoutClick() {
         logoutUser();
-        window.location.reload();
+         dispatch(setUserFavouriteDrinks([]))
     }
 
     return (
