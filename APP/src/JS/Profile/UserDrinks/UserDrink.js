@@ -14,7 +14,9 @@ function UserDrink({ elm }) {
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setDrinkImg(imageURL)
 
-        } else { setDrinkImg('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg') }
+        } else {
+            setDrinkImg('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg')
+        }
 
     }, []);
 
@@ -37,16 +39,18 @@ function UserDrink({ elm }) {
                             </div>
                         </div>
                     </div>
+                    <div className="position-absolute top-0 end-0 mt-2 me-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">
+                            <path d="m320 816 160-122 160 122-62.667-197.333 160-113.334H542l-62-204.666-62.667 204.666H222l160 113.334L320 816Zm160 160q-82.333 0-155.333-31.5t-127.334-85.833Q143 804.333 111.5 731.333T80 576q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82.333-31.5 155.333T763 858.667Q709 913 636 944.5T480 976Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666 436.667 146.666 576q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480 576Z" />
+                        </svg>
+                    </div>
                 </div>
             </Link >
-            <div className="d-flex justify-content-md-between flex-md-row flex-column align-items-center ">
-                <div className="ms-1">{elm?.DrinkName}</div>
-                <label className="rounded-circle rate fw-bolder d-flex align-items-center me-1">2
-                    <svg className="star mb-1 ms-1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
-                </label>
-            </div>
+
+
         </div >
     )
 }
 
 export default UserDrink;
+//className={userFavouriteDrinks.includes(elm.ID_Drink) ? "favouriteStar" : "un-favouriteStar"}
