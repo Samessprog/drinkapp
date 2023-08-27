@@ -19,6 +19,8 @@ router.post('/', upload.single('imageData'), async (req, res) => {
             return;
         }
 
+        console.log(imageData)
+
         // Save the image in the database
         const sql = 'UPDATE users SET userIMG = ? WHERE ID_User = ?';
         const result = await db.query(sql, [imageData, userID]);

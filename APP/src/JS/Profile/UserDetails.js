@@ -6,6 +6,8 @@ function UserDetails({ userSesion, userIMG }) {
 
     const dispatch = useDispatch();
 
+
+
     const email = useSelector(state => state.user.email)
     const phone = useSelector(state => state.user.phone)
     const Nick = useSelector(state => state.user.nick)
@@ -30,6 +32,7 @@ function UserDetails({ userSesion, userIMG }) {
             'Content-Type': 'application/json'
         };
     };
+
 
     //Function to change User Data
     const UserDataChange = async (event) => {

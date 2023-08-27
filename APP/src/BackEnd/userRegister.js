@@ -20,7 +20,7 @@ async function checkEmailExists(email) {
 }
 
 router.post('/', async (req, res) => {
-  const { email, password, rePassword, phone, Nick } = req.body;
+  const { email, password, rePassword, phone, Nick, img } = req.body;
 
 
   // Sprawdzenie, czy hasła są zgodne
@@ -62,8 +62,6 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  let userImg = 'https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg';
-  
   const user = { email, password, phone, Nick, userImg };
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {

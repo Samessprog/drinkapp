@@ -30,8 +30,9 @@ function UserProfile({ drinkDatas }) {
           throw new Error('Failed to fetch user image');
         }
         const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
-        setUserIMG(imageUrl);
+
+        setUserIMG(blob.size === 0 ? 'https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg' : URL.createObjectURL(blob))
+        
       } catch (error) {
         console.error(error);
       }
@@ -48,12 +49,12 @@ function UserProfile({ drinkDatas }) {
   return (
     <div className="user-details-holder">
 
-      <UserDetails userSesion={userSesion} userIMG={userIMG} />
+      <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} />
       <UserFavouriteDrinks
         userFavouriteDrinks={userFavouriteDrinks}
         drinkDatas={drinkDatas}
       />
-      
+
       <UserOwnDrinks
         setAddUserNewDrink={setAddUserNewDrink}
         drinkDatas={drinkDatas}
