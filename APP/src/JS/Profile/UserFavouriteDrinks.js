@@ -3,6 +3,8 @@ import Carousel from "../Components/Carousel";
 
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
+  
+
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
 
     const favouriteDrink = drinkDatas.find((drink) => {

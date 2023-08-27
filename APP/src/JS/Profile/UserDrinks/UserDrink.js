@@ -8,12 +8,15 @@ function UserDrink({ elm }) {
 
     //convert IMG to normal from blob
     useEffect(() => {
-        if (elm?.IMG && elm?.IMG.data) {
+        if (elm?.IMG && elm?.IMG.data && elm?.IMG.data.length !== 0) {
+
             const base64Image = Buffer.from(elm?.IMG.data).toString('base64');
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setDrinkImg(imageURL)
-        }
-    },[]);
+
+        } else { setDrinkImg('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg') }
+
+    }, []);
 
     return (
         <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5 ">

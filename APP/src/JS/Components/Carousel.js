@@ -8,6 +8,8 @@ const Carousel = ({ favouriteUsersDrink }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
+
+
   useEffect(() => {
     if (favouriteUsersDrink) {
       const favouriteDrinksLength = favouriteUsersDrink.length;
@@ -25,7 +27,6 @@ const Carousel = ({ favouriteUsersDrink }) => {
         const itemIndex = i >= favouriteDrinksLength ? i - favouriteDrinksLength : i;
         favouriteItemsToShow.push(favouriteUsersDrink[itemIndex]);
       }
-
       setShowItems(favouriteItemsToShow);
     }
   }, [currentIndex]);
