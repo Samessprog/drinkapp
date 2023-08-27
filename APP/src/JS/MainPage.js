@@ -18,7 +18,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
     const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-    const itemsPerPage = 12; // ilość elementów na stronie
+    const itemsPerPage = 10; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
 
@@ -58,7 +58,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
         fetchUserFavouriteDrinks();
     }, [favourites]);
-
 
     return (
 

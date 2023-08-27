@@ -43,14 +43,17 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
     //take drink IMG drom DB and convert
     useEffect(() => {
-        if (elm.IMG && elm.IMG.data) {
+        if (elm.IMG && elm.IMG.data && elm.IMG.data.length > 0) {
             // Convert the image data to base64
             const base64Image = Buffer.from(elm.IMG.data).toString('base64');
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setDrinkIMG(imageURL);
+        } else {
+            setDrinkIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
-    },[]);
+
+    }, []);
 
     return (
 
