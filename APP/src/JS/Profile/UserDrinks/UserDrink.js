@@ -6,6 +6,7 @@ function UserDrink({ elm }) {
 
     const [drinkImg, setDrinkImg] = useState('')
 
+    //convert IMG to normal from blob
     useEffect(() => {
         if (elm?.IMG && elm?.IMG.data) {
             const base64Image = Buffer.from(elm?.IMG.data).toString('base64');

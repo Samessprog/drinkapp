@@ -3,6 +3,7 @@ import { Buffer } from 'buffer';
 
 
 function UsersAdminControlerProfile({ elm }) {
+    //My Api URL Local
     const API_URL = 'http://localhost:3000/api/';
 
     //User Data changer error
@@ -13,6 +14,7 @@ function UsersAdminControlerProfile({ elm }) {
     const [newUserEmail, setNewUserEmail] = React.useState('')
     const [newUserPass, setNewUserPass] = React.useState('')
 
+    //another Function to convert IMG :C Optymalise
     useEffect(() => {
         if (elm.userIMG) {
             // Convert the image data to base64
@@ -24,6 +26,7 @@ function UsersAdminControlerProfile({ elm }) {
 
     }, []);
 
+    //Function to Change User Data
     const UserDataChange = async (event) => {
         const userID = elm.ID_User;
         event.preventDefault();

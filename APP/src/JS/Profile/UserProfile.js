@@ -17,6 +17,7 @@ function UserProfile({ drinkDatas }) {
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
 
+  //Take img from DB 
   useEffect(() => {
 
     const fetchUserImage = async () => {

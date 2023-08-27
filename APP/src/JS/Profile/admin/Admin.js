@@ -11,25 +11,27 @@ function Admin({ drinkDatas }) {
 
     const dispatch = useDispatch();
 
+    //Admin Sattes to change USER -> DRINKS
     const drinksFlag = useSelector(state => state.admin.drinksFlag)
     const usersFlag = useSelector(state => state.admin.userFlag)
+    //States for Filtering drinks and users
     const filteredResults = useSelector(state => state.admin.filteredResults)
     const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
-    const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
-
-    const [currentPage, setCurrentPage] = useState(0);
     const [inputText, setInputText] = useState('');
-    const [users, setUsers] = useState([]);
-    const [currentPageUsers, setCurrentPageUsers] = useState(0);
-
-    const itemsPerPage = 8;
-
-    // Admin database of user and drinks States
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
 
+    const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
+    //Carousel States
+    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPageUsers, setCurrentPageUsers] = useState(0);
 
+    const [users, setUsers] = useState([]);
+
+    const itemsPerPage = 8;
+
+    //Fetch all users from DB
     React.useEffect(() => {
         const userButtonHandler = async () => {
             try {
@@ -50,10 +52,12 @@ function Admin({ drinkDatas }) {
         userButtonHandler();
     }, [])
 
+
+    //Filtering Drinks
     useEffect(() => {
         const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
         let filteredResults;
-    
+
         if (!isBlocked && drinksFlag) {
             filteredResults = currentItems.slice().sort((x, y) => {
                 const drinkNameX = x.DrinkName.toUpperCase();
@@ -70,8 +74,8 @@ function Admin({ drinkDatas }) {
             dispatch(setFilteredUserResults(filteredResults));
         }
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
-    
 
+    //Filtering Users
     React.useEffect(() => {
 
         const inputTXT = inputText.toLowerCase()
@@ -92,6 +96,8 @@ function Admin({ drinkDatas }) {
     }, [inputText, users, drinkDatas]);
 
 
+
+    //Next and previous Carousel Handler functions
     const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
     const currentItems = filteredResults.slice(
         currentPage * itemsPerPage,
@@ -103,8 +109,6 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
-
-
 
 
     return (

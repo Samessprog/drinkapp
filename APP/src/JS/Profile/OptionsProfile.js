@@ -7,6 +7,7 @@ function OptionsProfile() {
 
     const dispatch = useDispatch();
 
+    //Logout funciotn
     function logoutUser() {
         fetch('http://localhost:3000/api/logout', {
             method: 'POST',
@@ -18,7 +19,7 @@ function OptionsProfile() {
             })
             .catch(error => console.error(error));
     }
-
+    // reload Window 
     function handleLogoutClick() {
         logoutUser();
         window.location.reload();

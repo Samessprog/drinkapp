@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function DrinksProfile({ elm }) {
 
     const [drinkProfileIMG, setdrinkProfileIMG] = useState('')
-
+    //Function to convert User img
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
             // Convert the image data to base64

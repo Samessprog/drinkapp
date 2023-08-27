@@ -31,6 +31,7 @@ function UserDetails({ userSesion, userIMG }) {
         };
     };
 
+    //Function to change User Data
     const UserDataChange = async (event) => {
         event.preventDefault();
         try {
@@ -52,6 +53,7 @@ function UserDetails({ userSesion, userIMG }) {
         }
     };
 
+    //Changer user img
     const handleImgChange = async (event) => {
 
         const file = event.target.files[0];
@@ -77,7 +79,7 @@ function UserDetails({ userSesion, userIMG }) {
             console.error(error);
         }
     };
-
+    //Funciotn to change User Pass
     const userPasswordChanger = async (event) => {
         event.preventDefault();
         try {
