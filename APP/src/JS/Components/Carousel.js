@@ -52,7 +52,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (
-            <FavouriteDrinks key={elm.ID_Drink} elm={elm} />
+            <FavouriteDrinks key={elm.ID_Drink} elm={elm} favouriteUsersDrink={favouriteUsersDrink} />
           ))
         )}
       </div>

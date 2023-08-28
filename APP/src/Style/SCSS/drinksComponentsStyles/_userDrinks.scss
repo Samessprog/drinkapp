@@ -4,6 +4,10 @@
     @include drinksHolder;
     border-radius: 15px;
 
+    .golden-star {
+        fill: gold;
+    }
+
     .favourite-drink-info-box {
         bottom: 0;
         width: 100%;
@@ -50,14 +54,14 @@
                 padding-right: 0.5rem;
             }
 
-          
+
         }
-        
-      
+
+
 
     }
 
-   
+
     &:hover .favourite-drink-info-box {
         opacity: 0.75;
         transform: translateY(0%);
@@ -84,11 +88,11 @@
             max-height: 200px;
             height: 200px;
         }
-        
+
 
     }
-    
-   
+
+
 
     .star {
         fill: $color-gold;
