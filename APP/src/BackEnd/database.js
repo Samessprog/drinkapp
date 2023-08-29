@@ -11,7 +11,8 @@ const userDateChange = require('./userDataChange');
 const userImgChange = require('./uploadUserImage');
 const userPasswordChanger = require('./userPasswordChange');
 const addNewDrink = require('./addNewDrink');
-
+const addToFavouriteDrink = require('./addToUserFavourite')
+const dataUserChangerByAdmin = require('./userDataChangerAdmin')
 
 const port = 3000;
 
@@ -51,7 +52,42 @@ app.use('/api/userPasswordChange', userPasswordChanger);
 //Apps for drinks 
 app.use('/api/addNewDrink', addNewDrink);
 app.use('/api/uploadImage', userImgChange);
+app.use('/api/addToUserFavourite', addToFavouriteDrink)
+app.use('/api/userDataChangerADMIN', dataUserChangerByAdmin)
 
+
+
+app.post('/api/removeFromUserFavourite', async (req, res) => {
+  const { drinkID, userID } = req.body;
+
+  const deleteQuery = 'DELETE FROM userfavouritedrink WHERE userID = ? AND drinkID = ?';
+
+  db.query(deleteQuery, [userID, drinkID], (error, results) => {
+    if (error) {
+      console.error('Error deleting favorite:', error);
+      res.status(500).json({ error: 'An error occurred while deleting the favorite.' });
+    }
+  });
+});
+
+//Gets 
+app.get('/api/takeFavouriteUserDrink', async (req, res) => {
+  const userIDs = req.session.user?.userID;
+
+  // Fetch the DrinkIDs for the given UserID
+  const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
+
+  db.query(query, [userIDs], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error retrieving user favorite drinks.' });
+    } else {
+      // Extract the DrinkID values from the query results
+      const drinkIDs = results.map((row) => row.DrinkID);
+      res.status(200).json({ drinkIDs });
+    }
+  });
+});
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
@@ -64,7 +100,6 @@ app.get('/api/session', (req, res) => {
 app.get('/api/userIMG', (req, res) => {
 
   const email = req.session.email;
-
 
   db.query('SELECT userIMG FROM users WHERE email = ?', email, (err, results) => {
     if (err) {
@@ -83,107 +118,6 @@ app.get('/api/userIMG', (req, res) => {
   });
 });
 
-app.use('/api/addToUserFavourite', async (req, res) => {
-  const { id, sessionidx } = req.body;
-
-  const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
-  db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {
-    if (checkError) {
-      console.error(checkError);
-      res.status(500).json({ message: 'Error checking user favorites.' });
-    } else {
-      if (checkResults.length > 0) {
-        const deleteQuery = `DELETE FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
-        db.query(deleteQuery, [sessionidx, id], (deleteError) => {
-          if (deleteError) {
-            console.error(deleteError);
-            res.status(500).json({ message: 'Error removing drink from user favorites.' });
-          } else {
-            res.status(200).json({ message: 'Drink removed from user favorites.' });
-          }
-        });
-      } else {
-        const insertQuery = `INSERT INTO userfavouritedrink (UserID, DrinkID) VALUES (?, ?)`;
-        db.query(insertQuery, [sessionidx, id], (insertError) => {
-          if (insertError) {
-            console.error(insertError);
-            res.status(500).json({ message: 'Error adding drink to user favorites.' });
-          } else {
-            res.status(200).json({ message: 'Drink added to user favorites successfully.' });
-          }
-        });
-      }
-    }
-  });
-});
-
-app.post('/api/userDataChangerADMIN', async (req, res) => {
-  const { newUserEmail, newUserPass, userID } = req.body;
-
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-  if (!passwordRegex.test(newUserPass)) {
-    res.status(400).json({ success: false, message: 'Invalid password' });
-    return;
-  }
-
-  if (!emailRegex.test(newUserEmail)) {
-    res.status(400).json({ success: false, message: 'Invalid email' });
-    return;
-  }
-
-  try {
-    // Aktualizacja adresu e-mail i hasła użytkownika w bazie danych
-    db.query(
-      'UPDATE users SET email = ?, password = ? WHERE ID_User = ?',
-      [newUserEmail, newUserPass, userID],
-      (err, result) => {
-        if (err) {
-          res.status(500).json({ success: false, message: 'Failed to update user data' });
-          return;
-        }
-
-        res.json({ success: true });
-      }
-    );
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'An error occurred' });
-  }
-});
-
-
-app.post('/api/removeFromUserFavourite', async (req, res) => {
-  const { drinkID, userID } = req.body;
-
-  const deleteQuery = 'DELETE FROM userfavouritedrink WHERE userID = ? AND drinkID = ?';
-
-  db.query(deleteQuery, [userID, drinkID], (error, results) => {
-    if (error) {
-      console.error('Error deleting favorite:', error);
-      res.status(500).json({ error: 'An error occurred while deleting the favorite.' });
-    }
-  });
-});
-
-
-app.get('/api/takeFavouriteUserDrink', async (req, res) => {
-  const userIDs = req.session.user?.userID;
-
-  // Fetch the DrinkIDs for the given UserID
-  const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
-
-  db.query(query, [userIDs], (error, results) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Error retrieving user favorite drinks.' });
-    } else {
-      // Extract the DrinkID values from the query results
-      const drinkIDs = results.map((row) => row.DrinkID);
-      res.status(200).json({ drinkIDs });
-    }
-  });
-});
 
 app.get('/api/getAllUsers', (req, res) => {
   db.query('SELECT * FROM users', (err, results) => {

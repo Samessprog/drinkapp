@@ -67,7 +67,7 @@ function App() {
     fetchData();
   }, []);
 
-
+ 
 
   return (
     <div className="col-12 kop">

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import OwnDrinkCarusel from "../Components/OwnDrinkCarusel";
 import { SessionContext } from "../Session/SessionContext";
 
@@ -7,13 +7,15 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
     const creator = userSesion.userID
 
+  
+
     return (
         <div className="position-relative ">
             <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center"> Create your own drink</label>
             <div className="user-favourite-frinks-holder">
                 <div className="user-favourite-frinks d-flex justify-content-center">
 
-                    <OwnDrinkCarusel drinkDatas={drinkDatas} creator={creator}/>
+                    <OwnDrinkCarusel drinkDatas={drinkDatas} creator={creator} />
 
                 </div>
             </div>
