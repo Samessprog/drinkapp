@@ -10,7 +10,6 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
     const [drinkIMGs, setDrinkIMG] = useState(null);
     //take suer session
     const { userSesion } = useContext(SessionContext);
-
     const [convertetIMG, setConvertedIMG] = useState('')
 
     useEffect(() => {
@@ -31,29 +30,22 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                 console.error(error);
             }
         };
-
         fetchUserFavouriteDrinkImage();
     }, [elm.ID_DRINK]);
 
-    console.log(drinkIMGs)
-   
-   
-    useEffect(() => {
-        console.log(drinkIMGs)
-        if (drinkIMGs && drinkIMGs.data.length > 0) {
-            console.log('AHOJ')
 
+    useEffect(() => {
+        if (drinkIMGs && drinkIMGs.data.length > 0) {
             // Convert the image data to base64
             const base64Image = Buffer.from(drinkIMGs.data).toString('base64');
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setConvertedIMG(imageURL);
         } else {
-            console.log('NOTAHOJ')
             setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
 
-    }, [elm.ID_DRINK]);
+    }, [drinkIMGs]);
 
 
     //ADD your fav drink to DB 
