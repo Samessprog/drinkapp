@@ -48,13 +48,14 @@ app.use('/api/register', userRegister);
 app.use('/api/logout', userLogout);
 app.use('/api/userDataChange', userDateChange);
 app.use('/api/userPasswordChange', userPasswordChanger);
+app.use('/api/addToUserFavourite', addToFavouriteDrink)
 
 //Apps for drinks 
 app.use('/api/addNewDrink', addNewDrink);
 app.use('/api/uploadImage', userImgChange);
-app.use('/api/addToUserFavourite', addToFavouriteDrink)
-app.use('/api/userDataChangerADMIN', dataUserChangerByAdmin)
 
+//Admin 
+app.use('/api/userDataChangerADMIN', dataUserChangerByAdmin)
 
 
 app.post('/api/removeFromUserFavourite', async (req, res) => {
