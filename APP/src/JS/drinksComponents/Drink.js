@@ -6,11 +6,55 @@ import { SessionContext } from "../Session/SessionContext";
 
 
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
-
+    //drinkIMG state for display IF
+    const [drinkIMGs, setDrinkIMG] = useState(null);
     //take suer session
     const { userSesion } = useContext(SessionContext);
-    //drinkIMG state for display IF
-    const [drinkIMGs, setDrinkIMG] = useState('')
+
+    const [convertetIMG, setConvertedIMG] = useState('')
+
+    useEffect(() => {
+        const fetchUserFavouriteDrinkImage = async () => {
+            try {
+                let ID_Drink = elm.ID_DRINK;
+                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                    credentials: 'include',
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user favorite drink image.');
+                }
+                // Parsuj odpowiedź jako JSON
+                const data = await response.json();
+                setDrinkIMG(data.image);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchUserFavouriteDrinkImage();
+    }, [elm.ID_DRINK]);
+
+    console.log(drinkIMGs)
+   
+   
+    useEffect(() => {
+        console.log(drinkIMGs)
+        if (drinkIMGs && drinkIMGs.data.length > 0) {
+            console.log('AHOJ')
+
+            // Convert the image data to base64
+            const base64Image = Buffer.from(drinkIMGs.data).toString('base64');
+            // Create the image URL using the base64 data
+            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            setConvertedIMG(imageURL);
+        } else {
+            console.log('NOTAHOJ')
+            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+        }
+
+    }, [elm.ID_DRINK]);
+
 
     //ADD your fav drink to DB 
     const favouriteHandler = (id) => {
@@ -20,9 +64,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             alert('To add a drink to your favourites, you must first log in');
             return;
         }
-
         setFavourites(prevFavourites => [...prevFavourites, id]);
-
         let sessionidx = userSesion.userID;
         //POST drink ID to DB with userID
         try {
@@ -40,20 +82,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             console.error(error);
         }
     };
-
-    //take drink IMG drom DB and convert
-    useEffect(() => {
-        if (elm.IMG && elm.IMG.data && elm.IMG.data.length > 0) {
-            // Convert the image data to base64
-            const base64Image = Buffer.from(elm.IMG.data).toString('base64');
-            // Create the image URL using the base64 data
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setDrinkIMG(imageURL);
-        } else {
-            setDrinkIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
-        }
-
-    }, []);
+    // console.log(convertetIMG)
 
     return (
 
@@ -63,7 +92,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_Drink}`} >
                 <div className="img-holder card overflow-hidden ">
                     <LazyLoadImage
-                        src={drinkIMGs}
+                        src={convertetIMG}
                         effect="blur"
                         className="drink-img img-fluid"
                         alt="Loading error"

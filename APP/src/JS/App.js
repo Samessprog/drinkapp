@@ -57,6 +57,7 @@ function App() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/drinks");
+        console.log(data)
         setDrinkData(data);
         setSearchingDrink(data);
       } catch (err) {

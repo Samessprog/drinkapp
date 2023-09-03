@@ -24,7 +24,7 @@ connection.connect((err) => {
 });
 
 app.get('/drinks', (req, res) => {
-    const sql = 'SELECT * FROM drink ORDER BY ID_Drink DESC';
+    const sql = 'SELECT ID_DRINK, DrinkName,DifficultyLevel, Creator, Taste, DrinkType,Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink';
     connection.query(sql, (err, results, fields) => {
         if (err) {
             console.error('error executing query: ' + err.stack);

@@ -136,6 +136,32 @@ app.get('/api/getAllUsers', (req, res) => {
   });
 });
 
+const mysql = require('mysql');
+
+const connectionToDrinksDB = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'drinks'
+});
+
+app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
+  const { ID_Drink } = req.params;
+  try {
+    const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
+    connectionToDrinksDB.query(sql, [ID_Drink], (err, result) => {
+      if (err) {
+        res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+      } else {
+        res.json({ image: result[0].IMG });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+  }
+});
+
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
