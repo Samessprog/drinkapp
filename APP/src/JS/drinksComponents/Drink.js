@@ -74,14 +74,13 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             console.error(error);
         }
     };
-    // console.log(convertetIMG)
 
     return (
 
         <div className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3 col-xl-3 col-xxl-2 col p-1 rounded m-3  position-relative">
 
             {/* miejsce na znacznik ulubione */}
-            <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_Drink}`} >
+            <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_DRINK}`} >
                 <div className="img-holder card overflow-hidden ">
                     <LazyLoadImage
                         src={convertetIMG}

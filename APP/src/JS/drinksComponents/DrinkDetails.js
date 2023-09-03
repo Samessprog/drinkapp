@@ -7,9 +7,11 @@ import { Buffer } from 'buffer';
 
 function DrinkDetails({ searchingDrink }) {
 
+
     const { userSesion } = useContext(SessionContext);
 
     let { id } = useParams()
+
     //Pagination
     const [currentPage, setCurrentPage] = useState(0)
     const [drinksDetail, setDrinkDetail] = useState({})
@@ -20,8 +22,10 @@ function DrinkDetails({ searchingDrink }) {
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([]);
 
+
+
     useEffect(() => {
-        const result = searchingDrink.filter(elm => elm.ID_Drink === parseInt(id, 10))[0];
+        const result = searchingDrink.filter(elm => elm.ID_DRINK === parseInt(id, 10))[0];
         setIng(result?.Ingredients.split('.'));
         setPrep(result?.Preparation.split('.'));
         setDrinkDetail(result);
@@ -56,16 +60,46 @@ function DrinkDetails({ searchingDrink }) {
         // Update the ingChecked state with the newIngChecked array
         setIngChecked(newIngChecked);
     }
-    const [drinkIMGs, setDrinkIMG] = useState('')
 
-    //Convert drink IMG 
+
+    const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
+    const [convertetIMG, setConvertedIMG] = useState('')
+
     useEffect(() => {
-        if (drinksDetail.IMG && drinksDetail.IMG.data) {
-            const base64Image = Buffer.from(drinksDetail.IMG.data).toString('base64');
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setDrinkIMG(imageURL)
+        if (drinksDetail !== undefined && drinksDetail?.ID_DRINK !== undefined) {
+            const fetchUserFavouriteDrinkImage = async () => {
+                try {
+                    let ID_Drink = drinksDetail.ID_DRINK;
+                    const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                        credentials: 'include',
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user favorite drink image.');
+                    }
+                    // Parsuj odpowiedź jako JSON
+                    const data = await response.json();
+                    setDetalDrinkIMG(data.image)
+
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchUserFavouriteDrinkImage();
         }
-    });
+    }, [drinksDetail]);
+
+    useEffect(() => {
+        if (detailDrinkIMG && detailDrinkIMG.data.length > 0 ) {
+            // Convert the image data to base64
+            const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64');
+            // Create the image URL using the base64 data
+            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            setConvertedIMG(imageURL);
+        } else {
+            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+        }
+
+    }, [detailDrinkIMG]);
 
 
     return (
@@ -138,7 +172,7 @@ function DrinkDetails({ searchingDrink }) {
                     <div className="img-holder-details  mt-4 ">
 
                         <LazyLoadImage
-                            src={drinkIMGs}
+                            src={convertetIMG}
                             effect="blur"
                             className="img-fluid img-helper " alt="Img error"
 
