@@ -1,19 +1,24 @@
 import React from "react";
 import Carousel from "../Components/Carousel";
 
+
+
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
+  const [userFav, setUserFav] = React.useState('')
+
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
-
     const favouriteDrink = drinkDatas.find((drink) => {
-
-      if (favId === drink.ID_Drink) {
+      console.log(drink)
+      if (favId === drink.ID_DRINK) {
         return drink;
       }
 
     });
     return favouriteDrink;
   })
+
+  
 
   return (
     <div className="favourite-holder-user-drink col-12">

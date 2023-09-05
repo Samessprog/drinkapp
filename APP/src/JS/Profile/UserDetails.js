@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
+import { Ring } from '@uiball/loaders'
 
-function UserDetails({ userSesion, userIMG }) {
+function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
 
     const dispatch = useDispatch();
 
@@ -101,17 +102,29 @@ function UserDetails({ userSesion, userIMG }) {
         } catch (error) {
             setNewUserPasswordErrors([error.message]);
         }
-    };  
-    
+    };
 
+   
     return (
         <div className=" col mt-3 ">
+
 
             <div class="d-flex justify-content-between p-5 flex-column flex-xxl-row align-items-center">
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center">
 
                     <div class="d-flex justify-content-center  align-items-center  user-img-holder col-sm-7 col-md-10 col-10 mb-4 me-4 col-xl-6 ms-5">
-                        <img src={userIMG} alt="Img error" class="img-fluid user-img"></img>
+                        {fetchIMGCompleted ? (
+                            <img src={userIMG} alt="Img error" class="img-fluid user-img"></img>
+                        ) : (
+                            <Ring
+                                size={150}
+                                lineWeight={5}
+                                speed={2}
+                                color="black"
+                            />
+                        )}
+
+
                         <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                             Click to change your img
                             <input onChange={handleImgChange} type="file" name="file-upload" id="file-upload"></input>

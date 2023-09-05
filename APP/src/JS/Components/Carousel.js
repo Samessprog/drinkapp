@@ -9,7 +9,6 @@ const Carousel = ({ favouriteUsersDrink }) => {
   const [showItems, setShowItems] = useState([]);
 
 
-
   useEffect(() => {
     if (favouriteUsersDrink) {
       const favouriteDrinksLength = favouriteUsersDrink.length;
@@ -44,7 +43,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
     setCurrentIndex(newIndex);
   };
 
-  
+
   return (
     <div className="carousel col-12 ">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
@@ -52,7 +51,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (
-            <FavouriteDrinks key={elm.ID_Drink} elm={elm} favouriteUsersDrink={favouriteUsersDrink} />
+            <FavouriteDrinks key={elm.ID_DRINK} elm={elm} favouriteUsersDrink={favouriteUsersDrink} />
           ))
         )}
       </div>

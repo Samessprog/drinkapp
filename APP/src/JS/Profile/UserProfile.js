@@ -16,7 +16,7 @@ function UserProfile({ drinkDatas }) {
 
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-
+  const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
   //Take img from DB 
   useEffect(() => {
 
@@ -32,7 +32,7 @@ function UserProfile({ drinkDatas }) {
         const blob = await response.blob();
 
         setUserIMG(blob.size === 0 ? 'https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg' : URL.createObjectURL(blob))
-        
+        setFetchIMGCompleted(true)
       } catch (error) {
         console.error(error);
       }
@@ -49,7 +49,7 @@ function UserProfile({ drinkDatas }) {
   return (
     <div className="user-details-holder">
 
-      <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} />
+      <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} fetchIMGCompleted={fetchIMGCompleted} />
       <UserFavouriteDrinks
         userFavouriteDrinks={userFavouriteDrinks}
         drinkDatas={drinkDatas}
