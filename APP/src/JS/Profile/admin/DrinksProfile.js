@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Link } from "react-router-dom";
+import { Ring } from '@uiball/loaders'
+
 
 function DrinksProfile({ elm }) {
 
     const [drinkProfileIMG, setdrinkProfileIMG] = useState('')
-    //Function to convert User img
+
+
+    //ADD Fetch IMG from DB
+    const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
+    console.log(elm)
+
+
+
     useEffect(() => {
         if (elm.IMG && elm.IMG.data) {
             // Convert the image data to base64
@@ -17,18 +26,29 @@ function DrinksProfile({ elm }) {
 
     }, []);
 
+
     return (
 
         <div className="mb-3 ms-3 d-flex align-items-center drinks-profile-holder  me-3  justify-content-between ">
             <div className="d-flex align-items-center flex-column flex-xl-row justify-content-center">
                 <div className="ms-3 me-4 fs-4">
-                    {elm.ID_Drink}.
+                    {elm.ID_DRINK}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center position-relative ">
                     <div className="d-flex align-items-center flex-xxl-row flex-column ">
                         <div className="d-flex align-items-center data-holder ">
                             <div className=" mt-1 mb-1 drink-profile-holder-IMG">
-                                <img className=" drink-profile-img img-fluid " src={drinkProfileIMG} alt="loadingErr"></img>
+                                {fetchIMGCompleted ? (
+                                    <img className=" drink-profile-img img-fluid " src={drinkProfileIMG} alt="loadingErr"></img>
+
+                                ) : (
+                                    <Ring
+                                        size={155}
+                                        lineWeight={5}
+                                        speed={2}
+                                        color="black"
+                                    />
+                                )}
                             </div>
                             <div className="ms-4 drink-name-profile">
                                 {elm.DrinkName}
@@ -40,7 +60,7 @@ function DrinksProfile({ elm }) {
                         </div>
                         <div className="details-button-holder d-flex mt-xl-3 mb-xl-0 mb-3 flex-column flex-xl-row align-items-center ">
                             <button className="details-button">
-                                <Link to={`/drinkDetail/${elm.ID_Drink}`} target="_blank">show me the details</Link>
+                                <Link to={`/drinkDetail/${elm.ID_DRINK}`} target="_blank">show me the details</Link>
                             </button>
 
                             <div className="d-flex delete-profile">

@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
 import { Ring } from '@uiball/loaders'
 
+
 function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
 
     const dispatch = useDispatch();
-
-
 
     const email = useSelector(state => state.user.email)
     const phone = useSelector(state => state.user.phone)
