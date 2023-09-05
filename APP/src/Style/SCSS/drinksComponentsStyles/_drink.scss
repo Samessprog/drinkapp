@@ -1,68 +1,79 @@
 @import "../variables.scss";
 
-    .main {
-        color: $color-white;
+.main {
+    color: $color-white;
 
-        .drin-window {
-            @include drinksHolder;
-            
-            @media (max-width: 400px) {
-                height: 350px;
+    .drin-window {
+        position: relative;
+
+        @include drinksHolder;
+
+        @media (max-width: 400px) {
+            height: 350px;
+        }
+
+        @media (min-width: 1800px) {
+            height: 500px;
+        }
+
+        @media (min-width: 1200px) {
+            width: calc(100% / 5);
+        }
+
+        .img-holder {
+            background-color: transparent;
+            border: rgb(48, 48, 48) 3px solid;
+
+            .loading-icon {
+                margin-bottom: 6rem;
+                margin-top: 6rem;
             }
-            @media (min-width: 1800px) {
-                height: 500px;
-            }
-            
-            @media (min-width: 1200px) {
-                width: calc(100% / 5);
-            }
 
-            .img-holder {
-                background-color: transparent;
-                border: rgb(48, 48, 48) 3px solid;
-               
-                .drink-img {
-                    max-height: 350px;
-                    height: 250px;
-                    width: 100%;
+            .drink-img {
+                max-height: 350px;
+                height: 250px;
+                width: 100%;
 
-                    @media (max-width: 400px) {
-                        height: 150px;
-                    }
-
-                    @media (min-width: 1800px) {
-                        height: 500px;
-                    }
-
-
+                @media (max-width: 400px) {
+                    height: 150px;
                 }
-            }
-            .basic-information-drink {
-                @include basicDrinksInf;
 
-                .rate {
-                    color: $color-gold;
-                    font-size: 20px;
-
-                    .star {
-                        fill: $color-gold;
-                    }
-                }
-                .drink-taste {
-                    background-color: $color-light-d-green;
-                    color: $color-black;
-
+                @media (min-width: 1800px) {
+                    height: 500px;
                 }
             }
 
-            .favouriteStar{
-                fill: gold;
-                transition: $trans-all-02-eio;
+
+
+        }
+
+        .basic-information-drink {
+            @include basicDrinksInf;
+
+            .rate {
+                color: $color-gold;
+                font-size: 20px;
+
+                .star {
+                    fill: $color-gold;
+                }
             }
 
-            .un-favouriteStar{
-                fill: black;
-                transition: $trans-all-02-eio;
+            .drink-taste {
+                background-color: $color-light-d-green;
+                color: $color-black;
+
             }
         }
+
+        .favouriteStar {
+            fill: gold;
+            transition: $trans-all-02-eio;
+        }
+
+        .un-favouriteStar {
+            fill: black;
+            transition: $trans-all-02-eio;
+        }
     }
+}

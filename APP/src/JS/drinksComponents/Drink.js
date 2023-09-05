@@ -3,6 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
 import { SessionContext } from "../Session/SessionContext";
+import { Ring } from '@uiball/loaders'
 
 
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
@@ -11,6 +12,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
     //take suer session
     const { userSesion } = useContext(SessionContext);
     const [convertetIMG, setConvertedIMG] = useState('')
+    const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
@@ -41,6 +43,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setConvertedIMG(imageURL);
+            setFetchIMGCompleted(true)
         } else {
             setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
@@ -82,12 +85,24 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_DRINK}`} >
                 <div className="img-holder card overflow-hidden ">
-                    <LazyLoadImage
-                        src={convertetIMG}
-                        effect="blur"
-                        className="drink-img img-fluid"
-                        alt="Loading error"
-                    />
+                    {fetchIMGCompleted ? (
+                        <LazyLoadImage
+                            src={convertetIMG}
+                            effect="blur"
+                            className="drink-img img-fluid"
+                            alt="Loading error"
+                        />
+                    ) : (
+                        <div className='d-flex justify-content-center loading-icon'>
+                            <Ring
+                                size={90}
+                                lineWeight={5}
+                                speed={2}
+                                color="black"
+
+                            />
+                        </div>
+                    )}
 
                 </div>
 
@@ -100,6 +115,8 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                     </div>
 
                     <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator d-flex justify-content-center">{elm.Creator}</label>
+
+
 
                     <div className="d-flex mt-2 y flex-column flex-md-row justify-content-center">
 
