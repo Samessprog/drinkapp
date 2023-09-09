@@ -148,6 +148,8 @@ const connectionToDrinksDB = mysql.createConnection({
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
 
+  console.log(ID_Drink)
+
     try {
       const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
       connectionToDrinksDB.query(sql, [ID_Drink], (err, result) => {
@@ -161,6 +163,13 @@ app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
       res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
     }
 });
+
+
+
+
+
+
+
 
 
 app.listen(port, () => {

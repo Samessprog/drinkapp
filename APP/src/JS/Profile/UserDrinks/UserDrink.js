@@ -46,11 +46,58 @@ function UserDrink({ elm }) {
         window.location.reload();
     };
 
+
+    const [favouriteAndOwnDrinkIMG, setFavouriteAndOwnDrinkIMG] = useState(null);
+    const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
+    const [convertetFAVOWNIMG, setConvertedFAVOWNIMG] = useState('')
+
+    useEffect(() => {
+        console.log(elm.ID_DRINK)
+        const fetchUserFavouriteDrinkImage = async () => {
+            try {
+                let ID_Drink = elm.ID_DRINK;
+                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                    credentials: 'include',
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user favorite drink image.');
+                }
+                // Parsuj odpowiedź jako JSON
+                const data = await response.json();
+                setFavouriteAndOwnDrinkIMG(data.image);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchUserFavouriteDrinkImage();
+    }, [elm?.ID_DRINK]);
+
+
+
+    useEffect(() => {
+        console.log(favouriteAndOwnDrinkIMG)
+        if (favouriteAndOwnDrinkIMG && favouriteAndOwnDrinkIMG.data.length > 0) {
+            // Convert the image data to base64
+            const base64Image = Buffer.from(favouriteAndOwnDrinkIMG.data).toString('base64');
+            // Create the image URL using the base64 data
+            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            setConvertedFAVOWNIMG(imageURL);
+            setFetchIMGCompleted(true)
+        } else {
+            setConvertedFAVOWNIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+        }
+
+    }, [favouriteAndOwnDrinkIMG]);
+
+    
+   
+
     return (
         <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5 ">
             <div className=" position-relative ">
                 <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
-                    <img className=" img-fluid drink-img-favourite" src={drinkImg} />
+                    <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
                     <div className="position-absolute favourite-drink-info-box ">
                         <div class="d-flex  flex-column justify-content-center align-items-center">
                             <div className="cc d-flex  flex-column justify-content-center align-items-center">
@@ -66,7 +113,6 @@ function UserDrink({ elm }) {
                         </div>
                     </div>
                 </Link >
-
 
                 <div className="position-absolute top-0 end-0 mt-2 me-2" onClick={() => removeFromFavourite(elm?.ID_DRINK)}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">
