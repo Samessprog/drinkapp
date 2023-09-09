@@ -48,10 +48,14 @@ function UserDrink({ elm }) {
         window.location.reload();
     };
 
-
     const [favouriteAndOwnDrinkIMG, setFavouriteAndOwnDrinkIMG] = useState(null);
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [convertetFAVOWNIMG, setConvertedFAVOWNIMG] = useState('')
+
+
+    //Remove Similar IDs 
+    // useEffect(() => {
+    // }, [elm?.ID_DRINK]);
 
 
     useEffect(() => {
@@ -78,9 +82,6 @@ function UserDrink({ elm }) {
     }, [elm?.ID_DRINK]);
 
 
-
-
-
     useEffect(() => {
         if (favouriteAndOwnDrinkIMG && favouriteAndOwnDrinkIMG.data.length > 0) {
             // Convert the image data to base64
@@ -101,33 +102,34 @@ function UserDrink({ elm }) {
             <div className=" position-relative ">
                 <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
                     {fetchIMGCompleted ? (
-                        <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
-                    ) : (
-                        <Ring
-                            size={90}
-                            lineWeight={5}
-                            speed={2}
-                            color="black"
-
-                        />
-
-
-                    )}
-
-                    <div className="position-absolute favourite-drink-info-box ">
-                        <div class="d-flex  flex-column justify-content-center align-items-center">
-                            <div className="cc d-flex  flex-column justify-content-center align-items-center">
-                                <label className=" mt-3 drink-creator ">
-                                    {elm?.Creator}
-                                </label>
-                                <div className="d-flex mt-3">
-                                    <label className="me-4 drink-level" >{elm?.DifficultyLevel}</label>
-                                    <label className="drink-taste">{elm?.Taste}</label>
+                        <div>
+                            <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
+                            <div className="position-absolute favourite-drink-info-box ">
+                                <div class="d-flex  flex-column justify-content-center align-items-center">
+                                    <div className="cc d-flex  flex-column justify-content-center align-items-center">
+                                        <label className=" mt-3 drink-creator ">
+                                            {elm?.Creator}
+                                        </label>
+                                        <div className="d-flex mt-3">
+                                            <label className="me-4 drink-level" >{elm?.DifficultyLevel}</label>
+                                            <label className="drink-taste">{elm?.Taste}</label>
+                                        </div>
+                                        <label className=" mt-3 drink-type ">{elm?.DrinkType}</label>
+                                    </div>
                                 </div>
-                                <label className=" mt-3 drink-type ">{elm?.DrinkType}</label>
                             </div>
                         </div>
-                    </div>
+
+                    ) : (
+                        <div className="d-flex justify-content-center loading-icon-holder">
+                            <Ring
+                                size={90}
+                                lineWeight={5}
+                                speed={2}
+                                color="black"
+                            />
+                        </div>
+                    )}
                 </Link >
 
                 <div className="position-absolute top-0 end-0 mt-2 me-2" onClick={() => removeFromFavourite(elm?.ID_DRINK)}>
