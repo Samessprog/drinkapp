@@ -103,7 +103,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
         }
     };
 
-   
+
     return (
         <div className=" col mt-3 ">
 

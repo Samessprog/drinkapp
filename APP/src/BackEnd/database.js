@@ -57,7 +57,6 @@ app.use('/api/uploadImage', userImgChange);
 //Admin 
 app.use('/api/userDataChangerADMIN', dataUserChangerByAdmin)
 
-
 app.post('/api/removeFromUserFavourite', async (req, res) => {
   const { drinkID, userID } = req.body;
 
@@ -147,8 +146,6 @@ const connectionToDrinksDB = mysql.createConnection({
 
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
-
-  console.log(ID_Drink)
 
     try {
       const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
