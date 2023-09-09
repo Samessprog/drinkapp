@@ -3,6 +3,8 @@ import { SessionContext } from "../../Session/SessionContext";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
 import { setUserFavouriteDrinks } from "../../States/actions";
+import { Ring } from '@uiball/loaders'
+
 
 function UserDrink({ elm }) {
 
@@ -51,9 +53,11 @@ function UserDrink({ elm }) {
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [convertetFAVOWNIMG, setConvertedFAVOWNIMG] = useState('')
 
+
     useEffect(() => {
-        console.log(elm.ID_DRINK)
+
         const fetchUserFavouriteDrinkImage = async () => {
+
             try {
                 let ID_Drink = elm.ID_DRINK;
                 const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
@@ -75,8 +79,9 @@ function UserDrink({ elm }) {
 
 
 
+
+
     useEffect(() => {
-        console.log(favouriteAndOwnDrinkIMG)
         if (favouriteAndOwnDrinkIMG && favouriteAndOwnDrinkIMG.data.length > 0) {
             // Convert the image data to base64
             const base64Image = Buffer.from(favouriteAndOwnDrinkIMG.data).toString('base64');
@@ -90,14 +95,25 @@ function UserDrink({ elm }) {
 
     }, [favouriteAndOwnDrinkIMG]);
 
-    
-   
 
     return (
         <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5 ">
             <div className=" position-relative ">
                 <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
-                    <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
+                    {fetchIMGCompleted ? (
+                        <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
+                    ) : (
+                        <Ring
+                            size={90}
+                            lineWeight={5}
+                            speed={2}
+                            color="black"
+
+                        />
+
+
+                    )}
+
                     <div className="position-absolute favourite-drink-info-box ">
                         <div class="d-flex  flex-column justify-content-center align-items-center">
                             <div className="cc d-flex  flex-column justify-content-center align-items-center">
