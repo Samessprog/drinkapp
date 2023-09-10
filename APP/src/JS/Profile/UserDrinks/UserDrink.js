@@ -2,9 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { SessionContext } from "../../Session/SessionContext";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
-import { setUserFavouriteDrinks } from "../../States/actions";
-import { Ring } from '@uiball/loaders'
-
+import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
 function UserDrink({ elm }) {
 
@@ -96,41 +94,28 @@ function UserDrink({ elm }) {
 
     }, [favouriteAndOwnDrinkIMG]);
 
-
     return (
         <div className="user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5 ">
             <div className=" position-relative ">
                 <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
-                    {fetchIMGCompleted ? (
-                        <div>
-                            <img className=" img-fluid drink-img-favourite" src={convertetFAVOWNIMG} />
-                            <div className="position-absolute favourite-drink-info-box ">
-                                <div class="d-flex  flex-column justify-content-center align-items-center">
-                                    <div className="cc d-flex  flex-column justify-content-center align-items-center">
-                                        <label className=" mt-3 drink-creator ">
-                                            {elm?.Creator}
-                                        </label>
-                                        <div className="d-flex mt-3">
-                                            <label className="me-4 drink-level" >{elm?.DifficultyLevel}</label>
-                                            <label className="drink-taste">{elm?.Taste}</label>
-                                        </div>
-                                        <label className=" mt-3 drink-type ">{elm?.DrinkType}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    ) : (
-                        <div className="d-flex justify-content-center loading-icon-holder">
-                            <Ring
-                                size={90}
-                                lineWeight={5}
-                                speed={2}
-                                color="black"
-                            />
-                        </div>
-                    )}
+                    <FetchingDrinkIMG elm={elm} classNameHolder='card' classNameIMG='img-fluid drink-img-favourite' />
+
                 </Link >
+                <div className="position-absolute favourite-drink-info-box ">
+                    <div class="d-flex  flex-column justify-content-center align-items-center">
+                        <div className="cc d-flex  flex-column justify-content-center align-items-center">
+                            <label className=" mt-3 drink-creator ">
+                                {elm?.Creator}
+                            </label>
+                            <div className="d-flex mt-3">
+                                <label className="me-4 drink-level" >{elm?.DifficultyLevel}</label>
+                                <label className="drink-taste">{elm?.Taste}</label>
+                            </div>
+                            <label className=" mt-3 drink-type ">{elm?.DrinkType}</label>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="position-absolute top-0 end-0 mt-2 me-2" onClick={() => removeFromFavourite(elm?.ID_DRINK)}>
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">

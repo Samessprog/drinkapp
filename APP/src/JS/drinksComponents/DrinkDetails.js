@@ -186,8 +186,6 @@ function DrinkDetails({ searchingDrink }) {
                 <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder">Preparation</div>
                 <div className="mt-2 border rounded pt-4 ps-4 pe-4">
                     <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
-
-
                         <div>
                             {currentData.map((prep, key) => (
                                 <div key={key}>{prep}</div>

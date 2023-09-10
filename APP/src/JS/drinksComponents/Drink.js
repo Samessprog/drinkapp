@@ -1,55 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Buffer } from 'buffer';
 import { SessionContext } from "../Session/SessionContext";
-import { Ring } from '@uiball/loaders'
+import FetchingDrinkIMG from "../Components/FetchingDrinkIMG";
 
 
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
-    //drinkIMG state for display IF
-    const [drinkIMGs, setDrinkIMG] = useState(null);
+
     //take suer session
     const { userSesion } = useContext(SessionContext);
-    const [convertetIMG, setConvertedIMG] = useState('')
-    const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
-
-    useEffect(() => {
-        const fetchUserFavouriteDrinkImage = async () => {
-            try {
-                let ID_Drink = elm.ID_DRINK;
-                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
-                    credentials: 'include',
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user favorite drink image.');
-                }
-                // Parsuj odpowiedź jako JSON
-                const data = await response.json();
-                setDrinkIMG(data.image);
-
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchUserFavouriteDrinkImage();
-    }, [elm.ID_DRINK]);
-
-
-    useEffect(() => {
-        if (drinkIMGs && drinkIMGs.data.length > 0) {
-            // Convert the image data to base64
-            const base64Image = Buffer.from(drinkIMGs.data).toString('base64');
-            // Create the image URL using the base64 data
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setConvertedIMG(imageURL);
-            setFetchIMGCompleted(true)
-        } else {
-            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
-        }
-
-    }, [drinkIMGs]);
-
 
     //ADD your fav drink to DB 
     const favouriteHandler = (id) => {
@@ -82,27 +40,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
         <div className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3  col-xxl-2  p-1 rounded m-3  position-relative">
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_DRINK}`} >
-                <div className="img-holder card overflow-hidden ">
-                    {fetchIMGCompleted ? (
-                        <LazyLoadImage
-                            src={convertetIMG}
-                            effect="blur"
-                            className="drink-img img-fluid"
-                            alt="Loading error"
-                        />
-                    ) : (
-                        <div className='d-flex justify-content-center loading-icon'>
-                            <Ring
-                                size={90}
-                                lineWeight={5}
-                                speed={2}
-                                color="black"
-                            />
-                        </div>
-                    )}
-
-                </div>
-
+                <FetchingDrinkIMG elm={elm} classNameHolder='img-holder card overflow-hidden' classNameIMG='drink-img img-fluid' />
                 <div className="basic-information-drink p-2 ">
                     <div className="d-flex flex-column flex-sm-row justify-content-between  align-items-center ">
                         <label className="fs-4 fw-bolder drink-name">{elm.DrinkName}</label>
@@ -110,9 +48,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                             <svg className="star mb-1 ms-1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
                         </label>
                     </div>
-
                     <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator d-flex justify-content-center">{elm.Creator}</label>
-
                     <div className="d-flex mt-2 y flex-column flex-md-row justify-content-center">
 
                         <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap me-1">
@@ -121,9 +57,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                             <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
                         </div>
                         <label className={elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}>{elm.DrinkType}</label>
-
                     </div>
-
                 </div>
             </Link>
             {userSesion !== null &&
