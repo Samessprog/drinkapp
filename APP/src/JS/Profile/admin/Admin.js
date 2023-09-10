@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+
 import DrinksProfile from "./DrinksProfile";
 import Pagination from 'react-paginate';
 import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Navigate } from "react-router-dom";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
-
+import { SessionContext } from "../../Session/SessionContext";
 
 function Admin({ drinkDatas }) {
+    const userSesion = useContext(SessionContext).userSesion;
+
+   
+
+
+
 
     const dispatch = useDispatch();
 
@@ -30,7 +37,7 @@ function Admin({ drinkDatas }) {
     const [users, setUsers] = useState([]);
 
     const itemsPerPage = 8;
-
+  
     //Fetch all users from DB
     React.useEffect(() => {
         const userButtonHandler = async () => {
@@ -75,6 +82,7 @@ function Admin({ drinkDatas }) {
         }
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
 
+
     //Filtering Users
     React.useEffect(() => {
 
@@ -95,7 +103,9 @@ function Admin({ drinkDatas }) {
 
     }, [inputText, users, drinkDatas]);
 
-
+    if (userSesion === null) {
+        return <Navigate to="/" />;
+    }
 
     //Next and previous Carousel Handler functions
     const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
@@ -109,6 +119,7 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
+
 
 
     return (

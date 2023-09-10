@@ -9,8 +9,11 @@ import { useSelector } from "react-redux";
 
 
 function UserProfile({ drinkDatas }) {
+  
+
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
+  
 
   const [userIMG, setUserIMG] = useState('')
 

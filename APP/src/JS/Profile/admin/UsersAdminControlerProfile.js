@@ -114,8 +114,6 @@ function UsersAdminControlerProfile({ elm }) {
                                         />
                                     </div>
                                 )}
-
-
                             </div>
                             <div className="ms-4 d-flex  align-items-center margin-top-12">
                                 <label className="fs-5">Nick:</label>
