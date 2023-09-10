@@ -10,7 +10,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
     const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
-
+    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
     const dispatch = useDispatch();
 
     //Drinks properties states
@@ -25,6 +25,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 setSearchingDrink={setSearchingDrink}
                 searchingDrink={searchingDrink}
                 setDrinkNotFound={setDrinkNotFound}
+                eachdrinkflag={eachdrinkflag}
             />
 
             <div className="d-flex flex-row-reverse me-2 mt-2 ">
