@@ -30,7 +30,6 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
         fetchUserFavouriteDrinkImage();
     }, [elm.ID_DRINK]);
 
-
     useEffect(() => {
         if (drinkIMGs && drinkIMGs.data.length > 0) {
             // Convert the image data to base64
@@ -47,7 +46,7 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
 
     return (
         <div className={classNameHolder} >
-            {fetchIMGCompleted ? (
+            {!fetchIMGCompleted ? (
                 <LazyLoadImage
                     src={convertetIMG}
                     effect="blur"
@@ -55,7 +54,7 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
                     alt="Loading error"
                 />
             ) : (
-                <div className='d-flex justify-content-center loading-icon'>
+                <div className={`d-flex justify-content-center align-items-center ${classNameIMG}`}>
                     <Ring
                         size={90}
                         lineWeight={5}
@@ -64,7 +63,6 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
                     />
                 </div>
             )}
-
         </div>
     )
 }
