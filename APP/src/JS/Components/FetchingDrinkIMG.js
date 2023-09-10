@@ -46,7 +46,7 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
 
     return (
         <div className={classNameHolder} >
-            {!fetchIMGCompleted ? (
+            {fetchIMGCompleted ? (
                 <LazyLoadImage
                     src={convertetIMG}
                     effect="blur"
