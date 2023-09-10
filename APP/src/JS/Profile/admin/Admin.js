@@ -11,10 +11,6 @@ import { SessionContext } from "../../Session/SessionContext";
 function Admin({ drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
 
-   
-
-
-
 
     const dispatch = useDispatch();
 
@@ -138,7 +134,7 @@ function Admin({ drinkDatas }) {
                 <header>Database of users and drinks</header>
             </div>
 
-            <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 ">
+            <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12">
                 <div className="d-sm-flex justify-content-between col-12 mb-5 d-flex-column align-items-center">
                     <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2 col-6 ">
                         <div className="pb-0 me-2">

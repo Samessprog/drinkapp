@@ -10,7 +10,6 @@ function UsersAdminControlerProfile({ elm }) {
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = React.useState(null)
     //Take user UMG
-    const [userIMGProfileAdmin, setUserIMGProfileAdmin] = React.useState('')
     const [userDataChanger, setUserDataChanger] = React.useState(false)
     const [newUserEmail, setNewUserEmail] = React.useState('')
     const [newUserPass, setNewUserPass] = React.useState('')
@@ -58,12 +57,6 @@ function UsersAdminControlerProfile({ elm }) {
 
     }, [userIMG]);
 
-
-    console.log(userConvertedIMG)
-
-
-
-
     //Function to Change User Data
     const UserDataChange = async (event) => {
         const userID = elm.ID_User;
@@ -91,6 +84,7 @@ function UsersAdminControlerProfile({ elm }) {
         }
     };
 
+    
     return (
         <div className="mb-3 ms-3 d-flex align-items-center drinks-profile-holder  me-3  justify-content-between ">
             <div className="d-flex align-items-center ">
