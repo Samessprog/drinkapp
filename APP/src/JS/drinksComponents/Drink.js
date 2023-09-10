@@ -97,7 +97,6 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                                 lineWeight={5}
                                 speed={2}
                                 color="black"
-
                             />
                         </div>
                     )}
@@ -114,12 +113,10 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
                     <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator d-flex justify-content-center">{elm.Creator}</label>
 
-
-
                     <div className="d-flex mt-2 y flex-column flex-md-row justify-content-center">
 
                         <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap me-1">
-                            <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}zx</label>
+                            <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
                             {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${elm.drinkType === 'Sour' ? 'bg-success' : elm.drinkType === 'Alko' ? 'bg-danger' : elm.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
                             <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
                         </div>

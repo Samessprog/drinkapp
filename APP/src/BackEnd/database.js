@@ -120,7 +120,7 @@ app.get('/api/userIMG', (req, res) => {
 
 
 app.get('/api/getAllUsers', (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
+  db.query('SELECT ID_User, email, Password, phone, Nick FROM users', (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -147,25 +147,36 @@ const connectionToDrinksDB = mysql.createConnection({
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
 
-    try {
-      const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
-      connectionToDrinksDB.query(sql, [ID_Drink], (err, result) => {
-        if (err) {
-          res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
-        } else {
-          res.json({ image: result[0].IMG });
-        }
-      });
-    } catch (error) {
-      res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
-    }
+  try {
+    const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
+    connectionToDrinksDB.query(sql, [ID_Drink], (err, result) => {
+      if (err) {
+        res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+      } else {
+        res.json({ image: result[0].IMG });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+  }
 });
 
 
-
-
-
-
+app.get('/api/fetchUserIMG/:ID_User', async (req, res) => {
+  const { ID_User } = req.params;
+  try {
+    const sql = 'SELECT userIMG FROM users WHERE ID_User = ?';
+    db.query(sql, [ID_User], (err, result) => {
+      if (err) {
+        res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+      } else {
+        res.json({ image: result[0].userIMG });
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
+  }
+});
 
 
 

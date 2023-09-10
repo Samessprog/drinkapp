@@ -15,7 +15,6 @@ function DrinksProfile({ elm }) {
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
 
-
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
             try {

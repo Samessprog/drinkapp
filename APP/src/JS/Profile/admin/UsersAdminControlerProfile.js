@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
+import { Ring } from '@uiball/loaders'
 
 
 function UsersAdminControlerProfile({ elm }) {
@@ -14,17 +15,54 @@ function UsersAdminControlerProfile({ elm }) {
     const [newUserEmail, setNewUserEmail] = React.useState('')
     const [newUserPass, setNewUserPass] = React.useState('')
 
-    //another Function to convert IMG :C Optymalise
+
+    const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
+    const [userConvertedIMG, setUserConvertedIMG] = useState(null)
+    const [userIMG, setUserIMG] = useState(null)
+
     useEffect(() => {
-        if (elm.userIMG) {
+        const fetchUserFavouriteDrinkImage = async () => {
+
+            try {
+                let ID_User = elm.ID_User
+                const response = await fetch(`http://localhost:3000/api/fetchUserIMG/${ID_User}`, {
+                    credentials: 'include',
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user favorite drink image.');
+                }
+                // Parsuj odpowiedź jako JSON
+                const data = await response.json();
+                console.log(data)
+                setUserIMG(data.image);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchUserFavouriteDrinkImage();
+    }, [elm.user_ID]);
+
+
+    useEffect(() => {
+        if (userIMG && userIMG.data.length > 0) {
             // Convert the image data to base64
-            const base64Image = Buffer.from(elm.userIMG.data).toString('base64');
+            const base64Image = Buffer.from(userIMG.data).toString('base64');
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setUserIMGProfileAdmin(imageURL);
+            setUserConvertedIMG(imageURL);
+            setFetchIMGCompleted(true)
+        } else {
+            setUserConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
 
-    }, []);
+    }, [userIMG]);
+
+
+    console.log(userConvertedIMG)
+
+
+
 
     //Function to Change User Data
     const UserDataChange = async (event) => {
@@ -63,7 +101,21 @@ function UsersAdminControlerProfile({ elm }) {
                     <div className="d-flex align-items-center flex-xxl-row flex-column ">
                         <div className="d-flex align-items-center data-holder ">
                             <div className=" mt-1 mb-1 drink-profile-holder-IMG margin-top-12 ">
-                                <img className=" drink-profile-img img-fluid" src={userIMGProfileAdmin} alt="loadingErr"></img>
+                                {fetchIMGCompleted ? (
+                                    <img className=" drink-profile-img img-fluid" src={userConvertedIMG} alt="loadingErr"></img>
+                                ) : (
+                                    <div>
+                                        <Ring
+                                            size={90}
+                                            lineWeight={5}
+                                            speed={2}
+                                            color="black"
+
+                                        />
+                                    </div>
+                                )}
+
+
                             </div>
                             <div className="ms-4 d-flex  align-items-center margin-top-12">
                                 <label className="fs-5">Nick:</label>
@@ -71,7 +123,7 @@ function UsersAdminControlerProfile({ elm }) {
                             </div>
 
                             <div className="ms-4 fs-5 margin-top-12 ">
-                                <label>ser Email:</label>
+                                <label> Email:</label>
                                 <label className="drink-name-profile ms-xl-2">{elm.email}</label>
                             </div>
                             <div className="ms-4 fs-5 margin-top-12">
