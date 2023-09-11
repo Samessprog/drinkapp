@@ -12,11 +12,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   const drinkLevel = useSelector(state => state.drink.drinkLevel);
   const drinkTaste = useSelector(state => state.drink.drinkTaste);
   const ingredient = useSelector(state => state.drink.ingredient);
-
   const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
-  
-  console.log(inputDrinkText)
-
   const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
@@ -33,6 +29,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()));
 
       if (inputDrinkText) {
+
         const drinkName = elm.DrinkName?.toLowerCase();
         const inputText = inputDrinkText.toLowerCase();
         const isMatch = drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
@@ -53,13 +50,12 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
         if (isMatch && favouriteDrink) {
           return userFavouriteDrinks.includes(elm.ID_DRINK);
         }
-
         return false;
-
       } else if (!inputDrinkText) {
         const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
 
         if (isMatchWithoutText) {
+          console.log('1')
           if (!favouriteDrink) {
             if (ingredient.length === 0 || (eachdrinkflag && (hasMatchingIngredientSome || areAllIngredientsIncluded)) || areAllIngredientsIncluded) {
               return elm;
@@ -70,14 +66,15 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
             }
           }
         } else if (!isMatchWithoutText && ingredient.length !== 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
+          console.log('2')
           return elm;
-        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0) {
+        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && alcocholic === true && elm.DrinkType === 'Alcoholic' ) {
+          console.log(elm)
           return elm;
         }
-
         return false;
 
-      } else { return elm }
+      } else { console.log('4'); return elm }
     });
   };
 
