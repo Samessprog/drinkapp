@@ -12,7 +12,10 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   const drinkLevel = useSelector(state => state.drink.drinkLevel);
   const drinkTaste = useSelector(state => state.drink.drinkTaste);
   const ingredient = useSelector(state => state.drink.ingredient);
+
   const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
+  
+  console.log(inputDrinkText)
 
   const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
@@ -48,7 +51,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
         }
 
         if (isMatch && favouriteDrink) {
-          return userFavouriteDrinks.includes(elm.ID_Drink);
+          return userFavouriteDrinks.includes(elm.ID_DRINK);
         }
 
         return false;
@@ -63,7 +66,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
             }
           } else {
             if (ingredient.length === 0 || (eachdrinkflag && (hasMatchingIngredientSome || areAllIngredientsIncluded)) || areAllIngredientsIncluded) {
-              return userFavouriteDrinks.includes(elm.ID_Drink);
+              return userFavouriteDrinks.includes(elm.ID_DRINK);
             }
           }
         } else if (!isMatchWithoutText && ingredient.length !== 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {

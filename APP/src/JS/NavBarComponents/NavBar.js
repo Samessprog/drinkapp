@@ -86,6 +86,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
         };
     }, []);
 
+    const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
+  
+    console.log(inputDrinkText)
+
 
 
     return (

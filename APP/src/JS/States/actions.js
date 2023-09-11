@@ -61,7 +61,7 @@ export const setPopupSetings = createNavbarAction(NAVBAR_ACTIONS.SET_SETTINGS_PO
 export const setRegisterPopup = createNavbarAction(NAVBAR_ACTIONS.SET_REGISTER_POPUP);
 export const setSpecialOptionsPopup = createNavbarAction(NAVBAR_ACTIONS.SET_SPECIAL_OPTIONS_POPUP);
 export const setDrinkNotFound = createNavbarAction(NAVBAR_ACTIONS.SET_DRINK_NOT_FOUND_POPUP);
-
+export const setInputDrinkText = createDrinkAction(NAVBAR_ACTIONS.SET_INPUT_DRINK_TEXT);
 
 // Funkcja generująca akcję napojów
 function createDrinkAction(actionType) {
@@ -84,7 +84,6 @@ export const setDrinkTaste = createDrinkAction(DRINKS_ACTIONS.SET_TASTE_DRINKS);
 export const setEachdrinkflag = createDrinkAction(DRINKS_ACTIONS.SET_EACH_FLAG_DRINKS);
 export const setDrinkCounter = createDrinkAction(DRINKS_ACTIONS.SET_DRINKS_COUNTER);
 export const setingredient = createDrinkAction(DRINKS_ACTIONS.SET_INGREDIENTS);
-export const setInputDrinkText = createDrinkAction(DRINKS_ACTIONS.SET_INPUT_DRINK_TEXT);
 
 
 // Funkcja generująca akcję użytkownika
