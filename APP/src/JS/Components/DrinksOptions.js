@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { setDrinkLevel, setDrinkTaste } from "../States/actions";
 import { useDispatch } from 'react-redux';
@@ -6,12 +7,15 @@ import { useDispatch } from 'react-redux';
 function DrinksOptions() {
 
     const dispatch = useDispatch();
+    const drinkLevel = useSelector(state => state.drink.drinkLevel);
+    const drinkTaste = useSelector(state => state.drink.drinkTaste);
+
 
     return (
         <div className="ms-2 multi-options">
             <div className="d-flex">
                 <label className="">Level: </label>
-                <select className=" ms-1 test"  onChange={(e) => dispatch(setDrinkLevel(e.target.value))}>
+                <select value={drinkLevel} className=" ms-1 test"  onChange={(e) => dispatch(setDrinkLevel(e.target.value))}>
                     <option value={'All'}>All</option>
                     <option value={'Easy'}>Easy</option>
                     <option value={'Medium'}>Medium</option>
@@ -22,7 +26,7 @@ function DrinksOptions() {
 
             <div className="d-flex mt-2">
                 <label className=" ">Taste: </label>
-                <select className=" ms-1 test" onChange={(e) => dispatch(setDrinkTaste(e.target.value))}>
+                <select value={drinkTaste} className=" ms-1 test" onChange={(e) => dispatch(setDrinkTaste(e.target.value))}>
                     <option value={'All'}>All</option>
                     <option value={'Sour'}>Sour</option>
                     <option value={'Sweet'}> Sweet</option>

@@ -18,6 +18,15 @@
 
     .options-holder-settings-popup {
 
+        .unchecked {
+            accent-color: white;
+        }
+
+        .checked {
+            accent-color: rgb(33, 33, 244);
+        }
+
+
         @media (max-width: 1097px) {
             flex-direction: column;
         }

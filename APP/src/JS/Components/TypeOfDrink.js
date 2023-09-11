@@ -14,12 +14,22 @@ function TypeOfDrink() {
     return (
         <div>
             <div className="d-flex mt-1">
-                <input onClick={() => dispatch(setAlcocholic(!alcocholic))} type="checkbox" ></input>
+                <input
+                    onClick={() => dispatch(setAlcocholic(!alcocholic))}
+                    type="checkbox"
+                    value={alcocholic}
+                    className={alcocholic ? 'checked' : 'unchecked'}
+                ></input>
                 <label className="ms-1">Alcoholic</label>
             </div>
 
             <div className="d-flex mt-1">
-                <input type="checkbox" onClick={() => dispatch(setSoftDrinks(!softDrinks))} ></input>
+                <input
+                    onClick={() => dispatch(setSoftDrinks(!softDrinks))}
+                    type="checkbox"
+                    value={softDrinks}
+                    className={softDrinks ? 'checked' : 'unchecked'}
+                ></input>
                 <label className="ms-1">Soft drinks</label>
             </div>
         </div>

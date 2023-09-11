@@ -48,7 +48,13 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                         <TypeOfDrink />
 
                         <div className="d-flex mt-1">
-                            <input type="checkbox" onClick={() => dispatch(setHighlyRated(!highlyRated))} ></input>
+                            <input
+                                value={highlyRated}
+                                type="checkbox"
+                                onClick={() => dispatch(setHighlyRated(!highlyRated))}
+                                className={highlyRated ? 'checked' : 'unchecked'}
+                            >
+                            </input>
                             <label className="ms-1">Highly rated </label>
                         </div>
 
