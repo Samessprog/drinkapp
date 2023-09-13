@@ -17,7 +17,6 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
     const [newUserEmail, setNewUserEmail] = React.useState('')
     const [newUserPass, setNewUserPass] = React.useState('')
 
-
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)
     const [userIMG, setUserIMG] = useState(null)
@@ -33,9 +32,10 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                 if (!response.ok) {
                     throw new Error('Failed to fetch user favorite drink image.');
                 }
+
                 // Parsuj odpowiedź jako JSON
                 const data = await response.json();
-
+                console.log(data)
                 setUserIMG(data.image);
 
             } catch (error) {
