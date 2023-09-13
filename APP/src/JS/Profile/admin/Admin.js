@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-
 import DrinksProfile from "./DrinksProfile";
 import Pagination from 'react-paginate';
 import UsersAdminControlerProfile from './UsersAdminControlerProfile'
@@ -7,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from "react-router-dom";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import { SessionContext } from "../../Session/SessionContext";
+import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
+
 
 function Admin({ drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
@@ -25,6 +26,7 @@ function Admin({ drinkDatas }) {
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
 
+
     const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
     //Carousel States
     const [currentPage, setCurrentPage] = useState(0);
@@ -33,7 +35,9 @@ function Admin({ drinkDatas }) {
     const [users, setUsers] = useState([]);
 
     const itemsPerPage = 8;
-  
+
+    const [windowAlert, setWindowAlert] = useState({ isOpen: false, userID: null });
+
     //Fetch all users from DB
     React.useEffect(() => {
         const userButtonHandler = async () => {
@@ -117,9 +121,8 @@ function Admin({ drinkDatas }) {
     );
 
 
-
     return (
-        <div className="admin-container p-3 p-sm-4">
+        <div className="admin-container p-3 p-sm-4 position-relative">
             <div className="admin-header-holder">
                 <header className="fs-2 admin-header">Hello admin NAME</header>
             </div>
@@ -213,7 +216,7 @@ function Admin({ drinkDatas }) {
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm} />
+                                <UsersAdminControlerProfile key={elm.id} elm={elm} setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
                             ))}
                             {currentItemsUsers.length !== 0 &&
                                 <div className="d-flex justify-content-center align-items-center">
@@ -309,6 +312,14 @@ function Admin({ drinkDatas }) {
 
                 </div>
             </div>
+            {windowAlert.isOpen &&
+                <div className="position-fixed window-alert-holder col-3">
+                    <WindowAdminAlert setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
+                </div>
+
+            }
+
+
         </div>
     );
 }

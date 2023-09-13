@@ -5,7 +5,7 @@ import { Buffer } from 'buffer';
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
 function UserDrink({ elm }) {
-
+    const [isHidden, setIsHidden] = useState(false)
     const [drinkImg, setDrinkImg] = useState('')
 
     const userSesion = useContext(SessionContext).userSesion;
@@ -45,7 +45,6 @@ function UserDrink({ elm }) {
 
     };
 
-    const [isHidden, setIsHidden] = useState(false)
 
     return (
         <div className={`user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5  ${isHidden ? 'd-none' : ''}`}>

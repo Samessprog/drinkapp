@@ -1,0 +1,28 @@
+.window-alert-holder {
+
+    bottom: 50%;
+    left: 40%;
+    background-color: rgb(237, 230, 230);
+    border-radius: 10px;
+    border: black solid 1px;
+
+    .confirming-button {
+        border-radius: 15px;
+        padding: 0.3rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        width: 4rem;
+    }
+
+    .not-confirming-button {
+        border-radius: 15px;
+        background-color: rgb(218, 207, 207);
+        padding: 0.3rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        width: 4rem;
+    }
+
+
+
+}
