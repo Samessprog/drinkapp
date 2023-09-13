@@ -3,7 +3,6 @@ import React from "react";
 function WindowAdminAlert({ setWindowAlert, windowAlert, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
     const API_URL = 'http://localhost:3000/api/';
 
-
     const deleteUser = async () => {
         let userID = windowAlert.userID.ID_User
         try {
@@ -45,8 +44,6 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, setAnnouncementSucces, 
                     <button className="not-confirming-button">No</button>
                 </label>
             </div>
-
-
         </div>
     )
 }

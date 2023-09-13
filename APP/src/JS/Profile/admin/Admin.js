@@ -328,9 +328,7 @@ function Admin({ drinkDatas }) {
                 </div>
 
             }
-
-
-
+            
             <div className="announcements d-flex flex-column align-items-center pt-3">
                 {announcementSucces &&
                     <div className="announcements-succes d-flex justify-content-center w-100">The operation was a success</div>

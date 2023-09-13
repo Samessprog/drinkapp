@@ -13,16 +13,24 @@ router.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    express: 7 * 24 * 60 * 1000, 
+    express: 7 * 24 * 60 * 1000,
   },
 }));
 
 router.post('/', (req, res) => {
   const { email, password } = req.body;
-  
+
   res.cookie('my-cookie', 'cookie-value');
 
   db.query('SELECT * FROM users WHERE email = ?', email, (err, results) => {
+    const user = results[0];
+
+
+    if (user.IsBlocked === 1) {
+      res.status(401).json({ success: false, message: 'your account has been blocked' });
+      return;
+    }
+
     if (err) {
       res.status(500).json({ success: false, message: 'Failed to login' });
       return;
@@ -37,8 +45,12 @@ router.post('/', (req, res) => {
       res.status(401).json({ success: false, message: 'Email not found' });
       return;
     }
-    
-    const user = results[0];
+
+    if (user.IsBlocked) {
+      res.status(401).json({ success: false, message: 'Incorrect password' });
+      return;
+    }
+
     if (password !== user.Password) {
       res.status(401).json({ success: false, message: 'Incorrect password' });
       return;
@@ -48,7 +60,7 @@ router.post('/', (req, res) => {
 
     req.session.sessionID = sessionID;
     req.session.email = user.email;
-    req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, userID: user.ID_User  };
+    req.session.user = { email: user.email, phone: user.phone, nick: user.Nick, userID: user.ID_User };
 
     res.cookie('sessionID', sessionID, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
     res.json({ success: true, user: req.session.user });
