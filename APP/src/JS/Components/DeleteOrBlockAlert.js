@@ -1,11 +1,7 @@
 import React from "react";
 
-
-
-
-function WindowAdminAlert({ setWindowAlert, windowAlert }) {
+function WindowAdminAlert({ setWindowAlert, windowAlert, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
     const API_URL = 'http://localhost:3000/api/';
-
 
 
     const deleteUser = async () => {
@@ -22,19 +18,19 @@ function WindowAdminAlert({ setWindowAlert, windowAlert }) {
             const data = await response.json();
 
             if (response.status === 200 && data.message === 'User deleted successfully') {
-                alert('Success');
+                setAnnouncementSucces(true)
             } else if (response.status === 404 && data.error === 'User not found') {
-                alert('User not found');
+                setAnnouncementsUserDoesntExist(true)
             }
         } catch (error) {
             console.error(error);
-            alert('An error occurred');
+            setAnnouncementsError(true)
         }
     };
 
 
     return (
-        <div className="bg-red ">
+        <div className="bg-red">
             <div className="d-flex justify-content-end me-2 pt-2">
                 <label onClick={() => setWindowAlert(!windowAlert.isOpen)}>
                     <svg fill="red" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
@@ -49,6 +45,7 @@ function WindowAdminAlert({ setWindowAlert, windowAlert }) {
                     <button className="not-confirming-button">No</button>
                 </label>
             </div>
+
 
         </div>
     )

@@ -27,6 +27,11 @@ function Admin({ drinkDatas }) {
     const [isBlocked, setIsBlocked] = useState(false)
 
 
+    //announcement for Delete user
+    const [announcementSucces, setAnnouncementSucces] = useState(false)
+    const [announcementsUserDoesntExist, setAnnouncementsUserDoesntExist] = useState(false)
+    const [announcementsError, setAnnouncementsError] = useState(false)
+
     const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
     //Carousel States
     const [currentPage, setCurrentPage] = useState(0);
@@ -121,6 +126,9 @@ function Admin({ drinkDatas }) {
     );
 
 
+
+
+
     return (
         <div className="admin-container p-3 p-sm-4 position-relative">
             <div className="admin-header-holder">
@@ -213,10 +221,12 @@ function Admin({ drinkDatas }) {
                 </div>
                 <div className="">
 
+
+
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm} setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
+                                <UsersAdminControlerProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
                             ))}
                             {currentItemsUsers.length !== 0 &&
                                 <div className="d-flex justify-content-center align-items-center">
@@ -314,11 +324,27 @@ function Admin({ drinkDatas }) {
             </div>
             {windowAlert.isOpen &&
                 <div className="position-fixed window-alert-holder col-3">
-                    <WindowAdminAlert setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
+                    <WindowAdminAlert setWindowAlert={setWindowAlert} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                 </div>
 
             }
 
+
+
+            <div className="announcements d-flex flex-column align-items-center pt-3">
+                {announcementSucces &&
+                    <div className="announcements-succes d-flex justify-content-center w-100">The operation was a success</div>
+                }
+
+                {announcementsUserDoesntExist &&
+                    <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">User does not exist</div>
+                }
+
+                {announcementsError &&
+                    <div className="announcements-error d-flex justify-content-center w-100">Something went wrong...</div>
+                }
+
+            </div>
 
         </div>
     );

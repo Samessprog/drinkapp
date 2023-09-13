@@ -26,3 +26,22 @@
 
 
 }
+
+.announcements {
+
+    &-succes {
+        background-color: greenyellow;
+    }
+
+    &-user-doesnt-exist {
+        background-color: orange;
+
+    }
+
+    &-error {
+        background-color: red;
+
+
+    }
+
+}
