@@ -12,6 +12,7 @@ import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
 function Admin({ drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
 
+    const [blockedButton, setBlockedButton] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -226,7 +227,7 @@ function Admin({ drinkDatas }) {
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert} />
+                                <UsersAdminControlerProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
                             ))}
                             {currentItemsUsers.length !== 0 &&
                                 <div className="d-flex justify-content-center align-items-center">
@@ -324,7 +325,7 @@ function Admin({ drinkDatas }) {
             </div>
             {windowAlert.isOpen &&
                 <div className="position-fixed window-alert-holder col-3">
-                    <WindowAdminAlert setWindowAlert={setWindowAlert} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                    <WindowAdminAlert setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                 </div>
 
             }
