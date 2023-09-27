@@ -1,11 +1,10 @@
 import React, { Suspense, useEffect } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
 
 import PrivateRoute from "./Components/PrivateRoute";
 import { SessionContext } from "./Session/SessionContext";

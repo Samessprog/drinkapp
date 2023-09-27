@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import DrinksProfile from "./DrinksProfile";
+import React, { useEffect, useState, useContext, lazy } from "react";
 import Pagination from 'react-paginate';
-import UsersAdminControlerProfile from './UsersAdminControlerProfile'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from "react-router-dom";
-import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import { SessionContext } from "../../Session/SessionContext";
-import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
 
+import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
+import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
+import DrinksProfile from "./DrinksProfile";
+const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 
 function Admin({ drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
