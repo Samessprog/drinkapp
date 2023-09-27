@@ -42,7 +42,8 @@ function Admin({ drinkDatas }) {
 
     const itemsPerPage = 8;
 
-    const [windowAlert, setWindowAlert] = useState({ isOpen: false, userID: null });
+    const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
+
 
     //Fetch all users from DB
     React.useEffect(() => {
@@ -99,7 +100,6 @@ function Admin({ drinkDatas }) {
         }
     }, [announcementsUserDoesntExist]);
 
-
     //Filtering Drinks
     useEffect(() => {
         const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
@@ -121,7 +121,6 @@ function Admin({ drinkDatas }) {
             dispatch(setFilteredUserResults(filteredResults));
         }
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
-
 
     //Filtering Users
     React.useEffect(() => {
@@ -159,10 +158,6 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
-
-
-
-
 
 
     return (
@@ -257,8 +252,6 @@ function Admin({ drinkDatas }) {
                 </div>
                 <div className="">
 
-
-
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
@@ -310,7 +303,7 @@ function Admin({ drinkDatas }) {
                     {drinksFlag && (
                         <>
                             {currentItems.map((elm) => (
-                                <DrinksProfile key={elm.id} elm={elm} />
+                                <DrinksProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert}/>
                             ))}
 
                             {currentItems.length !== 0 &&
@@ -358,12 +351,13 @@ function Admin({ drinkDatas }) {
 
                 </div>
             </div>
+
             {windowAlert.isOpen &&
                 <div className="position-fixed window-alert-holder col-3">
                     <WindowAdminAlert setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                 </div>
-
             }
+
             <div className="announcements d-flex flex-column align-items-center pt-3">
                 {announcementSucces &&
                     <div className="announcements-succes d-flex justify-content-center w-100">
@@ -372,7 +366,7 @@ function Admin({ drinkDatas }) {
                 }
                 {announcementsUserDoesntExist &&
                     <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">
-                        User does not exist
+                        The Object does not exist
                     </div>
                 }
 

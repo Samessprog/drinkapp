@@ -238,8 +238,6 @@ app.post('/api/deleteDrink', async (req, res) => {
 
 });
 
-
-
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
 

@@ -3,9 +3,38 @@ import React from "react";
 function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
     const API_URL = 'http://localhost:3000/api/';
 
+    console.log(windowAlert.ObjectID)
+
+
+    const deleteDrink = async () => {
+        let ID_Drink = (windowAlert.ObjectID)
+
+        try {
+            const response = await fetch(`${API_URL}deleteDrink`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ID_Drink }),
+            });
+
+            const data = await response.json();
+
+            if (response.status === 200 || data.message === 'Drink deleted successfully') {
+                setAnnouncementSucces(true)
+            } else if (response.status === 404 || data.error === 'Drink not found') {
+                setAnnouncementsUserDoesntExist(true)
+            }
+        } catch (error) {
+            console.error(
+                setAnnouncementsError(true)
+            );
+        }
+    };
+
     const deleteUser = async () => {
         setWindowAlert(!windowAlert.isOpen)
-        let userID = windowAlert.userID.ID_User
+        let userID = windowAlert.ObjectID.ID_User
         try {
             const response = await fetch(`${API_URL}deleteUser`, {
                 method: 'POST',
@@ -28,9 +57,8 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
         }
     };
 
-
     const blockUser = async () => {
-        let userID = windowAlert.userID.ID_User
+        let userID = windowAlert.ObjectID.ID_User
 
         try {
             const response = await fetch(`${API_URL}blockUser`, {
@@ -63,7 +91,7 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
             <div className="d-flex justify-content-center fs-5">Are you sure you want to make this operation?</div>
             <div className="d-flex justify-content-evenly mb-4 mt-4">
                 {blockedButton === false &&
-                    <label onClick={deleteUser} >
+                    <label onClick={ windowAlert.ObjectID.ID_User !== undefined ? deleteUser : deleteDrink} >
                         <button className="confirming-button">Yes</button>
                     </label>
                 }

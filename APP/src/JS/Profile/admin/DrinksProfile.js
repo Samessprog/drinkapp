@@ -2,34 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
-function DrinksProfile({ elm }) {
-    const API_URL = 'http://localhost:3000/api/';
-
-    const deleteDrink = async () => {
-        let ID_Drink = elm.ID_DRINK
-
-        try {
-            const response = await fetch(`${API_URL}deleteDrink`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ID_Drink }),
-            });
-
-            const data = await response.json();
-
-            if (response.status === 200 || data.message === 'Drink deleted successfully') {
-
-            } else if (response.status === 404 || data.error === 'Drink not found') {
-     
-            }
-        } catch (error) {
-            console.error(error);
-  
-        }
-    };
-
+function DrinksProfile({ elm, setWindowAlert, windowAlert }) {
 
     return (
 
@@ -62,7 +35,7 @@ function DrinksProfile({ elm }) {
                                     <svg className="block-icon-profile" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M180-180h44l443-443-44-44-443 443v44Zm614-486L666-794l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248-120H120v-128l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" /></svg>
                                 </div>
 
-                                <div className="delete-profile-icon" onClick={deleteDrink}>
+                                <div className="delete-profile-icon" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm.ID_DRINK })}}>
                                     <svg className="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" /></svg>
                                 </div>
                             </div>
