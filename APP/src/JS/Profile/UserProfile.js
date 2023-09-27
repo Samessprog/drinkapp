@@ -14,7 +14,6 @@ function UserProfile({ drinkDatas }) {
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
   
-
   const [userIMG, setUserIMG] = useState('')
 
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
@@ -42,12 +41,6 @@ function UserProfile({ drinkDatas }) {
     };
     fetchUserImage();
   }, []);
-
-
-
-  if (userSesion === null) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <div className="user-details-holder">

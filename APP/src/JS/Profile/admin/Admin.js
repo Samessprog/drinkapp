@@ -142,9 +142,6 @@ function Admin({ drinkDatas }) {
 
     }, [inputText, users, drinkDatas]);
 
-    if (userSesion === null) {
-        return <Navigate to="/" />;
-    }
 
     //Next and previous Carousel Handler functions
     const pageCount = Math.ceil(filteredResults.length / itemsPerPage);

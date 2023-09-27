@@ -1,11 +1,13 @@
 import React, { Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, BrowserRouter } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+
+import PrivateRoute from "./Components/PrivateRoute";
 import { SessionContext } from "./Session/SessionContext";
 import { setSpecialOptionsPopup, setUserSession } from "./States/actions";
 import NavBar from "./NavBarComponents/NavBar";
@@ -82,6 +84,7 @@ function App() {
       />
 
       <SessionContext.Provider value={{ userSesion, setUserSession }}>
+
         <Routes>
 
           <Route path="/" element={
@@ -98,10 +101,41 @@ function App() {
             />}>
           </Route>
 
-          <Route path="/drinkDetail/:id" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <DrinkDetails  userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} /> </Suspense> </ErrorBoundary>}></Route>
-          <Route path="/userProfile" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
-          <Route path="/admin" element={<ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}> <Suspense fallback={<div>Loading...</div>}> <Admin drinkDatas={drinkDatas} /> </Suspense> </ErrorBoundary>}></Route>
+          <Route path="/drinkDetail/:id"
+            element={
+              <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} />
+                </Suspense>
+              </ErrorBoundary>
+            }>
+          </Route>
+
+          <Route path="/userProfile"
+            element={
+              <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PrivateRoute element={
+                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} />
+                  } />
+                </Suspense>
+              </ErrorBoundary>
+            }
+          ></Route>
+
+          <Route path="/admin"
+            element={
+              <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <PrivateRoute element={
+                    <Admin drinkDatas={drinkDatas} />
+                  } />
+                </Suspense>
+              </ErrorBoundary>
+            }>
+          </Route>
         </Routes>
+
       </SessionContext.Provider>
       <Footer searchingDrink={searchingDrink} />
 
