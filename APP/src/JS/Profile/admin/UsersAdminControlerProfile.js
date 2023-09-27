@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
 
-
-
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton }) {
     //My Api URL Local
     const API_URL = 'http://localhost:3000/api/';

@@ -99,6 +99,7 @@ function Admin({ drinkDatas }) {
         }
     }, [announcementsUserDoesntExist]);
 
+
     //Filtering Drinks
     useEffect(() => {
         const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
