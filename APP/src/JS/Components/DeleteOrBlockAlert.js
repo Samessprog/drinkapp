@@ -4,6 +4,7 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
     const API_URL = 'http://localhost:3000/api/';
 
     const deleteUser = async () => {
+        setWindowAlert(!windowAlert.isOpen)
         let userID = windowAlert.userID.ID_User
         try {
             const response = await fetch(`${API_URL}deleteUser`, {
@@ -40,7 +41,9 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
                 body: JSON.stringify({ userID }),
             });
             const data = await response.json();
-            if (response.status === 200 && data.message === 'User block successfully') {
+            console.log(response.status)
+            if (response.status === 200 || data.message === 'User block successfully') {
+                console.log('succ')
                 setAnnouncementSucces(true)
             } else if (response.status === 404 && data.error === 'User not found') {
                 setAnnouncementsUserDoesntExist(true)
@@ -62,7 +65,7 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
             <div className="d-flex justify-content-center fs-5">Are you sure you want to delete the user?</div>
             <div className="d-flex justify-content-evenly mb-4 mt-4">
                 {blockedButton === false &&
-                    <label onClick={deleteUser}>
+                    <label onClick={deleteUser} >
                         <button className="confirming-button">Yes</button>
                     </label>
                 }

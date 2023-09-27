@@ -65,6 +65,39 @@ function Admin({ drinkDatas }) {
         userButtonHandler();
     }, [])
 
+    //Use Effect to close an allerts
+    useEffect(() => {
+        if (announcementSucces) {
+            const timer = setTimeout(() => {
+                setAnnouncementSucces(false);
+            }, 3000);
+
+            // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
+            return () => clearTimeout(timer);
+        }
+    }, [announcementSucces]);
+
+    useEffect(() => {
+        if (announcementsError) {
+            const timer = setTimeout(() => {
+                setAnnouncementsError(false);
+            }, 3000);
+
+            // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
+            return () => clearTimeout(timer);
+        }
+    }, [announcementsError]);
+
+    useEffect(() => {
+        if (announcementsUserDoesntExist) {
+            const timer = setTimeout(() => {
+                setAnnouncementsUserDoesntExist(false);
+            }, 3000);
+
+            // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
+            return () => clearTimeout(timer);
+        }
+    }, [announcementsUserDoesntExist]);
 
     //Filtering Drinks
     useEffect(() => {
@@ -125,6 +158,7 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
+
 
 
 
@@ -227,7 +261,7 @@ function Admin({ drinkDatas }) {
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
+                                <UsersAdminControlerProfile key={elm.id} elm={elm} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
                             ))}
                             {currentItemsUsers.length !== 0 &&
                                 <div className="d-flex justify-content-center align-items-center">
@@ -329,20 +363,23 @@ function Admin({ drinkDatas }) {
                 </div>
 
             }
-            
             <div className="announcements d-flex flex-column align-items-center pt-3">
                 {announcementSucces &&
-                    <div className="announcements-succes d-flex justify-content-center w-100">The operation was a success</div>
+                    <div className="announcements-succes d-flex justify-content-center w-100">
+                        The operation was a success
+                    </div>
                 }
-
                 {announcementsUserDoesntExist &&
-                    <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">User does not exist</div>
+                    <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">
+                        User does not exist
+                    </div>
                 }
 
                 {announcementsError &&
-                    <div className="announcements-error d-flex justify-content-center w-100">Something went wrong...</div>
+                    <div className="announcements-error d-flex justify-content-center w-100">
+                        Something went wrong...
+                    </div>
                 }
-
             </div>
 
         </div>

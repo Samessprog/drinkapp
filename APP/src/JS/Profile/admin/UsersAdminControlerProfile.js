@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
-import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
+
 
 
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton }) {
     //My Api URL Local
     const API_URL = 'http://localhost:3000/api/';
-
 
 
     //User Data changer error
@@ -32,10 +31,8 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                 if (!response.ok) {
                     throw new Error('Failed to fetch user favorite drink image.');
                 }
-
                 // Parsuj odpowiedź jako JSON
                 const data = await response.json();
-                console.log(data)
                 setUserIMG(data.image);
 
             } catch (error) {
