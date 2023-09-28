@@ -1,13 +1,11 @@
 import React from "react";
 
-function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
+
+function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements, hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError, setIsHidden }) {
     const API_URL = 'http://localhost:3000/api/';
 
-    console.log(windowAlert.ObjectID)
-
-
     const deleteDrink = async () => {
-        let ID_Drink = (windowAlert.ObjectID)
+        let ID_Drink = windowAlert.ObjectID.ID_DRINK
 
         try {
             const response = await fetch(`${API_URL}deleteDrink`, {
@@ -81,6 +79,14 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
         }
     };
 
+    const hideElement = (elementId, drinkElementID) => {
+        if (elementId) {
+            setHiddenElements([...hiddenElements, elementId]);
+        } else {
+            setHiddenDrinkElements([...hiddenDrinkElements, drinkElementID])
+        }
+    }
+
     return (
         <div className="bg-red">
             <div className="d-flex justify-content-end me-2 pt-2">
@@ -88,11 +94,11 @@ function WindowAdminAlert({ setWindowAlert, windowAlert, blockedButton, setBlock
                     <svg fill="red" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg>
                 </label>
             </div>
-            <div className="d-flex justify-content-center fs-5">Are you sure you want to make this operation?</div>
+            <div className="d-flex justify-content-center fs-5" >Are you sure you want to make this operation?</div>
             <div className="d-flex justify-content-evenly mb-4 mt-4">
                 {blockedButton === false &&
-                    <label onClick={ windowAlert.ObjectID.ID_User !== undefined ? deleteUser : deleteDrink} >
-                        <button className="confirming-button">Yes</button>
+                    <label onClick={windowAlert.ObjectID.ID_User !== undefined ? deleteUser : deleteDrink} >
+                        <button className="confirming-button" onClick={() => hideElement(windowAlert.ObjectID.ID_User, windowAlert.ObjectID.ID_DRINK)} >Yes</button>
                     </label>
                 }
                 {blockedButton === true &&

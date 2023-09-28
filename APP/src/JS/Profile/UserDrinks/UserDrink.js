@@ -46,7 +46,6 @@ function UserDrink({ elm }) {
 
     };
 
-
     return (
         <div className={`user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5  ${isHidden ? 'd-none' : ''}`}>
             <div className=" position-relative ">

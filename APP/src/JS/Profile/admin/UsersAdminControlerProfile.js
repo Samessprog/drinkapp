@@ -3,10 +3,9 @@ import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
 
 
-function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton }) {
+function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, isHidden, hiddenElements }) {
     //My Api URL Local
     const API_URL = 'http://localhost:3000/api/';
-
 
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
@@ -18,6 +17,8 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)
     const [userIMG, setUserIMG] = useState(null)
+
+
 
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
@@ -85,7 +86,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
 
     return (
-        <div className="mb-3 ms-3 d-flex align-items-center drinks-profile-holder  me-3  justify-content-between ">
+        <div className={`mb-3 ms-3 d-flex align-items-center drinks-profile-holder me-3 justify-content-between ${hiddenElements.includes(elm.ID_User) ? 'd-none' : ''}`}>
             <div className="d-flex align-items-center ">
                 <div className="ms-3 me-4 fs-4">
                     {elm.ID_User}.
@@ -150,11 +151,11 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                                 </form>
                             }
                             <div className="d-flex delete-profile">
-                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm.ID_User }); setBlockedButton(true) }} className="block-icon-profile me-3">
+                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }); setBlockedButton(true) }} className="block-icon-profile me-3">
                                     <svg lassName="block-icon-profile" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-60q142.375 0 241.188-98.812Q820-337.625 820-480q0-60.662-21-116.831Q778-653 740-699L261-220q45 39 101.493 59.5Q418.987-140 480-140ZM221-261l478-478q-46-39-102.169-60T480-820q-142.375 0-241.188 98.812Q140-622.375 140-480q0 61.013 22 117.507Q184-306 221-261Z" /></svg>
                                 </div>
 
-                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm.ID_User }); setBlockedButton(false) }}
+                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }); setBlockedButton(false) }}
                                     className="delete-profile-icon">
                                     <svg lassName="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" /></svg>
                                 </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, lazy } from "react";
+import  { useEffect, useState, useContext, lazy } from "react";
 import Pagination from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,18 +22,18 @@ function Admin({ drinkDatas }) {
     //States for Filtering drinks and users
     const filteredResults = useSelector(state => state.admin.filteredResults)
     const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
+
     const [inputText, setInputText] = useState('');
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
-
 
     //announcement for Delete user
     const [announcementSucces, setAnnouncementSucces] = useState(false)
     const [announcementsUserDoesntExist, setAnnouncementsUserDoesntExist] = useState(false)
     const [announcementsError, setAnnouncementsError] = useState(false)
 
-    const [showDrinksOptions, setShowDrinksOptions] = React.useState(false)
+    const [showDrinksOptions, setShowDrinksOptions] = useState(false)
     //Carousel States
     const [currentPage, setCurrentPage] = useState(0);
     const [currentPageUsers, setCurrentPageUsers] = useState(0);
@@ -46,7 +46,7 @@ function Admin({ drinkDatas }) {
 
 
     //Fetch all users from DB
-    React.useEffect(() => {
+    useEffect(() => {
         const userButtonHandler = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/getAllUsers', {
@@ -123,7 +123,7 @@ function Admin({ drinkDatas }) {
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, drinksFlag]);
 
     //Filtering Users
-    React.useEffect(() => {
+    useEffect(() => {
 
         const inputTXT = inputText.toLowerCase()
 
@@ -155,6 +155,11 @@ function Admin({ drinkDatas }) {
         currentPageUsers * itemsPerPage,
         (currentPageUsers + 1) * itemsPerPage
     );
+
+    const [isHidden, setIsHidden] = useState(false)
+    //Do zmiany
+    const [hiddenElements, setHiddenElements] = useState([]);
+    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
 
 
     return (
@@ -252,7 +257,7 @@ function Admin({ drinkDatas }) {
                     {usersFlag === true && (
                         <>
                             {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
+                                <UsersAdminControlerProfile key={elm.id} elm={elm} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
                             ))}
                             {currentItemsUsers.length !== 0 &&
                                 <div className="d-flex justify-content-center align-items-center">
@@ -299,8 +304,9 @@ function Admin({ drinkDatas }) {
                     )}
                     {drinksFlag && (
                         <>
+                       
                             {currentItems.map((elm) => (
-                                <DrinksProfile key={elm.id} elm={elm}  setWindowAlert={setWindowAlert} windowAlert={windowAlert}/>
+                                <DrinksProfile key={elm.id} elm={elm} hiddenDrinkElements={hiddenDrinkElements}  setWindowAlert={setWindowAlert} windowAlert={windowAlert}/>
                             ))}
 
                             {currentItems.length !== 0 &&
@@ -351,7 +357,7 @@ function Admin({ drinkDatas }) {
 
             {windowAlert.isOpen &&
                 <div className="position-fixed window-alert-holder col-3">
-                    <WindowAdminAlert setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                    <WindowAdminAlert  hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                 </div>
             }
 
