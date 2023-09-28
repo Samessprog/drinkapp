@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { SessionContext } from "../../Session/SessionContext";
 import { v4 as uuid } from 'uuid';
+
+import { SessionContext } from "../../Session/SessionContext";
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 

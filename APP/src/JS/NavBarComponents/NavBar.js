@@ -1,17 +1,19 @@
 import { Suspense, useState, lazy, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
 import ErrorFallback from "../Components/ErrorBoundary";
 import OptionsProfile from "../Profile/OptionsProfile";
 import Searching from "../Components/Searching";
-import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
-import { Link } from "react-router-dom";
 
 //Lazy imports 
 const LoginPopup = lazy(() => import("./LoginPopup"))
 const SetingsPopup = lazy(() => import("./SetingsPopup"))
 const Registers = lazy(() => import("../Register/Register"))
+
 
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
@@ -87,9 +89,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     }, []);
 
     const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
-  
-   
-
 
 
     return (

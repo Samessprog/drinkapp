@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
-import { SessionContext } from "../../Session/SessionContext";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Buffer } from 'buffer';
+
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
+import { SessionContext } from "../../Session/SessionContext";
 
 function UserDrink({ elm }) {
     const [isHidden, setIsHidden] = useState(false)

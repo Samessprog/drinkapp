@@ -1,9 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+
 import Searching from "../Components/Searching";
 import DrinksOptions from "../Components/DrinksOptions";
 import TypeOfDrink from "../Components/TypeOfDrink";
-import { useDispatch, useSelector } from 'react-redux';
-
 import { setHighlyRated, setDrinkFavouriteFlag } from "../States/actions";
 
 function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,

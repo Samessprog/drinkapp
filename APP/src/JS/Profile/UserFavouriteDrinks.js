@@ -1,8 +1,6 @@
 import React from "react";
 import Carousel from "../Components/Carousel";
 
-
-
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
   const [userFav, setUserFav] = React.useState('')
@@ -17,8 +15,6 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
     });
     return favouriteDrink;
   })
-
-  
 
   return (
     <div className="favourite-holder-user-drink col-12">

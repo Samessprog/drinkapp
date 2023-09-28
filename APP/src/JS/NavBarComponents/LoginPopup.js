@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from 'react-redux';
+
 import { setEmail, setPassword } from "../States/actions";
-import { setUserSession, setLoginPopup, setRegisterPopup, setUserFavouriteDrinks } from "../States/actions";
+import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
 
 function LoginPopup() {
     const dispatch = useDispatch();
@@ -33,7 +33,6 @@ function LoginPopup() {
             const user = data.user; // Extract the user data from the response
             dispatch(setUserSession(user)); 
             dispatch(setLoginPopup(false)); 
-            // dispatch(setUserFavouriteDrinks([]))
             window.location.reload();
         })
         .catch(error => {

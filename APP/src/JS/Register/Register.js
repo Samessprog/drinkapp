@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, setPhone } from "../States/actions";
 
-
-
 function Registers() {
 
     const dispatch = useDispatch();

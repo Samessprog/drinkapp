@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
 
@@ -9,11 +9,11 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
 
     //User Data changer error
-    const [changingUserDataError, setChangingUserDataError] = React.useState(null)
+    const [changingUserDataError, setChangingUserDataError] = useState(null)
     //Take user UMG
-    const [userDataChanger, setUserDataChanger] = React.useState(false)
-    const [newUserEmail, setNewUserEmail] = React.useState('')
-    const [newUserPass, setNewUserPass] = React.useState('')
+    const [userDataChanger, setUserDataChanger] = useState(false)
+    const [newUserEmail, setNewUserEmail] = useState('')
+    const [newUserPass, setNewUserPass] = useState('')
 
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)

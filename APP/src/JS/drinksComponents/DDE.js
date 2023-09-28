@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function DDE() {
 
     return (
@@ -10,6 +9,5 @@ function DDE() {
     )
 
 }
-
 
 export default DDE;

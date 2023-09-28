@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
-import Pagination from 'react-paginate';
-import { SessionContext } from "../Session/SessionContext";
 import { Buffer } from 'buffer';
+import Pagination from 'react-paginate';
+
+import { SessionContext } from "../Session/SessionContext";
 
 function DrinkDetails({ searchingDrink }) {
 

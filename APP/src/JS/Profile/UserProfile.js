@@ -1,12 +1,11 @@
 import { useState, useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
+
 import UserDetails from "./UserDetails";
 import UserOwnDrinks from "./UserOwnDrinks";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
 import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
 import { SessionContext } from "../Session/SessionContext";
-import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
 
 function UserProfile({ drinkDatas }) {
   
@@ -44,7 +43,6 @@ function UserProfile({ drinkDatas }) {
 
   return (
     <div className="user-details-holder">
-
       <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} fetchIMGCompleted={fetchIMGCompleted} />
       <UserFavouriteDrinks
         userFavouriteDrinks={userFavouriteDrinks}
