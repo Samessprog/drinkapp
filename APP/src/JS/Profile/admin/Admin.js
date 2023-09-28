@@ -1,4 +1,4 @@
-import  { useEffect, useState, useContext, lazy } from "react";
+import { useEffect, useState, useContext, lazy } from "react";
 import Pagination from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,10 +6,12 @@ import { SessionContext } from "../../Session/SessionContext";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
+import NewDrink from "./NewDrink";
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 
 function Admin({ drinkDatas }) {
+
     const userSesion = useContext(SessionContext).userSesion;
 
     const [blockedButton, setBlockedButton] = useState(false)
@@ -27,6 +29,8 @@ function Admin({ drinkDatas }) {
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
+
+    const [unAcceptedDrinks, setUnAcceptedDrinks] = useState(null)
 
     //announcement for Delete user
     const [announcementSucces, setAnnouncementSucces] = useState(false)
@@ -65,6 +69,11 @@ function Admin({ drinkDatas }) {
         };
         userButtonHandler();
     }, [])
+
+
+
+
+
 
     //Use Effect to close an allerts
     useEffect(() => {
@@ -156,10 +165,35 @@ function Admin({ drinkDatas }) {
         (currentPageUsers + 1) * itemsPerPage
     );
 
-    const [isHidden, setIsHidden] = useState(false)
     //Do zmiany
     const [hiddenElements, setHiddenElements] = useState([]);
     const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
+
+    const [showNewsFlag, setShowNewsFlag] = useState(false)
+
+
+    useEffect(() => {
+        const getUnAcceptedDrinks = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/getUnAcceptedDrinks', {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setUnAcceptedDrinks(data);
+                } else {
+                    console.error('Error fetching users:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        getUnAcceptedDrinks();
+    }, [])
+
+    console.log(unAcceptedDrinks)
+
 
 
     return (
@@ -186,8 +220,9 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    dispatch(setDrinksFlag(true))
                                     dispatch(setUsersFlag(false))
+                                    setShowNewsFlag(false)
+                                    dispatch(setDrinksFlag(true))
                                 }}
                             >
                                 Drinks
@@ -198,11 +233,24 @@ function Admin({ drinkDatas }) {
                                 className="optional-buttons"
                                 onClick={() => {
                                     setInputText('')
-                                    dispatch(setUsersFlag(true))
+                                    setShowNewsFlag(false)
                                     dispatch(setDrinksFlag(false))
+                                    dispatch(setUsersFlag(true))
                                 }}
                             >
                                 Users
+                            </button>
+                        </div>
+                        <div className="ms-2">
+                            <button
+                                className="optional-buttons"
+                                onClick={() => {
+                                    dispatch(setUsersFlag(false))
+                                    dispatch(setDrinksFlag(false))
+                                    setShowNewsFlag(true)
+                                }}
+                            >
+                                News
                             </button>
                         </div>
                     </div>
@@ -304,9 +352,15 @@ function Admin({ drinkDatas }) {
                     )}
                     {drinksFlag && (
                         <>
-                       
                             {currentItems.map((elm) => (
-                                <DrinksProfile key={elm.id} elm={elm} hiddenDrinkElements={hiddenDrinkElements}  setWindowAlert={setWindowAlert} windowAlert={windowAlert}/>
+                                <DrinksProfile 
+                                key={elm.id} 
+                                elm={elm} 
+                                hiddenDrinkElements={hiddenDrinkElements} 
+                                setWindowAlert={setWindowAlert} 
+                                windowAlert={windowAlert} 
+                                setAnnouncementSucces={setAnnouncementSucces}
+                                />
                             ))}
 
                             {currentItems.length !== 0 &&
@@ -352,12 +406,34 @@ function Admin({ drinkDatas }) {
                         </>
                     )}
 
+
+                    {showNewsFlag && (
+                        <>
+                            {
+                                unAcceptedDrinks.map((elm) => (
+                                    <DrinksProfile
+                                        key={elm.id}
+                                        elm={elm}
+                                        hiddenDrinkElements={hiddenDrinkElements}
+                                        setWindowAlert={setWindowAlert}
+                                        windowAlert={windowAlert}
+                                        showNewsFlag={showNewsFlag}
+                                    />
+                                )
+
+                                )}
+
+                        </>
+
+
+                    )}
+
                 </div>
             </div>
 
             {windowAlert.isOpen &&
                 <div className="position-fixed window-alert-holder col-3">
-                    <WindowAdminAlert  hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                    <WindowAdminAlert hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                 </div>
             }
 

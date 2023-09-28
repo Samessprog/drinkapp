@@ -24,7 +24,7 @@ connection.connect((err) => {
 });
 
 app.get('/drinks', (req, res) => {
-    const sql = 'SELECT ID_DRINK, DrinkName,DifficultyLevel, Creator, Taste, DrinkType,Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink';
+    const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink WHERE Accepted = 1';
     connection.query(sql, (err, results, fields) => {
         if (err) {
             console.error('error executing query: ' + err.stack);
@@ -34,6 +34,7 @@ app.get('/drinks', (req, res) => {
         res.json(results);
     });
 });
+
 
 app.listen(3001, () => {
     console.log('Server started on port 3001');

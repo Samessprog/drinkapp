@@ -67,7 +67,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
                 body: JSON.stringify({ userID }),
             });
             const data = await response.json();
-            console.log(response.status)
             if (response.status === 200 || data.message === 'User block successfully') {
                 setAnnouncementSucces(true)
             } else if (response.status === 404 && data.error === 'User not found') {

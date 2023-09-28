@@ -234,9 +234,43 @@ app.post('/api/deleteDrink', async (req, res) => {
       res.status(404).json({ error: 'Drink not found' });
     }
   });
-
-
 });
+
+
+app.post('/api/acceptDrinksByAdmin', async (req, res) => {
+  const { drinkID } = req.body;
+
+  const sql = 'UPDATE drink SET Accepted = 1 WHERE ID_Drink = ?';
+
+  connectionToDrinksDB.query(sql, [drinkID], (err, results, fields) => {
+    if (err) {
+      console.error('Error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+
+    // Jeśli zaktualizowano pomyślnie, możesz odpowiedzieć sukcesem
+    res.json({ message: 'Drink has been accepted successfully' });
+  });
+});
+
+
+
+
+app.get('/api/getUnAcceptedDrinks', async (req, res) => {
+  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink WHERE Accepted = 0';
+  connectionToDrinksDB.query(sql, (err, results, fields) => {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
+
 
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
@@ -272,6 +306,16 @@ app.get('/api/fetchUserIMG/:ID_User', async (req, res) => {
     res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
   }
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
