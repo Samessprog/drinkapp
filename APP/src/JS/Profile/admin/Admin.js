@@ -32,7 +32,7 @@ function Admin({ drinkDatas }) {
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
 
-    const [unAcceptedDrinks, setUnAcceptedDrinks] = useState(null)
+    const [unAcceptedDrinks, setUnAcceptedDrinks] = useState([])
 
     //announcement for Delete user
     const [announcementSucces, setAnnouncementSucces] = useState(false)
@@ -47,7 +47,7 @@ function Admin({ drinkDatas }) {
 
     const [users, setUsers] = useState([]);
     // ile drinków na strone ma się wyświetlać i userów
-    const itemsPerPage = 10;
+    const itemsPerPage = 1;
 
     const [pageCount, setPageCount] = useState(0);
     const [currentItems, setCurrentItems] = useState([]);
@@ -62,7 +62,6 @@ function Admin({ drinkDatas }) {
     const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
 
     const [showNewsFlag, setShowNewsFlag] = useState(false)
-
 
     const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
 
@@ -164,6 +163,44 @@ function Admin({ drinkDatas }) {
     }, [inputText, users, drinkDatas, drinksFlag, usersFlag]);
 
 
+    const calculatePageData = (data, currentPage, itemsPerPage) => {
+        const pageCount = Math.ceil(data.length / itemsPerPage);
+        const currentItems = data.slice(
+            currentPage * itemsPerPage,
+            (currentPage + 1) * itemsPerPage
+        );
+        return { pageCount, currentItems };
+    };
+
+    useEffect(() => {
+        setCurrentItemsNewDrink(0)
+        setCurrentPageUsers(0)
+        if (drinksFlag) {
+            const { pageCount, currentItems } = calculatePageData(filteredResults, currentPage, itemsPerPage);
+            setPageCount(pageCount);
+            setCurrentItems(currentItems);
+        }
+    }, [drinksFlag, currentPage]);
+
+    useEffect(() => {
+        if (usersFlag) {
+            setCurrentPage(0)
+            setCurrentItemsNewDrink(0)
+            const { pageCount, currentItems } = calculatePageData(filteredUserResults, currentPageUsers, itemsPerPage);
+            setPageCountUsers(pageCount);
+            setCurrentItemsUsers(currentItems);
+        }
+    }, [usersFlag, currentPageUsers]);
+
+    useEffect(() => {
+        setCurrentPage(0)
+        setCurrentPageUsers(0)
+        if (showNewsFlag) {
+            const { pageCount, currentItems } = calculatePageData(unAcceptedDrinks, currentPageNewDrink, itemsPerPage);
+            setPageCountNewDrink(pageCount);
+            setCurrentItemsNewDrink(currentItems);
+        }
+    }, [showNewsFlag, currentPageNewDrink]);
 
 
     useEffect(() => {
@@ -185,41 +222,6 @@ function Admin({ drinkDatas }) {
         };
         getUnAcceptedDrinks();
     }, [])
-
-
-    //Pagination
-    const calculatePageData = (data, currentPage, itemsPerPage) => {
-        const pageCount = Math.ceil(data.length / itemsPerPage);
-        const currentItems = data.slice(
-            currentPage * itemsPerPage,
-            (currentPage + 1) * itemsPerPage
-        );
-        return { pageCount, currentItems };
-    };
-
-    useEffect(() => {
-        if (drinksFlag) {
-            const { pageCount, currentItems } = calculatePageData(filteredResults, currentPage, itemsPerPage);
-            setPageCount(pageCount);
-            setCurrentItems(currentItems);
-        }
-    }, [drinksFlag, currentPage, filteredResults]);
-
-    useEffect(() => {
-        if (usersFlag) {
-            const { pageCount, currentItems } = calculatePageData(filteredUserResults, currentPageUsers, itemsPerPage);
-            setPageCountUsers(pageCount);
-            setCurrentItemsUsers(currentItems);
-        }
-    }, [usersFlag, currentPageUsers, filteredUserResults]);
-
-    useEffect(() => {
-        if (showNewsFlag) {
-            const { pageCount, currentItems } = calculatePageData(unAcceptedDrinks || [], currentPageNewDrink, itemsPerPage);
-            setPageCountNewDrink(pageCount);
-            setCurrentItemsNewDrink(currentItems);
-        }
-    }, [showNewsFlag, currentPageNewDrink, unAcceptedDrinks]);
 
 
     return (
@@ -249,7 +251,7 @@ function Admin({ drinkDatas }) {
                                     dispatch(setUsersFlag(false))
                                     setShowNewsFlag(false)
                                     dispatch(setDrinksFlag(true))
-
+                                    setCurrentPageUsers(0)
                                 }}
                             >
                                 Drinks
@@ -275,6 +277,7 @@ function Admin({ drinkDatas }) {
                                     dispatch(setUsersFlag(false))
                                     dispatch(setDrinksFlag(false))
                                     setShowNewsFlag(true)
+                                    setCurrentItemsNewDrink(0)
                                 }}
                             >
                                 News
