@@ -13,7 +13,7 @@ function AdminPagination({ showNewsFlag, currentPaginationItem, hiddenElements, 
                 ))
             }
             {
-                currentPaginationItem.length !== 0 &&
+                currentPaginationItem?.length !== 0 &&
                 <div className="d-flex justify-content-center align-items-center">
                     <ReactPaginate
                         nextLabel={
