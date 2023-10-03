@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
-function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenDrinkElements, showNewsFlag }) {
+function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag }) {
     const API_URL = 'http://localhost:3000/api/';
 
     const acceptDrink = async () => {
@@ -19,7 +19,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
             });
             const data = await response.json();
             if (response.status === 200 || data.message === 'User block successfully') {
-
+                setAnnouncementSucces(true)
             } else if (response.status === 404 && data.error === 'User not found') {
             }
         } catch (error) {
@@ -27,12 +27,9 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
-
-
-
     return (
 
-        <div className={`mb-3 ms-3  d-flex align-items-center drinks-profile-holder  justify-content-between col-11 ${hiddenDrinkElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
+        <div className={`mb-3 ms-3  d-flex align-items-center drinks-profile-holder  justify-content-between col-11 ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
 
             <div className="d-flex align-items-center flex-column flex-xl-row justify-content-center col-12">
                 <div className="ms-5 fs-4 col-1 ">

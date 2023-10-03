@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext, lazy } from "react";
 import Pagination from 'react-paginate';
+
 import { useDispatch, useSelector } from 'react-redux';
 
+import AdminPagination from "./AdminPagination";
 import { SessionContext } from "../../Session/SessionContext";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
-import NewDrink from "./NewDrink";
+
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 
@@ -41,13 +43,28 @@ function Admin({ drinkDatas }) {
     //Carousel States
     const [currentPage, setCurrentPage] = useState(0);
     const [currentPageUsers, setCurrentPageUsers] = useState(0);
+    const [currentPageNewDrink, setCurrentPageNewDrink] = useState(0);
 
     const [users, setUsers] = useState([]);
+    // ile drinków na strone ma się wyświetlać i userów
+    const itemsPerPage = 10;
 
-    const itemsPerPage = 8;
+    const [pageCount, setPageCount] = useState(0);
+    const [currentItems, setCurrentItems] = useState([]);
+
+    const [pageCountUsers, setPageCountUsers] = useState(0);
+    const [currentItemsUsers, setCurrentItemsUsers] = useState([]);
+
+    const [pageCountNewDrink, setPageCountNewDrink] = useState(0);
+    const [currentItemsNewDrink, setCurrentItemsNewDrink] = useState([]);
+
+    const [hiddenElements, setHiddenElements] = useState([]);
+    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
+
+    const [showNewsFlag, setShowNewsFlag] = useState(false)
+
 
     const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
-
 
     //Fetch all users from DB
     useEffect(() => {
@@ -69,11 +86,6 @@ function Admin({ drinkDatas }) {
         };
         userButtonHandler();
     }, [])
-
-
-
-
-
 
     //Use Effect to close an allerts
     useEffect(() => {
@@ -149,27 +161,9 @@ function Admin({ drinkDatas }) {
         dispatch(setFilteredUserResults(usersFilter))
         dispatch(setFilteredResults(drinksFilter))
 
-    }, [inputText, users, drinkDatas]);
+    }, [inputText, users, drinkDatas, drinksFlag, usersFlag]);
 
 
-    //Next and previous Carousel Handler functions
-    const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
-    const currentItems = filteredResults.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
-    );
-
-    const pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
-    const currentItemsUsers = filteredUserResults.slice(
-        currentPageUsers * itemsPerPage,
-        (currentPageUsers + 1) * itemsPerPage
-    );
-
-    //Do zmiany
-    const [hiddenElements, setHiddenElements] = useState([]);
-    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
-
-    const [showNewsFlag, setShowNewsFlag] = useState(false)
 
 
     useEffect(() => {
@@ -192,8 +186,40 @@ function Admin({ drinkDatas }) {
         getUnAcceptedDrinks();
     }, [])
 
-    console.log(unAcceptedDrinks)
 
+    //Pagination
+    const calculatePageData = (data, currentPage, itemsPerPage) => {
+        const pageCount = Math.ceil(data.length / itemsPerPage);
+        const currentItems = data.slice(
+            currentPage * itemsPerPage,
+            (currentPage + 1) * itemsPerPage
+        );
+        return { pageCount, currentItems };
+    };
+
+    useEffect(() => {
+        if (drinksFlag) {
+            const { pageCount, currentItems } = calculatePageData(filteredResults, currentPage, itemsPerPage);
+            setPageCount(pageCount);
+            setCurrentItems(currentItems);
+        }
+    }, [drinksFlag, currentPage, filteredResults]);
+
+    useEffect(() => {
+        if (usersFlag) {
+            const { pageCount, currentItems } = calculatePageData(filteredUserResults, currentPageUsers, itemsPerPage);
+            setPageCountUsers(pageCount);
+            setCurrentItemsUsers(currentItems);
+        }
+    }, [usersFlag, currentPageUsers, filteredUserResults]);
+
+    useEffect(() => {
+        if (showNewsFlag) {
+            const { pageCount, currentItems } = calculatePageData(unAcceptedDrinks || [], currentPageNewDrink, itemsPerPage);
+            setPageCountNewDrink(pageCount);
+            setCurrentItemsNewDrink(currentItems);
+        }
+    }, [showNewsFlag, currentPageNewDrink, unAcceptedDrinks]);
 
 
     return (
@@ -223,6 +249,7 @@ function Admin({ drinkDatas }) {
                                     dispatch(setUsersFlag(false))
                                     setShowNewsFlag(false)
                                     dispatch(setDrinksFlag(true))
+
                                 }}
                             >
                                 Drinks
@@ -303,129 +330,46 @@ function Admin({ drinkDatas }) {
                 <div className="">
 
                     {usersFlag === true && (
-                        <>
-                            {currentItemsUsers.map((elm) => (
-                                <UsersAdminControlerProfile key={elm.id} elm={elm} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
-                            ))}
-                            {currentItemsUsers.length !== 0 &&
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <Pagination
-                                        nextLabel={
-                                            <svg
-                                                className="arroPagi"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                height="40"
-                                                width="40"
-                                            >
-                                                <path
-                                                    className="arrowPagination"
-                                                    d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
-                                                />
-                                            </svg>
-                                        }
-                                        previousLabel={
-                                            <svg
-                                                className="arroPagi"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                height="40"
-                                                width="40"
-                                            >
-                                                <path
-                                                    className="arrowPagination"
-                                                    d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
-                                                />
-                                            </svg>
-                                        }
-                                        pageCount={pageCountUsers}
-                                        onPageChange={({ selected }) => setCurrentPageUsers(selected)}
-                                        containerClassName={'pagination'}
-                                        activeClassName={'active'}
-                                    />
-                                </div>
-                            }
-
-                            {currentItemsUsers.length === 0 &&
-                                <div className="d-flex align-items-center justify-content-center fs-4">No user with that nickname found</div>
-                            }
-
-                        </>
+                        <AdminPagination
+                            currentPaginationItem={currentItemsUsers}
+                            hiddenElements={hiddenElements}
+                            setWindowAlert={setWindowAlert}
+                            windowAlert={windowAlert}
+                            setBlockedButton={setBlockedButton}
+                            pageCountItem={pageCountUsers}
+                            setCurrentPage={setCurrentPageUsers}
+                            ComponentRender={UsersAdminControlerProfile}
+                        />
                     )}
+
                     {drinksFlag && (
-                        <>
-                            {currentItems.map((elm) => (
-                                <DrinksProfile 
-                                key={elm.id} 
-                                elm={elm} 
-                                hiddenDrinkElements={hiddenDrinkElements} 
-                                setWindowAlert={setWindowAlert} 
-                                windowAlert={windowAlert} 
-                                setAnnouncementSucces={setAnnouncementSucces}
-                                />
-                            ))}
 
-                            {currentItems.length !== 0 &&
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <Pagination
-                                        nextLabel={
-                                            <svg
-                                                className="arroPagi"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                height="40"
-                                                width="40"
-                                            >
-                                                <path
-                                                    className="arrowPagination"
-                                                    d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z"
-                                                />
-                                            </svg>
-                                        }
-                                        previousLabel={
-                                            <svg
-                                                className="arroPagi"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                height="40"
-                                                width="40"
-                                            >
-                                                <path
-                                                    className="arrowPagination"
-                                                    d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z"
-                                                />
-                                            </svg>
-                                        }
-                                        pageCount={pageCount}
-                                        onPageChange={({ selected }) => setCurrentPage(selected)}
-                                        containerClassName={'pagination'}
-                                        activeClassName={'active'}
-                                    />
-                                </div>
-                            }
-                            {currentItems.length === 0 &&
-                                <div className="d-flex align-items-center justify-content-center fs-4">No drink with that nickname found</div>
-                            }
+                        <AdminPagination
+                            currentPaginationItem={currentItems}
+                            hiddenElements={hiddenDrinkElements}
+                            setWindowAlert={setWindowAlert}
+                            windowAlert={windowAlert}
+                            setBlockedButton={setBlockedButton}
+                            pageCountItem={pageCount}
+                            setCurrentPage={setCurrentPage}
+                            ComponentRender={DrinksProfile}
+                            setAnnouncementSucces={setAnnouncementSucces}
+                        />
 
-                        </>
                     )}
-
 
                     {showNewsFlag && (
-                        <>
-                            {
-                                unAcceptedDrinks.map((elm) => (
-                                    <DrinksProfile
-                                        key={elm.id}
-                                        elm={elm}
-                                        hiddenDrinkElements={hiddenDrinkElements}
-                                        setWindowAlert={setWindowAlert}
-                                        windowAlert={windowAlert}
-                                        showNewsFlag={showNewsFlag}
-                                    />
-                                )
-
-                                )}
-
-                        </>
-
-
+                        <AdminPagination
+                            hiddenElements={hiddenDrinkElements}
+                            setWindowAlert={setWindowAlert}
+                            windowAlert={windowAlert}
+                            showNewsFlag={showNewsFlag}
+                            setAnnouncementSucces={setAnnouncementSucces}
+                            currentPaginationItem={currentItemsNewDrink}
+                            pageCountItem={pageCountNewDrink}
+                            setCurrentPage={setCurrentPageNewDrink}
+                            ComponentRender={DrinksProfile}
+                        />
                     )}
 
                 </div>
