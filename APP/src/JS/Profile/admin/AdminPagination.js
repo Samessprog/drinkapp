@@ -3,7 +3,6 @@ import ReactPaginate from 'react-paginate';
 
 function AdminPagination({ showNewsFlag, currentPaginationItem, hiddenElements, setWindowAlert, windowAlert, setBlockedButton, pageCountItem, setCurrentPage, ComponentRender, setAnnouncementSucces }) {
 
-    console.log(currentPaginationItem)
 
     return (
         <>

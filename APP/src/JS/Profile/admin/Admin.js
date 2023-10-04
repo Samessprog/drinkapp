@@ -1,6 +1,4 @@
 import { useEffect, useState, useContext, lazy } from "react";
-import Pagination from 'react-paginate';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import AdminPagination from "./AdminPagination";
@@ -27,12 +25,12 @@ function Admin({ drinkDatas }) {
     const filteredResults = useSelector(state => state.admin.filteredResults)
     const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
 
+    const [filteredNewDrinksResults, setFilteredNewDrinksResults] = useState([])
+
     const [inputText, setInputText] = useState('');
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
-
-    const [unAcceptedDrinks, setUnAcceptedDrinks] = useState(null)
 
     //announcement for Delete user
     const [announcementSucces, setAnnouncementSucces] = useState(false)
@@ -47,9 +45,17 @@ function Admin({ drinkDatas }) {
 
     const [users, setUsers] = useState([]);
     // ile drinków na strone ma się wyświetlać i userów
-    const itemsPerPage = 1;
+    const itemsPerPage = 10;
 
     const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
+
+
+    const [hiddenElements, setHiddenElements] = useState([]);
+    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
+
+    const [showNewsFlag, setShowNewsFlag] = useState(false)
+    const [filterByDate, setFilterByDate] = useState(false)
+
 
     //Fetch all users from DB
     useEffect(() => {
@@ -106,27 +112,62 @@ function Admin({ drinkDatas }) {
         }
     }, [announcementsUserDoesntExist]);
 
-    //Filtering Drinks
+    //Filtering Drinks do optymalizacji!!
     useEffect(() => {
         const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
         let filteredResults;
-
-        if (!isBlocked && drinksFlag) {
+        if (drinksFlag) {
             filteredResults = currentItems.slice().sort((x, y) => {
                 const drinkNameX = x.DrinkName.toUpperCase();
                 const drinkNameY = y.DrinkName.toUpperCase();
                 return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction;
             });
             dispatch(setFilteredResults(filteredResults));
-        } else {
-            filteredResults = currentItemsUsers?.slice().sort((x, y) => {
-                const drinkNameX = x.Nick.toUpperCase();
-                const drinkNameY = y.Nick.toUpperCase();
-                return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction;
-            });
+        } else if (usersFlag) {
+            let filteredResults;
+
+            if (isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
+                filteredResults = currentItemsUsers?.filter((elm) => elm.IsBlocked === 1);
+            } else if (!isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
+                filteredResults = users;
+            } else {
+                filteredResults = currentItemsUsers?.slice().sort((x, y) => {
+                    const userNameX = x.Nick.toUpperCase();
+                    const userNameY = y.Nick.toUpperCase();
+                    return (userNameX < userNameY ? -1 : userNameX > userNameY ? 1 : 0) * direction;
+                });
+            }
             dispatch(setFilteredUserResults(filteredResults));
+        } else if (showNewsFlag) {
+            if (filterByDate) {
+                filteredResults = currentItemsNewDrink?.slice().sort((x, y) => {
+                    // Parsowanie daty do obiektów Date
+                    const dateX = new Date(x.Date_Of_Creation);
+                    const dateY = new Date(y.Date_Of_Creation);
+
+                    if (direction === 1) {
+                        return dateX - dateY;
+                    } else {
+                        return dateY - dateX;
+                    }
+
+                });
+            } else {
+                filteredResults = currentItemsNewDrink?.slice().sort((x, y) => {
+                    const newDrinkNameX = x.DrinkName.toUpperCase();
+                    const newDrinkNameY = y.DrinkName.toUpperCase();
+                    return (newDrinkNameX < newDrinkNameY ? -1 : newDrinkNameX > newDrinkNameY ? 1 : 0) * direction;
+                });
+            }
+            setFilteredNewDrinksResults(filteredResults);
         }
-    }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked]);
+
+
+    }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, filterByDate, filterByDate]);
+
+
+    //Date_Of_Creation
+    console.log(filteredNewDrinksResults)
 
     //Filtering Users
     useEffect(() => {
@@ -149,11 +190,6 @@ function Admin({ drinkDatas }) {
     }, [inputText, users, drinkDatas, usersFlag]);
 
 
-    const [hiddenElements, setHiddenElements] = useState([]);
-    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
-
-    const [showNewsFlag, setShowNewsFlag] = useState(false)
-
     let pageCount;
     let currentItems;
 
@@ -167,6 +203,7 @@ function Admin({ drinkDatas }) {
             (currentPage + 1) * itemsPerPage
         );
     }
+    console.log(filteredUserResults)
 
     if (usersFlag) {
         pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
@@ -176,12 +213,11 @@ function Admin({ drinkDatas }) {
         );
     }
 
-    const pageCountNewDrink = Math.ceil(unAcceptedDrinks?.length / itemsPerPage);
-    const currentItemsNewDrink = unAcceptedDrinks?.slice(
+    const pageCountNewDrink = Math.ceil(filteredNewDrinksResults?.length / itemsPerPage);
+    const currentItemsNewDrink = filteredNewDrinksResults?.slice(
         currentPageNewDrink * itemsPerPage,
         (currentPageNewDrink + 1) * itemsPerPage
     );
-
 
     useEffect(() => {
         const getUnAcceptedDrinks = async () => {
@@ -192,7 +228,7 @@ function Admin({ drinkDatas }) {
 
                 if (response.ok) {
                     const data = await response.json();
-                    setUnAcceptedDrinks(data);
+                    setFilteredNewDrinksResults(data);
                 } else {
                     console.error('Error fetching users:', response.status);
                 }
@@ -292,7 +328,7 @@ function Admin({ drinkDatas }) {
                             >
                                 <path d="M440-160q-17 0-28.5-11.5T400-200v-240L163.333-742q-14.333-18-4.166-38 10.166-20 32.833-20h576q22.667 0 32.833 20 10.167 20-4.166 38L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-286.666 226.001-286.668H253.999L480-446.666Zm0 0Z" />
                             </svg>
-                            {showDrinksOptions === true && (drinksFlag === true || usersFlag === true) &&
+                            {showDrinksOptions && (drinksFlag || usersFlag || showNewsFlag) &&
                                 <div className="multi-options-holder-admin">
                                     <div className="ps-3 pt-3 pb-3">
                                         <div className="mt-1">
@@ -303,10 +339,16 @@ function Admin({ drinkDatas }) {
                                             <input type="checkbox" onChange={() => setUnAlphabeticalOrder(!unAlphabeticalOrder)} ></input>
                                             <label className="ms-2">Unalphabetic order</label>
                                         </div>
-                                        {usersFlag === true &&
+                                        {usersFlag &&
                                             <div className="mt-1">
-                                                <input type="checkbox"></input>
+                                                <input type="checkbox" onChange={() => setIsBlocked(!isBlocked)}></input>
                                                 <label className="ms-2">Show blocked</label>
+                                            </div>
+                                        }
+                                        {showNewsFlag &&
+                                            <div className="mt-1">
+                                                <input type="checkbox" onChange={() => setFilterByDate(!filterByDate)}></input>
+                                                <label className="ms-2">Order by date</label>
                                             </div>
                                         }
                                     </div>

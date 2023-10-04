@@ -187,7 +187,7 @@ app.get('/api/userIMG', (req, res) => {
 
 
 app.get('/api/getAllUsers', (req, res) => {
-  db.query('SELECT ID_User, email, Password, phone, Nick FROM users', (err, results) => {
+  db.query('SELECT ID_User, email, Password, phone, Nick, IsBlocked  FROM users', (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -258,7 +258,7 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
 
 
 app.get('/api/getUnAcceptedDrinks', async (req, res) => {
-  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink WHERE Accepted = 0';
+  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id, Date_Of_Creation FROM drink WHERE Accepted = 0';
   connectionToDrinksDB.query(sql, (err, results, fields) => {
     if (err) {
       console.error('error executing query: ' + err.stack);
@@ -268,8 +268,6 @@ app.get('/api/getUnAcceptedDrinks', async (req, res) => {
     res.json(results);
   });
 });
-
-
 
 
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
@@ -289,7 +287,6 @@ app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   }
 });
 
-
 app.get('/api/fetchUserIMG/:ID_User', async (req, res) => {
   const { ID_User } = req.params;
   try {
@@ -306,17 +303,6 @@ app.get('/api/fetchUserIMG/:ID_User', async (req, res) => {
     res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(port, () => {
