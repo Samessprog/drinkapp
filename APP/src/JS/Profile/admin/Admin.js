@@ -6,7 +6,7 @@ import { SessionContext } from "../../Session/SessionContext";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
-
+import DrinkDetailAdminPreview from "./DrinkDetailAdminPreview";
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 
@@ -55,7 +55,6 @@ function Admin({ drinkDatas }) {
 
     const [showNewsFlag, setShowNewsFlag] = useState(false)
     const [filterByDate, setFilterByDate] = useState(false)
-
 
     //Fetch all users from DB
     useEffect(() => {
@@ -162,12 +161,7 @@ function Admin({ drinkDatas }) {
             setFilteredNewDrinksResults(filteredResults);
         }
 
-
     }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, filterByDate, filterByDate]);
-
-
-    //Date_Of_Creation
-    console.log(filteredNewDrinksResults)
 
     //Filtering Users
     useEffect(() => {
@@ -240,196 +234,213 @@ function Admin({ drinkDatas }) {
     }, [])
 
 
+    const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
+
+
 
     return (
-        <div className="admin-container p-3 p-sm-4 position-relative">
-            <div className="admin-header-holder">
-                <header className="fs-2 admin-header">Hello admin NAME</header>
-            </div>
+        <div>
 
-            <div className="users-chart-holder mt-5 d-flex justify-content-center align-items-center ms-sm-1  m-md-3">
-                <div className="">
-                    miejsce na wykres od usera i opcje jego zmiany
+
+            <div className="admin-container p-3 p-sm-4 position-relative">
+                <div className="admin-header-holder">
+                    <header className="fs-2 admin-header">Hello admin NAME</header>
                 </div>
-            </div>
 
-            <div className="fs-2 white header-admin ms-3 ">
-                <header>Database of users and drinks</header>
-            </div>
-
-            <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12">
-                <div className="d-sm-flex justify-content-between col-12 mb-5 d-flex-column align-items-center">
-                    <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2 col-6 ">
-                        <div className="pb-0 me-2">
-                            <button
-                                className="optional-buttons"
-                                onClick={() => {
-                                    setInputText('')
-                                    dispatch(setUsersFlag(false))
-                                    setShowNewsFlag(false)
-                                    dispatch(setDrinksFlag(true))
-                                    setCurrentPageUsers(0)
-                                    setCurrentPageNewDrink(0)
-
-                                }}
-                            >
-                                Drinks
-                            </button>
-                        </div>
-                        <div className="">
-                            <button
-                                className="optional-buttons"
-                                onClick={() => {
-                                    setInputText('')
-                                    setShowNewsFlag(false)
-                                    dispatch(setDrinksFlag(false))
-                                    dispatch(setUsersFlag(true))
-                                    setCurrentPage(0)
-                                    setCurrentPageNewDrink(0)
-                                }}
-                            >
-                                Users
-                            </button>
-                        </div>
-                        <div className="ms-2">
-                            <button
-                                className="optional-buttons"
-                                onClick={() => {
-                                    dispatch(setUsersFlag(false))
-                                    dispatch(setDrinksFlag(false))
-                                    setShowNewsFlag(true)
-                                    setCurrentPage(0)
-                                    setCurrentPageUsers(0)
-                                }}
-                            >
-                                News
-                            </button>
-                        </div>
+                <div className="users-chart-holder mt-5 d-flex justify-content-center align-items-center ms-sm-1  m-md-3">
+                    <div className="">
+                        miejsce na wykres od usera i opcje jego zmiany
                     </div>
+                </div>
 
-                    <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end position-relative">
-                        <div className="me-4 col-8 col-sm-12">
-                            <input
-                                className="searching-items-admin ps-3 pe-3 col-12"
-                                type="text"
-                                placeholder="enter the name you are looking for"
-                                value={inputText}
-                                onChange={(event) => setInputText(event.target.value)}
-                            />
+                <div className="fs-2 white header-admin ms-3 ">
+                    <header>Database of users and drinks</header>
+                </div>
+
+                <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12">
+                    <div className="d-sm-flex justify-content-between col-12 mb-5 d-flex-column align-items-center">
+                        <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2 col-6 ">
+                            <div className="pb-0 me-2">
+                                <button
+                                    className="optional-buttons"
+                                    onClick={() => {
+                                        setInputText('')
+                                        dispatch(setUsersFlag(false))
+                                        setShowNewsFlag(false)
+                                        dispatch(setDrinksFlag(true))
+                                        setCurrentPageUsers(0)
+                                        setCurrentPageNewDrink(0)
+
+                                    }}
+                                >
+                                    Drinks
+                                </button>
+                            </div>
+                            <div className="">
+                                <button
+                                    className="optional-buttons"
+                                    onClick={() => {
+                                        setInputText('')
+                                        setShowNewsFlag(false)
+                                        dispatch(setDrinksFlag(false))
+                                        dispatch(setUsersFlag(true))
+                                        setCurrentPage(0)
+                                        setCurrentPageNewDrink(0)
+                                    }}
+                                >
+                                    Users
+                                </button>
+                            </div>
+                            <div className="ms-2">
+                                <button
+                                    className="optional-buttons"
+                                    onClick={() => {
+                                        dispatch(setUsersFlag(false))
+                                        dispatch(setDrinksFlag(false))
+                                        setShowNewsFlag(true)
+                                        setCurrentPage(0)
+                                        setCurrentPageUsers(0)
+                                    }}
+                                >
+                                    News
+                                </button>
+                            </div>
                         </div>
-                        <div className="data-filtering-holder">
-                            <svg
-                                className="data-filtering-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="40"
-                                viewBox="0 -960 960 960"
-                                width="40"
-                                onClick={() => setShowDrinksOptions(!showDrinksOptions)}
-                            >
-                                <path d="M440-160q-17 0-28.5-11.5T400-200v-240L163.333-742q-14.333-18-4.166-38 10.166-20 32.833-20h576q22.667 0 32.833 20 10.167 20-4.166 38L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-286.666 226.001-286.668H253.999L480-446.666Zm0 0Z" />
-                            </svg>
-                            {showDrinksOptions && (drinksFlag || usersFlag || showNewsFlag) &&
-                                <div className="multi-options-holder-admin">
-                                    <div className="ps-3 pt-3 pb-3">
-                                        <div className="mt-1">
-                                            <input type="checkbox" onChange={() => setAlphabeticalOrder(!alphabeticalOrder)} ></input>
-                                            <label className="ms-2"  >Alphabetic order</label>
-                                        </div>
-                                        <div className="mt-1">
-                                            <input type="checkbox" onChange={() => setUnAlphabeticalOrder(!unAlphabeticalOrder)} ></input>
-                                            <label className="ms-2">Unalphabetic order</label>
-                                        </div>
-                                        {usersFlag &&
+
+                        <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end position-relative">
+                            <div className="me-4 col-8 col-sm-12">
+                                <input
+                                    className="searching-items-admin ps-3 pe-3 col-12"
+                                    type="text"
+                                    placeholder="enter the name you are looking for"
+                                    value={inputText}
+                                    onChange={(event) => setInputText(event.target.value)}
+                                />
+                            </div>
+                            <div className="data-filtering-holder">
+                                <svg
+                                    className="data-filtering-icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="40"
+                                    viewBox="0 -960 960 960"
+                                    width="40"
+                                    onClick={() => setShowDrinksOptions(!showDrinksOptions)}
+                                >
+                                    <path d="M440-160q-17 0-28.5-11.5T400-200v-240L163.333-742q-14.333-18-4.166-38 10.166-20 32.833-20h576q22.667 0 32.833 20 10.167 20-4.166 38L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-286.666 226.001-286.668H253.999L480-446.666Zm0 0Z" />
+                                </svg>
+                                {showDrinksOptions && (drinksFlag || usersFlag || showNewsFlag) &&
+                                    <div className="multi-options-holder-admin">
+                                        <div className="ps-3 pt-3 pb-3">
                                             <div className="mt-1">
-                                                <input type="checkbox" onChange={() => setIsBlocked(!isBlocked)}></input>
-                                                <label className="ms-2">Show blocked</label>
+                                                <input type="checkbox" onChange={() => setAlphabeticalOrder(!alphabeticalOrder)} ></input>
+                                                <label className="ms-2"  >Alphabetic order</label>
                                             </div>
-                                        }
-                                        {showNewsFlag &&
                                             <div className="mt-1">
-                                                <input type="checkbox" onChange={() => setFilterByDate(!filterByDate)}></input>
-                                                <label className="ms-2">Order by date</label>
+                                                <input type="checkbox" onChange={() => setUnAlphabeticalOrder(!unAlphabeticalOrder)} ></input>
+                                                <label className="ms-2">Unalphabetic order</label>
                                             </div>
-                                        }
+                                            {usersFlag &&
+                                                <div className="mt-1">
+                                                    <input type="checkbox" onChange={() => setIsBlocked(!isBlocked)}></input>
+                                                    <label className="ms-2">Show blocked</label>
+                                                </div>
+                                            }
+                                            {showNewsFlag &&
+                                                <div className="mt-1">
+                                                    <input type="checkbox" onChange={() => setFilterByDate(!filterByDate)}></input>
+                                                    <label className="ms-2">Order by date</label>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            }
+                                }
 
+                            </div>
                         </div>
                     </div>
+                    <div className="">
+
+                        {usersFlag === true && (
+                            <AdminPagination
+                                currentPaginationItem={currentItemsUsers}
+                                hiddenElements={hiddenElements}
+                                setWindowAlert={setWindowAlert}
+                                windowAlert={windowAlert}
+                                setBlockedButton={setBlockedButton}
+                                pageCountItem={pageCountUsers}
+                                setCurrentPage={setCurrentPageUsers}
+                                ComponentRender={UsersAdminControlerProfile}
+                            />
+                        )}
+
+                        {drinksFlag && (
+
+                            <AdminPagination
+                                setDrinkPreview={setDrinkPreview}
+                                currentPaginationItem={currentItems}
+                                hiddenElements={hiddenDrinkElements}
+                                setWindowAlert={setWindowAlert}
+                                windowAlert={windowAlert}
+                                setBlockedButton={setBlockedButton}
+                                pageCountItem={pageCount}
+                                setCurrentPage={setCurrentPage}
+                                ComponentRender={DrinksProfile}
+                                setAnnouncementSucces={setAnnouncementSucces}
+                            />
+
+                        )}
+
+                        {showNewsFlag && (
+                            <AdminPagination
+                                setDrinkPreview={setDrinkPreview}
+                                hiddenElements={hiddenDrinkElements}
+                                setWindowAlert={setWindowAlert}
+                                windowAlert={windowAlert}
+                                showNewsFlag={showNewsFlag}
+                                setAnnouncementSucces={setAnnouncementSucces}
+                                currentPaginationItem={currentItemsNewDrink}
+                                pageCountItem={pageCountNewDrink}
+                                setCurrentPage={setCurrentPageNewDrink}
+                                ComponentRender={DrinksProfile}
+                            />
+                        )}
+
+                    </div>
                 </div>
-                <div className="">
 
-                    {usersFlag === true && (
-                        <AdminPagination
-                            currentPaginationItem={currentItemsUsers}
-                            hiddenElements={hiddenElements}
-                            setWindowAlert={setWindowAlert}
-                            windowAlert={windowAlert}
-                            setBlockedButton={setBlockedButton}
-                            pageCountItem={pageCountUsers}
-                            setCurrentPage={setCurrentPageUsers}
-                            ComponentRender={UsersAdminControlerProfile}
-                        />
-                    )}
+                {windowAlert.isOpen &&
+                    <div className="position-fixed window-alert-holder col-3">
+                        <WindowAdminAlert hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                    </div>
+                }
 
-                    {drinksFlag && (
+                <div className="announcements d-flex flex-column align-items-center pt-3">
+                    {announcementSucces &&
+                        <div className="announcements-succes d-flex justify-content-center w-100">
+                            The operation was a success
+                        </div>
+                    }
+                    {announcementsUserDoesntExist &&
+                        <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">
+                            The Object does not exist
+                        </div>
+                    }
 
-                        <AdminPagination
-                            currentPaginationItem={currentItems}
-                            hiddenElements={hiddenDrinkElements}
-                            setWindowAlert={setWindowAlert}
-                            windowAlert={windowAlert}
-                            setBlockedButton={setBlockedButton}
-                            pageCountItem={pageCount}
-                            setCurrentPage={setCurrentPage}
-                            ComponentRender={DrinksProfile}
-                            setAnnouncementSucces={setAnnouncementSucces}
-                        />
-
-                    )}
-
-                    {showNewsFlag && (
-                        <AdminPagination
-                            hiddenElements={hiddenDrinkElements}
-                            setWindowAlert={setWindowAlert}
-                            windowAlert={windowAlert}
-                            showNewsFlag={showNewsFlag}
-                            setAnnouncementSucces={setAnnouncementSucces}
-                            currentPaginationItem={currentItemsNewDrink}
-                            pageCountItem={pageCountNewDrink}
-                            setCurrentPage={setCurrentPageNewDrink}
-                            ComponentRender={DrinksProfile}
-                        />
-                    )}
-
+                    {announcementsError &&
+                        <div className="announcements-error d-flex justify-content-center w-100">
+                            Something went wrong...
+                        </div>
+                    }
                 </div>
+
+
             </div>
-
-            {windowAlert.isOpen &&
-                <div className="position-fixed window-alert-holder col-3">
-                    <WindowAdminAlert hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
-                </div>
+            {DrinkPreview.isOpenPrev &&
+                <DrinkDetailAdminPreview
+                    DrinkPreview={DrinkPreview}
+                    setDrinkPreview={setDrinkPreview}
+                />
             }
-
-            <div className="announcements d-flex flex-column align-items-center pt-3">
-                {announcementSucces &&
-                    <div className="announcements-succes d-flex justify-content-center w-100">
-                        The operation was a success
-                    </div>
-                }
-                {announcementsUserDoesntExist &&
-                    <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">
-                        The Object does not exist
-                    </div>
-                }
-
-                {announcementsError &&
-                    <div className="announcements-error d-flex justify-content-center w-100">
-                        Something went wrong...
-                    </div>
-                }
-            </div>
 
         </div>
     );

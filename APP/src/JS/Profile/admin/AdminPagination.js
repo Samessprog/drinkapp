@@ -1,14 +1,14 @@
 import React from "react";
 import ReactPaginate from 'react-paginate';
 
-function AdminPagination({ showNewsFlag, currentPaginationItem, hiddenElements, setWindowAlert, windowAlert, setBlockedButton, pageCountItem, setCurrentPage, ComponentRender, setAnnouncementSucces }) {
+function AdminPagination({ setDrinkPreview, showNewsFlag, currentPaginationItem, hiddenElements, setWindowAlert, windowAlert, setBlockedButton, pageCountItem, setCurrentPage, ComponentRender, setAnnouncementSucces }) {
 
 
     return (
         <>
             {currentPaginationItem &&
                 currentPaginationItem.map((elm) => (
-                    <ComponentRender key={elm.id} elm={elm} showNewsFlag={showNewsFlag} hiddenElements={hiddenElements} setAnnouncementSucces={setAnnouncementSucces} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
+                    <ComponentRender key={elm.id} elm={elm} setDrinkPreview={setDrinkPreview} showNewsFlag={showNewsFlag} hiddenElements={hiddenElements} setAnnouncementSucces={setAnnouncementSucces} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
                 ))
             }
             {

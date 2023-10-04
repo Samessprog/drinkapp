@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
-function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag }) {
+function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
     const API_URL = 'http://localhost:3000/api/';
 
     const acceptDrink = async () => {
@@ -27,6 +27,9 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
+
+
+
     return (
 
         <div className={`mb-3 ms-3  d-flex align-items-center drinks-profile-holder  justify-content-between col-11 ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
@@ -50,7 +53,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                         </div>
                         <div className="details-button-holder d-flex mt-xl-3 mb-xl-0 mb-3 flex-column flex-xl-row align-items-center ">
                             <button className="details-button ">
-                                <Link to={`/drinkDetail/${elm.ID_DRINK}`} target="_blank">show me the details</Link>
+                                <label onClick={() => setDrinkPreview({ isOpenPrev:true, Drink:elm })}>show me the details</label>
                             </button>
 
                             <div className="d-flex delete-profile me-5 pb-2">
