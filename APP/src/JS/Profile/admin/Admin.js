@@ -239,8 +239,6 @@ function Admin({ drinkDatas }) {
 
     return (
         <div>
-
-
             <div className="admin-container p-3 p-sm-4 position-relative">
                 <div className="admin-header-holder">
                     <header className="fs-2 admin-header">Hello admin NAME</header>

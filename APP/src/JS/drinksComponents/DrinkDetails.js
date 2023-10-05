@@ -8,6 +8,7 @@ import { SessionContext } from "../Session/SessionContext";
 
 function DrinkDetails({ searchingDrink }) {
 
+    
 
     const { userSesion } = useContext(SessionContext);
 
