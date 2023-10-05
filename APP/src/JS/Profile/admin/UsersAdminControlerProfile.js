@@ -34,7 +34,6 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                 // Parsuj odpowiedź jako JSON
                 const data = await response.json();
                 setUserIMG(data.image);
-
             } catch (error) {
                 console.error(error);
             }
@@ -50,12 +49,13 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setUserConvertedIMG(imageURL);
-            setFetchIMGCompleted(true)
         } else {
-            setUserConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+            setUserConvertedIMG('https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg');
         }
-
+        setFetchIMGCompleted(true)
     }, [userIMG]);
+
+    console.log(userConvertedIMG)
 
     //Function to Change User Data
     const UserDataChange = async (event) => {

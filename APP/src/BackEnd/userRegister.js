@@ -61,6 +61,7 @@ router.post('/', async (req, res) => {
     res.status(400).json({ success: false, message: 'Email already exists' });
     return;
   }
+ 
 
   const user = { email, password, phone, Nick, userImg };
 

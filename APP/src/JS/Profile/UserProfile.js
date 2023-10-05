@@ -31,7 +31,6 @@ function UserProfile({ drinkDatas }) {
           throw new Error('Failed to fetch user image');
         }
         const blob = await response.blob();
-
         setUserIMG(blob.size === 0 ? 'https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg' : URL.createObjectURL(blob))
         setFetchIMGCompleted(true)
       } catch (error) {
