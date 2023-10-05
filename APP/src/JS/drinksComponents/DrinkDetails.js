@@ -8,8 +8,6 @@ import { SessionContext } from "../Session/SessionContext";
 
 function DrinkDetails({ searchingDrink }) {
 
-    
-
     const { userSesion } = useContext(SessionContext);
 
     let { id } = useParams()
@@ -91,7 +89,7 @@ function DrinkDetails({ searchingDrink }) {
     }, [drinksDetail]);
 
     useEffect(() => {
-        if (detailDrinkIMG && detailDrinkIMG.data.length > 0 ) {
+        if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
             // Convert the image data to base64
             const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64');
             // Create the image URL using the base64 data

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Buffer } from "buffer";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
 
- 
+
     useEffect(() => {
         if (DrinkPreview.Drink.ID_DRINK !== undefined && DrinkPreview?.Drink?.ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
@@ -56,7 +57,6 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
     }, [DrinkPreview]);
 
 
-
     return (
         <div className="drink_preview_container fullscreen ">
             <div>
@@ -84,8 +84,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                         </div>
                         <div className="mt-4">
                             <label className="fs-3 fw-bolder">History</label>
-                            <div className="description-holder mt-2 col-10 text-break pe-3
-                            ">
+                            <div className="description-holder mt-2 col-10 text-break pe-3">
                                 {DrinkPreview.Drink.drinkHistory}
                                 dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd   dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  asdas dasdas dasd asd asd as dasd as dadasd v  dadasd asdasdas asd asasdas asd asdasdasd asdasdasdasd asdasdas das asdasd asdasddabkhbasdfjkhsbdajfkshdbfkjhasbdfsdhajfbsdafhjdsabfdsjhkfsabfajdshdbasfkdjashf bdaskfjhdasbfayhje rfbsadhjfbdsakfjyrebfkaEJHFO BASWUYIFBNeluaifbheqwrioyfgbvsdhfijbdsafjhokdsbf
                             </div>
@@ -95,7 +94,12 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                     <div className="polowa2 col-6 align-items-center">
                         <div className="photo-holder col-8">
                             <div>
-                                <img src={convertetIMG} className="img-fluid " ></img>
+                                <LazyLoadImage
+                                    src={convertetIMG}
+                                    className="img-fluid"
+                                    effect="blur"
+                                    alt="loaging error"
+                                />
                             </div>
                         </div>
                         <div className="mt-4 d-flex flex-column align-items-center">
@@ -108,7 +112,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     <label className={DrinkPreview.Drink.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : DrinkPreview.Drink.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : DrinkPreview.Drink.DifficultyLeve === 'Hard' ? 'hardLevelClass me-2' : ''}>{DrinkPreview.Drink.DifficultyLevel}</label>
                                 </div>
                                 <div >
-                                    <label className={DrinkPreview.Drink.Taste === 'Sour' ? 'sourClass me-2' : DrinkPreview.Drink.Taste === 'Sweet' ? 'sweetClass me-2' :  DrinkPreview.Drink.Taste === 'Bitter' ? 'bitterClass me-2' : ''}>{DrinkPreview.Drink.Taste}</label>
+                                    <label className={DrinkPreview.Drink.Taste === 'Sour' ? 'sourClass me-2' : DrinkPreview.Drink.Taste === 'Sweet' ? 'sweetClass me-2' : DrinkPreview.Drink.Taste === 'Bitter' ? 'bitterClass me-2' : ''}>{DrinkPreview.Drink.Taste}</label>
                                 </div>
                                 <div >
                                     <label className={DrinkPreview.Drink.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{DrinkPreview.Drink.DrinkType}</label>

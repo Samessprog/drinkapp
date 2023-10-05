@@ -46,15 +46,16 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
             return elm;
           }
         }
-        
+
         if (isMatch && favouriteDrink) {
           return userFavouriteDrinks.includes(elm.ID_DRINK);
         }
         return false;
       } else if (!inputDrinkText) {
-        const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
-        if (isMatchWithoutText) {
 
+        const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch;
+
+        if (isMatchWithoutText) {
 
           if (!favouriteDrink && ingredient.length !== 0) {
             if (eachdrinkflag && hasMatchingIngredientSome) {
@@ -74,20 +75,23 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
               return userFavouriteDrinks.includes(elm.ID_DRINK);
             }
           }
-        } else if (!isMatchWithoutText && ingredient.length === 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
+          //TU JEST BUG
+        } else if (isMatchWithoutText && ingredient.length === 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
           return elm;
         } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && alcocholic === true && elm.DrinkType === 'Alcoholic') {
           return elm;
         }
         return false;
-
-      } else { return elm }
+      } else {
+        return elm
+      }
     });
   };
 
   //execute when any variable downloaded from storage changes
   useEffect(() => {
     const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient);
+    console.log(searchingResults)
     //filtering by rate value if the state changes
     if (highlyRated) {
       searchingResults.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate);
