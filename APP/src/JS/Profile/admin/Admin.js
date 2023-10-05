@@ -237,7 +237,6 @@ function Admin({ drinkDatas }) {
     const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
 
 
-
     return (
         <div>
 

@@ -1,4 +1,8 @@
+@import '../../variables.scss';
+
 .fullscreen {
+    display: flex;
+    /* Use Flexbox */
     position: fixed;
     top: 0;
     left: 0;
@@ -7,11 +11,117 @@
     background-color: rgb(26, 26, 26);
     z-index: 1000;
     color: white;
+    overflow-y: scroll;
 
     .close-preview-icon-holder {
-        .close-preview-icon{
+        .close-preview-icon {
             fill: red;
+            cursor: pointer;
         }
+    }
+
+    .star {
+        fill: gold;
+    }
+
+    .data-drink-holder {
+        margin-top: 5rem;
+        margin-left: 1.5rem;
+    }
+
+    .description-holder {
+        text-align: justify;
+        /* Ustawienie wyrównania tekstu do lewej i prawej krawędzi */
+        text-align-last: justify;
+        /* Ustawienie wyrównania tylko dla ostatniej linii */
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+
+
+    .polowa1 {}
+
+
+    .polowa2 {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+
+        .drink-creator,
+        .diff-level,
+        .sourClass,
+        .sweetClass,
+        .alkoClass,
+        .softClass,
+        .bitterClass,
+        .easyLevelClass,
+        .mediumLevelClass,
+        .hardLevelClass {
+            @include drinks;
+
+            &.sweetClass {
+                background-color: rgb(247, 71, 124);
+            }
+
+            &.sourClass {
+                background-color: rgb(218, 255, 32);
+            }
+
+            &.bitterClass {
+                background-color: rgb(123, 98, 98);
+            }
+
+            &.easyLevelClass {
+                background-color: rgb(10, 226, 10);
+                margin-right: 0.3rem;
+            }
+
+            &.mediumLevelClass {
+                background-color: rgb(239, 212, 14);
+                margin-right: 0.3rem;
+            }
+
+            &.hardLevelClass {
+                background-color: rgb(255, 111, 0);
+                margin-right: 0.3rem;
+            }
+
+
+            &.diff-level {
+                background-color: $color-light-l-green;
+                color: $color-black;
+            }
+
+            &.drink-creator {
+                color: $color-black;
+            }
+
+            &.softClass {
+                background-color: rgb(154, 246, 249);
+
+                @media (max-width: 768px) {
+                    margin-top: 0.6rem;
+                }
+            }
+
+            &.alkoClass {
+                background-color: rgb(255, 0, 0);
+
+                @media (max-width: 768px) {
+                    margin-top: 0.6rem;
+                }
+
+            }
+        }
+
+        .photo-holder {
+
+        }
+        .ingredients-and-preparation-holder{
+            
+            
+        }
+
     }
 
 }

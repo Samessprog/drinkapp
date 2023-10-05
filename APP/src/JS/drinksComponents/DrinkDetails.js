@@ -156,7 +156,6 @@ function DrinkDetails({ searchingDrink }) {
 
                             </div>
 
-
                             <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
