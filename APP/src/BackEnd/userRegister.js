@@ -19,9 +19,35 @@ async function checkEmailExists(email) {
   });
 }
 
-router.post('/', async (req, res) => {
-  const { email, password, rePassword, phone, Nick, img } = req.body;
+const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const emailExists = await checkEmailExists(email);
+const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
+const phoneRegex = /^\+?\d{1,12}$/;
 
+router.post('/', async (req, res) => {
+  const { email, password, rePassword, phone, Nick } = req.body;
+
+  if (!phoneRegex.test(phone)) {
+    res.status(400).json({ success: false, message: 'Invalid phone number' });
+    return;
+  }
+
+  // Sprawdzenie poprawności hasła
+  if (!passwordRegex.test(password)) {
+    res.status(400).json({ success: false, message: 'Invalid password format' });
+    return;
+  }
+
+  if (!emailRegex.test(email)) {
+    res.status(400).json({ success: false, message: 'Invalid email format' });
+    return;
+  }
+
+  // Sprawdzenie, czy email już istnieje w bazie danych
+  if (emailExists) {
+    res.status(400).json({ success: false, message: 'Email already exists' });
+    return;
+  }
 
   // Sprawdzenie, czy hasła są zgodne
   if (password !== rePassword) {
@@ -34,34 +60,10 @@ router.post('/', async (req, res) => {
     return;
   }
 
-
   if (Nick === '') {
     res.status(400).json({ success: false, message: 'The Nick name field must be completed' });
     return;
   }
-
-
-  // Sprawdzenie poprawności numeru telefonu
-  const phoneRegex = /^\+?\d{1,12}$/;
-  if (!phoneRegex.test(phone)) {
-    res.status(400).json({ success: false, message: 'Invalid phone number' });
-    return;
-  }
-
-  // Sprawdzenie poprawności hasła
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
-  if (!passwordRegex.test(password)) {
-    res.status(400).json({ success: false, message: 'Invalid password format' });
-    return;
-  }
-
-  // Sprawdzenie, czy email już istnieje w bazie danych
-  const emailExists = await checkEmailExists(email);
-  if (emailExists) {
-    res.status(400).json({ success: false, message: 'Email already exists' });
-    return;
-  }
- 
 
   const user = { email, password, phone, Nick, userImg };
 

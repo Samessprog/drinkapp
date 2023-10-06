@@ -21,6 +21,11 @@ router.post('/', (req, res) => {
         return;
     }
 
+    if (!phoneRegex.test(phone)) {
+        res.status(400).json({ success: false, message: 'Invalid phone number format' });
+        return;
+    }
+
 
     db.query('SELECT * FROM users WHERE email = ? AND ID_User != ?', [email, userID], (err, results) => {
         if (err) {
@@ -31,12 +36,6 @@ router.post('/', (req, res) => {
 
         if (results.length > 0) {
             res.status(400).json({ success: false, message: 'Email already in use' });
-            return;
-        }
-
-        // Sprawdź, czy numer telefonu ma poprawny format
-        if (!phoneRegex.test(phone)) {
-            res.status(400).json({ success: false, message: 'Invalid phone number format' });
             return;
         }
 
