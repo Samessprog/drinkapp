@@ -1,20 +1,18 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 
-import { SessionContext } from "../Session/SessionContext";
 
-function DrinkDetails({ searchingDrink }) {
+function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
-    const { userSesion } = useContext(SessionContext);
 
     let { id } = useParams()
 
     //Pagination
+
     const [currentPage, setCurrentPage] = useState(0)
-    const [drinksDetail, setDrinkDetail] = useState({})
     //Drink ingredients 
     const [ing, setIng] = useState([])
     //Drink Preparation
@@ -23,12 +21,11 @@ function DrinkDetails({ searchingDrink }) {
     const [ingChecked, setIngChecked] = useState([]);
 
 
-
     useEffect(() => {
-        const result = searchingDrink.filter(elm => elm.ID_DRINK === parseInt(id, 10))[0];
+        let result = clickedDrinkDetail.Drink
         setIng(result?.Ingredients.split('.'));
         setPrep(result?.Preparation.split('.'));
-        setDrinkDetail(result);
+        setClickedDrinkDetail(result)
     }, [id]);
 
     {/*Paginacja*/ }
@@ -65,11 +62,13 @@ function DrinkDetails({ searchingDrink }) {
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
 
+
+
     useEffect(() => {
-        if (drinksDetail !== undefined && drinksDetail?.ID_DRINK !== undefined) {
+        if (clickedDrinkDetail !== undefined && clickedDrinkDetail?.ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
-                    let ID_Drink = drinksDetail.ID_DRINK;
+                    let ID_Drink = clickedDrinkDetail.ID_DRINK;
                     const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
                         credentials: 'include',
                     });
@@ -86,7 +85,8 @@ function DrinkDetails({ searchingDrink }) {
             };
             fetchUserFavouriteDrinkImage();
         }
-    }, [drinksDetail]);
+    }, [clickedDrinkDetail]);
+
 
     useEffect(() => {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
@@ -102,6 +102,8 @@ function DrinkDetails({ searchingDrink }) {
     }, [detailDrinkIMG]);
 
 
+
+
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
@@ -109,11 +111,11 @@ function DrinkDetails({ searchingDrink }) {
                     <div className=" ">
                         <div className="d-flex align-items-center">
                             <header>
-                                <div className="drink-name fs-3 fw-bolder">{drinksDetail.DrinkName}</div>
+                                <div className="drink-name fs-3 fw-bolder">{clickedDrinkDetail.DrinkName}</div>
                             </header>
                             <div className="d-flex ms-4 align-items-center">
 
-                                <label className="fs-3 rate"> {drinksDetail.Rate} </label>
+                                <label className="fs-3 rate"> {clickedDrinkDetail.Rate} </label>
                                 <svg className="star" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
 
                             </div>
@@ -125,16 +127,16 @@ function DrinkDetails({ searchingDrink }) {
                             <article>
                                 <div className="description-holder overflow-y-auto">
                                     <section>
-                                        <label className="fs-4 fw-bolder">{drinksDetail.DrinkName}</label>
-                                        <p>{drinksDetail.Description} </p>
+                                        <label className="fs-4 fw-bolder">{clickedDrinkDetail.DrinkName}</label>
+                                        <p>{clickedDrinkDetail.Description} </p>
                                     </section>
                                 </div>
 
-                                {drinksDetail.drinkHistory &&
+                                {clickedDrinkDetail.drinkHistory &&
                                     <div className="mt-5">
                                         <label className="fs-4">History:</label>
                                         <section>
-                                            <div className="description-holder overflow-auto"> {drinksDetail.drinkHistory}</div>
+                                            <div className="description-holder overflow-auto"> {clickedDrinkDetail.drinkHistory}</div>
                                         </section>
                                     </div>
                                 }
@@ -146,11 +148,11 @@ function DrinkDetails({ searchingDrink }) {
 
                                 <div className="d-flex  mt-3 basic-information-drink">
 
-                                    <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{drinksDetail.Creator}</label>
-                                    <label className={drinksDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : drinksDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : drinksDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinksDetail.DifficultyLevel}</label>
-                                    {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${drinksDetail.drinkType === 'Sour' ? 'bg-success' : drinksDetail.drinkType === 'Alko' ? 'bg-danger' : drinksDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
-                                    <label className={drinksDetail.Taste === 'Sour' ? 'sourClass me-2' : drinksDetail.Taste === 'Sweet' ? 'sweetClass me-2' : drinksDetail.drinkType === 'Bitter' ? 'bitterClass me-2' : ''}>{drinksDetail.Taste}</label>
-                                    <label className={drinksDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{drinksDetail.DrinkType}</label>
+                                    <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{clickedDrinkDetail.Creator}</label>
+                                    <label className={clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass me-2' : ''}>{clickedDrinkDetail.DifficultyLevel}</label>
+                                    {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${clickedDrinkDetail.drinkType === 'Sour' ? 'bg-success' : clickedDrinkDetail.drinkType === 'Alko' ? 'bg-danger' : clickedDrinkDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
+                                    <label className={clickedDrinkDetail.Taste === 'Sour' ? 'sourClass me-2' : clickedDrinkDetail.Taste === 'Sweet' ? 'sweetClass me-2' : clickedDrinkDetail.drinkType === 'Bitter' ? 'bitterClass me-2' : ''}>{clickedDrinkDetail.Taste}</label>
+                                    <label className={clickedDrinkDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{clickedDrinkDetail.DrinkType}</label>
                                 </div>
 
                             </div>

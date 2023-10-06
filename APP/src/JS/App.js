@@ -30,6 +30,8 @@ function App() {
   const [searchingDrink, setSearchingDrink] = React.useState([])
   const [drinkDatas, setDrinkData] = React.useState([])
 
+  const [clickedDrinkDetail, setClickedDrinkDetail] = React.useState({ Drink: null })
+
   //control screen changes while scrolling
   React.useEffect(() => {
     const setFixed = () => {
@@ -88,6 +90,7 @@ function App() {
 
           <Route path="/" element={
             <Home
+              setClickedDrinkDetail = {setClickedDrinkDetail}
               setSpecialOptionsPopup={setSpecialOptionsPopup}
               drinkDatas={drinkDatas}
               searchingDrink={searchingDrink}
@@ -104,7 +107,7 @@ function App() {
             element={
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} />
+                  <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} clickedDrinkDetail={clickedDrinkDetail} setClickedDrinkDetail={setClickedDrinkDetail} />
                 </Suspense>
               </ErrorBoundary>
             }>

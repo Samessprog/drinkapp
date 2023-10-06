@@ -9,9 +9,9 @@ const SpecialDrinks = lazy(() => import("./NavBarComponents/SpecialDrinks"))
 
 
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,
-    drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset }) {
+    drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset, setClickedDrinkDetail }) {
 
-        const { userSesion } = useContext(SessionContext);
+    const { userSesion } = useContext(SessionContext);
 
     return (
 
@@ -31,6 +31,7 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
             }
 
             <MainPage
+                setClickedDrinkDetail={setClickedDrinkDetail}
                 userScroll={userScroll}
                 drinkDatas={drinkDatas}
                 searchingDrink={searchingDrink}

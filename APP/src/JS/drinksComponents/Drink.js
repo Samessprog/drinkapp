@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SessionContext } from "../Session/SessionContext";
 import FetchingDrinkIMG from "../Components/FetchingDrinkIMG";
 
-function Drink({ elm, setFavourites, userFavouriteDrinks }) {
+function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail }) {
 
     //take suer session
     const { userSesion } = useContext(SessionContext);
@@ -36,10 +36,11 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
         }
     };
 
+
     return (
         <div className="drin-window drink-respons col-7 col-sm-5 col-md-4 col-lg-3  col-xxl-2  p-1 rounded m-3  position-relative">
             {/* miejsce na znacznik ulubione */}
-            <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_DRINK}`} >
+            <Link className="text-decoration-none zz " to={`drinkDetail/${elm.ID_DRINK}`} onClick={() => setClickedDrinkDetail({ Drink: elm })}>
                 <FetchingDrinkIMG elm={elm} classNameHolder='img-holder card overflow-hidden' classNameIMG='drink-img img-fluid' />
                 <div className="basic-information-drink p-2 ">
                     <div className="d-flex flex-column flex-sm-row justify-content-between  align-items-center ">
@@ -54,7 +55,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                         <div className="d-flex justify-content-between flex-wrap flex-sm-nowrap me-1">
                             <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
                             {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${elm.drinkType === 'Sour' ? 'bg-success' : elm.drinkType === 'Alko' ? 'bg-danger' : elm.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
-                            <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.drinkType === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
+                            <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.Taste === 'Bitter' ? 'bitterClass' : ''}>{elm.Taste}</label>
                         </div>
                         <label className={elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}>{elm.DrinkType}</label>
                     </div>
