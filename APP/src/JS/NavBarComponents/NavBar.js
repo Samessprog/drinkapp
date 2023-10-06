@@ -18,7 +18,6 @@ const Registers = lazy(() => import("../Register/Register"))
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll }) {
 
-
     const location = useLocation();
     const dispatch = useDispatch();
 
@@ -67,7 +66,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
             case 'register':
                 closePopups()
                 dispatch(setRegisterPopup(!registerPopup))
-                console.log(registerPopup)
                 break;
             default:
                 closePopups()
@@ -87,9 +85,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    const inputDrinkText = useSelector(state => state.navbar.inputDrinkText);
-
 
     return (
         <nav className="NavBar position-sticky top-0 ">

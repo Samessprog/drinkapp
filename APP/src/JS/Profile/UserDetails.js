@@ -38,6 +38,23 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
     //Function to change User Data
     const UserDataChange = async (event) => {
         event.preventDefault();
+
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const phoneRegex = /^\d{9}$/;
+        const nickRegex = /^[a-zA-Z0-9_-]+$/;
+
+        if (!emailRegex.test(email)) {
+            setUserChangesErrors(['Email is valid']);
+            return;
+        } else if (!phoneRegex.test(phone)) {
+            setUserChangesErrors(['Phone is valid']);
+            return;
+        } else if (!nickRegex.test(Nick)) {
+            setUserChangesErrors(['Nick is valid']);
+            return;
+        }
+
+
         try {
             const response = await fetch(`${API_URL}userDataChange`, {
                 method: 'POST',

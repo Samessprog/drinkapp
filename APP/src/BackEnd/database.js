@@ -4,6 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 
 const db = require('./DB');
+const connectionToDrinksDB = require('./drinksDB')
 const userLoginRouter = require('./userLogin');
 const userRegister = require('./userRegister');
 const userLogout = require('./logout');
@@ -202,14 +203,6 @@ app.get('/api/getAllUsers', (req, res) => {
   });
 });
 
-const mysql = require('mysql');
-
-const connectionToDrinksDB = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'drinks'
-});
 
 
 app.post('/api/deleteDrink', async (req, res) => {
@@ -253,8 +246,6 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
     res.json({ message: 'Drink has been accepted successfully' });
   });
 });
-
-
 
 
 app.get('/api/getUnAcceptedDrinks', async (req, res) => {

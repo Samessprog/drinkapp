@@ -30,18 +30,18 @@ router.post('/', (req, res) => {
     }
 
     const user = results[0];
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
-    if (!emailRegex.test(email) || email === '') {
-      res.status(500).json({ success: false, message: 'Invalid email address' });
-      return;
-    }
+    // if (!emailRegex.test(email) || email === '') {
+    //   res.status(500).json({ success: false, message: 'Invalid email address' });
+    //   return;
+    // }
 
-    if (!passwordRegex.test(password)) {
-      res.status(500).json({ success: false, message: 'Invalid password' });
-      return;
-    }
+    // if (!passwordRegex.test(password)) {
+    //   res.status(500).json({ success: false, message: 'Invalid password' });
+    //   return;
+    // }
 
     if (user.IsBlocked === 1) {
       res.status(401).json({ success: false, message: 'Your account has been blocked' });

@@ -20,13 +20,13 @@ async function checkEmailExists(email) {
 }
 
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const emailExists = await checkEmailExists(email);
+
 const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
 const phoneRegex = /^\+?\d{1,12}$/;
 
 router.post('/', async (req, res) => {
   const { email, password, rePassword, phone, Nick } = req.body;
-
+  const emailExists = await checkEmailExists(email);
   if (!phoneRegex.test(phone)) {
     res.status(400).json({ success: false, message: 'Invalid phone number' });
     return;

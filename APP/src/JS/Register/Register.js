@@ -19,6 +19,25 @@ function Registers() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        //Date Walidate
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        const phoneRegex = /^\d{9}$/;
+        const nickRegex = /^[a-zA-Z0-9_-]+$/;
+
+        if (!emailRegex.test(email)) {
+            setRegisterError('Email is valid');
+            return;
+        } else if (!passwordRegex.test(password)) {
+            setRegisterError('Password is valid');
+            return;
+        } else if (!phoneRegex.test(phone)) {
+            setRegisterError('Phone is valid');
+            return;
+        } else if (!nickRegex.test(Nick)) {
+            setRegisterError('Nick is valid');
+            return;
+        }
 
         fetch('http://localhost:3000/api/register', {
             method: 'POST',

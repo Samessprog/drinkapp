@@ -21,6 +21,8 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
 
     const submitIngreadinetsHandler = () => {
 
+        
+
         dispatch(setingredient([
             ...ingredient,
             { text: ingredientText, id: uuid() }

@@ -16,6 +16,14 @@ function LoginPopup() {
     const handleLogin = (event) => {
         event.preventDefault(); // Prevents the default form submission behavior
         
+        // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+        // if (!emailRegex.test(email)  || !passwordRegex.test(password) ) {
+        //     setLoginError(['Email or Password is valid']);
+        //     return 0;
+        // } 
+
         // Send a POST request to the login API endpoint
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
@@ -25,21 +33,21 @@ function LoginPopup() {
             },
             credentials: 'include' // Include cookies in the request
         })
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => {
-            if (!data.success) {
-                throw new Error(data.message); 
-            }
-            const user = data.user; // Extract the user data from the response
-            dispatch(setUserSession(user)); 
-            dispatch(setLoginPopup(false)); 
-            window.location.reload();
-        })
-        .catch(error => {
-            setLoginError([error.message]); // Handle any errors that occur during the login process
-        });
+            .then(response => response.json()) // Parse the response as JSON
+            .then(data => {
+                if (!data.success) {
+                    throw new Error(data.message);
+                }
+                const user = data.user; // Extract the user data from the response
+                dispatch(setUserSession(user));
+                dispatch(setLoginPopup(false));
+                window.location.reload();
+            })
+            .catch(error => {
+                setLoginError([error.message]); // Handle any errors that occur during the login process
+            });
     };
-    
+
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column">
