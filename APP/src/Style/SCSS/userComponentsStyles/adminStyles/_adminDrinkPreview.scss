@@ -27,15 +27,26 @@
     .data-drink-holder {
         margin-top: 3rem;
         margin-left: 1.5rem;
+
+        .drink-name-input {
+            background-color: transparent;
+            border: none;
+            color: white;
+            border-bottom: 2px black solid;
+        }
     }
 
     .description-holder {
         text-align: justify;
-        /* Ustawienie wyrównania tekstu do lewej i prawej krawędzi */
         text-align-last: justify;
-        /* Ustawienie wyrównania tylko dla ostatniej linii */
         overflow-y: scroll;
+        height: 200px;
         max-height: 200px;
+        background-color: rgb(26, 26, 26);
+        color: white;
+        border-radius: 5px;
+        padding: 1rem;
+        resize: none;
     }
 
 
@@ -124,7 +135,7 @@
 
 
             }
-          
+
         }
     }
 }

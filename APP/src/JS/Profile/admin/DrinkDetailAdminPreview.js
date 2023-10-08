@@ -56,6 +56,10 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         setPrep(result?.Preparation.split('.'));
     }, [DrinkPreview]);
 
+    const [drinkNameInput, setDrinknameInput] = useState(DrinkPreview.Drink.DrinkName)
+    const [drinkDescriptionInput, setDrinkDescriptionInput] = useState(DrinkPreview.Drink.Description)
+    const [drinkHistoryInput, setDrinkHistoryInput] = useState(DrinkPreview.Drink.drinkHistory)
+
 
     return (
         <div className="drink_preview_container fullscreen ">
@@ -67,26 +71,38 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                     <div className="polowa1 col-6">
                         <div className="d-flex fs-3 fw-bolder">
                             <div>
-                                {DrinkPreview.Drink.DrinkName}
-                            </div>
-                            <div className="d-flex ms-3 align-items-center ">
-                                2  <label>{DrinkPreview.Drink.Rate}</label>
-                                <svg className="star ms-1 mb-1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
+                                <input
+                                    className="drink-name-input"
+                                    value={drinkNameInput}
+                                    onChange={(e) => setDrinknameInput(e.target.value)}>
+                                </input>
                             </div>
                         </div>
                         <div>
                             <div className="mt-5 fs-4 fw-bolder">
-                                {DrinkPreview.Drink.DrinkName}
+                                <label >
+                                    {drinkNameInput}
+                                </label>
                             </div>
-                            <div className="description-holder mt-2 col-10 text-break pe-3">
-                                {DrinkPreview.Drink.Description} dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd   dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  asdas dasdas dasd asd asd as dasd as dadasd v  dadasd asdasdas asd asasdas asd asdasdasd asdasdasdasd asdasdas das asdasd asdasddabkhbasdfjkhsbdajfkshdbfkjhasbdfsdhajfbsdafhjdsabfdsjhkfsabfajdshdbasfkdjashf bdaskfjhdasbfayhje rfbsadhjfbdsakfjyrebfkaEJHFO BASWUYIFBNeluaifbheqwrioyfgbvsdhfijbdsafjhokdsbf
+                            <div className="">
+
+                                <textarea
+                                    className="description-holder mt-2 col-10 text-break"
+                                    value={drinkDescriptionInput}
+                                    onChange={(e) => setDrinkDescriptionInput(e.target.value)}
+                                />
+
                             </div>
                         </div>
                         <div className="mt-4">
                             <label className="fs-3 fw-bolder">History</label>
-                            <div className="description-holder mt-2 col-10 text-break pe-3">
-                                {DrinkPreview.Drink.drinkHistory}
-                                dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd   dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd dasdsadsa asdasdas asdas dasdas dasd asd asd as dasd as dadasd  asdas dasdas dasd asd asd as dasd as dadasd v  dadasd asdasdas asd asasdas asd asdasdasd asdasdasdasd asdasdas das asdasd asdasddabkhbasdfjkhsbdajfkshdbfkjhasbdfsdhajfbsdafhjdsabfdsjhkfsabfajdshdbasfkdjashf bdaskfjhdasbfayhje rfbsadhjfbdsakfjyrebfkaEJHFO BASWUYIFBNeluaifbheqwrioyfgbvsdhfijbdsafjhokdsbf
+                            <div className="">
+                                <textarea
+                                    className="description-holder mt-2 col-10 text-break"
+                                    value={drinkHistoryInput}
+                                    onChange={(e) => setDrinkHistoryInput(e.target.value)}
+                                />
+
                             </div>
                         </div>
                     </div>
