@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import { Suspense, useEffect, lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom"
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorFallback from "./Components/ErrorBoundary";
@@ -15,7 +15,7 @@ import Home from "./Home";
 import UserProfile from "./Profile/UserProfile";
 import Admin from "./Profile/admin/Admin";
 
-const DrinkDetails = React.lazy(() => import("./drinksComponents/DrinkDetails"))
+const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 
 function App() {
 
@@ -23,17 +23,17 @@ function App() {
   const userSesion = useSelector(state => state.user.useSesion)
   const dispatch = useDispatch();
   //scroll
-  const [userScroll, setUserScroll] = React.useState(false);
+  const [userScroll, setUserScroll] = useState(false);
   //Pagiantion offset
-  const [offset, setOffset] = React.useState(0);
+  const [offset, setOffset] = useState(0);
   //Drinks Datas
-  const [searchingDrink, setSearchingDrink] = React.useState([])
-  const [drinkDatas, setDrinkData] = React.useState([])
+  const [searchingDrink, setSearchingDrink] = useState([])
+  const [drinkDatas, setDrinkData] = useState([])
 
-  const [clickedDrinkDetail, setClickedDrinkDetail] = React.useState({ Drink: null })
+  const [clickedDrinkDetail, setClickedDrinkDetail] = useState({ Drink: null })
 
   //control screen changes while scrolling
-  React.useEffect(() => {
+  useEffect(() => {
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1);
     };
@@ -56,7 +56,7 @@ function App() {
   }, []);
 
   //Faetch drinks data from DB
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/drinks");
@@ -90,7 +90,7 @@ function App() {
 
           <Route path="/" element={
             <Home
-              setClickedDrinkDetail = {setClickedDrinkDetail}
+              setClickedDrinkDetail={setClickedDrinkDetail}
               setSpecialOptionsPopup={setSpecialOptionsPopup}
               drinkDatas={drinkDatas}
               searchingDrink={searchingDrink}

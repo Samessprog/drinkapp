@@ -1,6 +1,6 @@
+//Imports
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { setDrinkCounter } from "../States/actions";
 
 function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }) {

@@ -1,4 +1,4 @@
-import React from "react";
+//Imports
 import { useDispatch, useSelector } from 'react-redux';
 
 import Searching from "../Components/Searching";

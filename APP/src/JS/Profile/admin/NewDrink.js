@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+//Imports
 import { Link } from "react-router-dom";
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 

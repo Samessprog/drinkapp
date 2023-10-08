@@ -1,6 +1,6 @@
+//Imports
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { SessionContext } from "../Session/SessionContext";
 import FetchingDrinkIMG from "../Components/FetchingDrinkIMG";
 

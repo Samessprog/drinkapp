@@ -1,6 +1,5 @@
-import React from "react";
+//Imports
 import { useDispatch, useSelector } from 'react-redux';
-
 import { setAlcocholic, setSoftDrinks } from "../States/actions";
 
 function TypeOfDrink() {

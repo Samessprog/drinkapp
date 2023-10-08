@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//Imports
+import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, setPhone } from "../States/actions";

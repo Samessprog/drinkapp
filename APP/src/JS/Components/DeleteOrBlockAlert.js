@@ -1,5 +1,4 @@
-import React from "react";
-
+//Imports
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements, hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces, setAnnouncementsUserDoesntExist, setAnnouncementsError, setIsHidden }) {
     const API_URL = 'http://localhost:3000/api/';

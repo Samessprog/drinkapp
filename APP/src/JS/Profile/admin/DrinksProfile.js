@@ -1,4 +1,4 @@
-import React from "react";
+//Imports
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {

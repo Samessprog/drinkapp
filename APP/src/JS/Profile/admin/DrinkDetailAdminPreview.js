@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+//Imports
+import { useState, useEffect } from "react";
 import { Buffer } from "buffer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -81,6 +82,29 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         }
     };
 
+    const [selectedValue, setSelectedValue] = useState('');
+
+    useEffect(() => {
+        // Pobierz wartość z DrinkPreview.Drink.difficultyLevel i ustaw ją jako początkową wartość
+        setSelectedValue(DrinkPreview.Drink.difficultyLevel);
+    }, []);
+
+
+
+    const handleInputChange = (event, index) => {
+        const newPrep = [...prep];
+        newPrep[index] = event.target.value;
+        setPrep(newPrep);
+    };
+
+
+    const handleIngredientsInputChange = (event, index) => {
+        const newIng = [...ing];
+        newIng[index] = event.target.value;
+        setIng(newIng);
+    };
+
+
 
     return (
         <div className="drink_preview_container fullscreen ">
@@ -151,6 +175,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                         <div className="mt-4 d-flex flex-column align-items-center">
                             <label className="fs-4 mb-3 fw-bolder">Specifications</label>
                             <div className="d-flex">
+
                                 <div >
                                     <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{DrinkPreview.Drink.Creator}</label>
                                 </div>
@@ -163,15 +188,22 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                 <div >
                                     <label className={DrinkPreview.Drink.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{DrinkPreview.Drink.DrinkType}</label>
                                 </div>
+
                             </div>
                         </div>
                         <div className="d-flex justify-content-around mt-5 ingredients-and-preparation-holder col-12 mb-5">
                             <div className=" ">
                                 <label className="fw-bolder fs-4">Ingredients</label>
                                 <div className="d-flex flex-column ">
-                                    <ul className="mt-2 fs-5 ps-2">
-                                        {ing.map((elm) => (
-                                            <li>{elm}</li>
+                                <ul className="mt-2 fs-5 ps-2">
+                                        {ing.map((elm, index) => (
+                                            <li key={index}>
+                                                <input
+                                                    className="drink-name-input"
+                                                    value={elm}
+                                                    onChange={(event) => handleIngredientsInputChange(event, index)}
+                                                />
+                                            </li>
                                         ))}
                                     </ul>
                                 </div>
@@ -181,8 +213,14 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                 <label className="fw-bolder fs-4">Preparation</label>
                                 <div className="d-flex flex-column">
                                     <ul className="mt-2 fs-5 ps-2">
-                                        {prep.map((elm) => (
-                                            <li>{elm}</li>
+                                        {prep.map((elm, index) => (
+                                            <li key={index}>
+                                                <input
+                                                    className="drink-name-input"
+                                                    value={elm}
+                                                    onChange={(event) => handleInputChange(event, index)}
+                                                />
+                                            </li>
                                         ))}
                                     </ul>
                                 </div>

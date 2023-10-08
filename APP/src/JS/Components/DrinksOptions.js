@@ -1,8 +1,6 @@
-import React from "react";
+//Imports
 import { useSelector, useDispatch } from "react-redux";
-
 import { setDrinkLevel, setDrinkTaste } from "../States/actions";
-
 
 function DrinksOptions() {
 

@@ -1,3 +1,4 @@
+//Imports
 import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
@@ -10,7 +11,6 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
     let { id } = useParams()
 
-    //Pagination
 
     const [currentPage, setCurrentPage] = useState(0)
     //Drink ingredients 

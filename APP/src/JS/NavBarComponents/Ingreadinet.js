@@ -1,4 +1,4 @@
-import React from "react";
+//Imports
 import { useDispatch } from "react-redux";
 
 function Ingreadinet({ ing, setingredient, ingredient, key }) {

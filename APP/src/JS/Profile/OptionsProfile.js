@@ -1,4 +1,4 @@
-import React from "react";
+//Imports
 import { Link } from "react-router-dom";
 import { setUserSession, setUserFavouriteDrinks } from "../States/actions";
 import { useDispatch } from 'react-redux';

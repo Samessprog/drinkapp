@@ -1,9 +1,7 @@
-import React from "react";
+//Imports
 import Carousel from "../Components/Carousel";
 
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
-
-  const [userFav, setUserFav] = React.useState('')
 
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
     const favouriteDrink = drinkDatas.find((drink) => {

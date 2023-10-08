@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState, useContext } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Drink from "./drinksComponents/Drink";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
