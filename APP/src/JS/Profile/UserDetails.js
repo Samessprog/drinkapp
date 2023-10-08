@@ -23,7 +23,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
     const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
     const [newPassword, setNewPassword] = useState('')
 
-
     const [isSuccesChnage, setIsSuccesChnage] = useState(false)
 
     const API_URL = 'http://localhost:3000/api/';
@@ -33,7 +32,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
             'Content-Type': 'application/json'
         };
     };
-
 
     //Function to change User Data
     const UserDataChange = async (event) => {
@@ -53,7 +51,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
             setUserChangesErrors(['Nick is valid']);
             return;
         }
-
 
         try {
             const response = await fetch(`${API_URL}userDataChange`, {
@@ -121,10 +118,8 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
         }
     };
 
-
     return (
         <div className=" col mt-3 ">
-
 
             <div class="d-flex justify-content-between p-5 flex-column flex-xxl-row align-items-center">
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center">
@@ -140,7 +135,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
                                 color="black"
                             />
                         )}
-
 
                         <div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                             Click to change your img

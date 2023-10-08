@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
@@ -26,8 +25,6 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
             console.error(error);
         }
     }
-
-
 
 
     return (

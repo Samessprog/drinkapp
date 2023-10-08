@@ -247,6 +247,17 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
   });
 });
 
+app.post('/api/drinksDataUpdate', async (req, res) => {
+  const { drinkNameInput, drinkDescriptionInput, drinkHistoryInput } = req.body;
+
+  console.log(drinkNameInput)
+  console.log(drinkDescriptionInput)
+  console.log(drinkHistoryInput)
+
+
+});
+
+
 
 app.get('/api/getUnAcceptedDrinks', async (req, res) => {
   const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id, Date_Of_Creation FROM drink WHERE Accepted = 0';
