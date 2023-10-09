@@ -9,7 +9,6 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, drinkDatas }) {
     const userSesion = useContext(SessionContext).userSesion;
     const creator = userSesion.userID
 
-  
 
     return (
         <div className="position-relative ">

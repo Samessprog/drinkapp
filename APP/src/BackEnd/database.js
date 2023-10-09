@@ -248,14 +248,51 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
 });
 
 app.post('/api/drinksDataUpdate', async (req, res) => {
-  const { drinkNameInput, drinkDescriptionInput, drinkHistoryInput } = req.body;
-
-  console.log(drinkNameInput)
-  console.log(drinkDescriptionInput)
-  console.log(drinkHistoryInput)
+  const { drink_ID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
 
 
+  const ingredient  = ing.join('.');
+  const preparation = prep.join('.');
+
+
+  const sql = `
+  UPDATE drink
+  SET 
+    DrinkName = ?,
+    Description = ?,
+    drinkHistory = ?,
+    Ingredients = ?,
+    Preparation = ?,
+    DifficultyLevel = ?,
+    Taste = ?,
+    DrinkType = ?
+  WHERE ID_Drink = ?
+`;
+
+  const values = [
+    drinkNameInput,
+    drinkDescriptionInput,
+    drinkHistoryInput,
+    ingredient,
+    preparation,
+    drinkLevelInput,
+    drinkTasteInput,
+    drinkTypeInput,
+    drink_ID,
+  ];
+
+  
+
+  connectionToDrinksDB.query(sql, values, (err, results, fields) => {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+    res.json({ message: 'Drink data updated successfully' });
+  });
 });
+
 
 
 

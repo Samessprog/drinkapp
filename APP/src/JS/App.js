@@ -21,6 +21,7 @@ function App() {
 
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
   const userSesion = useSelector(state => state.user.useSesion)
+
   const dispatch = useDispatch();
   //scroll
   const [userScroll, setUserScroll] = useState(false);
@@ -73,6 +74,7 @@ function App() {
 
 
   return (
+
     <div className="col-12 kop">
 
       <NavBar
@@ -81,7 +83,6 @@ function App() {
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
-
       />
 
       <SessionContext.Provider value={{ userSesion, setUserSession }}>
@@ -139,6 +140,7 @@ function App() {
         </Routes>
 
       </SessionContext.Provider>
+
       <Footer searchingDrink={searchingDrink} />
 
     </div >

@@ -58,6 +58,10 @@
         display: flex;
         flex-direction: column;
 
+        .Multi-options-holder {
+            max-width: 25px
+        }
+
         .drink-creator,
         .diff-level,
         .sourClass,
@@ -123,6 +127,9 @@
                 }
 
             }
+
+
+
         }
 
         .photo-holder {

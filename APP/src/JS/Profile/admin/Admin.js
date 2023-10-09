@@ -1,24 +1,21 @@
 //Imports
-import { useEffect, useState, useContext, lazy } from "react";
+import { useEffect, useState    , lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import AdminPagination from "./AdminPagination";
-import { SessionContext } from "../../Session/SessionContext";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
-import DrinkDetailAdminPreview from "./DrinkDetailAdminPreview";
+
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
+const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
 
 function Admin({ drinkDatas }) {
 
-    const userSesion = useContext(SessionContext).userSesion;
-
-    const [blockedButton, setBlockedButton] = useState(false)
-
     const dispatch = useDispatch();
 
+    const [blockedButton, setBlockedButton] = useState(false)
     //Admin Sattes to change USER -> DRINKS
     const drinksFlag = useSelector(state => state.admin.drinksFlag)
     const usersFlag = useSelector(state => state.admin.userFlag)
