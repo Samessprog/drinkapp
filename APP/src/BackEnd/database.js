@@ -247,13 +247,16 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
   });
 });
 
-app.post('/api/drinksDataUpdate', async (req, res) => {
-  const { drink_ID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
+const multer = require('multer');
+const upload = multer();
 
+app.post('/api/drinksDataUpdate', upload.single('drinkImg'), async (req, res) => {
+  const { drinkID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
 
-  const ingredient  = ing.join('.');
-  const preparation = prep.join('.');
+  const ingredient = ing.replace(/,/g, '.');
+  const preparation = prep.replace(/,/g, '.');
 
+  const imageData = req.file.buffer;
 
   const sql = `
   UPDATE drink
@@ -265,9 +268,11 @@ app.post('/api/drinksDataUpdate', async (req, res) => {
     Preparation = ?,
     DifficultyLevel = ?,
     Taste = ?,
-    DrinkType = ?
+    DrinkType = ?,
+    IMG = ?
   WHERE ID_Drink = ?
 `;
+
 
   const values = [
     drinkNameInput,
@@ -278,10 +283,11 @@ app.post('/api/drinksDataUpdate', async (req, res) => {
     drinkLevelInput,
     drinkTasteInput,
     drinkTypeInput,
-    drink_ID,
+    imageData,
+    drinkID,
   ];
 
-  
+
 
   connectionToDrinksDB.query(sql, values, (err, results, fields) => {
     if (err) {
@@ -289,9 +295,14 @@ app.post('/api/drinksDataUpdate', async (req, res) => {
       res.status(500).send('Error executing query');
       return;
     }
+
+    // Jeśli wykonano zapytanie SQL bez błędów, możesz również zapisać przesyłany obraz do bazy danych lub systemu plików.
+    // Wartość `imageData` zawiera dane przesyłanego obrazu.
+
     res.json({ message: 'Drink data updated successfully' });
   });
 });
+
 
 
 
