@@ -47,13 +47,12 @@ function Admin({ drinkDatas }) {
 
     const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
 
+
     const [hiddenElements, setHiddenElements] = useState([]);
     const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
 
     const [showNewsFlag, setShowNewsFlag] = useState(false)
     const [filterByDate, setFilterByDate] = useState(false)
-
-    const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
 
     //Fetch all users from DB
     useEffect(() => {
@@ -125,7 +124,7 @@ function Admin({ drinkDatas }) {
             let filteredResults;
 
             if (isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
-                filteredResults = currentItemsUsers?.filter((userElm) => userElm.IsBlocked === 1);
+                filteredResults = currentItemsUsers?.filter((elm) => elm.IsBlocked === 1);
             } else if (!isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
                 filteredResults = users;
             } else {
@@ -233,7 +232,8 @@ function Admin({ drinkDatas }) {
     }, [])
 
 
-   
+    const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
+
 
     return (
         <div>

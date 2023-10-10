@@ -8,30 +8,27 @@ import Pagination from 'react-paginate';
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
-
     let { id } = useParams()
-
 
     const [currentPage, setCurrentPage] = useState(0)
     //Drink ingredients 
-    const [ing, setIng] = useState([])
+    const [ingredient, setIngredient] = useState([])
     //Drink Preparation
-    const [prep, setPrep] = useState([])
+    const [preparation, setPreparation] = useState([])
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([]);
 
-
     useEffect(() => {
         let result = clickedDrinkDetail.Drink
-        setIng(result?.Ingredients.split('.'));
-        setPrep(result?.Preparation.split('.'));
+        setIngredient(result?.Ingredients.split('.'));
+        setPreparation(result?.Preparation.split('.'));
         setClickedDrinkDetail(result)
     }, [id]);
 
     {/*Paginacja*/ }
     const itemPerPage = 1;
-    const pageCount = Math.ceil(prep?.length / itemPerPage);
-    const currentData = prep?.slice(currentPage, currentPage + itemPerPage);
+    const pageCount = Math.ceil(preparation?.length / itemPerPage);
+    const currentData = preparation?.slice(currentPage, currentPage + itemPerPage);
 
     // Function to handle page click
     const handlePageClick = (data) => {
@@ -101,9 +98,6 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
     }, [detailDrinkIMG]);
 
-
-
-
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
@@ -161,7 +155,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                 <label className="fs-5 fw-bolder">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto">
 
-                                    {ing.map((ingredient, key) => (
+                                    {ingredient.map((ingredient, key) => (
                                         <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
                                     ))}
 
@@ -188,8 +182,8 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                 <div className="mt-2 border rounded pt-4 ps-4 pe-4">
                     <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
                         <div>
-                            {currentData.map((prep, key) => (
-                                <div key={key}>{prep}</div>
+                            {currentData.map((preparation, key) => (
+                                <div key={key}>{preparation}</div>
                             ))}
 
                             <div className="mt-5 d-flex justify-content-center col align-items-center">

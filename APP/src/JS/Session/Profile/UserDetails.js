@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Ring } from '@uiball/loaders'
 
-import { setEmail, setPhone, setUserNick, setPassword } from "../States/actions";
+import { setEmail, setPhone, setUserNick, setPassword } from "../../States/actions";
+
 
 function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
 

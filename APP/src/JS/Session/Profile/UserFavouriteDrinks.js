@@ -1,13 +1,15 @@
 //Imports
-import Carousel from "../Components/Carousel";
+import Carousel from "../../Components/Carousel";
 
 function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
     const favouriteDrink = drinkDatas.find((drink) => {
+      console.log(drink)
       if (favId === drink.ID_DRINK) {
         return drink;
       }
+
     });
     return favouriteDrink;
   })

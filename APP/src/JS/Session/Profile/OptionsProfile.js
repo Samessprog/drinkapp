@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { setUserSession, setUserFavouriteDrinks } from "../States/actions";
 import { useDispatch } from 'react-redux';
 
+
+
 function OptionsProfile() {
 
     const dispatch = useDispatch();
@@ -22,7 +24,7 @@ function OptionsProfile() {
     // reload Window !!Zamiast tego wyczyść state? i daj adnotracje o wylogowaniu się 
     function handleLogoutClick() {
         logoutUser();
-        dispatch(setUserFavouriteDrinks([]))
+         dispatch(setUserFavouriteDrinks([]))
     }
 
     return (

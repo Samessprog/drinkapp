@@ -43,13 +43,16 @@ function UserDrink({ elm }) {
         } catch (error) {
             console.error(error);
         }
+
     };
 
     return (
         <div className={`user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5  ${isHidden ? 'd-none' : ''}`}>
             <div className=" position-relative ">
                 <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
+
                     <FetchingDrinkIMG elm={elm} classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
+
                 </Link >
                 <div className="position-absolute favourite-drink-info-box ">
                     <div class="d-flex  flex-column justify-content-center align-items-center">

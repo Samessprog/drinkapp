@@ -4,21 +4,10 @@ import { Buffer } from "buffer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
-    const API_URL = 'http://localhost:3000/api/';
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
-
-    //States for Update Drink
-    const [ingredient, setIngredient] = useState([])
-    const [preparation, setPreparation] = useState([])
-    const [drinkNameInput, setDrinknameInput] = useState(DrinkPreview.Drink.DrinkName)
-    const [drinkDescriptionInput, setDrinkDescriptionInput] = useState(DrinkPreview.Drink.Description)
-    const [drinkHistoryInput, setDrinkHistoryInput] = useState(DrinkPreview.Drink.drinkHistory)
-    const [drinkLevelInput, setDrinkLevelInput] = useState(DrinkPreview.Drink.DifficultyLevel)
-    const [drinkTasteInput, setDrinkTasteInput] = useState(DrinkPreview.Drink.Taste)
-    const [drinkTypeInput, setDrinkTypeInput] = useState(DrinkPreview.Drink.DrinkType)
-    const [drinkImg, setDrinkImg] = useState(convertetIMG)
+    const API_URL = 'http://localhost:3000/api/';
 
     useEffect(() => {
         if (DrinkPreview.Drink.ID_DRINK !== undefined && DrinkPreview?.Drink?.ID_DRINK !== undefined) {
@@ -43,6 +32,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         }
     }, [DrinkPreview]);
 
+
     useEffect(() => {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
             // Convert the image data to base64
@@ -56,11 +46,25 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
 
     }, [detailDrinkIMG]);
 
+
+    const [ing, setIng] = useState([])
+    //Drink Preparation
+    const [prep, setPrep] = useState([])
+
     useEffect(() => {
         const result = DrinkPreview.Drink
-        setIngredient(result?.Ingredients.split('.'));
-        setPreparation(result?.Preparation.split('.'));
+        setIng(result?.Ingredients.split('.'));
+        setPrep(result?.Preparation.split('.'));
     }, [DrinkPreview]);
+
+    const [drinkNameInput, setDrinknameInput] = useState(DrinkPreview.Drink.DrinkName)
+    const [drinkDescriptionInput, setDrinkDescriptionInput] = useState(DrinkPreview.Drink.Description)
+    const [drinkHistoryInput, setDrinkHistoryInput] = useState(DrinkPreview.Drink.drinkHistory)
+    const [drinkLevelInput, setDrinkLevelInput] = useState(DrinkPreview.Drink.DifficultyLevel)
+    const [drinkTasteInput, setDrinkTasteInput] = useState(DrinkPreview.Drink.Taste)
+    const [drinkTypeInput, setDrinkTypeInput] = useState(DrinkPreview.Drink.DrinkType)
+    const [drinkImg, setDrinkImg] = useState(convertetIMG)
+
 
     const DrinkDateUpdate = async (event) => {
         event.preventDefault();
@@ -83,8 +87,27 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         formData.append('drinkLevelInput', drinkLevelInput);
         formData.append('drinkTasteInput', drinkTasteInput);
         formData.append('drinkTypeInput', drinkTypeInput);
-        formData.append('ing', ingredient);
-        formData.append('prep', preparation);
+        formData.append('ing', ing);
+        formData.append('prep', prep);
+
+        // const formData = new FormData();
+
+        // const fields = {
+        //     drinkImg,
+        //     drink_ID,
+        //     drinkNameInput,
+        //     drinkDescriptionInput,
+        //     drinkHistoryInput,
+        //     drinkLevelInput,
+        //     drinkTasteInput,
+        //     drinkTypeInput,
+        //     ing,
+        //     prep,
+        // };
+
+        // for (const [key, value] of Object.entries(fields)) {
+        //     formData.append(key, value);
+        // }
 
         try {
             const response = await fetch(`${API_URL}drinksDataUpdate`, {
@@ -102,16 +125,16 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
 
 
     const handleInputChange = (event, index) => {
-        const newPrep = [...preparation];
+        const newPrep = [...prep];
         newPrep[index] = event.target.value;
-        setPreparation(newPrep);
+        setPrep(newPrep);
     };
 
 
     const handleIngredientsInputChange = (event, index) => {
-        const newIng = [...ingredient];
+        const newIng = [...ing];
         newIng[index] = event.target.value;
-        setIngredient(newIng);
+        setIng(newIng);
     };
 
 
@@ -229,11 +252,11 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     <label className="fw-bolder fs-4">Ingredients</label>
                                     <div className="d-flex flex-column ">
                                         <ul className="mt-2 fs-5 ps-2">
-                                            {ingredient.map((ingredient, index) => (
+                                            {ing.map((elm, index) => (
                                                 <li key={index}>
                                                     <input
                                                         className="drink-name-input"
-                                                        value={ingredient}
+                                                        value={elm}
                                                         onChange={(event) => handleIngredientsInputChange(event, index)}
                                                     />
                                                 </li>
@@ -246,11 +269,11 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     <label className="fw-bolder fs-4">Preparation</label>
                                     <div className="d-flex flex-column">
                                         <ul className="mt-2 fs-5 ps-2">
-                                            {preparation.map((preparation, index) => (
+                                            {prep.map((elm, index) => (
                                                 <li key={index}>
                                                     <input
                                                         className="drink-name-input"
-                                                        value={preparation}
+                                                        value={elm}
                                                         onChange={(event) => handleInputChange(event, index)}
                                                     />
                                                 </li>

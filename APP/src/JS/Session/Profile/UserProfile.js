@@ -6,10 +6,11 @@ import UserDetails from "./UserDetails";
 import UserOwnDrinks from "./UserOwnDrinks";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
 import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
-import { SessionContext } from "../Session/SessionContext";
+import { SessionContext } from "../SessionContext";
 
 function UserProfile({ drinkDatas }) {
   
+
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
   

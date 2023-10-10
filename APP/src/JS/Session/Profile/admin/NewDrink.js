@@ -4,6 +4,7 @@ import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
 
 function NewDrink({ elm, setWindowAlert, windowAlert, hiddenDrinkElements }) {
 
+
     return (
         <div className={`mb-3 ms-3  d-flex align-items-center drinks-profile-holder  justify-content-between col-11 ${hiddenDrinkElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
 

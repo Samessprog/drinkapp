@@ -7,6 +7,7 @@ import { Ring } from '@uiball/loaders'
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, isHidden, hiddenElements }) {
     //My Api URL Local
     const API_URL = 'http://localhost:3000/api/';
+
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
     //Take user UMG
@@ -17,6 +18,8 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)
     const [userIMG, setUserIMG] = useState(null)
+
+
 
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
@@ -39,6 +42,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
         fetchUserFavouriteDrinkImage();
     }, [elm.user_ID]);
 
+
     useEffect(() => {
         if (userIMG && userIMG.data.length > 0) {
             // Convert the image data to base64
@@ -51,6 +55,8 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
         }
         setFetchIMGCompleted(true)
     }, [userIMG]);
+
+
 
     //Function to Change User Data
     const UserDataChange = async (event) => {
@@ -78,6 +84,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
         }
     };
+
 
     return (
         <div className={`mb-3 ms-3 d-flex align-items-center drinks-profile-holder me-3 justify-content-between ${hiddenElements.includes(elm.ID_User) ? 'd-none' : ''}`}>

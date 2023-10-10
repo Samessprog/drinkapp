@@ -8,7 +8,6 @@ function DrinksOptions() {
     const drinkLevel = useSelector(state => state.drink.drinkLevel);
     const drinkTaste = useSelector(state => state.drink.drinkTaste);
 
-
     return (
         <div className="ms-2 multi-options">
             <div className="d-flex">
@@ -33,6 +32,6 @@ function DrinksOptions() {
             </div>
         </div>
     )
-
 }
+
 export default DrinksOptions;

@@ -26,6 +26,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
+
     return (
 
         <div className={`mb-3 ms-3  d-flex align-items-center drinks-profile-holder  justify-content-between col-11 ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
@@ -49,7 +50,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                         </div>
                         <div className="details-button-holder d-flex mt-xl-3 mb-xl-0 mb-3 flex-column flex-xl-row align-items-center ">
                             <button className="details-button ">
-                                <label onClick={() => setDrinkPreview({ isOpenPrev: true, Drink: elm })}>show me the details</label>
+                                <label onClick={() => setDrinkPreview({ isOpenPrev:true, Drink:elm })}>show me the details</label>
                             </button>
 
                             <div className="d-flex delete-profile me-5 pb-2">

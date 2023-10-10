@@ -11,28 +11,20 @@ const Ingreadinet = lazy(() => import("./Ingreadinet"))
 
 function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, setDrinkNotFound }) {
 
-    const drinkCounter = useSelector(state => state.drink.drinkCounter)
-    const [ingredientText, setIngredientText] = useState("")
-
     const dispatch = useDispatch();
 
-    const inputTextHandler = (event) => { setIngredientText(event.target.value) }
-
+    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag)
+    const drinkCounter = useSelector(state => state.drink.drinkCounter)
     const ingredient = useSelector(state => state.drink.ingredient)
+    const [ingredientText, setIngredientText] = useState("")
 
     const submitIngreadinetsHandler = () => {
-
-        
-
         dispatch(setingredient([
             ...ingredient,
             { text: ingredientText, id: uuid() }
         ]))
-
         setIngredientText("")
     }
-
-    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
 
     return (
         <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>
@@ -58,7 +50,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
 
                 <div className="mb-4  d-flex mt-4 justify-content-center">
 
-                    <input value={ingredientText} onChange={inputTextHandler} className="col-8  col-sm-6 col-lg-6 ps-1 ingredients-input rounded  " type="text" placeholder="ingredient"></input>
+                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-8  col-sm-6 col-lg-6 ps-1 ingredients-input rounded  " type="text" placeholder="ingredient"></input>
                     <button onClick={submitIngreadinetsHandler} className="col-3 col-sm-1   rounded ms-1 ms-sm-2 enter-button " type="button">Enter</button>
 
                 </div>

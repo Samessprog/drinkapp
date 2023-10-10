@@ -1,13 +1,14 @@
 //Imports
 import { useContext } from "react";
 
-import OwnDrinkCarusel from "../Components/OwnDrinkCarusel";
-import { SessionContext } from "../Session/SessionContext";
+import OwnDrinkCarusel from "../../Components/OwnDrinkCarusel";
+import { SessionContext } from "../SessionContext";
 
 function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, drinkDatas }) {
 
     const userSesion = useContext(SessionContext).userSesion;
     const creator = userSesion.userID
+
 
     return (
         <div className="position-relative ">

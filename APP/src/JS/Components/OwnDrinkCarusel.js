@@ -11,7 +11,7 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
     const [userOwnDrinks, setUserOwnDrinks] = useState([])
 
     useEffect(() => {
-        const ownDrinkFilter = drinkDatas.filter((elm) => elm.Creator == creator);
+        const ownDrinkFilter = drinkDatas.filter((DrinkElm) => DrinkElm.Creator == creator);
         setUserOwnDrinks(ownDrinkFilter);
     }, []);
 

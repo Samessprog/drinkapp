@@ -17,7 +17,6 @@ function Registers() {
     //State for display errors 
     const [registerError, setRegisterError] = useState(null);
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
         //Date Walidate
@@ -60,7 +59,6 @@ function Registers() {
             })
             .catch(error => console.error(error));
     };
-
 
     return (
         <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column col ">

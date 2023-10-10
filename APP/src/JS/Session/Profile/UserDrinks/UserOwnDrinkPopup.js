@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { v4 as uuid } from 'uuid';
 
-import { SessionContext } from "../../Session/SessionContext";
+import { SessionContext } from "../../SessionContext";
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
@@ -16,6 +16,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const [drinkLevel, setDrinkLevel] = useState("")
     const [drinkTaste, setDrinkTaste] = useState("")
 
+    //const [drinkIMG ,setDrinkIMG] = useState("")
+
     //arr for drinks err
     const [drinkErrors, setDrinkErrors] = useState(null);
     //flag that checks for errors while adding a drink
@@ -26,6 +28,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //preparing for a drink
     const [preparationOfNewDrink, setPreparationOfNewDrink] = useState([])
     const [preparationOfNewDrinkText, setPreparationOfNewDrinkText] = useState('')
+
 
     //sending data from user as data to new drink
     const addNewDrinkHandler = async (event) => {
@@ -56,7 +59,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         formData.append('drinkHistory', drinkHistory);
         formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
         formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
-
+  
         try {
             const response = await fetch('http://localhost:3000/api/addNewDrink', {
                 method: 'POST',
