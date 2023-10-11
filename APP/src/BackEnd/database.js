@@ -247,6 +247,22 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
   });
 });
 
+app.post('/api/drinkRating', async (req, res) => {
+  const { drinkID, clickedStar, userID } = req.body;
+
+  const query = "INSERT INTO drinksrating (User_ID, Drink_ID, Rate) VALUES (?, ?, ?)";
+
+  connectionToDrinksDB.query(query, [userID, drinkID, clickedStar], (err, result) => {
+    if (err) {
+      console.error("Błąd przy wstawianiu danych do tabeli DrinkRating:", err);
+      res.status(500).send("Wystąpił błąd podczas oceniania drinku.");
+    } else {
+      console.log("Dane oceny drinku zostały pomyślnie wstawione do tabeli DrinkRating.");
+      res.status(200).send("Ocena drinku została dodana.");
+    }
+  });
+});
+
 const multer = require('multer');
 const upload = multer();
 
@@ -302,8 +318,6 @@ app.post('/api/drinksDataUpdate', upload.single('drinkImg'), async (req, res) =>
     res.json({ message: 'Drink data updated successfully' });
   });
 });
-
-
 
 
 

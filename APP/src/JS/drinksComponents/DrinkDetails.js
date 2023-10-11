@@ -1,12 +1,16 @@
 //Imports
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
+import { SessionContext } from "../Session/SessionContext";
 
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
+
+
+    const API_URL = 'http://localhost:3000/api/';
 
     let { id } = useParams()
 
@@ -55,11 +59,36 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
         setIngChecked(newIngChecked);
     }
 
-
+    const [clickedStar, setClickedStar] = useState(clickedDrinkDetail.Rate)
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
+    const handleStarClick = (starNumber) => {
+        setClickedStar(starNumber);
+    };
 
+    let userSession = useContext(SessionContext).userSesion
+    const sendARating = async () => {
 
+        let userID = userSession.userID
+        let drinkID = clickedDrinkDetail?.ID_DRINK;
+
+        try {
+            const response = await fetch(`${API_URL}drinkRating`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ drinkID, clickedStar, userID }),
+            });
+            const data = await response.json();
+            if (response.status === 200 || data.message === 'User block successfully') {
+
+            } else if (response.status === 404 && data.error === 'User not found') {
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     useEffect(() => {
         if (clickedDrinkDetail !== undefined && clickedDrinkDetail?.ID_DRINK !== undefined) {
@@ -98,20 +127,32 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
     }, [detailDrinkIMG]);
 
+
+
     return (
         <div className="drink-holder">
             <div className="drink-main-container mt-5 ms-4 me-4">
                 <div className="d-flex justify-content-between d-col-1200 align-items-center">
                     <div className=" ">
                         <div className="d-flex align-items-center">
-                            <header>
+                            <header className="d-flex align-items-center">
                                 <div className="drink-name fs-3 fw-bolder">{clickedDrinkDetail.DrinkName}</div>
                             </header>
-                            <div className="d-flex ms-4 align-items-center">
-
-                                <label className="fs-3 rate"> {clickedDrinkDetail.Rate} </label>
-                                <svg className="star" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
-
+                            <div className="d-flex ms-4 align-items-center mb-2">
+                                {/* Wygeneruj 5 gwiazdek */}
+                                {[1, 2, 3, 4, 5].map((starNumber) => (
+                                    <svg
+                                        key={starNumber}
+                                        className={`star ${starNumber <= clickedDrinkDetail.Rate ? 'gold' : ''}`}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24"
+                                        width="24"
+                                        onClick={() => { handleStarClick(starNumber); sendARating() }} // Add an onClick handler
+                                        style={{ cursor: 'pointer' }} // Add pointer cursor to indicate it's clickable
+                                    >
+                                        <path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" />
+                                    </svg>
+                                ))}
                             </div>
                         </div>
 
