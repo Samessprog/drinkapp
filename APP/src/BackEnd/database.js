@@ -203,8 +203,6 @@ app.get('/api/getAllUsers', (req, res) => {
   });
 });
 
-
-
 app.post('/api/deleteDrink', async (req, res) => {
   const { ID_Drink } = req.body;
   console.log(ID_Drink)
@@ -228,7 +226,6 @@ app.post('/api/deleteDrink', async (req, res) => {
     }
   });
 });
-
 
 app.post('/api/acceptDrinksByAdmin', async (req, res) => {
   const { drinkID } = req.body;

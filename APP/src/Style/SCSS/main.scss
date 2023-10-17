@@ -1,13 +1,13 @@
 @import "./navbarComponentsStyles/setingsPopup";
 @import "./navbarComponentsStyles/loginPopup";
 @import "./navbarComponentsStyles/navbar";
-@import "./navbarComponentsStyles/specialPopup";
+@import "./drinksComponentsStyles/specialPopup";
 @import "./drinksComponentsStyles/drinksDetails";
 @import "./drinksComponentsStyles/drink";
-@import "footer";
-@import "./userComponentsStyles/userProfiil";
+@import "./footer/footer";
+@import "./userComponentsStyles/userStyles/userProfiil";
 @import "./drinksComponentsStyles/userDrinks";
-@import "./userComponentsStyles/userProfile";
+@import "./userComponentsStyles/userStyles/userProfile";
 @import "./userComponentsStyles/adminStyles/mainAdminStyles";
 @import "./userComponentsStyles/adminStyles/adminAlert";
 @import "./userComponentsStyles/adminStyles/adminDrinkPreview";

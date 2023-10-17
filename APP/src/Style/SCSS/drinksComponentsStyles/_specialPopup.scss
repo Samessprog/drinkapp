@@ -1,0 +1,60 @@
+@import "../variables";
+
+.special-drinks-holder {
+    z-index: 1;
+    left: 10%;
+
+    @media (max-width: 768px) {
+        left: 0%;
+    }
+
+    @media (max-width: 768px) {
+        font-size: $font-size-13;
+    }
+
+    .helper {
+        background-color: rgb(41, 41, 41);
+        color: $color-white;
+        box-shadow: 0px 0px 10px 7px $color-black;
+
+        .close-icon {
+            fill: $color-red;
+            cursor: pointer;
+        }
+
+        .ingredients-input {
+
+            @media (max-width: 575px) {
+                padding: 0.3rem;
+            }
+
+        }
+
+        .enter-button {
+            background-color: $color-black;
+            color: $color-white;
+        }
+
+        .test {
+            max-height: $n-150px;
+
+            .drink-ingredient {
+                background-color: $color-white;
+                color: $color-black;
+
+            }
+        }
+
+        .drink-results {
+            color: $color-gold;
+        }
+
+        .search-special-drink-button {
+            background-color: $color-black;
+            color: $color-white;
+
+        }
+
+    }
+
+}

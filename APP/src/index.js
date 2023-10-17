@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './JS/App';
+import App from './Front/Farontend/JS/App';
 import style from './Style/CSS/main.css'
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import {store}  from './JS/States/Store';
+import {store}  from './Front/Farontend/JS/States/Store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,5 +14,3 @@ root.render(
     </Provider>
   </BrowserRouter>
 );
-
-
