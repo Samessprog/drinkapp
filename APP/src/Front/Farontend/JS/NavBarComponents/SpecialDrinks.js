@@ -27,7 +27,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
     }
 
     return (
-        <div className="special-drinks-holder position-fixed col-12 col-md-10 mt-5" style={{ textAlign: "center" }}>
+        <div className="special-drinks-holder position-fixed col-12 mt-5" style={{ textAlign: "center" }}>
 
             <Searching
                 ingredient={ingredient}
@@ -39,46 +39,70 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
 
             <div className="col-10 helper rounded p-3" style={{ margin: "auto" }}>
                 <div className="d-flex flex-row-reverse ">
-                    <svg onClick={() => dispatch(setSpecialOptionsPopup(false))} className="close-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-                        <path d="M7.062 14 10 11.062 12.938 14 14 12.938 11.062 10 14 7.062 12.938 6 10 8.938 7.062 6 6 7.062 8.938 10 6 12.938ZM10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.625-3.115.625-1.447 1.719-2.541Q5.438 3.25 6.896 2.625T10 2q1.667 0 3.115.625 1.447.625 2.541 1.719 1.094 1.094 1.719 2.541Q18 8.333 18 10q0 1.646-.625 3.104-.625 1.458-1.719 2.552t-2.541 1.719Q11.667 18 10 18Zm0-1.5q2.708 0 4.604-1.896T16.5 10q0-2.708-1.896-4.604T10 3.5q-2.708 0-4.604 1.896T3.5 10q0 2.708 1.896 4.604T10 16.5Zm0-6.5Z" />
+                    <svg
+                        className="close-icon d-flex flex-row-reverse " onClick={() => dispatch(setSpecialOptionsPopup(false))}
+                        xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                        <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                     </svg>
+
                 </div>
-                <div className="flex-column  mt-3 d-none d-sm-flex">
+                <div className="flex-column mt-1 d-none d-sm-flex">
                     <label className="d-flex justify-content-center fs-5 fw-bolder">Note:</label>
                     Please enter the ingredients you have and then click ENTER.If you want to delete a component, click X.
                 </div>
 
-                <div className="mb-4  d-flex mt-4 justify-content-center">
-
-                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-8  col-sm-6 col-lg-6 ps-1 ingredients-input rounded  " type="text" placeholder="ingredient"></input>
-                    <button onClick={submitIngreadinetsHandler} className="col-3 col-sm-1   rounded ms-1 ms-sm-2 enter-button " type="button">Enter</button>
-
+                <div className="mb-3  d-flex mt-3 justify-content-center">
+                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-6 col-sm-6 col-lg-5  ingredients-input   " type="text" placeholder="Enter your ingredients"></input>
+                    <button onClick={submitIngreadinetsHandler} className="ing-button ms-1">ADD</button>
                 </div>
-                <div className="d-flex justify-content-center  align-items-center">
-                    <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} /> <label className="ms-1">search for ALL drinks with the given ingredients</label>
+                
+
+                <div className="d-flex justify-content-center  align-items-center  mb-2">
+                    <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} />
+                    {
+                        !eachdrinkflag ? (
+                            <label className="ms-2">Search for ALL drinks with the given ingredients</label>
+                        ) : (
+                            <label className="ms-2">Search for ONLY drinks with the given ingredients</label>
+                        )
+                    }
                 </div>
-                <div className=" col-7 test overflow-auto pe-2">
-
-                    <ul className="ms-0  ">
-                        {ingredient.map((ing) => (
-                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }} key={ing.id}>
-                                <Suspense>
-                                    <Ingreadinet ing={ing} key={ing.id} setingredient={setingredient} ingredient={ingredient} />
-                                </Suspense>
-                            </ErrorBoundary>
-                        ))}
-                    </ul>
-
+                <div className="col-12 justify-content-between align-items-center d-flex">
+                    <div className=" col-9 test overflow-auto pe-2">
+                        <label className="d-flex ms-5 mb-3 fs-4"> Your ingredients:</label>
+                        <ul className="ms-0  col-12">
+                            {ingredient.map((ing) => (
+                                <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }} key={ing.id}>
+                                    <Suspense>
+                                        <Ingreadinet ing={ing} key={ing.id} setingredient={setingredient} ingredient={ingredient} />
+                                    </Suspense>
+                                </ErrorBoundary>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="col-2">
+                        <svg className="special-drink-ing-icon" height="150px" width="150px" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314.862 314.862" link="http://www.w3.org/1999/xlink" enable-background="new 0 0 314.862 314.862">
+                            <path d="m111.964,160.37c0.841,10.703 11.333,17.847 21.558,14.789 8.885-2.657 13.934-12.015 11.277-20.9-4.504-15.064-12.983-44.946-31.316-69.222l2.629-6.734 .458-6.887 .639-.337c3.783-2.002 6.457-5.553 7.338-9.749l2.181-10.425c0.617-2.95 0.302-5.967-0.912-8.723l-12.685-28.922c-4.474-10.203-16.361-14.852-26.568-10.37l-74.486,32.662c-10.207,4.476-14.849,16.36-10.371,26.568l23.293,53.119c4.467,10.186 16.388,14.835 26.568,10.369l50.561-22.173c6.888,21.949 8.168,32.289 9.836,56.935zm-10.865-109.055l-1.462,.772c-4.436,2.344-7.283,6.73-7.618,11.738l-.598,8.974-3.782,9.692-41.686,18.28-19.41-44.265 65.633-28.781 9.382,21.395-.459,2.195z" />
+                            <path d="m302.786,77.107l-74.484-32.663c-10.183-4.466-22.101,0.184-26.57,10.369l-12.687,28.935c-1.211,2.757-1.524,5.771-0.908,8.71l2.179,10.412c0.874,4.203 3.553,7.764 7.348,9.768l.631,.333 .458,6.887 2.806,7.188c-30.768,39.907-33.418,72.477-33.672,73.524h-101.664c-6.903,0-12.5,5.597-12.5,12.5 0,30.735 14.743,58.121 37.594,75.61h-2.528c-6.903,0-12.5,5.597-12.5,12.5s5.597,12.5 12.5,12.5h122.951c6.903,0 12.5-5.597 12.5-12.5s-5.597-12.5-12.5-12.5h-2.528c22.85-17.489 37.594-44.876 37.594-75.61 0-6.903-5.597-12.5-12.5-12.5h-33c1.574-19.151 3.964-37.019 11.25-55.658l50.739,22.25c10.187,4.467 22.103-0.187 26.569-10.37l23.293-53.117c4.475-10.207-0.161-22.094-10.371-26.568zm-82.105,148.462c-6,32.957-35.292,58.044-70.416,58.044s-64.417-25.087-70.417-58.044h140.833zm48.229-83.244l-41.686-18.279-3.783-9.692-.597-8.96c-0.323-4.933-3.239-9.435-7.618-11.752l-1.462-.772-.46-2.195 9.382-21.394 65.634,28.781-19.41,44.263z" />
+                        </svg>
+                    </div>
                 </div>
 
-                <div className="d-flex flex-column  justify-content-between align-items-center ">
-
-                    <label>The amount of drinks we have with these ingredients:</label>
+                <div className="d-flex flex-column  justify-content-between align-items-center mt-3">
+                    <label className="">The amount of drinks we have with these ingredients:</label>
                     <label className={`drink-results mt-1 mb-1 d-flex justify-content-center fs-3 fw-bold ${drinkCounter === 0 && 'text-danger'}`}>{drinkCounter}</label>
-
+                </div>
+                <div className="d-flex flex-row-reverse search-special-holder" onClick={() => dispatch(setSpecialOptionsPopup(false))}>
+                    <button className="rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2 ps-3 pe-3 mt-2">
+                        <svg className="me-1 ms-2 me-2 search-special-icon" xmlns="http://www.w3.org/2000/svg"
+                            height="24" viewBox="0 -960 960 960" width="24">
+                            <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q-54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM620-280q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29-71q0 42 29 71t71 29Z" />
+                        </svg>
+                        <div className="pe-2">Search</div>
+                    </button>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }

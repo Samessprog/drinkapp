@@ -36,11 +36,8 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 </svg>
             </div>
             <div className="ms-2 p-2 pe-3 ">
-
                 <div className="d-flex justify-content-center fs-5 ">Filter</div>
-
                 <div className="options-holder-settings-popup  mt-3 d-flex font col-12">
-
                     <div className="col-6">
                         <div className="d-flex mt-1">
                             <input
@@ -55,9 +52,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                                 Favorite
                             </label>
                         </div>
-
                         <TypeOfDrink />
-
                         <div className="d-flex mt-1">
                             <input
                                 id='highlyRatedCheckbox'
@@ -69,11 +64,9 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                             </input>
                             <label htmlFor='highlyRatedCheckbox' className="ms-2">Highly rated </label>
                         </div>
-
                     </div>
                     <DrinksOptions />
                 </div>
-
                 <div className="d-flex justify-content-center mt-3">
                     <button onClick={() => {
                         dispatch(setSpecialOptionsPopup(!specialOptionsPopup))

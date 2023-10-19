@@ -2,7 +2,6 @@
 
 .special-drinks-holder {
     z-index: 1;
-    left: 10%;
 
     @media (max-width: 768px) {
         left: 0%;
@@ -14,21 +13,59 @@
 
     .helper {
         background-color: rgb(41, 41, 41);
-        color: $color-white;
-        box-shadow: 0px 0px 10px 7px $color-black;
+        color: #fbf2ea;
+        height: 530px;
+        border: 1px solid rgb(251, 242, 234);
+
+        /* Define the initial fill color for .special-drink-ing-icon */
+        .special-drink-ing-icon {
+            fill: #fbf2ea;
+            ;
+        }
+
 
         .close-icon {
             fill: $color-red;
             cursor: pointer;
         }
 
+        .search-special-icon path {
+            fill: #fbf2ea;
+            /* Kolor ikonki */
+            transition: fill 0.3s;
+            /* Efekt transition na kolor fill przez 1 sekundę */
+        }
+
+        button:hover .search-special-icon path {
+            fill: rgb(20, 214, 20);
+        }
+
         .ingredients-input {
+            border-radius: 10px 0px 0px 10px;
+            border-left: none;
+            padding: 5px;
+            padding-left: 10px;
+            outline: none;
+            background-color: #fbf2ea;
+
+            &::placeholder {
+                opacity: 80%;
+                color: black;
+
+            }
 
             @media (max-width: 575px) {
                 padding: 0.3rem;
             }
 
         }
+
+        .ing-button {
+            outline: none;
+            border: none;
+            border-radius: 0px 10px 10px 0px;
+        }
+
 
         .enter-button {
             background-color: $color-black;
@@ -42,11 +79,16 @@
                 background-color: $color-white;
                 color: $color-black;
 
+                .delete-searching-ingredient {
+                    padding: 5px;
+                    border-radius: 0px 10px 10px 0px;
+                }
             }
         }
 
         .drink-results {
             color: $color-gold;
+            border-bottom: 1px solid gold;
         }
 
         .search-special-drink-button {
