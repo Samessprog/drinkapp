@@ -17,7 +17,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     const highlyRated = useSelector(state => state.drink.highlyRated);
 
     return (
-        <div className="position-fixed SetingsPopupHolder col-10 col-sm-5  col-md-4 col-xl-3 ">
+        <div className="position-fixed SetingsPopupHolder col-12">
 
             <Searching
                 highlyRated={highlyRated}
@@ -29,33 +29,45 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
             />
 
             <div className="d-flex flex-row-reverse me-2 mt-2 ">
-                <svg className="close-icon" onClick={() => dispatch(setPopupSetings(false))} xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-                    <path d="M7.062 14 10 11.062 12.938 14 14 12.938 11.062 10 14 7.062 12.938 6 10 8.938 7.062 6 6 7.062 8.938 10 6 12.938ZM10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.625-3.115.625-1.447 1.719-2.541Q5.438 3.25 6.896 2.625T10 2q1.667 0 3.115.625 1.447.625 2.541 1.719 1.094 1.094 1.719 2.541Q18 8.333 18 10q0 1.646-.625 3.104-.625 1.458-1.719 2.552t-2.541 1.719Q11.667 18 10 18Zm0-1.5q2.708 0 4.604-1.896T16.5 10q0-2.708-1.896-4.604T10 3.5q-2.708 0-4.604 1.896T3.5 10q0 2.708 1.896 4.604T10 16.5Zm0-6.5Z" />
+                <svg
+                    className="close-icon" onClick={() => dispatch(setPopupSetings(false))}
+                    xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                    <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                 </svg>
             </div>
-            <div className="ms-2 mt-1 p-2 pe-3 ">
+            <div className="ms-2 p-2 pe-3 ">
 
-                <div className="d-flex justify-content-center fs-5 ">Settings</div>
+                <div className="d-flex justify-content-center fs-5 ">Filter</div>
 
-                <div className="options-holder-settings-popup  mt-3 d-flex font ">
+                <div className="options-holder-settings-popup  mt-3 d-flex font col-12">
 
-                    <div className="">
+                    <div className="col-6">
                         <div className="d-flex mt-1">
-                            <input type="checkbox" onClick={() => dispatch(setDrinkFavouriteFlag(!favouriteDrink))} ></input>
-                            <label className="ms-1">Favorite</label>
+                            <input
+                                type="checkbox"
+                                id="favoriteCheckbox"
+                                onClick={() => dispatch(setDrinkFavouriteFlag(!favouriteDrink))}
+                            />
+                            <label
+                                htmlFor="favoriteCheckbox"
+                                className="ms-2"
+                            >
+                                Favorite
+                            </label>
                         </div>
 
                         <TypeOfDrink />
 
                         <div className="d-flex mt-1">
                             <input
+                                id='highlyRatedCheckbox'
                                 value={highlyRated}
                                 type="checkbox"
                                 onClick={() => dispatch(setHighlyRated(!highlyRated))}
                                 className={highlyRated ? 'checked' : 'unchecked'}
                             >
                             </input>
-                            <label className="ms-1">Highly rated </label>
+                            <label htmlFor='highlyRatedCheckbox' className="ms-2">Highly rated </label>
                         </div>
 
                     </div>
@@ -67,8 +79,9 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                         dispatch(setSpecialOptionsPopup(!specialOptionsPopup))
                         dispatch(setPopupSetings(false))
                     }}
-                        type="button" className=" special-button rounded">
-                        Provide the ingredients
+                        className="rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2 ps-3 pe-3 mt-2">
+                        <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" /></svg>
+                        <div className="pe-2">Advanced filtering</div>
                     </button>
                 </div>
             </div>

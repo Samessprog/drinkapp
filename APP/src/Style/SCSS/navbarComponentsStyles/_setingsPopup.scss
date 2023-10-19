@@ -3,9 +3,11 @@
 
 .SetingsPopupHolder {
     background-color: rgb(31, 31, 31);
-    box-shadow: 5px 5px 6px 3px rgb(24, 24, 24);
-    margin-top: 3.75rem;
-    right: 10.5%;
+    right: 9.5%;
+    margin-top: 3.4rem;
+    border-radius: 5px 15px 15px 15px;
+    border: 1px solid rgb(251, 242, 234);
+    padding: 5px;
 
     @media (min-width: 1400px) {
         flex: 0 0 20%;
@@ -60,8 +62,8 @@
     }
 
     .test {
-        background-color: rgb(156, 156, 156);
-        color: $color-black;
+        background-color: #fbf2ea;
+        color: black;
     }
 
     .special-button {
