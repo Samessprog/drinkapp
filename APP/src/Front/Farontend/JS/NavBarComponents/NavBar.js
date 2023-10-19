@@ -88,6 +88,9 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     }, []);
 
 
+    
+
+
     return (
         <nav className="NavBar position-sticky top-0 ">
 
@@ -142,7 +145,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                 <div className="options-holder">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
 
-                                    <button className="mb-md-2 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2" onClick={() => handlePopup('settings')}>
+                                    <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2" onClick={() => handlePopup('settings')}>
                                         <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                             <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                         </svg>
@@ -152,7 +155,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                     {popupSetings && (
                                         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                                             <Suspense fallback={<div>Loading...</div>}>
-
                                                 <SetingsPopup
                                                     setPopupSetings={setPopupSetings}
                                                     setSpecialOptionsPopup={setSpecialOptionsPopup}
@@ -178,8 +180,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                         }
 
                         {userSesion !== null &&
-                            <div onClick={() => handlePopup('userProfile')} className="profileButton-holder ms-2">
-
+                            <div onClick={() => handlePopup('userProfile')} className="profileButton-holder  me-2">
                                 <svg className="ProfileButton" xmlns="http://www.w3.org/2000/svg" height={isSmallScreen ? "40" : "48"} width={isSmallScreen ? "40" : "48"}>
                                     {isSmallScreen ?
                                         <path d="M9.417 29.083q2.458-1.666 5.041-2.541 2.584-.875 5.542-.875 2.958 0 5.562.875 2.605.875 5.063 2.541Q32.333 27 33.104 24.75q.771-2.25.771-4.75 0-5.875-4-9.875t-9.875-4q-5.875 0-9.875 4t-4 9.875q0 2.5.792 4.75.791 2.25 2.5 4.333ZM20 21.375q-2.417 0-4.083-1.667-1.667-1.666-1.667-4.083 0-2.417 1.667-4.083Q17.583 9.875 20 9.875q2.417 0 4.083 1.667 1.667 1.666 1.667 4.083 0 2.458-1.667 4.104-1.666 1.646-4.083 1.646Zm0 15.292q-3.458 0-6.521-1.313-3.062-1.312-5.312-3.583-2.25-2.271-3.542-5.292Q3.333 23.458 3.333 20t1.313-6.5q1.312-3.042 3.583-5.292t5.292-3.562Q16.542 3.333 20 3.333t6.5 1.313q3.042 1.312 5.292 3.562t3.562 5.292q1.313 3.042 1.313 6.5t-1.313 6.479q-1.312 3.021-3.562 5.292T26.5 35.354q-3.042 1.313-6.5 1.313Z" />

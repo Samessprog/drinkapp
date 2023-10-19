@@ -2,21 +2,20 @@
 @import "../variables.scss";
 
 .loginPopupHolder {
-    border: 2px solid black;
+    border: 1px solid rgb(189, 189, 189);
     border-radius: 0.625rem;
-    background-color: transparent;
-    backdrop-filter: blur(80px);
-    box-shadow: 0 0 30px rgb(69, 69, 69);
+    box-shadow: 0 0 30px rgb(55, 55, 55);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgb(42, 42, 42);
 
     @media (max-width: 400px) {
         backdrop-filter: blur(120px);
     }
 
     .color-black {
-        color: $color-black;
+        color: rgb(251, 242, 234);
     }
 
     .close-icon-holder {
@@ -30,24 +29,27 @@
     }
 
     .input-box {
-        border-bottom: solid 1px black;
+        border-bottom: solid 1px rgb(251, 242, 234);
+
+        .login-register-icon {
+            fill: rgb(251, 242, 234);
+        }
     }
 
     .login-register-input-data {
         background-color: transparent;
         border: none;
-        color: rgb(221, 221, 221);
+        color: rgb(251, 242, 234);
         outline: none;
 
         &::placeholder {
-            color: black;
+            color: rgb(251, 242, 234);
+            opacity: 50%;
         }
-
     }
 
-
     .registerLink {
-        color: rgb(0, 162, 255);
+        color: rgb(118, 186, 255);
         text-decoration: underline;
         cursor: pointer;
     }
@@ -56,9 +58,14 @@
         padding-left: 3rem;
         padding-right: 3rem;
 
+        .login-reg-header {
+            letter-spacing: 2px;
+        }
+
     }
-    .login-register-errors{
-        color: white;
+
+    .login-register-errors {
+        color: rgb(255, 0, 0);
         border-bottom: 1px solid white;
     }
 }

@@ -1,11 +1,13 @@
 //Imports
 import { Link } from "react-router-dom";
 import { setUserSession, setUserFavouriteDrinks } from "../../States/actions";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function OptionsProfile() {
 
     const dispatch = useDispatch();
+    const userSesion = useSelector(state => state.user.useSesion)
 
     //Logout funciotn
     function logoutUser() {
@@ -25,17 +27,20 @@ function OptionsProfile() {
         dispatch(setUserFavouriteDrinks([]))
     }
 
+
     return (
-        <div className="position-absolute end-0 mt-2 me-2">
+        <div className="position-absolute end-0 mt-2 me-3">
             <ul className="d-flex flex-column DropdownProfilMenu ">
-                <Link to={"userProfile"} className="kk">
+                <Link to={"userProfile"} className="user-profile-links">
                     <li className="DropdownProfilMenu-elm  position-relative">Profile</li>
                 </Link>
-                <Link to={"/"} className="kk">
+                {userSesion.role === 'admin' &&
+                    <Link to={"admin"} className="user-profile-links">
+                        <li className="DropdownProfilMenu-elm  position-relative">Admin</li>
+                    </Link>
+                }
+                <Link to={"/"} className="user-profile-links">
                     <li className="DropdownProfilMenu-elm " onClick={handleLogoutClick}>Log&nbsp;out</li>
-                </Link>
-                <Link to={"admin"} className="kk">
-                    <li className="DropdownProfilMenu-elm  position-relative">Admin</li>
                 </Link>
             </ul>
         </div>
