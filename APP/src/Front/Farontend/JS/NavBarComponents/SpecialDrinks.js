@@ -50,12 +50,15 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                     <label className="d-flex justify-content-center fs-5 fw-bolder">Note:</label>
                     Please enter the ingredients you have and then click ENTER.If you want to delete a component, click X.
                 </div>
+                <div className="d-flex justify-content-center mb-3 align-items-center col-12 mt-3 mb-3">
+                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-6 ingredients-input   " type="text" placeholder="Enter your ingredients"></input>
+                    <button onClick={submitIngreadinetsHandler} className="ing-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
 
-                <div className="mb-3  d-flex mt-3 justify-content-center">
-                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-6 col-sm-6 col-lg-5  ingredients-input   " type="text" placeholder="Enter your ingredients"></input>
-                    <button onClick={submitIngreadinetsHandler} className="ing-button ms-1">ADD</button>
+                    </button>
                 </div>
-                
+
+
 
                 <div className="d-flex justify-content-center  align-items-center  mb-2">
                     <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} />
