@@ -88,4 +88,24 @@
 
     }
 
+    .advanced-button-holder {
+        &:hover {
+            .advancet-filter-icon {
+                animation: rotate 3.5s linear infinite;
+                /* Dostosuj czas i styl animacji według potrzeb */
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+    }
+
 }

@@ -3,6 +3,7 @@ import { Suspense, lazy, useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
+import CountUp from 'react-countup';
 
 import { setEachdrinkflag, setingredient } from "../States/actions";
 import Searching from "../Components/Searching";
@@ -44,29 +45,36 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                         xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                     </svg>
-
                 </div>
                 <div className="flex-column mt-1 d-none d-sm-flex">
-                    <label className="d-flex justify-content-center fs-5 fw-bolder">Note:</label>
-                    Please enter the ingredients you have and then click ENTER.If you want to delete a component, click X.
+                    <label className="d-flex justify-content-center fs-4 fw-bolder">Note:</label>
+                    <div className="fs-5">Please enter the ingredients you have and then click
+                        <label className="ms-1 me-1">
+                            <svg style={{ fill: 'white' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                                <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                            </svg>
+                        </label>
+                        .If you want to delete a component, click
+                        <label>
+                            <label className="ms-1 me-1">
+                                <svg style={{ fill: 'red' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                            </label>
+                        </label>
+                        .</div>
                 </div>
                 <div className="d-flex justify-content-center mb-3 align-items-center col-12 mt-3 mb-3">
                     <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-6 ingredients-input   " type="text" placeholder="Enter your ingredients"></input>
                     <button onClick={submitIngreadinetsHandler} className="ing-button">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
-
                     </button>
                 </div>
-
-
-
                 <div className="d-flex justify-content-center  align-items-center  mb-2">
                     <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} />
                     {
                         !eachdrinkflag ? (
-                            <label className="ms-2">Search for ALL drinks with the given ingredients</label>
+                            <label className="ms-2 fs-5">Search for ALL drinks with the given ingredients</label>
                         ) : (
-                            <label className="ms-2">Search for ONLY drinks with the given ingredients</label>
+                            <label className="ms-2 fs-5">Search for ONLY drinks with the given ingredients</label>
                         )
                     }
                 </div>
@@ -93,7 +101,19 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
 
                 <div className="d-flex flex-column  justify-content-between align-items-center mt-3">
                     <label className="">The amount of drinks we have with these ingredients:</label>
-                    <label className={`drink-results mt-1 mb-1 d-flex justify-content-center fs-3 fw-bold ${drinkCounter === 0 && 'text-danger'}`}>{drinkCounter}</label>
+                    <label className={`drink-results mt-1 mb-1 d-flex justify-content-center align-items-center fs-2 fw-bold ${drinkCounter === 0 && 'text-danger'}`}>
+                        <CountUp
+                            start={drinkCounter + 10}
+                            end={drinkCounter}
+                            duration={4}
+                        >
+                        </CountUp>
+                        {drinkCounter === 0 &&
+                            <svg className="ms-2" fill="red" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40">
+                                <path d="M480-418q-67.333 0-122.167 37.833Q303-342.333 277.333-280h405.334q-25-63-80.167-100.5T480-418Zm-178-68 48-44 44 44 34.666-38-44-44 44-44.667-34.666-38-44 44-48-44-34.667 38 44 44.667-44 44L302-486Zm264.667 0L610-530l48.667 44 34.666-38-44-44 44-44.667-34.666-38-48.667 44-43.333-44-34.667 38L575.334-568 532-524l34.667 38ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 333.334q139.333 0 236.334-97 97-97.001 97-236.334t-97-236.334q-97.001-97-236.334-97t-236.334 97q-97 97.001-97 236.334t97 236.334q97.001 97 236.334 97Z" />
+                            </svg>
+                        }
+                    </label>
                 </div>
                 <div className="d-flex flex-row-reverse search-special-holder" onClick={() => dispatch(setSpecialOptionsPopup(false))}>
                     <button className="rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2 ps-3 pe-3 mt-2">

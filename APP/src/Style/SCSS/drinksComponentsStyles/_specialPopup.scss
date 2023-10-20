@@ -17,12 +17,9 @@
         height: 530px;
         border: 1px solid rgb(251, 242, 234);
 
-        /* Define the initial fill color for .special-drink-ing-icon */
         .special-drink-ing-icon {
             fill: #fbf2ea;
-            ;
         }
-
 
         .close-icon {
             fill: $color-red;
@@ -96,7 +93,7 @@
 
         .drink-results {
             color: $color-gold;
-            border-bottom: 1px solid gold;
+
         }
 
         .search-special-drink-button {

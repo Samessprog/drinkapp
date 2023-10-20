@@ -88,9 +88,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     }, []);
 
 
-    
-
-
     return (
         <nav className="NavBar position-sticky top-0 ">
 
@@ -106,7 +103,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-md-flex col-3'}>
                         <Link className="d-flex align-items-center logo-link" to="/">
                             𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
-                            <svg fill='#fbf2ea' className="ms-3" xmlns="http://www.w3.org/2000/svg" height="1.1em" viewBox="0 0 576 512"><path d="M432 240c53 0 96-43 96-96s-43-96-96-96c-35.5 0-66.6 19.3-83.2 48H296.2C316 40.1 369.3 0 432 0c79.5 0 144 64.5 144 144s-64.5 144-144 144c-27.7 0-53.5-7.8-75.5-21.3l35.4-35.4c12.2 5.6 25.8 8.7 40.1 8.7zM1.8 142.8C5.5 133.8 14.3 128 24 128H392c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-177 177V464h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H208 120c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V345.9L7 169c-6.9-6.9-8.9-17.2-5.2-26.2z" /></svg>
+                            <svg className="ms-3 brand-logo" xmlns="http://www.w3.org/2000/svg" height="1.1em" viewBox="0 0 576 512"><path d="M432 240c53 0 96-43 96-96s-43-96-96-96c-35.5 0-66.6 19.3-83.2 48H296.2C316 40.1 369.3 0 432 0c79.5 0 144 64.5 144 144s-64.5 144-144 144c-27.7 0-53.5-7.8-75.5-21.3l35.4-35.4c12.2 5.6 25.8 8.7 40.1 8.7zM1.8 142.8C5.5 133.8 14.3 128 24 128H392c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-177 177V464h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H208 120c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V345.9L7 169c-6.9-6.9-8.9-17.2-5.2-26.2z" /></svg>
                         </Link>
                     </div>
 
@@ -141,17 +138,14 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                         </svg>
                                     </button>
                                 </div>
-
                                 <div className="options-holder">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
-
                                     <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2" onClick={() => handlePopup('settings')}>
                                         <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                             <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                         </svg>
                                         <div className="pe-2">Filter</div>
                                     </button>
-
                                     {popupSetings && (
                                         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                                             <Suspense fallback={<div>Loading...</div>}>

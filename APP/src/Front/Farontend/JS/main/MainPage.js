@@ -4,7 +4,6 @@ import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
 
-
 import { setDrinkNotFound, setUserFavouriteDrinks } from "../States/actions";
 import Drink from "../drinksComponents/Drink";
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
