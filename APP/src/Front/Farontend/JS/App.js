@@ -140,7 +140,7 @@ function App() {
 
       </SessionContext.Provider>
 
-      <Footer searchingDrink={searchingDrink} />
+      <Footer searchingDrink={searchingDrink} drinkDatas={drinkDatas.length} />
 
     </div >
   );

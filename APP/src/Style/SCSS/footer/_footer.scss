@@ -4,7 +4,18 @@
 .footer {
     color: $color-white;
     background-color: $bg-ligherDark;
+    border-top: 1px solid black;
 
+    .drink-footer-img{
+        height: 190px;
+    }
+    .drink-count{
+        font-family: cursive;
+    }
+
+    .drink-count-number{
+        font-size: 60px;
+    }
 
     .desc-container {
         max-width: $n-400px;
@@ -19,20 +30,14 @@
         @include fs-13-color-light-grey;
     }
 
-    .instagram-icon  {
-       cursor: pointer; 
-      }
-      
-    .facebook-icon {
-        cursor: pointer; 
-        transition: all 0.3s ;
-
-        &:hover {
-            fill: rgb(25, 119, 243)
-
-         }
+    .instagram-icon {
+        cursor: pointer;
     }
 
+    .facebook-icon {
+        cursor: pointer;
+        fill: rgb(25, 119, 243);
+    }
 }
 
 .copyright {
