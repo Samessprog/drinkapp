@@ -95,50 +95,50 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 setSearchingDrink={setSearchingDrink}
                 searchingDrink={searchingDrink}
                 drinkDatas={drinkDatas}
-
             />
 
             <div className="NavBarContentHolder p-3 pb-0 col-12">
-                <div className={`d-flex  col-sm-12 align-items-center col-12 ${userScroll ? 'pb-3' : 'pb-0'}`} >
-                    <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-md-flex col-3'}>
+                <div className={`d-flex align-items-center col-12 ${userScroll ? 'pb-3' : 'pb-0'}`} >
+                    <div className={userScroll ? 'd-none' : 'brand-name-SCROLL d-md-flex  col-xl-4'}>
                         <Link className="d-flex align-items-center logo-link" to="/">
-                            𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
-                            <svg className="ms-3 brand-logo" xmlns="http://www.w3.org/2000/svg" height="1.1em" viewBox="0 0 576 512"><path d="M432 240c53 0 96-43 96-96s-43-96-96-96c-35.5 0-66.6 19.3-83.2 48H296.2C316 40.1 369.3 0 432 0c79.5 0 144 64.5 144 144s-64.5 144-144 144c-27.7 0-53.5-7.8-75.5-21.3l35.4-35.4c12.2 5.6 25.8 8.7 40.1 8.7zM1.8 142.8C5.5 133.8 14.3 128 24 128H392c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-177 177V464h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H208 120c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V345.9L7 169c-6.9-6.9-8.9-17.2-5.2-26.2z" /></svg>
+                            <label className="brand-name-nav">𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎</label>
+                            <svg className="ms-3 brand-logo d-none d-xxl-block" xmlns="http://www.w3.org/2000/svg" height="1.1em" viewBox="0 0 576 512"><path d="M432 240c53 0 96-43 96-96s-43-96-96-96c-35.5 0-66.6 19.3-83.2 48H296.2C316 40.1 369.3 0 432 0c79.5 0 144 64.5 144 144s-64.5 144-144 144c-27.7 0-53.5-7.8-75.5-21.3l35.4-35.4c12.2 5.6 25.8 8.7 40.1 8.7zM1.8 142.8C5.5 133.8 14.3 128 24 128H392c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-177 177V464h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H208 120c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V345.9L7 169c-6.9-6.9-8.9-17.2-5.2-26.2z" /></svg>
                         </Link>
                     </div>
 
                     {/* hamburger */}
-                    <div id="hamburger" className={userScroll ? 'd-flex mb-3 align-items-center  mt-2 col-3' : 'hamburger-SCROLL mb-3'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
+                    <div id="hamburger" className={userScroll ? 'd-flex mb-3 align-items-center mt-3 col-3' : ' hamburger-SCROLL  mt-3 mb-3 '} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
                         </div>
-                        <label className="ms-5  d-none  d-lg-flex brand-logo-hamburger">
+                        <label className="ms-5  d-none  d-xl-flex brand-logo-hamburger ">
                             𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
                         </label>
                     </div>
-                    <div className="d-flex col-7 justify-content-center pe-3">
 
+                    <div className={`d-flex me-1 col-7 col-sm-7 col-md-9 col-xl-6 justify-content-center justify-content-xl-start  ${userScroll ? 'justify-content-xl-center' : 'justify-content-center'}`}>
                         {/* Wyszukiwarka drinków  */}
                         {location.pathname.endsWith('/') &&
-
-                            <div className="searching-holder position-relative  ms-3 d-flex align-items-center pt-2 col-sm-7 d-flex ">
-
-                                <div className="col-12 col-xl-10  position-relative d-flex  align-items-center">
+                            <div className="searching-holder  ms-3 d-flex align-items-center pt-2 d-flex col- col-sm8 col-md-8 col-xl-9">
+                                <div className="col-11 col-md-10 col-xxl-9 d-flex  align-items-center">
                                     <input
                                         onChange={event => dispatch(setInputDrinkText(event.target.value))}
                                         type="text"
                                         className="searching-input border-0  col-12 ps-4 pe-4 ps-3 "
                                         placeholder="Enter drink name"
                                     />
-                                    <button className="searching-icon-holder border-0 " id="SignIn" data-testid="SignIn">
-                                        <svg className="searching-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                    <button className="searching-icon-holder border-0 " id="SignIn" data-testid="SignIn" >
+                                        <svg className="searching-icon d-none d-md-block" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
                                             <path className="searching-icon" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                                        </svg>
+                                        <svg onClick={() => handlePopup('settings')} className=" me-1 d-block d-md-none fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                            <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                         </svg>
                                     </button>
                                 </div>
-                                <div className="options-holder">
+                                <div className="options-holder d-none d-md-flex">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
                                     <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2" onClick={() => handlePopup('settings')}>
                                         <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
@@ -155,7 +155,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                                     searchingDrink={searchingDrink}
                                                     drinkDatas={drinkDatas}
                                                     setSearchingDrink={setSearchingDrink}
-
                                                 />
                                             </Suspense>
                                         </ErrorBoundary>
@@ -164,8 +163,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </div>
                         }
                     </div>
-
-                    <div className="col-2 d-flex justify-content-end pe-2 pt-3">
+                    <div className={`col-4  login-holder col-sm-4 col-md-2 d-flex justify-content-end pe-2 pt-36 mt-3 ${userScroll ? 'col-xl-3' : ''}`}>
 
                         {userSesion === null &&
                             <button className=" ms-2 mb-3 login-navbar" onClick={() => handlePopup('login')}>
@@ -219,9 +217,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </Suspense>
                         </ErrorBoundary>
                     }
-
                 </div>
-
                 <div className={userScroll && window.innerWidth > 768 ? 'main-options-holder d-none' : 'main-options-holder d-flex'} >
                     <div className="Options-Holder-W100 ">
                         <ul className="d-flex justify-content-center mt-1 navbar-menu ps-0">

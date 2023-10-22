@@ -21,6 +21,17 @@
             .logo-link {
                 text-decoration: none;
                 color: inherit;
+
+                .brand-name-nav {
+                    display: flex;
+
+                    @media (max-width:1200px) {
+                        & {
+                            display: none;
+                        }
+                    }
+                }
+
             }
 
             .animate-border {
@@ -55,7 +66,7 @@
         .hamburger-SCROLL {
             display: $d-none;
 
-            @media (max-width:768px) {
+            @media (max-width:1180px) {
                 & {
                     display: $d-flex;
                 }
@@ -116,9 +127,6 @@
                 border-radius: 25px 0px 0px 25px;
                 color: white;
 
-                @media (max-width: 768px) {
-                    height: 100%;
-                }
 
             }
 
@@ -137,10 +145,6 @@
                     fill: white;
                 }
 
-                @media (max-width: 560px) {
-                    display: none;
-                }
-
                 color: $color-white;
             }
         }
@@ -154,22 +158,16 @@
             max-width: 800px;
             margin-left: 3.6rem;
 
-            @media (max-width: 768px) {
-                position: absolute;
-                margin-left: 0;
-                top: 15%;
-                right: 0;
-                margin-right: 0.3rem;
-            }
-
             &:hover {
                 fill: rgb(243, 213, 92);
             }
+        }
+    }
 
-            .settings-button {
-                @media (max-width: 768px) {
-                    background-color: rgb(16, 16, 16);
-                }
+    .login-holder {
+        @media (max-width:450px) {
+            & {
+                margin-left: 1rem;
             }
         }
     }
