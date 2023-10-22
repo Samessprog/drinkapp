@@ -107,7 +107,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     </div>
 
                     {/* hamburger */}
-                    <div id="hamburger" className={userScroll ? 'd-flex mb-3 align-items-center mt-3 col-3' : ' hamburger-SCROLL  mt-3 mb-3 '} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
+                    <div id="hamburger" className={userScroll ? 'd-flex mb-3 align-items-center mt-3 col-xl-3' : ' hamburger-SCROLL  mt-3 mb-3'} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
@@ -118,7 +118,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                         </label>
                     </div>
 
-                    <div className={`d-flex me-1 col-7 col-sm-7 col-md-9 col-xl-6 justify-content-center justify-content-xl-start  ${userScroll ? 'justify-content-xl-center' : 'justify-content-center'}`}>
+                    <div className={`d-flex me-3 col-7 col-sm-7 col-md-9 col-xl-6 justify-content-center justify-content-xl-start  ${userScroll ? 'justify-content-xl-center  col-xl-5 ' : 'justify-content-center'}`}>
                         {/* Wyszukiwarka drinków  */}
                         {location.pathname.endsWith('/') &&
                             <div className="searching-holder  ms-3 d-flex align-items-center pt-2 d-flex col- col-sm8 col-md-8 col-xl-9">
@@ -163,7 +163,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </div>
                         }
                     </div>
-                    <div className={`col-4  login-holder col-sm-4 col-md-2 d-flex justify-content-end pe-2 pt-36 mt-3 ${userScroll ? 'col-xl-3' : ''}`}>
+                    <div className={`col-4  col-sm-4 col-md-2 d-flex justify-content-end pe-2 pt-36 mt-3 ${userScroll ? 'col-xl-3' : ''}`}>
 
                         {userSesion === null &&
                             <button className=" ms-2 mb-3 login-navbar" onClick={() => handlePopup('login')}>
