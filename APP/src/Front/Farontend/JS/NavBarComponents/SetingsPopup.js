@@ -17,7 +17,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     const highlyRated = useSelector(state => state.drink.highlyRated);
 
     return (
-        <div className="position-fixed SetingsPopupHolder col-12">
+        <div className="position-fixed SetingsPopupHolder col-md-4 col-12  col-lg-4 col-xl-3 col-xxl-2">
 
             <Searching
                 highlyRated={highlyRated}

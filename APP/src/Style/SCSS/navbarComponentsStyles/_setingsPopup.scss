@@ -3,16 +3,26 @@
 
 .SetingsPopupHolder {
     background-color: rgb(31, 31, 31);
-    right: 9.5%;
+    right: 15%;
     margin-top: 3.4rem;
     border-radius: 5px 15px 15px 15px;
     border: 1px solid rgb(251, 242, 234);
     padding: 5px;
 
-    @media (min-width: 1400px) {
-        flex: 0 0 20%;
-        max-width: 20%;
+    @media (max-width: 1400px) {
+        right: 0;
     }
+
+
+    @media (max-width: 1200px) {
+        right: 10%;
+    }
+
+    @media (max-width: 1000px) {
+        margin-top: 4rem;
+        right: 0;
+    }
+
 
     @media (max-width: 768px) {
         margin-top: 3rem;
@@ -44,14 +54,22 @@
         }
 
         .multi-options {
+            align-items: start;
+
             @media (min-width: 1097px) {
                 margin-top: 0.8rem;
                 margin-left: 0 !important;
             }
 
+            @media (max-width: 1097px) {
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
             @media (max-width: 570px) {
                 margin-left: 3rem !important;
-
             }
         }
     }

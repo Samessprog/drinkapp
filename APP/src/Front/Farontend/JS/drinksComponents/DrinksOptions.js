@@ -9,8 +9,8 @@ function DrinksOptions() {
     const drinkTaste = useSelector(state => state.drink.drinkTaste);
 
     return (
-        <div className="ms-2 multi-options mt-0 pt-0">
-            <div className="d-flex flex-column ">
+        <div className="ms-2 multi-options mt-0 pt-0 col-12 col-lg-10 justify-content-center mt-3 mt-lg-0">
+            <div className="d-flex flex-column col-sm-7 col-lg-5 col-xl-5">
                 <label className="d-flex justify-content-center mb-1">Level</label>
                 <select value={drinkLevel} className=" ms-1 test"  onChange={(e) => dispatch(setDrinkLevel(e.target.value))}>
                     <option value={'All'}>All</option>
@@ -20,8 +20,7 @@ function DrinksOptions() {
                 </select>
             </div>
 
-
-            <div className="d-flex flex-column mt-3 ">
+            <div className="d-flex flex-column mt-3 col-sm-7 col-lg-5 col-xl-5">
                 <label className="d-flex  justify-content-center mb-1">Taste</label>
                 <select value={drinkTaste} className=" ms-1 test" onChange={(e) => dispatch(setDrinkTaste(e.target.value))}>
                     <option value={'All'}>All</option>
