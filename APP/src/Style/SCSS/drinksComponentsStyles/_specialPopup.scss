@@ -14,8 +14,15 @@
     .helper {
         background-color: rgb(41, 41, 41);
         color: #fbf2ea;
-        height: 530px;
         border: 1px solid rgb(251, 242, 234);
+
+        .special-options-holder {
+            font-size: 21px;
+
+            @media (max-width: 768px) {
+                font-size: 15px;
+            }
+        }
 
         .special-drink-ing-icon {
             fill: #fbf2ea;
@@ -28,9 +35,7 @@
 
         .search-special-icon path {
             fill: #fbf2ea;
-            /* Kolor ikonki */
             transition: fill 0.3s;
-            /* Efekt transition na kolor fill przez 1 sekundę */
         }
 
         button:hover .search-special-icon path {
@@ -40,7 +45,6 @@
         .ingredients-input {
             border-radius: 15px 0px 0px 15px;
             padding: 8px;
-            padding-left: 10px;
             outline: none;
             border: none;
             background-color: #fbf2ea;
@@ -65,6 +69,14 @@
             transition: background-color ease-in-out .2s;
             height: 40px;
             border-left: 1px solid black;
+
+            @media (max-width: 768px) {
+                height: 36px;
+            }
+
+            @media (max-width: 575px) {
+                height: 29px;
+            }
 
             &:hover {
                 background-color: #73b616;

@@ -18,7 +18,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setClickedDri
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
     const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-    const itemsPerPage = 8; // ilość elementów na stronie
+    const itemsPerPage = 10; // ilość elementów na stronie
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
 
@@ -36,7 +36,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setClickedDri
     useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0));
     }, [searchingDrink]);
-
 
     useEffect(() => {
         const fetchUserFavouriteDrinks = async () => {
@@ -89,7 +88,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setClickedDri
                     forcePage={offset / itemsPerPage}
                     className=" d-flex align-items-center justify-content-center pagination pt-5"
                     nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                    previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
+                    previousLabel={<svg className="leftArroPagination" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                 />
             }
 
