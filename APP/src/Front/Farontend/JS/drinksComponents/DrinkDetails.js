@@ -5,10 +5,9 @@ import { useParams } from "react-router-dom";
 import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
-
+import { Rating } from '@mui/material';
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
-
 
     const API_URL = 'http://localhost:3000/api/';
 
@@ -127,18 +126,20 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
     }, [detailDrinkIMG]);
 
+    const [showDrinkDescription, setShowDrinkDescription] = useState(true)
 
 
     return (
-        <div className="drink-holder">
-            <div className="drink-main-container mt-5 ms-4 me-4">
-                <div className="d-flex justify-content-between d-col-1200 align-items-center">
-                    <div className=" ">
-                        <div className="d-flex align-items-center">
-                            <header className="d-flex align-items-center">
-                                <div className="drink-name fs-3 fw-bolder">{clickedDrinkDetail.DrinkName}</div>
+        <div className="drink-holder col-12">
+            <div className="drink-main-container mt-5  col-12">
+                <div className="d-flex d-col-12 me-0 pe-4 ps-4 flex-column flex-lg-row  flex-contain" >
+                    <div className="col-6 col-xxl-7 col-xl-8">
+                        <div className="d-flex align-items-center  mb-5 flex-column flex-xl-row  ">
+                            <header className="d-flex align-items-center col-12">
+                                <div className="drink-name fs-3 fw-bolder col-12" style={{ fontFamily: 'cursive' }} >{clickedDrinkDetail.DrinkName}</div>
                             </header>
                             <div className="d-flex ms-4 align-items-center mb-2">
+
                                 {/* Wygeneruj 5 gwiazdek */}
                                 {[1, 2, 3, 4, 5].map((starNumber) => (
                                     <svg
@@ -155,46 +156,54 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                 ))}
                             </div>
                         </div>
-
                         {/*Opis i składniki do drinku  */}
-
-                        <div className="mt-5">
+                        <div className="mt-5 col-12">
                             <article>
-                                <div className="description-holder overflow-y-auto">
-                                    <section>
-                                        <label className="fs-4 fw-bolder">{clickedDrinkDetail.DrinkName}</label>
-                                        <p>{clickedDrinkDetail.Description} </p>
-                                    </section>
-                                </div>
+                                <div>
+                                    <button
+                                        className="fs-5 ms-3 drink-detail-button"
+                                        onClick={() => {
+                                            setShowDrinkDescription(true);
+                                        }}
+                                    >
+                                        Description
+                                    </button>
+                                    <button
+                                        className="fs-5 ms-3 drink-detail-button"
+                                        onClick={() => {
+                                            setShowDrinkDescription(false);
+                                        }}
+                                    >
+                                        History
+                                    </button>
+                                    <div className="description-holder overflow-y-auto col-10  p-3 ps-4 pe-4">
 
-                                {clickedDrinkDetail.drinkHistory &&
-                                    <div className="mt-5">
-                                        <label className="fs-4">History:</label>
                                         <section>
-                                            <div className="description-holder overflow-auto"> {clickedDrinkDetail.drinkHistory}</div>
+                                            <div className="d-flex fs-5">
+                                                <p className="line-spaced">
+                                                    {showDrinkDescription ? (
+                                                        <> {clickedDrinkDetail.Description} </>
+                                                    ) : (
+                                                        <> {clickedDrinkDetail.drinkHistory} </>
+                                                    )}
+                                                </p>
+                                            </div>
                                         </section>
                                     </div>
-                                }
-
+                                </div>
                             </article>
-                            <div className="d-flex flex-column d-flex  align-items-center">
-
-                                <label className="fs-4 fw-bolder mt-5">Specifications</label>
-
-                                <div className="d-flex  mt-3 basic-information-drink">
-
-                                    <label className="bg-light rounded-pill p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{clickedDrinkDetail.Creator}</label>
-                                    <label className={clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass me-2' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass me-2' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass me-2' : ''}>{clickedDrinkDetail.DifficultyLevel}</label>
+                            <div className="d-flex flex-column d-flex  align-items-center col-9">
+                                <label className="fs-3 fw-bolder mt-5">Specifications</label>
+                                <div className="d-flex  mt-3 basic-information-drink fs-5">
+                                    <label className={` me-2 ${clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{clickedDrinkDetail.DifficultyLevel}</label>
                                     {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${clickedDrinkDetail.drinkType === 'Sour' ? 'bg-success' : clickedDrinkDetail.drinkType === 'Alko' ? 'bg-danger' : clickedDrinkDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
-                                    <label className={clickedDrinkDetail.Taste === 'Sour' ? 'sourClass me-2' : clickedDrinkDetail.Taste === 'Sweet' ? 'sweetClass me-2' : clickedDrinkDetail.drinkType === 'Bitter' ? 'bitterClass me-2' : ''}>{clickedDrinkDetail.Taste}</label>
+                                    <label className={`me-2 ${clickedDrinkDetail.Taste === 'Sour' ? 'sourClass ' : clickedDrinkDetail.Taste === 'Sweet' ? 'sweetClass ' : clickedDrinkDetail.Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{clickedDrinkDetail.Taste}</label>
                                     <label className={clickedDrinkDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{clickedDrinkDetail.DrinkType}</label>
                                 </div>
-
                             </div>
-
-                            <div className="mt-5 d-flex flex-column align-items-center d-lg-block">
-                                <label className="fs-5 fw-bolder">Ingredients:</label>
-                                <ul className="mt-2 ingrediets-list overflow-auto">
+                            <div className="mt-5 flex-column d-flex  justify-content-center mt-2  col-9">
+                                <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
+                                <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5">
 
                                     {ingredient.map((ingredient, key) => (
                                         <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
@@ -204,52 +213,49 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             </div>
                         </div>
                     </div>
-
-                    <div className="img-holder-details  mt-4 ">
-
+                    <div className="col-6 col-xl-4 img-holder-details col-xxl-5 mb-5">
                         <LazyLoadImage
                             src={convertetIMG}
                             effect="blur"
-                            className="img-fluid img-helper " alt="Img error"
-
+                            className="img-helper col-12 img-fluid"
+                            alt="Img error"
                         />
-
                     </div>
                 </div>
 
                 {/* Sposów przygotowania drinku */}
 
-                <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder">Preparation</div>
-                <div className="mt-2 border rounded pt-4 ps-4 pe-4">
-                    <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
-                        <div>
-                            {currentData.map((preparation, key) => (
-                                <div key={key}>{preparation}</div>
-                            ))}
+                <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5">Preparation</div>
+                <div className="col-12 d-flex  justify-content-center mt-2 align-items-center">
+                    <div className="mt-2 border rounded pt-4 ps-4 pe-4 col-10 d-flex  justify-content-center   align-items-center">
+                        <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
+                            <div>
+                                {currentData.map((preparation, key) => (
+                                    <div key={key}>{preparation}</div>
+                                ))}
 
-                            <div className="mt-5 d-flex justify-content-center col align-items-center">
-                                <img alt="ERR"></img>
+                                <div className="mt-5 d-flex justify-content-center col align-items-center">
+                                    <img alt="ERR"></img>
+                                </div>
+
+                                <div className="d-flex justify-content-center">
+                                    <Pagination
+                                        pageCount={pageCount}
+                                        onPageChange={handlePageClick}
+                                        forcePage={currentPage / itemPerPage}
+                                        className="position-absolute bottom-0 d-flex pagination align-items-center"
+                                        nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
+                                        previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
+                                    />
+
+                                </div>
                             </div>
 
-                            <div className="d-flex justify-content-center">
-
-                                <Pagination
-                                    pageCount={pageCount}
-                                    onPageChange={handlePageClick}
-                                    forcePage={currentPage / itemPerPage}
-                                    className="position-absolute bottom-0 d-flex pagination align-items-center"
-                                    nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                                    previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
-                                />
-
-                            </div>
                         </div>
-
                     </div>
-
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 
 }

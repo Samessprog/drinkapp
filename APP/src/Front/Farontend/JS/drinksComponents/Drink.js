@@ -45,10 +45,10 @@ function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail 
                 <FetchingDrinkIMG elm={elm} classNameHolder='img-holder card overflow-hidden' classNameIMG='drink-img img-fluid' />
                 <div className="basic-information-drink p-2 ">
                     <div className="d-flex flex-column flex-sm-row align-items-center col-12">
-                        <label className="fs-4 fw-bolder ps-2 col-12 drink-name-holder text-break">Nocny Spacer  po Plaży z Mrożonymi Malinami</label>
+                        <label className="fs-4 fw-bolder ps-2 col-12 drink-name-holder text-break">{elm.DrinkName}</label>
                     </div>
                     <div className="d-flex mt-2 pt-2 border-top y flex-column flex-lg-row ps-2 col-12">
-                        <div className="drink-info-holder d-flex flex-column fs-5 justify-content-start col-12 col-lg-9 col- color-white">
+                        <div className="drink-info-holder d-flex flex-column fs-5 justify-content-start col-12 col-lg-9 col-xxl-7 col- color-white">
                             <div>
                                 <label className="">Level: </label>
                                 <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
@@ -68,7 +68,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail 
                                 </label>
                             </div>
                         </div>
-                        <div className="d-flex justify-content-start align-items-center fs-5 flex-column color-white pe-2 col-12 col-lg-3 col-xxl-4 ">
+                        <div className="d-flex justify-content-start align-items-center pe-2 fs-5 flex-column color-white  col-12 col-lg-3 col-xxl-3 ">
                             <label>
                                 Creator
                             </label>
