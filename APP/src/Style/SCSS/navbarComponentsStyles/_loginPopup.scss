@@ -28,25 +28,33 @@
         }
     }
 
-    .input-box {
-        border-bottom: solid 1px rgb(251, 242, 234);
+
+    .log-reg-icon-holder {
+        border-radius: 5px 0px 0px 5px;
+        background-color: rgba(163, 163, 163, 0.779);
+        padding: 7px;
+        border-right: 1px solid black;
 
         .login-register-icon {
-            fill: rgb(251, 242, 234);
+            fill: rgb(255, 255, 255);
         }
     }
 
-    .login-register-input-data {
-        background-color: transparent;
-        border: none;
-        color: rgb(251, 242, 234);
-        outline: none;
+    .input-box {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 0px 5px 5px 0px;
+        border-left: none;
+        padding: 4px;
 
-        &::placeholder {
-            color: rgb(251, 242, 234);
-            opacity: 50%;
+        .login-register-input-data {
+            border: none;
+            outline: none;
+
         }
     }
+
+
 
     .registerLink {
         color: rgb(118, 186, 255);

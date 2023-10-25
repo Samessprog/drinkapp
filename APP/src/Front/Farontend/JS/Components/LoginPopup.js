@@ -50,7 +50,7 @@ function LoginPopup() {
     };
 
     return (
-        <div className="position-fixed loginPopupHolder d-flex  align-items-center  flex-column col-4">
+        <div className="position-fixed loginPopupHolder d-flex  align-items-center flex-column col-4 col-12 col-md-6 col-lg-4">
 
             <div className="d-flex  position-fixed close-icon-holder mt-1 ">
                 <svg
@@ -65,18 +65,24 @@ function LoginPopup() {
 
                 <form onSubmit={handleLogin} className=" d-flex  flex-column align-items-center">
 
-                    <div className="test col-12 d-flex  justify-content-center flex-column align-items-center mt-5  logRegHolder">
-
+                    <div className="test col-11 d-flex  justify-content-center flex-column align-items-center mt-5  logRegHolder">
                         <div className="fs-2 color-black mb-3 login-reg-header">Login</div>
-
-                        <div className="mt-3 d-flex align-items-center input-box col-8">
-                            <input onChange={(event) => dispatch(setEmail(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="text" placeholder="Email"></input>
-                            <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
+                        <div className="col-9 d-flex  align-items-center mb-2 mt-2">
+                            <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
+                                <svg className="login-register-icon ps-0 pt-0" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
+                            </div>
+                            <div className="input-box col-11">
+                                <input onChange={(event) => dispatch(setEmail(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="text" placeholder="Email"></input>
+                            </div>
                         </div>
 
-                        <div className=" d-flex align-items-center input-box col-8 mt-5">
-                            <input onChange={(event) => dispatch(setPassword(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="password" placeholder="password"></input>
-                            <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                        <div className="col-9 d-flex  align-items-center mt-4">
+                            <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
+                                <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                            </div>
+                            <div className="input-box col-11">
+                                <input onChange={(event) => dispatch(setPassword(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="password" placeholder="password"></input>
+                            </div>
                         </div>
                     </div>
 
@@ -85,9 +91,8 @@ function LoginPopup() {
                             {loginError}
                         </div>
                     </div>
-
-                    <div className="mt-3 mb-3">
-                        <button type="submit" className="btn btn-dark fs-">Login</button>
+                    <div className="mt-3 mb-4">
+                        <button type="submit" className="btn btn-dark fs-5">Login</button>
                     </div>
                 </form>
 
