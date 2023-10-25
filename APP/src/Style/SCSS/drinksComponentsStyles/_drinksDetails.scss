@@ -5,11 +5,34 @@
 
     .drink-main-container {
 
+        @media (max-width: 1200px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .flex-contain {
+            @media (max-width: 1200px) {
+                flex-direction: column;
+                align-items: center !important;
+            }
 
+            .name-rating-holder {
+                flex-direction: row;
 
-            @media (max-width: 1120px) {
-                align-items: center;
+                @media (max-width: 1470px) {
+                    flex-direction: column;
+
+                }
+
+                .rating-holder {
+                    @media (max-width: 1470px) {
+                        margin-top: 1rem;
+
+                    }
+                }
+
             }
 
             .drink-detail-button {
@@ -23,7 +46,6 @@
                 padding-right: 10px;
                 font-weight: 700;
                 letter-spacing: .5px;
-
             }
 
             .d-col-1200 {
@@ -53,8 +75,11 @@
                 overflow: hidden;
                 position: relative;
 
-
                 @media (max-width:1200px) {
+                    height: 750px;
+                }
+
+                @media (max-width:800px) {
                     height: 550px;
                 }
 
@@ -64,9 +89,16 @@
                     padding-bottom: 5px;
 
                     @media (max-width:1200px) {
+                        height: 750px;
+                    }
+
+                    @media (max-width:800px) {
                         height: 550px;
                     }
 
+                    @media (max-width:600px) {
+                        object-fit: cover;
+                    }
                 }
             }
 
@@ -80,68 +112,95 @@
                 border: 1px solid white;
                 border-radius: 0px 15px 15px 15px;
 
-
                 .line-spaced {
                     line-height: 1.6;
                     color: rgb(224, 224, 224);
                 }
             }
 
-            .ingrediets-list {
-                max-width: $n-350px;
-                max-height: $n-250px;
-                list-style: none;
-                font-size: 18px;
+            .ingredient-details-holder {
 
-                .ing {
-                    cursor: pointer;
+                @media (max-width:1200px) {
+                    display: flex;
+                    align-items: center;
                 }
 
-                .crossedOut {
-                    text-decoration: line-through;
-                    color: rgb(0, 255, 8);
-                    text-decoration-thickness: 5px;
+                .ingrediets-list {
+                    max-width: $n-350px;
+                    max-height: $n-250px;
+                    list-style: none;
+                    font-size: 18px;
 
-                    span {
-
-                        text-decoration: none;
-                        color: white;
+                    .ing {
                         cursor: pointer;
+                        margin-top: 0.3rem;
                     }
-                }
 
-                &>li::before {
-                    content: "*";
-                    color: rgb(255, 255, 255);
-                    font-weight: bold;
-                    display: inline-block;
-                    padding-top: 2px;
-                    width: 1em;
-                    margin-left: -1em;
-                }
-            }
+                    .crossedOut {
+                        text-decoration: line-through;
+                        color: rgb(0, 255, 8);
+                        text-decoration-thickness: 5px;
 
-            .preparation-holder {
-                height: $n-400px;
-                max-height: $n-400px;
+                        span {
 
-                .nextPageArrow {
-                    background-color: green($color: #000000);
-                    fill: red;
+                            text-decoration: none;
+                            color: white;
+                            cursor: pointer;
+                        }
+                    }
 
-                    &:hover {
-                        fill: $color-rgb-163-161-161;
+                    @media (max-width:1200px) {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 2rem;
 
                     }
+
+                    &>li::before {
+                        content: "*";
+                        color: rgb(255, 255, 255);
+                        font-weight: bold;
+                        display: inline-block;
+                        padding-top: 2px;
+                        width: 1em;
+                        margin-left: -1em;
+
+                        @media (max-width:1200px) {
+                            content: "";
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
                 }
+
             }
 
             .basic-information-drink {
                 @include basicDrinksInf
             }
 
-
         }
+
+        .preparation-holder {
+            height: 350px;
+            max-height: 350px;
+
+            .preparation-holder {
+
+                .nextPageArrow {
+                    background-color: green; // Correct way to use a mixin
+                    fill: red;
+
+                    &:hover {
+                        fill: rgb(163, 161, 161); // Use RGB colors
+                    }
+                }
+            }
+        }
+
 
     }
 

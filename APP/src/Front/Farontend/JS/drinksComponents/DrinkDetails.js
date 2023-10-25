@@ -131,14 +131,14 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
     return (
         <div className="drink-holder col-12">
-            <div className="drink-main-container mt-5  col-12">
-                <div className="d-flex d-col-12 me-0 pe-4 ps-4 flex-column flex-lg-row  flex-contain" >
-                    <div className="col-6 col-xxl-7 col-xl-8">
-                        <div className="d-flex align-items-center  mb-5 flex-column flex-xl-row  ">
-                            <header className="d-flex align-items-center col-12">
-                                <div className="drink-name fs-3 fw-bolder col-12" style={{ fontFamily: 'cursive' }} >{clickedDrinkDetail.DrinkName}</div>
+            <div className="drink-main-container mt-5 col-12">
+                <div className="d-flex d-col-12 me-0 pe-4 ps-4  flex-contain " >
+                    <div className="col-12 col-xxl-7 col-xl-6">
+                        <div className="d-flex align-items-center mb-5 name-rating-holder">
+                            <header className="d-flex align-items-center ">
+                                <div className="drink-name fs-3 fw-bolder" style={{ fontFamily: 'cursive' }} >{clickedDrinkDetail.DrinkName}</div>
                             </header>
-                            <div className="d-flex ms-4 align-items-center mb-2">
+                            <div className="d-flex ms-4 align-items-center rating-holder">
 
                                 {/* Wygeneruj 5 gwiazdek */}
                                 {[1, 2, 3, 4, 5].map((starNumber) => (
@@ -159,7 +159,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                         {/*Opis i składniki do drinku  */}
                         <div className="mt-5 col-12">
                             <article>
-                                <div>
+                                <div className="col-12">
                                     <button
                                         className="fs-5 ms-3 drink-detail-button"
                                         onClick={() => {
@@ -176,8 +176,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                     >
                                         History
                                     </button>
-                                    <div className="description-holder overflow-y-auto col-10  p-3 ps-4 pe-4">
-
+                                    <div className="description-holder overflow-y-auto col-12 col-xl-10 p-3 ps-4 pe-4">
                                         <section>
                                             <div className="d-flex fs-5">
                                                 <p className="line-spaced">
@@ -192,18 +191,18 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                     </div>
                                 </div>
                             </article>
-                            <div className="d-flex flex-column d-flex  align-items-center col-9">
+                            <div className="d-flex flex-column d-flex  basic-information-drink align-items-center col-xl-9 col-12">
                                 <label className="fs-3 fw-bolder mt-5">Specifications</label>
-                                <div className="d-flex  mt-3 basic-information-drink fs-5">
+                                <div className="d-flex  mt-3 fs-5">
                                     <label className={` me-2 ${clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{clickedDrinkDetail.DifficultyLevel}</label>
                                     {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${clickedDrinkDetail.drinkType === 'Sour' ? 'bg-success' : clickedDrinkDetail.drinkType === 'Alko' ? 'bg-danger' : clickedDrinkDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
                                     <label className={`me-2 ${clickedDrinkDetail.Taste === 'Sour' ? 'sourClass ' : clickedDrinkDetail.Taste === 'Sweet' ? 'sweetClass ' : clickedDrinkDetail.Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{clickedDrinkDetail.Taste}</label>
                                     <label className={clickedDrinkDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{clickedDrinkDetail.DrinkType}</label>
                                 </div>
                             </div>
-                            <div className="mt-5 flex-column d-flex  justify-content-center mt-2  col-9">
+                            <div className="mt-5 flex-column d-flex justify-content-center col-xl-9 col-12 ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
-                                <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5">
+                                <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
 
                                     {ingredient.map((ingredient, key) => (
                                         <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
@@ -213,7 +212,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6 col-xl-4 img-holder-details col-xxl-5 mb-5">
+                    <div className="col-12 col-xl-6 img-holder-details col-xxl-5 mb-5 d-flex justify-content-center align-items-center">
                         <LazyLoadImage
                             src={convertetIMG}
                             effect="blur"
@@ -226,8 +225,8 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                 {/* Sposów przygotowania drinku */}
 
                 <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5">Preparation</div>
-                <div className="col-12 d-flex  justify-content-center mt-2 align-items-center">
-                    <div className="mt-2 border rounded pt-4 ps-4 pe-4 col-10 d-flex  justify-content-center   align-items-center">
+                <div className="col-12 d-flex  justify-content-center mt-2 align-items-center preparation-holder ">
+                    <div className="mt-2 border rounded pt-4 ps-4 pe-4 col-11 col-xl-10 d-flex justify-content-center align-items-center">
                         <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
                             <div>
                                 {currentData.map((preparation, key) => (
