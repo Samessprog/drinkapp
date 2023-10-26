@@ -36,7 +36,7 @@
         outline: none;
     }
 
-    .addison-button{
+    .addison-button {
         display: inline-block;
         padding: 4px 9px;
         font-size: 14px;
@@ -53,7 +53,7 @@
     .ing-container {
         max-height: 150px;
         overflow-y: auto;
-        
+
         .ing {
             background: linear-gradient(to top right, rgb(255, 255, 255), rgb(172, 172, 172));
             border-radius: 10px;
@@ -72,10 +72,9 @@
             border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
-    
+
         }
     }
-
 }
 
 .own-drink-popup-holder {
@@ -121,8 +120,8 @@
     border-radius: 10px;
     border: 2px solid rgb(255, 255, 255);
     overflow: hidden;
-    max-width: 500px;
-    max-height: 500px;
+    max-height: 380px;
+    height: 380px;
 
     .overlay-user-img {
         position: absolute;
@@ -153,30 +152,36 @@
     }
 
     .user-img {
-        max-height: 350px;
-        width: 100%;
+        height: 100%;
     }
 }
-
-
 
 .user-details-holder {
     color: $color-white;
 
     .user-data-box {
-        border-bottom: 1px solid white;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 4px;
+    }
 
-        &-input {
-            background-color: transparent;
-            border: none;
+    .user-data-box-input {
+        background-color: transparent;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        outline: none;
+
+        &::placeholder {
             color: white;
-            outline: none;
-
-            &::placeholder {
-                color: white;
-            }
         }
     }
+
+    .user-data-box:focus-within {
+        border-color: rgb(255, 255, 255);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
 
     .user-data-button-submit {
         @include user-profile-button;
@@ -193,9 +198,21 @@
     }
 
     .badges-holder {
+        align-items: center;
+        justify-content: center;
         border: solid white 2px;
-        height: 300px;
+        height: 400px;
+        max-height: 400px;
         overflow-y: auto;
+
+        @media (max-width: 1400px) {
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 700px) {
+            height: 500px;
+            max-height: 500px;
+        }
 
         .badges-start {
             font-size: 1.25rem;
@@ -213,7 +230,6 @@
             fill: white;
             cursor: pointer;
         }
-
     }
 
     .favourite-holder-user-drink {
@@ -232,9 +248,16 @@
         @media (max-width: 576px) {
             margin-left: 0 !important;
         }
-
     }
+}
 
+.change-data-input-user {
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
 }
 
 .add-your-drink-button {
