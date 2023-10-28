@@ -23,7 +23,6 @@
 
                 @media (max-width: 1470px) {
                     flex-direction: column;
-
                 }
 
                 .rating-holder {
@@ -32,7 +31,6 @@
 
                     }
                 }
-
             }
 
             .drink-detail-button {
@@ -59,7 +57,7 @@
             }
 
             .star {
-                fill: rgb(255, 255, 255);
+                fill: $rgb-255;
             }
 
             .gold {
@@ -104,8 +102,8 @@
 
             .description-holder {
                 position: relative;
-                max-height: 450px;
-                height: 450px;
+                max-height: $n-450px;
+                height: $n-450px;
                 text-align: justify;
                 text-justify: inter-word;
                 overflow-y: auto !important;
@@ -142,7 +140,6 @@
                         text-decoration-thickness: 5px;
 
                         span {
-
                             text-decoration: none;
                             color: white;
                             cursor: pointer;
@@ -154,12 +151,11 @@
                         align-items: center;
                         justify-content: center;
                         margin-bottom: 2rem;
-
                     }
 
                     &>li::before {
                         content: "*";
-                        color: rgb(255, 255, 255);
+                        color: $rgb-255;
                         font-weight: bold;
                         display: inline-block;
                         padding-top: 2px;
@@ -173,35 +169,29 @@
                             justify-content: center;
                         }
                     }
-
                 }
-
             }
 
             .basic-information-drink {
                 @include basicDrinksInf
             }
-
         }
 
         .preparation-holder {
-            height: 350px;
-            max-height: 350px;
+            height: $n-350px;
+            max-height: $n-350px;
 
             .preparation-holder {
 
                 .nextPageArrow {
-                    background-color: green; // Correct way to use a mixin
+                    background-color: green;
                     fill: red;
 
                     &:hover {
-                        fill: rgb(163, 161, 161); // Use RGB colors
+                        fill: rgb(163, 161, 161);
                     }
                 }
             }
         }
-
-
     }
-
 }

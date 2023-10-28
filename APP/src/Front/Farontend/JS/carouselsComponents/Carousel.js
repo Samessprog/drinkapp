@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink";
 
-const Carousel = ({ favouriteUsersDrink }) => {
+const Carousel = ({ favouriteUsersDrink, setClickedDrinkDetail, clickedDrinkDetail }) => {
 
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,18 +45,24 @@ const Carousel = ({ favouriteUsersDrink }) => {
 
 
   return (
-    <div className="carousel col-12 ">
+    <div className="carousel col-12 ms-0 me-0 ps-0 pe-0">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
         {showItems.length === 0 ? (
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (
-            <FavouriteDrinks key={elm.ID_DRINK} elm={elm} favouriteUsersDrink={favouriteUsersDrink} />
+            <FavouriteDrinks
+              key={elm.ID_DRINK}
+              elm={elm}
+              favouriteUsersDrink={favouriteUsersDrink}
+              setClickedDrinkDetail={setClickedDrinkDetail}
+              clickedDrinkDetail={clickedDrinkDetail}
+            />
           ))
         )}
       </div>
 
-      { favouriteUsersDrink.length > 4 && 
+      {favouriteUsersDrink.length > 4 &&
         <div>
           <div
             className="position-absolute start-0 top-50 d-none d-md-flex scroll-arrow-fav-own-box"
@@ -74,7 +80,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
           </div>
 
           <div
-            className="position-absolute top-50 end-0 me-4 d-none d-md-flex scroll-arrow-fav-own-box"
+            className="position-absolute top-50 end-0  d-none d-md-flex scroll-arrow-fav-own-box"
             onClick={handleNext}
           >
             <svg

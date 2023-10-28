@@ -28,6 +28,18 @@ $n-300px: 300px;
 $n-250px: 250px;
 $n-150px: 150px;
 $n-120px: 120px;
+$n-100px: 100px;
+
+
+//Borders
+$border-1-solid-black: 1px solid black;
+
+//font family
+$cursive: cursive;
+
+//Colors
+$rgb-255: rgb(255, 255, 255);
+$rgb-251-242-234: rgb(251, 242, 234);
 
 //displays
 $d-flex: flex;
@@ -208,5 +220,4 @@ $font-size-13: 13px;
     padding-right: 0.4rem;
     color: $color-black;
     border: none;
-
 }

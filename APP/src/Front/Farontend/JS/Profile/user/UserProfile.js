@@ -8,11 +8,11 @@ import UserFavouriteDrinks from "./UserFavouriteDrinks";
 import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
 import { SessionContext } from "../../Session/SessionContext";
 
-function UserProfile({ drinkDatas }) {
-  
+function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) {
+
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
-  
+
   const [userIMG, setUserIMG] = useState('')
 
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
@@ -44,6 +44,8 @@ function UserProfile({ drinkDatas }) {
     <div className="user-details-holder">
       <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} fetchIMGCompleted={fetchIMGCompleted} />
       <UserFavouriteDrinks
+        setClickedDrinkDetail={setClickedDrinkDetail}
+        clickedDrinkDetail={clickedDrinkDetail}
         userFavouriteDrinks={userFavouriteDrinks}
         drinkDatas={drinkDatas}
       />

@@ -1,20 +1,19 @@
 @import "../variables";
 
-
 .footer {
     color: $color-white;
     background-color: $bg-ligherDark;
-    border-top: 1px solid black;
+    border-top: $border-1-solid-black;
 
     .drink-footer-img{
         height: 190px;
     }
     .drink-count{
-        font-family: cursive;
+        font-family: $cursive;
     }
 
     .drink-count-number{
-        font-size: 60px;
+        font-size: 55px;
     }
 
     .desc-container {
@@ -43,5 +42,4 @@
 .copyright {
     @include fs-13-color-light-grey;
     background-color: $bg-dark;
-
 }

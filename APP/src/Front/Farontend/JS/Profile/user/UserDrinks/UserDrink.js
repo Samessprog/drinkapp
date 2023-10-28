@@ -5,7 +5,7 @@ import { Buffer } from 'buffer';
 import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG";
 import { SessionContext } from "../../../Session/SessionContext";
 
-function UserDrink({ elm }) {
+function UserDrink({ elm, setClickedDrinkDetail }) {
     const [isHidden, setIsHidden] = useState(false)
     const [drinkImg, setDrinkImg] = useState('')
 
@@ -24,7 +24,6 @@ function UserDrink({ elm }) {
         }
 
     }, []);
-
     //Remove from Favourite
     const removeFromFavourite = (drinkID) => {
 
@@ -46,27 +45,28 @@ function UserDrink({ elm }) {
     };
 
     return (
-        <div className={`user-drink-holder mt-4 col col-5 col-sm-3 col-md-3 col-xl-2  me-5  ${isHidden ? 'd-none' : ''}`}>
-            <div className=" position-relative ">
-                <Link to={`/drinkDetail/${elm?.ID_DRINK}`}>
+        <div className={`user-drink-holder mt-4 me-5 col-3 ${isHidden ? 'd-none' : ''}`}>
+            <div className=" position-relative col-12">
+                <Link to={`/drinkDetail/${elm?.ID_DRINK}`} onClick={() => setClickedDrinkDetail({ Drink: elm })} >
                     <FetchingDrinkIMG elm={elm} classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
-                </Link >
-                <div className="position-absolute favourite-drink-info-box ">
-                    <div class="d-flex  flex-column justify-content-center align-items-center">
-                        <div className="cc d-flex  flex-column justify-content-center align-items-center">
-                            <label className=" mt-3 drink-creator ">
-                                {elm?.Creator}
-                            </label>
-                            <div className="d-flex mt-3">
-                                <label className="me-4 drink-level" >{elm?.DifficultyLevel}</label>
-                                <label className="drink-taste">{elm?.Taste}</label>
+                    <div className="position-absolute favourite-drink-info-box d-flex  flex-column justify-content-center align-items-center">
+                        <div class="d-flex  flex-column justify-content-center align-items-center">
+                            <div className="cc d-flex  flex-column justify-content-center align-items-center ">
+                                <label className="drink-info-hover fs-4">Drink information</label>
+                                <label className=" drink-info-hover fs-5 mt-2" >{elm?.DifficultyLevel}</label>
+                                <label className="drink-info-hover mt-2 fs-5">{elm?.Taste}</label>
+                                <label className="drink-info-hover mt-2 fs-5">{elm?.DrinkType}</label>
+                                <div className="d-flex flex-column drink-info-hover mt-2 fs-5 col-12 align-items-center">
+                                    <label>Creator: </label>
+                                    <label className="drink-creatoren ms-2">
+                                        {elm?.Creator}
+                                    </label>
+                                </div>
                             </div>
-                            <label className=" mt-3 drink-type ">{elm?.DrinkType}</label>
                         </div>
                     </div>
-                </div>
-
-                <div className="position-absolute top-0 end-0 mt-2 me-2" onClick={() => {
+                </Link >
+                <div className="position-absolute top-0 end-0 mt-2 me-2 " onClick={() => {
                     removeFromFavourite(elm?.ID_DRINK);
                     setIsHidden(true)
                 }} >
@@ -75,8 +75,6 @@ function UserDrink({ elm }) {
                         <path className="golden-star" d="m320 816 160-122 160 122-62.667-197.333 160-113.334H542l-62-204.666-62.667 204.666H222l160 113.334L320 816Zm160 160q-82.333 0-155.333-31.5t-127.334-85.833Q143 804.333 111.5 731.333T80 576q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82.333-31.5 155.333T763 858.667Q709 913 636 944.5T480 976Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666 436.667 146.666 576q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480 576Z" />
                     </svg>
                 </div>
-
-
             </div>
         </div >
     )

@@ -1,6 +1,7 @@
 @import "../variables.scss";
 
 .user-drink-holder {
+
     @include drinksHolder;
     border-radius: 15px;
 
@@ -9,8 +10,8 @@
     }
 
     .favourite-img-holder {
+        height: 400px;
         background-color: transparent !important;
-
     }
 
     .loading-icon-holder {
@@ -19,12 +20,13 @@
     }
 
     .favourite-drink-info-box {
-        bottom: 0;
+        bottom: -1%;
         width: 100%;
         background-color: rgb(7, 7, 7);
         opacity: 0;
-        height: 60%;
+        height: 70%;
         z-index: 1;
+        border-radius: 0px 0px 15px 15px;
         transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         transform: translateY(100%);
 
@@ -40,37 +42,18 @@
                 padding-right: 0.5rem;
             }
 
-            .drink-level {
-                background-color: rgb(10, 226, 10);
-                border-radius: 15px;
-                padding: 0.3rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+            .drink-info-hover {
+                color: white;
+                font-family: cursive;
             }
-
-            .drink-taste {
-                background-color: rgb(218, 255, 32);
-                border-radius: 15px;
-                padding: 0.3rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
-            .drink-type {
-                background-color: rgb(255, 0, 0);
-                border-radius: 15px;
-                padding: 0.3rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
 
         }
-
-
-
     }
 
+    .drink-creatoren {
+        overflow: hidden;
+        color: rgb(224, 167, 68);
+    }
 
     &:hover .favourite-drink-info-box {
         opacity: 0.75;
@@ -79,9 +62,10 @@
 
 
     .drink-img-favourite {
+        object-fit: cover;
         border-radius: 15px;
-        max-height: 250px;
-        height: 250px;
+        height: 400px;
+        max-height: 400px;
         width: 100%;
 
         @media (max-width: 576px) {
@@ -106,6 +90,12 @@
 
     .star {
         fill: $color-gold;
+    }
+
+    .arrow-carousel-holder {
+        height: 100%;
+        background-color: red;
+
     }
 
 }

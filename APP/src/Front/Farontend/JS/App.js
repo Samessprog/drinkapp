@@ -61,14 +61,12 @@ function App() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("http://localhost:3001/drinks");
-        console.log(data)
         setDrinkData(data);
         setSearchingDrink(data);
       } catch (err) {
         console.log(err);
       }
     };
-
     fetchData();
   }, []);
 
@@ -118,7 +116,7 @@ function App() {
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
                   <PrivateRoute element={
-                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} />
+                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} setClickedDrinkDetail={setClickedDrinkDetail} clickedDrinkDetail={clickedDrinkDetail} />
                   } />
                 </Suspense>
               </ErrorBoundary>

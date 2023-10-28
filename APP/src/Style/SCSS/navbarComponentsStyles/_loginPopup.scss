@@ -15,7 +15,7 @@
     }
 
     .color-black {
-        color: rgb(251, 242, 234);
+        color: $rgb-251-242-234;
     }
 
     .close-icon-holder {
@@ -28,21 +28,20 @@
         }
     }
 
-
     .log-reg-icon-holder {
         border-radius: 5px 0px 0px 5px;
         background-color: rgba(163, 163, 163, 0.779);
         padding: 7px;
-        border-right: 1px solid black;
+        border-right: $border-1-solid-black;
 
         .login-register-icon {
-            fill: rgb(255, 255, 255);
+            fill: $rgb-255;
         }
     }
 
     .input-box {
         background-color: white;
-        border: 1px solid black;
+        border: $border-1-solid-black;
         border-radius: 0px 5px 5px 0px;
         border-left: none;
         padding: 4px;
@@ -50,11 +49,8 @@
         .login-register-input-data {
             border: none;
             outline: none;
-
         }
     }
-
-
 
     .registerLink {
         color: rgb(118, 186, 255);
@@ -69,7 +65,6 @@
         .login-reg-header {
             letter-spacing: 2px;
         }
-
     }
 
     .login-register-errors {

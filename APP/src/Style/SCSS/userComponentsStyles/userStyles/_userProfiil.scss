@@ -159,6 +159,7 @@
 .user-details-holder {
     color: $color-white;
 
+
     .user-data-box {
         border: 1px solid white;
         border-radius: 10px;
@@ -220,7 +221,7 @@
     }
 
     .scroll-arrow-fav-own-box {
-        background-color: rgb(26, 24, 24);
+        background-color: transparent;
         opacity: 70%;
         height: 50px;
         display: flex;
@@ -229,13 +230,16 @@
         .scroll-arrow-fav-own {
             fill: white;
             cursor: pointer;
+
+            &:hover {
+                fill: rgb(178, 178, 178);
+            }
         }
     }
 
     .favourite-holder-user-drink {
         margin-bottom: 7rem;
         padding: 1.5rem;
-        position: relative;
     }
 
     .user-favourite-frinks-holder {

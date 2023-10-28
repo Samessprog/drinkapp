@@ -39,16 +39,16 @@ function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail 
     };
 
     return (
-        <div className="drin-window col-7 col-sm-5 col-md-4 col-lg-3 col-xxl-2 m-3  p-0 position-relative">
+        <div className="col-7 col-sm-5 col-md-4 col-lg-3 col-xxl-2 drin-window m-3 p-0 position-relative">
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none" to={`drinkDetail/${elm.ID_DRINK}`} onClick={() => setClickedDrinkDetail({ Drink: elm })}>
                 <FetchingDrinkIMG elm={elm} classNameHolder='img-holder card overflow-hidden' classNameIMG='drink-img img-fluid' />
                 <div className="basic-information-drink p-2 ">
-                    <div className="d-flex flex-column flex-sm-row align-items-center col-12">
-                        <label className="fs-4 fw-bolder ps-2 col-12 drink-name-holder text-break">{elm.DrinkName}</label>
+                    <div className="col-12 d-flex flex-column flex-sm-row align-items-center">
+                        <label className="col-12 fs-4 fw-bolder ps-2 drink-name-holder text-break">{elm.DrinkName}</label>
                     </div>
-                    <div className="d-flex mt-2 pt-2 border-top y flex-column flex-lg-row ps-2 col-12">
-                        <div className="drink-info-holder d-flex flex-column fs-5 justify-content-start col-12 col-lg-9 col-xxl-7 col- color-white">
+                    <div className="col-12 d-flex mt-2 pt-2 border-top y flex-column flex-lg-row ps-2">
+                        <div className="col-12 col-lg-9 col-xxl-7 drink-info-holder d-flex flex-column fs-5 justify-content-start color-white">
                             <div>
                                 <label className="">Level: </label>
                                 <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
@@ -64,11 +64,11 @@ function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail 
                             <div className="">
                                 <label>Rate: </label>
                                 <label className="rate fw-bolder ms-2">{elm.Rate}
-                                    <svg className="star  mb-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
+                                    <svg className="star mb-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" /></svg>
                                 </label>
                             </div>
                         </div>
-                        <div className="d-flex justify-content-start align-items-center pe-2 fs-5 flex-column color-white  col-12 col-lg-3 col-xxl-3 ">
+                        <div className="col-12 col-lg-3 col-xxl-3 d-flex justify-content-start align-items-center pe-2 fs-5 flex-column color-white">
                             <label>
                                 Creator
                             </label>

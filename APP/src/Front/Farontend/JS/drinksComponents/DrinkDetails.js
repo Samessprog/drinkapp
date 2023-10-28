@@ -6,8 +6,12 @@ import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
 import { Rating } from '@mui/material';
+import { Ring } from "@uiball/loaders";
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
+
+
+    console.log(clickedDrinkDetail)
 
     const API_URL = 'http://localhost:3000/api/';
 
@@ -20,6 +24,8 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
     const [preparation, setPreparation] = useState([])
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([]);
+    const [loadingImgCompleated, setLoginImgCompleated] = useState()
+
 
     useEffect(() => {
         let result = clickedDrinkDetail.Drink
@@ -112,7 +118,6 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
         }
     }, [clickedDrinkDetail]);
 
-
     useEffect(() => {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
             // Convert the image data to base64
@@ -120,6 +125,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
             // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
             setConvertedIMG(imageURL);
+            setLoginImgCompleated(true)
         } else {
             setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
@@ -130,9 +136,9 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
 
     return (
-        <div className="drink-holder col-12">
-            <div className="drink-main-container mt-5 col-12">
-                <div className="d-flex d-col-12 me-0 pe-4 ps-4  flex-contain " >
+        <div className="col-12 drink-holder">
+            <div className="col-12 drink-main-container mt-5">
+                <div className="col-12 d-flex me-0 pe-4 ps-4  flex-contain " >
                     <div className="col-12 col-xxl-7 col-xl-6">
                         <div className="d-flex align-items-center mb-5 name-rating-holder">
                             <header className="d-flex align-items-center ">
@@ -157,7 +163,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             </div>
                         </div>
                         {/*Opis i składniki do drinku  */}
-                        <div className="mt-5 col-12">
+                        <div className="col-12 mt-5">
                             <article>
                                 <div className="col-12">
                                     <button
@@ -176,7 +182,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                     >
                                         History
                                     </button>
-                                    <div className="description-holder overflow-y-auto col-12 col-xl-10 p-3 ps-4 pe-4">
+                                    <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4">
                                         <section>
                                             <div className="d-flex fs-5">
                                                 <p className="line-spaced">
@@ -191,7 +197,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                     </div>
                                 </div>
                             </article>
-                            <div className="d-flex flex-column d-flex  basic-information-drink align-items-center col-xl-9 col-12">
+                            <div className="col-xl-9 col-12 d-flex flex-column d-flex  basic-information-drink align-items-center">
                                 <label className="fs-3 fw-bolder mt-5">Specifications</label>
                                 <div className="d-flex  mt-3 fs-5">
                                     <label className={` me-2 ${clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{clickedDrinkDetail.DifficultyLevel}</label>
@@ -200,7 +206,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                     <label className={clickedDrinkDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{clickedDrinkDetail.DrinkType}</label>
                                 </div>
                             </div>
-                            <div className="mt-5 flex-column d-flex justify-content-center col-xl-9 col-12 ingredient-details-holder">
+                            <div className="col-xl-9 col-12 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
 
@@ -212,28 +218,40 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-xl-6 img-holder-details col-xxl-5 mb-5 d-flex justify-content-center align-items-center">
-                        <LazyLoadImage
-                            src={convertetIMG}
-                            effect="blur"
-                            className="img-helper col-12 img-fluid"
-                            alt="Img error"
-                        />
+                    <div className="col-12 col-xl-6 col-xxl-5 img-holder-details mb-5 d-flex justify-content-center align-items-center">
+
+                        {loadingImgCompleated ? (
+                            <LazyLoadImage
+                                src={convertetIMG}
+                                effect="blur"
+                                className=" col-12 img-helper img-fluid"
+                                alt="Img error"
+                            />
+
+                        ) : (
+                            <div className="col-12 d-flex justify-content-center">
+                                <Ring
+                                    size={90}
+                                    lineWeight={5}
+                                    speed={2}
+                                    color="black"
+                                    className="col-12"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
-
                 {/* Sposów przygotowania drinku */}
-
                 <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5">Preparation</div>
                 <div className="col-12 d-flex  justify-content-center mt-2 align-items-center preparation-holder ">
-                    <div className="mt-2 border rounded pt-4 ps-4 pe-4 col-11 col-xl-10 d-flex justify-content-center align-items-center">
+                    <div className="col-11 col-xl-10 mt-2 border rounded pt-4 ps-4 pe-4 d-flex justify-content-center align-items-center">
                         <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
                             <div>
                                 {currentData.map((preparation, key) => (
                                     <div key={key}>{preparation}</div>
                                 ))}
 
-                                <div className="mt-5 d-flex justify-content-center col align-items-center">
+                                <div className="col mt-5 d-flex justify-content-center align-items-center">
                                     <img alt="ERR"></img>
                                 </div>
 
@@ -246,10 +264,8 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                         nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
                                         previousLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
                                     />
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
