@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { v4 as uuid } from 'uuid';
 
 import { SessionContext } from "../../../Session/SessionContext";
+import { green, red } from "@mui/material/colors";
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
@@ -112,148 +113,159 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id));
     }
 
-
     return (
-        <div className="col-12 h-100 align-items-center own-drink-popup-holder">
+        <div className="col-11 h-100 align-items-center own-drink-popup-holder">
 
-            <div className="users-own-deink  col-11 col-sm-10 col-md-8 col-lg-6 col-xl-7 p-3 mx-auto">
-
-                <div className="d-flex justify-content-end mb-2">
-                    <svg className="close-icon" onClick={() => { setAddUserNewDrink(!addUserNewDrink) }} xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-                        <path d="M7.062 14 10 11.062 12.938 14 14 12.938 11.062 10 14 7.062 12.938 6 10 8.938 7.062 6 6 7.062 8.938 10 6 12.938ZM10 18q-1.646 0-3.104-.625-1.458-.625-2.552-1.719t-1.719-2.552Q2 11.646 2 10q0-1.667.625-3.115.625-1.447 1.719-2.541Q5.438 3.25 6.896 2.625T10 2q1.667 0 3.115.625 1.447.625 2.541 1.719 1.094 1.094 1.719 2.541Q18 8.333 18 10q0 1.646-.625 3.104-.625 1.458-1.719 2.552t-2.541 1.719Q11.667 18 10 18Zm0-1.5q2.708 0 4.604-1.896T16.5 10q0-2.708-1.896-4.604T10 3.5q-2.708 0-4.604 1.896T3.5 10q0 2.708 1.896 4.604T10 16.5Zm0-6.5Z" />
-                    </svg>
+            <div className=" col-xxl-11 users-own-deink p-3 mx-auto">
+                <div className="d-flex justify-content-end mb-2 col-12">
+                    <svg className="close-icon" onClick={() => { setAddUserNewDrink(!addUserNewDrink) }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
                 </div>
                 <form onSubmit={addNewDrinkHandler}>
                     <div className="d-flex justify-content-between col-12">
                         <div className="col-6">
                             <div className="mb-3 own-drink-box-input col-10">
-                                <input onChange={(e) => setDrinkName(e.target.value)} className="col-10 own-drink-input-name p-1 ps-2" type="text" placeholder="Enter drink name" value={drinkName} ></input>
+                                <div className="col-9 d-flex align-items-center mt-4">
+                                    <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
+                                        <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg>
+                                    </div>
+                                    <div className="col-11 input-box">
+                                        <input onChange={(e) => setDrinkName(e.target.value)} className="col-11 ps-2 rounded login-register-input-data" type="text" placeholder="Drink Name"></input>
+                                    </div>
+                                </div>
                             </div>
                             <div className="col-10">
-                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a description of youyr drink" value={drinkdescription}></textarea>
+                                <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12  own-drink-desc" type="text" placeholder="Enter a description of youyr drink" value={drinkdescription}></textarea>
                             </div>
                             <div className="col-10">
-                                <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 p-2 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)" value={drinkHistory}></textarea>
+                                <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)" value={drinkHistory}></textarea>
                             </div>
 
                         </div>
                         <div className="col-6 d-flex flex-column">
-                            <label className="mt-3 file-upload">
+                            <div className="mt-3 file-upload d-flex flex-column align-items-center ">
+                                <div className="drink-img-holder col-6 d-flex align-items-center justify-content-center">
+                                    <img className="own-img-holder col-12" src="https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg">
+                                    </img>
+                                </div>
+
                                 <input
-                                    className="file-drink-input"
+                                    className="file-drink-input mt-3"
                                     type="file"
                                     accept="image/*"
                                     capture="user"
                                     onChange={(event) => addNewDrinkHandler(event)}
                                 />
-                            </label>
-                            <div>
+                            </div>
+                            <div className="d-flex justify-content-center">
                                 <div>
-                                    <div className="d-flex mt-4 align-items-center">
-                                        <input
-                                            className="col-7 ing-input"
-                                            onInput={(e) => {
-                                                const inputValue = e.target.value;
-                                                if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
-                                                    setIngredientsOfNewDrinkText(inputValue);
-                                                }
-                                            }}
-                                            value={ingredientsOfNewDrinkText}
-                                            placeholder="type your ingredients"
-                                        />
-                                        <div>
-                                            <div onClick={submitIngreadinetsHandler} className="ms-2 addison-button">ADD</div >
+                                    <div>
+                                        <div className="d-flex mt-4 align-items-center">
+                                            <input
+                                                className="col-7 ing-input"
+                                                onInput={(e) => {
+                                                    const inputValue = e.target.value;
+                                                    if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
+                                                        setIngredientsOfNewDrinkText(inputValue);
+                                                    }
+                                                }}
+                                                value={ingredientsOfNewDrinkText}
+                                                placeholder="type your ingredients"
+                                            />
+                                            <div>
+                                                <div onClick={submitIngreadinetsHandler} className="ms-2 addison-button">ADD</div >
+                                            </div>
+                                        </div>
+                                        <div className="d-flex flex-column mt-3 ing-container ">
+                                            {ingredientsOfNewDrink.map((elm) => (
+                                                <div className=" d-flex col-12 align-items-center ">
+                                                    <label className="ing col-11 mt-3">{elm.text}</label>
+                                                    <div onClick={() => submitIngreadinetsDeleteHandler(elm.id)} className="col-1 delete-icon-holder">
+                                                        <svg className="delete-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
-                                    <div className="d-flex flex-column mt-1 ing-container">
-                                        {ingredientsOfNewDrink.map((elm) => (
-                                            <div className=" d-flex justify-content-between col-7 align-items-center">
-                                                <label className="ing col-12">{elm.text}</label>
-                                                <div onClick={() => submitIngreadinetsDeleteHandler(elm.id)} className="me-2 theX btn">
-                                                    X
-                                                </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <div className="d-flex mt-4 align-items-center">
+                                            <input
+                                                className="col-7 ing-input"
+                                                onInput={(e) => {
+                                                    const inputValue = e.target.value;
+                                                    if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
+                                                        setPreparationOfNewDrinkText(inputValue);
+                                                    }
+                                                }}
+                                                value={preparationOfNewDrinkText}
+                                                placeholder="Enter preparation"
+                                            />
+                                            <div>
+                                                <div onClick={submitPreparationHandler} className="ms-2 addison-button">ADD</div >
                                             </div>
-                                        ))}
+                                        </div>
+                                        <div className="d-flex flex-column mt-1 ing-container">
+                                            {preparationOfNewDrink.map((elm) => (
+                                                <div className=" d-flex justify-content-between col-7 align-items-center">
+                                                    <label className="ing col-12">{elm.text}</label>
+                                                    <div onClick={() => submitPreparationDeleteHandler(elm.id)} className="me-2 theX btn">
+                                                        X
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div>
-                                <div>
-                                    <div className="d-flex mt-4 align-items-center">
-                                        <input
-                                            className="col-7 ing-input"
-                                            onInput={(e) => {
-                                                const inputValue = e.target.value;
-                                                if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
-                                                    setPreparationOfNewDrinkText(inputValue);
-                                                }
-                                            }}
-                                            value={preparationOfNewDrinkText}
-                                            placeholder="Enter preparation"
-                                        />
-                                        <div>
-                                            <div onClick={submitPreparationHandler} className="ms-2 addison-button">ADD</div >
-                                        </div>
-                                    </div>
-                                    <div className="d-flex flex-column mt-1 ing-container">
-                                        {preparationOfNewDrink.map((elm) => (
-                                            <div className=" d-flex justify-content-between col-7 align-items-center">
-                                                <label className="ing col-12">{elm.text}</label>
-                                                <div onClick={() => submitPreparationDeleteHandler(elm.id)} className="me-2 theX btn">
-                                                    X
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div className="d-flex col-5 selection-options-holder justify-content-around fs-6">
+                        <div className="ms-2 d-flex mt-2 col-2">
+                            <div className="d-flex mt-2 flex-column align-items-center me-3 col-12">
+                                <label >Level: </label>
+                                <select className=" ms-1 col-12" onChange={(e) => setDrinkLevel(e.target.value)} value={drinkLevel}>
+                                    <option value={'All'}>All</option>
+                                    <option value={'Easy'}>Easy</option>
+                                    <option value={'Medium'}>Medium</option>
+                                    <option value={'Hard'}>Hard</option>
+                                </select>
+                            </div>
+                            <div className="d-flex mt-2 flex-column align-items-center col-12">
+                                <label className=" ">Taste: </label>
+                                <select className=" ms-1 col-12" onChange={(e) => setDrinkTaste(e.target.value)} value={drinkTaste}>
+                                    <option value={'All'}>All</option>
+                                    <option value={'Sour'}>Sour</option>
+                                    <option value={'Sweet'}> Sweet</option>
+                                    <option value={'Bitter'}>Bitter</option>
+                                </select>
                             </div>
                         </div>
-
-
-                    </div>
-                    <div className="ms-2 multi-options">
-                        <div className="d-flex">
-                            <label className="">Level: </label>
-                            <select className=" ms-1 test" onChange={(e) => setDrinkLevel(e.target.value)} value={drinkLevel}>
-                                <option value={'All'}>All</option>
-                                <option value={'Easy'}>Easy</option>
-                                <option value={'Medium'}>Medium</option>
-                                <option value={'Hard'}>Hard</option>
-                            </select>
-                        </div>
-
-
-                        <div className="d-flex mt-2">
-                            <label className=" ">Taste: </label>
-                            <select className=" ms-1 test" onChange={(e) => setDrinkTaste(e.target.value)} value={drinkTaste}>
-                                <option value={'All'}>All</option>
-                                <option value={'Sour'}>Sour</option>
-                                <option value={'Sweet'}> Sweet</option>
-                                <option value={'Bitter'}>Bitter</option>
-                            </select>
+                        <div className="ms-2 mt-2 col-4">
+                            <label>Select a type</label>
+                            <div className="d-flex mt-1">
+                                <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="alcoholic" value="Alcoholic" ></input>
+                                <label className="ms-1" for="alcoholic">Alcoholic</label>
+                            </div>
+                            <div className="d-flex mt-1">
+                                <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="soft-drinks" value="Soft"></input>
+                                <label className="ms-1" for="soft-drinks">Soft drinks</label>
+                            </div>
                         </div>
                     </div>
-                    <div className="ms-2 mt-2">
-                        <div className="d-flex mt-1">
-                            <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="alcoholic" value="Alcoholic" ></input>
-                            <label className="ms-1" for="alcoholic">Alcoholic</label>
+                    <div className="d-flex flex-xl-row-reverse ">
+                        <div className="d-flex justify-content-center align-items-center " >
+                            <label className="text-danger fw-bolder">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
+                            <button className="mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
+                                <svg style={{ fill: 'green' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg>
+                                <div className="pe-2 ps-2">Create!</div>
+                            </button>
                         </div>
-
-
-                        <div className="d-flex mt-1">
-                            <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="soft-drinks" value="Soft"></input>
-                            <label className="ms-1" for="soft-drinks">Soft drinks</label>
-                        </div>
-                    </div>
-
-                    <div className="d-flex justify-content-between align-items-center">
-                        <label className="mt-2 text-danger fw-bolder">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
-                        <button type="submit" class="btn btn-success">Add this drink</button>
                     </div>
                 </form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 export default UserOwnDrinkPopup;

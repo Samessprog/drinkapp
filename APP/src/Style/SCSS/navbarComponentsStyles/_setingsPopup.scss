@@ -102,15 +102,12 @@
         @media (max-width: 570px) {
             font-size: 1.125rem;
         }
-
-
     }
 
     .advanced-button-holder {
         &:hover {
             .advancet-filter-icon {
                 animation: rotate 3.5s linear infinite;
-                /* Dostosuj czas i styl animacji według potrzeb */
             }
         }
 
@@ -123,7 +120,5 @@
                 transform: rotate(360deg);
             }
         }
-
     }
-
 }

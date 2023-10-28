@@ -1,6 +1,6 @@
 //Imports
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Ring } from '@uiball/loaders'
 
 function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
@@ -15,11 +15,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
     const userID = userSesion.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
-    const [newUserPasswordErrors, setNewUserPasswordErrors] = useState('')
-
-    //userPasswords states
-    const [passwordBoxFlag, setpasswordBoxFlag] = useState(false)
-    const [newPassword, setNewPassword] = useState('')
 
     const [isSuccesChnage, setIsSuccesChnage] = useState(false)
 
@@ -100,7 +95,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
         <div className="col-12 mt-3 ">
             <div class="d-flex justify-content-between p-5 flex-column flex-xxl-row align-items-center col-12 mt-4">
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center col-12 col-xxl-5">
-                    <div class="d-flex  col-xxl-8 ustify-content-start ms-5" >
+                    <div class="d-flex col-xxl-8 ustify-content-start ms-5" >
                         <div className="user-img-holder d-flex ">
                             {fetchIMGCompleted ? (
                                 <img src={userIMG} alt="Img error" class="img-fluid user-img "></img>

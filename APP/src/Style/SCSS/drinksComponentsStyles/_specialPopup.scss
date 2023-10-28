@@ -13,7 +13,7 @@
 
     .helper {
         background-color: rgb(41, 41, 41);
-        color: #fbf2ea;
+        color: $fbf2ea;
         border: 1px solid rgb(251, 242, 234);
 
         .special-options-holder {
@@ -25,7 +25,7 @@
         }
 
         .special-drink-ing-icon {
-            fill: #fbf2ea;
+            fill: $fbf2ea;
         }
 
         .close-icon {
@@ -34,7 +34,7 @@
         }
 
         .search-special-icon path {
-            fill: #fbf2ea;
+            fill: $fbf2ea;
             transition: fill 0.3s;
         }
 
@@ -47,18 +47,16 @@
             padding: 8px;
             outline: none;
             border: none;
-            background-color: #fbf2ea;
+            background-color: $fbf2ea;
 
             &::placeholder {
                 opacity: 80%;
                 color: black;
-
             }
 
             @media (max-width: 575px) {
                 padding: 0.3rem;
             }
-
         }
 
         .ing-button {
@@ -83,7 +81,6 @@
             }
         }
 
-
         .enter-button {
             background-color: $color-black;
             color: $color-white;
@@ -105,15 +102,11 @@
 
         .drink-results {
             color: $color-gold;
-
         }
 
         .search-special-drink-button {
             background-color: $color-black;
             color: $color-white;
-
         }
-
     }
-
 }

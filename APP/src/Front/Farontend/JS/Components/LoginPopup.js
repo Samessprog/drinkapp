@@ -62,9 +62,7 @@ function LoginPopup() {
             </div>
 
             <div className="col-12  mt-2 rounded">
-
                 <form onSubmit={handleLogin} className=" d-flex  flex-column align-items-center">
-
                     <div className="col-11 logRegHolder d-flex justify-content-center flex-column align-items-center mt-5">
                         <div className=" login-reg-header fs-2 color-black mb-3">Login</div>
                         <div className="col-9 d-flex align-items-center mb-2 mt-2">
