@@ -1,26 +1,61 @@
+@import '../../variables.scss';
+
 .drinks-profile-holder {
     border: 2px solid white;
     border-radius: 15px;
 
 
+    .sourClass {
+        color: rgb(218, 255, 32);
+    }
+
+
+    .sweetClass {
+        color: rgb(247, 71, 124);
+    }
+
+    .sourClass {
+        color: rgb(218, 255, 32);
+    }
+
+    .bitterClass {
+        color: rgb(143, 126, 126);
+    }
+
+    .easyLevelClass {
+        color: rgb(91, 208, 91);
+    }
+
+    .mediumLevelClass {
+        color: rgb(239, 212, 14);
+    }
+
+    .hardLevelClass {
+        color: rgb(255, 111, 0);
+    }
+
+    .diff-level {
+        color: $color-light-l-green;
+    }
+
+    .drink-creator {
+        color: $color-black;
+    }
+
+    .softClass {
+        color: rgb(154, 246, 249);
+    }
+
+    .alkoClass {
+        color: rgb(243, 22, 22);
+    }
 
     .data-holder {
-        width: 1000px;
 
-        @media (max-width: 1530px) {
-            max-width: 800px;
-        }
+        .drink-name-profile {
+            max-height: 100px;
+            overflow-y: auto;
 
-        @media (max-width: 790px) {
-            max-width: 500px;
-        }
-
-        @media (max-width: 576px) {
-            max-width: 300px;
-        }
-
-        @media (max-width: 400px) {
-            max-width: 290px;
         }
 
         @media (max-width: 1000px) {
@@ -40,8 +75,8 @@
             border: 1px solid white;
             border-radius: 10px;
 
-
             .drink-profile-img {
+                object-fit: cover;
                 border-radius: 10px;
                 max-height: 200px;
                 min-height: 200px;
@@ -119,19 +154,14 @@
     }
 
     .delete-profile {
-       margin-left: 15rem;
+        margin-left: 15rem;
 
-       @media (max-width: 1800px) {
-        margin-left: 1rem;
-    }
+        @media (max-width: 1800px) {
+            margin-left: 1rem;
+        }
 
         &-icon {
             fill: red;
-            cursor: pointer;
-        }
-
-        .block-icon-profile {
-            fill: rgb(255, 132, 0);
             cursor: pointer;
         }
 

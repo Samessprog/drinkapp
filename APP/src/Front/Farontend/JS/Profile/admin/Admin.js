@@ -236,8 +236,8 @@ function Admin({ drinkDatas }) {
    
 
     return (
-        <div>
-            <div className="admin-container p-3 p-sm-4 position-relative">
+        <div className="col-12">
+            <div className="admin-container p-3 p-sm-4 position-relative ">
                 <div className="admin-header-holder">
                     <header className="fs-2 admin-header">Hello admin NAME</header>
                 </div>
@@ -252,9 +252,9 @@ function Admin({ drinkDatas }) {
                     <header>Database of users and drinks</header>
                 </div>
 
-                <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12">
+                <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12 d-flex flex-column align-items-center">
                     <div className="d-sm-flex justify-content-between col-12 mb-5 d-flex-column align-items-center">
-                        <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2 col-6 ">
+                        <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-2 col-6">
                             <div className="pb-0 me-2">
                                 <button
                                     className="optional-buttons"
@@ -265,7 +265,6 @@ function Admin({ drinkDatas }) {
                                         dispatch(setDrinksFlag(true))
                                         setCurrentPageUsers(0)
                                         setCurrentPageNewDrink(0)
-
                                     }}
                                 >
                                     Drinks
@@ -302,7 +301,7 @@ function Admin({ drinkDatas }) {
                             </div>
                         </div>
 
-                        <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end position-relative">
+                        <div className="d-flex mt-3 me-3  d-flex justify-content-center  justify-content-sm-end ">
                             <div className="me-4 col-8 col-sm-12">
                                 <input
                                     className="searching-items-admin ps-3 pe-3 col-12"
@@ -349,12 +348,10 @@ function Admin({ drinkDatas }) {
                                         </div>
                                     </div>
                                 }
-
                             </div>
                         </div>
                     </div>
-                    <div className="">
-
+                    <div className="col-11 d-flex flex-column align-items-center ">
                         {usersFlag === true && (
                             <AdminPagination
                                 currentPaginationItem={currentItemsUsers}
