@@ -4,11 +4,9 @@
   color: $color-white;
   padding: 0;
   z-index: 1;
-  
   .user-profile-links {
     text-decoration: none;
   }
-
   &-elm {
     border: 1px solid white;
     width: 130px;
@@ -21,11 +19,9 @@
     margin-bottom: 5px;
     background-color: rgb(31, 31, 31);
     font-weight: 700;
-
     @media (max-width:768px) {
       width: 100%
     }
-
     &:hover {
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgba(251, 242, 234, 0.5) 50%);
       background-size: 200% 100%;
@@ -33,11 +29,9 @@
       transition: all 0.5s ease-out;
       color: $color-black;
       font-family: cursive;
-      
     }
   }
 }
-
 .dropArrow {
   fill: white;
 
@@ -45,12 +39,9 @@
     display: none;
   }
 }
-
 .rotate180 {
   transform: rotate(180deg);
 }
-
-
 
 a {
   text-decoration: none;

@@ -13,11 +13,22 @@
     }
 }
 
+.options-holder-own-drink {
+    color: white;
+}
+
 .users-own-deink {
+    overflow-y: scroll;
+    height: 750px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     color: $color-black;
     background-color: rgb(37, 37, 37);
+
+
+    @media (min-width: 2400px) {
+        height: 850px;
+    }
 
     .own-drink-box-input {
         display: flex;
@@ -52,8 +63,8 @@
     }
 
     .ing-input {
-        background: linear-gradient(to top right, rgb(255, 255, 255), rgb(172, 172, 172));
-        border-radius: 10px;
+        background-color: aliceblue;
+        border-radius: 10px 0px 0px 10px;
         padding-left: 10px;
         padding-top: 2px;
         padding-bottom: 2px;
@@ -62,20 +73,16 @@
     }
 
     .addison-button {
-        display: inline-block;
-        padding: 4px 9px;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.42857143;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
-        border-radius: 10px;
-        user-select: none;
-        background-color: grey;
+        background-color: rgb(190, 190, 190);
+        border-left: 1px solid black;
+        border-radius: 0px 10px 10px 0px;
+        height: 30px;
+        fill: black;
+
     }
 
     .ing-container {
+        height: 140px;
         max-height: 150px;
         overflow-y: auto;
 
@@ -84,20 +91,20 @@
             border-radius: 10px 0px 0px 10px;
         }
 
-        .delete-icon-holder {
-            background-color: aliceblue;
+        .delete-icon {
+            fill: red;
+            background-color: rgb(169, 169, 169);
+            height: 32px;
             border-radius: 0px 10px 10px 0px;
-
-            .delete-icon {
-                fill: red;
-            }
+            cursor: pointer;
+            border-left: 1px solid black;
         }
     }
 }
 
 .own-drink-popup-holder {
     position: fixed;
-    top: 20%;
+    top: 17%;
     left: 50%;
     transform: translateX(-50%);
 
@@ -125,10 +132,21 @@
         height: 350px;
         border-radius: 15px;
 
+        @media (max-height: 990px) {
+            max-height: 450px;
+            height: 450px;
+        }
+
         .own-img-holder {
             height: 350px;
             max-height: 350px;
             border-radius: 15px;
+            padding: 5px;
+
+            @media (max-height: 990px) {
+                max-height: 450px;
+                height: 450px;
+            }
         }
     }
 
@@ -154,7 +172,6 @@
         color: white;
     }
 }
-
 
 .user-img-holder {
     position: relative;
@@ -201,7 +218,6 @@
 .user-details-holder {
     color: $color-white;
 
-
     .user-data-box {
         border: 1px solid white;
         border-radius: 10px;
@@ -224,7 +240,6 @@
         border-color: rgb(255, 255, 255);
         background-color: rgba(255, 255, 255, 0.2);
     }
-
 
     .user-data-button-submit {
         @include user-profile-button;
@@ -300,6 +315,8 @@
 .change-data-input-user {
     background-color: transparent;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
 
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
