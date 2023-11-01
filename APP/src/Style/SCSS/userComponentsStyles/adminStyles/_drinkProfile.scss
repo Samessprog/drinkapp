@@ -110,6 +110,14 @@
 
     .details-button-holder {
 
+        .block-drink-icon-block{
+            fill: rgb(255, 255, 255);
+        }
+
+        .block-drink-icon-no-block {
+            fill: rgb(255, 172, 78);
+        }
+
         .details-button {
             background-color: rgb(255, 255, 255);
             border-radius: 15px;
@@ -166,7 +174,7 @@
             cursor: pointer;
         }
 
-        .block-drink-icon{
+        .block-drink-icon {
             fill: rgb(223, 240, 255);
             cursor: pointer;
         }

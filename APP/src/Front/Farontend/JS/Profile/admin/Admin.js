@@ -54,8 +54,32 @@ function Admin({ drinkDatas }) {
 
     const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
 
+    const [blockedDrink, setBlockedDrink] = useState(null)
 
-    
+    // useEffect(() => {
+    //     const getBlockedDrink = async () => {
+    //         try {
+    //             const response = await fetch('http://localhost:3000/api/getAdminProfileDrinks', {
+    //                 credentials: 'include'
+    //             });
+    //             if (response.ok) {
+    //                 const data = await response.json();
+    //                 console.log(data)
+    //                 setBlockedDrink(data);
+    //             } else {
+    //                 console.error('Error fetching users:', response.status);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching users:', error);
+    //         }
+    //     };
+    //     getBlockedDrink();
+    // }, [])
+
+    // console.log(blockedDrink)
+
+
+
     //Fetch all users from DB
     useEffect(() => {
         const userButtonHandler = async () => {
@@ -232,7 +256,7 @@ function Admin({ drinkDatas }) {
         };
         getUnAcceptedDrinks();
     }, [])
-   
+
     return (
         <div className="col-12">
             <div className="admin-container p-3 p-sm-4 position-relative ">
