@@ -75,9 +75,7 @@ function Registers() {
             <div className="col-12 rounded ">
 
                 <form onSubmit={handleSubmit} className=" d-flex  flex-column align-items-center col-12">
-
                     <div className="col-12 d-flex  justify-content-center flex-column align-items-center mt-5 logRegHolder">
-
                         <div className="fs-3 color-black mb-3 login-reg-header">REGISTRATION</div>
 
                         <div className="col-9 d-flex  align-items-center mb-2 mt-3">

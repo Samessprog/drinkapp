@@ -1,5 +1,39 @@
 @import '../../variables.scss';
 
+
+.userDataChangeHolder {
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+
+    .log-reg-icon-holder {
+        border-radius: 5px 0px 0px 5px;
+        background-color: rgba(163, 163, 163, 0.779);
+        padding: 7px;
+        border-right: $border-1-solid-black;
+
+        .login-register-icon {
+            fill: $rgb-255;
+        }
+    }
+    .input-box {
+        background-color: white;
+        border: $border-1-solid-black;
+        border-radius: 0px 5px 5px 0px;
+        border-left: none;
+        padding: 4px;
+
+        .login-register-input-data {
+            border: none;
+            outline: none;
+        }
+    }
+}
+
 .drinks-profile-holder {
     border: 2px solid white;
     border-radius: 15px;
@@ -110,7 +144,7 @@
 
     .details-button-holder {
 
-        .block-drink-icon-block{
+        .block-drink-icon-block {
             fill: rgb(255, 255, 255);
         }
 
