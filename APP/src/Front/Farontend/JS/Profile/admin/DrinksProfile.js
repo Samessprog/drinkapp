@@ -26,6 +26,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
+    console.log(elm)
 
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center ustify-content-center drinks-profile-holder col-12  ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
@@ -55,27 +56,29 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                 </div>
                                 <div className="d-flex">
                                     <label>Type: </label>
-                                    <label className={ `ms-2 ${elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{elm.DrinkType}</label>
+                                    <label className={`ms-2 ${elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{elm.DrinkType}</label>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-2">
-                            <div className="d-flex delete-profile me-5 pb-2 col-12 d-flex align-items-center">
-                                {showNewsFlag ? (
+                        <div className="col-2 d-flex  align-items-center">
+                            <div className="d-flex delete-profile me-5 pb-2 col-12 d-flex align-items-center mt-4">
+                                <div className=" me-3 d-flex justify-content-center  align-items-center" onClick={() => setDrinkPreview({ isOpenPrev: true, Drink: elm })}>
+                                    <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
+                                        <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" /></svg>                                    </svg>
+                                        <div className="pe-2">Details</div>
+                                    </button>
+                                </div>
+                                {showNewsFlag &&
                                     <div className="me-3" onClick={acceptDrink}>
                                         <svg className="accept-derink-icon" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" /></svg>
                                     </div>
-                                ) : (
-                                    <div className=" me-3 d-flex justify-content-center mt-4 align-items-center" onClick={() => setDrinkPreview({ isOpenPrev: true, Drink: elm })}>
-                                        <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
-                                            <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" /></svg>                                    </svg>
-                                            <div className="pe-2">change data</div>
-                                        </button>
-                                    </div>
-                                )}
-                                <div className="delete-profile-icon me-5" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }) }}>
-                                    <svg className="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" /></svg>
+                                }
+                                <div className="block-drink-icon mb-3 me-2" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }) }}>
+                                    <svg className="block-drink-icon" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M220-80q-24.75 0-42.375-17.625T160-140v-434q0-24.75 17.625-42.375T220-634h70v-96q0-78.85 55.606-134.425Q401.212-920 480.106-920T614.5-864.425Q670-808.85 670-730v96h70q24.75 0 42.375 17.625T800-574v434q0 24.75-17.625 42.375T740-80H220Zm0-60h520v-434H220v434Zm260.168-140Q512-280 534.5-302.031T557-355q0-30-22.668-54.5t-54.5-24.5Q448-434 425.5-409.5t-22.5 55q0 30.5 22.668 52.5t54.5 22ZM350-634h260v-96q0-54.167-37.882-92.083-37.883-37.917-92-37.917Q426-860 388-822.083 350-784.167 350-730v96ZM220-140v-434 434Z" /></svg>
+                                </div>
+                                <div className="delete-profile-icon  mb-3" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }) }}>
+                                    <svg className="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M261-120q-24.75 0-42.375-17.625T201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z" /></svg>
                                 </div>
                             </div>
                         </div>

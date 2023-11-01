@@ -1,12 +1,11 @@
 //Imports
-import { useEffect, useState    , lazy } from "react";
+import { useEffect, useState, lazy } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import AdminPagination from "./AdminPagination";
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
-
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
@@ -55,6 +54,8 @@ function Admin({ drinkDatas }) {
 
     const [DrinkPreview, setDrinkPreview] = useState({ isOpenPrev: false, Drink: null })
 
+
+    
     //Fetch all users from DB
     useEffect(() => {
         const userButtonHandler = async () => {
@@ -196,7 +197,6 @@ function Admin({ drinkDatas }) {
             (currentPage + 1) * itemsPerPage
         );
     }
-    console.log(filteredUserResults)
 
     if (usersFlag) {
         pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
@@ -207,6 +207,7 @@ function Admin({ drinkDatas }) {
     }
 
     const pageCountNewDrink = Math.ceil(filteredNewDrinksResults?.length / itemsPerPage);
+
     const currentItemsNewDrink = filteredNewDrinksResults?.slice(
         currentPageNewDrink * itemsPerPage,
         (currentPageNewDrink + 1) * itemsPerPage
@@ -231,10 +232,7 @@ function Admin({ drinkDatas }) {
         };
         getUnAcceptedDrinks();
     }, [])
-
-
    
-
     return (
         <div className="col-12">
             <div className="admin-container p-3 p-sm-4 position-relative ">

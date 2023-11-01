@@ -153,6 +153,7 @@
         }
     }
 
+
     .delete-profile {
         margin-left: 15rem;
 
@@ -162,6 +163,11 @@
 
         &-icon {
             fill: red;
+            cursor: pointer;
+        }
+
+        .block-drink-icon{
+            fill: rgb(223, 240, 255);
             cursor: pointer;
         }
 

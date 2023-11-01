@@ -397,6 +397,17 @@ app.get('/api/getUnAcceptedDrinks', async (req, res) => {
   });
 });
 
+app.get('/api/getAllDrinks', async (req, res) => {
+  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id FROM drink';
+  connectionToDrinksDB.query(sql, (err, results, fields) => {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+    res.json(results);
+  });
+});
 
 app.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
   const { ID_Drink } = req.params;
