@@ -4,7 +4,7 @@ function AdminFilter({ showDrinksOptions, drinksFlag,usersFlag, showNewsFlag,set
     setUnAlphabeticalOrder, unAlphabeticalOrder, setIsBlocked, isBlocked, setFilterByDate, filterByDate, alphabeticalOrder }) {
 
     return (
-        <div className="data-filtering-holder col-1 ms-3 pt-2">
+        <div className="data-filtering-holder  ms-3 pt-2">
             <div className="options-holder d-none d-md-flex " onClick={() => setShowDrinksOptions(!showDrinksOptions)}>
                 <button className="mb-md-2 ms-1 btn btn-secondary bg-transparent border d-flex p-2" style={{borderRadius: '15px'}} >
                     <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">

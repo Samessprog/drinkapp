@@ -28,18 +28,18 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
 
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
-            <div className="d-flex align-items-center flex-column flex-xl-row justify-content-center col-12">
-                <div className="ms-5 fs-4 col-1 ">
+            <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
+                <div className="ms-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0">
                     {elm.ID_DRINK}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center col-11">
                     <div className="d-flex align-items-center flex-xxl-row flex-column col-12">
-                        <div className="d-flex align-items-center data-holder col-8">
+                        <div className="d-flex align-items-center data-holder col-12 col-xxl-8 flex-column flex-xxl-row ">
                             <FetchingDrinkIMG elm={elm} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
-                            <div className="ms-4 drink-name-profile col-5">
+                            <div className="ms-4 drink-name-profile col-5 d-flex justify-content-center align-items-xxl-start" >
                                 {elm.DrinkName}
                             </div>
-                            <div className="ms-4 fs-5 col-5 ">
+                            <div className="ms-4 fs-5 col-5 d-flex flex-column  align-items-center align-items-xxl-start">
                                 <div className="d-flex">
                                     <label>Created by: </label>
                                     <label className="drink-name-profile ms-2">{elm.Creator}</label>
@@ -58,8 +58,8 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                 </div>
                             </div>
                         </div>
-                        <div className="col-2 d-flex  align-items-center">
-                            <div className="d-flex delete-profile me-5 pb-2 col-12 d-flex align-items-center mt-4">
+                        <div className="col-2 d-flex align-items-center">
+                            <div className="d-flex delete-profile me-5 pb-2 col-12 d-flex align-items-center mt-4 justify-content-center">
                                 <div className=" me-3 d-flex justify-content-center  align-items-center" onClick={() => setDrinkPreview({ isOpenPrev: true, Drink: elm })}>
                                     <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
                                         <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>

@@ -82,8 +82,6 @@ function Admin({ drinkDatas }) {
     //     getBlockedDrink();
     // }, [])
 
-    // console.log(blockedDrink)
-
 
     //Fetch all users from DB
     useEffect(() => {
@@ -280,9 +278,9 @@ function Admin({ drinkDatas }) {
                 </div>
 
                 <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12 d-flex flex-column align-items-center">
-                    <div className="d-sm-flex justify-content-between col-12 mb-5 d-flex-column align-items-center">
-                        <div className="d-flex ms-3 mt-0 optional-buttons-holder mt-4 col-6">
-                            <div className=" me-2 d-flex justify-content-center align-items-center" >
+                    <div className="d-flex justify-content-between col-11 mb-5 flex-column align-items-center flex-lg-row">
+                        <div className="d-flex ms-5 ms-xxl-3 mt-0 optional-buttons-holder mt-4 col-8 flex-column flex-sm-row">
+                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
                                 <button
                                     className="mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user"
                                     style={{ borderRadius: '15px' }}
@@ -301,7 +299,7 @@ function Admin({ drinkDatas }) {
                                 </button>
                             </div>
 
-                            <div className=" me-2 d-flex justify-content-center  align-items-center" >
+                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
                                 <button
                                     className="mb-md-2 ms-1 btn btn-secondary border d-flex p-2 change-data-input-user"
                                     style={{ borderRadius: '15px' }}
@@ -320,7 +318,7 @@ function Admin({ drinkDatas }) {
                                 </button>
                             </div>
 
-                            <div className=" me-3 d-flex justify-content-center  align-items-center" >
+                            <div className=" me-3 d-flex justify-content-center  align-items-center mb-3 mb-sm-0" >
                                 <button
                                     className="mb-md-2 ms-1 btn btn-secondary border d-flex p-2 change-data-input-user"
                                     style={{ borderRadius: '15px' }}
@@ -338,35 +336,30 @@ function Admin({ drinkDatas }) {
                                 </button>
                             </div>
                         </div>
+                        <div className="col-12 col-sm-10 col-lg-4 d-flex mt-4 align-items-center me-5 justify-content-center ">
 
-                        <div className="d-flex mt-4 me-5  d-flex justify-content-center justify-content-sm-end col-5">
-                            <div className="me-4 col-12 d-flex flex-row-reverse align-items-center">
-
-                                <AdminFilter
-                                    showDrinksOptions={showDrinksOptions}
-                                    drinksFlag={drinksFlag}
-                                    usersFlag={usersFlag}
-                                    showNewsFlag={showNewsFlag}
-                                    setShowDrinksOptions={setShowDrinksOptions}
-                                    setAlphabeticalOrder={setAlphabeticalOrder}
-                                    alphabeticalOrder={alphabeticalOrder}
-                                    setUnAlphabeticalOrder={setUnAlphabeticalOrder}
-                                    unAlphabeticalOrder={unAlphabeticalOrder}
-                                    setIsBlocked={setIsBlocked}
-                                    isBlocked={isBlocked}
-                                    setFilterByDate={setFilterByDate}
-                                    filterByDate={filterByDate}
-                                />
-
-                                <input
-                                    className="searching-items-admin ps-3 pe-3 col-6"
-                                    type="text"
-                                    placeholder="enter the name you are looking for"
-                                    value={inputText}
-                                    onChange={(event) => setInputText(event.target.value)}
-                                />
-
-                            </div>
+                            <input
+                                className="searching-items-admin ps-3 pe-3 col-8 d-flex justify-content-center "
+                                type="text"
+                                placeholder="enter the name you are looking for"
+                                value={inputText}
+                                onChange={(event) => setInputText(event.target.value)}
+                            />
+                            <AdminFilter
+                                showDrinksOptions={showDrinksOptions}
+                                drinksFlag={drinksFlag}
+                                usersFlag={usersFlag}
+                                showNewsFlag={showNewsFlag}
+                                setShowDrinksOptions={setShowDrinksOptions}
+                                setAlphabeticalOrder={setAlphabeticalOrder}
+                                alphabeticalOrder={alphabeticalOrder}
+                                setUnAlphabeticalOrder={setUnAlphabeticalOrder}
+                                unAlphabeticalOrder={unAlphabeticalOrder}
+                                setIsBlocked={setIsBlocked}
+                                isBlocked={isBlocked}
+                                setFilterByDate={setFilterByDate}
+                                filterByDate={filterByDate}
+                            />
                         </div>
                     </div>
                     <div className="col-11 d-flex flex-column align-items-center ">

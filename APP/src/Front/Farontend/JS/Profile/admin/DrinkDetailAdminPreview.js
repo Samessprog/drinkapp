@@ -8,7 +8,6 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
-
     //States for Update Drink
     const [ingredient, setIngredient] = useState([])
     const [preparation, setPreparation] = useState([])
@@ -74,7 +73,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
             alert('File size exceeds the limit of 5 MB!');
             return;
         }
-
+        
         formData.append('drinkImg', drinkImg);
         formData.append('drinkID', drink_ID);
         formData.append('drinkNameInput', drinkNameInput);
@@ -111,7 +110,6 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         newIng[index] = event.target.value;
         setIngredient(newIng);
     };
-
 
     const ownDrinkImgPrev = (event) => {
         const drinkImg = event.target;

@@ -45,7 +45,7 @@
     }
 }
 
-.user-submit-user-data{
+.user-submit-user-data {
     border-radius: 10px;
     padding: 4px;
     padding-left: 10px;
@@ -115,137 +115,142 @@
 
     .data-holder {
 
-        .drink-name-profile {
-            max-height: 100px;
-            overflow-y: auto;
+        @media (max-width: 1800px) {
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
 
-        }
+            .drink-name-profile {
+                max-height: 100px;
+                overflow-y: auto;
+            }
 
-        @media (max-width: 1000px) {
-            flex-direction: column;
-        }
-
-        .margin-top-12 {
             @media (max-width: 1000px) {
-                margin-top: 0.5rem !important;
-                margin-bottom: 0.5rem !important;
-                display: flex;
                 flex-direction: column;
             }
-        }
 
-        .drink-profile-holder-IMG {
-            border: 1px solid white;
-            border-radius: 10px;
+            .margin-top-12 {
+                @media (max-width: 1000px) {
+                    margin-top: 0.5rem !important;
+                    margin-bottom: 0.5rem !important;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
 
-            .drink-profile-img {
-                object-fit: cover;
+            .drink-profile-holder-IMG {
+                border: 1px solid white;
                 border-radius: 10px;
-                max-height: 200px;
-                min-height: 200px;
-                min-width: 250px;
-                max-width: 250px;
 
-                @media (max-width: 992px) {
-                    max-width: 400px;
-                    width: 400px;
-                    height: 300px;
-                    max-height: 300px;
-
-                }
-
-                @media (max-width: 680px) {
+                .drink-profile-img {
+                    object-fit: cover;
+                    border-radius: 10px;
+                    max-height: 200px;
+                    min-height: 200px;
+                    min-width: 250px;
                     max-width: 250px;
-                    width: 250px;
+
+                    @media (max-width: 1399px) {
+                        max-width: 450px;
+                        width: 450px;
+                        height: 450px;
+                        max-height: 450px;
+
+                    }
+
+                    @media (max-width: 680px) {
+                        max-width: 350px;
+                        width: 350px;
+                        
+                    }
+
+                    width: 900px;
                 }
-
-                width: 900px;
-            }
-        }
-    }
-
-    .drink-name-profile {
-        font-size: 22px;
-        font-weight: 700;
-        color: rgb(252, 218, 174);
-
-    }
-
-    .details-button-holder {
-
-        .block-drink-icon-block {
-            fill: rgb(255, 255, 255);
-        }
-
-        .block-drink-icon-no-block {
-            fill: rgb(255, 172, 78);
-        }
-
-        .details-button {
-            background-color: rgb(255, 255, 255);
-            border-radius: 15px;
-            font-size: 17px;
-            letter-spacing: 1px;
-            padding: 4px;
-            padding-left: 8px;
-            padding-right: 8px;
-            font-size: 18px;
-            margin-left: 8rem;
-
-            @media (max-width: 1400px) {
-                margin-left: 0;
             }
         }
 
-        .userDataChangerError {
-            margin-left: 8.2rem;
-            color: red;
-            margin-top: 1rem;
-        }
-
-        .user-data-input {
-            border-radius: 10px;
-            padding-left: 0.6rem;
-            padding-right: 0.6rem;
-            padding-top: 0.3rem;
-            padding-bottom: 0.3rem;
-        }
-
-        .submit-button {
-            font-size: 0;
-            background: none;
-            border: none;
+        .drink-name-profile {
+            font-size: 22px;
+            font-weight: 700;
+            color: rgb(252, 218, 174);
 
         }
 
-        .details-change-button {
-            fill: rgb(4, 210, 4);
-            cursor: pointer;
+        .details-button-holder {
+
+            .block-drink-icon-block {
+                fill: rgb(255, 255, 255);
+            }
+
+            .block-drink-icon-no-block {
+                fill: rgb(255, 172, 78);
+            }
+
+            .details-button {
+                background-color: rgb(255, 255, 255);
+                border-radius: 15px;
+                font-size: 17px;
+                letter-spacing: 1px;
+                padding: 4px;
+                padding-left: 8px;
+                padding-right: 8px;
+                font-size: 18px;
+                margin-left: 8rem;
+
+                @media (max-width: 1400px) {
+                    margin-left: 0;
+                }
+            }
+
+            .userDataChangerError {
+                margin-left: 8.2rem;
+                color: red;
+                margin-top: 1rem;
+            }
+
+            .user-data-input {
+                border-radius: 10px;
+                padding-left: 0.6rem;
+                padding-right: 0.6rem;
+                padding-top: 0.3rem;
+                padding-bottom: 0.3rem;
+            }
+
+            .submit-button {
+                font-size: 0;
+                background: none;
+                border: none;
+
+            }
+
+            .details-change-button {
+                fill: rgb(4, 210, 4);
+                cursor: pointer;
+            }
+        }
+
+
+        .delete-profile {
+            margin-left: 15rem;
+
+            @media (max-width: 1800px) {
+                margin-left: 1rem;
+            }
+
+            &-icon {
+                fill: red;
+                cursor: pointer;
+            }
+
+            .block-drink-icon {
+                fill: rgb(223, 240, 255);
+                cursor: pointer;
+            }
+
+            .accept-derink-icon {
+                fill: greenyellow;
+                cursor: pointer;
+            }
+
         }
     }
-
-
-    .delete-profile {
-        margin-left: 15rem;
-
-        @media (max-width: 1800px) {
-            margin-left: 1rem;
-        }
-
-        &-icon {
-            fill: red;
-            cursor: pointer;
-        }
-
-        .block-drink-icon {
-            fill: rgb(223, 240, 255);
-            cursor: pointer;
-        }
-
-        .accept-derink-icon {
-            fill: greenyellow;
-            cursor: pointer;
-        }
-
-    }
-}
