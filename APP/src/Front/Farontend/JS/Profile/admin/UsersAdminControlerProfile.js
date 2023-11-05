@@ -44,13 +44,13 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
     return (
         <div className={`mb-4 ms-3 me-3 p-2 d-flex align-items-center drinks-profile-holder col-12 ${hiddenElements.includes(elm.ID_User) ? 'd-none' : ''}`}>
-            <div className="d-flex align-items-center col-12">
-                <div className="ms-3 me-4 fs-4 col-1">
+            <div className="d-flex align-items-center col-12 flex-column flex-xxl-row justify-content-center">
+                <div className="ms-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0">
                     {elm.ID_User}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center position-relative col-11">
-                    <div className="d-flex align-items-center flex-xxl-row flex-column col-11">
-                        <div className="d-flex align-items-center data-holder col-10">
+                    <div className="d-flex align-items-center flex-xxl-row flex-column col-xxl-8 col-12 col-xl-7 ">
+                        <div className="d-flex align-items-center data-holder col-12">
                             <div className=" mt-1 mb-1 drink-profile-holder-IMG margin-top-12 ">
                                 {fetchIMGCompleted ? (
                                     <img className=" drink-profile-img img-fluid" src={userConvertedIMG} alt="loadingErr"></img>
@@ -65,7 +65,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                                     </div>
                                 )}
                             </div>
-                            <div className="d-flex flex-column col-6 ms-5">
+                            <div className="d-flex flex-column col-xxl-12 col-12 ms-5 mt-4 mt-xx-0 align-items-center align-items-xxl-start">
                                 <div className="ms-4 d-flex  align-items-center ">
                                     <label className="fs-5">Nick:</label>
                                     <div className="drink-name-profile ms-xl-2">{elm.Nick}</div>
@@ -80,7 +80,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                                 </div>
                             </div>
                         </div>
-                        <div className="details-button-holder d-flex align-items-center ">
+                        <div className="details-button-holder d-flex align-items-center mt-4 mt-xxl-0 col-8 justify-content-center mb-4 mb-xxl-0">
                             <div className=" me-3 d-flex justify-content-center align-items-center ms-5"
                                 onClick={() =>
                                     setChangeUserDataPopup({ isOpenPrev: true, userData: elm })
