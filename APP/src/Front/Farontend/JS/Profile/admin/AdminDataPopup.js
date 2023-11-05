@@ -40,7 +40,7 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup }) {
     };
 
     return (
-        <div className="userDataChangeHolder col-4">
+        <div className="userDataChangeHolder col-12 col-md-10 col-lg-9 col-xl-6 col-xxl-4">
             <form onSubmit={UserDataChange}>
                 <div className="d-flex flex-row-reverse me-3 mt-2 mb-3" onClick={() => setChangeUserDataPopup(false)}>
                     <svg

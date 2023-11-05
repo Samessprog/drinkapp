@@ -413,7 +413,7 @@ function Admin({ drinkDatas }) {
                 </div>
 
                 {windowAlert.isOpen &&
-                    <div className="position-fixed window-alert-holder col-3">
+                    <div className="position-fixed window-alert-holder col-10 col-sm-7 col-md-5 col-xxl-3">
                         <WindowAdminAlert hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                     </div>
                 }
