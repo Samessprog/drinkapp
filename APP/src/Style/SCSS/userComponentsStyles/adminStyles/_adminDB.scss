@@ -20,11 +20,15 @@
 
 }
 
+.fill-color-212{
+    fill: rgb(255, 255, 255);
+}
+
 .searching-items-admin {
-    background-color: black;
+    background-color: rgb(223, 223, 223);
     border: none;
-    border-radius: 20px;
-    color: white;
+    border-radius: 15px;
+    color: rgb(0, 0, 0);
     padding-left: 5px;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -40,12 +44,11 @@
 
     .multi-options-holder-admin {
         position: absolute;
-        right: 8%;
-        margin-top: 1.7rem;
-        background-color: rgb(187, 186, 186);
-        width: 400px;
+        right: 6.8%;
+        margin-top: .4rem;
+        background-color: rgb(223, 223, 223);
         color: black;
         font-size: 17px;
-        border-radius: 15px;
+        border-radius: 10px 0px 10px 10px;
     }
 }

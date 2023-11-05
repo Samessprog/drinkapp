@@ -26,8 +26,6 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
-    console.log(elm)
-
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
             <div className="d-flex align-items-center flex-column flex-xl-row justify-content-center col-12">

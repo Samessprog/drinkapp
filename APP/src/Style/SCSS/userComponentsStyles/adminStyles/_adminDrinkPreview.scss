@@ -2,13 +2,12 @@
 
 .fullscreen {
     display: flex;
-    /* Use Flexbox */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(43, 43, 43);
     z-index: 1000;
     color: white;
     overflow-y: scroll;
@@ -20,6 +19,27 @@
         }
     }
 
+
+    .drink-ingredient-input {
+        background-color: red($color: #ff0000);
+    }
+
+    .ingredients-and-preparation-holder {
+
+        .drink-ingredient-input {
+            background-color: red($color: #ff0000);
+        }
+
+        li::before {
+            content: "★";
+            margin-right: 0.5rem;
+            color: gold;
+
+
+        }
+
+    }
+
     .star {
         fill: gold;
     }
@@ -28,31 +48,35 @@
         margin-top: 3rem;
         margin-left: 1.5rem;
 
+
+        .drink-detail-holder {
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+
         .drink-name-input {
+            background-color: rgb(221, 221, 221);
+            border: white;
+            border-radius: 10px;
+            padding: 5px;
+            padding-left: 10px;
+        }
+
+        .drink-ingredient-input {
             background-color: transparent;
             border: none;
+            border-bottom: white 2px solid;
             color: white;
-            border-bottom: 2px black solid;
+            padding-left: 5px;
+
+            &:focus {
+                border-radius: 10px;
+            }
         }
-    }
-
-    .description-holder {
-        text-align: justify;
-        text-align-last: justify;
-        overflow-y: scroll;
-        height: 200px;
-        max-height: 200px;
-        background-color: rgb(26, 26, 26);
-        color: white;
-        border-radius: 5px;
-        padding: 1rem;
-        resize: none;
-    }
-
-    .polowa2 {
-        margin-top: 3rem;
-        display: flex;
-        flex-direction: column;
 
         .Multi-options-holder {
             max-width: 25px
@@ -71,44 +95,44 @@
             @include drinks;
 
             &.sweetClass {
-                background-color: rgb(247, 71, 124);
+                color: rgb(247, 71, 124);
             }
 
             &.sourClass {
-                background-color: rgb(218, 255, 32);
+                color: rgb(218, 255, 32);
             }
 
             &.bitterClass {
-                background-color: rgb(123, 98, 98);
+                color: rgb(123, 98, 98);
             }
 
             &.easyLevelClass {
-                background-color: rgb(10, 226, 10);
+                color: rgb(10, 226, 10);
                 margin-right: 0.3rem;
             }
 
             &.mediumLevelClass {
-                background-color: rgb(239, 212, 14);
+                color: rgb(239, 212, 14);
                 margin-right: 0.3rem;
             }
 
             &.hardLevelClass {
-                background-color: rgb(255, 111, 0);
+                color: rgb(255, 111, 0);
                 margin-right: 0.3rem;
             }
 
 
             &.diff-level {
-                background-color: $color-light-l-green;
+                color: $color-light-l-green;
                 color: $color-black;
             }
 
             &.drink-creator {
-                color: $color-black;
+                color: white;
             }
 
             &.softClass {
-                background-color: rgb(154, 246, 249);
+                color: rgb(154, 246, 249);
 
                 @media (max-width: 768px) {
                     margin-top: 0.6rem;
@@ -116,14 +140,31 @@
             }
 
             &.alkoClass {
-                background-color: rgb(255, 0, 0);
+                color: rgb(255, 0, 0);
 
                 @media (max-width: 768px) {
                     margin-top: 0.6rem;
                 }
-
             }
         }
+    }
+
+    .description-holder {
+       
+        overflow-y: scroll;
+        height: 200px;
+        max-height: 200px;
+        background-color: rgb(26, 26, 26);
+        color: white;
+        border-radius: 5px;
+        padding: 1rem;
+        resize: none;
+    }
+
+    .polowa2 {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
 
         .photo-holder {
             position: relative;
@@ -131,6 +172,17 @@
             border-radius: 10px;
             border: 2px solid rgb(255, 255, 255);
             overflow: hidden;
+            max-height: 600px;
+            height: 600px;
+            width: 750px;
+            .drink-img-prev {
+                max-height: 600px;
+                height: 600px;
+                width: 750px;
+                overflow: hidden;
+                object-fit: cover;
+                
+            }
 
             .overlay-user-img {
                 position: absolute;
@@ -160,18 +212,5 @@
                 }
             }
         }
-
-        .ingredients-and-preparation-holder {
-            li::before {
-                content: "★";
-                margin-right: 0.5rem;
-                color: gold;
-
-
-            }
-
-        }
     }
 }
-
-

@@ -8,31 +8,60 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(236, 236, 236);
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 15px;
+
+    .close-icon {
+        fill: red;
+        cursor: pointer;
+    }
 
     .log-reg-icon-holder {
         border-radius: 5px 0px 0px 5px;
-        background-color: rgba(163, 163, 163, 0.779);
+        background-color: rgba(0, 0, 0, 0.779);
         padding: 7px;
         border-right: $border-1-solid-black;
+
 
         .login-register-icon {
             fill: $rgb-255;
         }
     }
-    .input-box {
-        background-color: white;
-        border: $border-1-solid-black;
-        border-radius: 0px 5px 5px 0px;
-        border-left: none;
-        padding: 4px;
 
-        .login-register-input-data {
-            border: none;
-            outline: none;
+    .login-register-input-data {
+        background-color: rgb(218, 218, 218);
+        border: $border-1-solid-black;
+        border-left: none;
+        padding-top: 0;
+        outline: none;
+        border-left: 0;
+        padding: 6px;
+        border-radius: 0px 10px 10px 0px;
+
+        &:focus {
+            background-color: rgb(150, 150, 150);
         }
     }
 }
+
+.user-submit-user-data{
+    border-radius: 10px;
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all .5s ease-in-out;
+    font-size: 18px;
+    background-color: rgb(210, 210, 210);
+
+    &:hover {
+        background-color: black;
+        color: white;
+
+    }
+
+}
+
 
 .drinks-profile-holder {
     border: 2px solid white;
