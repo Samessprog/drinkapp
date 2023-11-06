@@ -1,10 +1,9 @@
 //Imports
+import {API_URL} from '../Components/Constants';
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
     setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
-
-    const API_URL = 'http://localhost:3000/api/';
 
     const deleteDrink = async () => {
         let ID_Drink = windowAlert.ObjectID.ID_DRINK

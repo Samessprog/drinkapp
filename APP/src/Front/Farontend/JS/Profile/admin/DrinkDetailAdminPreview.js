@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import { Buffer } from "buffer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import {API_URL} from '../../Components/Constants'
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
-    const API_URL = 'http://localhost:3000/api/';
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
@@ -24,7 +24,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
                     let ID_Drink = DrinkPreview.Drink.ID_DRINK;
-                    const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                    const response = await fetch(`${API_URL}${ID_Drink}`, {
                         credentials: 'include',
                     });
                     if (!response.ok) {

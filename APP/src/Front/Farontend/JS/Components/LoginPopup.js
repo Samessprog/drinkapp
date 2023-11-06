@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setEmail, setPassword } from "../States/actions";
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
+import {API_URL} from '../Components/Constants';
 
 function LoginPopup() {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function LoginPopup() {
         // }
 
         // Send a POST request to the login API endpoint
-        fetch('http://localhost:3000/api/login', {
+        fetch(`${API_URL}login`, {
             method: 'POST',
             body: JSON.stringify({ email, password }), // Convert data to JSON string
             headers: {

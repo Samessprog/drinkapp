@@ -6,10 +6,10 @@ import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
 import { Ring } from "@uiball/loaders";
+import {API_URL} from '../Components/Constants';
+
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
-
-    const API_URL = 'http://localhost:3000/api/';
 
     let { id } = useParams()
 

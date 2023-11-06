@@ -6,9 +6,9 @@ import UserDetails from "./UserDetails";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
 import UserOwnDrinks from "./UserOwnDrinks";
 import { SessionContext } from "../../Session/SessionContext";
+import {API_URL} from '../../Components/Constants'
 
 const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
-
 
 function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) {
 
@@ -25,7 +25,7 @@ function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) 
 
     const fetchUserImage = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/userIMG', {
+        const response = await fetch(`${API_URL}userIMG`, {
           credentials: 'include'
         });
 

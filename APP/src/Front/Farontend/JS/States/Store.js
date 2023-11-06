@@ -176,7 +176,6 @@ const adminStates = {
   userFlag: false,
   filteredResults: [],
   filteredUserResults: [],
-
 };
 
 function adminReducer(state = adminStates, action) {
@@ -201,12 +200,9 @@ function adminReducer(state = adminStates, action) {
         ...state,
         filteredUserResults: action.payload,
       };
-
-
     default:
       return state;
   }
-
 }
 
 const rootReducer = combineReducers({

@@ -1,8 +1,8 @@
 //Imports
 import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG";
+import {API_URL} from '../../Components/Constants'
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
-    const API_URL = 'http://localhost:3000/api/';
 
     const acceptDrink = async () => {
 

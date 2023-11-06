@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { Ring } from '@uiball/loaders'
+import {API_URL} from '../../Components/Constants'
 
 function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
 
     const dispatch = useDispatch();
-
 
     const [Nick, setUserNick] = useState(userSesion.nick)
     const [email, setUserMain] = useState(userSesion.email)
@@ -17,8 +17,6 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted }) {
     const [userChangesErrors, setUserChangesErrors] = useState('')
 
     const [isSuccesChnage, setIsSuccesChnage] = useState(false)
-
-    const API_URL = 'http://localhost:3000/api/';
 
     const setContentTypeHeader = () => {
         return {

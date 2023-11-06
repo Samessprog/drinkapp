@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
-
+import {API_URL} from '../../Components/Constants'
 
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, hiddenElements, setChangeUserDataPopup }) {
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
@@ -13,7 +13,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
         const fetchUserFavouriteDrinkImage = async () => {
             try {
                 let ID_User = elm.ID_User
-                const response = await fetch(`http://localhost:3000/api/fetchUserIMG/${ID_User}`, {
+                const response = await fetch(`${API_URL}${ID_User}`, {
                     credentials: 'include',
                 });
                 if (!response.ok) {

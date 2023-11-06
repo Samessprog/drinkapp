@@ -4,6 +4,7 @@ import { Buffer } from 'buffer';
 
 import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG";
 import { SessionContext } from "../../../Session/SessionContext";
+import {API_URL} from '../../../Components/Constants'
 
 function UserDrink({ elm, setClickedDrinkDetail }) {
     const [isHidden, setIsHidden] = useState(false)
@@ -30,7 +31,7 @@ function UserDrink({ elm, setClickedDrinkDetail }) {
         const userID = userSesion.userID
         //POST drink IDs to DB with userID
         try {
-            fetch('http://localhost:3000/api/removeFromUserFavourite', {
+            fetch(`${API_URL}removeFromUserFavourite`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

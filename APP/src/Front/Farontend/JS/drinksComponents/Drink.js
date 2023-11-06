@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { SessionContext } from "../Session/SessionContext";
 import FetchingDrinkIMG from "./FetchingDrinkIMG";
+import {API_URL} from '../Components/Constants';
+
 
 function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail }) {
 
@@ -24,7 +26,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks, setClickedDrinkDetail 
         //POST drink ID to DB with userID
         try {
 
-            fetch('http://localhost:3000/api/addToUserFavourite', {
+            fetch(`${API_URL}addToUserFavourite`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

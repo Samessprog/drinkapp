@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
+import {API_URL} from '../Components/Constants';
+
 import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, setPhone } from "../States/actions";
 
 function Registers() {
@@ -39,7 +41,7 @@ function Registers() {
             return;
         }
 
-        fetch('http://localhost:3000/api/register', {
+        fetch(`${API_URL}register`, {
             method: 'POST',
             body: JSON.stringify({ email, password, rePassword, phone, Nick }),
             headers: {

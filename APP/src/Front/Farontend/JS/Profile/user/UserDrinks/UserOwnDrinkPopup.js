@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { v4 as uuid } from 'uuid';
 import { SessionContext } from "../../../Session/SessionContext";
 
+import {API_URL} from '../../../Components/Constants'
+
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     //fetch user session to fetch needed data
@@ -57,7 +59,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
 
         try {
-            const response = await fetch('http://localhost:3000/api/addNewDrink', {
+            const response = await fetch(`${API_URL}addNewDrink`, {
                 method: 'POST',
                 body: formData
             });

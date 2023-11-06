@@ -9,6 +9,7 @@ import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
 import AdminFilter from "./AdminFilter";
+import {API_URL} from '../../Components/Constants'
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
@@ -87,7 +88,7 @@ function Admin({ drinkDatas }) {
     useEffect(() => {
         const userButtonHandler = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/getAllUsers', {
+                const response = await fetch(`${API_URL}getAllUsers`, {
                     credentials: 'include'
                 });
 
@@ -243,7 +244,7 @@ function Admin({ drinkDatas }) {
     useEffect(() => {
         const getUnAcceptedDrinks = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/getUnAcceptedDrinks', {
+                const response = await fetch(`${API_URL}getUnAcceptedDrinks`, {
                     credentials: 'include'
                 });
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import {API_URL} from '../../Components/Constants'
 
 function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup }) {
 
     const { ID_User, Nick, Password, email, phone } = changeUserDataPopup?.userData;
 
-    const API_URL = 'http://localhost:3000/api/';
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
     const [newUserEmail, setNewUserEmail] = useState(email)

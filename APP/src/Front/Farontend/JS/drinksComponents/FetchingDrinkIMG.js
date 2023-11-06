@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Ring } from '@uiball/loaders'
 import { Buffer } from 'buffer';
+import {API_URL} from '../Components/Constants';
 
 function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
 
@@ -13,7 +14,7 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
         const fetchUserFavouriteDrinkImage = async () => {
             try {
                 let ID_Drink = elm.ID_DRINK;
-                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                const response = await fetch(`${API_URL}${ID_Drink}`, {
                     credentials: 'include',
                 });
                 if (!response.ok) {
