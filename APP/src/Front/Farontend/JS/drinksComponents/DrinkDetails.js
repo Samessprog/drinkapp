@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
-import { Rating } from '@mui/material';
 import { Ring } from "@uiball/loaders";
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {

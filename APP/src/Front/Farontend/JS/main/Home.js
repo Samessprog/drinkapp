@@ -4,7 +4,6 @@ import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
 
-
 const SpecialDrinks = lazy(() => import("../NavBarComponents/SpecialDrinks"))
 
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,

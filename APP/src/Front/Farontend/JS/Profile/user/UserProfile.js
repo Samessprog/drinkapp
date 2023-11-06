@@ -1,12 +1,14 @@
 //Imports
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, lazy } from "react";
 import { useSelector } from "react-redux";
 
 import UserDetails from "./UserDetails";
-import UserOwnDrinks from "./UserOwnDrinks";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
-import UserOwnDrinkPopup from "./UserDrinks/UserOwnDrinkPopup";
+import UserOwnDrinks from "./UserOwnDrinks";
 import { SessionContext } from "../../Session/SessionContext";
+
+const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
+
 
 function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) {
 
