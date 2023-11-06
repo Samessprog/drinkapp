@@ -107,7 +107,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     </div>
 
                     {/* hamburger */}
-                    <div id="hamburger" className={userScroll ? `col-xl-3 d-flex mb-3 align-items-center mt-3  ${location.pathname.endsWith('/') ? '' : 'col-10 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} `  : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? '' : 'col-10 col-sm-8 col-md-10 col-xxl-6'}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
+                    <div id="hamburger" className={userScroll ? `col-xl-3 d-flex mb-3 align-items-center mt-3  ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} ` : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xxl-6'}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div className="helper d-flex flex-column justify-content-between align-items-center">
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
@@ -165,7 +165,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </div>
                         </div>
                     }
-                    <div className={`d-flex justify-content-end pe-2 pt-36 mt-3 ol-4 col-sm-4 col-md-2 ${userScroll ? `col-xl-3 ${location.pathname.endsWith('/') ? '' : 'col-2 col-xxl-9'}` : ` ${location.pathname.endsWith('/') ? '' : 'col-2 col-xxl-8'}`}`}>
+                    <div className={`d-flex justify-content-end pe-2 pt-36 mt-3 col-sm-4 col-md-2 col-4 ${userScroll ? `col-xl-3  ${location.pathname.endsWith('/') ? '' : 'col-2 col-xxl-9'}` : `  ${location.pathname.endsWith('/') ? '  ' : 'col-2 col-xxl-8'}`}`}>
                         {userSesion === null &&
                             <button className=" ms-2 mb-3 login-navbar" onClick={() => handlePopup('login')}>
                                 Login
