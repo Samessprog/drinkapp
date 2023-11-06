@@ -10,9 +10,6 @@ import { Ring } from "@uiball/loaders";
 
 function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
 
-
-    console.log(clickedDrinkDetail)
-
     const API_URL = 'http://localhost:3000/api/';
 
     let { id } = useParams()
@@ -224,7 +221,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             <LazyLoadImage
                                 src={convertetIMG}
                                 effect="blur"
-                                className=" col-12 img-helper img-fluid"
+                                className="img-helper img-fluid"
                                 alt="Img error"
                             />
 
