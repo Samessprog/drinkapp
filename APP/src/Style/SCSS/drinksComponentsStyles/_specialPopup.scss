@@ -2,6 +2,7 @@
 
 .special-drinks-holder {
     z-index: 1;
+    color: white;
 
     @media (max-width: 768px) {
         left: 0%;
@@ -25,7 +26,7 @@
         }
 
         .special-drink-ing-icon {
-            fill: $fbf2ea;
+            fill: rgb(240, 239, 239);
         }
 
         .close-icon {
