@@ -35,7 +35,6 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup }) {
                 setChangingUserDataError(data.message)
             }
         } catch (error) {
-
         }
     };
 

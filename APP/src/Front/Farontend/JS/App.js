@@ -14,6 +14,7 @@ import Footer from "./footer/Footer";
 import Home from "./main/Home";
 import UserProfile from "./Profile/user/UserProfile";
 import Admin from "./Profile/admin/Admin";
+import AdminRoute from './privateRouts/AdminRoute'
 
 const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 
@@ -127,7 +128,7 @@ function App() {
             element={
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <PrivateRoute element={
+                  <AdminRoute element={
                     <Admin drinkDatas={drinkDatas} />
                   } />
                 </Suspense>
