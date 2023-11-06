@@ -17,7 +17,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     const highlyRated = useSelector(state => state.drink.highlyRated);
 
     return (
-        <div className="col-12 col-md-4 col-lg-4 col-xl-3 col-xxl-2 position-fixed SetingsPopupHolder">
+        <div className="col-12 col-md-4 col-lg-4 col-xl-4 col-xxl-2 position-fixed SetingsPopupHolder">
 
             <Searching
                 highlyRated={highlyRated}
@@ -37,9 +37,9 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
             </div>
             <div className="ms-2 p-2 pe-3 ">
                 <div className="d-flex justify-content-center fs-5 ">Filter</div>
-                <div className="options-holder-settings-popup  mt-3 d-flex font col-12">
-                    <div className="col-6">
-                        <div className="d-flex mt-1">
+                <div className="options-holder-settings-popup  mt-3 d-flex font col-12 d-flex ">
+                    <div className="col-12 col-lg-6 d-flex flex-column align-items-lg-start align-items-center">
+                        <div className="d-flex mt-1 pe-3 ">
                             <input
                                 type="checkbox"
                                 id="favoriteCheckbox"
@@ -53,7 +53,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                             </label>
                         </div>
                         <TypeOfDrink />
-                        <div className="d-flex mt-1">
+                        <div className="d-flex mt-1 ps-2 ps-lg-0">
                             <input
                                 id='highlyRatedCheckbox'
                                 value={highlyRated}
@@ -62,7 +62,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                                 className={highlyRated ? 'checked' : 'unchecked'}
                             >
                             </input>
-                            <label htmlFor='highlyRatedCheckbox' className="ms-2">Highly rated </label>
+                            <label htmlFor='highlyRatedCheckbox' className="ms-2 ">Highly rated </label>
                         </div>
                     </div>
                     <DrinksOptions />

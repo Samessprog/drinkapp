@@ -11,7 +11,7 @@ function TypeOfDrink() {
 
     return (
         <div>
-            <div className="d-flex mt-1">
+            <div className="d-flex mt-1 pe-2">
                 <input
                     id="alcoholicCheckBox"
                     onClick={() => dispatch(setAlcocholic(!alcocholic))}
