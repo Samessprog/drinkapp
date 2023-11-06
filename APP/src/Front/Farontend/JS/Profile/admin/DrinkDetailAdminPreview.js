@@ -130,25 +130,25 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                     <svg className="close-preview-icon" onClick={() => setDrinkPreview(false)} xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" /></svg>
                 </div>
                 <form onSubmit={DrinkDateUpdate}>
-                    <div className="data-drink-holder d-flex justify-content-evenly col-12">
-                        <div className="polowa1 col-6">
-                            <div className="d-flex fs-3 fw-bolder col-12">
-                                <div className="col-12 d-flex flex-column">
+                    <div className="data-drink-holder d-flex col-12 flex-column flex-xxl-row align-items-center align-items-xxl-start ">
+                        <div className="col-12 col-xxl-6">
+                            <div className="d-flex fs-3 fw-bolder col-12  ">
+                                <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start">
                                     <label className="mb-1">Drink name</label>
                                     <input
-                                        className="drink-name-input fs-5 col-6"
+                                        className="drink-name-input fs-5 col-xxl-7 col-10"
                                         value={drinkNameInput}
                                         onChange={(e) => setDrinknameInput(e.target.value)}>
                                     </input>
                                 </div>
                             </div>
-                            <div>
+                            <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
                                 <div className="mt-5 fs-4 fw-bolder">
                                     <label className="ms-1">
                                         Description
                                     </label>
                                 </div>
-                                <div className="">
+                                <div className="col-12 d-flex justify-content-center  justify-content-xxl-start">
                                     <textarea
                                         className="description-holder mt-2 col-10 text-break"
                                         value={drinkDescriptionInput}
@@ -156,9 +156,9 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     />
                                 </div>
                             </div>
-                            <div className="mt-4">
+                            <div className="d-flex flex-column align-items-center align-items-xxl-start col-12 mt-4">
                                 <label className="fs-3 fw-bolder">History</label>
-                                <div className="">
+                                <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
                                     <textarea
                                         className="description-holder mt-2 col-10 text-break"
                                         value={drinkHistoryInput}
@@ -204,14 +204,13 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                             </div>
                             <div className="d-flex justify-content-center col-12">
                                 <div className="me-2">
-                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2">{DrinkPreview.Drink.Creator}</label>
+                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5">{DrinkPreview.Drink.Creator}</label>
                                 </div>
-                                <div className="me-3 pe-0" >
-
+                                <div className="me-3 pe-0 fs-5" >
                                     <label className={drinkLevelInput === 'Easy' ? 'easyLevelClass me-2' : drinkLevelInput === 'Medium' ? 'mediumLevelClass me-2' : drinkLevelInput === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinkLevelInput}</label>
                                     <select
                                         onChange={(e) => setDrinkLevelInput(e.target.value)}
-                                        className="Multi-options-holder  "
+                                        className="Multi-options-holder"
                                     >
                                         <option value={drinkLevelInput}></option>
                                         <option value='Easy'>Easy</option>
@@ -220,7 +219,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     </select>
                                 </div>
 
-                                <div className="me-3">
+                                <div className="me-3 fs-5">
                                     <label className={drinkTasteInput === 'Sour' ? 'sourClass me-2' : drinkTasteInput === 'Sweet' ? 'sweetClass me-2' : drinkTasteInput === 'Bitter' ? 'bitterClass me-2' : ''}>{drinkTasteInput}</label>
                                     <select
                                         onChange={(e) => setDrinkTasteInput(e.target.value)}
@@ -232,7 +231,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                         <option value='Bitter'>Bitter</option>
                                     </select>
                                 </div>
-                                <div >
+                                <div className="fs-5">
                                     <label className={drinkTypeInput === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{drinkTypeInput}</label>
                                     <select
                                         onChange={(e) => setDrinkTypeInput(e.target.value)}
@@ -268,8 +267,8 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button type="submit">Change Data</button>
+                    <div className="d-flex justify-content-center justify-content-xxl-end col-12 mt-5">
+                        <button className="mb-4 me-4 change-drink-admin-button col-6 col-xxl-1" type="submit">Change Data</button>
                     </div>
                 </form>
             </div >

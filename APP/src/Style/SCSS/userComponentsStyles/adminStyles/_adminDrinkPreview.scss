@@ -12,6 +12,22 @@
     color: white;
     overflow-y: scroll;
 
+    .change-drink-admin-button {
+        background-color: transparent;
+        padding: 9px;
+        outline: none;
+        border: 1px solid white;
+        border-radius: 13px;
+        color: white;
+        font-size: 18px;
+        transition: background-color .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(119, 119, 119);
+        }
+
+    }
+
     .close-preview-icon-holder {
         .close-preview-icon {
             fill: red;
@@ -150,7 +166,7 @@
     }
 
     .description-holder {
-       
+
         overflow-y: scroll;
         height: 200px;
         max-height: 200px;
@@ -175,13 +191,21 @@
             max-height: 600px;
             height: 600px;
             width: 750px;
+
+            @media (max-width: 1399px) {
+                object-fit: cover;
+                max-height: auto;
+                height: auto;
+                width:  auto;
+            }
+
             .drink-img-prev {
                 max-height: 600px;
                 height: 600px;
                 width: 750px;
                 overflow: hidden;
                 object-fit: cover;
-                
+
             }
 
             .overlay-user-img {
