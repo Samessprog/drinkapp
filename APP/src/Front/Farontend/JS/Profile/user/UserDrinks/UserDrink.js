@@ -4,9 +4,9 @@ import { Buffer } from 'buffer';
 
 import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG";
 import { SessionContext } from "../../../Session/SessionContext";
-import {API_URL} from '../../../Components/Constants'
+import { API_URL } from '../../../Components/Constants'
 
-function UserDrink({ elm, setClickedDrinkDetail }) {
+function UserDrink({ elm }) {
     const [isHidden, setIsHidden] = useState(false)
     const [drinkImg, setDrinkImg] = useState('')
 
@@ -45,11 +45,14 @@ function UserDrink({ elm, setClickedDrinkDetail }) {
         }
     };
 
+
+    const {ID_DRINK} = elm
+
     return (
         <div className={`user-drink-holder mt-4 me-5 col-3 ${isHidden ? 'd-none' : ''}`}>
             <div className=" position-relative col-12">
-                <Link to={`/drinkDetail/${elm?.ID_DRINK}`} onClick={() => setClickedDrinkDetail({ Drink: elm })} >
-                    <FetchingDrinkIMG elm={elm} classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
+                <Link to={`/drinkDetail/${ID_DRINK}`} >
+                    <FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
                     <div className="position-absolute favourite-drink-info-box d-flex  flex-column justify-content-center align-items-center">
                         <div class="d-flex  flex-column justify-content-center align-items-center">
                             <div className="cc d-flex  flex-column justify-content-center align-items-center ">

@@ -1,7 +1,7 @@
 //Imports
 import Carousel from "../../carouselsComponents/Carousel";
 
-function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) {
+function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
     const favouriteDrink = drinkDatas.find((drink) => {
@@ -19,8 +19,7 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas, setClickedDrinkD
         <div className="user-favourite-frinks d-flex justify-content-center">
           <Carousel
             favouriteUsersDrink={favouriteUsersDrink}
-            setClickedDrinkDetail={setClickedDrinkDetail}
-            clickedDrinkDetail={clickedDrinkDetail}
+          
           >
           </Carousel>
         </div>

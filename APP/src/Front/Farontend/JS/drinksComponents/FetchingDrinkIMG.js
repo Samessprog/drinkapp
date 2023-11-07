@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Ring } from '@uiball/loaders'
 import { Buffer } from 'buffer';
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
 
-function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
+function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
 
     const [drinkIMGs, setDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
@@ -13,8 +13,8 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
             try {
-                let ID_Drink = elm.ID_DRINK;
-                const response = await fetch(`${API_URL}${ID_Drink}`, {
+                let ID_Drink = ID_DRINK;
+                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
                     credentials: 'include',
                 });
                 if (!response.ok) {
@@ -29,7 +29,9 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
             }
         };
         fetchUserFavouriteDrinkImage();
-    }, [elm.ID_DRINK]);
+    }, [ID_DRINK]);
+
+
 
     useEffect(() => {
         if (drinkIMGs && drinkIMGs.data.length > 0) {
@@ -44,6 +46,7 @@ function FetchingDrinkIMG({ elm, classNameHolder, classNameIMG }) {
         }
 
     }, [drinkIMGs]);
+
 
     return (
         <div className={classNameHolder} >

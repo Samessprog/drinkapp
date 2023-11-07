@@ -1,12 +1,15 @@
 //Imports
 import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG";
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
 
+    const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType  } = elm;
+
+
     const acceptDrink = async () => {
 
-        let drinkID = elm.ID_DRINK;
+        let drinkID = ID_DRINK;
 
         try {
             const response = await fetch(`${API_URL}acceptDrinksByAdmin`, {
@@ -27,34 +30,34 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
     }
 
     return (
-        <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(elm.ID_DRINK) ? 'd-none' : ''} `}>
+        <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(ID_DRINK) ? 'd-none' : ''} `}>
             <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
                 <div className="ms-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0">
-                    {elm.ID_DRINK}.
+                    {ID_DRINK}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center col-11">
                     <div className="d-flex align-items-center flex-xxl-row flex-column col-12">
                         <div className="d-flex align-items-center data-holder col-12 col-xxl-8 flex-column flex-xxl-row ">
-                            <FetchingDrinkIMG elm={elm} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
+                            <FetchingDrinkIMG ID_DRINK = { ID_DRINK} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
                             <div className="ms-4 drink-name-profile col-5 d-flex justify-content-center align-items-xxl-start" >
-                                {elm.DrinkName}
+                                {DrinkName}
                             </div>
                             <div className="ms-4 fs-5 col-5 d-flex flex-column  align-items-center align-items-xxl-start">
                                 <div className="d-flex">
                                     <label>Created by: </label>
-                                    <label className="drink-name-profile ms-2">{elm.Creator}</label>
+                                    <label className="drink-name-profile ms-2">{Creator}</label>
                                 </div>
                                 <div className="d-flex">
                                     <label className="me-2">Difficult: </label>
-                                    <label className={elm.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : elm.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : elm.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{elm.DifficultyLevel}</label>
+                                    <label className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : eDifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{DifficultyLevel}</label>
                                 </div>
                                 <div className="d-flex">
                                     <label className="me-2">Taste: </label>
-                                    <label className={elm.Taste === 'Sour' ? 'sourClass ' : elm.Taste === 'Sweet' ? 'sweetClass ' : elm.Taste === 'Bitter' ? 'bitterClass' : ''} >{elm.Taste}</label>
+                                    <label className={Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : ''} >{Taste}</label>
                                 </div>
                                 <div className="d-flex">
                                     <label>Type: </label>
-                                    <label className={`ms-2 ${elm.DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{elm.DrinkType}</label>
+                                    <label className={`ms-2 ${DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
                                 </div>
                             </div>
                         </div>

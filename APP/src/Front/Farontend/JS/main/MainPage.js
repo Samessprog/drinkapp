@@ -9,7 +9,7 @@ import Drink from "../drinksComponents/Drink";
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
 const DDE = lazy(() => import("../ErrorsComponents/DDE"))
 
-function MainPage({ searchingDrink, userScroll, offset, setOffset, setClickedDrinkDetail }) {
+function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
 
@@ -77,7 +77,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setClickedDri
                     key={elm.ID_Drink}
                     elm={elm}
                     userFavouriteDrinks={userFavouriteDrinks}
-                    setClickedDrinkDetail={setClickedDrinkDetail}
                 />
             ))}
 

@@ -246,7 +246,6 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
 
 app.post('/api/drinkRating', async (req, res) => {
   const { ID_DRINK, clickedStar, userID } = req.body;
-
   // Check if the user has already rated this drink
   const checkQuery = "SELECT * FROM drinksrating WHERE User_ID = ? AND Drink_ID = ?";
   connectionToDrinksDB.query(checkQuery, [userID, ID_DRINK], (checkErr, checkResult) => {

@@ -32,8 +32,6 @@ function App() {
   const [searchingDrink, setSearchingDrink] = useState([])
   const [drinkDatas, setDrinkData] = useState([])
 
-  const [clickedDrinkDetail, setClickedDrinkDetail] = useState({ Drink: null })
-
   //control screen changes while scrolling
   useEffect(() => {
     const setFixed = () => {
@@ -89,7 +87,6 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Home
-              setClickedDrinkDetail={setClickedDrinkDetail}
               setSpecialOptionsPopup={setSpecialOptionsPopup}
               drinkDatas={drinkDatas}
               searchingDrink={searchingDrink}
@@ -106,7 +103,7 @@ function App() {
             element={
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} clickedDrinkDetail={clickedDrinkDetail} setClickedDrinkDetail={setClickedDrinkDetail} />
+                  <DrinkDetails userSesion={userSesion} searchingDrink={searchingDrink} offset={offset} setOffset={setOffset} />
                 </Suspense>
               </ErrorBoundary>
             }>
@@ -117,7 +114,7 @@ function App() {
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
                   <PrivateRoute element={
-                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} setClickedDrinkDetail={setClickedDrinkDetail} clickedDrinkDetail={clickedDrinkDetail} />
+                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} />
                   } />
                 </Suspense>
               </ErrorBoundary>

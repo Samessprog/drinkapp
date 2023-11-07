@@ -10,7 +10,7 @@ import {API_URL} from '../../Components/Constants'
 
 const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
 
-function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) {
+function UserProfile({ drinkDatas }) {
 
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSesion = useContext(SessionContext).userSesion;
@@ -46,8 +46,6 @@ function UserProfile({ drinkDatas, setClickedDrinkDetail, clickedDrinkDetail }) 
     <div className="user-details-holder">
       <UserDetails userSesion={userSesion} userIMG={userIMG} setUserIMG={setUserIMG} fetchIMGCompleted={fetchIMGCompleted} />
       <UserFavouriteDrinks
-        setClickedDrinkDetail={setClickedDrinkDetail}
-        clickedDrinkDetail={clickedDrinkDetail}
         userFavouriteDrinks={userFavouriteDrinks}
         drinkDatas={drinkDatas}
       />

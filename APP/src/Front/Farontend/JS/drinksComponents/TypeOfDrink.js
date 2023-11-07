@@ -34,7 +34,6 @@ function TypeOfDrink() {
             </div>
         </div>
     )
-
 }
 
 export default TypeOfDrink;

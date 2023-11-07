@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink";
 
-const Carousel = ({ favouriteUsersDrink, setClickedDrinkDetail, clickedDrinkDetail }) => {
+const Carousel = ({ favouriteUsersDrink }) => {
 
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,8 +55,6 @@ const Carousel = ({ favouriteUsersDrink, setClickedDrinkDetail, clickedDrinkDeta
               key={elm.ID_DRINK}
               elm={elm}
               favouriteUsersDrink={favouriteUsersDrink}
-              setClickedDrinkDetail={setClickedDrinkDetail}
-              clickedDrinkDetail={clickedDrinkDetail}
             />
           ))
         )}
