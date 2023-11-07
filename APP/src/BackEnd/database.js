@@ -245,11 +245,11 @@ app.post('/api/acceptDrinksByAdmin', async (req, res) => {
 });
 
 app.post('/api/drinkRating', async (req, res) => {
-  const { drinkID, clickedStar, userID } = req.body;
+  const { ID_DRINK, clickedStar, userID } = req.body;
 
   // Check if the user has already rated this drink
   const checkQuery = "SELECT * FROM drinksrating WHERE User_ID = ? AND Drink_ID = ?";
-  connectionToDrinksDB.query(checkQuery, [userID, drinkID], (checkErr, checkResult) => {
+  connectionToDrinksDB.query(checkQuery, [userID, ID_DRINK], (checkErr, checkResult) => {
     if (checkErr) {
       console.error("Błąd przy sprawdzaniu oceny drinku:", checkErr);
       res.status(500).send("Wystąpił błąd podczas sprawdzania oceny drinku.");
@@ -257,7 +257,7 @@ app.post('/api/drinkRating', async (req, res) => {
       if (checkResult.length > 0) {
         // The user has already rated this drink, so update the existing rating
         const updateQuery = "UPDATE drinksrating SET Rate = ? WHERE User_ID = ? AND Drink_ID = ?";
-        connectionToDrinksDB.query(updateQuery, [clickedStar, userID, drinkID], (updateErr, updateResult) => {
+        connectionToDrinksDB.query(updateQuery, [clickedStar, userID, ID_DRINK], (updateErr, updateResult) => {
           if (updateErr) {
             console.error("Błąd przy aktualizowaniu oceny drinku:", updateErr);
             res.status(500).send("Wystąpił błąd podczas aktualizacji oceny drinku.");
@@ -266,20 +266,20 @@ app.post('/api/drinkRating', async (req, res) => {
 
             // Calculate the average rating for the drink
             const averageQuery = "SELECT AVG(Rate) AS AverageRating FROM drinksrating WHERE Drink_ID = ?";
-            connectionToDrinksDB.query(averageQuery, [drinkID], (averageErr, averageResult) => {
+            connectionToDrinksDB.query(averageQuery, [ID_DRINK], (averageErr, averageResult) => {
               if (averageErr) {
                 console.error("Błąd przy obliczaniu średniej oceny drinku:", averageErr);
               } else {
                 const averageRating = averageResult[0].AverageRating;
-                console.log(`Średnia ocena dla drinku (Drink ID: ${drinkID}): ${averageRating}`);
+                console.log(`Średnia ocena dla drinku (Drink ID: ${ID_DRINK}): ${averageRating}`);
 
                 // Update the "drink" table with the calculated average rating
                 const updateDrinkTableQuery = "UPDATE drink SET Rate = ? WHERE ID_Drink = ?";
-                connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, drinkID], (updateDrinkErr, updateDrinkResult) => {
+                connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, ID_DRINK], (updateDrinkErr, updateDrinkResult) => {
                   if (updateDrinkErr) {
                     console.error("Błąd przy aktualizacji tabeli drink:", updateDrinkErr);
                   } else {
-                    console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${drinkID}): ${averageRating}`);
+                    console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${ID_DRINK}): ${averageRating}`);
                   }
                 });
               }
@@ -291,7 +291,7 @@ app.post('/api/drinkRating', async (req, res) => {
       } else {
         // The user has not rated this drink before, insert a new rating
         const insertQuery = "INSERT INTO drinksrating (User_ID, Drink_ID, Rate) VALUES (?, ?, ?)";
-        connectionToDrinksDB.query(insertQuery, [userID, drinkID, clickedStar], (insertErr, insertResult) => {
+        connectionToDrinksDB.query(insertQuery, [userID, ID_DRINK, clickedStar], (insertErr, insertResult) => {
           if (insertErr) {
             console.error("Błąd przy wstawianiu oceny drinku:", insertErr);
             res.status(500).send("Wystąpił błąd podczas oceniania drinku.");
@@ -300,20 +300,20 @@ app.post('/api/drinkRating', async (req, res) => {
 
             // Calculate the average rating for the drink
             const averageQuery = "SELECT AVG(Rate) AS AverageRating FROM drinksrating WHERE Drink_ID = ?";
-            connectionToDrinksDB.query(averageQuery, [drinkID], (averageErr, averageResult) => {
+            connectionToDrinksDB.query(averageQuery, [ID_DRINK], (averageErr, averageResult) => {
               if (averageErr) {
                 console.error("Błąd przy obliczaniu średniej oceny drinku:", averageErr);
               } else {
                 const averageRating = averageResult[0].AverageRating;
-                console.log(`Średnia ocena dla drinku (Drink ID: ${drinkID}): ${averageRating}`);
+                console.log(`Średnia ocena dla drinku (Drink ID: ${ID_DRINK}): ${averageRating}`);
 
                 // Update the "drink" table with the calculated average rating
                 const updateDrinkTableQuery = "UPDATE drink SET Rate = ? WHERE ID_Drink = ?";
-                connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, drinkID], (updateDrinkErr, updateDrinkResult) => {
+                connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, ID_DRINK], (updateDrinkErr, updateDrinkResult) => {
                   if (updateDrinkErr) {
                     console.error("Błąd przy aktualizacji tabeli drink:", updateDrinkErr);
                   } else {
-                    console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${drinkID}): ${averageRating}`);
+                    console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${ID_DRINK}): ${averageRating}`);
                   }
                 });
               }
@@ -394,6 +394,25 @@ app.get('/api/getUnAcceptedDrinks', async (req, res) => {
     res.json(results);
   });
 });
+
+
+app.get('/api/drinkDetails/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log('XD')
+  console.log(id)
+  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate FROM drink WHERE ID_DRINK = ?';
+
+  connectionToDrinksDB.query(sql, [id], (err, results, fields) => {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
 
 app.get('/api/getAdminProfileDrinks', async (req, res) => {
   const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Description, Ingredients, Preparation, drinkHistory, Rate, user_id, Date_Of_Creation, DrinkBlock FROM drink WHERE Accepted = 1';

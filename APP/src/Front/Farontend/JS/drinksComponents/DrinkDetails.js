@@ -6,13 +6,13 @@ import { Buffer } from 'buffer';
 import Pagination from 'react-paginate';
 import { SessionContext } from "../Session/SessionContext";
 import { Ring } from "@uiball/loaders";
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
+import axios from 'axios';
 
-
-function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
+function DrinkDetails() {
 
     let { id } = useParams()
-
+    const [drinkDetail, setDrinkDetail] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
     //Drink ingredients 
     const [ingredient, setIngredient] = useState([])
@@ -21,14 +21,37 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([]);
     const [loadingImgCompleated, setLoginImgCompleated] = useState()
+    const [clickedStar, setClickedStar] = useState('')
 
+    const [showDrinkDescription, setShowDrinkDescription] = useState(true)
 
     useEffect(() => {
-        let result = clickedDrinkDetail.Drink
-        setIngredient(result?.Ingredients.split('.'));
-        setPreparation(result?.Preparation.split('.'));
-        setClickedDrinkDetail(result)
+        const fetchDrinkDetails = async () => {
+            try {
+                const { data } = await axios.get(`${API_URL}drinkDetails/${id}`);
+                setDrinkDetail(data[0]);
+                setIngredient(data[0]?.Ingredients.split('.'));
+                setPreparation(data[0]?.Preparation.split('.'));
+                setClickedStar(data[0]?.Rate)
+
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchDrinkDetails();
     }, [id]);
+
+    const {
+        DrinkName,
+        Description,
+        DifficultyLevel,
+        DrinkType,
+        Rate,
+        Taste,
+        drinkHistory,
+        ID_DRINK,
+    } = drinkDetail
+
 
     {/*Paginacja*/ }
     const itemPerPage = 1;
@@ -43,35 +66,27 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
         setCurrentPage(currentPage);
     };
 
-    // Function to cross out ingredient
     function crossOutIng(key) {
-        // Find the index of the ingredient in the ingChecked array
         const checkedIndex = ingChecked.indexOf(key);
-        // Create a new copy of the ingChecked array
         const newIngChecked = [...ingChecked];
         if (checkedIndex === -1) {
-            // If the ingredient is not checked, add it to the newIngChecked array
             newIngChecked.push(key);
         } else {
-            // If the ingredient is already checked, remove it from the newIngChecked array
             newIngChecked.splice(checkedIndex, 1);
         }
-        // Update the ingChecked state with the newIngChecked array
         setIngChecked(newIngChecked);
     }
 
-    const [clickedStar, setClickedStar] = useState(clickedDrinkDetail.Rate)
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
+    
     const handleStarClick = (starNumber) => {
         setClickedStar(starNumber);
     };
 
     let userSession = useContext(SessionContext).userSesion
     const sendARating = async () => {
-
         let userID = userSession.userID
-        let drinkID = clickedDrinkDetail?.ID_DRINK;
 
         try {
             const response = await fetch(`${API_URL}drinkRating`, {
@@ -79,7 +94,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ drinkID, clickedStar, userID }),
+                body: JSON.stringify({ ID_DRINK, clickedStar, userID }),
             });
             const data = await response.json();
             if (response.status === 200 || data.message === 'User block successfully') {
@@ -92,11 +107,11 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
     }
 
     useEffect(() => {
-        if (clickedDrinkDetail !== undefined && clickedDrinkDetail?.ID_DRINK !== undefined) {
+
+        if (ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
-                    let ID_Drink = clickedDrinkDetail.ID_DRINK;
-                    const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                    const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_DRINK}`, {
                         credentials: 'include',
                     });
                     if (!response.ok) {
@@ -112,23 +127,17 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
             };
             fetchUserFavouriteDrinkImage();
         }
-    }, [clickedDrinkDetail]);
+    }, [ID_DRINK]);
 
     useEffect(() => {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
-            // Convert the image data to base64
             const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64');
-            // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
+
             setConvertedIMG(imageURL);
             setLoginImgCompleated(true)
-        } else {
-            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
-        }
-
+        } 
     }, [detailDrinkIMG]);
-
-    const [showDrinkDescription, setShowDrinkDescription] = useState(true)
 
 
     return (
@@ -138,7 +147,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                     <div className="col-12 col-xxl-7 col-xl-6">
                         <div className="d-flex align-items-center mb-5 name-rating-holder">
                             <header className="d-flex align-items-center ">
-                                <div className="drink-name fs-3 fw-bolder" style={{ fontFamily: 'cursive' }} >{clickedDrinkDetail.DrinkName}</div>
+                                <div className="drink-name fs-3 fw-bolder" style={{ fontFamily: 'cursive' }} >{DrinkName}</div>
                             </header>
                             <div className="d-flex ms-4 align-items-center rating-holder">
 
@@ -146,7 +155,7 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                 {[1, 2, 3, 4, 5].map((starNumber) => (
                                     <svg
                                         key={starNumber}
-                                        className={`star ${starNumber <= clickedDrinkDetail.Rate ? 'gold' : ''}`}
+                                        className={`star ${starNumber <= Rate ? 'gold' : ''}`}
                                         xmlns="http://www.w3.org/2000/svg"
                                         height="24"
                                         width="24"
@@ -183,9 +192,9 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                                             <div className="d-flex fs-5">
                                                 <p className="line-spaced">
                                                     {showDrinkDescription ? (
-                                                        <> {clickedDrinkDetail.Description} </>
+                                                        <> {Description} </>
                                                     ) : (
-                                                        <> {clickedDrinkDetail.drinkHistory} </>
+                                                        <> {drinkHistory} </>
                                                     )}
                                                 </p>
                                             </div>
@@ -196,16 +205,14 @@ function DrinkDetails({ clickedDrinkDetail, setClickedDrinkDetail }) {
                             <div className="col-xl-9 col-12 d-flex flex-column d-flex  basic-information-drink align-items-center">
                                 <label className="fs-3 fw-bolder mt-5">Specifications</label>
                                 <div className="d-flex  mt-3 fs-5">
-                                    <label className={` me-2 ${clickedDrinkDetail.DifficultyLevel === 'Easy' ? 'easyLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : clickedDrinkDetail.DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{clickedDrinkDetail.DifficultyLevel}</label>
-                                    {/*`bg-primary rounded-pill p-1 ps-2 pe-2 fw-bolder drink-taste ${clickedDrinkDetail.drinkType === 'Sour' ? 'bg-success' : clickedDrinkDetail.drinkType === 'Alko' ? 'bg-danger' : clickedDrinkDetail.drinkType === 'Zium' ? 'bg-dark' : ''}` */}
-                                    <label className={`me-2 ${clickedDrinkDetail.Taste === 'Sour' ? 'sourClass ' : clickedDrinkDetail.Taste === 'Sweet' ? 'sweetClass ' : clickedDrinkDetail.Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{clickedDrinkDetail.Taste}</label>
-                                    <label className={clickedDrinkDetail.DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{clickedDrinkDetail.DrinkType}</label>
+                                    <label className={` me-2 ${DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{DifficultyLevel}</label>
+                                    <label className={`me-2 ${Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{Taste}</label>
+                                    <label className={DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{DrinkType}</label>
                                 </div>
                             </div>
                             <div className="col-xl-9 col-12 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
                                 <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
-
                                     {ingredient.map((ingredient, key) => (
                                         <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
                                     ))}
