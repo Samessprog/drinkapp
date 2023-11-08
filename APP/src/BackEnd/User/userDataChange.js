@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const router = express.Router();
-const db = require('./DB');
+const db = require('../DB');
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?\d{1,12}$/;

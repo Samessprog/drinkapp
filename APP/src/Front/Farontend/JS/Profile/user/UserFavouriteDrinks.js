@@ -5,7 +5,7 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
 
   const favouriteUsersDrink = userFavouriteDrinks.map((favId) => {
     const favouriteDrink = drinkDatas.find((drink) => {
-      if (favId === drink.ID_DRINK) {
+      if (favId === drink.ID_DRINK ) {
         return drink;
       }
     });
@@ -19,7 +19,6 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
         <div className="user-favourite-frinks d-flex justify-content-center">
           <Carousel
             favouriteUsersDrink={favouriteUsersDrink}
-          
           >
           </Carousel>
         </div>

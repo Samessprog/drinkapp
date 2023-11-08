@@ -49,7 +49,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                 </div>
                                 <div className="d-flex">
                                     <label className="me-2">Difficult: </label>
-                                    <label className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : eDifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{DifficultyLevel}</label>
+                                    <label className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}>{DifficultyLevel}</label>
                                 </div>
                                 <div className="d-flex">
                                     <label className="me-2">Taste: </label>

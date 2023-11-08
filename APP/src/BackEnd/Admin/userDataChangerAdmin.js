@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-const db = require('./DB');
+const db = require('../DB');
 
 router.post('/', async (req, res) => {
     const { newUserEmail, newUserPass, userID, newUserNick, newUserPhone, userRole } = req.body;

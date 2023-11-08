@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-const db = require('./DB');
+const db = require('../DB');
 
 const upload = multer();
 

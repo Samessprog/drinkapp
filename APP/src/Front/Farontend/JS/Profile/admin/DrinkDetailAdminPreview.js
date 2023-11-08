@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Buffer } from "buffer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
 
@@ -20,11 +20,12 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
     const [drinkImg, setDrinkImg] = useState(convertetIMG)
 
     useEffect(() => {
-        if (DrinkPreview.Drink.ID_DRINK !== undefined && DrinkPreview?.Drink?.ID_DRINK !== undefined) {
+        if (DrinkPreview.Drink.ID_DRINK !== undefined) {
+            console.log(DrinkPreview.Drink.ID_DRINK)
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
                     let ID_Drink = DrinkPreview.Drink.ID_DRINK;
-                    const response = await fetch(`${API_URL}${ID_Drink}`, {
+                    const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_Drink}`, {
                         credentials: 'include',
                     });
                     if (!response.ok) {
@@ -32,6 +33,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                     }
                     // Parsuj odpowiedź jako JSON
                     const data = await response.json();
+                    console.log(data)
                     setDetalDrinkIMG(data.image)
 
                 } catch (error) {
@@ -73,7 +75,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
             alert('File size exceeds the limit of 5 MB!');
             return;
         }
-        
+
         formData.append('drinkImg', drinkImg);
         formData.append('drinkID', drink_ID);
         formData.append('drinkNameInput', drinkNameInput);
@@ -124,13 +126,13 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
         }
     }
     return (
-        <div className=" fullscreen col-12">
+        <div className="fullscreen col-12">
             <div className="col-12">
                 <div className="close-preview-icon-holder d-flex flex-row-reverse mt-3 pe-2 col-12" >
                     <svg className="close-preview-icon" onClick={() => setDrinkPreview(false)} xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" /></svg>
                 </div>
                 <form onSubmit={DrinkDateUpdate}>
-                    <div className="data-drink-holder d-flex col-12 flex-column flex-xxl-row align-items-center align-items-xxl-start ">
+                    <div className="data-drink-holder d-flex  flex-column flex-xxl-row align-items-center align-items-xxl-start ">
                         <div className="col-12 col-xxl-6">
                             <div className="d-flex fs-3 fw-bolder col-12  ">
                                 <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start">
@@ -256,11 +258,11 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                                     <div class="overlay-user-img fw-bolder d-flex align-items-center justify-content-center fw-bolder col-12">
                                         Click to change your img
                                         <input
-                                        className=""
-                                        onChange={(e) => {
-                                            setDrinkImg(e.target.files[0])
-                                            ownDrinkImgPrev(e)
-                                        }}
+                                            className=""
+                                            onChange={(e) => {
+                                                setDrinkImg(e.target.files[0])
+                                                ownDrinkImgPrev(e)
+                                            }}
                                             type="file" name="file-upload" id="file-upload"></input>
                                     </div>
                                 </div>

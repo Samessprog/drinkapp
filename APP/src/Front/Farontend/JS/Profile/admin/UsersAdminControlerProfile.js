@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Buffer } from 'buffer';
 import { Ring } from '@uiball/loaders'
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
 
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, hiddenElements, setChangeUserDataPopup }) {
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
@@ -13,7 +13,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
         const fetchUserFavouriteDrinkImage = async () => {
             try {
                 let ID_User = elm.ID_User
-                const response = await fetch(`${API_URL}${ID_User}`, {
+                const response = await fetch(`${API_URL}fetchUserIMG/${ID_User}`, {
                     credentials: 'include',
                 });
                 if (!response.ok) {
@@ -31,16 +31,16 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
     useEffect(() => {
         if (userIMG && userIMG.data.length > 0) {
-            // Convert the image data to base64
             const base64Image = Buffer.from(userIMG.data).toString('base64');
-            // Create the image URL using the base64 data
             const imageURL = `data:image/jpeg;base64,${base64Image}`;
+
             setUserConvertedIMG(imageURL);
         } else {
             setUserConvertedIMG('https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg');
         }
         setFetchIMGCompleted(true)
     }, [userIMG]);
+
 
     return (
         <div className={`mb-4 ms-3 me-3 p-2 d-flex align-items-center drinks-profile-holder col-12 ${hiddenElements.includes(elm.ID_User) ? 'd-none' : ''}`}>
@@ -49,7 +49,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                     {elm.ID_User}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center position-relative col-11">
-                    <div className="d-flex align-items-center flex-xxl-row flex-column col-xxl-8 col-12 col-xl-7 ">
+                    <div className="d-flex align-items-center flex-xxl-row flex-column col-xxl-10 col-12 ">
                         <div className="d-flex align-items-center data-holder col-12">
                             <div className=" mt-1 mb-1 drink-profile-holder-IMG margin-top-12 ">
                                 {fetchIMGCompleted ? (
@@ -80,7 +80,7 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                                 </div>
                             </div>
                         </div>
-                        <div className="details-button-holder d-flex align-items-center mt-4 mt-xxl-0 col-8 justify-content-center mb-4 mb-xxl-0">
+                        <div className="details-button-holder d-flex align-items-center mt-4 mt-xxl-0 col-7 col-xxl-1 justify-content-center mb-4 mb-xxl-0">
                             <div className=" me-3 d-flex justify-content-center align-items-center ms-5"
                                 onClick={() =>
                                     setChangeUserDataPopup({ isOpenPrev: true, userData: elm })

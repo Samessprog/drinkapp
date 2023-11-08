@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
 const router = express.Router();
-const db = require('./DB');
+const db = require('../DB');
 
 router.use((req, res, next) => {
   next();
@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
     //   return;
     // }
 
-    if (user.IsBlocked === 1) {
+    if (user?.IsBlocked === 1) {
       res.status(401).json({ success: false, message: 'Your account has been blocked' });
       return;
     }
