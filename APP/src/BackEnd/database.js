@@ -89,7 +89,7 @@ app.use('/api/getAllUsers', getAllUsers)
 //Gety Admin
 app.get('/api/getAllUsers', getAllUsers)
 app.get('/api/getUnAcceptedDrinks', getUnAcceptedDrinks)
-app.get('/api/getAdminProfileDrinks',  getAdminProfileDrinks)
+app.get('/api/getAdminProfileDrinks', getAdminProfileDrinks)
 
 //Modal gets
 app.get('/api/drinkDetails/:id', drinkDetails)
@@ -108,11 +108,62 @@ app.get('/api/session', (req, res) => {
 });
 
 
-const multer = require('multer');
-const upload = multer();
 
-app.use('/api/drinksDataUpdate', drinksDataUpdate )
+app.get('/api/takeFavouriteUserDrink', async (req, res) => {
 
+  const userIDs = req.session.user?.userID;
+
+  // Fetch the DrinkIDs for the given UserID
+  const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
+
+  db.query(query, [userIDs], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error retrieving user favorite drinks.' });
+    } else {
+      // Extract the DrinkID values from the query results
+      const drinkIDs = results.map((row) => row.DrinkID);
+      res.status(200).json({ drinkIDs });
+    }
+  });
+});
+
+app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
+  const userSession = req.params.userSession;
+
+  try {
+    // Pobieramy DrinkID z tabeli userfavouritedrink, gdzie UserID jest równy userSession
+    const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
+    db.query(query, [userSession], async (error, results) => {
+      if (error) {
+        console.error('Błąd zapytania do bazy danych:', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+      } else {
+        console.log('Wyniki zapytania:', results);
+
+        // Pobieramy informacje o drinkach na podstawie pobranych ID
+        const drinkIDs = results.map(result => result.DrinkID);
+        const drinksQuery = `SELECT * FROM drink WHERE ID_Drink IN (?)`;
+        connectionToDrinksDB.query(drinksQuery, [drinkIDs], (drinksError, drinksResults) => {
+          if (drinksError) {
+            console.error('Błąd zapytania o informacje o drinkach:', drinksError);
+            res.status(500).json({ success: false, error: 'Internal Server Error' });
+          } else {
+            console.log('Wyniki zapytania o informacje o drinkach:', drinksResults);
+
+            // Tutaj możesz obsłużyć wyniki zapytania i odpowiedzieć klientowi
+            res.json({ success: true, data: drinksResults });
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.error('Błąd:', error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
+
+app.use('/api/drinksDataUpdate', drinksDataUpdate)
 
 
 app.listen(port, () => {

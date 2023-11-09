@@ -47,7 +47,6 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 if (!response.ok) {
                     throw new Error('Failed to fetch user favourites.');
                 }
-
                 const data = await response.json();
                 dispatch(setUserFavouriteDrinks(data.drinkIDs));
             } catch (error) {
@@ -57,6 +56,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
         fetchUserFavouriteDrinks();
     }, [favourites]);
+
 
     return (
 
