@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const connectionToDrinksDB = require('../drinksDB');
 
-router.get('/api/fetchDrinkIMG/:ID_Drink', async (req, res) => {
-    const { ID_Drink } = req.params;
+router.get('/api/fetchDrinkIMG/:ID_DRINK', async (req, res) => {
+    const { ID_DRINK } = req.params;
 
     try {
-        const sql = 'SELECT IMG FROM drink WHERE ID_Drink = ?';
-        connectionToDrinksDB.query(sql, [ID_Drink], (err, result) => {
+        const sql = 'SELECT IMG FROM drink WHERE ID_DRINK = ?';
+        connectionToDrinksDB.query(sql, [ID_DRINK], (err, result) => {
             if (err) {
                 res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
             } else {

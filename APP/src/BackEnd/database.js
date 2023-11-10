@@ -41,7 +41,6 @@ const drinksDataUpdate = require('./Admin/drinkDataUpdate')
 const userLoginRouter = require('./Modals/userLogin');
 const userRegister = require('./Modals/userRegister');
 const userLogout = require('./Modals/logout');
-const removeFromUserFavourite = require('./Modals/removeFromUserFavourite')
 const drinkDetails = require('./Drink/getDrinkDetails')
 const getAllDrinks = require('./Modals/getAllDrinks')
 const fetchDrinkIMG = require('./Modals/getDrinkIMG')
@@ -70,7 +69,6 @@ app.use('/api/logout', userLogout);
 app.use('/api/userDataChange', userDateChange);
 app.use('/api/userPasswordChange', userPasswordChanger);
 app.use('/api/addToUserFavourite', addToFavouriteDrink)
-app.use('/api/removeFromUserFavourite', removeFromUserFavourite)
 app.use('/api/drinkRating', drinkRating);
 //Gety Users
 app.get('/api/userIMG', getUserIMG)
@@ -108,6 +106,40 @@ app.get('/api/session', (req, res) => {
 });
 
 
+app.post('/api/removeFromUserFavourite', async (req, res) => {
+  const { drinkID, userID } = req.body;
+
+  const deleteQuery = 'DELETE FROM userfavouritedrink WHERE userID = ? AND drinkID = ?';
+
+  db.query(deleteQuery, [userID, drinkID], (error, results) => {
+    if (error) {
+      console.error('Error deleting favorite:', error);
+      res.status(500).json({ error: 'An error occurred while deleting the favorite.' });
+    }
+  });
+});
+
+app.get('/api/getOwnDrinks/:userSession', async (req, res) => {
+  const userSession = req.params.userSession;
+
+  try {
+    const getOwnDrinksQuery = 'SELECT * FROM drink WHERE Creator = ?';
+    connectionToDrinksDB.query(getOwnDrinksQuery, [userSession], (error, results) => {
+      if (error) {
+        console.error('Error fetching user drinks:', error);
+        res.status(500).json({ error: 'An error occurred while fetching user drinks.' });
+      } else {
+        res.status(200).json({ success: true, drinks: results });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while processing the request.' });
+  }
+
+});
+
+
 
 app.get('/api/takeFavouriteUserDrink', async (req, res) => {
 
@@ -136,21 +168,15 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
     const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
     db.query(query, [userSession], async (error, results) => {
       if (error) {
-        console.error('Błąd zapytania do bazy danych:', error);
         res.status(500).json({ success: false, error: 'Internal Server Error' });
       } else {
-        console.log('Wyniki zapytania:', results);
-
         // Pobieramy informacje o drinkach na podstawie pobranych ID
         const drinkIDs = results.map(result => result.DrinkID);
         const drinksQuery = `SELECT * FROM drink WHERE ID_Drink IN (?)`;
         connectionToDrinksDB.query(drinksQuery, [drinkIDs], (drinksError, drinksResults) => {
           if (drinksError) {
-            console.error('Błąd zapytania o informacje o drinkach:', drinksError);
             res.status(500).json({ success: false, error: 'Internal Server Error' });
           } else {
-            console.log('Wyniki zapytania o informacje o drinkach:', drinksResults);
-
             // Tutaj możesz obsłużyć wyniki zapytania i odpowiedzieć klientowi
             res.json({ success: true, data: drinksResults });
           }
@@ -158,10 +184,10 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Błąd:', error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
+
 
 app.use('/api/drinksDataUpdate', drinksDataUpdate)
 

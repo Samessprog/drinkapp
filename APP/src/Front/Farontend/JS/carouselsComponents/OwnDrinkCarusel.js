@@ -2,28 +2,24 @@
 import { useEffect, useState } from "react"
 import UserOwnDrink from "../Profile/user/UserDrinks/UserDrink";
 
-function OwnDrinkCarusel({ drinkDatas, creator }) {
+function OwnDrinkCarusel({userOwnDrink }) {
+
+    console.log(userOwnDrink)
 
     //states for carousel
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showItemsOwn, setShowItemsOwn] = useState([]);
-    //User own drinks
-    const [userOwnDrinks, setUserOwnDrinks] = useState([])
 
-    useEffect(() => {
-        const ownDrinkFilter = drinkDatas.filter((DrinkElm) => DrinkElm.Creator == creator);
-        setUserOwnDrinks(ownDrinkFilter);
-    }, []);
 
 
     //show items of carousel
     useEffect(() => {
-        if (userOwnDrinks.length > 0) {
-            const itemsLength = userOwnDrinks.length;
+        if (userOwnDrink.length > 0) {
+            const itemsLength = userOwnDrink.length;
             const itemsToShow = [];
 
             if (itemsLength <= 4) {
-                setShowItemsOwn(userOwnDrinks);
+                setShowItemsOwn(userOwnDrink);
                 return;
             }
             const startIndex = currentIndex % itemsLength;
@@ -31,25 +27,26 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
             // Get the first 4 items
             for (let i = startIndex; i < startIndex + 4; i++) {
                 const itemIndex = i >= itemsLength ? i - itemsLength : i;
-                itemsToShow.push(userOwnDrinks[itemIndex]);
+                itemsToShow.push(userOwnDrink[itemIndex]);
             }
 
             setShowItemsOwn(itemsToShow);
         }
-    }, [currentIndex, userOwnDrinks]);
+    }, [currentIndex, userOwnDrink]);
 
-     //changes to the carousel and item views
+    //changes to the carousel and item views
     const handlePrev = () => {
-        const itemsCount = userOwnDrinks.length;
+        const itemsCount = userOwnDrink.length;
         const newIndex = (currentIndex - 3 + itemsCount) % itemsCount;
         setCurrentIndex(newIndex);
     };
 
     const handleNext = () => {
-        const itemsCount = userOwnDrinks.length;
+        const itemsCount = userOwnDrink.length;
         const newIndex = (currentIndex + 3) % itemsCount;
         setCurrentIndex(newIndex);
     };
+
 
     return (
         <div className="carousel col-12 ">
@@ -63,7 +60,7 @@ function OwnDrinkCarusel({ drinkDatas, creator }) {
                 )}
             </div>
 
-            {userOwnDrinks.length > 4 &&
+            {userOwnDrink.length > 4 &&
                 <div>
                     <div
                         className="position-absolute start-0 top-50 d-none d-md-flex scroll-arrow-fav-own-box"

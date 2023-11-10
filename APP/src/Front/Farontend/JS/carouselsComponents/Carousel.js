@@ -8,7 +8,6 @@ const Carousel = ({ favouriteUsersDrink }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
-
   useEffect(() => {
     if (favouriteUsersDrink) {
       const favouriteDrinksLength = favouriteUsersDrink.length;
@@ -28,7 +27,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
       }
       setShowItems(favouriteItemsToShow);
     }
-  }, [currentIndex]);
+  }, [currentIndex , favouriteUsersDrink]);
 
   //changes to the carousel and item views
   const handlePrev = () => {
@@ -47,7 +46,7 @@ const Carousel = ({ favouriteUsersDrink }) => {
   return (
     <div className="carousel col-12 ms-0 me-0 ps-0 pe-0">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
-        {showItems !== undefined ? (
+        {showItems === '' ? (
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (

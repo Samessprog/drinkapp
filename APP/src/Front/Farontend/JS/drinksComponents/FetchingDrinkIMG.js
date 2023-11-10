@@ -4,7 +4,9 @@ import { Ring } from '@uiball/loaders'
 import { Buffer } from 'buffer';
 import { API_URL } from '../Components/Constants';
 
-function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
+function FetchingDrinkIMG({ ID_DRINK , classNameHolder, classNameIMG }) {
+
+    console.log(ID_DRINK)
 
     const [drinkIMGs, setDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
@@ -13,8 +15,7 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
     useEffect(() => {
         const fetchUserFavouriteDrinkImage = async () => {
             try {
-                let ID_Drink = ID_DRINK;
-                const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_Drink}`, {
+                const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_DRINK}`, {
                     credentials: 'include',
                 });
                 if (!response.ok) {
@@ -32,7 +33,6 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
     }, [ID_DRINK]);
 
 
-
     useEffect(() => {
         if (drinkIMGs && drinkIMGs.data.length > 0) {
             // Convert the image data to base64
@@ -46,7 +46,6 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
         }
 
     }, [drinkIMGs]);
-
 
     return (
         <div className={classNameHolder} >

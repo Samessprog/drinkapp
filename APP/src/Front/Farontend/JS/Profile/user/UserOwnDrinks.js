@@ -1,20 +1,45 @@
 //Imports
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import OwnDrinkCarusel from "../../carouselsComponents/OwnDrinkCarusel";
 import { SessionContext } from "../../Session/SessionContext";
+import { useState } from "react";
 
-function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, drinkDatas }) {
+function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink }) {
 
     const userSesion = useContext(SessionContext).userSesion;
     const creator = userSesion.userID
+    const [userOwnDrink, setUserOwnDrink] = useState('')
+
+
+    useEffect(() => {
+        const fetchUserFavouriteDrinks = async () => {
+            const userIDs = userSesion.userID
+            try {
+                const response = await fetch(`http://localhost:3000/api/getOwnDrinks/${userIDs}`);
+                const data = await response.json();
+                if (data.success) {
+                    setUserOwnDrink(data.drinks)
+                } else {
+                    // Obsługa błędów, jeśli to konieczne
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchUserFavouriteDrinks();
+    }, [userSesion]);
 
     return (
         <div className="position-relative ">
             <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center"> Create your own drink</label>
             <div className="user-favourite-frinks-holder">
                 <div className="user-favourite-frinks d-flex justify-content-center">
-                    <OwnDrinkCarusel drinkDatas={drinkDatas} creator={creator} />
+                    <OwnDrinkCarusel
+                        userOwnDrink={userOwnDrink}
+                    >
+                    </OwnDrinkCarusel>
                 </div>
             </div>
             <div className="d-flex mt-5 flex-xl-row-reverse me-5 ">

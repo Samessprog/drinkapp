@@ -3,18 +3,16 @@ import Carousel from "../../carouselsComponents/Carousel";
 import { useEffect, useState, useContext } from "react";
 import { SessionContext } from "../../Session/SessionContext";
 
+function UserFavouriteDrinks() {
 
 
-function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
-
-
-  const [ userFavouriteDrinkss ,setUserFavouriteDrinks] = useState('')
+  const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
   const userSesion = useContext(SessionContext).userSesion;
 
 
   useEffect(() => {
     const fetchUserFavouriteDrinks = async () => {
-      const userIDs = userSesion.userID
+      const userIDs = userSesion.nick
       try {
         const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`);
         const data = await response.json();
@@ -31,14 +29,17 @@ function UserFavouriteDrinks({ userFavouriteDrinks, drinkDatas }) {
     fetchUserFavouriteDrinks();
   }, [userSesion]);
 
-  console.log(userFavouriteDrinkss)
+  console.log(favouriteUsersDrink)
 
   return (
     <div className="position-relative ">
       <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center"> Create your own drink</label>
       <div className="user-favourite-frinks-holder">
         <div className="user-favourite-frinks d-flex justify-content-center">
-        
+          <Carousel
+            favouriteUsersDrink={favouriteUsersDrink}
+          >
+          </Carousel>
         </div>
       </div>
       <div className="d-flex mt-4 flex-md-row-reverse me-4 flex-column ">
