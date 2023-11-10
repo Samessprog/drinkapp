@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const connectionToDrinksDB = require('../drinksDB')
 
-router.post('/api/acceptDrinksByAdmin', async (req, res) => {
+router.post('/', async (req, res) => {
     const { drinkID } = req.body;
 
     const sql = 'UPDATE drink SET Accepted = 1 WHERE ID_Drink = ?';

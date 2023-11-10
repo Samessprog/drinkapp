@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 //Admin
 const deleteUser = require('./Admin/deleteUser')
 const acceptDrinksByAdmin = require('./Admin/acceptDrinksByAdmin')
-const deleteDrink = require('./Admin/deleteDrink')
+const deleteDrinkByAdmin = require('./Admin/deleteDrink')
 const blockUser = require('./Admin/blockUser')
 const dataUserChangerByAdmin = require('./Admin/userDataChangerAdmin')
 const getUnAcceptedDrinks = require('./Admin/getUnAcceptedDrinks')
@@ -81,7 +81,7 @@ app.use('/api/uploadImage', userImgChange);
 app.use('/api/userDataChangerADMIN', dataUserChangerByAdmin)
 app.use('/api/deleteUser', deleteUser)
 app.use('/api/blockUser', blockUser)
-app.use('/api/deleteDrink', deleteDrink)
+app.use('/api/deleteDrink', deleteDrinkByAdmin)
 app.use('/api/acceptDrinksByAdmin', acceptDrinksByAdmin)
 app.use('/api/getAllUsers', getAllUsers)
 //Gety Admin
@@ -138,6 +138,8 @@ app.get('/api/getOwnDrinks/:userSession', async (req, res) => {
   }
 
 });
+
+
 
 
 

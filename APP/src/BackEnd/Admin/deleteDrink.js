@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connectionToDrinksDB = require('../drinksDB')
 
-router.post('/api/deleteDrink', async (req, res) => {
+router.post('/', async (req, res) => {
     const { ID_Drink } = req.body;
 
     if (!ID_Drink) {

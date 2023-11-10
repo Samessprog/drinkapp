@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../DB');
 
-router.get('/api/getAllUsers', (req, res) => {
+router.get('/', (req, res) => {
     db.query('SELECT ID_User, email, Password, phone, Nick, IsBlocked  FROM users', (err, results) => {
         if (err) {
             console.error(err);

@@ -5,7 +5,7 @@ const connectionToDrinksDB = require('../drinksDB');
 const multer = require('multer');
 const upload = multer();
 
-router.post('/api/drinksDataUpdate', upload.single('drinkImg'), async (req, res) => {
+router.post('/', upload.single('drinkImg'), async (req, res) => {
     const { drinkID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
 
     const ingredient = ing.replace(/,/g, '.');

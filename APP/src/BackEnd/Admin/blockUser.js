@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../DB');
 
-router.post('/api/blockUser', async (req, res) => {
+router.post('/', async (req, res) => {
     const { userID } = req.body;
 
     if (!userID) {
