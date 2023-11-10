@@ -86,6 +86,7 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
             setHiddenDrinkElements([...hiddenDrinkElements, drinkElementID])
         }
     }
+
     return (
         <div className="bg-red">
             <div className="d-flex justify-content-end me-2 pt-2">

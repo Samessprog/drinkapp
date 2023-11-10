@@ -5,10 +5,9 @@ import { SessionContext } from "../../Session/SessionContext";
 
 function UserFavouriteDrinks() {
 
-
+  const [isHidden, setIsHidden] = useState(false)
   const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
   const userSesion = useContext(SessionContext).userSesion;
-
 
   useEffect(() => {
     const fetchUserFavouriteDrinks = async () => {
@@ -27,9 +26,7 @@ function UserFavouriteDrinks() {
     };
 
     fetchUserFavouriteDrinks();
-  }, [userSesion]);
-
-  console.log(favouriteUsersDrink)
+  }, [userSesion, isHidden]);
 
   return (
     <div className="position-relative ">
@@ -38,6 +35,8 @@ function UserFavouriteDrinks() {
         <div className="user-favourite-frinks d-flex justify-content-center">
           <Carousel
             favouriteUsersDrink={favouriteUsersDrink}
+            setIsHidden={setIsHidden}
+            isHidden={isHidden}
           >
           </Carousel>
         </div>

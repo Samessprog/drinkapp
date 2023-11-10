@@ -261,6 +261,7 @@ function Admin({ drinkDatas }) {
         getUnAcceptedDrinks();
     }, [])
 
+
     return (
         <div className="col-12">
             <div className="admin-container p-3 p-sm-4 position-relative ">

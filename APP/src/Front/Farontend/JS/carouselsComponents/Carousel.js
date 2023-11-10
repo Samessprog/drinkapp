@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink";
 
-const Carousel = ({ favouriteUsersDrink }) => {
-
+const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
+  
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
@@ -27,7 +27,9 @@ const Carousel = ({ favouriteUsersDrink }) => {
       }
       setShowItems(favouriteItemsToShow);
     }
-  }, [currentIndex , favouriteUsersDrink]);
+  }, [currentIndex , favouriteUsersDrink, isHidden]);
+
+  console.log(isHidden)
 
   //changes to the carousel and item views
   const handlePrev = () => {
@@ -42,7 +44,6 @@ const Carousel = ({ favouriteUsersDrink }) => {
     setCurrentIndex(newIndex);
   };
 
-
   return (
     <div className="carousel col-12 ms-0 me-0 ps-0 pe-0">
       <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
@@ -52,6 +53,8 @@ const Carousel = ({ favouriteUsersDrink }) => {
           showItems.map((elm) => (
             <FavouriteDrinks
               elm={elm}
+              setIsHidden={setIsHidden}
+              isHidden={isHidden}
               favouriteUsersDrink={favouriteUsersDrink}
             />
           ))

@@ -6,9 +6,8 @@ import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG";
 import { SessionContext } from "../../../Session/SessionContext";
 import { API_URL } from '../../../Components/Constants'
 
-function UserDrink({ elm, favouriteUsersDrink }) {
+function UserDrink({ elm, isHidden, setIsHidden }) {
 
-    const [isHidden, setIsHidden] = useState(false)
     const [drinkImg, setDrinkImg] = useState('')
 
     const userSesion = useContext(SessionContext).userSesion;
@@ -49,9 +48,8 @@ function UserDrink({ elm, favouriteUsersDrink }) {
     const { ID_Drink } = elm
     let ID_DRINK = ID_Drink
 
-
     return (
-        <div className={`user-drink-holder mt-4 me-5 col-3 ${isHidden ? 'd-none' : ''}`}>
+        <div className={`user-drink-holder mt-4 me-5 col-3 `}>
             <div className=" position-relative col-12">
                 <Link to={`/drinkDetail/${ID_DRINK}`} >
                     <FetchingDrinkIMG ID_DRINK={ID_DRINK}  classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
@@ -74,7 +72,7 @@ function UserDrink({ elm, favouriteUsersDrink }) {
                 </Link >
                 <div className="position-absolute top-0 end-0 mt-2 me-2 " onClick={() => {
                     removeFromFavourite(ID_DRINK);
-                    setIsHidden(true)
+                    setIsHidden(!isHidden)
                 }} >
 
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">

@@ -5,6 +5,14 @@ import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
 
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, hiddenElements, setChangeUserDataPopup }) {
+
+
+    useEffect(() => {
+        console.log('XD')
+    }, [])
+
+
+
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)
     const [userIMG, setUserIMG] = useState(null)
@@ -40,6 +48,9 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
         }
         setFetchIMGCompleted(true)
     }, [userIMG]);
+
+
+
 
 
     return (
