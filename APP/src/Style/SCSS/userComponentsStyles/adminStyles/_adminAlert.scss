@@ -33,6 +33,13 @@
 }
 
 .announcements {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-top: 3rem; 
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    
 
     &-succes {
         background-color: greenyellow;

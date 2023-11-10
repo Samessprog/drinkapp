@@ -419,20 +419,20 @@ function Admin({ drinkDatas }) {
                     </div>
                 }
 
-                <div className="announcements d-flex flex-column align-items-center pt-3">
+                <div className="announcements d-flex flex-column align-items-end pt-3">
                     {announcementSucces &&
-                        <div className="announcements-succes d-flex justify-content-center w-100">
+                        <div className="announcements-error d-flex justify-content-end p-3 fs-4">
                             The operation was a success
                         </div>
                     }
                     {announcementsUserDoesntExist &&
-                        <div className="announcements-user-doesnt-exist d-flex justify-content-center w-100">
+                        <div className="announcements-error d-flex justify-content-end p-3 fs-4">
                             The Object does not exist
                         </div>
                     }
 
                     {announcementsError &&
-                        <div className="announcements-error d-flex justify-content-center w-100">
+                        <div className="announcements-error d-flex justify-content-end p-3 fs-4">
                             Something went wrong...
                         </div>
                     }
