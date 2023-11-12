@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
+import { io } from "socket.io-client";
 
-function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup }) {
+
+function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users }) {
 
     const { ID_User, Nick, Password, email, phone } = changeUserDataPopup?.userData;
 
@@ -13,28 +15,23 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup }) {
     const [newUserPhone, setNewUserPhone] = useState(phone)
     const [userRole, setUserRole] = useState('')
 
-    //Function to Change User Data
-    const UserDataChange = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await fetch(`${API_URL}userDataChangerADMIN`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole })
-            });
-            const data = await response.json();
-            if (data.success) {
-                setChangingUserDataError(null)
-                alert('User Data changes have been made')
+    const socket = io('http://localhost:4000');
 
-            } else {
-                setChangingUserDataError(data.message)
-            }
-        } catch (error) {
+    const UserDataChange = (event) => {
+        event.preventDefault();
+        socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole });
+    }
+
+    socket.on('userDataChangerResponse', ({ success, users, error }) => {
+        if (success) {
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u));
+                return updatedUsers;
+            });
+        } else {
+            console.error(error);
         }
-    };
+    });
 
     return (
         <div className="userDataChangeHolder col-12 col-md-10 col-lg-9 col-xl-6 col-xxl-4">

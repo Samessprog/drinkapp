@@ -15,6 +15,38 @@ const io = socketIo(server, {
 io.on('connection', (socket) => {
     console.log('Client connected to WebSocket');
 
+    socket.on('userDataChanger', ({ newUserEmail, ID_User, newUserNick, newUserPhone, userRole }, res) => {
+
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (!emailRegex.test(newUserEmail)) {
+            // Emit an error to the client
+            io.emit('userDataChangerResponse', { success: false, error: 'Invalid email' });
+            return;
+        }
+        try {
+            // Update user email, phone, nickname, and role in the database
+            userDB.query(
+                'UPDATE users SET email = ?, phone = ?, Nick = ?, Role = ? WHERE ID_User = ?',
+                [newUserEmail, newUserPhone, newUserNick, userRole, ID_User],
+                (err, result) => {
+                    if (err) {
+                        // Emit an error to the client
+                        io.emit('userDataChangerResponse', { success: false, error: 'Failed to update user data' });
+                        return;
+                    }
+
+                    // Emit success response to the client
+                    io.emit('userDataChangerResponse', { success: true });
+                }
+            );
+        } catch (error) {
+            // Emit an error to the client
+            io.emit('userDataChangerResponse', { success: false, error: 'An error occurred' });
+        }
+    });
+
+
     socket.on('deleteDrink', ({ ID_Drink }) => {
         if (!ID_Drink) {
             // Dodaj emitowanie błędu do klienta
@@ -39,7 +71,6 @@ io.on('connection', (socket) => {
             }
         });
     });
-
 
 
     socket.on('deleteUser', ({ userID }) => {

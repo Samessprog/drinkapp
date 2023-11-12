@@ -263,9 +263,6 @@ function Admin({ drinkDatas }) {
     }, [])
 
 
-
-    console.log(users)
-
     return (
         <div className="col-12">
             <div className="admin-container p-3 p-sm-4 position-relative ">
@@ -453,6 +450,8 @@ function Admin({ drinkDatas }) {
                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <AdminDataPopup
+                            users={users}
+                            setUsers={setUsers}
                             setChangeUserDataPopup={setChangeUserDataPopup}
                             changeUserDataPopup={changeUserDataPopup}
                         />

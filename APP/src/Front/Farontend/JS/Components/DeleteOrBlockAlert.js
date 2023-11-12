@@ -9,6 +9,9 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
     const socket = io('http://localhost:4000');
 
+
+
+
     const deleteDrink = async () => {
         let ID_Drink = windowAlert.ObjectID.ID_DRINK
         socket.emit('deleteDrink', { ID_Drink })

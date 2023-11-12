@@ -4,8 +4,7 @@ import { API_URL } from '../../Components/Constants'
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
 
-    const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType  } = elm;
-
+    const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm;
 
     const acceptDrink = async () => {
 
@@ -29,6 +28,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
+
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(ID_DRINK) ? 'd-none' : ''} `}>
             <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
@@ -38,7 +38,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                 <div className="justify-content-between d-flex align-items-center col-11">
                     <div className="d-flex align-items-center flex-xxl-row flex-column col-12">
                         <div className="d-flex align-items-center data-holder col-12 col-xxl-8 flex-column flex-xxl-row ">
-                            <FetchingDrinkIMG ID_DRINK = { ID_DRINK} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
+                            <FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
                             <div className="ms-4 drink-name-profile col-5 d-flex justify-content-center align-items-xxl-start" >
                                 {DrinkName}
                             </div>
