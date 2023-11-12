@@ -2,15 +2,11 @@
 import { useEffect, useState } from "react"
 import UserOwnDrink from "../Profile/user/UserDrinks/UserDrink";
 
-function OwnDrinkCarusel({userOwnDrink }) {
-
-    console.log(userOwnDrink)
+function OwnDrinkCarusel({userOwnDrink}) {
 
     //states for carousel
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showItemsOwn, setShowItemsOwn] = useState([]);
-
-
 
     //show items of carousel
     useEffect(() => {

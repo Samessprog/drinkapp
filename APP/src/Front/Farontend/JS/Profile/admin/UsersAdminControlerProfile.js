@@ -6,13 +6,6 @@ import { API_URL } from '../../Components/Constants'
 
 function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlockedButton, hiddenElements, setChangeUserDataPopup }) {
 
-
-    useEffect(() => {
-        console.log('XD')
-    }, [])
-
-
-
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
     const [userConvertedIMG, setUserConvertedIMG] = useState(null)
     const [userIMG, setUserIMG] = useState(null)
@@ -51,10 +44,8 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
 
 
 
-
-
     return (
-        <div className={`mb-4 ms-3 me-3 p-2 d-flex align-items-center drinks-profile-holder col-12 ${hiddenElements.includes(elm.ID_User) ? 'd-none' : ''}`}>
+        <div className={`mb-4 ms-3 me-3 p-2 d-flex align-items-center drinks-profile-holder col-12 `}>
             <div className="d-flex align-items-center col-12 flex-column flex-xxl-row justify-content-center">
                 <div className="ms-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0">
                     {elm.ID_User}.

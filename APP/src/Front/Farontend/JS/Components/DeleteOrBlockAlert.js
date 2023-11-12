@@ -1,83 +1,66 @@
 //Imports
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
+import io from 'socket.io-client';
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
-    setAnnouncementsUserDoesntExist, setAnnouncementsError }) {
+    setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
+
+
+    const socket = io('http://localhost:4000');
 
     const deleteDrink = async () => {
         let ID_Drink = windowAlert.ObjectID.ID_DRINK
+        socket.emit('deleteDrink', { ID_Drink })
 
-        try {
-            const response = await fetch(`${API_URL}deleteDrink`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ID_Drink }),
-            });
-
-            const data = await response.json();
-
-            if (response.status === 200 || data.message === 'Drink deleted successfully') {
-                setAnnouncementSucces(true)
-            } else if (response.status === 404 || data.error === 'Drink not found') {
-                setAnnouncementsUserDoesntExist(true)
-            }
-        } catch (error) {
-            console.error(
-                setAnnouncementsError(true)
-            );
-        }
     };
 
     const deleteUser = async () => {
-        setWindowAlert(!windowAlert.isOpen)
-        let userID = windowAlert.ObjectID.ID_User
-        try {
-            const response = await fetch(`${API_URL}deleteUser`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userID }),
-            });
-
-            const data = await response.json();
-
-            if (response.status === 200 && data.message === 'User deleted successfully') {
-                setAnnouncementSucces(true)
-            } else if (response.status === 404 && data.error === 'User not found') {
-                setAnnouncementsUserDoesntExist(true)
-            }
-        } catch (error) {
-            console.error(error);
-            setAnnouncementsError(true)
-        }
+        let userID = windowAlert.ObjectID.ID_User;
+        socket.emit('deleteUser', { userID });
     };
 
-    const blockUser = async () => {
-        let userID = windowAlert.ObjectID.ID_User
-
-        try {
-            const response = await fetch(`${API_URL}blockUser`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userID }),
-            });
-            const data = await response.json();
-            if (response.status === 200 || data.message === 'User block successfully') {
-                setAnnouncementSucces(true)
-            } else if (response.status === 404 && data.error === 'User not found') {
-                setAnnouncementsUserDoesntExist(true)
-            }
-        } catch (error) {
-            console.error(error);
-            setAnnouncementsError(true)
-        }
+    const blockUser = () => {
+        let userID = windowAlert.ObjectID.ID_User;
+        socket.emit('blockUser', { userID });
     };
+
+    socket.on('blockUserResponse', (data) => {
+        if (data.success) {
+            setAnnouncementSucces(true);
+
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers.map((user) => {
+                    if (user.ID_User === data.userID) {
+                        return { ...user, IsBlocked: !user.IsBlocked };
+                    }
+                    return user;
+                });
+                return updatedUsers;
+            });
+        } else if (data.error === 'User not found') {
+            setAnnouncementsUserDoesntExist(true);
+        } else {
+            setAnnouncementsError(true);
+        }
+    });
+
+    socket.on('deleteUserResponse', (data) => {
+        if (data.success) {
+            setAnnouncementSucces(true);
+
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers.filter((user) => user.ID_User !== data.userID);
+                console.log(updatedUsers)
+                return updatedUsers;
+            });
+        } else if (data.error === 'User not found') {
+            setAnnouncementsUserDoesntExist(true);
+        } else {
+            setAnnouncementsError(true);
+        }
+    });
+
 
     const hideElement = (elementId, drinkElementID) => {
         if (elementId) {
@@ -107,7 +90,7 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
                 {blockedButton === true &&
                     <label onClick={() => {
                         blockUser()
-                        setWindowAlert(!windowAlert.isOpen)
+                        setWindowAlert(false)
                     }}>
                         <button className="confirming-button">Yes</button>
                     </label>

@@ -16,7 +16,7 @@ function LoginPopup() {
     const [loginError, setLoginError] = useState(null);
 
     const handleLogin = (event) => {
-        event.preventDefault(); // Prevents the default form submission behavior
+        event.preventDefault(); 
 
         // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;

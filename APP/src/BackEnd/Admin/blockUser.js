@@ -11,8 +11,6 @@ router.post('/', async (req, res) => {
     }
     
     db.query('SELECT IsBlocked FROM users WHERE ID_User = ?', userID, (err, results) => {
-        console.log(results)
-
         if (err) {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error' });

@@ -9,7 +9,6 @@ const NAVBAR_ACTIONS = {
 
 }
 
-
 //drinks Actions actions type
 const DRINKS_ACTIONS = {
     SET_SEARCHING_DRINKS: 'SET_SEARCHING_DRINKS',

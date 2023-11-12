@@ -9,7 +9,7 @@ import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults
 import DrinksProfile from "./DrinksProfile";
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
 import AdminFilter from "./AdminFilter";
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
@@ -219,6 +219,7 @@ function Admin({ drinkDatas }) {
     let currentItemsUsers;
 
     if (drinksFlag) {
+        console.log(filteredResults)
         pageCount = Math.ceil(filteredResults.length / itemsPerPage);
         currentItems = filteredResults.slice(
             currentPage * itemsPerPage,
@@ -261,6 +262,9 @@ function Admin({ drinkDatas }) {
         getUnAcceptedDrinks();
     }, [])
 
+
+
+    console.log(users)
 
     return (
         <div className="col-12">
@@ -416,7 +420,7 @@ function Admin({ drinkDatas }) {
 
                 {windowAlert.isOpen &&
                     <div className="position-fixed window-alert-holder col-10 col-sm-7 col-md-5 col-xxl-3">
-                        <WindowAdminAlert hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                        <WindowAdminAlert setUsers={setUsers} users={users} hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
                     </div>
                 }
 
