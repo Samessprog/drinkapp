@@ -1,8 +1,8 @@
 //Imports
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
 
 import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, setPhone } from "../States/actions";
 
@@ -62,8 +62,26 @@ function Registers() {
             .catch(error => console.error(error));
     };
 
+
+    let registerRef = useRef(null)
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (!registerRef.current.contains(e.target)) {
+                dispatch(setRegisterPopup(false))
+            }
+        }
+        document.addEventListener("mousedown", handler)
+
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+
+    },[])
+
+
     return (
-        <div className="col-4 col-12 col-md-6 col-lg-4 loginPopupHolder position-fixed d-flex align-items-center flex-column ">
+        <div ref={registerRef} className="col-4 col-12 col-md-6 col-lg-4 loginPopupHolder position-fixed d-flex align-items-center flex-column ">
 
             <div className="d-flex position-fixed close-icon-holder">
                 <svg

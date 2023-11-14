@@ -1,10 +1,10 @@
 //Imports
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setEmail, setPassword } from "../States/actions";
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
 
 function LoginPopup() {
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function LoginPopup() {
     const [loginError, setLoginError] = useState(null);
 
     const handleLogin = (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
@@ -50,8 +50,26 @@ function LoginPopup() {
             });
     };
 
+
+    let loginRef = useRef(null)
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (!loginRef.current.contains(e.target)) {
+                dispatch(setLoginPopup(false))
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+
+        return () => {
+            document.removeEventListener("mousedown", handler);
+        };
+    }, [])
+
+
     return (
-        <div className="col-12 col-md-6 col-lg-4 loginPopupHolder position-fixed d-flex  align-items-center flex-column ">
+        <div ref={loginRef} className="col-12 col-md-6 col-lg-4 loginPopupHolder position-fixed d-flex  align-items-center flex-column ">
 
             <div className="d-flex  position-fixed close-icon-holder mt-1 ">
                 <svg

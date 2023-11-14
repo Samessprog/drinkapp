@@ -9,7 +9,7 @@ function AdminFilter({ showDrinksOptions, drinksFlag, usersFlag, showNewsFlag, s
     useEffect(() => {
         let handler = (e) => {
             if (!filterRef.current.contains(e.target) ) {
-                setShowDrinksOptions(!showDrinksOptions)
+                setShowDrinksOptions(showDrinksOptions)
             }
         };
 

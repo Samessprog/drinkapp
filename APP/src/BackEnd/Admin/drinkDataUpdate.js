@@ -6,6 +6,7 @@ const multer = require('multer');
 const upload = multer();
 
 router.post('/', upload.single('drinkImg'), async (req, res) => {
+    console.log('hello')
     const { drinkID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
 
     const ingredient = ing.replace(/,/g, '.');
