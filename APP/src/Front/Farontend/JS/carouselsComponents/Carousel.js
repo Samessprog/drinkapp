@@ -29,7 +29,6 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
     }
   }, [currentIndex , favouriteUsersDrink, isHidden]);
 
-  console.log(isHidden)
 
   //changes to the carousel and item views
   const handlePrev = () => {

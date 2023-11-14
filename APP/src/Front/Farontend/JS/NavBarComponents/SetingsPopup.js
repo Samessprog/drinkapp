@@ -1,5 +1,6 @@
 //Imports
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react'
 
 import Searching from "../Components/Searching";
 import DrinksOptions from "../drinksComponents/DrinksOptions";
@@ -16,8 +17,25 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     //Drinks properties states
     const highlyRated = useSelector(state => state.drink.highlyRated);
 
+    let settingsRef = useRef();
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (!settingsRef.current.contains(e.target)) {
+                dispatch(setPopupSetings(false))
+            }
+        };
+    
+        document.addEventListener("mousedown", handler);
+    
+        return () => {
+            document.removeEventListener("mousedown", handler);
+        };
+    }, []);
+
+
     return (
-        <div className="col-12 col-md-4 col-lg-4 col-xl-4 col-xxl-2 position-fixed SetingsPopupHolder">
+        <div ref={settingsRef} className="col-12 col-md-4 col-lg-4 col-xl-4 col-xxl-2 position-fixed SetingsPopupHolder">
 
             <Searching
                 highlyRated={highlyRated}

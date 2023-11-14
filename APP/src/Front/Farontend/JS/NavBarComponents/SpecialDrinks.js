@@ -1,5 +1,5 @@
 //Imports
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useState, useRef, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,8 +27,26 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
         setIngredientText("")
     }
 
+
+    let settingsRef = useRef();
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (!settingsRef.current.contains(e.target)) {
+                dispatch(setSpecialOptionsPopup(false))
+            }
+        };
+    
+        document.addEventListener("mousedown", handler);
+    
+        return () => {
+            document.removeEventListener("mousedown", handler);
+        };
+    }, []);
+
+
     return (
-        <div className="col-12 special-drinks-holder position-fixed mt-5 " style={{ textAlign: "center" }}>
+        <div ref={settingsRef} className="col-12 special-drinks-holder position-fixed mt-5 " style={{ textAlign: "center" }}>
 
             <Searching
                 ingredient={ingredient}

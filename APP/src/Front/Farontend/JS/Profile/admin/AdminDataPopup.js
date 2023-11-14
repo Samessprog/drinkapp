@@ -22,7 +22,7 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
         socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole });
     }
 
-    socket.on('userDataChangerResponse', ({ success, users, error }) => {
+    socket.on('userDataChangerResponse', ({ success, error }) => {
         if (success) {
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u));

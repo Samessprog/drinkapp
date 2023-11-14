@@ -191,7 +191,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                 </svg>
 
                                 {userProfileOptions &&
-                                    <OptionsProfile />
+                                    <OptionsProfile
+                                        userProfileOptions={userProfileOptions}
+                                        setUserProfileOptions={setUserProfileOptions}
+                                    />
                                 }
                             </div>
                         }

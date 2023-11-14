@@ -2,9 +2,9 @@
 import { Link } from "react-router-dom";
 import { setUserSession, setUserFavouriteDrinks } from "../../States/actions";
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef } from "react";
 
-
-function OptionsProfile() {
+function OptionsProfile({ setUserProfileOptions, userProfileOptions }) {
 
     const dispatch = useDispatch();
     const userSesion = useSelector(state => state.user.useSesion)
@@ -21,15 +21,29 @@ function OptionsProfile() {
             })
             .catch(error => console.error(error));
     }
-    // reload Window !!Zamiast tego wyczyść state? i daj adnotracje o wylogowaniu się 
+
     function handleLogoutClick() {
         logoutUser();
         dispatch(setUserFavouriteDrinks([]))
     }
 
+    let menuRef = useRef();
+
+    useEffect(() => {
+        let handler = ((e) => {
+            if (!menuRef.current.contains(e.target)) {
+                setUserProfileOptions(false)
+            }
+        })
+        document.addEventListener("mousedown", handler)
+
+        return () => {
+            document.removeEventListener("mousedown", handler);
+        }
+    })
 
     return (
-        <div className="position-absolute end-0 mt-2 me-3">
+        <div ref={menuRef} className="position-absolute end-0 mt-2 me-3">
             <ul className="d-flex flex-column DropdownProfilMenu ">
                 <Link to={"userProfile"} className="user-profile-links">
                     <li className="DropdownProfilMenu-elm  position-relative">Profile</li>

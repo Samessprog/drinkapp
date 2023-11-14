@@ -1,6 +1,8 @@
 //Imports
 import { API_URL } from '../Components/Constants';
 import io from 'socket.io-client';
+import { useRef, useEffect } from 'react';
+
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
@@ -8,8 +10,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
 
     const socket = io('http://localhost:4000');
-
-
 
 
     const deleteDrink = async () => {
@@ -73,8 +73,27 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
         }
     }
 
+
+    let alertWindow = useRef();
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (!alertWindow.current.contains(e.target)) {
+                setWindowAlert(!windowAlert.isOpen)
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+
+        return () => {
+            document.removeEventListener("mousedown", handler);
+        };
+    }, []);
+
+
+
     return (
-        <div className="bg-red">
+        <div ref={alertWindow} className="bg-red">
             <div className="d-flex justify-content-end me-2 pt-2">
                 <label onClick={() => {
                     setWindowAlert(!windowAlert.isOpen)
