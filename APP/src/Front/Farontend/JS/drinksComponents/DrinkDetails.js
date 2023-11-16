@@ -8,6 +8,7 @@ import { SessionContext } from "../Session/SessionContext";
 import { Ring } from "@uiball/loaders";
 import { API_URL } from '../Components/Constants';
 import axios from 'axios';
+import getIconForPreparation from "../Components/FilterIconsAlgo";
 
 function DrinkDetails() {
 
@@ -79,7 +80,7 @@ function DrinkDetails() {
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
-    
+
     const handleStarClick = (starNumber) => {
         setClickedStar(starNumber);
     };
@@ -136,9 +137,8 @@ function DrinkDetails() {
 
             setConvertedIMG(imageURL);
             setLoginImgCompleated(true)
-        } 
+        }
     }, [detailDrinkIMG]);
-
 
     return (
         <div className="col-12 drink-holder">
@@ -248,15 +248,17 @@ function DrinkDetails() {
                 <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5">Preparation</div>
                 <div className="col-12 d-flex  justify-content-center mt-2 align-items-center preparation-holder ">
                     <div className="col-11 col-xl-10 mt-2 border rounded pt-4 ps-4 pe-4 d-flex justify-content-center align-items-center">
-                        <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column">
+                        <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column col-12">
                             <div>
                                 {currentData.map((preparation, key) => (
-                                    <div key={key}>{preparation}</div>
+                                    <div key={key}>
+                                        {preparation}
+                                        {/* Wyświetlenie ikony na podstawie tekstu przygotowania */}
+                                        <div className="col mt-5 d-flex justify-content-center align-items-center">
+                                            <img src={getIconForPreparation(preparation)} alt="Icon" />
+                                        </div>
+                                    </div>
                                 ))}
-
-                                <div className="col mt-5 d-flex justify-content-center align-items-center">
-                                    <img alt="ERR"></img>
-                                </div>
 
                                 <div className="d-flex justify-content-center">
                                     <Pagination
@@ -275,7 +277,6 @@ function DrinkDetails() {
             </div >
         </div >
     )
-
 }
 
 export default DrinkDetails;
