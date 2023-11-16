@@ -170,9 +170,9 @@ function DrinkDetails() {
                         {/*Opis i składniki do drinku  */}
                         <div className="col-12 mt-5">
                             <article>
-                                <div className="col-12">
+                                <div className="col-11">
                                     <button
-                                        className="fs-5 ms-3 drink-detail-button"
+                                        className={`fs-5 ms-3  fw-bolder pe-2 ps-2 ${showDrinkDescription ? 'drink-detail-button-activate' : 'drink-detail-button'}`}
                                         onClick={() => {
                                             setShowDrinkDescription(true);
                                         }}
@@ -180,7 +180,7 @@ function DrinkDetails() {
                                         Description
                                     </button>
                                     <button
-                                        className="fs-5 ms-3 drink-detail-button"
+                                        className={`fs-5 ms-3 fw-bolder drink-detail-button pe-2 ps-2 ${!showDrinkDescription ? 'drink-detail-button-activate' : 'drink-detail-button'}`}
                                         onClick={() => {
                                             setShowDrinkDescription(false);
                                         }}

@@ -49,8 +49,30 @@ const chopDictionary = [
     'pociąć',
 ];
 
+const decorateDictionary = [
+    'ozdobić',
+    'upiększyć',
+    'dekorować',
+    'ozdobienie',
+    'ozdobny',
+    'upiększanie',
+    'dekoracyjny',
+    'aranżacja',
+    'dekoratorstwo',
+    'dekoracyjnie',
+    'przyozdobić',
+    'zdobienie',
+    'aranżować',
+    'dekoracyjność',
+    'ozdobiony',
+    'upiększyć',
+    'udecorować',
+    'dekorowanie',
+]
+
 export {
     pourDictionary,
     shakeDictionary,
-    chopDictionary
+    chopDictionary,
+    decorateDictionary,
 };
