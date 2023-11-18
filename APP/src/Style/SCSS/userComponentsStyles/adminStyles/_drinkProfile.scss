@@ -1,6 +1,5 @@
 @import '../../variables.scss';
 
-
 .userDataChangeHolder {
     position: fixed;
     z-index: 1000;
@@ -8,9 +7,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: rgb(0, 0, 0);
-    background-color: rgb(236, 236, 236);
-    border: 4px solid rgb(0, 0, 0);
+    background-color: rgb(242, 242, 242);
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
+
+    .select-role-inputs {
+        background-color: rgb(242, 242, 242);
+        font-size: 18px;
+        transition: all 0.2s ease-in-out;
+
+    }
 
     .close-icon {
         fill: red;
@@ -23,14 +29,13 @@
         padding: 7px;
         border-right: $border-1-solid-black;
 
-
         .login-register-icon {
             fill: $rgb-255;
         }
     }
 
     .login-register-input-data {
-        background-color: rgb(218, 218, 218);
+        background-color: rgb(232, 231, 231);
         border: $border-1-solid-black;
         border-left: none;
         padding-top: 0;
@@ -38,9 +43,11 @@
         border-left: 0;
         padding: 6px;
         border-radius: 0px 10px 10px 0px;
+        transition: all .3s ease-in-out;
 
         &:focus {
-            background-color: rgb(150, 150, 150);
+            background-color: rgba(0, 0, 0, 0.779);
+            color: white;
         }
     }
 }

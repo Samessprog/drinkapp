@@ -279,18 +279,26 @@
 
     .scroll-arrow-fav-own-box {
         background-color: transparent;
-        opacity: 70%;
-        height: 50px;
+        opacity: 0.8;
+        height: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        top: 6%;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            background-color: black;
+            cursor: pointer;
+            .scroll-arrow-fav-own {
+                fill: rgb(255, 255, 255);
+            }
+        }
 
         .scroll-arrow-fav-own {
-            fill: white;
+            fill: rgb(0, 0, 0);
             cursor: pointer;
-
-            &:hover {
-                fill: rgb(178, 178, 178);
-            }
         }
     }
 

@@ -20,12 +20,12 @@
 
 }
 
-.fill-color-212{
+.fill-color-212 {
     fill: rgb(255, 255, 255);
 }
 
 .searching-items-admin {
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(255, 255, 255);
     border: none;
     border-radius: 15px;
     color: rgb(0, 0, 0);
@@ -44,11 +44,17 @@
 
     .multi-options-holder-admin {
         position: absolute;
+        z-index: 1;
         right: 6.8%;
         margin-top: .4rem;
-        background-color: rgb(223, 223, 223);
+        background-color: rgb(240, 238, 238);
         color: black;
         font-size: 17px;
         border-radius: 10px 0px 10px 10px;
+
+        @media (max-width: 900px) {
+            font-size: 15px;
+        }
+
     }
 }

@@ -6,8 +6,6 @@ import { API_URL } from '../Components/Constants';
 
 function FetchingDrinkIMG({ ID_DRINK , classNameHolder, classNameIMG }) {
 
-    console.log(ID_DRINK)
-
     const [drinkIMGs, setDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)

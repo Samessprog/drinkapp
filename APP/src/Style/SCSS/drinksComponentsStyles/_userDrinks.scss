@@ -10,8 +10,22 @@
     }
 
     .favourite-img-holder {
-        height: 400px;
+        height: 350px;
         background-color: transparent !important;
+        @media (max-width: 576px) {
+            max-height: 150px;
+            height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            max-height: 180px;
+            height: 180px;
+        }
+
+        @media (max-width: 1200px) {
+            max-height: 200px;
+            height: 200px;
+        }
     }
 
     .loading-icon-holder {
@@ -46,7 +60,6 @@
                 color: white;
                 font-family: cursive;
             }
-
         }
     }
 
@@ -60,12 +73,11 @@
         transform: translateY(0%);
     }
 
-
     .drink-img-favourite {
         object-fit: cover;
         border-radius: 15px;
-        height: 400px;
-        max-height: 400px;
+        height: 350px;
+        max-height: 350px;
         width: 100%;
 
         @media (max-width: 576px) {
@@ -82,11 +94,7 @@
             max-height: 200px;
             height: 200px;
         }
-
-
     }
-
-
 
     .star {
         fill: $color-gold;
@@ -95,9 +103,7 @@
     .arrow-carousel-holder {
         height: 100%;
         background-color: red;
-
     }
-
 }
 
 .no-fav-drinks {

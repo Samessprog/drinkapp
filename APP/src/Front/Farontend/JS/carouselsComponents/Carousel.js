@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink";
 
 const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
-  
+
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
@@ -27,7 +27,7 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
       }
       setShowItems(favouriteItemsToShow);
     }
-  }, [currentIndex , favouriteUsersDrink, isHidden]);
+  }, [currentIndex, favouriteUsersDrink, isHidden]);
 
 
   //changes to the carousel and item views
@@ -63,7 +63,7 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
       {favouriteUsersDrink.length > 4 &&
         <div>
           <div
-            className="position-absolute start-0 top-50 d-none d-md-flex scroll-arrow-fav-own-box"
+            className="position-absolute start-0  d-none d-md-flex scroll-arrow-fav-own-box"
             onClick={handlePrev}
           >
             <svg
@@ -78,24 +78,13 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
           </div>
 
           <div
-            className="position-absolute top-50 end-0  d-none d-md-flex scroll-arrow-fav-own-box"
+            className="position-absolute end-0  d-none d-md-flex scroll-arrow-fav-own-box"
             onClick={handleNext}
           >
-            <svg
-              id="right-arrow"
-              xmlns="http://www.w3.org/2000/svg"
-              className="scroll-arrow-fav-own"
-              height="48"
-              width="48"
-            >
-              <path d="m15.2 43.9-2.8-2.85L29.55 23.9 12.4 6.75l2.8-2.85 20 20Z" />
-            </svg>
+            <svg className="scroll-arrow-fav-own" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z" /></svg>
           </div>
-
         </div>
-
       }
-
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { API_URL } from '../../Components/Constants'
 import { io } from "socket.io-client";
 
 
@@ -69,10 +68,11 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                         </div>
                         <input onChange={(e) => setNewUserPass(e.target.value)} className="col-8 ps-2  login-register-input-data" type="password" placeholder="password" value={newUserPass}></input>
                     </div>
-                    <div className="mt-3">
-                        <select onChange={(e) => setUserRole(e.target.value)}>
-                            <option>Admin</option>
-                            <option>User</option>
+                    <div className="mt-3 ">
+                        <select className="select-role-inputs" onChange={(e) => setUserRole(e.target.value)}>
+                            <option >initial</option>
+                            <option >admin</option>
+                            <option>user</option>
                         </select>
                         {changingUserDataError}
                     </div>
