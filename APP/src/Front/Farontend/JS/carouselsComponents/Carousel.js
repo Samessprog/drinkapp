@@ -8,6 +8,8 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showItems, setShowItems] = useState([]);
 
+  console.log(''+favouriteUsersDrink)
+
   useEffect(() => {
     if (favouriteUsersDrink) {
       const favouriteDrinksLength = favouriteUsersDrink.length;

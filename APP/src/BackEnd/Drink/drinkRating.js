@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const connectionToDrinksDB = require('../drinksDB');
 
-router.post('/api/drinkRating', async (req, res) => {
+router.post('/', async (req, res) => {
     const { ID_DRINK, clickedStar, userID } = req.body;
-    // Check if the user has already rated this drink
+
+
+    if (userID === '' && !userID) {
+        res.status(500).send("Wystąpił błąd podczas sprawdzania oceny drinku.");
+    }
+
     const checkQuery = "SELECT * FROM drinksrating WHERE User_ID = ? AND Drink_ID = ?";
     connectionToDrinksDB.query(checkQuery, [userID, ID_DRINK], (checkErr, checkResult) => {
         if (checkErr) {

@@ -87,7 +87,11 @@ function DrinkDetails() {
 
     let userSession = useContext(SessionContext).userSesion
     const sendARating = async () => {
-        let userID = userSession.userID
+        let userID = userSession?.userID
+        console.log(userSession)
+        if (userSession === '' || !userSession) {
+            return alert('you must be logged in to rate')
+        }
 
         try {
             const response = await fetch(`${API_URL}drinkRating`, {

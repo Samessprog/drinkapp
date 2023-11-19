@@ -164,13 +164,11 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
   const userSession = req.params.userSession;
 
   try {
-    // Pobieramy DrinkID z tabeli userfavouritedrink, gdzie UserID jest równy userSession
     const query = `SELECT DrinkID FROM userfavouritedrink WHERE UserID = ?`;
     db.query(query, [userSession], async (error, results) => {
       if (error) {
-        res.status(500).json({ success: false, error: 'Internal Server Error' });
+        return
       } else {
-        // Pobieramy informacje o drinkach na podstawie pobranych ID
         const drinkIDs = results.map(result => result.DrinkID);
         const drinksQuery = `SELECT * FROM drink WHERE ID_Drink IN (?)`;
         connectionToDrinksDB.query(drinksQuery, [drinkIDs], (drinksError, drinksResults) => {

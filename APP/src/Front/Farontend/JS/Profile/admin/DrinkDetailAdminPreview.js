@@ -169,14 +169,14 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 </div>
                             </div>
                             <div className="d-flex justify-content-around mt-5 ingredients-and-preparation-holder col-12 mb-5">
-                                <div className="">
+                                <div className="col-6">
                                     <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">Ingredients</label>
                                     <div className="d-flex flex-column ">
-                                        <ul className="mt-2 fs-5 ps-2">
+                                        <ul className="mt-2 fs-5 ps-2 ">
                                             {ingredient.map((ingredient, index) => (
-                                                <li key={index}>
+                                                <li  key={index}>
                                                     <input
-                                                        className="drink-ingredient-input"
+                                                        className="drink-ingredient-input col-8"
                                                         value={ingredient}
                                                         onChange={(event) => handleIngredientsInputChange(event, index)}
                                                     />
@@ -186,14 +186,14 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     </div>
                                 </div>
 
-                                <div className="">
+                                <div className="col-6">
                                     <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">Preparation</label>
-                                    <div className="d-flex flex-column">
-                                        <ul className="mt-2 fs-5 ps-2">
+                                    <div className="d-flex flex-column col-12">
+                                        <ul className="mt-2 fs-5 ps-2 col-12" >
                                             {preparation.map((preparation, index) => (
                                                 <li key={index}>
                                                     <input
-                                                        className="drink-ingredient-input"
+                                                        className="drink-ingredient-input col-8 "
                                                         value={preparation}
                                                         onChange={(event) => handleInputChange(event, index)}
                                                     />
