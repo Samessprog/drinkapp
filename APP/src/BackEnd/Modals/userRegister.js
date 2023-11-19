@@ -25,7 +25,9 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{4,}$/;
 const phoneRegex = /^\+?\d{1,12}$/;
 
 router.post('/', async (req, res) => {
+
   const { email, password, rePassword, phone, Nick } = req.body;
+
   const emailExists = await checkEmailExists(email);
   if (!phoneRegex.test(phone)) {
     res.status(400).json({ success: false, message: 'Invalid phone number' });
@@ -65,7 +67,7 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  const user = { email, password, phone, Nick, userImg };
+  const user = { email, password, phone, Nick };
 
   db.query('INSERT INTO users SET ?', user, (err, result) => {
     if (err) {

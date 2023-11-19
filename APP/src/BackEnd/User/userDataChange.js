@@ -11,12 +11,14 @@ router.post('/', (req, res) => {
 
     const { email, phone, Nick, userID } = req.body;
 
-    if (!Nick.test(nickRegex)) {
+    console.log(Nick)
+
+    if (!nickRegex.test(Nick)) {
         res.status(400).json({ success: false, message: 'Invalid nick format' });
         return;
     }
 
-    if (!email.test(emailRegex)) {
+    if (!emailRegex.test(email)) {
         res.status(400).json({ success: false, message: 'Invalid email format' });
         return;
     }

@@ -1,15 +1,17 @@
 //Imports
-import { API_URL } from '../Components/Constants';
 import io from 'socket.io-client';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useContext } from 'react';
+import { SessionContext } from '../Session/SessionContext'
+import { all } from 'axios';
 
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
     setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
 
-
     const socket = io('http://localhost:4000');
+
+    const userData = useContext(SessionContext).userSesion
 
 
     const deleteDrink = async () => {
@@ -20,11 +22,17 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
     const deleteUser = async () => {
         let userID = windowAlert.ObjectID.ID_User;
+        if (userData.userID === userID) {
+            return alert('you can not ban yourself')
+        }
         socket.emit('deleteUser', { userID });
     };
 
     const blockUser = () => {
         let userID = windowAlert.ObjectID.ID_User;
+        if (userData.userID === userID) {
+            return alert('you can not block yourself')
+        }
         socket.emit('blockUser', { userID });
     };
 

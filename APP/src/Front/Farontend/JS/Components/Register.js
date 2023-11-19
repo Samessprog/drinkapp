@@ -27,10 +27,12 @@ function Registers() {
         const phoneRegex = /^\d{9}$/;
         const nickRegex = /^[a-zA-Z0-9_-]+$/;
 
+
         if (!emailRegex.test(email)) {
             setRegisterError('Email is valid');
             return;
         } else if (!passwordRegex.test(password)) {
+            console.log('ee')
             setRegisterError('Password is valid');
             return;
         } else if (!phoneRegex.test(phone)) {

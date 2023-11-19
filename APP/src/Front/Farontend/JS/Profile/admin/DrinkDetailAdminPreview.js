@@ -4,7 +4,7 @@ import { Buffer } from "buffer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { API_URL } from '../../Components/Constants'
 
-function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
+function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSucces }) {
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
@@ -31,9 +31,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
                     if (!response.ok) {
                         throw new Error('Failed to fetch user favorite drink image.');
                     }
-                    // Parsuj odpowiedź jako JSON
                     const data = await response.json();
-                    console.log(data)
                     setDetalDrinkIMG(data.image)
 
                 } catch (error) {
@@ -94,7 +92,8 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview }) {
             });
             const data = await response.json();
             if (data.success) {
-                // Obsługa sukcesu
+                setDrinkPreview(false)
+                setAnnouncementSucces(true)
             }
         } catch (error) {
             console.log(error);

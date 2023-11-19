@@ -105,6 +105,8 @@ function Admin({ drinkDatas }) {
         userButtonHandler();
     }, [])
 
+
+
     //Use Effect to close an allerts
     useEffect(() => {
         if (announcementSucces) {
@@ -442,6 +444,7 @@ function Admin({ drinkDatas }) {
             </div>
             {DrinkPreview.isOpenPrev &&
                 <DrinkDetailAdminPreview
+                    setAnnouncementSucces={setAnnouncementSucces}
                     DrinkPreview={DrinkPreview}
                     setDrinkPreview={setDrinkPreview}
                 />
@@ -454,6 +457,7 @@ function Admin({ drinkDatas }) {
                             setUsers={setUsers}
                             setChangeUserDataPopup={setChangeUserDataPopup}
                             changeUserDataPopup={changeUserDataPopup}
+                            setAnnouncementSucces={setAnnouncementSucces}
                         />
                     </Suspense>
                 </ErrorBoundary>

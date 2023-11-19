@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { io } from "socket.io-client";
 
 
-function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users }) {
+function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSucces }) {
 
-    const { ID_User, Nick, Password, email, phone } = changeUserDataPopup?.userData;
+    const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData;
+
 
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
@@ -12,11 +13,12 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
     const [newUserPass, setNewUserPass] = useState(Password)
     const [newUserNick, setNewUserNick] = useState(Nick)
     const [newUserPhone, setNewUserPhone] = useState(phone)
-    const [userRole, setUserRole] = useState('')
+    const [userRole, setUserRole] = useState(Role)
 
     const socket = io('http://localhost:4000');
 
     const UserDataChange = (event) => {
+
         event.preventDefault();
         socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole });
     }
@@ -25,10 +27,13 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
         if (success) {
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u));
+                setAnnouncementSucces(true)
+                setChangeUserDataPopup(false)
                 return updatedUsers;
+
             });
         } else {
-            console.error(error);
+            setChangingUserDataError(error)
         }
     });
 
@@ -70,9 +75,8 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                     </div>
                     <div className="mt-3 ">
                         <select className="select-role-inputs" onChange={(e) => setUserRole(e.target.value)}>
-                            <option >initial</option>
-                            <option >admin</option>
-                            <option>user</option>
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
                         </select>
                         {changingUserDataError}
                     </div>
