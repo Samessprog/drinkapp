@@ -130,7 +130,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     }
 
     return (
-        <div className="col-12 h-100 align-items-center own-drink-popup-holder">
+        <div className="col-12 h-100 align-items-center own-drink-popup-holder ">
             <div className=" col-xl-11 col-12  users-own-deink p-3 mx-auto">
                 <div className="d-flex justify-content-end mb-2 col-12">
                     <svg className="close-icon" onClick={() => { setAddUserNewDrink(!addUserNewDrink) }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
@@ -158,7 +158,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center options-holder-own-drink ">
+                            <div className="ms-lg-4 ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center  justify-content-lg-start options-holder-own-drink ">
                                 <div className="d-flex ">
                                     <div className="d-flex flex-column align-items-center">
                                         <label className="fs-5">Level: </label>
@@ -194,7 +194,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         </div>
                         <div className="col-12 col-lg-6">
                             <div className="mt-3 file-upload d-flex flex-column justify-content-center col-12 align-items-center ">
-                                <div className="drink-img-holder col-9 d-flex ">
+                                <div className={`${previewImageUrl ? 'drink-img-holder col-9 d-flex' : 'd-none'}`}>
                                     <img className="own-img-holder col-12" src={previewImageUrl}>
                                     </img>
                                 </div>
@@ -268,7 +268,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                     </div>
 
                     <div className="d-flex flex-row-reverse col-12">
-                        <div className="d-flex justify-content-center align-items-center col-12" >
+                        <div className="d-flex justify-content-center  justify-content-xxl-end align-items-center col-12" >
                             <label className=" text-danger fw-bolder">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                             <button className="col-10 col-xxl-1  mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
                                 <svg style={{ fill: 'green' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg>
