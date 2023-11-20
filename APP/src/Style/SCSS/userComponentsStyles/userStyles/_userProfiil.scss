@@ -1,15 +1,16 @@
 @import "../../variables";
 
 .input-box {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: $border-1-solid-black;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 10px 10px 0px;
     border-left: none;
-    padding: 4px;
+    padding: 5px;
 
     .login-register-input-data {
         border: none;
         outline: none;
+
     }
 }
 
@@ -19,12 +20,12 @@
 
 .users-own-deink {
     overflow-y: scroll;
-    height: 750px;
+    height: 700px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     color: $color-black;
     background-color: rgb(37, 37, 37);
-
+    margin-top: 1.5rem;
 
     @media (min-width: 2400px) {
         height: 850px;
@@ -47,13 +48,14 @@
         }
 
         .log-reg-icon-holder {
-            border-radius: 5px 0px 0px 5px;
-            background-color: rgba(163, 163, 163, 0.779);
-            padding: 5px;
-            border-right: $border-1-solid-black;
+            border-radius: 10px 0px 0px 10px;
+            background-color: rgb(121, 121, 121);
+            margin-top: 1px;
+            padding: 6px;
+
 
             .login-register-icon {
-                fill: $rgb-255;
+                fill: rgb(255, 255, 255);
             }
         }
     }
@@ -66,23 +68,29 @@
         background-color: aliceblue;
         border-radius: 10px 0px 0px 10px;
         padding-left: 10px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         border: none;
         outline: none;
+
     }
 
     .addison-button {
-        background-color: rgb(190, 190, 190);
-        border-left: 1px solid black;
+        background-color: rgb(214, 214, 214);
         border-radius: 0px 10px 10px 0px;
-        height: 30px;
+        height: 34px;
         fill: black;
-
+        border-left: 1px solid black;
+        transition: all .3s ease-in-out;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: rgb(2, 186, 2);
+        }
     }
 
     .ing-container {
-        height: 140px;
+        height: 150px;
         max-height: 150px;
         overflow-y: auto;
 
@@ -92,12 +100,16 @@
         }
 
         .delete-icon {
-            fill: red;
-            background-color: rgb(169, 169, 169);
+            fill: rgb(255, 255, 255);
+            background-color: rgb(255, 0, 0);
             height: 32px;
             border-radius: 0px 10px 10px 0px;
             cursor: pointer;
-            border-left: 1px solid black;
+            transition: all .3s ease-in-out;
+
+            &:hover {
+                fill: rgb(0, 0, 0);
+            }
         }
     }
 }
@@ -214,8 +226,8 @@
 
     .user-img {
         height: 100%;
-         width: 400px;
-    max-width: 400px;
+        width: 400px;
+        max-width: 400px;
     }
 }
 
@@ -295,6 +307,7 @@
         &:hover {
             background-color: black;
             cursor: pointer;
+
             .scroll-arrow-fav-own {
                 fill: rgb(255, 255, 255);
             }

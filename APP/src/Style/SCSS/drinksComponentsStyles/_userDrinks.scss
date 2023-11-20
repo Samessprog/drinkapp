@@ -79,6 +79,7 @@
         height: 350px;
         max-height: 350px;
         width: 100%;
+        border: 2px solid white;
 
         @media (max-width: 576px) {
             max-height: 150px;

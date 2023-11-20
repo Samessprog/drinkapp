@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { v4 as uuid } from 'uuid';
-import { SessionContext } from "../../../Session/SessionContext";
 
+import { SessionContext } from "../../../Session/SessionContext";
 import {API_URL} from '../../../Components/Constants'
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
@@ -106,13 +106,11 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             { text: newPreparationText, id: uuid() }
         ]);
         setPreparationOfNewDrinkText('');
-
     }
     //component removal Preparation
     const submitPreparationDeleteHandler = (id) => {
         setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id));
     }
-
     const [previewImageUrl, setPreviewImageUrl] = useState("");
 
     const ownDrinkImgPrev = (event) => {
@@ -124,36 +122,35 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             reader.onload = (e) => {
                 setPreviewImageUrl(e.target.result);
             };
-
             reader.readAsDataURL(drinkImg.files[0]);
         }
     }
 
     return (
-        <div className="col-12 h-100 align-items-center own-drink-popup-holder ">
+        <div className="col-12 col-md-8 h-100 align-items-center own-drink-popup-holder ">
             <div className=" col-xl-11 col-12  users-own-deink p-3 mx-auto">
                 <div className="d-flex justify-content-end mb-2 col-12">
                     <svg className="close-icon" onClick={() => { setAddUserNewDrink(!addUserNewDrink) }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
                 </div>
                 <form onSubmit={addNewDrinkHandler} className="col-12 d-flex flex-column">
                     <div className="col-12 d-flex flex-column flex-lg-row ">
-                        <div className="col-lg-6 col-12">
+                        <div className="col-lg-5 col-12">
                             <div className="d-flex justify-content-between col-12">
                                 <div className="col-12 col-lg-11 d-flex flex-column align-items-center d-lg-block">
                                     <div className="mb-3 own-drink-box-input col-lg-10 col-12">
-                                        <div className="col-9 d-flex align-items-center mt-4">
+                                        <div className="col-11 d-flex align-items-center  align-items-lg-start mt-4">
                                             <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
                                                 <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg>
                                             </div>
-                                            <div className="col-11 input-box">
+                                            <div className="col-12 input-box">
                                                 <input onChange={(e) => setDrinkName(e.target.value)} className="col-11 ps-2 rounded login-register-input-data" type="text" placeholder="Drink Name"></input>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-10">
+                                    <div className="col-12">
                                         <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12  own-drink-desc" type="text" placeholder="Enter a description of youyr drink" value={drinkdescription}></textarea>
                                     </div>
-                                    <div className="col-10">
+                                    <div className="col-12">
                                         <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)" value={drinkHistory}></textarea>
                                     </div>
                                 </div>
@@ -192,7 +189,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-lg-6">
+                        <div className="col-12 col-lg-7">
                             <div className="mt-3 file-upload d-flex flex-column justify-content-center col-12 align-items-center ">
                                 <div className={`${previewImageUrl ? 'drink-img-holder col-9 d-flex' : 'd-none'}`}>
                                     <img className="own-img-holder col-12" src={previewImageUrl}>
@@ -211,9 +208,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                 />
                             </div>
                             <div className="d-flex mt-4 col-12 justify-content-center">
-                                <div className="col-5 me-3 col-xl-5" >
+                                <div className="col-5 me-4 col-xl-6" >
                                     <div className="col-12">
-                                        <div className="d-flex mt-4 align-items-center">
+                                        <div className="d-flex mt-3 align-items-center">
                                             <input
                                                 className="col-11  ing-input"
                                                 onInput={(e) => {
@@ -229,7 +226,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                         </div>
                                         <div className="d-flex flex-column mt-3 ing-container col-12 mt-1">
                                             {ingredientsOfNewDrink.map((elm) => (
-                                                <div className=" d-flex col-1align-items-center d-flex mt-2">
+                                                <div className=" d-flex col-1align-items-center d-flex mt-2 ">
                                                     <label className="ing col-11 mt-3 ps-2 p-1 d-flex ">{elm.text}</label>
                                                     <svg onClick={() => submitIngreadinetsDeleteHandler(elm.id)} className="delete-icon mt-3" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
                                                 </div>
@@ -237,9 +234,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-5 col-xl-5">
+                                <div className="col-5 col-xl-6">
                                     <div>
-                                        <div className="d-flex mt-4 align-items-center">
+                                        <div className="d-flex mt-3 align-items-center">
                                             <input
                                                 className="col-11  ing-input"
                                                 onInput={(e) => {
@@ -269,9 +266,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
                     <div className="d-flex flex-row-reverse col-12">
                         <div className="d-flex justify-content-center  justify-content-xxl-end align-items-center col-12" >
-                            <label className=" text-danger fw-bolder">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
+                            <label className=" text-danger fw-bolder me-4 fs-5">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                             <button className="col-10 col-xxl-1  mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
-                                <svg style={{ fill: 'green' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" /></svg>
                                 <div className="pe-2 ps-2">Create!</div>
                             </button>
                         </div>
