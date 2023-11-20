@@ -169,25 +169,28 @@ function Admin({ drinkDatas }) {
             dispatch(setFilteredUserResults(filteredResults));
         } else if (showNewsFlag) {
             if (filterByDate) {
-                filteredResults = currentItemsNewDrink?.slice().sort((x, y) => {
-                    // Parsowanie daty do obiektów Date
-                    const dateX = new Date(x.Date_Of_Creation);
-                    const dateY = new Date(y.Date_Of_Creation);
+                filteredResults = currentItemsNewDrink.slice().sort((x, y) => {
+                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'));
+                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'));
 
                     if (direction === 1) {
                         return dateX - dateY;
                     } else {
                         return dateY - dateX;
                     }
-
                 });
             } else {
                 filteredResults = currentItemsNewDrink?.slice().sort((x, y) => {
-                    const newDrinkNameX = x.DrinkName.toUpperCase();
-                    const newDrinkNameY = y.DrinkName.toUpperCase();
-                    return (newDrinkNameX < newDrinkNameY ? -1 : newDrinkNameX > newDrinkNameY ? 1 : 0) * direction;
+                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'));
+                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'));
+                    if (direction === -1) {
+                        return dateY - dateX;
+                    } else {
+                        return dateX - dateY;
+                    }
                 });
             }
+
             setFilteredNewDrinksResults(filteredResults);
         }
 
