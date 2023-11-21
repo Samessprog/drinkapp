@@ -52,7 +52,6 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
         } else {
             setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
         }
-
     }, [detailDrinkIMG]);
 
     useEffect(() => {
@@ -124,6 +123,10 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
             reader.readAsDataURL(drinkImg.files[0]);
         }
     }
+
+    const [descriptionFlag, setDescriptionFlag] = useState(true)
+    const [ingredientFlag, setIngredientFlag] = useState(true)
+
     return (
         <div className="fullscreen col-12">
             <div className="col-12">
@@ -132,12 +135,12 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                 </div>
                 <form onSubmit={DrinkDateUpdate}>
                     <div className="data-drink-holder d-flex  flex-column flex-xxl-row align-items-center align-items-xxl-start ">
-                        <div className="col-12 col-xxl-6">
+                        <div className="col-12 col-xxl-8">
                             <div className="d-flex fs-3 fw-bolder col-12  ">
-                                <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start">
+                                <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start ">
                                     <label className="mb-1">Drink name</label>
                                     <input
-                                        className="drink-name-input fs-5 col-xxl-7 col-10"
+                                        className="drink-name-input fs-5 col-xxl-5 col-10 "
                                         value={drinkNameInput}
                                         onChange={(e) => setDrinknameInput(e.target.value)}>
                                     </input>
@@ -145,60 +148,83 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                             </div>
                             <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
                                 <div className="mt-5 fs-4 fw-bolder">
-                                    <label className="ms-1">
-                                        Description
+                                    <label
+                                        onClick={() => setDescriptionFlag(true)}
+                                        className="ms-1">
+                                        <div className="drink-changer-data">
+                                            Description
+                                        </div>
+                                    </label>
+                                    <label
+                                        onClick={() => setDescriptionFlag(false)}
+                                        className="ms-3">
+                                        <div className="drink-changer-data">
+                                            History
+                                        </div>
                                     </label>
                                 </div>
-                                <div className="col-12 d-flex justify-content-center  justify-content-xxl-start">
-                                    <textarea
-                                        className="description-holder mt-2 col-10 text-break"
-                                        value={drinkDescriptionInput}
-                                        onChange={(e) => setDrinkDescriptionInput(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="d-flex flex-column align-items-center align-items-xxl-start col-12 mt-4">
-                                <label className="fs-3 fw-bolder">History</label>
                                 <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
-                                    <textarea
-                                        className="description-holder mt-2 col-10 text-break"
-                                        value={drinkHistoryInput}
-                                        onChange={(e) => setDrinkHistoryInput(e.target.value)}
-                                    />
-
+                                    {descriptionFlag ? (
+                                        <textarea
+                                            className="description-holder col-8 text-break"
+                                            value={drinkDescriptionInput}
+                                            onChange={(e) => setDrinkDescriptionInput(e.target.value)}
+                                        />
+                                    ) : (
+                                        <textarea
+                                            className="description-holder col-8 text-break"
+                                            value={drinkHistoryInput}
+                                            onChange={(e) => setDrinkHistoryInput(e.target.value)}
+                                        />
+                                    )}
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-around mt-5 ingredients-and-preparation-holder col-12 mb-5">
-                                <div className="col-6">
-                                    <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">Ingredients</label>
-                                    <div className="d-flex flex-column ">
-                                        <ul className="mt-2 fs-5 ps-2 ">
-                                            {ingredient.map((ingredient, index) => (
-                                                <li  key={index}>
-                                                    <input
-                                                        className="drink-ingredient-input col-8"
-                                                        value={ingredient}
-                                                        onChange={(event) => handleIngredientsInputChange(event, index)}
-                                                    />
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div className="d-flex t-5 ingredients-and-preparation-holder col-12 mb-5 mt-5">
+                                <div className="col-12 ms-3">
+                                    <div className="d-flex justify-content-center col-7 mb-3">
+                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
+                                            <div
+                                                onClick={() => setIngredientFlag(true)}
+                                                className="ing-prep-button">
+                                                Ingredients
+                                            </div>
 
-                                <div className="col-6">
-                                    <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">Preparation</label>
-                                    <div className="d-flex flex-column col-12">
-                                        <ul className="mt-2 fs-5 ps-2 col-12" >
-                                            {preparation.map((preparation, index) => (
-                                                <li key={index}>
-                                                    <input
-                                                        className="drink-ingredient-input col-8 "
-                                                        value={preparation}
-                                                        onChange={(event) => handleInputChange(event, index)}
-                                                    />
-                                                </li>
-                                            ))}
+                                        </label>
+                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2 ms-3">
+                                            <div
+                                                onClick={() => setIngredientFlag(false)}
+                                                className="ing-prep-button">
+                                                Preparation
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div className="d-flex flex-column col-8  ing-prep-holder">
+                                        <ul className="mt-2 fs-5 ps-2 ">
+                                            {ingredientFlag ? (
+                                                <ul >
+                                                    {ingredient.map((ingredient, index) => (
+                                                        <li key={index}>
+                                                            <input
+                                                                className="drink-ingredient-input col-11"
+                                                                value={ingredient}
+                                                                onChange={(event) => handleIngredientsInputChange(event, index)}
+                                                            />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <ul>
+                                                    {preparation.map((preparation, index) => (
+                                                        <li key={index}>
+                                                            <input
+                                                                className="drink-ingredient-input col-11"
+                                                                value={preparation}
+                                                                onChange={(event) => handleInputChange(event, index)}
+                                                            />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
                                         </ul>
                                     </div>
                                 </div>
@@ -245,12 +271,12 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 </div>
                             </div>
                         </div>
-                        <div className="polowa2 col-6 align-items-center">
+                        <div className="polowa2 col-3 align-items-center pe-3">
                             <div className="">
                                 <div className="photo-holder ">
                                     <LazyLoadImage
                                         src={convertetIMG}
-                                        className="drink-img-prev col-12"
+                                        className="drink-img-prev "
                                         effect="blur"
                                         alt="loaging error"
                                     />

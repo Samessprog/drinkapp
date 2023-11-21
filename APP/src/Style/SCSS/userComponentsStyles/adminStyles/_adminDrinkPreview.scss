@@ -42,14 +42,36 @@
 
     .ingredients-and-preparation-holder {
 
-        .drink-ingredient-input {
-            background-color: red($color: #ff0000);
+        .ing-prep-button {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            transition: all .3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                border-radius: 5px;
+                background-color: gray;
+            }
+
         }
 
+        .ing-prep-holder {
+            margin-top: .5rem;
+        }
+
+
+
         li::before {
-            content: "★";
+            content: "-";
             margin-right: 0.5rem;
-            color: gold;
+            color: rgb(255, 255, 255);
         }
     }
 
@@ -61,6 +83,27 @@
         margin-top: 3rem;
         margin-left: 1.5rem;
 
+        .drink-changer-data {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            transition: all .3s ease-in-out;
+            margin-bottom:  .4rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: gray;
+                border-radius: 5px;
+            }
+
+        }
+
         .drink-detail-holder {
             border: 1px solid white;
             border-radius: 10px;
@@ -70,24 +113,31 @@
         }
 
         .drink-name-input {
-            background-color: rgb(221, 221, 221);
+            background-color: rgb(237, 237, 237);
             border: white;
             border-radius: 10px;
-            padding: 5px;
+            padding: 6px;
             padding-left: 10px;
         }
 
-        .drink-ingredient-input {
-            background-color: transparent;
-            border: none;
-            border-bottom: white 2px solid;
-            color: white;
-            padding-left: 5px;
+        .ing-prep-holder {
+            height: 300px;
+            overflow-y: scroll;
 
-            &:focus {
-                border-radius: 10px;
+
+            .drink-ingredient-input {
+                background-color: transparent;
+                border: none;
+                color: white;
+                padding-left: 8px;
+                margin-top: .5rem;
+
+                &:focus {
+                    border-radius: 5px;
+                }
             }
         }
+
 
         .Multi-options-holder {
             max-width: 25px
@@ -185,19 +235,19 @@
             overflow: hidden;
             max-height: 600px;
             height: 600px;
-            width: 750px;
+            width: 700px;
 
             @media (max-width: 1399px) {
                 object-fit: cover;
                 max-height: auto;
                 height: auto;
-                width:  auto;
+                width: auto;
             }
 
             .drink-img-prev {
                 max-height: 600px;
                 height: 600px;
-                width: 750px;
+                width: 700px;
                 overflow: hidden;
                 object-fit: cover;
 
