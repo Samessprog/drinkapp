@@ -25,6 +25,10 @@ function DrinkDetails() {
     const [clickedStar, setClickedStar] = useState('')
 
     const [showDrinkDescription, setShowDrinkDescription] = useState(true)
+    const [nutritionalValues, setNutritionalValues] = useState([])
+    const [showNutritionalValues, setShowNutritionalValues] = useState(false)
+    const [showDrinkHistory, setShowDrinkHistory] = useState(false)
+
 
     useEffect(() => {
         const fetchDrinkDetails = async () => {
@@ -34,7 +38,7 @@ function DrinkDetails() {
                 setIngredient(data[0]?.Ingredients.split('.'));
                 setPreparation(data[0]?.Preparation.split('.'));
                 setClickedStar(data[0]?.Rate)
-
+                setNutritionalValues(data[0]?.Drink_Nutritional_Values.split('.'))
             } catch (err) {
                 console.log(err);
             }
@@ -52,6 +56,7 @@ function DrinkDetails() {
         drinkHistory,
         ID_DRINK,
     } = drinkDetail
+
 
 
     {/*Paginacja*/ }
@@ -144,6 +149,7 @@ function DrinkDetails() {
         }
     }, [detailDrinkIMG]);
 
+
     return (
         <div className="col-12 drink-holder">
             <div className="col-12 drink-main-container mt-5">
@@ -151,7 +157,7 @@ function DrinkDetails() {
                     <div className="col-12 col-xxl-7 col-xl-6">
                         <div className="d-flex align-items-center mb-5 name-rating-holder">
                             <header className="d-flex align-items-center ">
-                                <div className="drink-name fs-3 fw-bolder" style={{ fontFamily: 'cursive' }} >{DrinkName}</div>
+                                <div className="drink-name fs-2 fw-bolder ps-3" style={{ fontFamily: 'cursive' }} >{DrinkName}</div>
                             </header>
                             <div className="d-flex ms-4 align-items-center rating-holder">
 
@@ -174,33 +180,59 @@ function DrinkDetails() {
                         {/*Opis i składniki do drinku  */}
                         <div className="col-12 mt-5">
                             <article>
-                                <div className="col-11">
-                                    <button
-                                        className={`fs-5 ms-3  fw-bolder pe-2 ps-2 ${showDrinkDescription ? 'drink-detail-button-activate' : 'drink-detail-button'}`}
-                                        onClick={() => {
-                                            setShowDrinkDescription(true);
-                                        }}
-                                    >
-                                        Description
-                                    </button>
-                                    <button
-                                        className={`fs-5 ms-3 fw-bolder drink-detail-button pe-2 ps-2 ${!showDrinkDescription ? 'drink-detail-button-activate' : 'drink-detail-button'}`}
-                                        onClick={() => {
-                                            setShowDrinkDescription(false);
-                                        }}
-                                    >
-                                        History
-                                    </button>
+                                <div className="col-11 ">
+                                    <div className="d-flex mb-2 button-detail-holder" >
+                                        <div
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button`}
+                                            onClick={() => {
+                                                setShowDrinkDescription(true);
+                                                setShowNutritionalValues(false)
+                                                setShowDrinkHistory(false)
+                                            }}
+                                        >
+                                            Description
+                                        </div>
+                                        <div
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button `}
+                                            onClick={() => {
+                                                setShowDrinkHistory(true)
+                                                setShowDrinkDescription(false);
+                                                setShowNutritionalValues(false)
+                                            }}
+                                        >
+                                            History
+                                        </div>
+                                        <div
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button  `}
+                                            onClick={() => {
+                                                setShowNutritionalValues(true)
+                                                setShowDrinkDescription(false)
+                                                setShowDrinkHistory(false)
+                                            }}
+                                        >
+                                            Nutritional Values
+                                        </div>
+                                    </div>
                                     <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4">
                                         <section>
                                             <div className="d-flex fs-5">
-                                                <p className="line-spaced">
-                                                    {showDrinkDescription ? (
-                                                        <> {Description} </>
-                                                    ) : (
-                                                        <> {drinkHistory} </>
-                                                    )}
-                                                </p>
+                                                {showNutritionalValues && (
+                                                    <div className="d-flex flex-column">
+                                                        {nutritionalValues.map((elm) =>
+                                                            <div className="d-flex column-flex">
+                                                                <label>{elm}</label>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
+                                                {showDrinkDescription &&
+                                                    <p className="line-spaced">{Description}</p>
+                                                }
+
+                                                {showDrinkHistory &&
+                                                    <p className="line-spaced">{drinkHistory}</p>
+                                                }
+
                                             </div>
                                         </section>
                                     </div>
@@ -209,9 +241,9 @@ function DrinkDetails() {
                             <div className="col-xl-9 col-12 d-flex flex-column d-flex  basic-information-drink align-items-center">
                                 <label className="fs-3 fw-bolder mt-5">Specifications</label>
                                 <div className="d-flex  mt-3 fs-5">
-                                    <label className={` me-2 ${DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{DifficultyLevel}</label>
-                                    <label className={`me-2 ${Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{Taste}</label>
-                                    <label className={DrinkType === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{DrinkType}</label>
+                                    <label className={` me-2 fs-4 ${DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>{DifficultyLevel}</label>
+                                    <label className={`me-2 fs-4 ${Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass ' : ''}`} >{Taste}</label>
+                                    <label className={DrinkType === 'Soft' ? 'softClass me-2 fs-4' : 'alkoClass me-2 fs-4'}>{DrinkType}</label>
                                 </div>
                             </div>
                             <div className="col-xl-9 col-12 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
@@ -247,11 +279,11 @@ function DrinkDetails() {
                             </div>
                         )}
                     </div>
-                </div>
+                </div >
                 {/* Sposów przygotowania drinku */}
-                <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5">Preparation</div>
+                <div className="d-flex mt-4  justify-content-center  fs-3 fw-bolder  mt-5" > Preparation</div >
                 <div className="col-12 d-flex  justify-content-center mt-2 align-items-center preparation-holder ">
-                    <div className="col-11 col-xl-10 mt-2 border rounded pt-4 ps-4 pe-4 d-flex justify-content-center align-items-center">
+                    <div className="col-11 col-xl-8 mt-2 border rounded pt-4 ps-4 pe-4 d-flex justify-content-center align-items-center">
                         <div className=" position-relative overflow-auto preparation-holder fs-5 d-flex align-items-center flex-column col-12">
                             <div>
                                 {currentData.map((preparation, key) => (
@@ -259,7 +291,7 @@ function DrinkDetails() {
                                         {preparation}
                                         {/* Wyświetlenie ikony na podstawie tekstu przygotowania */}
                                         <div className="col mt-5 d-flex justify-content-center align-items-center">
-                                            <img src={getIconForPreparation(preparation)} alt="Icon" />
+                                            <img src={getIconForPreparation(preparation)} alt="Icon" className="testKE" />
                                         </div>
                                     </div>
                                 ))}

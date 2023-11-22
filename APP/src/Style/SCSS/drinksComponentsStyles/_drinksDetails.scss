@@ -32,15 +32,33 @@
                 }
             }
 
-            .drink-detail-button {
-                transition: all .3s ease-in-out;
-                border: none;
-                outline: none;
-                border-radius: 15px 15px 0px 0px;
-                background-color: #ededed;
-                padding: 5px;
-                letter-spacing: .5px;
+            .button-detail-holder {
+                @media (max-width: 572px) {
+                    flex-direction: column;
+                }
+
+                .drink-detail-button {
+                    cursor: pointer;
+                    border: 1px white solid;
+                    border-radius: 10px;
+                    padding: 5px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    transition: all .3s ease-in-out;
+
+                    &:hover {
+                        border-radius: 20px;
+                        background-color: grey;
+
+                    }
+
+                    @media (max-width: 572px) {
+                        text-align: center;
+                    }
+
+                }
             }
+
 
             .drink-detail-button-activate {
                 transition: all .3s ease-in-out;
@@ -74,9 +92,8 @@
             .img-holder-details {
                 margin-bottom: 12rem;
                 padding: 2px;
-
                 border-radius: 20px;
-                height: 650px;
+                height: 750px;
                 overflow: hidden;
                 position: relative;
 
@@ -93,7 +110,8 @@
                     height: 650px;
                     max-width: 890px;
                     border: 1px solid white;
-                    min-width: 550px;
+                    width: 600px;
+                    max-width: 600px;
 
                     @media (max-width:1200px) {
                         height: 750px;
@@ -191,8 +209,34 @@
         }
 
         .preparation-holder {
-            height: $n-350px;
-            max-height: $n-350px;
+            height: 450px;
+
+            .testKE {
+                animation: shakeAnimation .8s linear infinite;
+            }
+
+            @keyframes shakeAnimation {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                20% {
+                    transform: rotate(-5deg);
+                }
+
+                40% {
+                    transform: rotate(0deg);
+                }
+
+                60% {
+                    transform: rotate(5deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+
 
             .preparation-holder {
 
