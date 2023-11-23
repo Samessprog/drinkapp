@@ -212,7 +212,8 @@
             height: 450px;
 
             .testKE {
-                animation: shakeAnimation .8s linear infinite;
+                animation: shakeAnimation 2s infinite;
+                animation-delay: 3s;
             }
 
             @keyframes shakeAnimation {

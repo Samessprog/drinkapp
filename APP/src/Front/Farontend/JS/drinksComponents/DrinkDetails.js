@@ -9,6 +9,7 @@ import { Ring } from "@uiball/loaders";
 import { API_URL } from '../Components/Constants';
 import axios from 'axios';
 import getIconForPreparation from "../Components/FilterIconsAlgo";
+import shakeIcon from '../../../../Assets/shaker.png'
 
 function DrinkDetails() {
 
@@ -291,7 +292,7 @@ function DrinkDetails() {
                                         {preparation}
                                         {/* Wyświetlenie ikony na podstawie tekstu przygotowania */}
                                         <div className="col mt-5 d-flex justify-content-center align-items-center">
-                                            <img src={getIconForPreparation(preparation)} alt="Icon" className="testKE" />
+                                            <img src={getIconForPreparation(preparation)} alt="Icon" className={`${getIconForPreparation(preparation) === shakeIcon ? 'testKE' : '' }`} />
                                         </div>
                                     </div>
                                 ))}

@@ -8,7 +8,6 @@ import { pourDictionary, shakeDictionary, chopDictionary, decorateDictionary } f
 
 const getIconForPreparation = (text) => {
     text = text.toLowerCase();
-
     if (text.includes('dodaj')) {
         return pourIcon
     } else if (pourDictionary.some(action => text.includes(action))) {
