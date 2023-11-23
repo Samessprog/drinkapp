@@ -247,9 +247,9 @@ function DrinkDetails() {
                                     <label className={DrinkType === 'Soft' ? 'softClass me-2 fs-4' : 'alkoClass me-2 fs-4'}>{DrinkType}</label>
                                 </div>
                             </div>
-                            <div className="col-xl-9 col-12 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
+                            <div className="col-12 col-xl-9 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
-                                <ul className="mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
+                                <ul className="col-12 mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
                                     {ingredient.map((ingredient, key) => (
                                         <li className={ingChecked.includes(key) ? 'crossedOut' : 'ing'} onClick={() => crossOutIng(key)} key={key}> <span>{ingredient}</span></li>
                                     ))}

@@ -9,6 +9,8 @@
     border: 1px solid rgb(251, 242, 234);
     padding: 5px;
 
+
+
     @media (max-width: 1400px) {
         right: 0;
     }
@@ -35,7 +37,7 @@
         }
 
         .checked {
-            accent-color: rgb(33, 33, 244);
+            accent-color: rgb(255, 255, 255)
         }
 
 
@@ -108,6 +110,7 @@
         &:hover {
             .advancet-filter-icon {
                 animation: rotate 3.5s linear infinite;
+                fill: gold;
             }
         }
 
@@ -122,3 +125,4 @@
         }
     }
 }
+

@@ -119,10 +119,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     </div>
 
                     {location.pathname.endsWith('/') &&
-
                         <div className={`d-flex me-3 col-7 col-sm-7 col-md-9 col-xl-6 justify-content-center justify-content-xl-start  ${userScroll ? 'justify-content-xl-center  col-xl-5 ' : 'justify-content-center'}`}>
                             {/* Wyszukiwarka drinków  */}
-
                             <div className="col-sm8 col-md-8 col-xl-9 searching-holder  ms-3 d-flex align-items-center pt-2 d-flex">
                                 <div className="col-11 col-md-10 col-xxl-9 d-flex  align-items-center">
                                     <input
@@ -185,17 +183,18 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                     xmlns="http://www.w3.org/2000/svg"
                                     height="20"
                                     width="20"
-                                    className={`dropArrow ${userProfileOptions ? "rotate180" : ""}`}
+                                    className={`dropArrow ${userProfileOptions ? "rotate180" : "rotateA180"}`}
                                 >
                                     <path d="m10 13.062-5-5L6.062 7 10 10.938 13.938 7 15 8.062Z" />
                                 </svg>
-
-                                {userProfileOptions &&
-                                    <OptionsProfile
-                                        userProfileOptions={userProfileOptions}
-                                        setUserProfileOptions={setUserProfileOptions}
-                                    />
-                                }
+                                <div className={`OptionsProfile ${userProfileOptions ? 'active' : 'hide'}`}>
+                                    {userProfileOptions &&
+                                        <OptionsProfile
+                                            userProfileOptions={userProfileOptions}
+                                            setUserProfileOptions={setUserProfileOptions}
+                                        />
+                                    }
+                                </div>
                             </div>
                         }
                     </div>

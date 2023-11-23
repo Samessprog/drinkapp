@@ -95,6 +95,20 @@
         .profileButton-holder {
             margin-bottom: 1.2rem;
 
+            .OptionsProfile {
+                transition: opacity .3s ease-in-out;
+                opacity: 0;
+            }
+
+            .OptionsProfile.active {
+                opacity: 1;
+            }
+
+            .OptionsProfile.hide {
+                opacity: 0;
+            }
+
+
             .ProfileButton {
                 fill: white;
             }
@@ -112,6 +126,7 @@
 
         .searching-holder {
 
+
             .searching-input {
                 outline: $d-none;
                 background-color: rgb(18, 18, 18);
@@ -125,6 +140,7 @@
             }
 
             .searching-icon-holder {
+
                 border-left: 0;
                 border-top: 0;
                 background-color: rgb(40, 40, 40);
@@ -137,6 +153,36 @@
 
                 .searching-icon {
                     fill: white;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        animation: moveLeftAnimation 2s linear forwards;
+                    }
+                }
+
+                @keyframes moveLeftAnimation {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    20% {
+                        transform: translateY(3px);
+                    }
+
+                    30% {
+                        transform: translateX(-4px);
+                    }
+                    40%{
+                        transform: translateY(-4px);
+                    }
+                    50%{
+                        transform: translateY(2px);
+                    }
+
+                    100%{
+                        transform: translatey(0);
+                    }
+
                 }
 
                 color: $color-white;
