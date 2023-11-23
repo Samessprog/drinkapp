@@ -24,16 +24,20 @@ body {
 }
 
 .main-holder {
-    min-height: 420px;
+    min-height: 373px;
+
+    @media (min-width: 2300px) {
+        min-height: 643px;
+    }
 
     .arrowUP-holder {
         top: 80%;
 
         .arrow-up {
-            fill: white;
+            fill: rgb(255, 255, 255);
 
             &:hover {
-                fill: rgb(251, 210, 156);
+                fill: rgb(255, 177, 74);
             }
         }
     }
