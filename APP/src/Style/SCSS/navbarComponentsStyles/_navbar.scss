@@ -10,16 +10,16 @@
         background-color: rgb(37, 37, 37);
         color: $color-white;
 
-        .login-dis{
-            transition:  opacity .3s ease-in-out;
+        .login-dis {
+            transition: opacity .2s ease-in-out;
             opacity: 0;
         }
-        
-        .login-dis.active{
+
+        .login-dis.active {
             opacity: 1;
         }
-        
-        .login-dis.hide{
+
+        .login-dis.hide {
             opacity: 0;
         }
 
@@ -37,6 +37,7 @@
                 .brand-name-nav {
                     display: flex;
                     cursor: pointer;
+
                     @media (max-width:1200px) {
                         & {
                             display: none;
@@ -87,6 +88,7 @@
             text-decoration: none;
             color: inherit;
             cursor: pointer;
+
             @media (max-width:1200px) {
                 & {
                     font-size: 25px;
@@ -134,8 +136,48 @@
             width: 30px;
             height: 21px;
 
+            @keyframes topBarAnimation {
+                0% {
+                    transform: rotate(0deg) translateY(0px);
+                }
+
+                50% {
+                    transform: rotate(50deg) translateY(-10px);
+                }
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+
+            @keyframes bottomBarAnimation {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                50% {
+                    transform: rotate(-50deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+
             .bar {
                 height: 3px;
+
+
+                &:nth-child(1) {
+                    animation: topBarAnimation 2s infinite;
+                }
+
+                &:nth-child(2) {
+                    display: none;
+                }
+
+                &:nth-child(3) {
+                    animation: bottomBarAnimation 2s infinite;
+                }
             }
         }
 
@@ -263,7 +305,7 @@
         background-color: $bg-ligherDark;
         z-index: 0;
 
-        
+
         @media (max-width:575px) {
             & {
                 display: $d-flex;
