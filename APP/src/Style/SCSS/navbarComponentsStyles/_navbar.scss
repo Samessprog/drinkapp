@@ -10,6 +10,19 @@
         background-color: rgb(37, 37, 37);
         color: $color-white;
 
+        .login-dis{
+            transition:  opacity .3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .login-dis.active{
+            opacity: 1;
+        }
+        
+        .login-dis.hide{
+            opacity: 0;
+        }
+
         .brand-name-SCROLL {
             display: none;
 
@@ -23,7 +36,7 @@
 
                 .brand-name-nav {
                     display: flex;
-
+                    cursor: pointer;
                     @media (max-width:1200px) {
                         & {
                             display: none;
@@ -71,7 +84,9 @@
 
         .brand-logo-hamburger {
             font-size: 33px;
-
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
             @media (max-width:1200px) {
                 & {
                     font-size: 25px;
@@ -172,14 +187,16 @@
                     30% {
                         transform: translateX(-4px);
                     }
-                    40%{
+
+                    40% {
                         transform: translateY(-4px);
                     }
-                    50%{
+
+                    50% {
                         transform: translateY(2px);
                     }
 
-                    100%{
+                    100% {
                         transform: translatey(0);
                     }
 
@@ -197,6 +214,21 @@
             margin: 0 auto;
             max-width: 800px;
             margin-left: 3.6rem;
+
+            .filter-dis {
+                transition: opacity .2s ease-in-out;
+                opacity: 0;
+            }
+
+            .filter-dis.active {
+                opacity: 1;
+            }
+
+            .filter-dis.hide {
+                opacity: 0;
+            }
+
+
 
             &:hover {
                 fill: rgb(243, 213, 92);
@@ -231,6 +263,7 @@
         background-color: $bg-ligherDark;
         z-index: 0;
 
+        
         @media (max-width:575px) {
             & {
                 display: $d-flex;

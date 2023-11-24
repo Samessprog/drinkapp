@@ -146,19 +146,21 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                         </svg>
                                         <div className="pe-2">Filter</div>
                                     </button>
-                                    {popupSetings && (
-                                        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
-                                            <Suspense fallback={<div>Loading...</div>}>
-                                                <SetingsPopup
-                                                    setPopupSetings={setPopupSetings}
-                                                    setSpecialOptionsPopup={setSpecialOptionsPopup}
-                                                    searchingDrink={searchingDrink}
-                                                    drinkDatas={drinkDatas}
-                                                    setSearchingDrink={setSearchingDrink}
-                                                />
-                                            </Suspense>
-                                        </ErrorBoundary>
-                                    )}
+                                    <div className={`filter-dis ${popupSetings ? 'active' : 'hide'}`}>
+                                        {popupSetings && (
+                                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                                                <Suspense fallback={<div>Loading...</div>}>
+                                                    <SetingsPopup
+                                                        setPopupSetings={setPopupSetings}
+                                                        setSpecialOptionsPopup={setSpecialOptionsPopup}
+                                                        searchingDrink={searchingDrink}
+                                                        drinkDatas={drinkDatas}
+                                                        setSearchingDrink={setSearchingDrink}
+                                                    />
+                                                </Suspense>
+                                            </ErrorBoundary>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,17 +200,19 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </div>
                         }
                     </div>
+                    <div className={`login-dis ${loginPopup ? 'active' : 'hide'}`}>
+                        {loginPopup &&
+                            <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <LoginPopup
+                                        setLoginPopup={setLoginPopup}
+                                        setRegisterPopup={setRegisterPopup}
+                                    />
+                                </Suspense>
+                            </ErrorBoundary>
+                        }
 
-                    {loginPopup &&
-                        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <LoginPopup
-                                    setLoginPopup={setLoginPopup}
-                                    setRegisterPopup={setRegisterPopup}
-                                />
-                            </Suspense>
-                        </ErrorBoundary>
-                    }
+                    </div>
 
                     {registerPopup &&
                         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
@@ -220,6 +224,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             </Suspense>
                         </ErrorBoundary>
                     }
+
                 </div>
                 <div className={userScroll && window.innerWidth > 768 ? 'main-options-holder d-none' : 'main-options-holder d-flex'} >
                     <div className="Options-Holder-W100 ">
