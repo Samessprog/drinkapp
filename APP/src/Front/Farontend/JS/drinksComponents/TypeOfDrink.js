@@ -11,25 +11,25 @@ function TypeOfDrink() {
 
     return (
         <div>
-            <div className="d-flex mt-1 pe-2">
-                <input
+            <div className="d-flex mt-1 pe-2 align-items-center">
+                <div
                     id="alcoholicCheckBox"
                     onClick={() => dispatch(setAlcocholic(!alcocholic))}
-                    type="checkbox"
                     value={alcocholic}
-                    className={alcocholic ? 'checked' : 'unchecked'}
-                ></input>
+                    className={`checkBoxFilter ${alcocholic ? 'checked' : 'unchecked'}`}
+                >
+                </div>
                 <label htmlFor="alcoholicCheckBox" className="ms-2">Alcoholic</label>
             </div>
 
-            <div className="d-flex mt-1">
-                <input
+            <div className="d-flex mt-1 align-items-center">
+                <div
                     id="softCheckBox"
                     onClick={() => dispatch(setSoftDrinks(!softDrinks))}
-                    type="checkbox"
                     value={softDrinks}
-                    className={softDrinks ? 'checked' : 'unchecked'}
-                ></input>
+                    className={`checkBoxFilter ${softDrinks ? 'checked' : 'unchecked'}`}
+                >
+                </div>
                 <label htmlFor="softCheckBox" className="ms-2">Soft drinks</label>
             </div>
         </div>

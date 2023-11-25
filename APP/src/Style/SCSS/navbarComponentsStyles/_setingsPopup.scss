@@ -36,9 +36,22 @@
             accent-color: rgb(255, 255, 255);
         }
 
-        .checked {
-            accent-color: rgb(196, 255, 70) !important;
+        input[type="checkbox"] {
+            background: #990000;
         }
+
+        .checkBoxFilter {
+            background-color: rgb(255, 255, 255);
+            height: 11.5px;
+            width: 11.5px;
+            border-radius: 5px;
+        }
+
+        .checkBoxFilter.checked {
+            background-color: rgb(96, 125, 255);
+            border-radius: 5px;
+        }
+
 
         @media (max-width: 1097px) {
             flex-direction: column;

@@ -25,9 +25,9 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 dispatch(setPopupSetings(false))
             }
         };
-    
+
         document.addEventListener("mousedown", handler);
-    
+
         return () => {
             document.removeEventListener("mousedown", handler);
         };
@@ -57,12 +57,14 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 <div className="d-flex justify-content-center fs-5 ">Filter</div>
                 <div className="options-holder-settings-popup  mt-3 d-flex font col-12 d-flex ">
                     <div className="col-12 col-lg-6 d-flex flex-column align-items-lg-start align-items-center">
-                        <div className="d-flex mt-1 pe-3 ">
-                            <input
+                        <div className="d-flex mt-1 pe-3 align-items-center">
+                            <div
                                 type="checkbox"
                                 id="favoriteCheckbox"
                                 onClick={() => dispatch(setDrinkFavouriteFlag(!favouriteDrink))}
-                            />
+                                className={`checkBoxFilter ${favouriteDrink ? 'checked' : 'unchecked'}`}
+                            >
+                            </div>
                             <label
                                 htmlFor="favoriteCheckbox"
                                 className="ms-2"
@@ -71,15 +73,14 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                             </label>
                         </div>
                         <TypeOfDrink />
-                        <div className="d-flex mt-1 ps-2 ps-lg-0">
-                            <input
+                        <div className="d-flex mt-1 ps-2 ps-lg-0 align-items-center" >
+                            <div
                                 id='highlyRatedCheckbox'
                                 value={highlyRated}
-                                type="checkbox"
                                 onClick={() => dispatch(setHighlyRated(!highlyRated))}
-                                className={highlyRated ? 'checked' : 'unchecked'}
+                                className={`checkBoxFilter ${highlyRated ? 'checked' : 'unchecked'}`}
                             >
-                            </input>
+                            </div>
                             <label htmlFor='highlyRatedCheckbox' className="ms-2 ">Highly rated </label>
                         </div>
                     </div>
