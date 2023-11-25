@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { SessionContext } from "../Session/SessionContext";
 import FetchingDrinkIMG from "./FetchingDrinkIMG";
-import {API_URL} from '../Components/Constants';
+import { API_URL } from '../Components/Constants';
 
 
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
@@ -76,7 +76,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                                 Creator
                             </label>
                             <div className="d-flex justify-content-center text-break creator-holder fs-6 ">
-                                {Creator} 
+                                {Creator}
                             </div>
                         </div>
                     </div>
@@ -89,6 +89,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                     </svg>
                 </div>
             }
+            <div className="line"></div>
         </div >
     )
 }

@@ -106,9 +106,28 @@
         transform: translate(0, 0);
 
         &:hover {
-            transform: translate(0, -5px);
+            transform: translate(0, -10px);
             box-shadow: 8px 8px 5px 8px rgba(0, 0, 0, 0.634);
+
+            .line {
+                height: 2px;
+                background-color: rgb(255, 255, 255);
+                filter: blur(5px);
+                animation: lineAnimate .9s ease-out 1 forwards;
+            }
+
+            @keyframes lineAnimate {
+                0% {
+                    transform: translateY(0);
+                }
+
+                100% {
+                    transform: translateY(-580px) rotate(20deg);
+                }
+            }
         }
+
+        overflow: hidden;
     }
 
     .favourite-icon-drink-holder {
