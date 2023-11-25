@@ -87,6 +87,11 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
         };
     }, []);
 
+    const [hamburgerAnimation, setHamburgerAnimation] = useState('');
+
+    useEffect(() => {
+        setHamburgerAnimation('')
+    }, [userScroll])
 
     return (
         <nav className="NavBar position-sticky top-0 ">
@@ -107,13 +112,16 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     </div>
 
                     {/* hamburger */}
-                    <div id="hamburger" className={userScroll ? `col-xl-3 d-flex mb-3 align-items-center mt-3  ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} ` : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xxl-6'}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
-                        <div className="helper d-flex flex-column justify-content-between align-items-center">
+                    <div id="hamburger" className={userScroll ? `col-xl-3 d-flex mb-3 align-items-center mt-3  ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} ` : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? `` : `col-8 col-sm-8 col-md-10 col-xxl-6 `}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
+                        <div
+                            className={`d-flex flex-column justify-content-between align-items-center helper ${hamburgerAnimation ? 'clicked' : (hamburgerAnimation === false ? 'hide' : 'helper')}`}
+                            onClick={() => setHamburgerAnimation(!hamburgerAnimation)}
+                        >
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
                             <span className="bar w-100 rounded-pill bg-light"></span>
                         </div>
-                        <label className={`ms-5  d-xl-flex brand-logo-hamburger ${location.pathname.endsWith('/') ? 'd-none' : ''}`}>
+                        <label onClick={() => setHamburgerAnimation(!hamburgerAnimation)} className={`ms-5  d-xl-flex brand-logo-hamburger ${location.pathname.endsWith('/') ? 'd-none' : ''}`}>
                             𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
                         </label>
                     </div>
