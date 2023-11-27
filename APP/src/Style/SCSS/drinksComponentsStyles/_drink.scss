@@ -92,31 +92,6 @@
             }
         }
 
-        .favouriteStar {
-            fill: gold;
-            transition: $trans-all-02-eio;
-        }
-
-        .un-favouriteStar {
-            fill: black;
-            transition: $trans-all-02-eio;
-
-            &:hover {
-                animation: starAnimation 6s infinite;
-            }
-
-            @keyframes starAnimation {
-
-                0%,
-                70% {
-                    fill: rgb(0, 0, 0);
-                }
-
-                50% {
-                    fill: gold;
-                }
-            }
-        }
 
         transition: all 0.2s ease-in-out;
         transform: translate(0, 0);
@@ -151,5 +126,31 @@
     .favourite-icon-drink-holder {
         margin-top: 12px;
         margin-right: 12px;
+
+        .favouriteStar {
+            fill: gold;
+            transition: $trans-all-02-eio;
+        }
+
+        .un-favouriteStar {
+            fill: black;
+            transition: $trans-all-02-eio;
+            
+            @keyframes starAnimation {
+
+                0%,
+                70% {
+                    fill: rgb(0, 0, 0);
+                }
+
+                50% {
+                    fill: gold;
+                }
+            }
+        }
+
+        &:hover .un-favouriteStar {
+            animation: starAnimation 6s infinite;
+        }
     }
 }

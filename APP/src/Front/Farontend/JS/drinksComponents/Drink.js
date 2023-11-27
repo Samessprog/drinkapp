@@ -90,7 +90,6 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                     </svg>
                 </div>
             }
-           
         </div >
     )
 }
