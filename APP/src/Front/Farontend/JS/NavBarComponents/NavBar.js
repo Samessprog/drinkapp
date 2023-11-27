@@ -163,10 +163,10 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                 <div className="options-holder d-none d-md-flex">
                                     { /*loginPopup || specialOptionsPopup === true ?  setSpecialOptionsPopup(false) && setLoginPopup(false) : setPopupSetings(!popupSetings) */}
                                     <button className="mb-md-2 ms-1 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2" onClick={() => handlePopup('settings')}>
-                                        <svg className="me-1 fill-color-212 ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                        <svg className="me-1 fill-color-212 ms-2 me-2 filter-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                                             <path d="M11.25 20.75v-5.5h1.5v2h8v1.5h-8v2Zm-8-2v-1.5h5.5v1.5Zm4-4v-2h-4v-1.5h4v-2h1.5v5.5Zm4-2v-1.5h9.5v1.5Zm4-4v-5.5h1.5v2h4v1.5h-4v2Zm-12-2v-1.5h9.5v1.5Z" />
                                         </svg>
-                                        <div className="pe-2">Filter</div>
+                                        <div className="pe-2 ">Filter</div>
                                     </button>
                                     <div className={`filter-dis ${popupSetings ? 'active' : 'hide'}`}>
                                         {popupSetings && (

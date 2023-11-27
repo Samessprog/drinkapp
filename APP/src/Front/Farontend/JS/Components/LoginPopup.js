@@ -40,13 +40,13 @@ function LoginPopup() {
                 if (!data.success) {
                     throw new Error(data.message);
                 }
-                const user = data.user; // Extract the user data from the response
+                const user = data.user; 
                 dispatch(setUserSession(user));
                 dispatch(setLoginPopup(false));
                 window.location.reload();
             })
             .catch(error => {
-                setLoginError([error.message]); // Handle any errors that occur during the login process
+                setLoginError([error.message]); 
             });
     };
 
@@ -69,8 +69,7 @@ function LoginPopup() {
 
 
     return (
-        <div ref={loginRef} className="col-11 col-md-9 col-lg-6 col-xxl-5 loginPopupHolder position-fixed d-flex  align-items-center flex-column ">
-
+        <div ref={loginRef} className="col-11 col-md-9 col-lg-6 col-xxl-5 loginPopupHolder h-500 position-fixed d-flex  align-items-center flex-column ">
             <div className="d-flex  position-fixed close-icon-holder mt-1 ">
                 <svg
                     onClick={() => dispatch(setLoginPopup(false))}

@@ -83,7 +83,7 @@ function Registers() {
 
 
     return (
-        <div ref={registerRef} className="col-4 col-12 col-md-6 col-lg-4 loginPopupHolder position-fixed d-flex align-items-center flex-column ">
+        <div ref={registerRef} className="col-4 col-12 col-md-6 col-lg-4 loginPopupHolder h-600 position-fixed d-flex align-items-center flex-column ">
 
             <div className="d-flex position-fixed close-icon-holder">
                 <svg

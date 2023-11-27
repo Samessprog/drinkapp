@@ -9,6 +9,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(42, 42, 42);
+    display: flex;
+    justify-content: center;
 
     @media (max-width: 400px) {
         backdrop-filter: blur(120px);
@@ -71,4 +73,12 @@
         color: rgb(255, 0, 0);
         border-bottom: 1px solid white;
     }
+}
+
+.h-600 {
+    height: 600px;
+}
+
+.h-500 {
+    height: 500px;
 }
