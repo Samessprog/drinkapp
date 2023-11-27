@@ -93,6 +93,20 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
         setHamburgerAnimation('')
     }, [userScroll])
 
+
+    // useEffect(() => {
+    //     let timer;
+    //     if (popupSetings) {
+    //         timer = setTimeout(() => {
+    //             setShowPopup(true);
+    //         }, 5000); 
+    //     }
+
+    //     return () => {
+    //         clearTimeout(timer);
+    //     };
+    // }, [popupSetings]);
+
     return (
         <nav className="NavBar position-sticky top-0 ">
 

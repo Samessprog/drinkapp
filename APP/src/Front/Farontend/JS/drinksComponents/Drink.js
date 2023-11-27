@@ -46,6 +46,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             {/* miejsce na znacznik ulubione */}
             <Link className="text-decoration-none" to={`drinkDetail/${ID_DRINK}`} >
                 <FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='img-holder card overflow-hidden' classNameIMG='drink-img img-fluid' />
+                <div className="line"></div>
                 <div className="basic-information-drink p-2 ">
                     <div className="col-12 d-flex flex-column flex-sm-row align-items-center">
                         <label className="col-12 fs-4 fw-bolder ps-2 drink-name-holder text-break">{DrinkName}</label>
@@ -89,7 +90,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
                     </svg>
                 </div>
             }
-            <div className="line"></div>
+           
         </div >
     )
 }

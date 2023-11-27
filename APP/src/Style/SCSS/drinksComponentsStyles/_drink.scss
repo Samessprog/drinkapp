@@ -110,19 +110,21 @@
             box-shadow: 8px 8px 5px 8px rgba(0, 0, 0, 0.634);
 
             .line {
-                height: 2px;
+                position: absolute;
+                height: 3px;
+                width: calc(100% + 350px);
                 background-color: rgb(255, 255, 255);
-                filter: blur(5px);
-                animation: lineAnimate .9s ease-out 1 forwards;
+                filter: blur(10px);
+                animation: lineAnimate 3s ease-out infinite forwards;
             }
 
             @keyframes lineAnimate {
                 0% {
-                    transform: translateY(0);
+                    transform: translateY(-10px) translateX(-50px);
                 }
 
                 100% {
-                    transform: translateY(-580px) rotate(20deg);
+                    transform: translateY(-280px) translateX(50px) rotate(33deg);
                 }
             }
         }
