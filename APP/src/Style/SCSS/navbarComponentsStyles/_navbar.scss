@@ -35,14 +35,10 @@
                 color: inherit;
 
                 .brand-name-nav {
-                    display: flex;
+                    display: inline-block;
+                    position: relative;
                     cursor: pointer;
-
-                    @media (max-width:1200px) {
-                        & {
-                            display: none;
-                        }
-                    }
+                    overflow: hidden;
                 }
             }
 
@@ -396,6 +392,8 @@
                         color: $color-white;
                         transition: $trans-all-03-eio;
                         padding: 0.625rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
 
                         &:hover {
                             background-color: rgb(21, 21, 21);
