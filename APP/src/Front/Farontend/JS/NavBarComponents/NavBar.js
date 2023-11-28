@@ -124,8 +124,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             <svg className="ms-3 brand-logo d-none d-xxl-block" xmlns="http://www.w3.org/2000/svg" height="1.1em" viewBox="0 0 576 512"><path d="M432 240c53 0 96-43 96-96s-43-96-96-96c-35.5 0-66.6 19.3-83.2 48H296.2C316 40.1 369.3 0 432 0c79.5 0 144 64.5 144 144s-64.5 144-144 144c-27.7 0-53.5-7.8-75.5-21.3l35.4-35.4c12.2 5.6 25.8 8.7 40.1 8.7zM1.8 142.8C5.5 133.8 14.3 128 24 128H392c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-177 177V464h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H208 120c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V345.9L7 169c-6.9-6.9-8.9-17.2-5.2-26.2z" /></svg>
                         </Link>
                     </div>
-
-                    {/* hamburger */}
                     <div id="hamburger" className={userScroll ? `col-xl-3 d-flex mb-3 align-items-center mt-3  ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} ` : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? `` : `col-8 col-sm-8 col-md-10 col-xxl-6 `}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div
                             className={`d-flex flex-column justify-content-between align-items-center helper ${hamburgerAnimation ? 'clicked' : (hamburgerAnimation === false ? 'hide' : 'helper')}`}
@@ -139,7 +137,6 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                             𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
                         </label>
                     </div>
-
                     {location.pathname.endsWith('/') &&
                         <div className={`d-flex me-3 col-7 col-sm-7 col-md-9 col-xl-6 justify-content-center justify-content-xl-start  ${userScroll ? 'justify-content-xl-center  col-xl-5 ' : 'justify-content-center'}`}>
                             {/* Wyszukiwarka drinków  */}

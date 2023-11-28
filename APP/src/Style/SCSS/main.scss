@@ -35,9 +35,10 @@ body {
 
         .arrow-up {
             fill: rgb(255, 255, 255);
-
+            transition: all .2s ease-in-out;
             &:hover {
-                fill: rgb(255, 177, 74);
+                fill: rgb(252, 217, 172);
+                transform: translateY(-5px);
             }
         }
     }
