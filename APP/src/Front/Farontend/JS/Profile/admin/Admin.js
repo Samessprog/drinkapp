@@ -290,7 +290,7 @@ function Admin({ drinkDatas }) {
                         <div className="d-flex ms-5 ms-xxl-3 mt-0 optional-buttons-holder mt-4 col-8 flex-column flex-sm-row">
                             <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
                                 <button
-                                    className="mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user"
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${drinksFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         setInputText('')
@@ -309,7 +309,7 @@ function Admin({ drinkDatas }) {
 
                             <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
                                 <button
-                                    className="mb-md-2 ms-1 btn btn-secondary border d-flex p-2 change-data-input-user"
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${usersFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         setInputText('')
@@ -328,7 +328,7 @@ function Admin({ drinkDatas }) {
 
                             <div className=" me-3 d-flex justify-content-center  align-items-center mb-3 mb-sm-0" >
                                 <button
-                                    className="mb-md-2 ms-1 btn btn-secondary border d-flex p-2 change-data-input-user"
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${showNewsFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         dispatch(setUsersFlag(false))

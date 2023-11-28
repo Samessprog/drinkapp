@@ -1,6 +1,7 @@
 //Imports
 import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG";
 import { API_URL } from '../../Components/Constants'
+import { Link } from "react-router-dom";
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
 
@@ -38,7 +39,9 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                 <div className="justify-content-between d-flex align-items-center col-11">
                     <div className="d-flex align-items-center flex-xxl-row flex-column col-12">
                         <div className="d-flex align-items-center data-holder col-12 col-xxl-8 flex-column flex-xxl-row ">
-                            <FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
+                            <Link to={`/drinkDetail/${ID_DRINK}`} >
+                                < FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG ' classNameIMG='drink-profile-img img-fluid' />
+                            </Link>
                             <div className="col-12 col-xxl-4  ms-4 drink-name-profile col-5 d-flex justify-content-center justify-content-xxl-start align-items-xxl-start" >
                                 {DrinkName}
                             </div>

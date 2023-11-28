@@ -83,7 +83,7 @@
         border-left: 1px solid black;
         transition: all .3s ease-in-out;
         cursor: pointer;
-        
+
         &:hover {
             background-color: rgb(2, 186, 2);
         }
@@ -346,6 +346,10 @@
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
     }
+}
+
+.change-data-input-user .active {
+    background-color: rgba(255, 255, 255, 0.415);
 }
 
 .add-your-drink-button {

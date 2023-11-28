@@ -72,7 +72,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
         }
     });
 
-
     const hideElement = (elementId, drinkElementID) => {
         if (elementId) {
             setHiddenElements([...hiddenElements, elementId]);
@@ -80,7 +79,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
             setHiddenDrinkElements([...hiddenDrinkElements, drinkElementID])
         }
     }
-
 
     let alertWindow = useRef();
 
@@ -97,7 +95,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
             document.removeEventListener("mousedown", handler);
         };
     }, []);
-
 
     return (
         <div ref={alertWindow} className="bg-red">

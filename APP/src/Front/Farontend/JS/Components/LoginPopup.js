@@ -40,13 +40,13 @@ function LoginPopup() {
                 if (!data.success) {
                     throw new Error(data.message);
                 }
-                const user = data.user; 
+                const user = data.user;
                 dispatch(setUserSession(user));
                 dispatch(setLoginPopup(false));
                 window.location.reload();
             })
             .catch(error => {
-                setLoginError([error.message]); 
+                setLoginError([error.message]);
             });
     };
 
