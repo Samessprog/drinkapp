@@ -10,6 +10,9 @@ import { API_URL } from '../Components/Constants';
 import axios from 'axios';
 import getIconForPreparation from "../Components/FilterIconsAlgo";
 import shakeIcon from '../../../../Assets/shaker.png'
+import { Typography } from "@mui/material";
+import Rating from '@mui/material/Rating';
+
 
 function DrinkDetails() {
 
@@ -23,13 +26,12 @@ function DrinkDetails() {
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([]);
     const [loadingImgCompleated, setLoginImgCompleated] = useState()
-    const [clickedStar, setClickedStar] = useState('')
+    const [RateStar, setRateStar] = useState('')
 
     const [showDrinkDescription, setShowDrinkDescription] = useState(true)
     const [nutritionalValues, setNutritionalValues] = useState([])
     const [showNutritionalValues, setShowNutritionalValues] = useState(false)
     const [showDrinkHistory, setShowDrinkHistory] = useState(false)
-
 
     useEffect(() => {
         const fetchDrinkDetails = async () => {
@@ -38,7 +40,7 @@ function DrinkDetails() {
                 setDrinkDetail(data[0]);
                 setIngredient(data[0]?.Ingredients.split('.'));
                 setPreparation(data[0]?.Preparation.split('.'));
-                setClickedStar(data[0]?.Rate)
+                setRateStar(data[0]?.Rate)
                 setNutritionalValues(data[0]?.Drink_Nutritional_Values.split('.'))
             } catch (err) {
                 console.log(err);
@@ -57,8 +59,6 @@ function DrinkDetails() {
         drinkHistory,
         ID_DRINK,
     } = drinkDetail
-
-
 
     {/*Paginacja*/ }
     const itemPerPage = 1;
@@ -87,25 +87,22 @@ function DrinkDetails() {
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
 
-    const handleStarClick = (starNumber) => {
-        setClickedStar(starNumber);
-    };
 
     let userSession = useContext(SessionContext).userSesion
-    const sendARating = async () => {
+
+    const sendARating = async (newValue) => {
         let userID = userSession?.userID
-        console.log(userSession)
+
         if (userSession === '' || !userSession) {
             return alert('you must be logged in to rate')
         }
-
         try {
             const response = await fetch(`${API_URL}drinkRating`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ID_DRINK, clickedStar, userID }),
+                body: JSON.stringify({ ID_DRINK, newValue, userID }),
             });
             const data = await response.json();
             if (response.status === 200 || data.message === 'User block successfully') {
@@ -118,7 +115,6 @@ function DrinkDetails() {
     }
 
     useEffect(() => {
-
         if (ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
@@ -161,24 +157,20 @@ function DrinkDetails() {
                                 <div className="drink-name fs-2 fw-bolder ps-3" style={{ fontFamily: 'cursive' }} >{DrinkName}</div>
                             </header>
                             <div className="d-flex ms-4 align-items-center rating-holder">
-
-                                {/* Wygeneruj 5 gwiazdek */}
-                                {[1, 2, 3, 4, 5].map((starNumber) => (
-                                    <svg
-                                        key={starNumber}
-                                        className={`star ${starNumber <= Rate ? 'gold' : ''}`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        height="24"
-                                        width="24"
-                                        onClick={() => { handleStarClick(starNumber); sendARating() }} // Add an onClick handler
-                                        style={{ cursor: 'pointer' }} // Add pointer cursor to indicate it's clickable
-                                    >
-                                        <path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" />
-                                    </svg>
-                                ))}
+                                <Rating
+                                    name="simple-controlled"
+                                    value={RateStar}
+                                    onChange={userSession ?
+                                        (event, newValue) => {
+                                            sendARating(newValue);
+                                        } : null
+                                    }
+                                    readOnly={!userSession}
+                                    size={"large"}
+                                />
                             </div>
                         </div>
-                        {/*Opis i składniki do drinku  */}
+                        {/*Opis i składniki do drinku*/}
                         <div className="col-12 mt-5">
                             <article>
                                 <div className="col-11 ">
@@ -292,7 +284,7 @@ function DrinkDetails() {
                                         {preparation}
                                         {/* Wyświetlenie ikony na podstawie tekstu przygotowania */}
                                         <div className="col mt-5 d-flex justify-content-center align-items-center">
-                                            <img src={getIconForPreparation(preparation)} alt="Icon" className={`${getIconForPreparation(preparation) === shakeIcon ? 'testKE' : '' }`} />
+                                            <img src={getIconForPreparation(preparation)} alt="Icon" className={`${getIconForPreparation(preparation) === shakeIcon ? 'testKE' : ''}`} />
                                         </div>
                                     </div>
                                 ))}

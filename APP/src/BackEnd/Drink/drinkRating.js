@@ -3,8 +3,7 @@ const router = express.Router();
 const connectionToDrinksDB = require('../drinksDB');
 
 router.post('/', async (req, res) => {
-    const { ID_DRINK, clickedStar, userID } = req.body;
-
+    const { ID_DRINK, newValue, userID } = req.body;
 
     if (userID === '' && !userID) {
         res.status(500).send("Wystąpił błąd podczas sprawdzania oceny drinku.");
@@ -19,7 +18,7 @@ router.post('/', async (req, res) => {
             if (checkResult.length > 0) {
                 // The user has already rated this drink, so update the existing rating
                 const updateQuery = "UPDATE drinksrating SET Rate = ? WHERE User_ID = ? AND Drink_ID = ?";
-                connectionToDrinksDB.query(updateQuery, [clickedStar, userID, ID_DRINK], (updateErr, updateResult) => {
+                connectionToDrinksDB.query(updateQuery, [newValue, userID, ID_DRINK], (updateErr, updateResult) => {
                     if (updateErr) {
                         console.error("Błąd przy aktualizowaniu oceny drinku:", updateErr);
                         res.status(500).send("Wystąpił błąd podczas aktualizacji oceny drinku.");

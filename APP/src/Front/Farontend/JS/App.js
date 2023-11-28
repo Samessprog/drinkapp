@@ -20,6 +20,8 @@ const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 
 function App() {
 
+ 
+
   const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
   const userSesion = useSelector(state => state.user.useSesion)
 
