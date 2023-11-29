@@ -146,6 +146,9 @@ function DrinkDetails() {
         }
     }, [detailDrinkIMG]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="col-12 drink-holder">

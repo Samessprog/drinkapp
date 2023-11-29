@@ -6,7 +6,7 @@ import UserDetails from "./UserDetails";
 import UserFavouriteDrinks from "./UserFavouriteDrinks";
 import UserOwnDrinks from "./UserOwnDrinks";
 import { SessionContext } from "../../Session/SessionContext";
-import {API_URL} from '../../Components/Constants'
+import { API_URL } from '../../Components/Constants'
 
 const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
 
@@ -40,6 +40,11 @@ function UserProfile({ drinkDatas }) {
       }
     };
     fetchUserImage();
+  }, []);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (

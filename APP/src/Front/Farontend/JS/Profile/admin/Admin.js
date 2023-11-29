@@ -268,6 +268,11 @@ function Admin({ drinkDatas }) {
     }, [])
 
 
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="col-12">
             <div className="admin-container p-3 p-sm-4 position-relative ">

@@ -1,5 +1,5 @@
 //Imports
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import MainPage from "./MainPage";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
@@ -9,10 +9,12 @@ const SpecialDrinks = lazy(() => import("../NavBarComponents/SpecialDrinks"))
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,
     drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset }) {
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-
         <div>
-
             {specialOptionsPopup &&
                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                     <Suspense fallback={<div>Loading...</div>}>
@@ -32,9 +34,7 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
                 searchingDrink={searchingDrink}
                 offset={offset}
                 setOffset={setOffset}
-
             />
-
         </div>
     )
 }
