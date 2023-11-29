@@ -47,7 +47,6 @@
                     transition: all .3s ease-in-out;
 
                     &:hover {
-                        border-radius: 20px;
                         background-color: grey;
 
                     }
@@ -56,6 +55,11 @@
                         text-align: center;
                     }
 
+                }
+
+                .activ-detail {
+                    border-radius: 20px;
+                    background-color: rgb(86, 86, 86);
                 }
             }
 
@@ -155,7 +159,7 @@
                 }
 
                 .ingrediets-list {
-                    max-height:  300px;
+                    max-height: 300px;
                     list-style: none;
                     font-size: 18px;
 

@@ -176,7 +176,7 @@ function DrinkDetails() {
                                 <div className="col-11 ">
                                     <div className="d-flex mb-2 button-detail-holder" >
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button`}
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showDrinkDescription ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowDrinkDescription(true);
                                                 setShowNutritionalValues(false)
@@ -186,7 +186,7 @@ function DrinkDetails() {
                                             Description
                                         </div>
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button `}
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showDrinkHistory ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowDrinkHistory(true)
                                                 setShowDrinkDescription(false);
@@ -196,7 +196,7 @@ function DrinkDetails() {
                                             History
                                         </div>
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button  `}
+                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showNutritionalValues ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowNutritionalValues(true)
                                                 setShowDrinkDescription(false)
@@ -281,7 +281,7 @@ function DrinkDetails() {
                             <div>
                                 {currentData.map((preparation, key) => (
                                     <div key={key}>
-                                        {preparation}
+                                        <label className="fs-4">{preparation}</label>
                                         {/* Wyświetlenie ikony na podstawie tekstu przygotowania */}
                                         <div className="col mt-5 d-flex justify-content-center align-items-center">
                                             <img src={getIconForPreparation(preparation)} alt="Icon" className={`${getIconForPreparation(preparation) === shakeIcon ? 'testKE' : ''}`} />
