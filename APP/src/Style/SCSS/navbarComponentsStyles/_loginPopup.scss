@@ -31,22 +31,21 @@
     }
 
     .log-reg-icon-holder {
-        border-radius: 5px 0px 0px 5px;
-        background-color: rgba(163, 163, 163, 0.779);
-        padding: 7px;
-        border-right: $border-1-solid-black;
+        border-radius: 8px 0px 0px 8px;
+        background-color: rgba(255, 255, 255, 0.838);
+        padding: 10px;
 
         .login-register-icon {
-            fill: $rgb-255;
+            fill: rgb(36, 36, 36);
         }
     }
 
     .input-box {
         background-color: white;
         border: $border-1-solid-black;
-        border-radius: 0px 5px 5px 0px;
+        border-radius: 0px 8px 8px 0px;
         border-left: none;
-        padding: 4px;
+        padding: 7px;
 
         .login-register-input-data {
             border: none;
@@ -64,9 +63,38 @@
         padding-left: 3rem;
         padding-right: 3rem;
 
-        .login-reg-header {
-            letter-spacing: 2px;
+        .login-icon {
+            height: 260px;
+            width: 260px;
+            padding-bottom: 40px;
         }
+    }
+
+    .login-reg-header {
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+    }
+
+    .login-input {
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        padding: 6px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        font-size: 21px;
+        color: white;
+        transition: all .3s ease-in-out;
+        color: black;
+
+        &:hover {
+            background-color: rgb(231, 231, 231);
+            border-radius: 15px;
+        }
+
     }
 
     .login-register-errors {
@@ -80,5 +108,5 @@
 }
 
 .h-500 {
-    height: 500px;
+    height: 550px;
 }

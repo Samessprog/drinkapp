@@ -189,7 +189,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     <div className={`d-flex justify-content-end pe-2 pt-36 mt-3 col-sm-4 col-md-2 col-4 ${userScroll ? `col-xl-3  ${location.pathname.endsWith('/') ? '' : 'col-2 col-xxl-9'}` : `  ${location.pathname.endsWith('/') ? '  ' : 'col-2 col-xxl-8'}`}`}>
                         {userSesion === null &&
                             <button className=" ms-2 mb-3 login-navbar" onClick={() => handlePopup('login')}>
-                                Login
+                                login
                             </button>
                         }
 

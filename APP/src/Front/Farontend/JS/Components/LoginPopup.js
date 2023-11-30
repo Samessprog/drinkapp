@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEmail, setPassword } from "../States/actions";
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions";
 import { API_URL } from '../Components/Constants';
+import drinkLoginLogo from '../../../../Assets/drinksLoginBrand.png'
+
 
 function LoginPopup() {
     const dispatch = useDispatch();
@@ -80,35 +82,40 @@ function LoginPopup() {
             </div>
 
             <div className="col-12  mt-2 rounded">
-                <form onSubmit={handleLogin} className=" d-flex  flex-column align-items-center">
-                    <div className="col-11 logRegHolder d-flex justify-content-center flex-column align-items-center mt-5">
-                        <div className=" login-reg-header fs-2 color-black mb-3">Login</div>
-                        <div className="col-9 d-flex align-items-center mb-2 mt-2">
-                            <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
-                                <svg className="login-register-icon ps-0 pt-0" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
-                            </div>
-                            <div className="input-box col-11">
-                                <input onChange={(event) => dispatch(setEmail(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="text" placeholder="Email"></input>
-                            </div>
+                <form onSubmit={handleLogin} className=" d-flex flex-column align-items-center">
+                <div className=" login-reg-header fs-2 color-black mt-5">Login</div>
+                    <div className="col-12 logRegHolder d-flex align-items-center mt-5 justify-content-center">
+                        <div className="col-4 ">
+                            <img className="login-icon" src={drinkLoginLogo}></img>
                         </div>
 
-                        <div className="col-9 d-flex align-items-center mt-4">
-                            <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
-                                <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                        <div className="col-8 d-flex flex-column align-items-center">
+                            <div className="col-10 d-flex align-items-center mb-2 mt-2  ms-5">
+                                <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
+                                    <svg className="login-register-icon ps-0 pt-0" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
+                                </div>
+                                <div className="input-box col-11">
+                                    <input onChange={(event) => dispatch(setEmail(event.target.value))} className="ps-2 col-11 rounded login-register-input-data" type="text" placeholder="Email"></input>
+                                </div>
                             </div>
-                            <div className="col-11 input-box">
-                                <input onChange={(event) => dispatch(setPassword(event.target.value))} className="col-11 ps-2 rounded login-register-input-data" type="password" placeholder="password"></input>
+                            <div className="col-10 d-flex align-items-center mt-4 ms-5">
+                                <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
+                                    <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M263.717 960Q234 960 213 938.85T192 888V504q0-29.7 21.15-50.85Q234.3 432 264 432h24v-96q0-79.68 56.226-135.84t136-56.16Q560 144 616 200.16T672 336v96h24q29.7 0 50.85 21.15Q768 474.3 768 504v384q0 29.7-21.162 50.85Q725.676 960 695.96 960H263.717Zm.283-72h432V504H264v384Zm216.212-120Q510 768 531 746.788q21-21.213 21-51Q552 666 530.788 645q-21.213-21-51-21Q450 624 429 645.212q-21 21.213-21 51Q408 726 429.212 747q21.213 21 51 21ZM360 432h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456V504v384Z" /></svg>
+                                </div>
+                                <div className="col-11 input-box">
+                                    <input onChange={(event) => dispatch(setPassword(event.target.value))} className="col-11 ps-2 rounded login-register-input-data" type="password" placeholder="password"></input>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <div className="mt-3 login-register-errors">
+                        <div className="mt-2 login-register-errors">
                             {loginError}
                         </div>
                     </div>
-                    <div className="mt-3 mb-4">
-                        <button type="submit" className="btn btn-dark fs-5">Login</button>
+                    <div className=" mb-3">
+                        <button type="submit" className="login-input">Login</button>
                     </div>
                 </form>
 
