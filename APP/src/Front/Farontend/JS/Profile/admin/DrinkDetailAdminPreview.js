@@ -21,7 +21,6 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
 
     useEffect(() => {
         if (DrinkPreview.Drink.ID_DRINK !== undefined) {
-            console.log(DrinkPreview.Drink.ID_DRINK)
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
                     let ID_Drink = DrinkPreview.Drink.ID_DRINK;
@@ -138,7 +137,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                         <div className="col-12 col-xxl-8">
                             <div className="d-flex fs-3 fw-bolder col-12  ">
                                 <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start ">
-                                    <label className="mb-1">Drink name</label>
+                                    <label className="mb-1 ms-1">Drink name</label>
                                     <input
                                         className="drink-name-input fs-5 col-xxl-5 col-10 "
                                         value={drinkNameInput}
@@ -147,18 +146,18 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 </div>
                             </div>
                             <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
-                                <div className="mt-5 fs-4 fw-bolder">
+                                <div className="mt-5 fs-4 fw-bolder mb-2">
                                     <label
                                         onClick={() => setDescriptionFlag(true)}
                                         className="ms-1">
-                                        <div className="drink-changer-data">
+                                        <div className={`drink-changer-data ${descriptionFlag ? 'focus' : ''}`}>
                                             Description
                                         </div>
                                     </label>
                                     <label
                                         onClick={() => setDescriptionFlag(false)}
                                         className="ms-3">
-                                        <div className="drink-changer-data">
+                                        <div className={`drink-changer-data ${descriptionFlag ? '' : 'focus'}`}>
                                             History
                                         </div>
                                     </label>
@@ -166,13 +165,13 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
                                     {descriptionFlag ? (
                                         <textarea
-                                            className="description-holder col-8 text-break"
+                                            className="description-holder col-9 text-break fs-5"
                                             value={drinkDescriptionInput}
                                             onChange={(e) => setDrinkDescriptionInput(e.target.value)}
                                         />
                                     ) : (
                                         <textarea
-                                            className="description-holder col-8 text-break"
+                                            className="description-holder col-9 text-break fs-5"
                                             value={drinkHistoryInput}
                                             onChange={(e) => setDrinkHistoryInput(e.target.value)}
                                         />
@@ -185,7 +184,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                         <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
                                             <div
                                                 onClick={() => setIngredientFlag(true)}
-                                                className="ing-prep-button">
+                                                className={`ing-prep-button ${ingredientFlag ? 'focus' : ''}`}>
                                                 Ingredients
                                             </div>
 
@@ -193,7 +192,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                         <label className="fw-bolder fs-4 d-flex justify-content-center mb-2 ms-3">
                                             <div
                                                 onClick={() => setIngredientFlag(false)}
-                                                className="ing-prep-button">
+                                                className={`ing-prep-button ${ingredientFlag ? '' : 'focus'}`}>
                                                 Preparation
                                             </div>
                                         </label>

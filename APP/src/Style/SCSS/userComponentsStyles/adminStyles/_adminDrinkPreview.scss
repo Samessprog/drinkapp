@@ -54,12 +54,11 @@
             padding-right: 10px;
             transition: all .3s ease-in-out;
             cursor: pointer;
+            font-size: 21px;
 
             &:hover {
-                border-radius: 5px;
                 background-color: gray;
             }
-
         }
 
         .ing-prep-holder {
@@ -94,14 +93,18 @@
             padding-left: 10px;
             padding-right: 10px;
             transition: all .3s ease-in-out;
-            margin-bottom:  .4rem;
+            margin-bottom: .4rem;
             cursor: pointer;
+            font-size: 20px;
 
             &:hover {
                 background-color: gray;
-                border-radius: 5px;
             }
+        }
 
+        .focus {
+            background-color: gray;
+            border-radius: 15px;
         }
 
         .drink-detail-holder {
@@ -113,11 +116,19 @@
         }
 
         .drink-name-input {
-            background-color: rgb(237, 237, 237);
-            border: white;
+            background-color: transparent;
+            border: 1px solid white;
             border-radius: 10px;
             padding: 6px;
             padding-left: 10px;
+            color: white;
+            transition: all .2s ease-in-out;
+
+            &:focus{
+                background-color: white;
+                color: black;
+
+            }
         }
 
         .ing-prep-holder {
@@ -213,11 +224,11 @@
     .description-holder {
 
         overflow-y: scroll;
-        height: 200px;
-        max-height: 200px;
+        height: 300px;
+        max-height: 300px;
         background-color: rgb(35, 35, 35);
         color: white;
-        border-radius: 5px;
+        border-radius: 10px;
         padding: 1rem;
         resize: none;
     }
@@ -233,9 +244,9 @@
             border-radius: 10px;
             border: 2px solid rgb(255, 255, 255);
             overflow: hidden;
-            max-height: 600px;
-            height: 600px;
-            width: 700px;
+            height: 700px;
+            width: 600px;
+            object-fit: cover;
 
             @media (max-width: 1399px) {
                 object-fit: cover;
@@ -245,9 +256,9 @@
             }
 
             .drink-img-prev {
-                max-height: 600px;
-                height: 600px;
-                width: 700px;
+                height: 700px;
+                width: 600px;
+                object-fit: cover;
                 overflow: hidden;
                 object-fit: cover;
 
