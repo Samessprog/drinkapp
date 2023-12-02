@@ -22,7 +22,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
 
-    const isSmallScreen = useMediaQuery({ maxWidth: 575 });
+    const isSmallScreen = useMediaQuery({ maxWidth: 767 });
 
     //Pagination handler
     const handlePageClick = (data) => {

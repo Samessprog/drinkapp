@@ -39,6 +39,9 @@
                     position: relative;
                     cursor: pointer;
                     overflow: hidden;
+
+                        
+
                 }
             }
 
@@ -89,6 +92,11 @@
                 & {
                     font-size: 25px;
                 }
+            }
+
+            
+            @media (max-width:468px) {
+                display: none;
             }
         }
 

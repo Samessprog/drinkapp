@@ -209,8 +209,8 @@ function DrinkDetails() {
                                             Nutritional Values
                                         </div>
                                     </div>
-                                    <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4">
-                                        <section>
+                                    <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4 ">
+                                        <section className="">
                                             <div className="d-flex fs-5">
                                                 {showNutritionalValues && (
                                                     <div className="d-flex flex-column">

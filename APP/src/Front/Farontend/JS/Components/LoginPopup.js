@@ -85,12 +85,12 @@ function LoginPopup() {
                 <form onSubmit={handleLogin} className=" d-flex flex-column align-items-center">
                 <div className=" login-reg-header fs-2 color-black mt-5">Login</div>
                     <div className="col-12 logRegHolder d-flex align-items-center mt-5 justify-content-center">
-                        <div className="col-4 ">
+                        <div className="col-4 d-none d-xl-flex">
                             <img className="login-icon" src={drinkLoginLogo}></img>
                         </div>
 
-                        <div className="col-8 d-flex flex-column align-items-center">
-                            <div className="col-10 d-flex align-items-center mb-2 mt-2  ms-5">
+                        <div className="col-12 col-xl-8 d-flex flex-column align-items-center justify-content-center me-5 me-xl-0">
+                            <div className="col-10  d-flex  align-items-center mb-2 mt-2  ms-5">
                                 <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
                                     <svg className="login-register-icon ps-0 pt-0" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
                                 </div>
