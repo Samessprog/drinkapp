@@ -19,15 +19,6 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
     const ingredient = useSelector(state => state.drink.ingredient)
     const [ingredientText, setIngredientText] = useState("")
 
-    const submitIngreadinetsHandler = () => {
-        dispatch(setingredient([
-            ...ingredient,
-            { text: ingredientText, id: uuid() }
-        ]))
-        setIngredientText("")
-    }
-
-
     let settingsRef = useRef();
 
     useEffect(() => {
@@ -36,15 +27,28 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                 dispatch(setSpecialOptionsPopup(false))
             }
         };
-    
         document.addEventListener("mousedown", handler);
-    
         return () => {
             document.removeEventListener("mousedown", handler);
         };
     }, []);
 
 
+    const submitIngredientHandler = () => {
+        addIngredient();
+    }
+
+    const helperr = (e) => {
+        if (e.key === 'Enter') {
+            addIngredient();
+        }
+    }
+
+    const addIngredient = () => {
+        const newIngredient = { text: ingredientText, id: uuid() };
+        dispatch(setingredient([...ingredient, newIngredient]));
+        setIngredientText("");
+    }
     return (
         <div ref={settingsRef} className="col-12 special-drinks-holder position-fixed mt-5 " style={{ textAlign: "center" }}>
 
@@ -81,8 +85,13 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                         .</div>
                 </div>
                 <div className="col-12 d-flex justify-content-center mb-3 align-items-center mt-3 mb-3">
-                    <input value={ingredientText} onChange={(event) => setIngredientText(event.target.value)} className="col-6 ingredients-input  ps-3 " type="text" placeholder="Enter your ingredients"></input>
-                    <button onClick={submitIngreadinetsHandler} className="ing-button">
+                    <input value={ingredientText}
+                        onKeyDown={helperr}
+                        onChange={(event) =>
+                            setIngredientText(event.target.value)
+                        }
+                        className="col-6 ingredients-input  ps-3 " type="text" placeholder="Enter your ingredients"></input>
+                    <button onClick={submitIngredientHandler} className="ing-button">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
                     </button>
                 </div>

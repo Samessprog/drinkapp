@@ -110,7 +110,7 @@ function LoginPopup() {
                     </div>
 
                     <div>
-                        <div className="mt-2 login-register-errors">
+                        <div className="login-register-errors mb-3 ">
                             {loginError}
                         </div>
                     </div>

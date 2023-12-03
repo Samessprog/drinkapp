@@ -156,7 +156,7 @@ function Registers() {
 
 
                     <div className="mt-2 mb-4 ">
-                        <button type="submit" className="btn btn-dark fs-5">Register</button>
+                        <button type="submit" className="login-input fs-5 ">Register</button>
                     </div>
                 </form>
 

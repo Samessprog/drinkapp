@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { v4 as uuid } from 'uuid';
 
 import { SessionContext } from "../../../Session/SessionContext";
-import {API_URL} from '../../../Components/Constants'
+import { API_URL } from '../../../Components/Constants'
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
@@ -195,7 +195,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     <img className="own-img-holder col-12" src={previewImageUrl}>
                                     </img>
                                 </div>
-
                                 <input
                                     className="file-drink-input mt-2"
                                     type="file"
@@ -208,7 +207,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                 />
                             </div>
                             <div className="d-flex mt-4 col-12 justify-content-center">
-                                <div className="col-5 me-4 col-xl-6" >
+                                <div className="col-5 col-xl-6 me-4" >
                                     <div className="col-12">
                                         <div className="d-flex mt-3 align-items-center">
                                             <input
@@ -224,7 +223,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             />
                                             <svg onClick={submitIngreadinetsHandler} className="addison-button" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
                                         </div>
-                                        <div className="d-flex flex-column mt-3 ing-container col-12 mt-1">
+                                        <div className="d-flex flex-column mt-1 ing-container">
                                             {ingredientsOfNewDrink.map((elm) => (
                                                 <div className=" d-flex col-1align-items-center d-flex mt-2 ">
                                                     <label className="ing col-11 mt-3 ps-2 p-1 d-flex ">{elm.text}</label>
@@ -235,7 +234,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     </div>
                                 </div>
                                 <div className="col-5 col-xl-6">
-                                    <div>
+                                    <div className="col-12">
                                         <div className="d-flex mt-3 align-items-center">
                                             <input
                                                 className="col-11  ing-input"
