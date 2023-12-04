@@ -19,10 +19,8 @@ function UserFavouriteDrinks() {
           console.log(data.data)
           setUserFavouriteDrinks(data.data);
         } else {
-          console.log('XD')
         }
       } catch (error) {
-        console.log('XD')
         console.log(error);
       }
     };

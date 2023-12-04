@@ -49,10 +49,10 @@ function UserDrink({ elm, isHidden, setIsHidden }) {
     let ID_DRINK = ID_Drink
 
     return (
-        <div className={`user-drink-holder mt-4 me-5 col-3 `}>
+        <div className={`user-drink-holder mt-4 me-5 col-3`}>
             <div className=" position-relative col-12">
                 <Link to={`/drinkDetail/${ID_DRINK}`} >
-                    <FetchingDrinkIMG ID_DRINK={ID_DRINK}  classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
+                    <FetchingDrinkIMG ID_DRINK={ID_DRINK} classNameHolder='card favourite-img-holder' classNameIMG='img-fluid drink-img-favourite' />
                     <div className="position-absolute favourite-drink-info-box d-flex  flex-column justify-content-center align-items-center">
                         <div class="d-flex  flex-column justify-content-center align-items-center">
                             <div className="cc d-flex  flex-column justify-content-center align-items-center ">

@@ -54,7 +54,6 @@ router.post('/', upload.single('imageData'), async (req, res) => {
     return;
   }
 
-
   const ingredientsOfNewDrink = JSON.parse(req.body.ingredientsOfNewDrink);
   const preparationOfNewDrink = JSON.parse(req.body.preparationOfNewDrink);
 
@@ -69,7 +68,6 @@ router.post('/', upload.single('imageData'), async (req, res) => {
 
   const joinedIngredients = joinItems(ingredientsOfNewDrink);
   const joinedPreparation = joinItems(preparationOfNewDrink);
-
 
   if (!drinkName.match(drinkNameRegex)) {
     return res.status(400).json({ error: 'Invalid drink name' });

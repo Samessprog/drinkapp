@@ -1,25 +1,31 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState, useContext } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import Pagination from 'react-paginate';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from "react-redux";
+import io from 'socket.io-client';
+import { SessionContext } from '../Session/SessionContext'
 
+import Chat from "../Components/chat";
 import { setDrinkNotFound, setUserFavouriteDrinks } from "../States/actions";
 import Drink from "../drinksComponents/Drink";
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
 const DDE = lazy(() => import("../ErrorsComponents/DDE"))
 
+const socket = io.connect("http://localhost:4001")
+
 function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch();
 
+    const [showChat, setShowChat] = useState(false)
     const [favourites, setFavourites] = useState([]);
 
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound);
     const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
 
-    const itemsPerPage = 15; // ilość elementów na stronie
-    const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);  // ilość stron
+    const itemsPerPage = 15;
+    const pageCount = Math.ceil(searchingDrink.length / itemsPerPage);
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage);
 
     const isSmallScreen = useMediaQuery({ maxWidth: 767 });
@@ -57,6 +63,14 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     }, [favourites]);
 
+    const userSession = useContext(SessionContext).userSesion
+    const chatID = 1
+    const joinChat = () => {
+        if (userSession) {
+            socket.emit("joinChatRoom", chatID)
+            setShowChat(true)
+        }
+    }
 
     return (
 
@@ -69,6 +83,16 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                     </svg>
                 </a>
             </div>
+            {(showChat && userSession !== undefined) &&
+                <Chat
+                    setShowChat={setShowChat}
+                    socket={socket}
+                    chatID={chatID}
+                />
+            }
+            <button onClick={
+                joinChat
+            }>adsda</button>
 
             {currentData.map((elm) => (
                 <Drink

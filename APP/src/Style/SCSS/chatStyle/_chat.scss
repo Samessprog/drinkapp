@@ -1,0 +1,109 @@
+.chat-holder {
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    border-radius: 5px;
+    color: black;
+    position: fixed;
+    z-index: 1;
+    right: 2%;
+    bottom: 3%;
+    border: 1px solid black;
+    padding: 0;
+
+    .chat-header {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 10px;
+
+        .close-icons-chat {
+            transition: all .2s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+    }
+
+    .chat-body {
+        background-color: rgb(255, 255, 255);
+        height: 408px;
+        overflow-y: scroll;
+        padding-top: 10px;
+
+        .other-mess {
+            margin-left: .5rem;
+            min-width: 100px;
+            max-width: 240px;
+
+            .message-context {
+                background-color: rgb(0, 255, 102);
+                color: rgb(0, 0, 0);
+                font-size: 17px;
+                border-radius: 10px;
+                padding: 10px;
+                padding-left: 15px;
+                min-width: 100px;
+                max-width: 170px;
+            }
+        }
+
+        .own-mess {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            margin-right: 5px;
+
+            .message-context {
+                background-color: rgb(0, 217, 255);
+                color: rgb(0, 0, 0);
+                font-size: 17px;
+                border-radius: 10px;
+                padding: 10px;
+                min-width: 100px;
+                max-width: 240px;
+                display: flex;
+                justify-content: end;
+            }
+        }
+
+        .message-container {
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    }
+
+    .chat-footer {
+        border-top: 1px solid black;
+
+        .input-chat {
+            height: 40px;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            padding-left: .8rem;
+        }
+
+        .button-chat {
+            height: 40px;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            border-left: 1px solid black;
+            color: rgb(165, 165, 165);
+            transition: all .4s ease-in-out;
+
+            &:hover {
+                color: blue;
+            }
+        }
+    }
+}

@@ -4,7 +4,7 @@ import { Ring } from '@uiball/loaders'
 import { Buffer } from 'buffer';
 import { API_URL } from '../Components/Constants';
 
-function FetchingDrinkIMG({ ID_DRINK , classNameHolder, classNameIMG }) {
+function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
 
     const [drinkIMGs, setDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
@@ -30,7 +30,6 @@ function FetchingDrinkIMG({ ID_DRINK , classNameHolder, classNameIMG }) {
         fetchUserFavouriteDrinkImage();
     }, [ID_DRINK]);
 
-
     useEffect(() => {
         if (drinkIMGs && drinkIMGs.data.length > 0) {
             // Convert the image data to base64
@@ -40,7 +39,7 @@ function FetchingDrinkIMG({ ID_DRINK , classNameHolder, classNameIMG }) {
             setConvertedIMG(imageURL);
             setFetchIMGCompleted(true)
         } else {
-            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+            setFetchIMGCompleted(false);
         }
 
     }, [drinkIMGs]);
