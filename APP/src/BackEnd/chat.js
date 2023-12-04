@@ -16,25 +16,17 @@ const io = new Server(server, {
 })
 
 io.on("connection", (socket) => {
-    console.log(`user Connected ${socket.id}`)
-
     socket.on("joinChatRoom", (chatID) => {
         socket.join(chatID)
-        console.log(`User with ID: ${socket.id}  AND  ${chatID}`)
-
     })
-
     socket.on("sendMessage", (data) => {
         io.to(data.chat).emit("receiveMessage", data)
     })
-
     socket.on("disconnect", () => {
         console.log("disconnecteeed", socket.id)
     })
 
 })
-
-
 server.listen(4001, () => {
     console.log("ServerRunning")
 })

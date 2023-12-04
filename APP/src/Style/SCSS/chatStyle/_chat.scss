@@ -1,6 +1,6 @@
-.chat-holder {
+.chat-holder,
+.minimalize-holder {
     background-color: rgb(255, 255, 255);
-    height: 500px;
     border-radius: 5px;
     color: black;
     position: fixed;
@@ -9,6 +9,7 @@
     bottom: 3%;
     border: 1px solid black;
     padding: 0;
+    width: 400px;
 
     .chat-header {
         display: flex;
@@ -19,6 +20,13 @@
         color: white;
         text-align: center;
         padding: 10px;
+        display: flex;
+        align-items: center;
+
+        .minimalize-icon {
+            fill: white;
+            cursor: pointer;
+        }
 
         .close-icons-chat {
             transition: all .2s ease-in-out;
@@ -28,7 +36,6 @@
                 color: red;
             }
         }
-
     }
 
     .chat-body {
@@ -85,7 +92,7 @@
         border-top: 1px solid black;
 
         .input-chat {
-            height: 40px;
+            height: 50px;
             background-color: transparent;
             outline: none;
             border: none;
@@ -93,17 +100,22 @@
         }
 
         .button-chat {
-            height: 40px;
+            height: 50px;
             background-color: transparent;
             outline: none;
             border: none;
             border-left: 1px solid black;
-            color: rgb(165, 165, 165);
+            color: rgb(255, 255, 255);
             transition: all .4s ease-in-out;
+            background-color: rgb(65, 65, 252);
 
             &:hover {
-                color: blue;
+                color: rgb(0, 0, 0);
             }
         }
     }
+}
+
+.minimalize-holder {
+    height: 40px;
 }

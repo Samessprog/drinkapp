@@ -63,6 +63,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     }, [favourites]);
 
+    const [minimalize, setMinimalize] = useState(false)
     const userSession = useContext(SessionContext).userSesion
     const chatID = 1
     const joinChat = () => {
@@ -73,26 +74,29 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     }
 
     return (
-
         <main className="main d-flex row justify-content-center me-0 main-holder">
-
-            <div className={isSmallScreen ? 'd-none' : (userScroll ? 'position-sticky position-sticky arrowUP-holder me-3 d-flex flex-row-reverse' : 'd-none')}>
-                <a href="#">
+            <div className='position-sticky  arrowUP-holder me-3 d-flex flex-row-reverse column-flex'>
+                <a href="#" className={isSmallScreen ? 'd-none' : (userScroll ? 'position-sticky  arrowUP-holder me-3 d-flex flex-row-reverse column-flex' : 'd-none')}>
                     <svg className="arrow-up " xmlns="http://www.w3.org/2000/svg" height="40" width="40">
                         <path d="M18.625 26.333h2.75v-7.375l2.958 2.917 1.959-1.917L20 13.667l-6.292 6.291 1.959 1.917 2.958-2.917ZM20 36.667q-3.417 0-6.458-1.313-3.042-1.312-5.313-3.583t-3.583-5.313Q3.333 23.417 3.333 20q0-3.458 1.313-6.5 1.312-3.042 3.583-5.292t5.313-3.562Q16.583 3.333 20 3.333q3.458 0 6.5 1.313 3.042 1.312 5.292 3.562t3.562 5.292q1.313 3.042 1.313 6.5 0 3.417-1.313 6.458-1.312 3.042-3.562 5.313T26.5 35.354q-3.042 1.313-6.5 1.313Zm0-2.792q5.792 0 9.833-4.042 4.042-4.041 4.042-9.833t-4.042-9.833Q25.792 6.125 20 6.125t-9.833 4.042Q6.125 14.208 6.125 20t4.042 9.833q4.041 4.042 9.833 4.042ZM20 20Z" />
                     </svg>
                 </a>
             </div>
+            {!minimalize &&
+                <div className='position-sticky  chat-holder-icon me-3 d-flex flex-row-reverse column-flex'>
+                    <svg className="fill-white" onClick={joinChat} xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M240-399.333h315.333V-466H240v66.667ZM240-526h480v-66.666H240V-526Zm0-126.667h480v-66.666H240v66.666ZM80-80v-733.334q0-27 19.833-46.833T146.666-880h666.668q27 0 46.833 19.833T880-813.334v506.668q0 27-19.833 46.833T813.334-240H240L80-80Zm131.333-226.666h602.001v-506.668H146.666v575.002l64.667-68.334Zm-64.667 0v-506.668 506.668Z" /></svg>
+                </div>
+            }
+
             {(showChat && userSession !== undefined) &&
                 <Chat
                     setShowChat={setShowChat}
                     socket={socket}
                     chatID={chatID}
+                    minimalize={minimalize}
+                    setMinimalize={setMinimalize}
                 />
             }
-            <button onClick={
-                joinChat
-            }>adsda</button>
 
             {currentData.map((elm) => (
                 <Drink
