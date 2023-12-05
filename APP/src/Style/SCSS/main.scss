@@ -12,6 +12,7 @@
 @import "./userComponentsStyles/adminStyles/adminAlert";
 @import "./userComponentsStyles/adminStyles/adminDrinkPreview";
 @import "./chatStyle/chat";
+@import "./friendsModal/friendsModal";
 
 body {
     margin: 0 !important;
@@ -32,7 +33,7 @@ body {
     }
 
     .arrowUP-holder {
-        top: 80%;
+        top: 68%;
 
         .arrow-up {
             fill: rgb(255, 255, 255);
@@ -46,11 +47,17 @@ body {
     }
 
     .chat-holder-icon {
-        top: 85%;
+        top: 75%;
         padding-right: 1.5rem;
         fill: white;
         cursor: pointer;
-        position: absolute;
+    }
+
+    .firends-icon {
+        top: 80%;
+        padding-right: 1.5rem;
+        fill: white;
+        cursor: pointer;
     }
 }
 
