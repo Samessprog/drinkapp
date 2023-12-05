@@ -33,8 +33,6 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
         };
     }, [socket]);
 
-
-
     return (
         <div className={`${minimalize ? 'minimalize-holder' : 'chat-holder'}`}>
             <div className="chat-header col-12 ">

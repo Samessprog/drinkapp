@@ -37,6 +37,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             });
 
         } catch (error) {
+         
             console.error(error);
         }
     };

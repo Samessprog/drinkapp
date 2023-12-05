@@ -138,9 +138,6 @@ app.get('/api/getOwnDrinks/:userSession', async (req, res) => {
 });
 
 
-
-
-
 app.get('/api/takeFavouriteUserDrink', async (req, res) => {
 
   const userIDs = req.session.user?.userID;
@@ -169,6 +166,8 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
       if (error) {
         return
       } else {
+        console.log(results)
+        console.log(userSession)
         const drinkIDs = results.map(result => result.DrinkID);
         const drinksQuery = `SELECT * FROM drink WHERE ID_Drink IN (?)`;
         connectionToDrinksDB.query(drinksQuery, [drinkIDs], (drinksError, drinksResults) => {

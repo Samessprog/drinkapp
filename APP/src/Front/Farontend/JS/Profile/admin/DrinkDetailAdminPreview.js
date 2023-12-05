@@ -6,6 +6,8 @@ import { API_URL } from '../../Components/Constants'
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSucces }) {
 
+    console.log(DrinkPreview)
+
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
     //States for Update Drink
@@ -161,6 +163,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                             History
                                         </div>
                                     </label>
+                                    
                                 </div>
                                 <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
                                     {descriptionFlag ? (

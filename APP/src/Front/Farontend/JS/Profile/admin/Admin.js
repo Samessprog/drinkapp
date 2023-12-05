@@ -62,7 +62,6 @@ function Admin({ drinkDatas }) {
     const [changeUserDataPopup, setChangeUserDataPopup] = useState({ isOpenPrev: false, userData: '' })
 
 
-    // const [blockedDrink, setBlockedDrink] = useState(null)
     // useEffect(() => {
     //     const getBlockedDrink = async () => {
     //         try {
@@ -224,7 +223,6 @@ function Admin({ drinkDatas }) {
     let currentItemsUsers;
 
     if (drinksFlag) {
-        console.log(filteredResults)
         pageCount = Math.ceil(filteredResults.length / itemsPerPage);
         currentItems = filteredResults.slice(
             currentPage * itemsPerPage,

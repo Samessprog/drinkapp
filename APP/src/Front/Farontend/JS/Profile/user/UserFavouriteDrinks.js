@@ -16,7 +16,6 @@ function UserFavouriteDrinks() {
         const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`);
         const data = await response.json();
         if (data.success) {
-          console.log(data.data)
           setUserFavouriteDrinks(data.data);
         } else {
         }

@@ -1,17 +1,16 @@
 const express = require('express');
-const multer = require('multer');
 const router = express.Router();
 const db = require('../DB');
-
-
 
 router.use('/', async (req, res) => {
     const { id, sessionidx } = req.body;
 
+    console.log(id)
+    console.log(sessionidx)
+
     const checkQuery = `SELECT * FROM userfavouritedrink WHERE UserID = ? AND DrinkID = ?`;
     db.query(checkQuery, [sessionidx, id], (checkError, checkResults) => {
         if (checkError) {
-            console.error(checkError);
             res.status(500).json({ message: 'Error checking user favorites.' });
         } else {
             if (checkResults.length > 0) {

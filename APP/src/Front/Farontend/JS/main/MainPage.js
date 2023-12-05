@@ -82,13 +82,13 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                     </svg>
                 </a>
             </div>
-            {!minimalize &&
+            {(!minimalize  && userSession !== null ) &&
                 <div className='position-sticky  chat-holder-icon me-3 d-flex flex-row-reverse column-flex'>
                     <svg className="fill-white" onClick={joinChat} xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M240-399.333h315.333V-466H240v66.667ZM240-526h480v-66.666H240V-526Zm0-126.667h480v-66.666H240v66.666ZM80-80v-733.334q0-27 19.833-46.833T146.666-880h666.668q27 0 46.833 19.833T880-813.334v506.668q0 27-19.833 46.833T813.334-240H240L80-80Zm131.333-226.666h602.001v-506.668H146.666v575.002l64.667-68.334Zm-64.667 0v-506.668 506.668Z" /></svg>
                 </div>
             }
 
-            {(showChat && userSession !== undefined) &&
+            {(showChat && userSession !== null || undefined ) &&
                 <Chat
                     setShowChat={setShowChat}
                     socket={socket}
