@@ -138,6 +138,19 @@ app.get('/api/getOwnDrinks/:userSession', async (req, res) => {
 });
 
 
+app.get('/api/getAdminProfileDrinks', (req, res) => {
+  const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Ingredients, Description, drinkHistory, Drink_Nutritional_Values, Preparation, Rate, user_id FROM drink WHERE Accepted = 1 AND DrinkBlock = 1';
+  connectionToDrinksDB.query(sql, (err, results) => {
+    if (err) {
+      console.error('error executing query: ' + err.stack);
+      res.status(500).send('Error executing query');
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
 app.get('/api/takeFavouriteUserDrink', async (req, res) => {
 
   const userIDs = req.session.user?.userID;

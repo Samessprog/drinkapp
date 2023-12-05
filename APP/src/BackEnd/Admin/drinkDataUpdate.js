@@ -7,7 +7,7 @@ const upload = multer();
 
 router.post('/', upload.single('drinkImg'), async (req, res) => {
     console.log('hello')
-    const { drinkID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
+    const { drinkID, drinkNameInput, drinkDescriptionInput, drinkHistoryInput, drinkNutritionalValues ,ing, prep, drinkLevelInput, drinkTasteInput, drinkTypeInput } = req.body;
 
     const ingredient = ing.replace(/,/g, '.');
     const preparation = prep.replace(/,/g, '.');
@@ -20,6 +20,7 @@ router.post('/', upload.single('drinkImg'), async (req, res) => {
       DrinkName = ?,
       Description = ?,
       drinkHistory = ?,
+      Drink_Nutritional_Values = ?,
       Ingredients = ?,
       Preparation = ?,
       DifficultyLevel = ?,
@@ -33,6 +34,7 @@ router.post('/', upload.single('drinkImg'), async (req, res) => {
         drinkNameInput,
         drinkDescriptionInput,
         drinkHistoryInput,
+        drinkNutritionalValues,
         ingredient,
         preparation,
         drinkLevelInput,

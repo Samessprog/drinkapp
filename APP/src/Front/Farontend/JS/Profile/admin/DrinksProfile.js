@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
     
-    console.log(elm)
 
     const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm;
 

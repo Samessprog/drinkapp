@@ -15,7 +15,7 @@ const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfi
 const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
 const AdminDataPopup = lazy(() => import("./AdminDataPopup"))
 
-function Admin({ drinkDatas }) {
+function Admin() {
 
     const dispatch = useDispatch();
 
@@ -62,25 +62,27 @@ function Admin({ drinkDatas }) {
     const [changeUserDataPopup, setChangeUserDataPopup] = useState({ isOpenPrev: false, userData: '' })
 
 
-    // useEffect(() => {
-    //     const getBlockedDrink = async () => {
-    //         try {
-    //             const response = await fetch('http://localhost:3000/api/getAdminProfileDrinks', {
-    //                 credentials: 'include'
-    //             });
-    //             if (response.ok) {
-    //                 const data = await response.json();
-    //                 console.log(data)
-    //                 setBlockedDrink(data);
-    //             } else {
-    //                 console.error('Error fetching users:', response.status);
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching users:', error);
-    //         }
-    //     };
-    //     getBlockedDrink();
-    // }, [])
+    const [allDrink, setAllDrinks] = useState([])
+
+    useEffect(() => {
+        const getBlockedDrink = async () => {
+            try {
+                const response = await fetch(`${API_URL}getAdminProfileDrinks`, {
+                    credentials: 'include'
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data)
+                    setAllDrinks(data);
+                } else {
+                    console.error('Error fetching users:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        getBlockedDrink();
+    }, [])
 
 
     //Fetch all users from DB
@@ -200,7 +202,7 @@ function Admin({ drinkDatas }) {
 
         const inputTXT = inputText.toLowerCase()
 
-        const drinksFilter = drinkDatas.filter((drnik) => {
+        const drinksFilter = allDrink?.filter((drnik) => {
             const drinkName = drnik.DrinkName.toLowerCase()
             return drinkName.includes(inputTXT)
         })
@@ -213,7 +215,7 @@ function Admin({ drinkDatas }) {
         dispatch(setFilteredUserResults(usersFilter))
         dispatch(setFilteredResults(drinksFilter))
 
-    }, [inputText, users, drinkDatas, usersFlag]);
+    }, [inputText, users, allDrink, usersFlag]);
 
 
     let pageCount;
@@ -266,7 +268,7 @@ function Admin({ drinkDatas }) {
     }, [])
 
 
-    
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

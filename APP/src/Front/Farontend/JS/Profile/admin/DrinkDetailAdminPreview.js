@@ -6,26 +6,28 @@ import { API_URL } from '../../Components/Constants'
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSucces }) {
 
-    console.log(DrinkPreview)
+    const { isOpenPrev, Drink } = DrinkPreview;
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
     const [convertetIMG, setConvertedIMG] = useState('')
     //States for Update Drink
     const [ingredient, setIngredient] = useState([])
     const [preparation, setPreparation] = useState([])
-    const [drinkNameInput, setDrinknameInput] = useState(DrinkPreview.Drink.DrinkName)
-    const [drinkDescriptionInput, setDrinkDescriptionInput] = useState(DrinkPreview.Drink.Description)
-    const [drinkHistoryInput, setDrinkHistoryInput] = useState(DrinkPreview.Drink.drinkHistory)
-    const [drinkLevelInput, setDrinkLevelInput] = useState(DrinkPreview.Drink.DifficultyLevel)
-    const [drinkTasteInput, setDrinkTasteInput] = useState(DrinkPreview.Drink.Taste)
-    const [drinkTypeInput, setDrinkTypeInput] = useState(DrinkPreview.Drink.DrinkType)
+    const [drinkNameInput, setDrinknameInput] = useState(Drink.DrinkName)
+    const [drinkDescriptionInput, setDrinkDescriptionInput] = useState(Drink.Description)
+    const [drinkHistoryInput, setDrinkHistoryInput] = useState(Drink.drinkHistory)
+    const [drinkLevelInput, setDrinkLevelInput] = useState(Drink.DifficultyLevel)
+    const [drinkTasteInput, setDrinkTasteInput] = useState(Drink.Taste)
+    const [drinkTypeInput, setDrinkTypeInput] = useState(Drink.DrinkType)
+    const [drinkNutritionalValues, setDrinkNutritionalValues] = useState(Drink.Drink_Nutritional_Values)
+
     const [drinkImg, setDrinkImg] = useState(convertetIMG)
 
     useEffect(() => {
-        if (DrinkPreview.Drink.ID_DRINK !== undefined) {
+        if (Drink.ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
-                    let ID_Drink = DrinkPreview.Drink.ID_DRINK;
+                    let ID_Drink = Drink.ID_DRINK;
                     const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_Drink}`, {
                         credentials: 'include',
                     });
@@ -56,7 +58,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
     }, [detailDrinkIMG]);
 
     useEffect(() => {
-        const result = DrinkPreview.Drink
+        const result = Drink
         setIngredient(result?.Ingredients.split('.'));
         setPreparation(result?.Preparation.split('.'));
     }, [DrinkPreview]);
@@ -64,7 +66,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
     const DrinkDateUpdate = async (event) => {
         event.preventDefault();
 
-        const drink_ID = DrinkPreview.Drink.ID_DRINK;
+        const drink_ID = Drink.ID_DRINK;
         const formData = new FormData();
 
         const fileSizeInMB = drinkImg.size / (1024 * 1024);
@@ -79,6 +81,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
         formData.append('drinkNameInput', drinkNameInput);
         formData.append('drinkDescriptionInput', drinkDescriptionInput);
         formData.append('drinkHistoryInput', drinkHistoryInput);
+        formData.append('drinkNutritionalValues', drinkNutritionalValues);
         formData.append('drinkLevelInput', drinkLevelInput);
         formData.append('drinkTasteInput', drinkTasteInput);
         formData.append('drinkTypeInput', drinkTypeInput);
@@ -126,6 +129,9 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
     }
 
     const [descriptionFlag, setDescriptionFlag] = useState(true)
+    const [historyFlag, setHistoryFlag] = useState(false)
+    const [nutritionalValues, setNutritionalValues] = useState(false)
+
     const [ingredientFlag, setIngredientFlag] = useState(true)
 
     return (
@@ -150,35 +156,63 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                             <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
                                 <div className="mt-5 fs-4 fw-bolder mb-2">
                                     <label
-                                        onClick={() => setDescriptionFlag(true)}
+                                        onClick={() => {
+                                            setDescriptionFlag(true)
+                                            setNutritionalValues(false)
+                                            setHistoryFlag(false)
+                                        }}
                                         className="ms-1">
                                         <div className={`drink-changer-data ${descriptionFlag ? 'focus' : ''}`}>
                                             Description
                                         </div>
                                     </label>
                                     <label
-                                        onClick={() => setDescriptionFlag(false)}
+                                        onClick={() => {
+                                            setHistoryFlag(true)
+                                            setDescriptionFlag(false)
+                                            setNutritionalValues(false)
+                                        }}
                                         className="ms-3">
-                                        <div className={`drink-changer-data ${descriptionFlag ? '' : 'focus'}`}>
+                                        <div className={`drink-changer-data ${historyFlag ? 'focus' : ''}`}>
                                             History
                                         </div>
                                     </label>
-                                    
+                                    <label
+                                        onClick={() => {
+                                            setNutritionalValues(true)
+                                            setDescriptionFlag(false)
+                                            setHistoryFlag(false)
+                                        }}
+                                        className="ms-3">
+                                        <div className={`drink-changer-data ${nutritionalValues ? 'focus' : ''}`}>
+                                            Nutritional values
+                                        </div>
+                                    </label>
+
                                 </div>
                                 <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
-                                    {descriptionFlag ? (
+
+                                    {descriptionFlag &&
                                         <textarea
                                             className="description-holder col-9 text-break fs-5"
                                             value={drinkDescriptionInput}
                                             onChange={(e) => setDrinkDescriptionInput(e.target.value)}
                                         />
-                                    ) : (
+                                    }
+                                    {historyFlag &&
                                         <textarea
                                             className="description-holder col-9 text-break fs-5"
                                             value={drinkHistoryInput}
                                             onChange={(e) => setDrinkHistoryInput(e.target.value)}
                                         />
-                                    )}
+                                    }
+                                    {nutritionalValues &&
+                                        <textarea
+                                            className="description-holder col-9 text-break fs-5"
+                                            value={drinkNutritionalValues}
+                                            onChange={(e) => drinkNutritionalValues(e.target.value)}
+                                        />
+                                    }
                                 </div>
                             </div>
                             <div className="d-flex t-5 ingredients-and-preparation-holder col-12 mb-5 mt-5">
@@ -233,7 +267,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                             </div>
                             <div className="d-flex justify-content-center col-12">
                                 <div className="me-2">
-                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5">{DrinkPreview.Drink.Creator}</label>
+                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5">{Drink.Creator}</label>
                                 </div>
                                 <div className="me-3 pe-0 fs-5" >
                                     <label className={drinkLevelInput === 'Easy' ? 'easyLevelClass me-2' : drinkLevelInput === 'Medium' ? 'mediumLevelClass me-2' : drinkLevelInput === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinkLevelInput}</label>
@@ -299,7 +333,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                     <div className="d-flex justify-content-center justify-content-xxl-end col-12 mt-5">
                         <button className="mb-4 me-4 change-drink-admin-button col-6 col-xxl-1" type="submit">Change Data</button>
                     </div>
-                </form>
+                </form >
             </div >
         </div >
     )
