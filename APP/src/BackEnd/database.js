@@ -156,11 +156,8 @@ app.post('/api/addFreind', (req, res) => {
 app.post('/api/confirmFriend', (req, res) => {
   const { ID_User, session_ID } = req.body;
 
-  console.log(ID_User)
-  console.log(session_ID)
-
-  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 0 WHERE ID_User = ? AND ID_Friend = ?'; // Poprawiona kolejność parametrów
-  db.query(updateFriendshipQuery, [session_ID, ID_User], (err, result) => {
+  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 0 WHERE ID_User = ? AND ID_Friend = ?';
+  db.query(updateFriendshipQuery, [ID_User, session_ID], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).json({ success: false, message: 'Wystąpił błąd podczas potwierdzania przyjaźni.' });
@@ -174,7 +171,7 @@ app.post('/api/confirmFriend', (req, res) => {
 app.post('/api/deleteFriend', (req, res) => {
   const { ID_User, session_ID } = req.body;
 
-  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 1 WHERE ID_User = ? AND ID_Friend = ?'; // Poprawiona kolejność parametrów
+  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 1 WHERE ID_User = ? AND ID_Friend = ?';
   db.query(updateFriendshipQuery, [session_ID, ID_User], (err, result) => {
     if (err) {
       console.error(err);
@@ -219,20 +216,31 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
 app.get('/api/getUserFreinds/:userID', (req, res) => {
   const userID = req.params.userID;
 
-  const getPendingFriendRequestsQuery = 'SELECT ID_Friend FROM userfriends WHERE ID_User = ? AND Waiting = 0';
-  db.query(getPendingFriendRequestsQuery, [userID], (err, results) => {
+  const getFriendRequestsQuery = `
+    SELECT ID_Friend, ID_User
+    FROM userfriends
+    WHERE (ID_User = ? OR ID_Friend = ?) AND Waiting = 0
+  `;
+
+  db.query(getFriendRequestsQuery, [userID, userID], (err, results) => {
     if (err) {
       console.error(err);
-      res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania oczekujących zaproszeń do znajomych.' });
+      res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania zaproszeń do znajomych.' });
     } else {
       if (results.length === 0) {
-        res.json({ success: true, message: 'Brak oczekujących zaproszeń do znajomych.', pendingFriendRequests: [] });
+        res.json({ success: true, message: 'Brak zaproszeń do znajomych.', pendingFriendRequests: [] });
       } else {
-        const pendingFriendRequestsIDs = results.map(result => result.ID_Friend);
+        const friendIDs = results.map(result => {
+          if (result.ID_User === userID) {
+            return result.ID_Friend;
+          } else {
+            return result.ID_User;
+          }
+        });
 
-        // Pobranie danych użytkowników na podstawie ID_Friend
+        // Pobranie danych użytkowników na podstawie ID_Friend lub ID_User
         const getUsersQuery = 'SELECT Nick, Role, userIMG, ID_User FROM users WHERE ID_User IN (?)';
-        db.query(getUsersQuery, [pendingFriendRequestsIDs], (usersErr, usersResults) => {
+        db.query(getUsersQuery, [friendIDs], (usersErr, usersResults) => {
           if (usersErr) {
             console.error(usersErr);
             res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania danych użytkowników.' });
@@ -244,13 +252,6 @@ app.get('/api/getUserFreinds/:userID', (req, res) => {
     }
   });
 });
-
-
-
-
-
-
-
 
 
 app.post('/api/removeFromUserFavourite', async (req, res) => {

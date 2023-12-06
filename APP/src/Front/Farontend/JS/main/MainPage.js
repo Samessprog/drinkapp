@@ -64,9 +64,12 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     }, [favourites]);
 
+
+    const [chatID, setChatID] = useState(1)
+    const [roomFlag, setRoomFlag] = useState(false)
     const [minimalize, setMinimalize] = useState(false)
     const userSession = useContext(SessionContext).userSesion
-    const chatID = 1
+
     const joinChat = () => {
         if (userSession) {
             socket.emit("joinChatRoom", chatID)
@@ -75,6 +78,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
     }
 
     const [friendsModalFlag, setFriendsModalFlag] = useState(false)
+
 
     return (
         <main className="main d-flex row justify-content-center me-0 main-holder">
@@ -86,10 +90,36 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 </a>
             </div>
 
-            {(!minimalize && userSession !== null) &&
+
+            {roomFlag &&
+                <div className='col-2 chat-room-holder d-flex'>
+                    <div className="d-flex flex-column col-12">
+                        <div onClick={() => setRoomFlag(false)} className="d-flex justify-content-end close-room-IDs">X</div>
+                        <div className="d-flex flex-column align-items-center">
+                            <label className="fs-5">Join to chat room</label>
+                            <div>
+                                <input className="room-id-input" type="number" placeholder="chat ID" onChange={(e) => setChatID(e.target.value)}></input>
+                            </div>
+                        </div>
+                        <div className="d-flex justify-content-center mt-3 ">
+                            <div
+                                onClick={() => {
+                                    joinChat()
+                                    setRoomFlag(false)
+                                }} className="join-to-room-button" >
+                                Join
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            {
+                (!minimalize && userSession !== null) &&
                 <>
-                    <div className='position-sticky  chat-holder-icon me-3 d-flex flex-row-reverse column-flex'>
-                        <svg className="fill-white" onClick={joinChat} xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M240-399.333h315.333V-466H240v66.667ZM240-526h480v-66.666H240V-526Zm0-126.667h480v-66.666H240v66.666ZM80-80v-733.334q0-27 19.833-46.833T146.666-880h666.668q27 0 46.833 19.833T880-813.334v506.668q0 27-19.833 46.833T813.334-240H240L80-80Zm131.333-226.666h602.001v-506.668H146.666v575.002l64.667-68.334Zm-64.667 0v-506.668 506.668Z" /></svg>
+                    <div onClick={() => setRoomFlag(true)} className='position-sticky  chat-holder-icon me-3 d-flex flex-row-reverse column-flex'>
+                        <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M240-399.333h315.333V-466H240v66.667ZM240-526h480v-66.666H240V-526Zm0-126.667h480v-66.666H240v66.666ZM80-80v-733.334q0-27 19.833-46.833T146.666-880h666.668q27 0 46.833 19.833T880-813.334v506.668q0 27-19.833 46.833T813.334-240H240L80-80Zm131.333-226.666h602.001v-506.668H146.666v575.002l64.667-68.334Zm-64.667 0v-506.668 506.668Z" /></svg>
                     </div>
 
                     <div onClick={() => setFriendsModalFlag(true)} className='position-sticky  firends-icon me-3 d-flex flex-row-reverse column-flex' >
@@ -98,7 +128,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 </>
             }
 
-            {(showChat && userSession !== null || undefined) &&
+            {
+                (showChat && userSession !== null || undefined) &&
                 <Chat
                     setShowChat={setShowChat}
                     socket={socket}
@@ -108,21 +139,26 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 />
             }
 
-            {friendsModalFlag &&
+            {
+                friendsModalFlag &&
                 <FriendsPopup setFriendsModalFlag={setFriendsModalFlag} />
             }
 
-            {currentData.map((elm) => (
-                <Drink
-                    favourites={favourites}
-                    setFavourites={setFavourites}
-                    key={elm.ID_Drink}
-                    elm={elm}
-                    userFavouriteDrinks={userFavouriteDrinks}
-                />
-            ))}
+            {
+                currentData.map((elm) => (
+                    <Drink
+                        favourites={favourites}
+                        setFavourites={setFavourites}
+                        key={elm.ID_Drink}
+                        elm={elm}
+                        userFavouriteDrinks={userFavouriteDrinks}
+                    />
+                ))
+            }
 
-            {!drinkNotFound && searchingDrink.length > itemsPerPage &&
+
+            {
+                !drinkNotFound && searchingDrink.length > itemsPerPage &&
                 <Pagination
                     pageCount={pageCount}
                     onPageChange={handlePageClick}
@@ -133,7 +169,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
                 />
             }
 
-            {drinkNotFound &&
+            {
+                drinkNotFound &&
                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <DDE />
