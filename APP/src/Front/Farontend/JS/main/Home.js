@@ -7,7 +7,7 @@ import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
 const SpecialDrinks = lazy(() => import("../NavBarComponents/SpecialDrinks"))
 
 export default function Home({ searchingDrink, specialOptionsPopup, setSearchingDrink,
-    drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset }) {
+    drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset, setFriendsProfile }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -34,6 +34,7 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
                 searchingDrink={searchingDrink}
                 offset={offset}
                 setOffset={setOffset}
+                setFriendsProfile={setFriendsProfile}
             />
         </div>
     )

@@ -5,16 +5,14 @@ import OwnDrinkCarusel from "../../carouselsComponents/OwnDrinkCarusel";
 import { SessionContext } from "../../Session/SessionContext";
 import { useState } from "react";
 
-function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink }) {
+function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) {
 
     const userSesion = useContext(SessionContext).userSesion;
-    const creator = userSesion.userID
     const [userOwnDrink, setUserOwnDrink] = useState('')
 
-
     useEffect(() => {
-        const fetchUserFavouriteDrinks = async () => {
-            const userIDs = userSesion.userID
+        const fetchUserOwnDrinks = async () => {
+            const userIDs = freindsProfile.friendID || userSesion.userID
             try {
                 const response = await fetch(`http://localhost:3000/api/getOwnDrinks/${userIDs}`);
                 const data = await response.json();
@@ -28,7 +26,7 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink }) {
             }
         };
 
-        fetchUserFavouriteDrinks();
+        fetchUserOwnDrinks();
     }, [userSesion]);
 
     return (

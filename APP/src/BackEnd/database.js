@@ -348,7 +348,6 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
   }
 });
 
-
 app.use('/api/drinksDataUpdate', drinksDataUpdate)
 
 

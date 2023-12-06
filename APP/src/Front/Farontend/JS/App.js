@@ -70,6 +70,7 @@ function App() {
     fetchData();
   }, []);
 
+  const [freindsProfile, setFriendsProfile] = useState({ friendID: null, freindNick: '' })
 
   return (
 
@@ -81,6 +82,7 @@ function App() {
         searchingDrink={searchingDrink}
         setSearchingDrink={setSearchingDrink}
         userScroll={userScroll}
+        setFriendsProfile={setFriendsProfile}
       />
 
       <SessionContext.Provider value={{ userSesion, setUserSession }}>
@@ -96,6 +98,7 @@ function App() {
               setSearchingDrink={setSearchingDrink}
               offset={offset}
               setOffset={setOffset}
+              setFriendsProfile={setFriendsProfile}
 
             />}>
           </Route>
@@ -115,7 +118,7 @@ function App() {
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
                   <PrivateRoute element={
-                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} />
+                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} freindsProfile={freindsProfile} />
                   } />
                 </Suspense>
               </ErrorBoundary>

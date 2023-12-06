@@ -15,7 +15,7 @@ const DDE = lazy(() => import("../ErrorsComponents/DDE"))
 
 const socket = io.connect("http://localhost:4001")
 
-function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
+function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsProfile }) {
 
     const dispatch = useDispatch();
 
@@ -141,7 +141,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
             {
                 friendsModalFlag &&
-                <FriendsPopup setFriendsModalFlag={setFriendsModalFlag} />
+                <FriendsPopup setFriendsModalFlag={setFriendsModalFlag} setFriendsProfile={setFriendsProfile}/>
             }
 
             {

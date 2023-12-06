@@ -3,7 +3,8 @@ import Carousel from "../../carouselsComponents/Carousel";
 import { useEffect, useState, useContext } from "react";
 import { SessionContext } from "../../Session/SessionContext";
 
-function UserFavouriteDrinks() {
+function UserFavouriteDrinks({ freindsProfile }) {
+
 
   const [isHidden, setIsHidden] = useState(false)
   const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
@@ -11,7 +12,8 @@ function UserFavouriteDrinks() {
 
   useEffect(() => {
     const fetchUserFavouriteDrinks = async () => {
-      const userIDs = userSesion.nick
+      const userIDs = freindsProfile.freindNick || userSesion.nick
+      console.log(userIDs)
       try {
         const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`);
         const data = await response.json();
