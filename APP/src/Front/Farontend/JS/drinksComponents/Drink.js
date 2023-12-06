@@ -6,7 +6,6 @@ import { SessionContext } from "../Session/SessionContext";
 import FetchingDrinkIMG from "./FetchingDrinkIMG";
 import { API_URL } from '../Components/Constants';
 
-
 function Drink({ elm, setFavourites, userFavouriteDrinks }) {
 
     const { ID_DRINK, DrinkName, DifficultyLevel, Taste, DrinkType, Rate, Creator } = elm
@@ -37,7 +36,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
             });
 
         } catch (error) {
-         
+
             console.error(error);
         }
     };

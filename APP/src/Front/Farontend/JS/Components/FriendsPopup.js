@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Buffer } from "buffer";
 
+import UserFriendsIMG from "./UserFriendsIMG";
 import { SessionContext } from '../Session/SessionContext'
 import { API_URL } from "./Constants";
 
@@ -31,7 +32,6 @@ function FriendsPopup({ setFriendsModalFlag }) {
     };
 
     const [userIMGres, setUserIMGres] = useState('')
-
     useEffect(() => {
         if (userResults) {
             if (userResults.userIMG) {
@@ -42,7 +42,6 @@ function FriendsPopup({ setFriendsModalFlag }) {
             } else {
 
             }
-
         }
     }, [userResults]);
 
@@ -223,11 +222,12 @@ function FriendsPopup({ setFriendsModalFlag }) {
                                     Your friends
                                 </div>
                                 <div>
+
                                     {userFreinds.map((elm) =>
                                         <div className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center ">
                                             <div className="d-flex align-items-center">
                                                 <div>
-                                                    <img src={userIMGres} className="user-friend-img" ></img>
+                                                    <UserFriendsIMG elm={elm.userIMG} />
                                                 </div>
                                                 <div className="ms-5 fs-5">
                                                     {elm.Nick}
@@ -254,7 +254,7 @@ function FriendsPopup({ setFriendsModalFlag }) {
                                         <div className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center ">
                                             <div className="d-flex align-items-center">
                                                 <div>
-                                                    <img src={userIMGres} className="user-friend-img" ></img>
+                                                    <UserFriendsIMG elm={elm.userIMG} />
                                                 </div>
                                                 <div className="ms-5 fs-5">
                                                     {elm.Nick}
