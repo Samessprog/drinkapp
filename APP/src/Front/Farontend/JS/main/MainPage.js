@@ -81,7 +81,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
 
     return (
-        <main className="main d-flex row justify-content-center me-0 main-holder">
+        <main className="main d-flex row justify-content-center me-0  main-holder position-relative">
             <div className='position-sticky  arrowUP-holder me-3 d-flex flex-row-reverse column-flex'>
                 <a href="#" className={isSmallScreen ? 'd-none' : (userScroll ? 'position-sticky  arrowUP-holder me-3 d-flex flex-row-reverse column-flex' : 'd-none')}>
                     <svg className="arrow-up " xmlns="http://www.w3.org/2000/svg" height="40" width="40">
@@ -118,7 +118,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
             {
                 (!minimalize && userSession !== null) &&
                 <>
-                    <div onClick={() => setRoomFlag(true)} className='position-sticky  chat-holder-icon me-3 d-flex flex-row-reverse column-flex'>
+                    <div onClick={() => setRoomFlag(true)} className='position-sticky chat-holder-icon me-3 d-flex flex-row-reverse column-flex '>
                         <svg className="fill-white" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M240-399.333h315.333V-466H240v66.667ZM240-526h480v-66.666H240V-526Zm0-126.667h480v-66.666H240v66.666ZM80-80v-733.334q0-27 19.833-46.833T146.666-880h666.668q27 0 46.833 19.833T880-813.334v506.668q0 27-19.833 46.833T813.334-240H240L80-80Zm131.333-226.666h602.001v-506.668H146.666v575.002l64.667-68.334Zm-64.667 0v-506.668 506.668Z" /></svg>
                     </div>
 

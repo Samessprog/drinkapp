@@ -27,6 +27,7 @@ body {
 
 .main-holder {
     min-height: 373px;
+    
 
     @media (min-width: 2300px) {
         min-height: 643px;
@@ -58,7 +59,7 @@ body {
         border-radius: 10px;
         border: 1px solid black;
 
-        .close-room-IDs{
+        .close-room-IDs {
             cursor: pointer;
             font-size: 20px;
             color: red;
@@ -66,7 +67,7 @@ body {
 
         }
 
-        .room-id-input{
+        .room-id-input {
             background-color: transparent;
             outline: none;
             border: none;
@@ -102,6 +103,12 @@ body {
         padding-right: 1.5rem;
         fill: white;
         cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            fill: rgb(252, 217, 172);
+            transform: translateY(-5px);
+        }
     }
 
     .firends-icon {
@@ -109,6 +116,12 @@ body {
         padding-right: 1.5rem;
         fill: white;
         cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            fill: rgb(252, 217, 172);
+            transform: translateY(-5px);
+        }
     }
 }
 

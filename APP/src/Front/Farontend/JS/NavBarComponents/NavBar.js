@@ -116,7 +116,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 drinkDatas={drinkDatas}
             />
 
-            <div className="col-12 NavBarContentHolder p-3 pb-0 ">
+            <div className="col-12 NavBarContentHolder p-3 pb-0">
                 <div className={`col-12 d-flex align-items-center ${userScroll ? 'pb-3' : 'pb-0'}`} >
                     <div className={userScroll ? `d-none` : `col-xl-4 brand-name-SCROLL d-md-flex ${location.pathname.endsWith('/') ? '' : 'col-xl-10 col-xxl-4'}`}>
                         <Link className="d-flex align-items-center logo-link" to="/">
