@@ -189,8 +189,8 @@ app.post('/api/deleteFriend', (req, res) => {
 
 app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
   const userID = req.params.userID;
-  // Pobranie ID_Friend, gdy Waiting = 1 dla danego użytkownika
-  const getPendingFriendRequestsQuery = 'SELECT ID_Friend FROM userfriends WHERE ID_User = ? AND Waiting = 1';
+  // Pobranie ID_Friend, gdy Waiting = 1 od innych użytkowników
+  const getPendingFriendRequestsQuery = 'SELECT ID_User FROM userfriends WHERE ID_Friend = ? AND Waiting = 1';
   db.query(getPendingFriendRequestsQuery, [userID], (err, results) => {
     if (err) {
       console.error(err);
@@ -199,9 +199,9 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
       if (results.length === 0) {
         res.json({ success: true, message: 'Brak oczekujących zaproszeń do znajomych.', pendingFriendRequests: [] });
       } else {
-        const pendingFriendRequestsIDs = results.map(result => result.ID_Friend);
+        const pendingFriendRequestsIDs = results.map(result => result.ID_User);
 
-        // Pobranie danych użytkowników na podstawie ID_Friend
+        // Pobranie danych użytkowników na podstawie ID_User
         const getUsersQuery = 'SELECT Nick, Role, userIMG, ID_User FROM users WHERE ID_User IN (?)';
         db.query(getUsersQuery, [pendingFriendRequestsIDs], (usersErr, usersResults) => {
           if (usersErr) {
@@ -215,10 +215,6 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
     }
   });
 });
-
-
-
-
 
 app.get('/api/getUserFreinds/:userID', (req, res) => {
   const userID = req.params.userID;

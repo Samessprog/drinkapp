@@ -10,7 +10,6 @@
     padding: 10px;
     width: 400px;
     height: 700px;
-    overflow-y: scroll;
 
     .brand-friend {
         color: white;
@@ -77,6 +76,7 @@
         .user-friend-img {
             height: 90px;
             width: 90px;
+            border-radius: 10px;
         }
 
         .add-icon {
@@ -84,15 +84,32 @@
             cursor: pointer;
         }
 
-        .del-friend{
+        .del-friend {
             fill: red;
+            cursor: pointer;
         }
     }
 
-    .users-friend {
-        color: white;
-        padding-bottom: 5px;
-        border-bottom: 1px solid white;
-    }
+    .user-friends-holder {
 
+
+        .users-friend {
+            color: white;
+            padding-bottom: 5px;
+            border-bottom: 1px solid white;
+        }
+
+        .user-friends-content {
+            max-height: 100%;
+            overflow-y: scroll;
+
+            .items-holder {
+                border: 1px solid white;
+                padding: 5px;
+                border-radius: 10px;
+                margin-left: .5rem;
+            }
+        }
+        
+    }
 }
