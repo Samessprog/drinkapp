@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import UserOwnDrink from "../Profile/user/UserDrinks/UserDrink";
 
-function OwnDrinkCarusel({userOwnDrink}) {
+function OwnDrinkCarusel({ userOwnDrink, freindsProfile }) {
 
     //states for carousel
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,7 +43,6 @@ function OwnDrinkCarusel({userOwnDrink}) {
         setCurrentIndex(newIndex);
     };
 
-
     return (
         <div className="carousel col-12 ">
             <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
@@ -51,7 +50,7 @@ function OwnDrinkCarusel({userOwnDrink}) {
                     <div className="no-fav-drinks fs-4">you do not have your own drink compositions</div>
                 ) : (
                     showItemsOwn.map((elm) => (
-                        <UserOwnDrink key={elm.ID_Drink} elm={elm} />
+                        <UserOwnDrink key={elm.ID_Drink} elm={elm} freindsProfile={freindsProfile} />
                     ))
                 )}
             </div>

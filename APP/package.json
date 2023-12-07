@@ -48,7 +48,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "concurrently \"set PORT=3006 && react-scripts start\" \"node src/api/drinksapi.js\" \" node src/backend/database.js\" \" node src/backend/webb.js\" \" node src/backend/chat.js\" ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

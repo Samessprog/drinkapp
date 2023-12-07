@@ -5,7 +5,6 @@ import { SessionContext } from "../../Session/SessionContext";
 
 function UserFavouriteDrinks({ freindsProfile }) {
 
-
   const [isHidden, setIsHidden] = useState(false)
   const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
   const userSesion = useContext(SessionContext).userSesion;
@@ -38,6 +37,7 @@ function UserFavouriteDrinks({ freindsProfile }) {
             favouriteUsersDrink={favouriteUsersDrink}
             setIsHidden={setIsHidden}
             isHidden={isHidden}
+            freindsProfile={freindsProfile}
           >
           </Carousel>
         </div>
@@ -45,8 +45,6 @@ function UserFavouriteDrinks({ freindsProfile }) {
       <div className="d-flex mt-4 flex-md-row-reverse me-4 flex-column ">
       </div>
     </div >
-
-
   );
 }
 

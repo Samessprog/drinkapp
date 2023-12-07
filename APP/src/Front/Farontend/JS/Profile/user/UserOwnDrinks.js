@@ -18,8 +18,6 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
                 const data = await response.json();
                 if (data.success) {
                     setUserOwnDrink(data.drinks)
-                } else {
-                    // Obsługa błędów, jeśli to konieczne
                 }
             } catch (error) {
                 console.log(error);
@@ -36,17 +34,21 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
                 <div className="user-favourite-frinks d-flex justify-content-center">
                     <OwnDrinkCarusel
                         userOwnDrink={userOwnDrink}
+                        freindsProfile={freindsProfile}
                     >
                     </OwnDrinkCarusel>
                 </div>
             </div>
-            <div className="d-flex mt-5 flex-xl-row-reverse me-5 ">
-                <div className="d-flex justify-content-center mt-4 align-items-center ">
-                    <button className="mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user" onClick={() => setAddUserNewDrink(!addUserNewDrink)}>
-                        <div className="pe-2 ps-2">Create your own drink</div>
-                    </button>
+            {!freindsProfile.friendID &&
+                <div className="d-flex mt-5 flex-xl-row-reverse me-5 ">
+                    <div className="d-flex justify-content-center mt-4 align-items-center ">
+                        <button className="mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user" onClick={() => setAddUserNewDrink(!addUserNewDrink)}>
+                            <div className="pe-2 ps-2">Create your own drink</div>
+                        </button>
+                    </div>
                 </div>
-            </div>
+
+            }
         </div >
     )
 }

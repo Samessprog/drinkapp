@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink";
 
-const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
+const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }) => {
 
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,6 +55,7 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden }) => {
               setIsHidden={setIsHidden}
               isHidden={isHidden}
               favouriteUsersDrink={favouriteUsersDrink}
+              freindsProfile={freindsProfile}
             />
           ))
         )}
