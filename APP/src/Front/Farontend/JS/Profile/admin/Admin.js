@@ -1,14 +1,14 @@
 //Imports
-import { useEffect, useState, lazy, Suspense } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { ErrorBoundary } from "react-error-boundary";
+import { useEffect, useState, lazy, Suspense } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { ErrorBoundary } from "react-error-boundary"
 
-import ErrorFallback from "../../ErrorsComponents/ErrorBoundary";
-import AdminPagination from "./AdminPagination";
+import ErrorFallback from "../../ErrorsComponents/ErrorBoundary"
+import AdminPagination from "./AdminPagination"
 import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
-import DrinksProfile from "./DrinksProfile";
-import WindowAdminAlert from "../../Components/DeleteOrBlockAlert";
-import AdminFilter from "./AdminFilter";
+import DrinksProfile from "./DrinksProfile"
+import WindowAdminAlert from "../../Components/DeleteOrBlockAlert"
+import AdminFilter from "./AdminFilter"
 import { API_URL } from '../../Components/Constants'
 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
@@ -17,7 +17,7 @@ const AdminDataPopup = lazy(() => import("./AdminDataPopup"))
 
 function Admin() {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const [blockedButton, setBlockedButton] = useState(false)
     //Admin Sattes to change USER -> DRINKS
@@ -29,7 +29,7 @@ function Admin() {
 
     const [filteredNewDrinksResults, setFilteredNewDrinksResults] = useState([])
 
-    const [inputText, setInputText] = useState('');
+    const [inputText, setInputText] = useState('')
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(false)
     const [unAlphabeticalOrder, setUnAlphabeticalOrder] = useState(false)
     const [isBlocked, setIsBlocked] = useState(false)
@@ -41,18 +41,18 @@ function Admin() {
 
     const [showDrinksOptions, setShowDrinksOptions] = useState(false)
     //Carousel States
-    const [currentPage, setCurrentPage] = useState(0);
-    const [currentPageUsers, setCurrentPageUsers] = useState(0);
-    const [currentPageNewDrink, setCurrentPageNewDrink] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPageUsers, setCurrentPageUsers] = useState(0)
+    const [currentPageNewDrink, setCurrentPageNewDrink] = useState(0)
 
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([])
     // ile drinków na strone ma się wyświetlać i userów
-    const itemsPerPage = 10;
+    const itemsPerPage = 10
 
-    const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null });
+    const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null })
 
-    const [hiddenElements, setHiddenElements] = useState([]);
-    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([]);
+    const [hiddenElements, setHiddenElements] = useState([])
+    const [hiddenDrinkElements, setHiddenDrinkElements] = useState([])
 
     const [showNewsFlag, setShowNewsFlag] = useState(false)
     const [filterByDate, setFilterByDate] = useState(false)
@@ -69,19 +69,19 @@ function Admin() {
             try {
                 const response = await fetch(`${API_URL}getAdminProfileDrinks`, {
                     credentials: 'include'
-                });
+                })
                 if (response.ok) {
-                    const data = await response.json();
+                    const data = await response.json()
                     console.log(data)
-                    setAllDrinks(data);
+                    setAllDrinks(data)
                 } else {
-                    console.error('Error fetching users:', response.status);
+                    console.error('Error fetching users:', response.status)
                 }
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error fetching users:', error)
             }
-        };
-        getBlockedDrink();
+        }
+        getBlockedDrink()
     }, [])
 
 
@@ -91,19 +91,19 @@ function Admin() {
             try {
                 const response = await fetch(`${API_URL}getAllUsers`, {
                     credentials: 'include'
-                });
+                })
 
                 if (response.ok) {
-                    const data = await response.json();
-                    setUsers(data);
+                    const data = await response.json()
+                    setUsers(data)
                 } else {
-                    console.error('Error fetching users:', response.status);
+                    console.error('Error fetching users:', response.status)
                 }
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error fetching users:', error)
             }
-        };
-        userButtonHandler();
+        }
+        userButtonHandler()
     }, [])
 
 
@@ -112,90 +112,90 @@ function Admin() {
     useEffect(() => {
         if (announcementSucces) {
             const timer = setTimeout(() => {
-                setAnnouncementSucces(false);
-            }, 3000);
+                setAnnouncementSucces(false)
+            }, 3000)
 
             // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
-            return () => clearTimeout(timer);
+            return () => clearTimeout(timer)
         }
-    }, [announcementSucces]);
+    }, [announcementSucces])
 
     useEffect(() => {
         if (announcementsError) {
             const timer = setTimeout(() => {
-                setAnnouncementsError(false);
-            }, 3000);
+                setAnnouncementsError(false)
+            }, 3000)
 
             // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
-            return () => clearTimeout(timer);
+            return () => clearTimeout(timer)
         }
-    }, [announcementsError]);
+    }, [announcementsError])
 
     useEffect(() => {
         if (announcementsUserDoesntExist) {
             const timer = setTimeout(() => {
-                setAnnouncementsUserDoesntExist(false);
-            }, 3000);
+                setAnnouncementsUserDoesntExist(false)
+            }, 3000)
 
             // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
-            return () => clearTimeout(timer);
+            return () => clearTimeout(timer)
         }
-    }, [announcementsUserDoesntExist]);
+    }, [announcementsUserDoesntExist])
 
     //Filtering Drinks do optymalizacji!!
     useEffect(() => {
-        const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0;
-        let filteredResults;
+        const direction = alphabeticalOrder ? 1 : unAlphabeticalOrder ? -1 : 0
+        let filteredResults
         if (drinksFlag) {
             filteredResults = currentItems.slice().sort((x, y) => {
-                const drinkNameX = x.DrinkName.toUpperCase();
-                const drinkNameY = y.DrinkName.toUpperCase();
-                return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction;
-            });
-            dispatch(setFilteredResults(filteredResults));
+                const drinkNameX = x.DrinkName.toUpperCase()
+                const drinkNameY = y.DrinkName.toUpperCase()
+                return (drinkNameX < drinkNameY ? -1 : drinkNameX > drinkNameY ? 1 : 0) * direction
+            })
+            dispatch(setFilteredResults(filteredResults))
         } else if (usersFlag) {
-            let filteredResults;
+            let filteredResults
 
             if (isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
-                filteredResults = currentItemsUsers?.filter((userElm) => userElm.IsBlocked === 1);
+                filteredResults = currentItemsUsers?.filter((userElm) => userElm.IsBlocked === 1)
             } else if (!isBlocked && !alphabeticalOrder && !unAlphabeticalOrder) {
-                filteredResults = users;
+                filteredResults = users
             } else {
                 filteredResults = currentItemsUsers?.slice().sort((x, y) => {
-                    const userNameX = x.Nick.toUpperCase();
-                    const userNameY = y.Nick.toUpperCase();
-                    return (userNameX < userNameY ? -1 : userNameX > userNameY ? 1 : 0) * direction;
-                });
+                    const userNameX = x.Nick.toUpperCase()
+                    const userNameY = y.Nick.toUpperCase()
+                    return (userNameX < userNameY ? -1 : userNameX > userNameY ? 1 : 0) * direction
+                })
             }
-            dispatch(setFilteredUserResults(filteredResults));
+            dispatch(setFilteredUserResults(filteredResults))
         } else if (showNewsFlag) {
             if (filterByDate) {
                 filteredResults = currentItemsNewDrink.slice().sort((x, y) => {
-                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'));
-                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'));
+                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'))
+                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'))
 
                     if (direction === 1) {
-                        return dateX - dateY;
+                        return dateX - dateY
                     } else {
-                        return dateY - dateX;
+                        return dateY - dateX
                     }
-                });
+                })
             } else {
                 filteredResults = currentItemsNewDrink?.slice().sort((x, y) => {
-                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'));
-                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'));
+                    const dateX = new Date(x.Date_Of_Creation.split('.').reverse().join('-'))
+                    const dateY = new Date(y.Date_Of_Creation.split('.').reverse().join('-'))
                     if (direction === -1) {
-                        return dateY - dateX;
+                        return dateY - dateX
                     } else {
-                        return dateX - dateY;
+                        return dateX - dateY
                     }
-                });
+                })
             }
 
-            setFilteredNewDrinksResults(filteredResults);
+            setFilteredNewDrinksResults(filteredResults)
         }
 
-    }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, filterByDate, filterByDate]);
+    }, [alphabeticalOrder, unAlphabeticalOrder, isBlocked, filterByDate, filterByDate])
 
     //Filtering Users
     useEffect(() => {
@@ -208,70 +208,70 @@ function Admin() {
         })
 
         const usersFilter = users.filter((user) => {
-            const userNickName = user.Nick.toLowerCase();
+            const userNickName = user.Nick.toLowerCase()
             return userNickName.includes(inputTXT)
         })
 
         dispatch(setFilteredUserResults(usersFilter))
         dispatch(setFilteredResults(drinksFilter))
 
-    }, [inputText, users, allDrink, usersFlag]);
+    }, [inputText, users, allDrink, usersFlag])
 
 
-    let pageCount;
-    let currentItems;
+    let pageCount
+    let currentItems
 
-    let pageCountUsers;
-    let currentItemsUsers;
+    let pageCountUsers
+    let currentItemsUsers
 
     if (drinksFlag) {
-        pageCount = Math.ceil(filteredResults.length / itemsPerPage);
+        pageCount = Math.ceil(filteredResults.length / itemsPerPage)
         currentItems = filteredResults.slice(
             currentPage * itemsPerPage,
             (currentPage + 1) * itemsPerPage
-        );
+        )
     }
 
     if (usersFlag) {
-        pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage);
+        pageCountUsers = Math.ceil(filteredUserResults.length / itemsPerPage)
         currentItemsUsers = filteredUserResults.slice(
             currentPageUsers * itemsPerPage,
             (currentPageUsers + 1) * itemsPerPage
-        );
+        )
     }
 
-    const pageCountNewDrink = Math.ceil(filteredNewDrinksResults?.length / itemsPerPage);
+    const pageCountNewDrink = Math.ceil(filteredNewDrinksResults?.length / itemsPerPage)
 
     const currentItemsNewDrink = filteredNewDrinksResults?.slice(
         currentPageNewDrink * itemsPerPage,
         (currentPageNewDrink + 1) * itemsPerPage
-    );
+    )
 
     useEffect(() => {
         const getUnAcceptedDrinks = async () => {
             try {
                 const response = await fetch(`${API_URL}getUnAcceptedDrinks`, {
                     credentials: 'include'
-                });
+                })
 
                 if (response.ok) {
-                    const data = await response.json();
-                    setFilteredNewDrinksResults(data);
+                    const data = await response.json()
+                    setFilteredNewDrinksResults(data)
                 } else {
-                    console.error('Error fetching users:', response.status);
+                    console.error('Error fetching users:', response.status)
                 }
             } catch (error) {
-                console.error('Error fetching users:', error);
+                console.error('Error fetching users:', error)
             }
-        };
-        getUnAcceptedDrinks();
+        }
+        getUnAcceptedDrinks()
     }, [])
 
 
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className="col-12">
@@ -471,7 +471,7 @@ function Admin() {
                 </ErrorBoundary>
             }
         </div>
-    );
+    )
 }
 
-export default Admin;
+export default Admin

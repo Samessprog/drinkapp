@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Buffer } from "buffer";
+import React, { useState, useEffect } from "react"
+import { Buffer } from "buffer"
 import { Ring } from '@uiball/loaders'
 
 function UserFriendsIMG({ elm }) {
@@ -9,15 +9,15 @@ function UserFriendsIMG({ elm }) {
 
     useEffect(() => {
         if (elm) {
-            const base64Image = Buffer.from(elm).toString('base64');
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setUserIMGres(imageURL);
+            const base64Image = Buffer.from(elm).toString('base64')
+            const imageURL = `data:image/jpegbase64,${base64Image}`
+            setUserIMGres(imageURL)
             setLoadingFlag(true)
         } else {
             setLoadingFlag(false)
             return 0
         }
-    }, [elm]);
+    }, [elm])
 
     return (
         <>
@@ -35,4 +35,4 @@ function UserFriendsIMG({ elm }) {
     )
 }
 
-export default UserFriendsIMG;
+export default UserFriendsIMG

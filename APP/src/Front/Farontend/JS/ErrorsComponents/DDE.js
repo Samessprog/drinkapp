@@ -10,4 +10,4 @@ function DDE() {
 
 }
 
-export default DDE;
+export default DDE

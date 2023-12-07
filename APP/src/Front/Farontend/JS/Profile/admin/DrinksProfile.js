@@ -1,16 +1,16 @@
 //Imports
-import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG";
+import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG"
 import { API_URL } from '../../Components/Constants'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
     
 
-    const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm;
+    const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm
 
     const acceptDrink = async () => {
 
-        let drinkID = ID_DRINK;
+        let drinkID = ID_DRINK
 
         try {
             const response = await fetch(`${API_URL}acceptDrinksByAdmin`, {
@@ -19,14 +19,14 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ drinkID }),
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (response.status === 200 || data.message === 'User block successfully') {
                 setAnnouncementSucces(true)
             } else if (response.status === 404 && data.error === 'User not found') {
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
@@ -91,4 +91,4 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
     )
 }
 
-export default DrinksProfile;
+export default DrinksProfile

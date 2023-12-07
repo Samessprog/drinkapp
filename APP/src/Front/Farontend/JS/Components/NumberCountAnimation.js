@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 function NumberCountAnimation() { 
 
@@ -6,4 +6,4 @@ function NumberCountAnimation() {
     
 }
 
-export default NumberCountAnimation;
+export default NumberCountAnimation

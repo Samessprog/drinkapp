@@ -1,15 +1,15 @@
 //Imports
-import io from 'socket.io-client';
-import { useRef, useEffect, useContext } from 'react';
+import io from 'socket.io-client'
+import { useRef, useEffect, useContext } from 'react'
 import { SessionContext } from '../Session/SessionContext'
-import { all } from 'axios';
+import { all } from 'axios'
 
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
     setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
 
-    const socket = io('http://localhost:4000');
+    const socket = io('http://localhost:4000')
 
     const userData = useContext(SessionContext).userSesion
 
@@ -18,83 +18,83 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
         let ID_Drink = windowAlert.ObjectID.ID_DRINK
         socket.emit('deleteDrink', { ID_Drink })
 
-    };
+    }
 
     const deleteUser = async () => {
-        let userID = windowAlert.ObjectID.ID_User;
+        let userID = windowAlert.ObjectID.ID_User
         if (userData.userID === userID) {
             return alert('you can not ban yourself')
         }
-        socket.emit('deleteUser', { userID });
-    };
+        socket.emit('deleteUser', { userID })
+    }
 
     const blockUser = () => {
-        let userID = windowAlert.ObjectID.ID_User;
+        let userID = windowAlert.ObjectID.ID_User
         if (userData.userID === userID) {
             return alert('you can not block yourself')
         }
-        socket.emit('blockUser', { userID });
-    };
+        socket.emit('blockUser', { userID })
+    }
 
     socket.on('blockUserResponse', (data) => {
         if (data.success) {
-            setAnnouncementSucces(true);
+            setAnnouncementSucces(true)
 
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.map((user) => {
                     if (user.ID_User === data.userID) {
-                        return { ...user, IsBlocked: !user.IsBlocked };
+                        return { ...user, IsBlocked: !user.IsBlocked }
                     }
-                    return user;
-                });
-                return updatedUsers;
-            });
+                    return user
+                })
+                return updatedUsers
+            })
         } else if (data.error === 'User not found') {
-            setAnnouncementsUserDoesntExist(true);
+            setAnnouncementsUserDoesntExist(true)
         } else {
-            setAnnouncementsError(true);
+            setAnnouncementsError(true)
         }
-    });
+    })
 
     socket.on('deleteUserResponse', (data) => {
         if (data.success) {
-            setAnnouncementSucces(true);
+            setAnnouncementSucces(true)
 
             setUsers((prevUsers) => {
-                const updatedUsers = prevUsers.filter((user) => user.ID_User !== data.userID);
+                const updatedUsers = prevUsers.filter((user) => user.ID_User !== data.userID)
                 console.log(updatedUsers)
-                return updatedUsers;
-            });
+                return updatedUsers
+            })
         } else if (data.error === 'User not found') {
-            setAnnouncementsUserDoesntExist(true);
+            setAnnouncementsUserDoesntExist(true)
         } else {
-            setAnnouncementsError(true);
+            setAnnouncementsError(true)
         }
-    });
+    })
 
     const hideElement = (elementId, drinkElementID) => {
         if (elementId) {
-            setHiddenElements([...hiddenElements, elementId]);
+            setHiddenElements([...hiddenElements, elementId])
         } else {
             setHiddenDrinkElements([...hiddenDrinkElements, drinkElementID])
         }
     }
 
-    let alertWindow = useRef();
+    let alertWindow = useRef()
 
     useEffect(() => {
         let handler = (e) => {
             if (!alertWindow.current.contains(e.target)) {
                 setWindowAlert(!windowAlert.isOpen)
             }
-        };
+        }
 
-        document.addEventListener("mousedown", handler);
+        document.addEventListener("mousedown", handler)
 
         return () => {
-            document.removeEventListener("mousedown", handler);
-        };
-    }, []);
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
 
     return (
         <div ref={alertWindow} className="bg-red">
@@ -110,7 +110,11 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
             <div className="d-flex justify-content-evenly mb-4 mt-4">
                 {blockedButton === false &&
                     <label onClick={windowAlert.ObjectID.ID_User !== undefined ? deleteUser : deleteDrink} >
-                        <button className="confirming-button" onClick={() => hideElement(windowAlert.ObjectID.ID_User, windowAlert.ObjectID.ID_DRINK)} >Yes</button>
+                        <button
+                            className="confirming-button"
+                            onClick={() => hideElement(windowAlert.ObjectID.ID_User, windowAlert.ObjectID.ID_DRINK)}
+                        >Yes
+                        </button>
                     </label>
                 }
                 {blockedButton === true &&
@@ -132,4 +136,4 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
     )
 }
 
-export default WindowAdminAlert;
+export default WindowAdminAlert

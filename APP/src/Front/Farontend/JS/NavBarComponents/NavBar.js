@@ -1,14 +1,14 @@
 //Imports
-import { Suspense, useState, lazy, useEffect } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Suspense, useState, lazy, useEffect } from "react"
+import { ErrorBoundary } from "react-error-boundary"
+import { useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
-import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions";
-import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
-import OptionsProfile from "../Profile/user/OptionsProfile";
-import Searching from "../Components/Searching";
+import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions"
+import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
+import OptionsProfile from "../Profile/user/OptionsProfile"
+import Searching from "../Components/Searching"
 
 //Lazy imports 
 const LoginPopup = lazy(() => import("../Components/LoginPopup"))
@@ -19,20 +19,20 @@ const Registers = lazy(() => import("../Components/Register"))
 function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     setSpecialOptionsPopup, userScroll, setFriendsProfile }) {
 
-    const location = useLocation();
-    const dispatch = useDispatch();
+    const location = useLocation()
+    const dispatch = useDispatch()
 
     const [userProfileOptions, setUserProfileOptions] = useState(false)
     //fetching values ​​from sotrage
     //Take login states from storage
-    const loginPopup = useSelector(state => state.navbar.loginPopup);
-    const popupSetings = useSelector(state => state.navbar.popupsetings);
+    const loginPopup = useSelector(state => state.navbar.loginPopup)
+    const popupSetings = useSelector(state => state.navbar.popupsetings)
     //Take Register states from storage
-    const registerPopup = useSelector(state => state.navbar.registerPopup);
+    const registerPopup = useSelector(state => state.navbar.registerPopup)
     //userSesion
     const userSesion = useSelector(state => state.user.useSesion)
     // take screen  Width
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768)
 
     //check what was clicked
     const handlePopup = (popupName) => {
@@ -53,41 +53,41 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 handleHamburger()
                 closePopups()
                 dispatch(setLoginPopup(!loginPopup))
-                break;
+                break
             case 'settings':
                 handleHamburger()
                 closePopups()
                 dispatch(setPopupSetings(!popupSetings))
-                break;
+                break
             case 'userProfile':
                 handleHamburger()
                 closePopups()
                 setUserProfileOptions(!userProfileOptions)
-                break;
+                break
             case 'register':
                 closePopups()
                 dispatch(setRegisterPopup(!registerPopup))
-                break;
+                break
             default:
                 closePopups()
-                break;
+                break
         }
     }
 
     //Resize a icons from Navbar
     useEffect(() => {
         const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 768);
-        };
+            setIsSmallScreen(window.innerWidth < 768)
+        }
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize)
 
         return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
-    const [hamburgerAnimation, setHamburgerAnimation] = useState('');
+    const [hamburgerAnimation, setHamburgerAnimation] = useState('')
 
     useEffect(() => {
         setHamburgerAnimation('')
@@ -95,17 +95,17 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
 
 
     // useEffect(() => {
-    //     let timer;
+    //     let timer
     //     if (popupSetings) {
     //         timer = setTimeout(() => {
-    //             setShowPopup(true);
-    //         }, 5000); 
+    //             setShowPopup(true)
+    //         }, 5000) 
     //     }
 
     //     return () => {
-    //         clearTimeout(timer);
-    //     };
-    // }, [popupSetings]);
+    //         clearTimeout(timer)
+    //     }
+    // }, [popupSetings])
 
     return (
         <nav className="NavBar position-sticky top-0 ">
@@ -275,7 +275,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 </div>
             </div>
         </nav >
-    );
+    )
 }
 
-export default NavBar;
+export default NavBar

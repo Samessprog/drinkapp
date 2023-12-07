@@ -1,4 +1,4 @@
 //Imports
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-export const SessionContext = createContext(null);
+export const SessionContext = createContext(null)

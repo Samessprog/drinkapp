@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useEffect, useState } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Ring } from '@uiball/loaders'
-import { Buffer } from 'buffer';
-import { API_URL } from '../Components/Constants';
+import { Buffer } from 'buffer'
+import { API_URL } from '../Components/Constants'
 
 function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
 
-    const [drinkIMGs, setDrinkIMG] = useState(null);
+    const [drinkIMGs, setDrinkIMG] = useState(null)
     const [convertetIMG, setConvertedIMG] = useState('')
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
@@ -15,34 +15,34 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
             try {
                 const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_DRINK}`, {
                     credentials: 'include',
-                });
+                })
                 if (!response.ok) {
-                    throw new Error('Failed to fetch user favorite drink image.');
+                    throw new Error('Failed to fetch user favorite drink image.')
                 }
                 // Parsuj odpowiedź jako JSON
-                const data = await response.json();
-                setDrinkIMG(data.image);
+                const data = await response.json()
+                setDrinkIMG(data.image)
 
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };
-        fetchUserFavouriteDrinkImage();
-    }, [ID_DRINK]);
+        }
+        fetchUserFavouriteDrinkImage()
+    }, [ID_DRINK])
 
     useEffect(() => {
         if (drinkIMGs && drinkIMGs.data.length > 0) {
             // Convert the image data to base64
-            const base64Image = Buffer.from(drinkIMGs.data).toString('base64');
+            const base64Image = Buffer.from(drinkIMGs.data).toString('base64')
             // Create the image URL using the base64 data
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setConvertedIMG(imageURL);
+            const imageURL = `data:image/jpeg;base64,${base64Image}`
+            setConvertedIMG(imageURL)
             setFetchIMGCompleted(true)
         } else {
-            setFetchIMGCompleted(false);
+            setFetchIMGCompleted(false)
         }
 
-    }, [drinkIMGs]);
+    }, [drinkIMGs])
 
     return (
         <div className={classNameHolder} >
@@ -66,4 +66,4 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
         </div>
     )
 }
-export default FetchingDrinkIMG;
+export default FetchingDrinkIMG

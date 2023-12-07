@@ -1,12 +1,12 @@
 //Imports
-import { Link } from "react-router-dom";
-import { setUserSession, setUserFavouriteDrinks } from "../../States/actions";
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom"
+import { setUserSession, setUserFavouriteDrinks } from "../../States/actions"
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useRef } from "react"
 
 function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const userSesion = useSelector(state => state.user.useSesion)
 
     //Logout funciotn
@@ -19,15 +19,15 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
             .then(data => {
                 dispatch(setUserSession(null))
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error(error))
     }
 
     function handleLogoutClick() {
-        logoutUser();
+        logoutUser()
         dispatch(setUserFavouriteDrinks([]))
     }
 
-    let menuRef = useRef();
+    let menuRef = useRef()
 
     useEffect(() => {
         let handler = ((e) => {
@@ -38,7 +38,7 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
         document.addEventListener("mousedown", handler)
 
         return () => {
-            document.removeEventListener("mousedown", handler);
+            document.removeEventListener("mousedown", handler)
         }
     })
 
@@ -54,11 +54,11 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
                     </Link>
                 }
                 <Link to={"/"}>
-                    <li className="DropdownProfilMenu-elm mb-0" onClick={handleLogoutClick}>Log&nbsp;out</li>
+                    <li className="DropdownProfilMenu-elm mb-0" onClick={handleLogoutClick}>Log&nbspout</li>
                 </Link>
             </ul>
         </div>
     )
 }
 
-export default OptionsProfile;
+export default OptionsProfile

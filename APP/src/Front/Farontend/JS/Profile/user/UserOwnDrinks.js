@@ -1,31 +1,31 @@
 //Imports
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react"
 
-import OwnDrinkCarusel from "../../carouselsComponents/OwnDrinkCarusel";
-import { SessionContext } from "../../Session/SessionContext";
-import { useState } from "react";
+import OwnDrinkCarusel from "../../carouselsComponents/OwnDrinkCarusel"
+import { SessionContext } from "../../Session/SessionContext"
+import { useState } from "react"
 
 function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) {
 
-    const userSesion = useContext(SessionContext).userSesion;
+    const userSesion = useContext(SessionContext).userSesion
     const [userOwnDrink, setUserOwnDrink] = useState('')
 
     useEffect(() => {
         const fetchUserOwnDrinks = async () => {
             const userIDs = freindsProfile.friendID || userSesion.userID
             try {
-                const response = await fetch(`http://localhost:3000/api/getOwnDrinks/${userIDs}`);
-                const data = await response.json();
+                const response = await fetch(`http://localhost:3000/api/getOwnDrinks/${userIDs}`)
+                const data = await response.json()
                 if (data.success) {
                     setUserOwnDrink(data.drinks)
                 }
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
-        };
+        }
 
-        fetchUserOwnDrinks();
-    }, [userSesion]);
+        fetchUserOwnDrinks()
+    }, [userSesion])
 
     return (
         <div className="position-relative ">
@@ -53,4 +53,4 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
     )
 }
 
-export default UserOwnDrinks;
+export default UserOwnDrinks

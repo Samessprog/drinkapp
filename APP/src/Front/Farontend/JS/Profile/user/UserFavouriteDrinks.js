@@ -1,32 +1,32 @@
 //Imports
-import Carousel from "../../carouselsComponents/Carousel";
-import { useEffect, useState, useContext } from "react";
-import { SessionContext } from "../../Session/SessionContext";
+import Carousel from "../../carouselsComponents/Carousel"
+import { useEffect, useState, useContext } from "react"
+import { SessionContext } from "../../Session/SessionContext"
 
 function UserFavouriteDrinks({ freindsProfile }) {
 
   const [isHidden, setIsHidden] = useState(false)
   const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
-  const userSesion = useContext(SessionContext).userSesion;
+  const userSesion = useContext(SessionContext).userSesion
 
   useEffect(() => {
     const fetchUserFavouriteDrinks = async () => {
       const userIDs = freindsProfile.freindNick || userSesion.nick
       console.log(userIDs)
       try {
-        const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`);
-        const data = await response.json();
+        const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`)
+        const data = await response.json()
         if (data.success) {
-          setUserFavouriteDrinks(data.data);
+          setUserFavouriteDrinks(data.data)
         } else {
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    fetchUserFavouriteDrinks();
-  }, [userSesion, isHidden]);
+    fetchUserFavouriteDrinks()
+  }, [userSesion, isHidden])
 
   return (
     <div className="position-relative ">
@@ -45,7 +45,7 @@ function UserFavouriteDrinks({ freindsProfile }) {
       <div className="d-flex mt-4 flex-md-row-reverse me-4 flex-column ">
       </div>
     </div >
-  );
+  )
 }
 
-export default UserFavouriteDrinks;
+export default UserFavouriteDrinks

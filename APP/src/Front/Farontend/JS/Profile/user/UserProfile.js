@@ -1,11 +1,11 @@
 //Imports
-import { useState, useContext, useEffect, lazy } from "react";
-import { useSelector } from "react-redux";
+import { useState, useContext, useEffect, lazy } from "react"
+import { useSelector } from "react-redux"
 
-import UserDetails from "./UserDetails";
-import UserFavouriteDrinks from "./UserFavouriteDrinks";
-import UserOwnDrinks from "./UserOwnDrinks";
-import { SessionContext } from "../../Session/SessionContext";
+import UserDetails from "./UserDetails"
+import UserFavouriteDrinks from "./UserFavouriteDrinks"
+import UserOwnDrinks from "./UserOwnDrinks"
+import { SessionContext } from "../../Session/SessionContext"
 import { API_URL } from '../../Components/Constants'
 
 const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
@@ -13,11 +13,11 @@ const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
 function UserProfile({ drinkDatas, freindsProfile }) {
 
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
-  const userSesion = useContext(SessionContext).userSesion;
+  const userSesion = useContext(SessionContext).userSesion
 
   const [userIMG, setUserIMG] = useState('')
 
-  const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks);
+  const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
 
   const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
@@ -25,33 +25,33 @@ function UserProfile({ drinkDatas, freindsProfile }) {
   useEffect(() => {
     const fetchUserImage = async () => {
       try {
-        let userID = freindsProfile.friendID || userSesion.userID;
+        let userID = freindsProfile.friendID || userSesion.userID
         const response = await fetch(`${API_URL}userIMG?userID=${userID}`, {
           credentials: 'include'
-        });
+        })
 
         if (!response.ok) {
-          throw new Error('Failed to fetch user image');
+          throw new Error('Failed to fetch user image')
         }
 
-        const imageData = await response.json();
-        const base64ImageData = imageData.userIMG;
-        const contentType = imageData.contentType;
+        const imageData = await response.json()
+        const base64ImageData = imageData.userIMG
+        const contentType = imageData.contentType
 
-        const imageUrl = `data:${contentType};base64,${base64ImageData}`;
-        setUserIMG(imageUrl);
-        setFetchIMGCompleted(true);
+        const imageUrl = `data:${contentType};base64,${base64ImageData}`
+        setUserIMG(imageUrl)
+        setFetchIMGCompleted(true)
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
-    fetchUserImage();
-  }, []);
+    }
+    fetchUserImage()
+  }, [])
 
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="user-details-holder">
@@ -82,4 +82,4 @@ function UserProfile({ drinkDatas, freindsProfile }) {
 }
 
 
-export default UserProfile;
+export default UserProfile

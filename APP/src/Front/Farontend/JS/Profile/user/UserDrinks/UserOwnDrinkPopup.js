@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
-import { v4 as uuid } from 'uuid';
+import { useState, useContext } from "react"
+import { v4 as uuid } from 'uuid'
 
-import { SessionContext } from "../../../Session/SessionContext";
+import { SessionContext } from "../../../Session/SessionContext"
 import { API_URL } from '../../../Components/Constants'
 
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     //fetch user session to fetch needed data
-    const userSesion = useContext(SessionContext).userSesion;
+    const userSesion = useContext(SessionContext).userSesion
 
     //states for add new drink // drink details
     const [drinkName, setDrinkName] = useState("")
@@ -18,7 +18,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const [drinkTaste, setDrinkTaste] = useState("")
 
     //arr for drinks err
-    const [drinkErrors, setDrinkErrors] = useState(null);
+    const [drinkErrors, setDrinkErrors] = useState(null)
     //flag that checks for errors while adding a drink
     const [isSucces, setIsSucces] = useState(false)
     //ingredient of a new drink
@@ -30,99 +30,99 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     //sending data from user as data to new drink
     const addNewDrinkHandler = async (event) => {
-        event.preventDefault();
-        const selectedFile = event.target.querySelector('input[type="file"]').files[0];
+        event.preventDefault()
+        const selectedFile = event.target.querySelector('input[type="file"]').files[0]
 
-        const fileSizeInMB = selectedFile.size / (1024 * 1024);
+        const fileSizeInMB = selectedFile.size / (1024 * 1024)
 
         if (fileSizeInMB > 5) {
-            setDrinkErrors('File size exceeds the limit of 5 MB!');
-            return;
+            setDrinkErrors('File size exceeds the limit of 5 MB!')
+            return
         }
 
         if (selectedFile === undefined) {
-            setDrinkErrors('No photo selected! ');
-            return;
+            setDrinkErrors('No photo selected! ')
+            return
         }
 
-        const formData = new FormData();
-        formData.append('imageData', selectedFile);
-        formData.append('userID', userSesion.userID);
-        formData.append('drinkName', drinkName);
-        formData.append('drinkdescription', drinkdescription);
-        formData.append('drinkLevel', drinkLevel);
-        formData.append('drinkTaste', drinkTaste);
-        formData.append('drinkType', drinkType);
-        formData.append('userNick', userSesion.nick);
-        formData.append('drinkHistory', drinkHistory);
-        formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink));
-        formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink));
+        const formData = new FormData()
+        formData.append('imageData', selectedFile)
+        formData.append('userID', userSesion.userID)
+        formData.append('drinkName', drinkName)
+        formData.append('drinkdescription', drinkdescription)
+        formData.append('drinkLevel', drinkLevel)
+        formData.append('drinkTaste', drinkTaste)
+        formData.append('drinkType', drinkType)
+        formData.append('userNick', userSesion.nick)
+        formData.append('drinkHistory', drinkHistory)
+        formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink))
+        formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink))
 
         try {
             const response = await fetch(`${API_URL}addNewDrink`, {
                 method: 'POST',
                 body: formData
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (data.error) {
-                setDrinkErrors(data.error);
-                setIsSucces(false);
+                setDrinkErrors(data.error)
+                setIsSucces(false)
             } else {
                 //resetting the data to the initial state when adding a drink is successful
-                setDrinkName('');
-                setDrinkDescription('');
-                setDrinkHistory('');
-                setDrinkType('');
-                setDrinkLevel('All');
-                setDrinkTaste('All');
-                setIsSucces(true);
-                setIngredientsOfNewDrink([]);
-                setPreparationOfNewDrink([]);
+                setDrinkName('')
+                setDrinkDescription('')
+                setDrinkHistory('')
+                setDrinkType('')
+                setDrinkLevel('All')
+                setDrinkTaste('All')
+                setIsSucces(true)
+                setIngredientsOfNewDrink([])
+                setPreparationOfNewDrink([])
             }
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     //adding a dot at the end when adding
     const submitIngreadinetsHandler = () => {
-        const newIngredientText = ingredientsOfNewDrinkText.trim() + '.';
+        const newIngredientText = ingredientsOfNewDrinkText.trim() + '.'
         setIngredientsOfNewDrink([
             ...ingredientsOfNewDrink,
             { text: newIngredientText, id: uuid() }
-        ]);
-        setIngredientsOfNewDrinkText('');
-    };
+        ])
+        setIngredientsOfNewDrinkText('')
+    }
     //component removal ingred
     const submitIngreadinetsDeleteHandler = (id) => {
-        setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id));
+        setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id))
     }
 
     //adding a dot at the end when adding
     const submitPreparationHandler = () => {
-        const newPreparationText = preparationOfNewDrinkText.trim() + '.';
+        const newPreparationText = preparationOfNewDrinkText.trim() + '.'
         setPreparationOfNewDrink([
             ...preparationOfNewDrink,
             { text: newPreparationText, id: uuid() }
-        ]);
-        setPreparationOfNewDrinkText('');
+        ])
+        setPreparationOfNewDrinkText('')
     }
     //component removal Preparation
     const submitPreparationDeleteHandler = (id) => {
-        setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id));
+        setPreparationOfNewDrink(preparationOfNewDrink.filter((elm) => elm.id !== id))
     }
-    const [previewImageUrl, setPreviewImageUrl] = useState("");
+    const [previewImageUrl, setPreviewImageUrl] = useState("")
 
     const ownDrinkImgPrev = (event) => {
-        const drinkImg = event.target;
+        const drinkImg = event.target
 
         if (drinkImg.files && drinkImg.files[0]) {
-            const reader = new FileReader();
+            const reader = new FileReader()
 
             reader.onload = (e) => {
-                setPreviewImageUrl(e.target.result);
-            };
-            reader.readAsDataURL(drinkImg.files[0]);
+                setPreviewImageUrl(e.target.result)
+            }
+            reader.readAsDataURL(drinkImg.files[0])
         }
     }
 
@@ -213,9 +213,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             <input
                                                 className="col-11  ing-input"
                                                 onInput={(e) => {
-                                                    const inputValue = e.target.value;
+                                                    const inputValue = e.target.value
                                                     if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
-                                                        setIngredientsOfNewDrinkText(inputValue);
+                                                        setIngredientsOfNewDrinkText(inputValue)
                                                     }
                                                 }}
                                                 value={ingredientsOfNewDrinkText}
@@ -239,9 +239,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             <input
                                                 className="col-11  ing-input"
                                                 onInput={(e) => {
-                                                    const inputValue = e.target.value;
+                                                    const inputValue = e.target.value
                                                     if (/^[a-zA-Z0-9 ]{0,20}$/.test(inputValue)) {
-                                                        setPreparationOfNewDrinkText(inputValue);
+                                                        setPreparationOfNewDrinkText(inputValue)
                                                     }
                                                 }}
                                                 value={preparationOfNewDrinkText}
@@ -276,4 +276,4 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         </div >
     )
 }
-export default UserOwnDrinkPopup;
+export default UserOwnDrinkPopup

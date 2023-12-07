@@ -8,7 +8,7 @@ const pourDictionary = [
     'nalewać',
     'nalano',
     'nalewszy',
-];
+]
 
 const shakeDictionary = [
     'wtrząśnij',
@@ -24,7 +24,7 @@ const shakeDictionary = [
     'potrząsanie',
     'mieszać',
 
-];
+]
 
 const chopDictionary = [
     'posiekaj',
@@ -47,7 +47,7 @@ const chopDictionary = [
     'rozdzielić',
     'podzielić',
     'pociąć',
-];
+]
 
 const decorateDictionary = [
     'ozdobić',
@@ -75,4 +75,4 @@ export {
     shakeDictionary,
     chopDictionary,
     decorateDictionary,
-};
+}

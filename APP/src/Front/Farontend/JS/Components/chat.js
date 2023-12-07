@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react"
 import { SessionContext } from '../Session/SessionContext'
-import ScrollToBottom from "react-scroll-to-bottom";
+import ScrollToBottom from "react-scroll-to-bottom"
 
 function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
-    const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([]);
+    const [currentMessage, setCurrentMessage] = useState("")
+    const [messageList, setMessageList] = useState([])
 
-    const userSession = useContext(SessionContext).userSesion;
+    const userSession = useContext(SessionContext).userSesion
 
     const sendMessage = async () => {
         if (currentMessage !== "") {
@@ -15,37 +15,45 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
                 author: userSession.nick,
                 message: currentMessage,
                 time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
-            };
-            await socket.emit("sendMessage", messageData);
+            }
+            await socket.emit("sendMessage", messageData)
             setCurrentMessage('')
         }
-    };
+    }
 
     useEffect(() => {
         const handleReceiveMessage = (data) => {
-            setMessageList((list) => [...list, data]);
-        };
+            setMessageList((list) => [...list, data])
+        }
 
-        socket.on("receiveMessage", handleReceiveMessage);
+        socket.on("receiveMessage", handleReceiveMessage)
 
         return () => {
-            socket.off("receiveMessage", handleReceiveMessage);
-        };
-    }, [socket]);
+            socket.off("receiveMessage", handleReceiveMessage)
+        }
+    }, [socket])
 
     return (
         <div className={`${minimalize ? 'minimalize-holder' : 'chat-holder'}`}>
             <div className="chat-header col-12 ">
                 <div className="col-9 d-flex align-items-center">Live Chat</div>
                 <div className="d-flex align-items-center">
-                    <svg onClick={() => setMinimalize(!minimalize)} className="minimalize-icon me-2 pb-3" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M240-120v-60h481v60H240Z" /></svg>
+                    <svg
+                        onClick={() => setMinimalize(!minimalize)}
+                        className="minimalize-icon me-2 pb-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="48" viewBox="0 -960 960 960" width="48">
+                        <path d="M240-120v-60h481v60H240Z" />
+                    </svg>
                     <div className="flex-grow-1">
                         <div className="text-center">
-                            <div className="close-icons-chat" onClick={() => {
-                                setShowChat(false)
-                                setMinimalize(false)
-                            }
-                            }>X</div>
+                            <div
+                                className="close-icons-chat"
+                                onClick={() => {
+                                    setShowChat(false)
+                                    setMinimalize(false)
+                                }
+                                }>X</div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +88,12 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
                         value={currentMessage}
                     >
                     </input>
-                    <button className="col-1 button-chat" onClick={sendMessage}>&#9658;</button>
+                    <button
+                        className="col-1 button-chat"
+                        onClick={sendMessage}
+                    >
+                        &#9658
+                    </button>
                 </div>
             </div>
         </div>

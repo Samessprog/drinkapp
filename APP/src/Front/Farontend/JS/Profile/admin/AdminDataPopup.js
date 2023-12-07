@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { io } from "socket.io-client";
+import React, { useState } from "react"
+import { io } from "socket.io-client"
 
 
 function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSucces }) {
 
-    const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData;
+    const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData
 
 
     //User Data changer error
@@ -15,27 +15,27 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
     const [newUserPhone, setNewUserPhone] = useState(phone)
     const [userRole, setUserRole] = useState(Role)
 
-    const socket = io('http://localhost:4000');
+    const socket = io('http://localhost:4000')
 
     const UserDataChange = (event) => {
 
-        event.preventDefault();
-        socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole });
+        event.preventDefault()
+        socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole })
     }
 
     socket.on('userDataChangerResponse', ({ success, error }) => {
         if (success) {
             setUsers((prevUsers) => {
-                const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u));
+                const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u))
                 setAnnouncementSucces(true)
                 setChangeUserDataPopup(false)
-                return updatedUsers;
+                return updatedUsers
 
-            });
+            })
         } else {
             setChangingUserDataError(error)
         }
-    });
+    })
 
     return (
         <div className="userDataChangeHolder col-12 col-md-10 col-lg-9 col-xl-6 col-xxl-4">
@@ -89,4 +89,4 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
     )
 }
 
-export default AdminDataPopup;
+export default AdminDataPopup

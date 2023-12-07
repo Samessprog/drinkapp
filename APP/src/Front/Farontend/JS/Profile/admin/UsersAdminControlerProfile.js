@@ -1,6 +1,6 @@
 //Imports
-import { useEffect, useState } from "react";
-import { Buffer } from 'buffer';
+import { useEffect, useState } from "react"
+import { Buffer } from 'buffer'
 import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
 
@@ -16,31 +16,31 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                 let ID_User = elm.ID_User
                 const response = await fetch(`${API_URL}fetchUserIMG/${ID_User}`, {
                     credentials: 'include',
-                });
+                })
                 if (!response.ok) {
-                    throw new Error('Failed to fetch user favorite drink image.');
+                    throw new Error('Failed to fetch user favorite drink image.')
                 }
                 // Parsuj odpowiedź jako JSON
-                const data = await response.json();
-                setUserIMG(data.image);
+                const data = await response.json()
+                setUserIMG(data.image)
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };
-        fetchUserFavouriteDrinkImage();
-    }, [elm.user_ID]);
+        }
+        fetchUserFavouriteDrinkImage()
+    }, [elm.user_ID])
 
     useEffect(() => {
         if (userIMG && userIMG.data.length > 0) {
-            const base64Image = Buffer.from(userIMG.data).toString('base64');
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            const base64Image = Buffer.from(userIMG.data).toString('base64')
+            const imageURL = `data:image/jpeg;base64,${base64Image}`
 
-            setUserConvertedIMG(imageURL);
+            setUserConvertedIMG(imageURL)
         } else {
-            setUserConvertedIMG('https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg');
+            setUserConvertedIMG('https://ponadwszystko.com/wp-content/uploads/2016/08/anonim.jpg')
         }
         setFetchIMGCompleted(true)
-    }, [userIMG]);
+    }, [userIMG])
 
 
 
@@ -94,14 +94,22 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
                                 </button>
                             </div>
                             <div className="d-flex ">
-                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }); setBlockedButton(true) }} className="block-icon-profile me-3">
+                                <div onClick={() => {
+                                    setWindowAlert({
+                                        isOpen: !windowAlert.isOpen, ObjectID: elm
+                                    })
+                                    setBlockedButton(true)
+                                }} className="block-icon-profile me-3">
                                     {elm.IsBlocked ? (
                                         <svg className='block-drink-icon-no-block' xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M220-80q-24.75 0-42.375-17.625T160-140v-434q0-24.75 17.625-42.375T220-634h70v-96q0-78.85 55.606-134.425Q401.212-920 480.106-920T614.5-864.425Q670-808.85 670-730v96h70q24.75 0 42.375 17.625T800-574v434q0 24.75-17.625 42.375T740-80H220Zm0-60h520v-434H220v434Zm260.168-140Q512-280 534.5-302.031T557-355q0-30-22.668-54.5t-54.5-24.5Q448-434 425.5-409.5t-22.5 55q0 30.5 22.668 52.5t54.5 22ZM350-634h260v-96q0-54.167-37.882-92.083-37.883-37.917-92-37.917Q426-860 388-822.083 350-784.167 350-730v96ZM220-140v-434 434Z" /></svg>
                                     ) : (
                                         <svg className="block-drink-icon-block" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M220-634h390v-96q0-54.167-37.882-92.083-37.883-37.917-92-37.917Q426-860 388-822.083 350-784.167 350-730h-60q0-79 55.606-134.5t134.5-55.5Q559-920 614.5-864.425T670-730v96h70q24.75 0 42.375 17.625T800-574v434q0 24.75-17.625 42.375T740-80H220q-24.75 0-42.375-17.625T160-140v-434q0-24.75 17.625-42.375T220-634Zm0 494h520v-434H220v434Zm260.168-140Q512-280 534.5-302.031T557-355q0-30-22.668-54.5t-54.5-24.5Q448-434 425.5-409.5t-22.5 55q0 30.5 22.668 52.5t54.5 22ZM220-140v-434 434Z" /></svg>
                                     )}
                                 </div>
-                                <div onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }); setBlockedButton(false) }}
+                                <div onClick={() => {
+                                    setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm })
+                                    setBlockedButton(false)
+                                }}
                                     className="delete-profile-icon">
                                     <svg className="delete-profile-icon " xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M261-120q-24.75 0-42.375-17.625T201-180v-570h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438v-570ZM367-266h60v-399h-60v399Zm166 0h60v-399h-60v399ZM261-750v570-570Z" /></svg>
                                 </div>
@@ -114,4 +122,4 @@ function UsersAdminControlerProfile({ elm, windowAlert, setWindowAlert, setBlock
     )
 }
 
-export default UsersAdminControlerProfile;
+export default UsersAdminControlerProfile

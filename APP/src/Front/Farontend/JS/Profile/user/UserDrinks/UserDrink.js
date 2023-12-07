@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { Buffer } from 'buffer';
+import { useEffect, useState, useContext } from "react"
+import { Link } from "react-router-dom"
+import { Buffer } from 'buffer'
 
-import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG";
-import { SessionContext } from "../../../Session/SessionContext";
+import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG"
+import { SessionContext } from "../../../Session/SessionContext"
 import { API_URL } from '../../../Components/Constants'
 
 function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
@@ -12,21 +12,21 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
 
     console.log(freindsProfile)
 
-    const userSesion = useContext(SessionContext).userSesion;
+    const userSesion = useContext(SessionContext).userSesion
 
     //convert IMG to normal from blob
     useEffect(() => {
         if (elm?.IMG && elm?.IMG.data && elm?.IMG.data.length !== 0) {
 
-            const base64Image = Buffer.from(elm?.IMG.data).toString('base64');
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
+            const base64Image = Buffer.from(elm?.IMG.data).toString('base64')
+            const imageURL = `data:image/jpegbase64,${base64Image}`
             setDrinkImg(imageURL)
 
         } else {
             setDrinkImg('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg')
         }
 
-    }, []);
+    }, [])
     //Remove from Favourite
     const removeFromFavourite = (drinkID) => {
         let userID = userSesion.userID
@@ -39,13 +39,13 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
                 },
                 body: JSON.stringify({ drinkID, userID }),
                 credentials: 'include',
-            });
+            })
 
         } catch (error) {
             console.log('TEST')
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     const { ID_Drink } = elm
     let ID_DRINK = ID_Drink
@@ -74,7 +74,7 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
                 </Link >
                 { freindsProfile?.friendID === null &&
                     <div className="position-absolute top-0 end-0 mt-2 me-2 " onClick={() => {
-                        removeFromFavourite(ID_DRINK);
+                        removeFromFavourite(ID_DRINK)
                         setIsHidden(!isHidden)
                     }} >
 
@@ -88,5 +88,5 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
     )
 }
 
-export default UserDrink;
+export default UserDrink
 //className={userFavouriteDrinks.includes(elm.ID_Drink) ? "favouriteStar" : "un-favouriteStar"}

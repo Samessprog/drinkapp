@@ -1,53 +1,53 @@
 //Imports
-import { Suspense, lazy, useState, useRef, useEffect } from "react";
-import { v4 as uuid } from 'uuid';
-import { ErrorBoundary } from "react-error-boundary";
-import { useDispatch, useSelector } from 'react-redux';
-import CountUp from 'react-countup';
+import { Suspense, lazy, useState, useRef, useEffect } from "react"
+import { v4 as uuid } from 'uuid'
+import { ErrorBoundary } from "react-error-boundary"
+import { useDispatch, useSelector } from 'react-redux'
+import CountUp from 'react-countup'
 
-import { setEachdrinkflag, setingredient } from "../States/actions";
-import Searching from "../Components/Searching";
-import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
+import { setEachdrinkflag, setingredient } from "../States/actions"
+import Searching from "../Components/Searching"
+import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 const Ingreadinet = lazy(() => import("../drinksComponents/Ingreadinet"))
 
 function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, setDrinkNotFound }) {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag)
     const drinkCounter = useSelector(state => state.drink.drinkCounter)
     const ingredient = useSelector(state => state.drink.ingredient)
     const [ingredientText, setIngredientText] = useState("")
 
-    let settingsRef = useRef();
+    let settingsRef = useRef()
 
     useEffect(() => {
         let handler = (e) => {
             if (!settingsRef.current.contains(e.target)) {
                 dispatch(setSpecialOptionsPopup(false))
             }
-        };
-        document.addEventListener("mousedown", handler);
+        }
+        document.addEventListener("mousedown", handler)
         return () => {
-            document.removeEventListener("mousedown", handler);
-        };
-    }, []);
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
 
 
     const submitIngredientHandler = () => {
-        addIngredient();
+        addIngredient()
     }
 
     const helperr = (e) => {
         if (e.key === 'Enter') {
-            addIngredient();
+            addIngredient()
         }
     }
 
     const addIngredient = () => {
-        const newIngredient = { text: ingredientText, id: uuid() };
-        dispatch(setingredient([...ingredient, newIngredient]));
-        setIngredientText("");
+        const newIngredient = { text: ingredientText, id: uuid() }
+        dispatch(setingredient([...ingredient, newIngredient]))
+        setIngredientText("")
     }
     return (
         <div ref={settingsRef} className="col-12 special-drinks-holder position-fixed mt-5 " style={{ textAlign: "center" }}>
@@ -156,4 +156,4 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
     )
 }
 
-export default SpecialDrinks;
+export default SpecialDrinks

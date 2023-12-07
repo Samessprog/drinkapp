@@ -1,15 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Buffer } from "buffer";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react"
+import { Buffer } from "buffer"
+import { Link } from "react-router-dom"
 
-import UserFriendsIMG from "./UserFriendsIMG";
+import UserFriendsIMG from "./UserFriendsIMG"
 import { SessionContext } from '../Session/SessionContext'
-import { API_URL } from "./Constants";
+import { API_URL } from "./Constants"
 
 function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
 
     const [nickName, setNickName] = useState('')
     const [userResults, setUsersResults] = useState(undefined)
+    const [userIMGres, setUserIMGres] = useState('')
+
+    const [userFriendsFlag, setUserFriendsFlag] = useState(true)
+    const [userWaitingFriendsFlag, setUserWaitingFriendsFlag] = useState(false)
+    const [waitingUsers, setWaitingUsers] = useState(undefined)
+    const [userFreinds, setUserFriends] = useState([])
+    const userSession = useContext(SessionContext).userSesion
 
     const searchUser = (e) => {
         if (e.key === 'Enter') {
@@ -28,25 +35,22 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                         setUsersResults(data.user)
                     }
                 })
-                .catch(error => console.error(error));
+                .catch(error => console.error(error))
         }
-    };
+    }
 
-    const [userIMGres, setUserIMGres] = useState('')
     useEffect(() => {
         if (userResults) {
             if (userResults.userIMG) {
-                const base64Image = Buffer.from(userResults.userIMG).toString('base64');
+                const base64Image = Buffer.from(userResults.userIMG).toString('base64')
                 // Create the image URL using the base64 data
-                const imageURL = `data:image/jpeg;base64,${base64Image}`;
-                setUserIMGres(imageURL);
+                const imageURL = `data:image/jpegbase64,${base64Image}`
+                setUserIMGres(imageURL)
             } else {
 
             }
         }
-    }, [userResults]);
-
-    const userSession = useContext(SessionContext).userSesion
+    }, [userResults])
 
     const addToFriend = () => {
         let friendID = userResults.ID_User
@@ -68,59 +72,47 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                     setNickName('')
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error(error))
     }
-
-    const [userFriendsFlag, setUserFriendsFlag] = useState(true)
-    const [userWaitingFriendsFlag, setUserWaitingFriendsFlag] = useState(false)
-
-    const [waitingUsers, setWaitingUsers] = useState(undefined)
 
     useEffect(() => {
         const getWaitingUsers = async () => {
             let userID = userSession.userID
             try {
-                const response = await fetch(`${API_URL}getPendingFriendRequests/${userID}`);
-                const data = await response.json();
-
+                const response = await fetch(`${API_URL}getPendingFriendRequests/${userID}`)
+                const data = await response.json()
                 if (data.success) {
-                    setWaitingUsers(data.pendingFriendRequests);
-                } else {
-                    console.log(data.message);
+                    setWaitingUsers(data.pendingFriendRequests)
                 }
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };
-
-        getWaitingUsers();
-    }, []);
-
-    const [userFreinds, setUserFriends] = useState([])
+        }
+        getWaitingUsers()
+    }, [])
 
     useEffect(() => {
         const getUserFriends = async () => {
             let userID = userSession.userID
             try {
-                const response = await fetch(`${API_URL}getUserFreinds/${userID}`);
-                const data = await response.json();
+                const response = await fetch(`${API_URL}getUserFreinds/${userID}`)
+                const data = await response.json()
 
                 if (data.success) {
-                    setUserFriends(data.pendingFriendRequests);
+                    setUserFriends(data.pendingFriendRequests)
                 } else {
-                    console.log(data.message);
+                    console.log(data.message)
                 }
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
-        };
-
-        getUserFriends();
-    }, []);
+        }
+        getUserFriends()
+    }, [])
 
     const confirmFriend = (ID_User) => {
         let session_ID = userSession.userID
-        const data = { ID_User, session_ID };
+        const data = { ID_User, session_ID }
 
         fetch(`${API_URL}confirmFriend`, {
             method: 'POST',
@@ -133,13 +125,13 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
             .then(result => {
             })
             .catch(error => {
-                console.error('Błąd:', error);
-            });
-    };
+                console.error(error)
+            })
+    }
 
     const deleteFriend = (ID_User) => {
         let session_ID = userSession.userID
-        const data = { ID_User, session_ID };
+        const data = { ID_User, session_ID }
 
         fetch(`${API_URL}deleteFriend`, {
             method: 'POST',
@@ -152,21 +144,23 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
             .then(result => {
             })
             .catch(error => {
-                console.error('Błąd:', error);
-            });
+                console.error(error)
+            })
     }
 
     const hideElement = (event) => {
-        event.target.closest('.user-data').classList.add('d-none');
+        event.target.closest('.user-data').classList.add('d-none')
     }
     const hideElementConfirm = (event) => {
-        event.target.closest('.user-data').classList.add('d-none');
+        event.target.closest('.user-data').classList.add('d-none')
     }
-
 
     return (
         <div className="friends-modal-holder">
-            <div onClick={() => setFriendsModalFlag(false)} className="d-flex justify-content-end fs-4 me-2 mt-1 close-friends-modal-icon" > X</div>
+            <div onClick={() => setFriendsModalFlag(false)}
+                className="d-flex justify-content-end fs-4 me-2 mt-1 close-friends-modal-icon"
+            > X
+            </div>
             <div className="d-flex fs-3 justify-content-center brand-friend">Friends List</div>
             <div>
                 <div className="col-12 friend-input-holder">
@@ -217,8 +211,17 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                         {userResults.Role}
                                     </div>
                                 </div>
-                                <div onClick={addToFriend} className="me-2">
-                                    <svg className="add-icon" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M422-297.333 704.667-580l-49.334-48.667L422-395.333l-118-118-48.667 48.666L422-297.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" /></svg>
+                                <div
+                                    className="me-2"
+                                    onClick={addToFriend}
+                                >
+                                    <svg
+                                        className="add-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="40" viewBox="0 -960 960 960" width="40"
+                                    >
+                                        <path d="M422-297.333 704.667-580l-49.334-48.667L422-395.333l-118-118-48.667 48.666L422-297.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div className="border-white-1"></div>
@@ -232,8 +235,12 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                 </div>
                                 <div className="user-friends-content">
                                     {userFreinds.map((elm) =>
-                                        <Link to={"userProfile"} onClick={() => setFriendsProfile({ friendID: elm.ID_User, freindNick: elm.Nick })}>
-                                            <div key={elm.ID_User} className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder ">
+                                        <Link
+                                            to={"userProfile"}
+                                            onClick={() => setFriendsProfile({ friendID: elm.ID_User, freindNick: elm.Nick })}>
+                                            <div
+                                                key={elm.ID_User}
+                                                className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder ">
                                                 <div className="d-flex align-items-center">
                                                     <div>
                                                         <UserFriendsIMG elm={elm.userIMG} />
@@ -246,10 +253,15 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                                     </div>
                                                 </div>
                                                 <div onClick={() => {
-                                                    deleteFriend(elm.ID_User);
-                                                    hideElement(event);
+                                                    deleteFriend(elm.ID_User)
+                                                    hideElement(event)
                                                 }} className="me-2">
-                                                    <svg className="del-friend" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" /></svg>
+                                                    <svg
+                                                        className="del-friend"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        height="40" viewBox="0 -960 960 960" width="40">
+                                                        <path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" />
+                                                    </svg>
                                                 </div>
                                             </div>
                                         </Link>
@@ -264,7 +276,10 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                 </div>
                                 <div className="user-friends-content">
                                     {waitingUsers.map((elm) =>
-                                        <div key={elm.ID_User} className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder">
+                                        <div
+                                            key={elm.ID_User}
+                                            className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder"
+                                        >
                                             <div className="d-flex align-items-center">
                                                 <div>
                                                     <UserFriendsIMG elm={elm.userIMG} />
@@ -277,10 +292,15 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                                 </div>
                                             </div>
                                             <div onClick={() => {
-                                                hideElementConfirm(event);
+                                                hideElementConfirm(event)
                                                 confirmFriend(elm.ID_User)
                                             }} className="me-2">
-                                                <svg className="add-icon" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40"><path d="M422-297.333 704.667-580l-49.334-48.667L422-395.333l-118-118-48.667 48.666L422-297.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" /></svg>
+                                                <svg
+                                                    className="add-icon"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="40" viewBox="0 -960 960 960" width="40">
+                                                    <path d="M422-297.333 704.667-580l-49.334-48.667L422-395.333l-118-118-48.667 48.666L422-297.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" />
+                                                </svg>
                                             </div>
                                         </div>
                                     )}
@@ -295,4 +315,4 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
 
 }
 
-export default FriendsPopup;
+export default FriendsPopup

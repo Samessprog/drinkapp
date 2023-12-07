@@ -1,19 +1,19 @@
-import { Suspense, useEffect, lazy, useState } from "react";
+import { Suspense, useEffect, lazy, useState } from "react"
 import { Route, Routes } from "react-router-dom"
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import ErrorFallback from "./ErrorsComponents/ErrorBoundary";
-import { ErrorBoundary } from "react-error-boundary";
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import 'react-lazy-load-image-component/src/effects/blur.css'
+import ErrorFallback from "./ErrorsComponents/ErrorBoundary"
+import { ErrorBoundary } from "react-error-boundary"
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 
-import PrivateRoute from "./privateRouts/PrivateRoute";
-import { SessionContext } from "./Session/SessionContext";
-import { setSpecialOptionsPopup, setUserSession } from "./States/actions";
-import NavBar from "./NavBarComponents/NavBar";
-import Footer from "./footer/Footer";
-import Home from "./main/Home";
-import UserProfile from "./Profile/user/UserProfile";
-import Admin from "./Profile/admin/Admin";
+import PrivateRoute from "./privateRouts/PrivateRoute"
+import { SessionContext } from "./Session/SessionContext"
+import { setSpecialOptionsPopup, setUserSession } from "./States/actions"
+import NavBar from "./NavBarComponents/NavBar"
+import Footer from "./footer/Footer"
+import Home from "./main/Home"
+import UserProfile from "./Profile/user/UserProfile"
+import Admin from "./Profile/admin/Admin"
 import AdminRoute from './privateRouts/AdminRoute'
 
 const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
@@ -21,14 +21,14 @@ const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 function App() {
 
 
-  const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp);
+  const specialOptionsPopup = useSelector(state => state.navbar.specialOptionsPopupp)
   const userSesion = useSelector(state => state.user.useSesion)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   //scroll
-  const [userScroll, setUserScroll] = useState(false);
+  const [userScroll, setUserScroll] = useState(false)
   //Pagiantion offset
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(0)
   //Drinks Datas
   const [searchingDrink, setSearchingDrink] = useState([])
   const [drinkDatas, setDrinkData] = useState([])
@@ -36,12 +36,12 @@ function App() {
   //control screen changes while scrolling
   useEffect(() => {
     const setFixed = () => {
-      setUserScroll(window.scrollY >= 1);
-    };
+      setUserScroll(window.scrollY >= 1)
+    }
 
-    window.addEventListener("scroll", setFixed);
-    return () => window.removeEventListener("scroll", setFixed);
-  }, []);
+    window.addEventListener("scroll", setFixed)
+    return () => window.removeEventListener("scroll", setFixed)
+  }, [])
 
   //Faetch session data from DB
   useEffect(() => {
@@ -53,22 +53,22 @@ function App() {
         if (data.user) {
           dispatch(setUserSession(data.user))
         }
-      });
-  }, []);
+      })
+  }, [])
 
   //Faetch drinks data from DB
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/drinks");
-        setDrinkData(data);
-        setSearchingDrink(data);
+        const { data } = await axios.get("http://localhost:3001/drinks")
+        setDrinkData(data)
+        setSearchingDrink(data)
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   const [freindsProfile, setFriendsProfile] = useState({ friendID: null, freindNick: '' })
 
@@ -143,7 +143,7 @@ function App() {
       <Footer searchingDrink={searchingDrink} drinkDatas={drinkDatas.length} />
 
     </div >
-  );
+  )
 }
 
-export default App;
+export default App

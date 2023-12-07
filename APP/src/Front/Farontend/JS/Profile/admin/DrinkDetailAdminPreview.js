@@ -1,14 +1,14 @@
 //Imports
-import { useState, useEffect } from "react";
-import { Buffer } from "buffer";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useState, useEffect } from "react"
+import { Buffer } from "buffer"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 import { API_URL } from '../../Components/Constants'
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSucces }) {
 
-    const { isOpenPrev, Drink } = DrinkPreview;
+    const { isOpenPrev, Drink } = DrinkPreview
 
-    const [detailDrinkIMG, setDetalDrinkIMG] = useState(null);
+    const [detailDrinkIMG, setDetalDrinkIMG] = useState(null)
     const [convertetIMG, setConvertedIMG] = useState('')
     //States for Update Drink
     const [ingredient, setIngredient] = useState([])
@@ -27,104 +27,104 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
         if (Drink.ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
-                    let ID_Drink = Drink.ID_DRINK;
+                    let ID_Drink = Drink.ID_DRINK
                     const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_Drink}`, {
                         credentials: 'include',
-                    });
+                    })
                     if (!response.ok) {
-                        throw new Error('Failed to fetch user favorite drink image.');
+                        throw new Error('Failed to fetch user favorite drink image.')
                     }
-                    const data = await response.json();
+                    const data = await response.json()
                     setDetalDrinkIMG(data.image)
 
                 } catch (error) {
-                    console.error(error);
+                    console.error(error)
                 }
-            };
-            fetchUserFavouriteDrinkImage();
+            }
+            fetchUserFavouriteDrinkImage()
         }
-    }, [DrinkPreview]);
+    }, [DrinkPreview])
 
     useEffect(() => {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
             // Convert the image data to base64
-            const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64');
+            const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64')
             // Create the image URL using the base64 data
-            const imageURL = `data:image/jpeg;base64,${base64Image}`;
-            setConvertedIMG(imageURL);
+            const imageURL = `data:image/jpeg;base64,${base64Image}`
+            setConvertedIMG(imageURL)
         } else {
-            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg');
+            setConvertedIMG('https://staticsmaker.iplsc.com/smaker_production_2021_11_24/d9d5fac2c9271afdbc7205b695742eca-lg.jpg')
         }
-    }, [detailDrinkIMG]);
+    }, [detailDrinkIMG])
 
     useEffect(() => {
         const result = Drink
-        setIngredient(result?.Ingredients.split('.'));
-        setPreparation(result?.Preparation.split('.'));
-    }, [DrinkPreview]);
+        setIngredient(result?.Ingredients.split('.'))
+        setPreparation(result?.Preparation.split('.'))
+    }, [DrinkPreview])
 
     const DrinkDateUpdate = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const drink_ID = Drink.ID_DRINK;
-        const formData = new FormData();
+        const drink_ID = Drink.ID_DRINK
+        const formData = new FormData()
 
-        const fileSizeInMB = drinkImg.size / (1024 * 1024);
+        const fileSizeInMB = drinkImg.size / (1024 * 1024)
 
         if (fileSizeInMB > 5) {
-            alert('File size exceeds the limit of 5 MB!');
-            return;
+            alert('File size exceeds the limit of 5 MB!')
+            return
         }
 
-        formData.append('drinkImg', drinkImg);
-        formData.append('drinkID', drink_ID);
-        formData.append('drinkNameInput', drinkNameInput);
-        formData.append('drinkDescriptionInput', drinkDescriptionInput);
-        formData.append('drinkHistoryInput', drinkHistoryInput);
-        formData.append('drinkNutritionalValues', drinkNutritionalValues);
-        formData.append('drinkLevelInput', drinkLevelInput);
-        formData.append('drinkTasteInput', drinkTasteInput);
-        formData.append('drinkTypeInput', drinkTypeInput);
-        formData.append('ing', ingredient);
-        formData.append('prep', preparation);
+        formData.append('drinkImg', drinkImg)
+        formData.append('drinkID', drink_ID)
+        formData.append('drinkNameInput', drinkNameInput)
+        formData.append('drinkDescriptionInput', drinkDescriptionInput)
+        formData.append('drinkHistoryInput', drinkHistoryInput)
+        formData.append('drinkNutritionalValues', drinkNutritionalValues)
+        formData.append('drinkLevelInput', drinkLevelInput)
+        formData.append('drinkTasteInput', drinkTasteInput)
+        formData.append('drinkTypeInput', drinkTypeInput)
+        formData.append('ing', ingredient)
+        formData.append('prep', preparation)
 
         try {
             const response = await fetch(`${API_URL}drinksDataUpdate`, {
                 method: 'POST',
                 body: formData,
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (data.success) {
                 setDrinkPreview(false)
                 setAnnouncementSucces(true)
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
-    };
+    }
 
     const handleInputChange = (event, index) => {
-        const newPrep = [...preparation];
-        newPrep[index] = event.target.value;
-        setPreparation(newPrep);
-    };
+        const newPrep = [...preparation]
+        newPrep[index] = event.target.value
+        setPreparation(newPrep)
+    }
 
     const handleIngredientsInputChange = (event, index) => {
-        const newIng = [...ingredient];
-        newIng[index] = event.target.value;
-        setIngredient(newIng);
-    };
+        const newIng = [...ingredient]
+        newIng[index] = event.target.value
+        setIngredient(newIng)
+    }
 
     const ownDrinkImgPrev = (event) => {
-        const drinkImg = event.target;
+        const drinkImg = event.target
 
         if (drinkImg.files && drinkImg.files[0]) {
-            const reader = new FileReader();
+            const reader = new FileReader()
 
             reader.onload = (e) => {
-                setConvertedIMG(e.target.result);
-            };
-            reader.readAsDataURL(drinkImg.files[0]);
+                setConvertedIMG(e.target.result)
+            }
+            reader.readAsDataURL(drinkImg.files[0])
         }
     }
 
@@ -340,4 +340,4 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
 
 }
 
-export default DrinkDetailAdminPreview;
+export default DrinkDetailAdminPreview

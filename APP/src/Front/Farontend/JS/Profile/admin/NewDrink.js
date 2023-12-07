@@ -1,6 +1,6 @@
 //Imports
-import { Link } from "react-router-dom";
-import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG";
+import { Link } from "react-router-dom"
+import FetchingDrinkIMG from "../../Components/FetchingDrinkIMG"
 
 function NewDrink({ elm, setWindowAlert, windowAlert, hiddenDrinkElements }) {
 
@@ -46,4 +46,4 @@ function NewDrink({ elm, setWindowAlert, windowAlert, hiddenDrinkElements }) {
     )
 }
 
-export default NewDrink;
+export default NewDrink

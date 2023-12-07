@@ -1,8 +1,8 @@
 //Imports
-import { Suspense, lazy, useEffect } from "react";
-import MainPage from "./MainPage";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "../ErrorsComponents/ErrorBoundary";
+import { Suspense, lazy, useEffect } from "react"
+import MainPage from "./MainPage"
+import { ErrorBoundary } from "react-error-boundary"
+import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 
 const SpecialDrinks = lazy(() => import("../NavBarComponents/SpecialDrinks"))
 
@@ -10,8 +10,8 @@ export default function Home({ searchingDrink, specialOptionsPopup, setSearching
     drinkDatas, userScroll, setSpecialOptionsPopup, offset, setOffset, setFriendsProfile }) {
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div>

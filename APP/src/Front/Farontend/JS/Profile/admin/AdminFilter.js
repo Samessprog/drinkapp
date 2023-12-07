@@ -1,24 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react"
 
 function AdminFilter({ showDrinksOptions, drinksFlag, usersFlag, showNewsFlag, setShowDrinksOptions, setAlphabeticalOrder,
     setUnAlphabeticalOrder, unAlphabeticalOrder, setIsBlocked, isBlocked, setFilterByDate, filterByDate, alphabeticalOrder }) {
 
 
-    let filterRef = useRef();
+    let filterRef = useRef()
 
     useEffect(() => {
         let handler = (e) => {
             if (!filterRef.current.contains(e.target) ) {
                 setShowDrinksOptions(showDrinksOptions)
             }
-        };
+        }
 
-        document.addEventListener("mousedown", handler);
+        document.addEventListener("mousedown", handler)
 
         return () => {
-            document.removeEventListener("mousedown", handler);
-        };
-    }, []);
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
 
 
     return (
@@ -61,4 +61,4 @@ function AdminFilter({ showDrinksOptions, drinksFlag, usersFlag, showNewsFlag, s
     )
 }
 
-export default AdminFilter;
+export default AdminFilter

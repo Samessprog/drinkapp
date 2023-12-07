@@ -1,37 +1,37 @@
 //Imports
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef } from 'react'
 
-import Searching from "../Components/Searching";
-import DrinksOptions from "../drinksComponents/DrinksOptions";
-import TypeOfDrink from "../drinksComponents/TypeOfDrink";
-import { setHighlyRated, setDrinkFavouriteFlag } from "../States/actions";
+import Searching from "../Components/Searching"
+import DrinksOptions from "../drinksComponents/DrinksOptions"
+import TypeOfDrink from "../drinksComponents/TypeOfDrink"
+import { setHighlyRated, setDrinkFavouriteFlag } from "../States/actions"
 
 function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsPopup, searchingDrink,
     drinkDatas, setSearchingDrink, setDrinkNotFound }) {
 
-    const favouriteDrink = useSelector(state => state.drink.favouriteDrink);
-    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag);
-    const dispatch = useDispatch();
+    const favouriteDrink = useSelector(state => state.drink.favouriteDrink)
+    const eachdrinkflag = useSelector(state => state.drink.eachdrinkflag)
+    const dispatch = useDispatch()
 
     //Drinks properties states
-    const highlyRated = useSelector(state => state.drink.highlyRated);
+    const highlyRated = useSelector(state => state.drink.highlyRated)
 
-    let settingsRef = useRef();
+    let settingsRef = useRef()
 
     useEffect(() => {
         let handler = (e) => {
             if (!settingsRef.current.contains(e.target)) {
                 dispatch(setPopupSetings(false))
             }
-        };
+        }
 
-        document.addEventListener("mousedown", handler);
+        document.addEventListener("mousedown", handler)
 
         return () => {
-            document.removeEventListener("mousedown", handler);
-        };
-    }, []);
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [])
 
 
     return (
@@ -101,4 +101,4 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
     )
 }
 
-export default SetingsPopup;
+export default SetingsPopup

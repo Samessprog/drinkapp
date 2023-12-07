@@ -1,12 +1,12 @@
 //Imports
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useState } from "react"
+import { useDispatch } from 'react-redux'
 import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
 
 function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile }) {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const [Nick, setUserNick] = useState(userSesion.nick)
     const [email, setUserMain] = useState(userSesion.email)
@@ -21,25 +21,25 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
     const setContentTypeHeader = () => {
         return {
             'Content-Type': 'application/json'
-        };
-    };
+        }
+    }
     //Function to change User Data
     const UserDataChange = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        const phoneRegex = /^\d{9}$/;
-        const nickRegex = /^[a-zA-Z0-9_-]+$/;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+        const phoneRegex = /^\d{9}$/
+        const nickRegex = /^[a-zA-Z0-9_-]+$/
 
         if (!emailRegex.test(email)) {
-            setUserChangesErrors(['Email is valid']);
-            return;
+            setUserChangesErrors(['Email is valid'])
+            return
         } else if (!phoneRegex.test(phone)) {
-            setUserChangesErrors(['Phone is valid']);
-            return;
+            setUserChangesErrors(['Phone is valid'])
+            return
         } else if (!nickRegex.test(Nick)) {
-            setUserChangesErrors(['Nick is valid']);
-            return;
+            setUserChangesErrors(['Nick is valid'])
+            return
         }
 
         try {
@@ -47,45 +47,45 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
                 method: 'POST',
                 headers: setContentTypeHeader(),
                 body: JSON.stringify({ email, phone, Nick, userID })
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             if (data.success) {
                 setIsSuccesChnage(true)
-                setUserChangesErrors('');
+                setUserChangesErrors('')
             } else {
                 setIsSuccesChnage(false)
-                setUserChangesErrors([data.message]);
+                setUserChangesErrors([data.message])
             }
         } catch (error) {
-            setUserChangesErrors([error.message]);
+            setUserChangesErrors([error.message])
         }
-    };
+    }
     //Changer user img
     const handleImgChange = async (event) => {
 
-        const file = event.target.files[0];
-        const fileSizeInMB = file.size / (1024 * 1024);
+        const file = event.target.files[0]
+        const fileSizeInMB = file.size / (1024 * 1024)
 
         if (fileSizeInMB > 5) {
-            setUserChangesErrors('File size exceeds the limit of 5 MB!');
-            return;
+            setUserChangesErrors('File size exceeds the limit of 5 MB!')
+            return
         }
 
-        const formData = new FormData();
-        formData.append('imageData', file);
-        formData.append('userID', userID);
+        const formData = new FormData()
+        formData.append('imageData', file)
+        formData.append('userID', userID)
 
         try {
             const response = await fetch(`${API_URL}uploadImage`, {
                 method: 'POST',
                 body: formData
-            });
-            const data = await response.json();
+            })
+            const data = await response.json()
             alert('your photo has been changed, please log out to view it')
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
-    };
+    }
 
     return (
         <div className="col-12 mt-3 ">
@@ -167,7 +167,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
     )
 }
 
-export default UserDetails;
+export default UserDetails
 
 
 

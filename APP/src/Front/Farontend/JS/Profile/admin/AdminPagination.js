@@ -1,5 +1,5 @@
 //Imports
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from 'react-paginate'
 
 function AdminPagination({ setChangeUserDataPopup, setDrinkPreview, showNewsFlag, currentPaginationItem,
     hiddenElements, setWindowAlert, windowAlert, setBlockedButton, pageCountItem, setCurrentPage, ComponentRender, setAnnouncementSucces }) {
@@ -58,4 +58,4 @@ function AdminPagination({ setChangeUserDataPopup, setDrinkPreview, showNewsFlag
 
 }
 
-export default AdminPagination;
+export default AdminPagination
