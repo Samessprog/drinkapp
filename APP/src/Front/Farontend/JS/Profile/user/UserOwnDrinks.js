@@ -42,7 +42,10 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
             {!freindsProfile.friendID &&
                 <div className="d-flex mt-5 flex-xl-row-reverse me-5 ">
                     <div className="d-flex justify-content-center mt-4 align-items-center ">
-                        <button className="mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user" onClick={() => setAddUserNewDrink(!addUserNewDrink)}>
+                        <button
+                            className="mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user"
+                            onClick={() => setAddUserNewDrink(!addUserNewDrink)}
+                        >
                             <div className="pe-2 ps-2">Create your own drink</div>
                         </button>
                     </div>

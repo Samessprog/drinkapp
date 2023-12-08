@@ -130,9 +130,18 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         <div className="col-12 col-md-8 h-100 align-items-center own-drink-popup-holder ">
             <div className=" col-xl-11 col-12  users-own-deink p-3 mx-auto">
                 <div className="d-flex justify-content-end mb-2 col-12">
-                    <svg className="close-icon" onClick={() => { setAddUserNewDrink(!addUserNewDrink) }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+                    <svg
+                        className="close-icon"
+                        onClick={() => { setAddUserNewDrink(!addUserNewDrink) }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="24" viewBox="0 -960 960 960" width="24">
+                        <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                    </svg>
                 </div>
-                <form onSubmit={addNewDrinkHandler} className="col-12 d-flex flex-column">
+                <form
+                    onSubmit={addNewDrinkHandler}
+                    className="col-12 d-flex flex-column"
+                >
                     <div className="col-12 d-flex flex-column flex-lg-row ">
                         <div className="col-lg-5 col-12">
                             <div className="d-flex justify-content-between col-12">
@@ -140,26 +149,53 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     <div className="mb-3 own-drink-box-input col-lg-10 col-12">
                                         <div className="col-11 d-flex align-items-center  align-items-lg-start mt-4">
                                             <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
-                                                <svg className="login-register-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg>
+                                                <svg
+                                                    className="login-register-icon"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="24" viewBox="0 -960 960 960" width="24">
+                                                    <path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg>
                                             </div>
                                             <div className="col-12 input-box">
-                                                <input onChange={(e) => setDrinkName(e.target.value)} className="col-11 ps-2 rounded login-register-input-data" type="text" placeholder="Drink Name"></input>
+                                                <input
+                                                    onChange={(e) => setDrinkName(e.target.value)}
+                                                    className="col-11 ps-2 rounded login-register-input-data"
+                                                    type="text"
+                                                    placeholder="Drink Name"
+                                                >
+                                                </input>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <textarea onChange={(e) => setDrinkDescription(e.target.value)} className="col-12  own-drink-desc" type="text" placeholder="Enter a description of youyr drink" value={drinkdescription}></textarea>
+                                        <textarea
+                                            onChange={(e) => setDrinkDescription(e.target.value)}
+                                            className="col-12  own-drink-desc"
+                                            type="text"
+                                            placeholder="Enter a description of youyr drink"
+                                            value={drinkdescription}
+                                        >
+                                        </textarea>
                                     </div>
                                     <div className="col-12">
-                                        <textarea onChange={(e) => setDrinkHistory(e.target.value)} className="col-12 own-drink-desc" type="text" placeholder="Enter a history of youyr drink (Unnecessary)" value={drinkHistory}></textarea>
+                                        <textarea
+                                            onChange={(e) => setDrinkHistory(e.target.value)}
+                                            className="col-12 own-drink-desc"
+                                            type="text"
+                                            placeholder="Enter a history of youyr drink (Unnecessary)"
+                                            value={drinkHistory}
+                                        >
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div className="ms-lg-4 ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center  justify-content-lg-start options-holder-own-drink ">
+                            <div className="ms-lg-4 ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center justify-content-lg-start options-holder-own-drink ">
                                 <div className="d-flex ">
                                     <div className="d-flex flex-column align-items-center">
                                         <label className="fs-5">Level: </label>
-                                        <select className=" " onChange={(e) => setDrinkLevel(e.target.value)} value={drinkLevel}>
+                                        <select
+                                            className=" "
+                                            onChange={(e) => setDrinkLevel(e.target.value)} value={drinkLevel}
+                                        >
                                             <option value={'All'}>All</option>
                                             <option value={'Easy'}>Easy</option>
                                             <option value={'Medium'}>Medium</option>
@@ -179,11 +215,25 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                 <div className="ms-4">
                                     <label className="fs-5">Select a type</label>
                                     <div >
-                                        <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="alcoholic" value="Alcoholic" ></input>
+                                        <input
+                                            onChange={(e) => setDrinkType(e.target.value)}
+                                            type="radio"
+                                            name="drinks"
+                                            id="alcoholic"
+                                            value="Alcoholic"
+                                        >
+                                        </input>
                                         <label className="ms-1" for="alcoholic">Alcoholic</label>
                                     </div>
                                     <div >
-                                        <input onChange={(e) => setDrinkType(e.target.value)} type="radio" name="drinks" id="soft-drinks" value="Soft"></input>
+                                        <input
+                                            onChange={(e) => setDrinkType(e.target.value)}
+                                            type="radio"
+                                            name="drinks"
+                                            id="soft-drinks"
+                                            value="Soft"
+                                        >
+                                        </input>
                                         <label className="ms-1" for="soft-drinks">Soft drinks</label>
                                     </div>
                                 </div>
@@ -221,7 +271,13 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                                 value={ingredientsOfNewDrinkText}
                                                 placeholder="type your ingredients"
                                             />
-                                            <svg onClick={submitIngreadinetsHandler} className="addison-button" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+                                            <svg
+                                                onClick={submitIngreadinetsHandler}
+                                                className="addison-button"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                height="24" viewBox="0 -960 960 960" width="24"
+                                            >
+                                                <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
                                         </div>
                                         <div className="d-flex flex-column mt-1 ing-container">
                                             {ingredientsOfNewDrink.map((elm) => (

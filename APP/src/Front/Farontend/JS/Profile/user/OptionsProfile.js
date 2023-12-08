@@ -43,9 +43,16 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
     })
 
     return (
-        <div ref={menuRef} className="position-absolute end-0 mt-2 me-3">
+        <div
+            ref={menuRef}
+            className="position-absolute end-0 mt-2 me-3"
+        >
             <ul className="d-flex flex-column DropdownProfilMenu ">
-                <Link to={"userProfile"} className=" text-decoration-none" onClick={() => setFriendsProfile({ friendID: null, freindNick: '' })}>
+                <Link
+                    to={"userProfile"}
+                    className=" text-decoration-none"
+                    onClick={() => setFriendsProfile({ friendID: null, freindNick: '' })}
+                >
                     <li className="DropdownProfilMenu-elm  position-relative">Profile</li>
                 </Link>
                 {userSesion.role === 'admin' &&
@@ -54,7 +61,10 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
                     </Link>
                 }
                 <Link to={"/"}>
-                    <li className="DropdownProfilMenu-elm mb-0" onClick={handleLogoutClick}>Log&nbspout</li>
+                    <li
+                        className="DropdownProfilMenu-elm mb-0"
+                        onClick={handleLogoutClick}
+                    >Log&nbspout</li>
                 </Link>
             </ul>
         </div>
