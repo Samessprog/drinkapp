@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 
+import localhost from "../../../config/config"
 import PrivateRoute from "./privateRouts/PrivateRoute"
 import { SessionContext } from "./Session/SessionContext"
 import { setSpecialOptionsPopup, setUserSession } from "./States/actions"
@@ -60,7 +61,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://192.168.50.94:3001/drinks")
+        const { data } = await axios.get(`http://${localhost}:3001/drinks`)
         setDrinkData(data)
         setSearchingDrink(data)
       } catch (err) {
