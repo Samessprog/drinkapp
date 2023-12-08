@@ -11,6 +11,7 @@ import WindowAdminAlert from "../../Components/DeleteOrBlockAlert"
 import AdminFilter from "./AdminFilter"
 import { API_URL } from '../../Components/Constants'
 
+//Lazy imports Components 
 const UsersAdminControlerProfile = lazy(() => import("./UsersAdminControlerProfile"))
 const DrinkDetailAdminPreview = lazy(() => import("./DrinkDetailAdminPreview"))
 const AdminDataPopup = lazy(() => import("./AdminDataPopup"))
@@ -279,17 +280,14 @@ function Admin() {
                 <div className="admin-header-holder">
                     <header className="fs-2 admin-header">Hello admin NAME</header>
                 </div>
-
                 <div className="users-chart-holder mt-5 d-flex justify-content-center align-items-center ms-sm-1  m-md-3">
                     <div className="">
                         miejsce na wykres od usera i opcje jego zmiany
                     </div>
                 </div>
-
                 <div className="fs-2 white header-admin ms-3 ">
                     <header>Database of users and drinks</header>
                 </div>
-
                 <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12 d-flex flex-column align-items-center">
                     <div className="d-flex justify-content-between col-11 mb-5 flex-column align-items-center flex-lg-row">
                         <div className="d-flex ms-5 ms-xxl-3 mt-0 optional-buttons-holder mt-4 col-8 flex-column flex-sm-row">
@@ -306,8 +304,19 @@ function Admin() {
                                         setCurrentPageNewDrink(0)
                                     }}
                                 >
-                                    <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg> </svg>
+                                    <svg
+                                        className="me-1  ms-2 me-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24" width="24"
+                                        style={{ fill: "white" }}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewBox="0 -960 960 960" width="24"
+                                        >
+                                            <path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" />
+                                        </svg>
+                                    </svg>
                                     <div className="pe-2">Drinks</div>
                                 </button>
                             </div>
@@ -325,12 +334,19 @@ function Admin() {
                                         setCurrentPageNewDrink(0)
                                     }}
                                 >
-                                    <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" /></svg>                                    </svg>
+                                    <svg
+                                        className="me-1  ms-2 me-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="24" width="24"
+                                        style={{ fill: "white" }}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewBox="0 -960 960 960" width="24">
+                                            <path d="M400-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM80-160v-112q0-33 17-62t47-44q51-26 115-44t141-18h14q6 0 12 2-8 18-13.5 37.5T404-360h-4q-71 0-127.5 18T180-306q-9 5-14.5 14t-5.5 20v32h252q6 21 16 41.5t22 38.5H80Zm560 40-12-60q-12-5-22.5-10.5T584-204l-58 18-40-68 46-40q-2-14-2-26t2-26l-46-40 40-68 58 18q11-8 21.5-13.5T628-460l12-60h80l12 60q12 5 22.5 11t21.5 15l58-20 40 70-46 40q2 12 2 25t-2 25l46 40-40 68-58-18q-11 8-21.5 13.5T732-180l-12 60h-80Zm40-120q33 0 56.5-23.5T760-320q0-33-23.5-56.5T680-400q-33 0-56.5 23.5T600-320q0 33 23.5 56.5T680-240ZM400-560q33 0 56.5-23.5T480-640q0-33-23.5-56.5T400-720q-33 0-56.5 23.5T320-640q0 33 23.5 56.5T400-560Zm0-80Zm12 400Z" /></svg>                                    </svg>
                                     <div className="pe-2">Users</div>
                                 </button>
                             </div>
-
                             <div className=" me-3 d-flex justify-content-center  align-items-center mb-3 mb-sm-0" >
                                 <button
                                     className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${showNewsFlag ? 'active' : ''}`}
@@ -343,14 +359,21 @@ function Admin() {
                                         setCurrentPageUsers(0)
                                     }}
                                 >
-                                    <svg className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" style={{ fill: "white" }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg> </svg>
+                                    <svg
+                                        className="me-1  ms-2 me-2" xmlns="http://www.w3.org/2000/svg"
+                                        height="24" width="24"
+                                        style={{ fill: "white" }}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="24" viewBox="0 -960 960 960" width="24">
+                                            <path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" />
+                                        </svg>
+                                    </svg>
                                     <div className="pe-2">New's</div>
                                 </button>
                             </div>
                         </div>
                         <div className="col-12 col-sm-10 col-lg-4 d-flex mt-4 align-items-center me-5 justify-content-center ">
-
                             <input
                                 className="searching-items-admin ps-3 pe-3 col-8 d-flex justify-content-center "
                                 type="text"
@@ -427,7 +450,20 @@ function Admin() {
 
                 {windowAlert.isOpen &&
                     <div className="position-fixed window-alert-holder col-10 col-sm-7 col-md-5 col-xxl-3">
-                        <WindowAdminAlert setUsers={setUsers} users={users} hiddenDrinkElements={hiddenDrinkElements} setHiddenDrinkElements={setHiddenDrinkElements} setHiddenElements={setHiddenElements} hiddenElements={hiddenElements} setWindowAlert={setWindowAlert} blockedButton={blockedButton} setBlockedButton={setBlockedButton} windowAlert={windowAlert} setAnnouncementSucces={setAnnouncementSucces} setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist} setAnnouncementsError={setAnnouncementsError} />
+                        <WindowAdminAlert
+                            setUsers={setUsers}
+                            users={users}
+                            hiddenDrinkElements={hiddenDrinkElements}
+                            setHiddenDrinkElements={setHiddenDrinkElements}
+                            setHiddenElements={setHiddenElements}
+                            hiddenElements={hiddenElements}
+                            setWindowAlert={setWindowAlert}
+                            blockedButton={blockedButton}
+                            setBlockedButton={setBlockedButton}
+                            windowAlert={windowAlert}
+                            setAnnouncementSucces={setAnnouncementSucces}
+                            setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist}
+                            setAnnouncementsError={setAnnouncementsError} />
                     </div>
                 }
 

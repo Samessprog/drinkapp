@@ -8,7 +8,18 @@ function AdminPagination({ setChangeUserDataPopup, setDrinkPreview, showNewsFlag
         <>
             {currentPaginationItem &&
                 currentPaginationItem.map((elm) => (
-                    <ComponentRender key={elm.id} elm={elm} setChangeUserDataPopup={setChangeUserDataPopup} setDrinkPreview={setDrinkPreview} showNewsFlag={showNewsFlag} hiddenElements={hiddenElements} setAnnouncementSucces={setAnnouncementSucces} setWindowAlert={setWindowAlert} windowAlert={windowAlert} setBlockedButton={setBlockedButton} />
+                    <ComponentRender
+                        key={elm.id}
+                        elm={elm}
+                        setChangeUserDataPopup={setChangeUserDataPopup}
+                        setDrinkPreview={setDrinkPreview}
+                        showNewsFlag={showNewsFlag}
+                        hiddenElements={hiddenElements}
+                        setAnnouncementSucces={setAnnouncementSucces}
+                        setWindowAlert={setWindowAlert}
+                        windowAlert={windowAlert}
+                        setBlockedButton={setBlockedButton}
+                    />
                 ))
             }
             {

@@ -49,6 +49,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
         dispatch(setingredient([...ingredient, newIngredient]))
         setIngredientText("")
     }
+
     return (
         <div ref={settingsRef} className="col-12 special-drinks-holder position-fixed mt-5 " style={{ textAlign: "center" }}>
 
@@ -60,10 +61,14 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                 setSearchingDrink={setSearchingDrink}
             />
 
-            <div className="col-12 col-sm-10 col-xxl-6  helper rounded p-3" style={{ margin: "auto" }}>
+            <div
+                className="col-12 col-sm-10 col-xxl-6  helper rounded p-3"
+                style={{ margin: "auto" }}
+            >
                 <div className="d-flex flex-row-reverse ">
                     <svg
-                        className="close-icon d-flex flex-row-reverse " onClick={() => dispatch(setSpecialOptionsPopup(false))}
+                        className="close-icon d-flex flex-row-reverse "
+                        onClick={() => dispatch(setSpecialOptionsPopup(false))}
                         xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                     </svg>
@@ -72,7 +77,11 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                     <label className="d-flex justify-content-center fs-4 fw-bolder">Note:</label>
                     <div className="fs-5">Please enter the ingredients you have and then click
                         <label className="ms-1 me-1">
-                            <svg style={{ fill: 'white' }} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                            <svg
+                                style={{ fill: 'white' }}
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="24" viewBox="0 -960 960 960" width="24"
+                            >
                                 <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                             </svg>
                         </label>
@@ -85,18 +94,31 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                         .</div>
                 </div>
                 <div className="col-12 d-flex justify-content-center mb-3 align-items-center mt-3 mb-3">
-                    <input value={ingredientText}
+                    <input
+                        value={ingredientText}
                         onKeyDown={helperr}
                         onChange={(event) =>
                             setIngredientText(event.target.value)
                         }
-                        className="col-6 ingredients-input  ps-3 " type="text" placeholder="Enter your ingredients"></input>
-                    <button onClick={submitIngredientHandler} className="ing-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" /></svg>
+                        className="col-6 ingredients-input  ps-3 "
+                        type="text" placeholder="Enter your ingredients">
+
+                    </input>
+                    <button
+                        onClick={submitIngredientHandler}
+                        className="ing-button">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24" viewBox="0 -960 960 960" width="24">
+                            <path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                        </svg>
                     </button>
                 </div>
-                <div className="d-flex justify-content-center  align-items-center  mb-2">
-                    <input type="checkbox" onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))} />
+                <div className="d-flex justify-content-center align-items-center mb-2">
+                    <input
+                        type="checkbox"
+                        onClick={() => dispatch(setEachdrinkflag(!eachdrinkflag))}
+                    />
                     {
                         !eachdrinkflag ? (
                             <label className="ms-2  special-options-holder">Search for ALL drinks with the given ingredients</label>
@@ -112,7 +134,12 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                             {ingredient.map((ing) => (
                                 <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }} key={ing.id}>
                                     <Suspense>
-                                        <Ingreadinet ing={ing} key={ing.id} setingredient={setingredient} ingredient={ingredient} />
+                                        <Ingreadinet
+                                            ing={ing}
+                                            key={ing.id}
+                                            setingredient={setingredient}
+                                            ingredient={ingredient}
+                                        />
                                     </Suspense>
                                 </ErrorBoundary>
                             ))}
@@ -136,15 +163,25 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                         >
                         </CountUp>
                         {drinkCounter === 0 &&
-                            <svg className="ms-2" fill="red" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 -960 960 960" width="40">
+                            <svg
+                                className="ms-2"
+                                fill="red"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="40" viewBox="0 -960 960 960" width="40"
+                            >
                                 <path d="M480-418q-67.333 0-122.167 37.833Q303-342.333 277.333-280h405.334q-25-63-80.167-100.5T480-418Zm-178-68 48-44 44 44 34.666-38-44-44 44-44.667-34.666-38-44 44-48-44-34.667 38 44 44.667-44 44L302-486Zm264.667 0L610-530l48.667 44 34.666-38-44-44 44-44.667-34.666-38-48.667 44-43.333-44-34.667 38L575.334-568 532-524l34.667 38ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 333.334q139.333 0 236.334-97 97-97.001 97-236.334t-97-236.334q-97.001-97-236.334-97t-236.334 97q-97 97.001-97 236.334t97 236.334q97.001 97 236.334 97Z" />
                             </svg>
                         }
                     </label>
                 </div>
-                <div className="col-12 d-flex flex-row-reverse search-special-holder" onClick={() => dispatch(setSpecialOptionsPopup(false))}>
+                <div
+                    className="col-12 d-flex flex-row-reverse search-special-holder"
+                    onClick={() => dispatch(setSpecialOptionsPopup(false))}
+                >
                     <button className="col-12 col-lg-2 rounded-pill btn btn-secondary bg-transparent border rounded d-flex p-2 ps-3 pe-3 mt-2 justify-content-center">
-                        <svg className="me-1 ms-2 me-2 search-special-icon" xmlns="http://www.w3.org/2000/svg"
+                        <svg
+                            className="me-1 ms-2 me-2 search-special-icon"
+                            xmlns="http://www.w3.org/2000/svg"
                             height="24" viewBox="0 -960 960 960" width="24">
                             <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q-54-54 127-85.5T480-880q146 0 255.5 91.5T872-559h-82q-19-73-68.5-130.5T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h80v120h-40L168-552q-3 18-5.5 36t-2.5 36q0 131 92 225t228 95v80Zm364-20L716-228q-21 12-45 20t-51 8q-75 0-127.5-52.5T440-380q0-75 52.5-127.5T620-560q75 0 127.5 52.5T800-380q0 27-8 51t-20 45l128 128-56 56ZM620-280q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29-71q0 42 29 71t71 29Z" />
                         </svg>
