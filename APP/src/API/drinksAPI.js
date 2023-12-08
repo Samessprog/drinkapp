@@ -24,6 +24,7 @@ connection.connect((err) => {
 });
 
 app.get('/drinks', (req, res) => {
+
     const sql = 'SELECT ID_DRINK, DrinkName, DifficultyLevel, Creator, Taste, DrinkType, Ingredients, Preparation, Rate, user_id FROM drink WHERE Accepted = 1 AND DrinkBlock = 1';
     connection.query(sql, (err, results) => {
         if (err) {
