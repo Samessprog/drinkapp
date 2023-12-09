@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 import io from 'socket.io-client'
 import { SessionContext } from '../Session/SessionContext'
 
+import localhost from "../../../../config/config"
 import FriendsPopup from "../Components/FriendsPopup"
 import Chat from "../Components/chat"
 import { setDrinkNotFound, setUserFavouriteDrinks } from "../States/actions"
@@ -13,7 +14,7 @@ import Drink from "../drinksComponents/Drink"
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 const DDE = lazy(() => import("../ErrorsComponents/DDE"))
 
-const socket = io.connect("http://localhost:4001")
+const socket = io(`http://${localhost}:4001`);
 
 function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsProfile }) {
 
@@ -51,7 +52,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
     useEffect(() => {
         const fetchUserFavouriteDrinks = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/takeFavouriteUserDrink', {
+                const response = await fetch(`http://${localhost}:3000/api/takeFavouriteUserDrink`, {
                     credentials: 'include'
                 })
 

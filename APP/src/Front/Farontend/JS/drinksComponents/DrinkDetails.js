@@ -11,6 +11,8 @@ import axios from 'axios'
 import getIconForPreparation from "../Components/FilterIconsAlgo"
 import shakeIcon from '../../../../Assets/shaker.png'
 import Rating from '@mui/material/Rating'
+import localhost from "../../../../config/config"
+
 
 function DrinkDetails() {
 
@@ -114,7 +116,7 @@ function DrinkDetails() {
         if (ID_DRINK !== undefined) {
             const fetchUserFavouriteDrinkImage = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/api/fetchDrinkIMG/${ID_DRINK}`, {
+                    const response = await fetch(`http://${localhost}:3000/api/fetchDrinkIMG/${ID_DRINK}`, {
                         credentials: 'include',
                     })
                     if (!response.ok) {

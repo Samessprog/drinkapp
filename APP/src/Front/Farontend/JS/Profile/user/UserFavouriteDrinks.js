@@ -2,6 +2,7 @@
 import Carousel from "../../carouselsComponents/Carousel"
 import { useEffect, useState, useContext } from "react"
 import { SessionContext } from "../../Session/SessionContext"
+import localhost from "../../../../../config/config"
 
 function UserFavouriteDrinks({ freindsProfile }) {
 
@@ -14,7 +15,7 @@ function UserFavouriteDrinks({ freindsProfile }) {
       const userIDs = freindsProfile.freindNick || userSesion.nick
       console.log(userIDs)
       try {
-        const response = await fetch(`http://localhost:3000/api/getUserFavouriteDrinks/${userIDs}`)
+        const response = await fetch(`http://${localhost}:3000/api/getUserFavouriteDrinks/${userIDs}`)
         const data = await response.json()
         if (data.success) {
           setUserFavouriteDrinks(data.data)

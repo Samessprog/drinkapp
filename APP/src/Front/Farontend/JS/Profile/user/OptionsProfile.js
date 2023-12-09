@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { setUserSession, setUserFavouriteDrinks } from "../../States/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef } from "react"
+import localhost from "../../../../../config/config"
 
 function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
 
@@ -11,7 +12,7 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
 
     //Logout funciotn
     function logoutUser() {
-        fetch('http://localhost:3000/api/logout', {
+        fetch(`http://${localhost}:3000/api/logout`, {
             method: 'POST',
             credentials: 'include'
         })
@@ -63,8 +64,7 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
                 <Link to={"/"}>
                     <li
                         className="DropdownProfilMenu-elm mb-0"
-                        onClick={handleLogoutClick}
-                    >Log&nbspout</li>
+                        onClick={handleLogoutClick}>Log out</li>
                 </Link>
             </ul>
         </div>

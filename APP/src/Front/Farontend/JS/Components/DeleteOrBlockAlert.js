@@ -2,14 +2,13 @@
 import io from 'socket.io-client'
 import { useRef, useEffect, useContext } from 'react'
 import { SessionContext } from '../Session/SessionContext'
-import { all } from 'axios'
-
+import localhost from '../../../../config/config'
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
     setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
 
-    const socket = io('http://localhost:4000')
+    const socket = io(`http://${localhost}:4000`)
 
     const userData = useContext(SessionContext).userSesion
 

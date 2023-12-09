@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 
+import localhost from "../../../../config/config"
 import { setEmail, setPassword } from "../States/actions"
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions"
 import { API_URL } from '../Components/Constants'
@@ -28,7 +29,7 @@ function LoginPopup() {
         // }
 
         // Send a POST request to the login API endpoint
-        fetch(`${API_URL}login`, {
+        fetch(`http://${localhost}:3000/api/login`, {
             method: 'POST',
             body: JSON.stringify({ email, password }), // Convert data to JSON string
             headers: {

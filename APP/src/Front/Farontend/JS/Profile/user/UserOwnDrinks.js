@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 import OwnDrinkCarusel from "../../carouselsComponents/OwnDrinkCarusel"
 import { SessionContext } from "../../Session/SessionContext"
 import { useState } from "react"
+import localhost from "../../../../../config/config"
 
 function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) {
 
@@ -14,7 +15,7 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
         const fetchUserOwnDrinks = async () => {
             const userIDs = freindsProfile.friendID || userSesion.userID
             try {
-                const response = await fetch(`http://localhost:3000/api/getOwnDrinks/${userIDs}`)
+                const response = await fetch(`http://${localhost}:3000/api/getOwnDrinks/${userIDs}`)
                 const data = await response.json()
                 if (data.success) {
                     setUserOwnDrink(data.drinks)

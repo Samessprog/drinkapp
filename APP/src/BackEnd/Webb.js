@@ -3,12 +3,13 @@ const socketIo = require('socket.io');
 const userDB = require('./DB')
 const drinkDB = require('./drinksDB')
 express = require("express")
+const localhost = require('../config/config')
 
 const port = 4000;
 const server = http.createServer();
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3006", // Dodaj adres swojej aplikacji front-endowej
+        origin: `http://${localhost}:3006`, 
         methods: ["GET", "POST"]
     }
 });

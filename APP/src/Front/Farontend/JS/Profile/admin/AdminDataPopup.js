@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { io } from "socket.io-client"
-
+import localhost from "../../../../../config/config"
 
 
 function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSucces }) {
 
     const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData
-    const socket = io('http://localhost:4000')
+    const socket = io(`http://${localhost}:4000`)
+
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
     const [newUserEmail, setNewUserEmail] = useState(email)

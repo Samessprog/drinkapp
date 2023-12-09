@@ -2,15 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
+const localhost = require('../config/config')
 
 const port = 3000;
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:3006',
-  methods: ["GET", "POST", "REQUEST"],
-  credentials: true
-}));
+const corsOptions = {
+  origin: `http://${localhost}:3006`,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 
 app.use(session({
   secret: 'my-secret-key',
@@ -22,11 +26,16 @@ app.use(bodyParser.json({ limit: '7mb' }));
 app.use(bodyParser.urlencoded({ limit: '7mb', extended: true }));
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3006');
+  const allowedOrigins = ['http://localhost:3006', 'http://192.168.40.64:3006'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
+
 
 //Admin
 // const deleteUser = require('./Admin/deleteUser')
@@ -97,16 +106,11 @@ app.use('/api/takeFavouriteUserDrink', userFavouriteDrinks)
 
 app.get('/api/session', (req, res) => {
   const sessionId = req.sessionID;
-
   const user = req.session.user;
-
   res.json({ sessionId, user });
 });
-
 app.post('/api/searchUsers', (req, res) => {
   const { nickName } = req.body;
-
-
 
   db.query('SELECT Nick, Role, userIMG, ID_User FROM users WHERE Nick = ?', [nickName], (err, results) => {
     if (err) {

@@ -46,16 +46,28 @@ function App() {
 
   //Faetch session data from DB
   useEffect(() => {
-    fetch('http://localhost:3000/api/session', {
+    fetch(`http://${localhost}:3000/api/session`, {
       credentials: 'include'
     })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.user) {
-          dispatch(setUserSession(data.user))
+          console.log(data.user)
+          dispatch(setUserSession(data.user));
+          console.log(data)
+        } else {
         }
       })
-  }, [])
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
+
 
   //Faetch drinks data from DB
   useEffect(() => {
