@@ -56,6 +56,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
         let friendID = userResults.ID_User
         let userID = userSession.userID
 
+        
         fetch(`${API_URL}addFreind`, {
             method: 'POST',
             body: JSON.stringify({ friendID, userID }),
