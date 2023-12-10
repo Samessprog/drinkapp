@@ -1,0 +1,224 @@
+//colors
+$bg-dark: rgb(22, 22, 22);
+$bg-ligherDark: rgb(37, 37, 37);
+$color-light-l-green: rgb(6, 212, 6);
+$color-light-d-green: rgb(7, 243, 125);
+$color-white: white;
+$color-black: black;
+$color-gold: gold;
+$color-red: red;
+$color-light-grey: rgb(185, 184, 184);
+$color-rgb-163-161-161: rgb(163, 161, 161);
+
+//transitions
+$trans-all-02-eio: all .2s ease-in-out;
+$trans-all-03-eio: all .3s ease-in-out;
+$trans-all-05-eio: all .5s ease-in-out;
+
+//procents %
+$proc-20 : 20%;
+
+//numbers PX
+$n-700px: 700px;
+$n-500px: 500px;
+$n-450px: 450px;
+$n-400px: 400px;
+$n-350px: 350px;
+$n-300px: 300px;
+$n-250px: 250px;
+$n-150px: 150px;
+$n-120px: 120px;
+$n-100px: 100px;
+
+
+//Borders
+$border-1-solid-black: 1px solid black;
+
+//font family
+$cursive: cursive;
+
+//Colors
+$rgb-255: rgb(255, 255, 255);
+$rgb-251-242-234: rgb(251, 242, 234);
+$fbf2ea: fbf2ea;
+
+//displays
+$d-flex: flex;
+$d-none: none;
+
+//font-sizes
+$font-size-15: 15px;
+$font-size-13: 13px;
+
+@mixin fs-13-color-light-grey {
+    font-size: $font-size-13;
+    color: $color-light-grey;
+}
+
+@mixin pagination {
+
+    li:first-child,
+    li:last-child {
+        a {
+            background-color: transparent !important;
+            border: none;
+            margin: 0;
+        }
+    }
+
+    li {
+        &:hover {
+            color: black;
+        }
+    }
+
+    a {
+        font-size: 21px;
+        font-weight: 700;
+        padding-right: 5px;
+        border: 2px solid white;
+        border-radius: 7px;
+        padding: 5px;
+        margin-left: 4px;
+        margin-right: 4px;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+            background-color: rgb(251, 242, 234);
+            color: black;
+        }
+    }
+
+    .selected {
+        color: rgb(255, 170, 0);
+
+    }
+}
+
+
+.arrowPagination {
+    fill: white;
+    background-color: transparent;
+}
+
+
+.leftArroPagination {
+    fill: white;
+    transition: fill 0.2s ease-in-out;
+    transform: translateX(0);
+
+    &:hover path {
+        fill: rgb(251, 230, 212);
+        transform: translateX(-2px);
+    }
+}
+
+.arroPagi {
+    fill: white;
+    transition: fill 0.2s ease-in-out;
+    transform: translateX(0);
+
+    &:hover path {
+        fill: rgb(251, 230, 212);
+        transform: translateX(2px);
+    }
+}
+
+@mixin drinksHolder {
+    background-color: $bg-ligherDark;
+    cursor: pointer;
+}
+
+@mixin border-1-solid-black {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+@mixin drinks {
+    border-radius: 18px;
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-weight: 600;
+    color: $color-black;
+}
+
+@mixin basicDrinksInf {
+
+    $drinks: (
+        drinks: true,
+        d-flex-grow-1-text-align-center-screen575: true
+    );
+
+//drinks info
+.drink-creator,
+.diff-level,
+.sourClass,
+.sweetClass,
+.alkoClass,
+.softClass,
+.bitterClass,
+.easyLevelClass,
+.mediumLevelClass,
+.hardLevelClass {
+    @include drinks;
+    @include d-flex-grow-1-text-align-center-screen575();
+
+    &.sweetClass {
+        color: rgb(247, 71, 124);
+    }
+
+    &.sourClass {
+        color: rgb(218, 255, 32);
+    }
+
+    &.bitterClass {
+        color: rgb(143, 126, 126);
+    }
+
+    &.easyLevelClass {
+        color: rgb(91, 208, 91);
+    }
+
+    &.mediumLevelClass {
+        color: rgb(239, 212, 14);
+    }
+
+    &.hardLevelClass {
+        color: rgb(255, 111, 0);
+    }
+
+    &.diff-level {
+        color: $color-light-l-green;
+    }
+
+    &.drink-creator {
+        color: $color-black;
+    }
+
+    &.softClass {
+        color: rgb(154, 246, 249);
+    }
+
+    &.alkoClass {
+        color: rgb(243, 22, 22);
+    }
+}
+
+}
+
+@mixin d-flex-grow-1-text-align-center-screen575 {
+    @media (max-width: 768px) {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
+
+@mixin user-profile-button {
+    border-radius: 10px;
+    padding: 0.2rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    color: $color-black;
+    border: none;
+}

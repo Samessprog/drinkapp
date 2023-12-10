@@ -1,0 +1,129 @@
+@import "../variables";
+
+.special-drinks-holder {
+    z-index: 1;
+    color: white;
+    top: 15%;
+
+    @media (max-width: 768px) {
+        left: 0%;
+    }
+
+
+    @media (max-width: 400px) {
+        width: 360px;
+        left: 2%;
+        top: 6.2%;
+    }
+
+    @media (max-width: 768px) {
+        font-size: $font-size-13;
+    }
+
+    .helper {
+        background-color: rgb(41, 41, 41);
+        color: $fbf2ea;
+        border: 1px solid rgb(251, 242, 234);
+
+        .special-options-holder {
+            font-size: 21px;
+
+            @media (max-width: 768px) {
+                font-size: 15px;
+            }
+        }
+
+        .special-drink-ing-icon {
+            fill: rgb(240, 239, 239);
+        }
+
+        .close-icon {
+            fill: $color-red;
+            cursor: pointer;
+        }
+
+        .search-special-icon path {
+            fill: white;
+            transition: fill 0.3s;
+        }
+
+        button:hover .search-special-icon path {
+            fill: rgb(20, 214, 20);
+        }
+
+        .ingredients-input {
+            border-radius: 15px 0px 0px 15px;
+            padding: 8px;
+            outline: none;
+            border: none;
+            background-color: $fbf2ea;
+
+            &::placeholder {
+                opacity: 80%;
+                color: black;
+            }
+
+            @media (max-width: 575px) {
+                padding: 0.3rem;
+            }
+
+            @media (max-width: 400px) {
+                padding: .6rem;
+            }
+        }
+
+        .ing-button {
+            outline: none;
+            border: none;
+            border-radius: 0px 10px 10px 0px;
+            background-color: #c3c3c3;
+            transition: background-color ease-in-out .2s;
+            height: 40px;
+            border-left: 1px solid black;
+
+            @media (max-width: 768px) {
+                height: 36px;
+            }
+
+            @media (max-width: 575px) {
+                height: 29px;
+            }
+
+            @media (max-width: 400px) {
+                height: 39px;
+            }
+
+            &:hover {
+                background-color: #95ff00b9;
+            }
+        }
+
+        .enter-button {
+            background-color: $color-black;
+            color: $color-white;
+        }
+
+        .test {
+            max-height: $n-150px;
+
+            .drink-ingredient {
+                background-color: $color-white;
+                color: $color-black;
+
+                .delete-searching-ingredient {
+                    padding: 5px;
+                    border-radius: 0px 10px 10px 0px;
+                }
+            }
+        }
+
+        .drink-results {
+            color: $color-gold;
+        }
+
+        .search-special-drink-button {
+            background-color: $color-black;
+            color: $color-white;
+        }
+    }
+}

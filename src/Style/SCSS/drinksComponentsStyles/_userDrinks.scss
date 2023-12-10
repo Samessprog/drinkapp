@@ -1,0 +1,117 @@
+@import "../variables.scss";
+
+.user-drink-holder {
+
+    @include drinksHolder;
+    border-radius: 15px;
+
+    .golden-star {
+        fill: gold;
+    }
+
+    .favourite-img-holder {
+        height: 350px;
+        background-color: transparent !important;
+        @media (max-width: 576px) {
+            max-height: 150px;
+            height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            max-height: 180px;
+            height: 180px;
+        }
+
+        @media (max-width: 1200px) {
+            max-height: 200px;
+            height: 200px;
+        }
+    }
+
+    .loading-icon-holder {
+        height: 15rem;
+        padding-top: 4rem;
+    }
+
+    .favourite-drink-info-box {
+        bottom: -1%;
+        width: 100%;
+        background-color: rgb(7, 7, 7);
+        opacity: 0;
+        height: 70%;
+        z-index: 1;
+        border-radius: 0px 0px 15px 15px;
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transform: translateY(100%);
+
+        .cc {
+            height: 140px;
+            color: black;
+
+            .drink-creator {
+                background-color: azure;
+                border-radius: 15px;
+                padding: 0.3rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .drink-info-hover {
+                color: white;
+                font-family: cursive;
+            }
+        }
+    }
+
+    .drink-creatoren {
+        overflow: hidden;
+        color: rgb(224, 167, 68);
+    }
+
+    &:hover .favourite-drink-info-box {
+        opacity: 0.75;
+        transform: translateY(0%);
+    }
+
+    .drink-img-favourite {
+        object-fit: cover;
+        border-radius: 15px;
+        height: 350px;
+        max-height: 350px;
+        width: 100%;
+        border: 2px solid white;
+
+        @media (max-width: 576px) {
+            max-height: 150px;
+            height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            max-height: 180px;
+            height: 180px;
+        }
+
+        @media (max-width: 1200px) {
+            max-height: 200px;
+            height: 200px;
+        }
+    }
+
+    .star {
+        fill: $color-gold;
+    }
+
+    .arrow-carousel-holder {
+        height: 100%;
+        background-color: red;
+    }
+}
+
+.no-fav-drinks {
+    letter-spacing: 2px;
+    height: 100px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}

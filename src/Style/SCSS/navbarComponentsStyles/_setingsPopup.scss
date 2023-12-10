@@ -1,0 +1,145 @@
+@import "../variables.scss";
+
+
+.SetingsPopupHolder {
+    background-color: rgb(31, 31, 31);
+    right: 15%;
+    margin-top: 3.4rem;
+    border-radius: 5px 15px 15px 15px;
+    border: 1px solid rgb(251, 242, 234);
+    padding: 5px;
+
+    @media (max-width: 400px) {
+        left: 4%;
+        top: 6.5%;
+    }
+
+    @media (max-width: 1400px) {
+        right: 0;
+    }
+
+
+    @media (max-width: 1200px) {
+        right: 10%;
+    }
+
+    @media (max-width: 1000px) {
+        margin-top: 4rem;
+        right: 0;
+    }
+
+
+    @media (max-width: 768px) {
+        margin-top: 3rem;
+    }
+
+    .options-holder-settings-popup {
+
+        .unchecked:before {
+            accent-color: rgb(255, 255, 255);
+        }
+
+        input[type="checkbox"] {
+            background: #990000;
+        }
+
+        .checkBoxFilter {
+            background-color: rgb(255, 255, 255);
+            height: 11.5px;
+            width: 11.5px;
+            border-radius: 5px;
+        }
+
+        .checkBoxFilter.checked {
+            background-color: rgb(96, 125, 255);
+            border-radius: 5px;
+        }
+
+
+        @media (max-width: 1097px) {
+            flex-direction: column;
+        }
+
+        @media (max-width: 992px) {
+            transition: font-size 0.3s ease-in-out;
+            font-size: $font-size-15;
+        }
+
+        @media (max-width: 570px) {
+            font-size: 1.125rem;
+            flex-direction: row;
+        }
+
+        .multi-options {
+            align-items: start;
+
+            @media (min-width: 1097px) {
+                margin-top: 0.8rem;
+                margin-left: 0 !important;
+            }
+
+            @media (max-width: 1097px) {
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            @media (max-width: 570px) {
+                display: flex;
+                align-items: start;
+                margin-left: 4rem !important;
+                margin-top: 0rem !important;
+            }
+        }
+    }
+
+    .close-icon {
+        fill: rgb(204, 24, 24);
+        cursor: pointer;
+    }
+
+    .test {
+        background-color: #fbf2ea;
+        color: black;
+    }
+
+    .special-button {
+        color: $color-white;
+        background-color: rgba(15, 15, 15, 0.795);
+        transition: $trans-all-03-eio;
+        font-size: $font-size-15;
+
+        &:hover {
+            background-color: $color-black;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 0.688rem;
+
+        }
+
+        @media (max-width: 570px) {
+            font-size: 1.125rem;
+        }
+    }
+
+    .advanced-button-holder {
+        &:hover {
+            .advancet-filter-icon {
+                animation: rotate 3.5s linear infinite;
+                fill: gold;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
