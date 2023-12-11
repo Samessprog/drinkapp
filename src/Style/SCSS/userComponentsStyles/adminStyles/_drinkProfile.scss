@@ -149,6 +149,10 @@
             border: 1px solid white;
             border-radius: 10px;
 
+            @media (max-width: 576px) {
+                margin-right: 1.5rem;
+            }
+
             .drink-profile-img {
                 object-fit: cover;
                 border-radius: 10px;
@@ -167,7 +171,11 @@
                 @media (max-width: 680px) {
                     max-width: 350px;
                     width: 350px;
+                }
 
+                @media (max-width: 576px) {
+                    width: 150px;
+                    height: 150px;
                 }
             }
         }

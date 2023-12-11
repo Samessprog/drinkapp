@@ -33,7 +33,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(ID_DRINK) ? 'd-none' : ''} `}>
             <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
-                <div className="ms-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0">
+                <div className="ms-sm-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0 ">
                     {ID_DRINK}.
                 </div>
                 <div className="justify-content-between d-flex align-items-center col-11">
@@ -51,7 +51,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                             </div>
                             <div className="ms-4 fs-5 col-5 d-flex flex-column  align-items-center align-items-xxl-start">
                                 <div className="d-flex">
-                                    <label>Created by: </label>
+                                    <label>Creator: </label>
                                     <label className="drink-name-profile ms-2">{Creator}</label>
                                 </div>
                                 <div className="d-flex">
@@ -99,7 +99,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                         </svg>
                                     </div>
                                 }
-                                <div className="delete-profile-icon  mb-3 pe-4" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }) }}>
+                                <div className="delete-profile-icon mt-2 mt-sm-0 mb-3 pe-4" onClick={() => { setWindowAlert({ isOpen: !windowAlert.isOpen, ObjectID: elm }) }}>
                                     <svg
                                         className="delete-profile-icon "
                                         xmlns="http://www.w3.org/2000/svg"

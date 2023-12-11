@@ -33,6 +33,9 @@
     padding-top: 12px;
     padding-bottom: 12px;
 
+    @media (max-width: 576px) {
+        margin-left: 4rem;
+    }
 }
 
 .data-filtering-holder {

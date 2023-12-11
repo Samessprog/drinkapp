@@ -147,14 +147,14 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start ">
                                     <label className="mb-1 ms-1">Drink name</label>
                                     <input
-                                        className="drink-name-input fs-5 col-xxl-5 col-10 "
+                                        className="drink-name-input fs-5 col-xxl-5 col-11 col-sm-10 me-3 me-sm-0"
                                         value={drinkNameInput}
                                         onChange={(e) => setDrinknameInput(e.target.value)}>
                                     </input>
                                 </div>
                             </div>
                             <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
-                                <div className="mt-5 fs-4 fw-bolder mb-2">
+                                <div className="mt-5 fs-4 fw-bolder mb-2 d-flex flex-column flex-sm-row col-12 d-flex ">
                                     <label
                                         onClick={() => {
                                             setDescriptionFlag(true)
@@ -172,7 +172,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                             setDescriptionFlag(false)
                                             setNutritionalValues(false)
                                         }}
-                                        className="ms-3">
+                                        className="ms-3 ">
                                         <div className={`drink-changer-data ${historyFlag ? 'focus' : ''}`}>
                                             History
                                         </div>
@@ -188,27 +188,26 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                             Nutritional values
                                         </div>
                                     </label>
-
                                 </div>
                                 <div className="col-12 d-flex justify-content-center justify-content-xxl-start">
 
                                     {descriptionFlag &&
                                         <textarea
-                                            className="description-holder col-9 text-break fs-5"
+                                            className="description-holder col-12 col-sm-9 text-break fs-5 me-3"
                                             value={drinkDescriptionInput}
                                             onChange={(e) => setDrinkDescriptionInput(e.target.value)}
                                         />
                                     }
                                     {historyFlag &&
                                         <textarea
-                                            className="description-holder col-9 text-break fs-5"
+                                            className="description-holder col-12 col-sm-9 text-break fs-5 me-3"
                                             value={drinkHistoryInput}
                                             onChange={(e) => setDrinkHistoryInput(e.target.value)}
                                         />
                                     }
                                     {nutritionalValues &&
                                         <textarea
-                                            className="description-holder col-9 text-break fs-5"
+                                            className="description-holder col-12 col-sm-9 text-break fs-5 me-3"
                                             value={drinkNutritionalValues}
                                             onChange={(e) => drinkNutritionalValues(e.target.value)}
                                         />
@@ -217,7 +216,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                             </div>
                             <div className="d-flex t-5 ingredients-and-preparation-holder col-12 mb-5 mt-5">
                                 <div className="col-12 ms-3">
-                                    <div className="d-flex justify-content-center col-7 mb-3">
+                                    <div className="d-flex justify-content-center col-7 mb-3  d-flex flex-column flex-sm-row">
                                         <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
                                             <div
                                                 onClick={() => setIngredientFlag(true)}
@@ -226,7 +225,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                             </div>
 
                                         </label>
-                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2 ms-3">
+                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
                                             <div
                                                 onClick={() => setIngredientFlag(false)}
                                                 className={`ing-prep-button ${ingredientFlag ? '' : 'focus'}`}>
@@ -234,10 +233,10 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                             </div>
                                         </label>
                                     </div>
-                                    <div className="d-flex flex-column col-8  ing-prep-holder">
-                                        <ul className="mt-2 fs-5 ps-2 ">
+                                    <div className="d-flex flex-column col-sm-8 col-12  ing-prep-holder">
+                                        <ul className="mt-2 fs-5 ps-2 col-12 d-flex justify-content-start ">
                                             {ingredientFlag ? (
-                                                <ul >
+                                                <ul className="ps-0 ps-sm-3 ">
                                                     {ingredient.map((ingredient, index) => (
                                                         <li key={index}>
                                                             <input
@@ -249,7 +248,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <ul>
+                                                <ul className="ps-0 ps-sm-3" >
                                                     {preparation.map((preparation, index) => (
                                                         <li key={index}>
                                                             <input
@@ -265,15 +264,15 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-center col-12">
+                            <div className="d-flex justify-content-center col-12 flex-column flex-sm-row align-items-center">
                                 <div className="me-2">
-                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5">{Drink.Creator}</label>
+                                    <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5 mb-2 mb-sm-0">{Drink.Creator}</label>
                                 </div>
-                                <div className="me-3 pe-0 fs-5" >
+                                <div className="ms-5 ms-sm-0 me-sm-3 pe-0 fs-5" >
                                     <label className={drinkLevelInput === 'Easy' ? 'easyLevelClass me-2' : drinkLevelInput === 'Medium' ? 'mediumLevelClass me-2' : drinkLevelInput === 'Hard' ? 'hardLevelClass me-2' : ''}>{drinkLevelInput}</label>
                                     <select
                                         onChange={(e) => setDrinkLevelInput(e.target.value)}
-                                        className="Multi-options-holder"
+                                        className="Multi-options-holder ps-3"
                                     >
                                         <option value={drinkLevelInput}></option>
                                         <option value='Easy'>Easy</option>
@@ -282,11 +281,11 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     </select>
                                 </div>
 
-                                <div className="me-3 fs-5">
+                                <div className="ms-5 ms-sm-0 fs-5 ">
                                     <label className={drinkTasteInput === 'Sour' ? 'sourClass me-2' : drinkTasteInput === 'Sweet' ? 'sweetClass me-2' : drinkTasteInput === 'Bitter' ? 'bitterClass me-2' : ''}>{drinkTasteInput}</label>
                                     <select
                                         onChange={(e) => setDrinkTasteInput(e.target.value)}
-                                        className="Multi-options-holder  "
+                                        className="Multi-options-holder ps-3"
                                     >
                                         <option value={drinkTasteInput}></option>
                                         <option value='Sour'>Sour</option>
@@ -294,11 +293,11 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                         <option value='Bitter'>Bitter</option>
                                     </select>
                                 </div>
-                                <div className="fs-5">
+                                <div className="fs-5 ms-1">
                                     <label className={drinkTypeInput === 'Soft' ? 'softClass me-2' : 'alkoClass me-2'}>{drinkTypeInput}</label>
                                     <select
                                         onChange={(e) => setDrinkTypeInput(e.target.value)}
-                                        className="Multi-options-holder"
+                                        className="Multi-options-holder ps-3"
                                     >
                                         <option value={drinkTypeInput}></option>
                                         <option value='Soft'>Soft</option>

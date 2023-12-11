@@ -291,9 +291,9 @@ function Admin() {
                 <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12 d-flex flex-column align-items-center">
                     <div className="d-flex justify-content-between col-11 mb-5 flex-column align-items-center flex-lg-row">
                         <div className="d-flex ms-5 ms-xxl-3 mt-0 optional-buttons-holder mt-4 col-8 flex-column flex-sm-row">
-                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
+                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0 " >
                                 <button
-                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${drinksFlag ? 'active' : ''}`}
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user col-12 me-4 me-sm-0 ${drinksFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         setInputText('')
@@ -321,9 +321,9 @@ function Admin() {
                                 </button>
                             </div>
 
-                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0" >
+                            <div className=" me-2 d-flex justify-content-center align-items-center mb-3 mb-sm-0 " >
                                 <button
-                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${usersFlag ? 'active' : ''}`}
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user col-12 me-4 me-sm-0 ${usersFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         setInputText('')
@@ -349,7 +349,7 @@ function Admin() {
                             </div>
                             <div className=" me-3 d-flex justify-content-center  align-items-center mb-3 mb-sm-0" >
                                 <button
-                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user ${showNewsFlag ? 'active' : ''}`}
+                                    className={`mb-md-2 ms-1  btn btn-secondary border  d-flex p-2 change-data-input-user col-12 me-4 me-sm-0 ${showNewsFlag ? 'active' : ''}`}
                                     style={{ borderRadius: '15px' }}
                                     onClick={() => {
                                         dispatch(setUsersFlag(false))
@@ -375,7 +375,7 @@ function Admin() {
                         </div>
                         <div className="col-12 col-sm-10 col-lg-4 d-flex mt-4 align-items-center me-5 justify-content-center ">
                             <input
-                                className="searching-items-admin ps-3 pe-3 col-8 d-flex justify-content-center "
+                                className="searching-items-admin ps-3 pe-3 col-10 col-sm-8 d-flex justify-content-center"
                                 type="text"
                                 placeholder="enter the name you are looking for"
                                 value={inputText}
