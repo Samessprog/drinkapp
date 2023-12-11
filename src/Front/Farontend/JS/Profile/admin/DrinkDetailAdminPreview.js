@@ -153,16 +153,16 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     </input>
                                 </div>
                             </div>
-                            <div className="d-flex flex-column align-items-center align-items-xxl-start col-12">
-                                <div className="mt-5 fs-4 fw-bolder mb-2 d-flex flex-column flex-sm-row col-12 d-flex ">
+                            <div className="d-flex flex-column align-items-center align-items-xxl-start col-12 ">
+                                <div className="mt-5 fs-4 fw-bolder mb-2 d-flex flex-column flex-sm-row col-12 d-flex pe-5">
                                     <label
                                         onClick={() => {
                                             setDescriptionFlag(true)
                                             setNutritionalValues(false)
                                             setHistoryFlag(false)
                                         }}
-                                        className="ms-1">
-                                        <div className={`drink-changer-data ${descriptionFlag ? 'focus' : ''}`}>
+                                        className="ms-3 ms-sm-1 ">
+                                        <div className={`drink-changer-data  ${descriptionFlag ? 'focus' : ''}`}>
                                             Description
                                         </div>
                                     </label>
@@ -216,19 +216,19 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                             </div>
                             <div className="d-flex t-5 ingredients-and-preparation-holder col-12 mb-5 mt-5">
                                 <div className="col-12 ms-3">
-                                    <div className="d-flex justify-content-center col-7 mb-3  d-flex flex-column flex-sm-row">
-                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
+                                    <div className="d-flex justify-content-center col-sm-7 col-12 mb-3  d-flex flex-column flex-sm-row align-items-center ">
+                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2 pe-5 pe-sm-0">
                                             <div
                                                 onClick={() => setIngredientFlag(true)}
-                                                className={`ing-prep-button ${ingredientFlag ? 'focus' : ''}`}>
+                                                className={`ing-prep-button col-12 ${ingredientFlag ? 'focus' : ''}`}>
                                                 Ingredients
                                             </div>
 
                                         </label>
-                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2">
+                                        <label className="fw-bolder fs-4 d-flex justify-content-center mb-2 ms-sm-2 pe-5 pe-sm-0">
                                             <div
                                                 onClick={() => setIngredientFlag(false)}
-                                                className={`ing-prep-button ${ingredientFlag ? '' : 'focus'}`}>
+                                                className={`ing-prep-button col-12  ${ingredientFlag ? '' : 'focus'}`}>
                                                 Preparation
                                             </div>
                                         </label>

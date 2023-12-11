@@ -8,7 +8,7 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
     hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
     setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
 
-    const socket = io(`http://${localhost}:4000`)
+    const socket = io(`http://${localhost}:4002`)
 
     const userData = useContext(SessionContext).userSesion
 

@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const http = require("http")
 const cors = require("cors")
-const localhost = require('../config/configNode')
+const localhost = require("../config/configNode")
 
 const { Server } = require("socket.io")
 
@@ -26,8 +26,8 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("disconnecteeed", socket.id)
     })
-})
 
+})
 server.listen(4001, () => {
     console.log("ServerRunning")
 })

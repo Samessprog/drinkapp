@@ -5,7 +5,7 @@ const drinkDB = require('./drinksDB')
 express = require("express")
 const localhost = require('../config/configNode')
 
-const port = 4000;
+const port = 4002;
 
 const server = http.createServer();
 const io = socketIo(server, {
