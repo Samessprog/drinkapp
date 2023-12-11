@@ -44,8 +44,8 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }
   }
 
   return (
-    <div className="carousel col-12 ms-0 me-0 ps-0 pe-0">
-      <div className="carousel-items d-flex justify-content-center mb-2 col-12 cc ">
+    <div className="carousel carousel-holder col-12 ">
+      <div className=" d-flex justify-content-center mb-2 col-12 cc ">
         {showItems === '' ? (
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
@@ -63,7 +63,7 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }
       {favouriteUsersDrink.length > 4 &&
         <div>
           <div
-            className="position-absolute start-0  d-none d-md-flex scroll-arrow-fav-own-box"
+            className="position-absolute start-0  d-flex scroll-arrow-fav-own-box border-radius-15-0-0-15"
             onClick={handlePrev}
           >
             <svg
@@ -78,7 +78,7 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }
           </div>
 
           <div
-            className="position-absolute end-0  d-none d-md-flex scroll-arrow-fav-own-box"
+            className="position-absolute end-0  d-flex scroll-arrow-fav-own-box"
             onClick={handleNext}
           >
             <svg

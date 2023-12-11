@@ -33,7 +33,7 @@ function UserFavouriteDrinks({ freindsProfile }) {
     <div className="position-relative ">
       <label className="border-bottom fw-bolder ms-3 fs-5 d-flex d-sm-block justify-content-center"> Create your own drink</label>
       <div className="user-favourite-frinks-holder">
-        <div className="user-favourite-frinks d-flex justify-content-center">
+        <div className="user-favourite-frinks d-flex justify-content-center ">
           <Carousel
             favouriteUsersDrink={favouriteUsersDrink}
             setIsHidden={setIsHidden}

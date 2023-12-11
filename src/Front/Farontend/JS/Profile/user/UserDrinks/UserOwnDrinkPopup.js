@@ -127,9 +127,9 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     }
 
     return (
-        <div className="col-12 col-md-8 h-100 align-items-center own-drink-popup-holder ">
-            <div className=" col-xl-11 col-12  users-own-deink p-3 mx-auto">
-                <div className="d-flex justify-content-end mb-2 col-12">
+        <div className="col-11 col-sm-12 col-md-8 h-100 align-items-center own-drink-popup-holder ">
+            <div className=" col-xl-11 col-12  users-own-deink p-2 ps-sm-3 mx-auto">
+                <div className="d-flex justify-content-end mb-2 col-12 ">
                     <svg
                         className="close-icon"
                         onClick={() => { setAddUserNewDrink(!addUserNewDrink) }}
@@ -140,7 +140,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 </div>
                 <form
                     onSubmit={addNewDrinkHandler}
-                    className="col-12 d-flex flex-column"
+                    className="col-sm-12 col-11 d-flex flex-column"
                 >
                     <div className="col-12 d-flex flex-column flex-lg-row ">
                         <div className="col-lg-5 col-12">
@@ -155,7 +155,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                                     height="24" viewBox="0 -960 960 960" width="24">
                                                     <path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z" /></svg>
                                             </div>
-                                            <div className="col-12 input-box">
+                                            <div className="col-11 col-sm-12 input-box ">
                                                 <input
                                                     onChange={(e) => setDrinkName(e.target.value)}
                                                     className="col-11 ps-2 rounded login-register-input-data"
@@ -166,7 +166,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 ms-3 ms-sm-0">
                                         <textarea
                                             onChange={(e) => setDrinkDescription(e.target.value)}
                                             className="col-12  own-drink-desc"
@@ -176,7 +176,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                         >
                                         </textarea>
                                     </div>
-                                    <div className="col-12">
+                                    <div className="col-12 ms-3 ms-sm-0">
                                         <textarea
                                             onChange={(e) => setDrinkHistory(e.target.value)}
                                             className="col-12 own-drink-desc"
@@ -188,8 +188,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="ms-lg-4 ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center justify-content-lg-start options-holder-own-drink ">
-                                <div className="d-flex ">
+                            <div className="ms-lg-4 ms-2 d-flex mt-3 col-12 col-lg-10 justify-content-center justify-content-lg-start flex-column flex-sm-row options-holder-own-drink align-items-center">
+                                <div className="d-flex mb-4 mb-sm-0">
                                     <div className="d-flex flex-column align-items-center">
                                         <label className="fs-5">Level: </label>
                                         <select
@@ -256,8 +256,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                     }}
                                 />
                             </div>
-                            <div className="d-flex mt-4 col-12 justify-content-center">
-                                <div className="col-5 col-xl-6 me-4" >
+                            <div className="d-flex mt-4 col-12 justify-content-center flex-column flex-sm-row align-items-center">
+                                <div className="col-11 col-sm-5 col-xl-6 me-sm-4 ms-4 ms-sm-0" >
                                     <div className="col-12">
                                         <div className="d-flex mt-3 align-items-center">
                                             <input
@@ -289,7 +289,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-5 col-xl-6">
+                                <div className="col-11 col-sm-5 col-xl-6 ms-4 ms-sm-0">
                                     <div className="col-12">
                                         <div className="d-flex mt-3 align-items-center">
                                             <input
@@ -319,7 +319,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         </div>
                     </div>
 
-                    <div className="d-flex flex-row-reverse col-12">
+                    <div className="d-flex flex-row-reverse col-12 mb-5 mb-sm-1">
                         <div className="d-flex justify-content-center  justify-content-xxl-end align-items-center col-12" >
                             <label className=" text-danger fw-bolder me-4 fs-5">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                             <button className="col-10 col-xxl-1  mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">

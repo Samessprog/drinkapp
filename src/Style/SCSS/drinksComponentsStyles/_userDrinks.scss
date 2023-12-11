@@ -12,20 +12,17 @@
     .favourite-img-holder {
         height: 350px;
         background-color: transparent !important;
-        @media (max-width: 576px) {
-            max-height: 150px;
-            height: 150px;
-        }
-
-        @media (max-width: 768px) {
-            max-height: 180px;
-            height: 180px;
-        }
 
         @media (max-width: 1200px) {
             max-height: 200px;
             height: 200px;
         }
+
+        @media (max-width: 576px) {
+            max-height: 230px;
+            height: 230px;
+        }
+
     }
 
     .loading-icon-holder {
@@ -44,6 +41,7 @@
         transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         transform: translateY(100%);
 
+
         .cc {
             height: 140px;
             color: black;
@@ -58,7 +56,13 @@
 
             .drink-info-hover {
                 color: white;
-                font-family: cursive;
+                font-family: 'Times New Roman', Times, serif;
+
+                @media (max-width: 576px) {
+                    font-size: 15px !important;
+                    margin-top: 1px !important;
+                    font-family: 'Times New Roman', Times, serif;
+                }
             }
         }
     }
@@ -81,19 +85,14 @@
         width: 100%;
         border: 2px solid white;
 
-        @media (max-width: 576px) {
-            max-height: 150px;
-            height: 150px;
-        }
-
-        @media (max-width: 768px) {
-            max-height: 180px;
-            height: 180px;
-        }
-
         @media (max-width: 1200px) {
             max-height: 200px;
             height: 200px;
+        }
+
+        @media (max-width: 576px) {
+            max-height: 230px;
+            height: 230px;
         }
     }
 
@@ -115,3 +114,5 @@
     align-items: center;
     justify-content: center;
 }
+
+.carousel-holder {}

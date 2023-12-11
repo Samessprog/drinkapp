@@ -89,12 +89,12 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
 
     return (
         <div className="col-12 mt-3 ">
-            <div class="d-flex justify-content-between p-5 flex-column flex-xxl-row align-items-center col-12 mt-4">
+            <div class="d-flex justify-content-between p-5 pt-3 pt-sm-0 flex-column flex-xxl-row align-items-center col-12">
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center col-12 col-xxl-5">
-                    <div class="d-flex col-xxl-8  ms-5" >
+                    <div class="d-flex col-xxl-8  ms-0 ms-sm-5" >
                         <div className="user-img-holder d-flex ">
                             {fetchIMGCompleted ? (
-                                <img src={userIMG} alt="Img error" class="img-fluid user-img "></img>
+                                <img src={userIMG} alt="Img error" class="img-fluid user-img"></img>
                             ) : (
                                 <Ring
                                     size={150}
@@ -192,7 +192,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
                         </div>
                     }
                 </div>
-                <div className="badges-holder col-12 col-xxl-5 p-3 col-5 rounded">
+                <div className="badges-holder col-12 col-xxl-5 p-3 rounded">
                     <label className="badges-start">Your badges:</label>
                     <div className="d-flex justify-content-center ">
                         No badges :c

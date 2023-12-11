@@ -254,7 +254,7 @@ function DrinkDetails() {
                             </div>
                             <div className="col-12 col-xl-9 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
-                                <ul className="col-12 mt-2 ingrediets-list overflow-auto flex-column ">
+                                <ul className="col-12 mt-2 ingrediets-list overflow-auto flex-column d-flex  justify-content-start align-items-start ps-0 ps-sm-5">
                                     {ingredient.map((ingredient, key) => (
                                         <li
                                             className={ingChecked.includes(key) ? 'crossedOut' : 'ing'}
