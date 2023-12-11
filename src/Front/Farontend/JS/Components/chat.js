@@ -60,9 +60,9 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
             </div>
             <div className={`${minimalize ? 'd-none' : ''}`}>
                 <div className={`chat-body`} >
-                    <ScrollToBottom className="message-container">
+                    <ScrollToBottom className="message-container ">
                         {messageList.map((currentMess) =>
-                            <div className={`${currentMess.author === userSession.nick ? 'own-mess' : 'other-mess'}`}  >
+                            <div className={`${currentMess.author === userSession.nick ? 'own-mess pt-2' : 'other-mess pt-2'}`}  >
                                 <div>
                                     <div className="message-context text-break">{currentMess.message}</div>
                                 </div>
@@ -76,7 +76,7 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
                 </div>
                 <div className="chat-footer col-12">
                     <input
-                        className="col-11 input-chat"
+                        className="col-10 col-md-11 input-chat"
                         type="text"
                         placeholder="Enter a message"
                         onChange={(event) => {
@@ -89,10 +89,9 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
                     >
                     </input>
                     <button
-                        className="col-1 button-chat"
+                        className="col-2 col-md-1 button-chat"
                         onClick={sendMessage}
-                    >
-                        &#9658
+                    >&#9658;
                     </button>
                 </div>
             </div>

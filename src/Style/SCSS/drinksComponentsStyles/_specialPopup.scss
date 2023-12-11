@@ -10,7 +10,7 @@
     }
 
 
-    @media (max-width: 400px) {
+    @media (max-width: 576) {
         width: 360px;
         left: 2%;
         top: 6.2%;
@@ -67,7 +67,7 @@
                 padding: 0.3rem;
             }
 
-            @media (max-width: 400px) {
+            @media (max-width: 576px) {
                 padding: .6rem;
             }
         }
@@ -89,7 +89,7 @@
                 height: 29px;
             }
 
-            @media (max-width: 400px) {
+            @media (max-width: 576) {
                 height: 39px;
             }
 

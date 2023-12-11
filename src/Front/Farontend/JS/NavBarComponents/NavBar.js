@@ -129,7 +129,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                     </div>
                     <div
                         id="hamburger"
-                        className={userScroll ? ` col-xl-4 col-xxl-3 d-flex mb-3 align-items-center mt-3 align-items-center ${location.pathname.endsWith('/') ? '' : 'col-8 col-sm-8 col-md-10 col-xl-9 col-xxl-3'} ` : `hamburger-SCROLL  mt-3 mb-3 ${location.pathname.endsWith('/') ? `` : `col-8 col-sm-8 col-md-10 col-xxl-6 `}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
+                        className={userScroll ? ` col-xl-4 col-xxl-3 d-flex mb-3 align-items-center mt-3 align-items-center ${location.pathname.endsWith('/') ? '' : 'col-sm-8 col-md-10 col-xl-9 col-xxl-3 col-10'} ` : `hamburger-SCROLL  mt-3 mb-3  ${location.pathname.endsWith('/') ? `` : `col-10 col-sm-8 col-md-10 col-xxl-6 `}`} onClick={(() => { const navbarLinks = document.getElementsByClassName('main-options-holder')[0]; navbarLinks.classList.toggle('d-none'); handlePopup('menu') })}>
                         <div
                             className={`d-flex flex-column justify-content-between align-items-center helper ${hamburgerAnimation ? 'clicked' : (hamburgerAnimation === false ? 'hide' : 'helper')}`}
                             onClick={() => setHamburgerAnimation(!hamburgerAnimation)}

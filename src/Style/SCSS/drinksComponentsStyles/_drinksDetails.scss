@@ -45,16 +45,17 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     transition: all .3s ease-in-out;
+                    font-size: 20px;
 
                     &:hover {
                         background-color: grey;
-
                     }
 
                     @media (max-width: 572px) {
                         text-align: center;
+                        margin-bottom: .5rem;
+                        font-size: 18px;
                     }
-
                 }
 
                 .activ-detail {
@@ -117,6 +118,8 @@
                     width: 600px;
                     max-width: 600px;
 
+
+
                     @media (max-width:1200px) {
                         height: 650px;
                         width: 900px;
@@ -132,6 +135,13 @@
                         max-width: 100%;
                         object-fit: cover;
                     }
+
+                    @media (max-width:576px) {
+                        width: 100%;
+                        max-width: 100%;
+                        object-fit: cover;
+                        height: 450px;
+                    }
                 }
             }
 
@@ -144,12 +154,18 @@
                 overflow-y: auto !important;
                 border: 1px solid white;
                 border-radius: 0px 15px 15px 15px;
-           
+                font-size: 21px;
 
                 .line-spaced {
                     line-height: 1.6;
                     color: rgb(224, 224, 224);
                 }
+
+                @media (max-width: 576) {
+                    height: 350px;
+                    font-size: 16px !important;
+                }
+
             }
 
             .ingredient-details-holder {
@@ -162,7 +178,11 @@
                 .ingrediets-list {
                     max-height: 300px;
                     list-style: none;
-                    font-size: 18px;
+                    font-size: 20px;
+
+                    @media (max-width: 576) {
+                        font-size: 17px;
+                    }
 
                     .ing {
                         cursor: pointer;
@@ -208,7 +228,12 @@
             }
 
             .basic-information-drink {
-                @include basicDrinksInf
+                @include basicDrinksInf;
+                font-size: 26px;
+
+                @media (max-width: 576) {
+                    font-size: 21px !important;
+                }
             }
         }
 

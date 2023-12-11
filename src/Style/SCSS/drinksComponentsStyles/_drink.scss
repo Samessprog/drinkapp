@@ -8,6 +8,10 @@
         border: 2px solid white;
         border-radius: 15px;
 
+        @media (max-width: 576px) {
+            height: 550px;
+        }
+
         .drink-name-holder {
             color: white;
             max-height: 80px;
@@ -56,6 +60,10 @@
             background-color: transparent;
             margin-bottom: 10px;
 
+            @media (max-width: 400px) {
+                height: 220px;
+            }
+
             .drink-img {
                 object-fit: cover;
                 border-radius: 15px 15px 0px 0px;
@@ -64,7 +72,7 @@
                 width: 100%;
 
                 @media (max-width: 400px) {
-                    height: $n-150px;
+                    height: 220px;
                 }
 
                 @media (min-width: 1800px) {
@@ -135,7 +143,7 @@
         .un-favouriteStar {
             fill: black;
             transition: $trans-all-02-eio;
-            
+
             @keyframes starAnimation {
 
                 0%,

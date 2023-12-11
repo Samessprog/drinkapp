@@ -175,8 +175,11 @@ app.post('/api/confirmFriend', (req, res) => {
 app.post('/api/deleteFriend', (req, res) => {
   const { ID_User, session_ID } = req.body;
 
+  console.log(ID_User)
+  console.log(session_ID)
+
   const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 1 WHERE ID_User = ? AND ID_Friend = ?';
-  db.query(updateFriendshipQuery, [session_ID, ID_User], (err, result) => {
+  db.query(updateFriendshipQuery, [ID_User, session_ID], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).json({ success: false, message: 'Wystąpił błąd podczas potwierdzania przyjaźni.' });

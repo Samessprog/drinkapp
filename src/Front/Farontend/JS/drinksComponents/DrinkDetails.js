@@ -13,7 +13,6 @@ import shakeIcon from '../../../../Assets/shaker.png'
 import Rating from '@mui/material/Rating'
 import localhost from "../../../../config/config"
 
-
 function DrinkDetails() {
 
     let { id } = useParams()
@@ -153,15 +152,15 @@ function DrinkDetails() {
             <div className="col-12 drink-main-container mt-5">
                 <div className="col-12 d-flex me-0 pe-4 ps-4  flex-contain " >
                     <div className="col-12 col-xxl-7 col-xl-6">
-                        <div className="d-flex align-items-center mb-5 name-rating-holder">
+                        <div className="d-flex align-items-center name-rating-holder">
                             <header className="d-flex align-items-center ">
                                 <div
-                                    className="drink-name fs-2 fw-bolder ps-3"
+                                    className="drink-name fs-2 fw-bolder ps-3  me-4 me-sm-0"
                                     style={{ fontFamily: 'cursive' }}
                                 >{DrinkName}
                                 </div>
                             </header>
-                            <div className="d-flex ms-4 align-items-center rating-holder">
+                            <div className="d-flex ms-4 align-items-center rating-holder pt-2 pt-sm-0 me-5 me-sm-0">
                                 <Rating
                                     name="simple-controlled"
                                     value={RateStar}
@@ -178,10 +177,10 @@ function DrinkDetails() {
 
                         <div className="col-12 mt-5">
                             <article>
-                                <div className="col-11 ">
-                                    <div className="d-flex mb-2 button-detail-holder" >
+                                <div className="col-12 col-sm-11">
+                                    <div className="d-flex mb-2 button-detail-holder col-11" >
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showDrinkDescription ? 'activ-detail' : ''}`}
+                                            className={` ms-3 fw-bolder drink-detail-button ${showDrinkDescription ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowDrinkDescription(true)
                                                 setShowNutritionalValues(false)
@@ -191,7 +190,7 @@ function DrinkDetails() {
                                             Description
                                         </div>
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showDrinkHistory ? 'activ-detail' : ''}`}
+                                            className={` ms-3 fw-bolder drink-detail-button ${showDrinkHistory ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowDrinkHistory(true)
                                                 setShowDrinkDescription(false)
@@ -201,7 +200,7 @@ function DrinkDetails() {
                                             History
                                         </div>
                                         <div
-                                            className={`fs-5 ms-3 fw-bolder drink-detail-button ${showNutritionalValues ? 'activ-detail' : ''}`}
+                                            className={` ms-3 fw-bolder drink-detail-button ${showNutritionalValues ? 'activ-detail' : ''}`}
                                             onClick={() => {
                                                 setShowNutritionalValues(true)
                                                 setShowDrinkDescription(false)
@@ -213,7 +212,7 @@ function DrinkDetails() {
                                     </div>
                                     <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4 ">
                                         <section className="">
-                                            <div className="d-flex fs-5">
+                                            <div className="d-flex ">
                                                 {showNutritionalValues && (
                                                     <div className="d-flex flex-column">
                                                         {nutritionalValues.map((elm) =>
@@ -237,10 +236,10 @@ function DrinkDetails() {
                                 </div>
                             </article>
                             <div className="col-xl-9 col-12 d-flex flex-column d-flex  basic-information-drink align-items-center">
-                                <label className="fs-3 fw-bolder mt-5">Specifications</label>
+                                <label className=" font-size-19 fw-bolder mt-5">Specifications</label>
                                 <div className="d-flex  mt-3 fs-5">
                                     <label
-                                        className={` me-2 fs-4 ${DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>
+                                        className={` me-2 fs-4 ${DifficultyLevel === 'Easy' ? 'easyLevelClass' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>
                                         {DifficultyLevel}
                                     </label>
                                     <label
@@ -255,7 +254,7 @@ function DrinkDetails() {
                             </div>
                             <div className="col-12 col-xl-9 mt-5 flex-column d-flex justify-content-center ingredient-details-holder">
                                 <label className="fs-4 fw-bolder ms-1 mb-2">Ingredients:</label>
-                                <ul className="col-12 mt-2 ingrediets-list overflow-auto flex-column fs-5 ">
+                                <ul className="col-12 mt-2 ingrediets-list overflow-auto flex-column ">
                                     {ingredient.map((ingredient, key) => (
                                         <li
                                             className={ingChecked.includes(key) ? 'crossedOut' : 'ing'}
@@ -267,7 +266,7 @@ function DrinkDetails() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-xl-6 col-xxl-5 img-holder-details mb-5 d-flex justify-content-center align-items-center">
+                    <div className="col-12 col-xl-6 col-xxl-5 img-holder-details mb-0 mb-sm-5 d-flex justify-content-center align-items-center">
                         {loadingImgCompleated ? (
                             <LazyLoadImage
                                 src={convertetIMG}
@@ -308,7 +307,7 @@ function DrinkDetails() {
                                     </div>
                                 ))}
 
-                                <div className="d-flex justify-content-center">
+                                <div className="d-flex justify-content-center col-12">
                                     <Pagination
                                         pageCount={pageCount}
                                         onPageChange={handlePageClick}

@@ -27,7 +27,7 @@ body {
 
 .main-holder {
     min-height: 373px;
-    
+
 
     @media (min-width: 2300px) {
         min-height: 743px;
@@ -97,17 +97,22 @@ body {
 
     }
 
-
     .chat-holder-icon {
         top: 75%;
         padding-right: 1.5rem;
         fill: white;
         cursor: pointer;
         transition: all .2s ease-in-out;
+        z-index: 1;
 
         &:hover {
             fill: rgb(252, 217, 172);
             transform: translateY(-5px);
+        }
+
+        @media (max-width: 576px) {
+            padding: 0;
+            margin-left: .5rem;
         }
     }
 
@@ -117,11 +122,19 @@ body {
         fill: white;
         cursor: pointer;
         transition: all .2s ease-in-out;
+        z-index: 1;
+
 
         &:hover {
             fill: rgb(252, 217, 172);
             transform: translateY(-5px);
         }
+
+        @media (max-width: 576px) {
+            padding: 0;
+            margin-left: .5rem;
+        }
+
     }
 }
 

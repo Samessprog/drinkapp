@@ -57,7 +57,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
         let userID = userSession.userID
 
 
-        
+
         fetch(`${API_URL}addFreind`, {
             method: 'POST',
             body: JSON.stringify({ friendID, userID }),
@@ -133,6 +133,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
     }
 
     const deleteFriend = (ID_User) => {
+
         let session_ID = userSession.userID
         const data = { ID_User, session_ID }
 
@@ -238,12 +239,13 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                 </div>
                                 <div className="user-friends-content">
                                     {userFreinds.map((elm) =>
-                                        <Link
-                                            to={"userProfile"}
-                                            onClick={() => setFriendsProfile({ friendID: elm.ID_User, freindNick: elm.Nick })}>
-                                            <div
-                                                key={elm.ID_User}
-                                                className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder ">
+
+                                        <div
+                                            key={elm.ID_User}
+                                            className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder ">
+                                            <Link
+                                                to={"userProfile"}
+                                                onClick={() => setFriendsProfile({ friendID: elm.ID_User, freindNick: elm.Nick })}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
                                                         <UserFriendsIMG elm={elm.userIMG} />
@@ -255,19 +257,19 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
                                                         {elm.Role}
                                                     </div>
                                                 </div>
-                                                <div onClick={() => {
-                                                    deleteFriend(elm.ID_User)
-                                                    hideElement(event)
-                                                }} className="me-2">
-                                                    <svg
-                                                        className="del-friend"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        height="40" viewBox="0 -960 960 960" width="40">
-                                                        <path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" />
-                                                    </svg>
-                                                </div>
+                                            </Link>
+                                            <div onClick={() => {
+                                                deleteFriend(elm.ID_User)
+                                                hideElement(event)
+                                            }} className="me-2">
+                                                <svg
+                                                    className="del-friend"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    height="40" viewBox="0 -960 960 960" width="40">
+                                                    <path d="m332-285.333 148-148.001 148 148.001L674.667-332 526.666-480l148.001-148L628-674.667 480-526.666 332-674.667 285.333-628l148.001 148-148.001 148L332-285.333ZM480-80q-82.333 0-155.333-31.5t-127.334-85.833Q143-251.667 111.5-324.667T80-480q0-83 31.5-156t85.833-127q54.334-54 127.334-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.333-31.5 155.333T763-197.333Q709-143 636-111.5T480-80Zm0-66.666q139.333 0 236.334-97.334 97-97.333 97-236 0-139.333-97-236.334-97.001-97-236.334-97-138.667 0-236 97Q146.666-619.333 146.666-480q0 138.667 97.334 236 97.333 97.334 236 97.334ZM480-480Z" />
+                                                </svg>
                                             </div>
-                                        </Link>
+                                        </div>
                                     )}
                                 </div>
                             </div>

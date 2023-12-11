@@ -38,7 +38,7 @@ function Drink({ elm, setFavourites, userFavouriteDrinks }) {
     }
 
     return (
-        <div className="col-7 col-sm-5 col-md-4 col-lg-3 col-xxl-2 drin-window m-3 p-0 position-relative">
+        <div className="col-9 col-sm-7 col-sm-5 col-md-4 col-lg-3 col-xxl-2 drin-window m-3 p-0 position-relative">
             <Link
                 className="text-decoration-none"
                 to={`drinkDetail/${ID_DRINK}`}

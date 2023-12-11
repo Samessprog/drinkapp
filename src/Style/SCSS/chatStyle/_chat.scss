@@ -11,6 +11,12 @@
     padding: 0;
     width: 400px;
 
+    @media (max-width: 576px) {
+        width: 350px;
+        right: 3%;
+        bottom: 0;
+    }
+
     .chat-header {
         display: flex;
         justify-content: center;
@@ -41,14 +47,14 @@
     .chat-body {
         background-color: rgb(255, 255, 255);
         height: 408px;
-        overflow-y: scroll;
-        padding-top: 10px;
+
 
         .other-mess {
-            min-width: 100px;
-            max-width: 230px;
-            margin-left: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
             margin-right: 40px;
+            margin-left: 8px;
 
             .message-context {
                 background-color: rgb(0, 255, 102);
@@ -57,7 +63,7 @@
                 border-radius: 10px 10px 10px 0px;
                 padding: 10px;
                 padding-left: 15px;
-                
+
             }
         }
 
@@ -65,7 +71,7 @@
             display: flex;
             flex-direction: column;
             align-items: end;
-            margin-right: 5px;
+            margin-right: 8px;
             margin-left: 40px;
 
             .message-context {
@@ -84,6 +90,7 @@
             height: 100%;
             overflow-y: scroll;
             overflow-x: hidden;
+
         }
     }
 
@@ -117,4 +124,8 @@
 
 .minimalize-holder {
     height: 40px;
+
+    @media (max-width: 576px) {
+        bottom: 2%;
+    }
 }
