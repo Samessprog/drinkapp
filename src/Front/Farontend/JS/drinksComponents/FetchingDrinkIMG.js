@@ -7,11 +7,11 @@ import { API_URL } from '../Components/Constants'
 function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
 
     const [drinkIMGs, setDrinkIMG] = useState(null)
-    const [convertetIMG, setConvertedIMG] = useState('')
+    const [convertedIMG, setConvertedIMG] = useState('')
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
     useEffect(() => {
-        const fetchUserFavouriteDrinkImage = async () => {
+        const fetchUserFavoriteDrinkImage = async () => {
             try {
                 const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_DRINK}`, {
                     credentials: 'include',
@@ -27,7 +27,7 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
                 console.error(error)
             }
         }
-        fetchUserFavouriteDrinkImage()
+        fetchUserFavoriteDrinkImage()
     }, [ID_DRINK])
 
     useEffect(() => {
@@ -48,7 +48,7 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
         <div className={classNameHolder} >
             {fetchIMGCompleted ? (
                 <LazyLoadImage
-                    src={convertetIMG}
+                    src={convertedIMG}
                     effect="blur"
                     className={classNameIMG}
                     alt="Loading error"

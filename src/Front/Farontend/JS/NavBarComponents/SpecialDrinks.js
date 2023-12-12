@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CountUp from 'react-countup'
 
 import { setEachdrinkflag, setingredient } from "../States/actions"
+
 import Searching from "../Components/Searching"
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 
@@ -39,7 +40,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
         addIngredient()
     }
 
-    const helperr = (e) => {
+    const EnterHelper = (e) => {
         if (e.key === 'Enter') {
             addIngredient()
         }
@@ -97,7 +98,7 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                 <div className="col-12 d-flex justify-content-center mb-3 align-items-center mt-3 mb-3">
                     <input
                         value={ingredientText}
-                        onKeyDown={helperr}
+                        onKeyDown={EnterHelper}
                         onChange={(event) =>
                             setIngredientText(event.target.value)
                         }

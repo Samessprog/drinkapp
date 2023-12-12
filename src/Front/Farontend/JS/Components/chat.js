@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { SessionContext } from '../Session/SessionContext'
 import ScrollToBottom from "react-scroll-to-bottom"
 
-function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
+function Chat({ socket, chatID, setShowChat, minimize , setMinimize }) {
     const [currentMessage, setCurrentMessage] = useState("")
     const [messageList, setMessageList] = useState([])
 
@@ -34,12 +34,12 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
     }, [socket])
 
     return (
-        <div className={`${minimalize ? 'minimalize-holder' : 'chat-holder'}`}>
+        <div className={`${minimize ? 'minimalize-holder' : 'chat-holder'}`}>
             <div className="chat-header col-12 ">
                 <div className="col-9 d-flex align-items-center">Live Chat</div>
                 <div className="d-flex align-items-center">
                     <svg
-                        onClick={() => setMinimalize(!minimalize)}
+                        onClick={() => setMinimize(!minimize)}
                         className="minimalize-icon me-2 pb-3"
                         xmlns="http://www.w3.org/2000/svg"
                         height="48" viewBox="0 -960 960 960" width="48">
@@ -51,14 +51,14 @@ function Chat({ socket, chatID, setShowChat, minimalize, setMinimalize }) {
                                 className="close-icons-chat"
                                 onClick={() => {
                                     setShowChat(false)
-                                    setMinimalize(false)
+                                    setMinimize(false)
                                 }
                                 }>X</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={`${minimalize ? 'd-none' : ''}`}>
+            <div className={`${minimize ? 'd-none' : ''}`}>
                 <div className={`chat-body`} >
                     <ScrollToBottom className="message-container ">
                         {messageList.map((currentMess) =>

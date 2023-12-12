@@ -24,7 +24,7 @@ function DrinkDetails() {
     const [preparation, setPreparation] = useState([])
     //WAS THE INGREDIENT BEEN PRESSED
     const [ingChecked, setIngChecked] = useState([])
-    const [loadingImgCompleated, setLoginImgCompleated] = useState()
+    const [loadingImgCompleted, setLoginImgCompleted] = useState()
     const [RateStar, setRateStar] = useState('')
 
     const [showDrinkDescription, setShowDrinkDescription] = useState(true)
@@ -58,7 +58,7 @@ function DrinkDetails() {
         ID_DRINK,
     } = drinkDetail
 
-    {/*Paginacja*/ }
+    {/*Pagination*/ }
     const itemPerPage = 1
     const pageCount = Math.ceil(preparation?.length / itemPerPage)
     const currentData = preparation?.slice(currentPage, currentPage + itemPerPage)
@@ -82,8 +82,8 @@ function DrinkDetails() {
         setIngChecked(newIngChecked)
     }
 
-    const [detailDrinkIMG, setDetalDrinkIMG] = useState(null)
-    const [convertetIMG, setConvertedIMG] = useState('')
+    const [detailDrinkIMG, setDetailDrinkIMG] = useState(null)
+    const [convertedIMG, setConvertedIMG] = useState('')
 
     let userSession = useContext(SessionContext).userSesion
 
@@ -113,7 +113,7 @@ function DrinkDetails() {
 
     useEffect(() => {
         if (ID_DRINK !== undefined) {
-            const fetchUserFavouriteDrinkImage = async () => {
+            const fetchUserFavoriteDrinkImage = async () => {
                 try {
                     const response = await fetch(`http://${localhost}:3000/api/fetchDrinkIMG/${ID_DRINK}`, {
                         credentials: 'include',
@@ -123,13 +123,13 @@ function DrinkDetails() {
                     }
                     // Parsuj odpowiedź jako JSON
                     const data = await response.json()
-                    setDetalDrinkIMG(data.image)
+                    setDetailDrinkIMG(data.image)
 
                 } catch (error) {
                     console.error(error)
                 }
             }
-            fetchUserFavouriteDrinkImage()
+            fetchUserFavoriteDrinkImage()
         }
     }, [ID_DRINK])
 
@@ -139,7 +139,7 @@ function DrinkDetails() {
             const imageURL = `data:image/jpeg;base64,${base64Image}`
 
             setConvertedIMG(imageURL)
-            setLoginImgCompleated(true)
+            setLoginImgCompleted(true)
         }
     }, [detailDrinkIMG])
 
@@ -267,9 +267,9 @@ function DrinkDetails() {
                         </div>
                     </div>
                     <div className="col-12 col-xl-6 col-xxl-5 img-holder-details mb-0 mb-sm-5 d-flex justify-content-center align-items-center">
-                        {loadingImgCompleated ? (
+                        {loadingImgCompleted ? (
                             <LazyLoadImage
-                                src={convertetIMG}
+                                src={convertedIMG}
                                 effect="blur"
                                 className="img-helper img-fluid"
                                 alt="Img error"

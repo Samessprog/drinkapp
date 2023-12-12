@@ -22,14 +22,14 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
 
     const [chatID, setChatID] = useState(1)
     const [roomFlag, setRoomFlag] = useState(false)
-    const [minimalize, setMinimalize] = useState(false)
+    const [minimize, setMinimize] = useState(false)
     const userSession = useContext(SessionContext).userSesion
 
     const [showChat, setShowChat] = useState(false)
-    const [favourites, setFavourites] = useState([])
+    const [favorites, setFavorites] = useState([])
 
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound)
-    const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
+    const userFavoriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
 
     const itemsPerPage = 15
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage)
@@ -50,7 +50,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
     }, [searchingDrink])
 
     useEffect(() => {
-        const fetchUserFavouriteDrinks = async () => {
+        const fetchUserFavoriteDrinks = async () => {
             try {
                 const response = await fetch(`http://${localhost}:3000/api/takeFavouriteUserDrink`, {
                     credentials: 'include'
@@ -65,8 +65,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
                 console.error(error)
             }
         }
-        fetchUserFavouriteDrinks()
-    }, [favourites])
+        fetchUserFavoriteDrinks()
+    }, [favorites])
 
     const joinChat = () => {
         if (userSession) {
@@ -126,7 +126,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
             }
 
             {
-                (!minimalize && userSession !== null) &&
+                (!minimize && userSession !== null) &&
                 <>
                     <div
                         onClick={() => setRoomFlag(true)}
@@ -159,8 +159,8 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
                     setShowChat={setShowChat}
                     socket={socket}
                     chatID={chatID}
-                    minimalize={minimalize}
-                    setMinimalize={setMinimalize}
+                    minimize={minimize}
+                    setMinimize={setMinimize}
                 />
             }
 
@@ -174,11 +174,11 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
             {
                 currentData.map((elm) => (
                     <Drink
-                        favourites={favourites}
-                        setFavourites={setFavourites}
+                        favorites={favorites}
+                        setFavorites={setFavorites}
                         key={elm.ID_Drink}
                         elm={elm}
-                        userFavouriteDrinks={userFavouriteDrinks}
+                        userFavoriteDrinks={userFavoriteDrinks}
                     />
                 ))
             }

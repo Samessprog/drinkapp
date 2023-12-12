@@ -6,7 +6,7 @@ function TypeOfDrink() {
 
     const dispatch = useDispatch()
 
-    const alcocholic = useSelector(state => state.drink.alcocholic)
+    const alcoholic = useSelector(state => state.drink.alcocholic)
     const softDrinks = useSelector(state => state.drink.softDrinks)
 
     return (
@@ -14,9 +14,9 @@ function TypeOfDrink() {
             <div className="d-flex mt-1 pe-2 align-items-center">
                 <div
                     id="alcoholicCheckBox"
-                    onClick={() => dispatch(setAlcocholic(!alcocholic))}
-                    value={alcocholic}
-                    className={`checkBoxFilter ${alcocholic ? 'checked' : 'unchecked'}`}
+                    onClick={() => dispatch(setAlcocholic(!alcoholic))}
+                    value={alcoholic}
+                    className={`checkBoxFilter ${alcoholic ? 'checked' : 'unchecked'}`}
                 >
                 </div>
                 <label
