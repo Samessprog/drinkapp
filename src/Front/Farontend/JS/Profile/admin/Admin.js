@@ -5,7 +5,7 @@ import { ErrorBoundary } from "react-error-boundary"
 
 import ErrorFallback from "../../ErrorsComponents/ErrorBoundary"
 import AdminPagination from "./AdminPagination"
-import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults } from '../../States/actions'
+import { setDrinksFlag, setUsersFlag, setFilteredResults, setFilteredUserResults, setAnnouncementSuccess } from '../../States/actions'
 import DrinksProfile from "./DrinksProfile"
 import WindowAdminAlert from "../../Components/DeleteOrBlockAlert"
 import AdminFilter from "./AdminFilter"
@@ -27,6 +27,7 @@ function Admin() {
     //States for Filtering drinks and users
     const filteredResults = useSelector(state => state.admin.filteredResults)
     const filteredUserResults = useSelector(state => state.admin.filteredUserResults)
+    const announcementSuccess = useSelector(state => state.admin.announcementSuccess)
 
     const [filteredNewDrinksResults, setFilteredNewDrinksResults] = useState([])
 
@@ -36,7 +37,6 @@ function Admin() {
     const [isBlocked, setIsBlocked] = useState(false)
 
     //announcement for Delete user
-    const [announcementSucces, setAnnouncementSucces] = useState(false)
     const [announcementsUserDoesntExist, setAnnouncementsUserDoesntExist] = useState(false)
     const [announcementsError, setAnnouncementsError] = useState(false)
 
@@ -47,7 +47,6 @@ function Admin() {
     const [currentPageNewDrink, setCurrentPageNewDrink] = useState(0)
 
     const [users, setUsers] = useState([])
-    // ile drinków na strone ma się wyświetlać i userów
     const itemsPerPage = 10
 
     const [windowAlert, setWindowAlert] = useState({ isOpen: false, ObjectID: null })
@@ -73,7 +72,6 @@ function Admin() {
                 })
                 if (response.ok) {
                     const data = await response.json()
-                    console.log(data)
                     setAllDrinks(data)
                 } else {
                     console.error('Error fetching users:', response.status)
@@ -109,25 +107,21 @@ function Admin() {
 
 
 
-    //Use Effect to close an allerts
+    //Use Effect to close an alerts
     useEffect(() => {
-        if (announcementSucces) {
+        if (announcementSuccess) {
             const timer = setTimeout(() => {
-                setAnnouncementSucces(false)
+                dispatch(setAnnouncementSuccess(false))
             }, 3000)
-
-            // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
             return () => clearTimeout(timer)
         }
-    }, [announcementSucces])
+    }, [announcementSuccess])
 
     useEffect(() => {
         if (announcementsError) {
             const timer = setTimeout(() => {
                 setAnnouncementsError(false)
             }, 3000)
-
-            // Wyczyść timer, jeśli komponent zostanie odmontowany przed upływem czasu
             return () => clearTimeout(timer)
         }
     }, [announcementsError])
@@ -425,7 +419,6 @@ function Admin() {
                                 pageCountItem={pageCount}
                                 setCurrentPage={setCurrentPage}
                                 ComponentRender={DrinksProfile}
-                                setAnnouncementSucces={setAnnouncementSucces}
                             />
 
                         )}
@@ -437,7 +430,6 @@ function Admin() {
                                 setWindowAlert={setWindowAlert}
                                 windowAlert={windowAlert}
                                 showNewsFlag={showNewsFlag}
-                                setAnnouncementSucces={setAnnouncementSucces}
                                 currentPaginationItem={currentItemsNewDrink}
                                 pageCountItem={pageCountNewDrink}
                                 setCurrentPage={setCurrentPageNewDrink}
@@ -461,14 +453,14 @@ function Admin() {
                             blockedButton={blockedButton}
                             setBlockedButton={setBlockedButton}
                             windowAlert={windowAlert}
-                            setAnnouncementSucces={setAnnouncementSucces}
+                            setAnnouncementSuccess={setAnnouncementSuccess}
                             setAnnouncementsUserDoesntExist={setAnnouncementsUserDoesntExist}
                             setAnnouncementsError={setAnnouncementsError} />
                     </div>
                 }
 
                 <div className="announcements d-flex flex-column align-items-end pt-3">
-                    {announcementSucces &&
+                    {announcementSuccess &&
                         <div className="announcements-succes d-flex justify-content-end p-3 fs-4">
                             The operation was a success
                         </div>
@@ -488,7 +480,7 @@ function Admin() {
             </div>
             {DrinkPreview.isOpenPrev &&
                 <DrinkDetailAdminPreview
-                    setAnnouncementSucces={setAnnouncementSucces}
+                    setAnnouncementSuccess={setAnnouncementSuccess}
                     DrinkPreview={DrinkPreview}
                     setDrinkPreview={setDrinkPreview}
                 />
@@ -501,7 +493,7 @@ function Admin() {
                             setUsers={setUsers}
                             setChangeUserDataPopup={setChangeUserDataPopup}
                             changeUserDataPopup={changeUserDataPopup}
-                            setAnnouncementSucces={setAnnouncementSucces}
+                            setAnnouncementSuccess={setAnnouncementSuccess}
                         />
                     </Suspense>
                 </ErrorBoundary>

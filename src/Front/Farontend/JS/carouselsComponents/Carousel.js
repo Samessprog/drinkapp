@@ -1,44 +1,45 @@
 import { useState, useEffect } from "react"
 
-import FavouriteDrinks from "../Profile/user/UserDrinks/UserDrink"
+import FavoriteDrinks from "../Profile/user/UserDrinks/UserDrink"
 
-const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }) => {
+const Carousel = ({ favoriteUsersDrink, isHidden, setIsHidden, friendsProfile }) => {
 
   //Index for carousel
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showItems, setShowItems] = useState([])
 
   useEffect(() => {
-    if (favouriteUsersDrink) {
-      const favouriteDrinksLength = favouriteUsersDrink.length
-      const favouriteItemsToShow = []
+    if (favoriteUsersDrink) {
 
-      if (favouriteDrinksLength <= 4) {
-        setShowItems(favouriteUsersDrink)
+      const favoriteDrinksLength = favoriteUsersDrink.length
+      const favoriteItemsToShow = []
+
+      if (favoriteDrinksLength <= 4) {
+        setShowItems(favoriteUsersDrink)
         return
       }
 
-      const startIndex = currentIndex % favouriteDrinksLength
+      const startIndex = currentIndex % favoriteDrinksLength
       // Get the first 4 items
       for (let i = startIndex; i < startIndex + 4; i++) {
-        const itemIndex = i >= favouriteDrinksLength ? i - favouriteDrinksLength : i
-        favouriteItemsToShow.push(favouriteUsersDrink[itemIndex])
+        const itemIndex = i >= favoriteDrinksLength ? i - favoriteDrinksLength : i
+        favoriteItemsToShow.push(favoriteUsersDrink[itemIndex])
       }
 
-      setShowItems(favouriteItemsToShow)
+      setShowItems(favoriteItemsToShow)
     }
-  }, [currentIndex, favouriteUsersDrink, isHidden])
+  }, [currentIndex, favoriteUsersDrink, isHidden])
 
 
   //changes to the carousel and item views
   const handlePrev = () => {
-    const itemsCount = favouriteUsersDrink.length
+    const itemsCount = favoriteUsersDrink.length
     const newIndex = (currentIndex - 3 + itemsCount) % itemsCount
     setCurrentIndex(newIndex)
   }
 
   const handleNext = () => {
-    const itemsCount = favouriteUsersDrink.length
+    const itemsCount = favoriteUsersDrink.length
     const newIndex = (currentIndex + 3) % itemsCount
     setCurrentIndex(newIndex)
   }
@@ -50,17 +51,16 @@ const Carousel = ({ favouriteUsersDrink, isHidden, setIsHidden, freindsProfile }
           <div className="no-fav-drinks fs-4">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (
-            <FavouriteDrinks
+            <FavoriteDrinks
               elm={elm}
               setIsHidden={setIsHidden}
               isHidden={isHidden}
-              favouriteUsersDrink={favouriteUsersDrink}
-              freindsProfile={freindsProfile}
+              friendsProfile={friendsProfile}
             />
           ))
         )}
       </div>
-      {favouriteUsersDrink.length > 4 &&
+      {favoriteUsersDrink.length > 4 &&
         <div>
           <div
             className="position-absolute start-0  d-flex scroll-arrow-fav-own-box border-radius-15-0-0-15"

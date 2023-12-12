@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import UserOwnDrink from "../Profile/user/UserDrinks/UserDrink"
 
-function OwnDrinkCarusel({ userOwnDrink, freindsProfile }) {
+function OwnDrinkCarusel({ userOwnDrink, friendsProfile }) {
 
     //states for carousel
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -53,7 +53,7 @@ function OwnDrinkCarusel({ userOwnDrink, freindsProfile }) {
                         <UserOwnDrink
                             key={elm.ID_Drink}
                             elm={elm}
-                            freindsProfile={freindsProfile}
+                            friendsProfile={friendsProfile}
                         />
                     ))
                 )}

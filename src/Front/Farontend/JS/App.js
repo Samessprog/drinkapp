@@ -83,7 +83,8 @@ function App() {
     fetchData()
   }, [])
 
-  const [freindsProfile, setFriendsProfile] = useState({ friendID: null, freindNick: '' })
+  const [friendsProfile, setFriendsProfile] = useState({ friendID: null, freindNick: '' })
+
 
   return (
 
@@ -131,7 +132,7 @@ function App() {
               <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
                 <Suspense fallback={<div>Loading...</div>}>
                   <PrivateRoute element={
-                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} freindsProfile={freindsProfile} />
+                    <UserProfile offset={offset} setOffset={setOffset} drinkDatas={drinkDatas} friendsProfile={friendsProfile} />
                   } />
                 </Suspense>
               </ErrorBoundary>

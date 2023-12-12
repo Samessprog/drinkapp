@@ -7,11 +7,11 @@ import { API_URL } from '../../../Components/Constants'
 function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
     //fetch user session to fetch needed data
-    const userSesion = useContext(SessionContext).userSesion
+    const userSession = useContext(SessionContext).userSesion
 
     //states for add new drink // drink details
     const [drinkName, setDrinkName] = useState("")
-    const [drinkdescription, setDrinkDescription] = useState("")
+    const [drinkDescription, setDrinkDescription] = useState("")
     const [drinkHistory, setDrinkHistory] = useState("")
     const [drinkType, setDrinkType] = useState("")
     const [drinkLevel, setDrinkLevel] = useState("")
@@ -20,7 +20,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     //arr for drinks err
     const [drinkErrors, setDrinkErrors] = useState(null)
     //flag that checks for errors while adding a drink
-    const [isSucces, setIsSucces] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
     //ingredient of a new drink
     const [ingredientsOfNewDrink, setIngredientsOfNewDrink] = useState([])
     const [ingredientsOfNewDrinkText, setIngredientsOfNewDrinkText] = useState('')
@@ -47,13 +47,13 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
         const formData = new FormData()
         formData.append('imageData', selectedFile)
-        formData.append('userID', userSesion.userID)
+        formData.append('userID', userSession.userID)
         formData.append('drinkName', drinkName)
-        formData.append('drinkdescription', drinkdescription)
+        formData.append('drinkDescription', drinkDescription)
         formData.append('drinkLevel', drinkLevel)
         formData.append('drinkTaste', drinkTaste)
         formData.append('drinkType', drinkType)
-        formData.append('userNick', userSesion.nick)
+        formData.append('userNick', userSession.nick)
         formData.append('drinkHistory', drinkHistory)
         formData.append('ingredientsOfNewDrink', JSON.stringify(ingredientsOfNewDrink))
         formData.append('preparationOfNewDrink', JSON.stringify(preparationOfNewDrink))
@@ -66,7 +66,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             const data = await response.json()
             if (data.error) {
                 setDrinkErrors(data.error)
-                setIsSucces(false)
+                setIsSuccess(false)
             } else {
                 //resetting the data to the initial state when adding a drink is successful
                 setDrinkName('')
@@ -75,7 +75,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 setDrinkType('')
                 setDrinkLevel('All')
                 setDrinkTaste('All')
-                setIsSucces(true)
+                setIsSuccess(true)
                 setIngredientsOfNewDrink([])
                 setPreparationOfNewDrink([])
             }
@@ -94,7 +94,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
         setIngredientsOfNewDrinkText('')
     }
     //component removal ingred
-    const submitIngreadinetsDeleteHandler = (id) => {
+    const submitIngredientsDeleteHandler = (id) => {
         setIngredientsOfNewDrink(ingredientsOfNewDrink.filter((elm) => elm.id !== id))
     }
 
@@ -172,7 +172,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             className="col-12  own-drink-desc"
                                             type="text"
                                             placeholder="Enter a description of youyr drink"
-                                            value={drinkdescription}
+                                            value={drinkDescription}
                                         >
                                         </textarea>
                                     </div>
@@ -283,7 +283,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             {ingredientsOfNewDrink.map((elm) => (
                                                 <div className=" d-flex col-1align-items-center d-flex mt-2 ">
                                                     <label className="ing col-11 mt-3 ps-2 p-1 d-flex ">{elm.text}</label>
-                                                    <svg onClick={() => submitIngreadinetsDeleteHandler(elm.id)} className="delete-icon mt-3" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+                                                    <svg onClick={() => submitIngredientsDeleteHandler(elm.id)} className="delete-icon mt-3" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
                                                 </div>
                                             ))}
                                         </div>
@@ -321,7 +321,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
 
                     <div className="d-flex flex-row-reverse col-12 mb-5 mb-sm-1">
                         <div className="d-flex justify-content-center  justify-content-xxl-end align-items-center col-12" >
-                            <label className=" text-danger fw-bolder me-4 fs-5">{isSucces === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
+                            <label className=" text-danger fw-bolder me-4 fs-5">{isSuccess === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                             <button className="col-10 col-xxl-1  mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">
                                 <div className="pe-2 ps-2">Create!</div>
                             </button>

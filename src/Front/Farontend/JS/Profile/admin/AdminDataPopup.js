@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { io } from "socket.io-client"
 import localhost from "../../../../../config/config"
+import { useDispatch } from "react-redux"
 
+function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSuccess }) {
 
-function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSucces }) {
-
+    const dispatch = useDispatch()
     const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData
     const socket = io(`http://${localhost}:4000`)
 
@@ -26,7 +27,7 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
         if (success) {
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.map((u) => (u.ID_User === users.ID_User ? users : u))
-                setAnnouncementSucces(true)
+                dispatch(setAnnouncementSuccess(true))
                 setChangeUserDataPopup(false)
                 return updatedUsers
 

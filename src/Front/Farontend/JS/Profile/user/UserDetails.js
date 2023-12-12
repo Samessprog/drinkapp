@@ -4,19 +4,19 @@ import { useDispatch } from 'react-redux'
 import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
 
-function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile }) {
+function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile }) {
 
     const dispatch = useDispatch()
 
-    const [Nick, setUserNick] = useState(userSesion.nick)
-    const [email, setUserMain] = useState(userSesion.email)
-    const [phone, setUserPhone] = useState(userSesion.phone)
+    const [Nick, setUserNick] = useState(userSession.nick)
+    const [email, setUserMain] = useState(userSession.email)
+    const [phone, setUserPhone] = useState(userSession.phone)
 
-    const userID = userSesion.userID
+    const userID = userSession.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
 
-    const [isSuccesChnage, setIsSuccesChnage] = useState(false)
+    const [isSuccessChange, setIsSuccessChange] = useState(false)
 
     const setContentTypeHeader = () => {
         return {
@@ -50,10 +50,10 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
             })
             const data = await response.json()
             if (data.success) {
-                setIsSuccesChnage(true)
+                setIsSuccessChange(true)
                 setUserChangesErrors('')
             } else {
-                setIsSuccesChnage(false)
+                setIsSuccessChange(false)
                 setUserChangesErrors([data.message])
             }
         } catch (error) {
@@ -103,7 +103,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
                                     color="black"
                                 />
                             )}
-                            {freindsProfile.friendID === null &&
+                            {friendsProfile.friendID === null &&
                                 < div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                                     Click to change your img
                                     <input
@@ -119,7 +119,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
                         </div>
                     </div>
 
-                    {freindsProfile.friendID === null &&
+                    {friendsProfile.friendID === null &&
                         <div className="d-flex flex-column align-items-center col-12 col-xxl-5 ms-4 mt-5 col-md-5 col-xl-3 col-sm-7">
                             <label className="fs-4 mb-4"> User Personal Data</label>
                             <form
@@ -188,7 +188,7 @@ function UserDetails({ userSesion, userIMG, fetchIMGCompleted, freindsProfile })
                                     </button>
                                 </div>
                             </form>
-                            <div className="d-flex align-items-center justify-content-center mt-2">  {isSuccesChnage === true ? 'your details have been changed' : userChangesErrors} </div>
+                            <div className="d-flex align-items-center justify-content-center mt-2">  {isSuccessChange === true ? 'your details have been changed' : userChangesErrors} </div>
                         </div>
                     }
                 </div>

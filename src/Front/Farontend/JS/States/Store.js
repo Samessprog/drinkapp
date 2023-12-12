@@ -176,6 +176,9 @@ const adminStates = {
   userFlag: false,
   filteredResults: [],
   filteredUserResults: [],
+  announcementSuccess: false,
+  announcementsUserDoesntExist: false,
+  announcementsError: false,
 };
 
 function adminReducer(state = adminStates, action) {
@@ -200,6 +203,12 @@ function adminReducer(state = adminStates, action) {
         ...state,
         filteredUserResults: action.payload,
       };
+    case 'SET_ANNOUNCEMENT_SUCCESS':
+      return {
+        ...state,
+        announcementSuccess: action.payload,
+      }
+
     default:
       return state;
   }

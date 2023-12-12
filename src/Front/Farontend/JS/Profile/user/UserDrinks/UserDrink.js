@@ -6,20 +6,18 @@ import FetchingDrinkIMG from "../../../drinksComponents/FetchingDrinkIMG"
 import { SessionContext } from "../../../Session/SessionContext"
 import { API_URL } from '../../../Components/Constants'
 
-function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
+function UserDrink({ elm, isHidden, setIsHidden, friendsProfile }) {
 
     const [drinkImg, setDrinkImg] = useState('')
 
-    console.log(freindsProfile)
-
-    const userSesion = useContext(SessionContext).userSesion
+    const userSession = useContext(SessionContext).userSesion
 
     //convert IMG to normal from blob
     useEffect(() => {
         if (elm?.IMG && elm?.IMG.data && elm?.IMG.data.length !== 0) {
 
             const base64Image = Buffer.from(elm?.IMG.data).toString('base64')
-            const imageURL = `data:image/jpegbase64,${base64Image}`
+            const imageURL = `data:image/jpeg;base64,${base64Image}`
             setDrinkImg(imageURL)
 
         } else {
@@ -27,9 +25,10 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
         }
 
     }, [])
+    
     //Remove from Favourite
-    const removeFromFavourite = (drinkID) => {
-        let userID = userSesion.userID
+    const removeFromFavorite = (drinkID) => {
+        let userID = userSession.userID
         //POST drink IDs to DB with userID
         try {
             fetch(`${API_URL}removeFromUserFavourite`, {
@@ -42,7 +41,6 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
             })
 
         } catch (error) {
-            console.log('TEST')
             console.error(error)
         }
     }
@@ -76,9 +74,9 @@ function UserDrink({ elm, isHidden, setIsHidden, freindsProfile }) {
                         </div>
                     </div>
                 </Link >
-                {freindsProfile?.friendID === null &&
+                {friendsProfile?.friendID === null &&
                     <div className="position-absolute top-0 end-0 mt-2 me-2 " onClick={() => {
-                        removeFromFavourite(ID_DRINK)
+                        removeFromFavorite(ID_DRINK)
                         setIsHidden(!isHidden)
                     }} >
                         <svg xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 96 960 960" width="40">

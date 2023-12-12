@@ -3,15 +3,15 @@ import io from 'socket.io-client'
 import { useRef, useEffect, useContext } from 'react'
 import { SessionContext } from '../Session/SessionContext'
 import localhost from '../../../../config/config'
+import { useDispatch } from 'react-redux'
 
 function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkElements, setHiddenElements,
-    hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSucces,
+    hiddenElements, windowAlert, blockedButton, setBlockedButton, setAnnouncementSuccess,
     setAnnouncementsUserDoesntExist, setAnnouncementsError, setUsers }) {
 
+    const dispatch = useDispatch()
     const socket = io(`http://${localhost}:4002`)
-
     const userData = useContext(SessionContext).userSesion
-
 
     const deleteDrink = async () => {
         let ID_Drink = windowAlert.ObjectID.ID_DRINK
@@ -37,7 +37,7 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
     socket.on('blockUserResponse', (data) => {
         if (data.success) {
-            setAnnouncementSucces(true)
+            dispatch(setAnnouncementSuccess(true))
 
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.map((user) => {
@@ -57,7 +57,7 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
     socket.on('deleteUserResponse', (data) => {
         if (data.success) {
-            setAnnouncementSucces(true)
+            dispatch(setAnnouncementSuccess(true))
 
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.filter((user) => user.ID_User !== data.userID)

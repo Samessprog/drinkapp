@@ -2,8 +2,11 @@
 import FetchingDrinkIMG from "../../drinksComponents/FetchingDrinkIMG"
 import { API_URL } from '../../Components/Constants'
 import { Link } from "react-router-dom"
+import { useDispatch } from 'react-redux'
 
-function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces, hiddenElements, showNewsFlag, setDrinkPreview }) {
+function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSuccess, hiddenElements, showNewsFlag, setDrinkPreview }) {
+
+    const dispatch = useDispatch()
 
     const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm
 
@@ -21,7 +24,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
             })
             const data = await response.json()
             if (response.status === 200 || data.message === 'User block successfully') {
-                setAnnouncementSucces(true)
+                dispatch(setAnnouncementSuccess(true))
             } else if (response.status === 404 && data.error === 'User not found') {
             }
         } catch (error) {

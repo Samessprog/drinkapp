@@ -9,7 +9,7 @@ import { SessionContext } from '../Session/SessionContext'
 import localhost from "../../../../config/config"
 import FriendsPopup from "../Components/FriendsPopup"
 import Chat from "../Components/chat"
-import { setDrinkNotFound, setUserFavouriteDrinks } from "../States/actions"
+import { setDrinkNotFound, setUserFavoriteDrinks } from "../States/actions"
 import Drink from "../drinksComponents/Drink"
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 const DDE = lazy(() => import("../ErrorsComponents/DDE"))
@@ -60,7 +60,7 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
                     throw new Error('Failed to fetch user favourites.')
                 }
                 const data = await response.json()
-                dispatch(setUserFavouriteDrinks(data.drinkIDs))
+                dispatch(setUserFavoriteDrinks(data.drinkIDs))
             } catch (error) {
                 console.error(error)
             }

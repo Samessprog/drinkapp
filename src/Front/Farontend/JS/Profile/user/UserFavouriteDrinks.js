@@ -4,30 +4,28 @@ import { useEffect, useState, useContext } from "react"
 import { SessionContext } from "../../Session/SessionContext"
 import localhost from "../../../../../config/config"
 
-function UserFavouriteDrinks({ freindsProfile }) {
+function UserFavoriteDrinks({ friendsProfile }) {
 
   const [isHidden, setIsHidden] = useState(false)
-  const [favouriteUsersDrink, setUserFavouriteDrinks] = useState('')
-  const userSesion = useContext(SessionContext).userSesion
+  const [favoriteUsersDrink, setUserFavoriteDrinks] = useState('')
+  const userSession = useContext(SessionContext).userSesion
 
   useEffect(() => {
-    const fetchUserFavouriteDrinks = async () => {
-      const userIDs = freindsProfile.freindNick || userSesion.nick
-      console.log(userIDs)
+    const fetchUserFavoriteDrinks = async () => {
+      const userIDs = friendsProfile.freindNick || userSession.nick
       try {
         const response = await fetch(`http://${localhost}:3000/api/getUserFavouriteDrinks/${userIDs}`)
         const data = await response.json()
         if (data.success) {
-          setUserFavouriteDrinks(data.data)
+          setUserFavoriteDrinks(data.data)
         } else {
         }
       } catch (error) {
         console.log(error)
       }
     }
-
-    fetchUserFavouriteDrinks()
-  }, [userSesion, isHidden])
+    fetchUserFavoriteDrinks()
+  }, [userSession, isHidden])
 
   return (
     <div className="position-relative ">
@@ -35,10 +33,10 @@ function UserFavouriteDrinks({ freindsProfile }) {
       <div className="user-favourite-frinks-holder">
         <div className="user-favourite-frinks d-flex justify-content-center ">
           <Carousel
-            favouriteUsersDrink={favouriteUsersDrink}
+            favoriteUsersDrink={favoriteUsersDrink}
             setIsHidden={setIsHidden}
             isHidden={isHidden}
-            freindsProfile={freindsProfile}
+            friendsProfile={friendsProfile}
           >
           </Carousel>
         </div>
@@ -49,4 +47,4 @@ function UserFavouriteDrinks({ freindsProfile }) {
   )
 }
 
-export default UserFavouriteDrinks
+export default UserFavoriteDrinks

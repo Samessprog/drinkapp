@@ -42,6 +42,7 @@ const ADMIN_ACTIONS = {
     SET_USER_ADMIN_FLAG: 'SET_USER_ADMIN_FLAG',
     SET_FILTER_ADMIN_RESULTS: 'SET_FILTER_ADMIN_RESULTS',
     SET_FILTER_USER_RESULTS: 'SET_FILTER_USER_RESULTS',
+    SET_ANNOUNCEMENT_SUCCESS: 'SET_ANNOUNCEMENT_SUCCESS',
 }
 
 // Funkcja generująca akcję paska nawigacyjnego
@@ -101,7 +102,7 @@ export const setPassword = createUserAction(USER_ACTIONS.SET_USER_PASSWORD);
 export const setUserSession = createUserAction(USER_ACTIONS.SET_USER_SESSION);
 export const setPhone = createUserAction(USER_ACTIONS.SET_USER_PHONE);
 export const setUserNick = createUserAction(USER_ACTIONS.SET_USER_NICK_NAME);
-export const setUserFavouriteDrinks = createUserAction(USER_ACTIONS.SET_FAVOURITE_DRINKS);
+export const setUserFavoriteDrinks = createUserAction(USER_ACTIONS.SET_FAVOURITE_DRINKS);
 
 
 // Funkcja generująca akcję
@@ -119,7 +120,7 @@ export const setDrinksFlag = createAdminAction(ADMIN_ACTIONS.SET_DRINKS_ADMIN_FL
 export const setUsersFlag = createAdminAction(ADMIN_ACTIONS.SET_USER_ADMIN_FLAG);
 export const setFilteredResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_ADMIN_RESULTS);
 export const setFilteredUserResults = createAdminAction(ADMIN_ACTIONS.SET_FILTER_USER_RESULTS);
-
+export const setAnnouncementSuccess = createAdminAction(ADMIN_ACTIONS.SET_ANNOUNCEMENT_SUCCESS);
 
 
 

@@ -1,6 +1,6 @@
 //Imports
 import { Link } from "react-router-dom"
-import { setUserSession, setUserFavouriteDrinks } from "../../States/actions"
+import { setUserSession, setUserFavoriteDrinks } from "../../States/actions"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef } from "react"
 import localhost from "../../../../../config/config"
@@ -25,7 +25,7 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
 
     function handleLogoutClick() {
         logoutUser()
-        dispatch(setUserFavouriteDrinks([]))
+        dispatch(setUserFavoriteDrinks([]))
     }
 
     let menuRef = useRef()

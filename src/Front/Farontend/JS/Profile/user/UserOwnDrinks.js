@@ -6,14 +6,14 @@ import { SessionContext } from "../../Session/SessionContext"
 import { useState } from "react"
 import localhost from "../../../../../config/config"
 
-function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) {
+function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, friendsProfile }) {
 
-    const userSesion = useContext(SessionContext).userSesion
+    const userSession = useContext(SessionContext).userSesion
     const [userOwnDrink, setUserOwnDrink] = useState('')
 
     useEffect(() => {
         const fetchUserOwnDrinks = async () => {
-            const userIDs = freindsProfile.friendID || userSesion.userID
+            const userIDs = friendsProfile.friendID || userSession.userID
             try {
                 const response = await fetch(`http://${localhost}:3000/api/getOwnDrinks/${userIDs}`)
                 const data = await response.json()
@@ -26,7 +26,7 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
         }
 
         fetchUserOwnDrinks()
-    }, [userSesion])
+    }, [userSession])
 
     return (
         <div className="position-relative ">
@@ -35,12 +35,12 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, freindsProfile }) 
                 <div className="user-favourite-frinks d-flex justify-content-center">
                     <OwnDrinkCarusel
                         userOwnDrink={userOwnDrink}
-                        freindsProfile={freindsProfile}
+                        friendsProfile={friendsProfile}
                     >
                     </OwnDrinkCarusel>
                 </div>
             </div>
-            {!freindsProfile.friendID &&
+            {!friendsProfile.friendID &&
                 <div className="d-flex mt-5 flex-xl-row-reverse me-5 ">
                     <div className="d-flex justify-content-center mt-4 align-items-center ">
                         <button

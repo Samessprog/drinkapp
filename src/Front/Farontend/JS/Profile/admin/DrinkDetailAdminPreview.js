@@ -3,9 +3,11 @@ import { useState, useEffect } from "react"
 import { Buffer } from "buffer"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { API_URL } from '../../Components/Constants'
+import { useDispatch } from "react-redux"
 
-function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSucces }) {
-
+function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSuccess }) {
+    const dispatch = useDispatch()
+    
     const { isOpenPrev, Drink } = DrinkPreview
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null)
@@ -96,7 +98,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
             const data = await response.json()
             if (data.success) {
                 setDrinkPreview(false)
-                setAnnouncementSucces(true)
+                dispatch(setAnnouncementSuccess(true))
             }
         } catch (error) {
             console.log(error)

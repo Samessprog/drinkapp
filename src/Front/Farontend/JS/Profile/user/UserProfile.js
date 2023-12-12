@@ -3,21 +3,19 @@ import { useState, useContext, useEffect, lazy } from "react"
 import { useSelector } from "react-redux"
 
 import UserDetails from "./UserDetails"
-import UserFavouriteDrinks from "./UserFavouriteDrinks"
+import UserFavoriteDrinks from "./UserFavouriteDrinks"
 import UserOwnDrinks from "./UserOwnDrinks"
 import { SessionContext } from "../../Session/SessionContext"
 import { API_URL } from '../../Components/Constants'
 
 const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
 
-function UserProfile({ drinkDatas, freindsProfile }) {
+function UserProfile({ drinkDatas, friendsProfile }) {
 
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
-  const userSesion = useContext(SessionContext).userSesion
+  const userSession = useContext(SessionContext).userSesion
 
   const [userIMG, setUserIMG] = useState('')
-
-  const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
 
   const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
@@ -25,7 +23,7 @@ function UserProfile({ drinkDatas, freindsProfile }) {
   useEffect(() => {
     const fetchUserImage = async () => {
       try {
-        let userID = freindsProfile.friendID || userSesion.userID
+        let userID = friendsProfile.friendID || userSession.userID
         const response = await fetch(`${API_URL}userIMG?userID=${userID}`, {
           credentials: 'include'
         })
@@ -48,7 +46,6 @@ function UserProfile({ drinkDatas, freindsProfile }) {
     fetchUserImage()
   }, [])
 
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -56,30 +53,28 @@ function UserProfile({ drinkDatas, freindsProfile }) {
   return (
     <div className="user-details-holder">
       <UserDetails
-        userSesion={userSesion}
+        userSession={userSession}
         userIMG={userIMG}
         setUserIMG={setUserIMG}
         fetchIMGCompleted={fetchIMGCompleted}
-        freindsProfile={freindsProfile}
+        friendsProfile={friendsProfile}
       />
 
-      <UserFavouriteDrinks
-        userFavouriteDrinks={userFavouriteDrinks}
+      <UserFavoriteDrinks
         drinkDatas={drinkDatas}
-        freindsProfile={freindsProfile}
+        friendsProfile={friendsProfile}
       />
 
       <UserOwnDrinks
         setAddUserNewDrink={setAddUserNewDrink}
         drinkDatas={drinkDatas}
         addUserNewDrink={addUserNewDrink}
-        freindsProfile={freindsProfile}
+        friendsProfile={friendsProfile}
       />
 
       {addUserNewDrink && <UserOwnDrinkPopup addUserNewDrink={addUserNewDrink} setAddUserNewDrink={setAddUserNewDrink} />}
     </div>
   )
 }
-
 
 export default UserProfile
