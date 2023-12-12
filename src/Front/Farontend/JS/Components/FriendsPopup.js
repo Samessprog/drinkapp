@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { Buffer } from "buffer"
 import { Link } from "react-router-dom"
 
 import UserFriendsIMG from "./UserFriendsIMG"
-import { SessionContext } from '../Session/SessionContext'
 import { API_URL } from "./Constants"
 
-function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
+function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
 
     const [nickName, setNickName] = useState('')
     const [userResults, setUsersResults] = useState(undefined)
@@ -16,7 +15,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
     const [userWaitingFriendsFlag, setUserWaitingFriendsFlag] = useState(false)
     const [waitingUsers, setWaitingUsers] = useState(undefined)
     const [userFreinds, setUserFriends] = useState([])
-    const userSession = useContext(SessionContext).userSesion
 
     const searchUser = (e) => {
         if (e.key === 'Enter') {
@@ -54,7 +52,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
 
     const addToFriend = () => {
         let friendID = userResults.ID_User
-        let userID = userSession.userID
+        let userID = userSesion.userID
 
 
 
@@ -80,7 +78,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
 
     useEffect(() => {
         const getWaitingUsers = async () => {
-            let userID = userSession.userID
+            let userID = userSesion.userID
             try {
                 const response = await fetch(`${API_URL}getPendingFriendRequests/${userID}`)
                 const data = await response.json()
@@ -96,7 +94,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile }) {
 
     useEffect(() => {
         const getUserFriends = async () => {
-            let userID = userSession.userID
+            let userID = userSesion.userID
             try {
                 const response = await fetch(`${API_URL}getUserFreinds/${userID}`)
                 const data = await response.json()

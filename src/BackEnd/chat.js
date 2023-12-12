@@ -21,6 +21,7 @@ io.on("connection", (socket) => {
         socket.join(chatID)
     })
     socket.on("sendMessage", (data) => {
+        console.log(data)
         io.to(data.chat).emit("receiveMessage", data)
     })
     socket.on("disconnect", () => {

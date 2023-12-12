@@ -1,18 +1,18 @@
 import React, { useState, useContext, useEffect } from "react"
-import { SessionContext } from '../Session/SessionContext'
 import ScrollToBottom from "react-scroll-to-bottom"
 
-function Chat({ socket, chatID, setShowChat, minimize , setMinimize }) {
+function Chat({ socket, chatID, setShowChat, minimize , setMinimize, userSesion }) {
     const [currentMessage, setCurrentMessage] = useState("")
     const [messageList, setMessageList] = useState([])
 
-    const userSession = useContext(SessionContext).userSesion
+    console.log(socket)
+
 
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
                 chat: chatID,
-                author: userSession.nick,
+                author: userSesion.nick,
                 message: currentMessage,
                 time: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
             }
@@ -22,6 +22,7 @@ function Chat({ socket, chatID, setShowChat, minimize , setMinimize }) {
     }
 
     useEffect(() => {
+        console.log('ee')
         const handleReceiveMessage = (data) => {
             setMessageList((list) => [...list, data])
         }
@@ -62,7 +63,7 @@ function Chat({ socket, chatID, setShowChat, minimize , setMinimize }) {
                 <div className={`chat-body`} >
                     <ScrollToBottom className="message-container ">
                         {messageList.map((currentMess) =>
-                            <div className={`${currentMess.author === userSession.nick ? 'own-mess pt-2' : 'other-mess pt-2'}`}  >
+                            <div className={`${currentMess.author === userSesion.nick ? 'own-mess pt-2' : 'other-mess pt-2'}`}  >
                                 <div>
                                     <div className="message-context text-break">{currentMess.message}</div>
                                 </div>
