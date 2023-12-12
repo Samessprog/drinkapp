@@ -2,7 +2,7 @@ import shakeIcon from '../../../../Assets/shaker.png'
 import chopIcon from '../../../../Assets/chop.png'
 import pourIcon from '../../../../Assets/pour.png'
 import decorateIcon from '../../../../Assets/decorate.png'
-import succesIcon from '../../../../Assets/victory.png'
+import successIcon from '../../../../Assets/victory.png'
 import { pourDictionary, shakeDictionary, chopDictionary, decorateDictionary } from '../dictionaries/dictionaryFilterIcons'
 
 const getIconForPreparation = (text) => {
@@ -18,7 +18,7 @@ const getIconForPreparation = (text) => {
     } else if (decorateDictionary.some(action => text.includes(action))) {
         return decorateIcon
     } else if (text === '') {
-        return succesIcon
+        return successIcon
     }
     return shakeIcon
 }
