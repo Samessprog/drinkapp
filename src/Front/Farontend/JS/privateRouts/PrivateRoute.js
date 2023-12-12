@@ -5,9 +5,9 @@ import { useContext } from "react"
 import { SessionContext } from "../Session/SessionContext"
 
 function PrivateRoute({ element }) {
-  const userSesion = useContext(SessionContext).userSesion
+  const userSession = useContext(SessionContext).userSesion
 
-  if (!userSesion) {
+  if (!userSession) {
     return <Navigate to={'/'} replace />
   }
 

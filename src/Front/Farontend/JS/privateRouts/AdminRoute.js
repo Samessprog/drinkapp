@@ -4,9 +4,9 @@ import { useContext } from "react"
 import { SessionContext } from "../Session/SessionContext"
 
 function AdminRoute({ element }) {
-    const userSesion = useContext(SessionContext).userSesion
+    const userSession = useContext(SessionContext).userSesion
 
-    if (!userSesion || userSesion.role !== 'admin') {
+    if (!userSession || userSession.role !== 'admin') {
         return <Navigate to={'/'} replace />
     }
     return element
