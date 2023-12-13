@@ -39,6 +39,7 @@ io.on('connection', (socket) => {
             }
         });
     });
+
     socket.on("confirmFriend", data => {
         const { ID_User, userSesion } = data;
         const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 0 WHERE ID_User = ? AND ID_Friend = ?';
@@ -52,10 +53,8 @@ io.on('connection', (socket) => {
         });
     });
 
-
     socket.on("deleteFriend", data => {
         const { ID_User, userSesion } = data;
-        console.log(data)
 
         const deleteFriendshipQuery = 'DELETE FROM userfriends WHERE ID_User = ? AND ID_Friend = ?';
         db.query(deleteFriendshipQuery, [ID_User, userSesion], (err, result) => {

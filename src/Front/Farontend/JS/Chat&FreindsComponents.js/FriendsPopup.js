@@ -7,7 +7,6 @@ import { API_URL } from "../Components/Constants"
 
 function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, friendSocket }) {
 
-
     const [nickName, setNickName] = useState('')
     const [userResults, setUsersResults] = useState(undefined)
     const [userIMGres, setUserIMGres] = useState('')
@@ -50,16 +49,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
             }
         }
     }, [userResults])
-
-    //friendSocket
-
-    const addToFriend = () => {
-        let userData = {
-            friendID: userResults.ID_User,
-            userID: userSesion.userID,
-        }
-        friendSocket.emit("addFriend", userData)
-    }
 
     useEffect(() => {
         const getWaitingUsers = async () => {
@@ -105,20 +94,19 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
     }
 
     const deleteFriend = (ID_User) => {
-
         const data = {
             ID_User,
             userSesion: userSesion.userID,
         }
         friendSocket.emit("deleteFriend", data)
-
     }
 
-    const hideElement = (event) => {
-        event.target.closest('.user-data').classList.add('d-none')
-    }
-    const hideElementConfirm = (event) => {
-        event.target.closest('.user-data').classList.add('d-none')
+    const addToFriend = () => {
+        let userData = {
+            friendID: userResults.ID_User,
+            userID: userSesion.userID,
+        }
+        friendSocket.emit("addFriend", userData)
     }
 
     return (
