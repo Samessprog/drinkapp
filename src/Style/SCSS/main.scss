@@ -46,119 +46,11 @@ body {
             }
         }
     }
-
- 
-    .chat-holder-icon {
-        top: 75%;
-        padding-right: 1.5rem;
-        fill: white;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-        z-index: 1;
-
-        &:hover {
-            fill: rgb(252, 217, 172);
-            transform: translateY(-5px);
-        }
-
-        @media (max-width: 576px) {
-            padding: 0;
-            margin-left: .5rem;
-        }
-    }
-
-
-}
-
-.firends-icon {
-    bottom: 25%;
-    padding-right: 1.5rem;
-    fill: white;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    z-index: 1;
-
-    &:hover {
-        fill: rgb(252, 217, 172);
-        transform: translateY(-5px);
-    }
-
-    @media (max-width: 576px) {
-        padding: 0;
-        margin-left: .5rem;
-    }
-}
-
-.chat-holder-icon {
-    bottom: 20%;
-    padding-right: 1.5rem;
-    fill: white;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    z-index: 1;
-
-    &:hover {
-        fill: rgb(252, 217, 172);
-        transform: translateY(-5px);
-    }
-
-    @media (max-width: 576px) {
-        padding: 0;
-        margin-left: .5rem;
-    }
 }
 
 
 
-.chat-room-holder {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    z-index: 1;
-    padding: 15px;
-    color: black;
-    border-radius: 10px;
-    border: 1px solid black;
 
-    .close-room-IDs {
-        cursor: pointer;
-        font-size: 20px;
-        color: red;
-        font-weight: 700;
-
-    }
-
-    .room-id-input {
-        background-color: transparent;
-        outline: none;
-        border: none;
-        border: 1px solid black;
-        border-radius: 10px;
-        padding: 5px;
-        padding-left: 10px;
-    }
-
-    .join-to-room-button {
-        border: 1px solid black;
-        padding: 5px;
-        padding-left: 20px;
-        padding-right: 20px;
-        border-radius: 15px;
-        font-size: 18px;
-        background-color: #292929;
-        color: white;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-
-        &:hover {
-            background-color: #535353;
-        }
-    }
-
-}
 
 
 
