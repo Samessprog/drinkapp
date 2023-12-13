@@ -1,12 +1,9 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import ScrollToBottom from "react-scroll-to-bottom"
 
 function Chat({ socket, chatID, setShowChat, minimize , setMinimize, userSesion }) {
     const [currentMessage, setCurrentMessage] = useState("")
     const [messageList, setMessageList] = useState([])
-
-    console.log(socket)
-
 
     const sendMessage = async () => {
         if (currentMessage !== "") {
@@ -22,7 +19,6 @@ function Chat({ socket, chatID, setShowChat, minimize , setMinimize, userSesion 
     }
 
     useEffect(() => {
-        console.log('ee')
         const handleReceiveMessage = (data) => {
             setMessageList((list) => [...list, data])
         }

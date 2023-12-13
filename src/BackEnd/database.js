@@ -127,51 +127,6 @@ app.post('/api/searchUsers', (req, res) => {
   });
 });
 
-
-
-app.post('/api/addFreind', (req, res) => {
-  const { friendID, userID } = req.body;
-
-  // Sprawdzenie, czy relacja przyjaźni już istnieje w tabeli userfriends
-  const checkIfExistsQuery = 'SELECT * FROM userfriends WHERE (ID_User = ? AND ID_Friend = ?) OR (ID_User = ? AND ID_Friend = ?)';
-  db.query(checkIfExistsQuery, [userID, friendID, friendID, userID], (checkErr, checkResult) => {
-    if (checkErr) {
-      console.error(checkErr);
-      res.status(500).json({ success: false, message: 'Wystąpił błąd podczas sprawdzania relacji przyjaźni.' });
-    } else {
-      if (checkResult.length > 0) {
-        res.json({ success: false, message: 'Relacja przyjaźni już istnieje.' });
-      } else {
-        // Wstawienie relacji przyjaźni do tabeli userfriends
-        const insertFriendshipQuery = 'INSERT INTO userfriends (ID_User, ID_Friend, Waiting) VALUES (?, ?, 1)';
-        db.query(insertFriendshipQuery, [userID, friendID], (insertErr, insertResult) => {
-          if (insertErr) {
-            console.error(insertErr);
-            res.status(500).json({ success: false, message: 'Wystąpił błąd podczas dodawania przyjaciela.' });
-          } else {
-            res.json({ success: true, message: 'Przyjaciel został pomyślnie dodany.' });
-          }
-        });
-      }
-    }
-  });
-});
-
-app.post('/api/confirmFriend', (req, res) => {
-  const { ID_User, session_ID } = req.body;
-
-  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 0 WHERE ID_User = ? AND ID_Friend = ?';
-  db.query(updateFriendshipQuery, [ID_User, session_ID], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ success: false, message: 'Wystąpił błąd podczas potwierdzania przyjaźni.' });
-    } else {
-      res.json({ success: true, message: 'Przyjaźń została pomyślnie potwierdzona.' });
-    }
-  });
-});
-
-
 app.post('/api/deleteFriend', (req, res) => {
   const { ID_User, session_ID } = req.body;
 

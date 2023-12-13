@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import io from 'socket.io-client'
 
-import localhost from "../../../config/config"
-import PrivateRoute from "./privateRouts/PrivateRoute"
 import { SessionContext } from "./Session/SessionContext"
 import { setSpecialOptionsPopup, setUserSession } from "./States/actions"
 import NavBar from "./NavBarComponents/NavBar"
@@ -17,14 +15,16 @@ import Home from "./main/Home"
 import UserProfile from "./Profile/user/UserProfile"
 import Admin from "./Profile/admin/Admin"
 import AdminRoute from './privateRouts/AdminRoute'
-const ChatAndFriendsIcons = lazy(() => import("./Chat&FreindsComponents.js/ChatAndFriendsIcons"))
+import PrivateRoute from "./privateRouts/PrivateRoute"
+import localhost from "../../../config/config"
 
+const ChatAndFriendsIcons = lazy(() => import("./Chat&FreindsComponents.js/ChatAndFriendsIcons"))
 const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 const ChatRoomPopup = lazy(() => import("./Chat&FreindsComponents.js/ChatRoomPopup"))
-const FriendsPopup = lazy(() => import("./Components/FriendsPopup"))
-const Chat = lazy(() => import("./Components/chat"))
-
+const FriendsPopup = lazy(() => import("./Chat&FreindsComponents.js/FriendsPopup"))
+const Chat = lazy(() => import("./Chat&FreindsComponents.js/chat"))
 const socket = io(`http://${localhost}:4001`);
+const friendSocket = io(`http://${localhost}:4003`);
 
 function App() {
 
@@ -95,7 +95,6 @@ function App() {
     }
     fetchData()
   }, [])
-
 
   return (
 
@@ -217,6 +216,7 @@ function App() {
               setFriendsModalFlag={setFriendsModalFlag}
               setFriendsProfile={setFriendsProfile}
               userSesion={userSesion}
+              friendSocket={friendSocket}
             />
           </Suspense>
         </ErrorBoundary>
