@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 import { Buffer } from "buffer"
 import { Link } from "react-router-dom"
 
-import UserFriendsIMG from "./UserFriendsIMG"
-import { API_URL } from "./Constants"
+import UserFriendsIMG from "../Components/UserFriendsIMG"
+import { API_URL } from "../Components/Constants"
 
-function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
+function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, friendSocket }) {
 
     const [nickName, setNickName] = useState('')
     const [userResults, setUsersResults] = useState(undefined)
@@ -50,32 +50,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
         }
     }, [userResults])
 
-    const addToFriend = () => {
-        let friendID = userResults.ID_User
-        let userID = userSesion.userID
-
-
-
-        fetch(`${API_URL}addFreind`, {
-            method: 'POST',
-            body: JSON.stringify({ friendID, userID }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
-            .then(response => response.json())
-            .then(data => {
-                if (data.success === false) {
-                    setUsersResults([])
-                } else {
-                    setUsersResults(data.user)
-                    setNickName('')
-                }
-            })
-            .catch(error => console.error(error))
-    }
-
     useEffect(() => {
         const getWaitingUsers = async () => {
             let userID = userSesion.userID
@@ -112,49 +86,27 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
     }, [])
 
     const confirmFriend = (ID_User) => {
-        let session_ID = userSession.userID
-        const data = { ID_User, session_ID }
-
-        fetch(`${API_URL}confirmFriend`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(result => {
-            })
-            .catch(error => {
-                console.error(error)
-            })
+        const data = {
+            ID_User,
+            userSesion: userSesion.userID,
+        }
+        friendSocket.emit("confirmFriend", data)
     }
 
     const deleteFriend = (ID_User) => {
-
-        let session_ID = userSession.userID
-        const data = { ID_User, session_ID }
-
-        fetch(`${API_URL}deleteFriend`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(result => {
-            })
-            .catch(error => {
-                console.error(error)
-            })
+        const data = {
+            ID_User,
+            userSesion: userSesion.userID,
+        }
+        friendSocket.emit("deleteFriend", data)
     }
 
-    const hideElement = (event) => {
-        event.target.closest('.user-data').classList.add('d-none')
-    }
-    const hideElementConfirm = (event) => {
-        event.target.closest('.user-data').classList.add('d-none')
+    const addToFriend = () => {
+        let userData = {
+            friendID: userResults.ID_User,
+            userID: userSesion.userID,
+        }
+        friendSocket.emit("addFriend", userData)
     }
 
     return (
@@ -258,7 +210,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
                                             </Link>
                                             <div onClick={() => {
                                                 deleteFriend(elm.ID_User)
-                                                hideElement(event)
                                             }} className="me-2">
                                                 <svg
                                                     className="del-friend"
@@ -295,7 +246,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion }) {
                                                 </div>
                                             </div>
                                             <div onClick={() => {
-                                                hideElementConfirm(event)
                                                 confirmFriend(elm.ID_User)
                                             }} className="me-2">
                                                 <svg
