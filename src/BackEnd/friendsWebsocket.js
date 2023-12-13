@@ -39,17 +39,36 @@ io.on('connection', (socket) => {
             }
         });
     });
-    
     socket.on("confirmFriend", data => {
-        const { ID_User, userSession } = data;
-
+        const { ID_User, userSesion } = data;
         const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 0 WHERE ID_User = ? AND ID_Friend = ?';
-        db.query(updateFriendshipQuery, [ID_User, userSession], (err, result) => {
+        db.query(updateFriendshipQuery, [ID_User, userSesion], (err, result) => {
             if (err) {
                 console.error(err);
                 socket.emit('confirmFriendError', 'Wystąpił błąd podczas potwierdzania przyjaźni.');
             } else {
                 socket.emit('confirmFriendSuccess', 'Przyjaźń została pomyślnie potwierdzona.');
+            }
+        });
+    });
+
+
+    socket.on("deleteFriend", data => {
+        const { ID_User, userSesion } = data;
+        console.log(data)
+
+        const deleteFriendshipQuery = 'DELETE FROM userfriends WHERE ID_User = ? AND ID_Friend = ?';
+        db.query(deleteFriendshipQuery, [ID_User, userSesion], (err, result) => {
+            if (err) {
+                console.error(err);
+                socket.emit('deleteFriendError', 'Wystąpił błąd podczas usuwania przyjaciela.');
+            } else {
+                console.log(result.affectedRows)
+                if (result.affectedRows >= 0) {
+                    socket.emit('deleteFriendSuccess', 'Przyjaciel został pomyślnie usunięty.');
+                } else {
+                    socket.emit('deleteFriendError', 'Nie znaleziono przyjaciela do usunięcia.');
+                }
             }
         });
     });

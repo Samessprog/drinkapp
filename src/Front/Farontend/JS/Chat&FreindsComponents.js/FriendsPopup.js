@@ -106,22 +106,12 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
 
     const deleteFriend = (ID_User) => {
 
-        let session_ID = userSesion.userID
-        const data = { ID_User, session_ID }
+        const data = {
+            ID_User,
+            userSesion: userSesion.userID,
+        }
+        friendSocket.emit("deleteFriend", data)
 
-        fetch(`${API_URL}deleteFriend`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(result => {
-            })
-            .catch(error => {
-                console.error(error)
-            })
     }
 
     const hideElement = (event) => {

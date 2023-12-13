@@ -127,28 +127,8 @@ app.post('/api/searchUsers', (req, res) => {
   });
 });
 
-app.post('/api/deleteFriend', (req, res) => {
-  const { ID_User, session_ID } = req.body;
-
-  console.log(ID_User)
-  console.log(session_ID)
-
-  const updateFriendshipQuery = 'UPDATE userfriends SET Waiting = 1 WHERE ID_User = ? AND ID_Friend = ?';
-  db.query(updateFriendshipQuery, [ID_User, session_ID], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ success: false, message: 'Wystąpił błąd podczas potwierdzania przyjaźni.' });
-    } else {
-      res.json({ success: true, message: 'Przyjaźń została pomyślnie potwierdzona.' });
-    }
-  });
-});
-
-
-
 app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
   const userID = req.params.userID;
-  // Pobranie ID_Friend, gdy Waiting = 1 od innych użytkowników
   const getPendingFriendRequestsQuery = 'SELECT ID_User FROM userfriends WHERE ID_Friend = ? AND Waiting = 1';
   db.query(getPendingFriendRequestsQuery, [userID], (err, results) => {
     if (err) {
