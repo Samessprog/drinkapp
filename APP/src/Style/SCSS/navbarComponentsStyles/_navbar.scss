@@ -1,0 +1,418 @@
+//variables
+@import "../variables.scss";
+
+.NavBar {
+    z-index: 2;
+    border-bottom: 3px solid rgb(88, 88, 88);
+    margin-bottom: 1.5rem;
+
+    &ContentHolder {
+        background-color: rgb(37, 37, 37);
+        color: $color-white;
+
+        .login-dis {
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .login-dis.active {
+            opacity: 1;
+        }
+
+        .login-dis.hide {
+            opacity: 0;
+        }
+
+        .brand-name-SCROLL {
+            display: none;
+
+            font-size: 250%;
+            color: #fbf2ea;
+            font-family: "Edwardian Script";
+
+            .logo-link {
+                text-decoration: none;
+                color: inherit;
+
+                .brand-name-nav {
+                    display: inline-block;
+                    position: relative;
+                    cursor: pointer;
+                    overflow: hidden;
+
+                        
+
+                }
+            }
+
+            .animate-border {
+
+                &:hover {
+                    visibility: visible;
+                    color: red;
+                }
+            }
+
+            .brand-logo {
+                fill: #fbf2ea;
+
+                .animate-border {
+
+                    &:hover {
+                        visibility: visible;
+                        color: red;
+                    }
+                }
+            }
+
+            @media (max-width:768px) {
+                & {
+                    display: none;
+                }
+            }
+        }
+
+        .hamburger-SCROLL {
+            display: $d-none;
+
+            @media (max-width:1180px) {
+                & {
+                    display: $d-flex;
+                }
+            }
+        }
+
+        .brand-logo-hamburger {
+            font-size: 33px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+
+            @media (max-width:1200px) {
+                & {
+                    font-size: 25px;
+                }
+            }
+
+            
+            @media (max-width:468px) {
+                display: none;
+            }
+        }
+
+        .Singn-button {
+            color: $color-white;
+            transition: $trans-all-03-eio;
+            background-color: $bg-ligherDark;
+            border: none;
+            padding: 0.5px;
+
+            &:hover {
+                background-color: rgb(22, 22, 22);
+                border-radius: 0.938rem;
+            }
+        }
+
+        .profileButton-holder {
+            margin-bottom: 1.2rem;
+
+            .OptionsProfile {
+                transition: opacity .3s ease-in-out;
+                opacity: 0;
+            }
+
+            .OptionsProfile.active {
+                opacity: 1;
+            }
+
+            .OptionsProfile.hide {
+                opacity: 0;
+            }
+
+
+            .ProfileButton {
+                fill: white;
+            }
+        }
+
+        .helper {
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+
+            .bar {
+                height: 3px;
+
+                &:nth-child(1) {
+                    animation: none;
+                }
+
+                &:nth-child(2) {
+                    display: block;
+                }
+
+                &:nth-child(3) {
+                    animation: none;
+                }
+            }
+        }
+
+        .helper.clicked .bar:nth-child(1) {
+            animation: topBarAnimation .3s linear forwards;
+        }
+
+        .helper.clicked .bar:nth-child(2) {
+            display: none;
+        }
+
+        .helper.clicked .bar:nth-child(3) {
+            animation: bottomBarAnimation .3s linear forwards;
+        }
+
+        .helper.hide .bar:nth-child(1) {
+            animation: topBarAnimationBack .3s linear forwards;
+        }
+
+        .helper.hide .bar:nth-child(2) {
+            display: block;
+        }
+
+        .helper.hide .bar:nth-child(3) {
+            animation: bottomBarAnimationBack .3s linear forwards;
+        }
+
+        @keyframes topBarAnimation {
+            0% {
+                transform: rotate(0deg) translateY(0px);
+            }
+
+            100% {
+                transform: rotate(-50deg) translateY(10px);
+            }
+        }
+
+        @keyframes bottomBarAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(50deg) translateY(-10px);
+            }
+        }
+
+        @keyframes topBarAnimationBack {
+            0% {
+                transform: rotate(-50deg) translateY(10px);
+            }
+
+            100% {
+                transform: rotate(0deg) translateY(0px);
+            }
+        }
+
+        @keyframes bottomBarAnimationBack {
+            0% {
+                transform: rotate(50deg) translateY(-10px);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .searching-holder {
+
+
+            .searching-input {
+                background-color: rgb(18, 18, 18);
+                box-shadow: 0px 6px 4px 0px $color-black;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                margin-bottom: 0.7rem;
+                height: 55px;
+                border-radius: 25px 0px 0px 25px;
+                color: white;
+                outline: none;
+
+                &:focus {
+                    outline: 1px solid rgba(255, 255, 255, 0.257);
+                }
+            }
+
+            .searching-input:focus+.searching-icon-holder {
+                outline: 1px solid rgba(255, 255, 255, 0.257);
+            }
+
+            .searching-icon-holder {
+                border-left: 0;
+                border-top: 0;
+                background-color: rgb(40, 40, 40);
+                height: 55px;
+                border-radius: 0px 20px 20px 0px;
+                margin-bottom: 11px;
+                box-shadow: 0px 6px 5px 0px $color-black;
+                color: rgb(251, 242, 234);
+                padding: 10px;
+
+                .searching-icon {
+                    fill: white;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        animation: moveLeftAnimation 2s linear forwards;
+                    }
+                }
+
+                @keyframes moveLeftAnimation {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    20% {
+                        transform: translateY(3px);
+                    }
+
+                    30% {
+                        transform: translateX(-4px);
+                    }
+
+                    40% {
+                        transform: translateY(-4px);
+                    }
+
+                    50% {
+                        transform: translateY(2px);
+                    }
+
+                    100% {
+                        transform: translatey(0);
+                    }
+
+                }
+
+                color: $color-white;
+            }
+        }
+
+        .options-holder {
+            fill: $color-white;
+            transition: all .2s ease-in-out;
+            margin-bottom: 2rem;
+            display: flex;
+            margin: 0 auto;
+            max-width: 800px;
+            margin-left: 3.6rem;
+
+            .filter-dis {
+                transition: opacity .2s ease-in-out;
+                opacity: 0;
+            }
+
+            .filter-dis.active {
+                opacity: 1;
+            }
+
+            .filter-dis.hide {
+                opacity: 0;
+            }
+
+            .filter-icon {
+                transition: all .2s ease-in-out;
+            }
+
+            &:hover .filter-icon {
+                fill: rgb(255, 234, 116);
+            }
+
+        }
+    }
+
+    .login-holder {
+        @media (max-width:450px) {
+            & {
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    .login-navbar {
+        margin-right: .5rem;
+        font-family: cursive;
+        letter-spacing: .3px;
+        background-color: #ebe7e3;
+        font-size: 22px;
+        border-radius: 12px;
+        padding-left: 10px;
+        padding-top: 2px;
+        padding-right: 10px;
+        padding-bottom: 2px;
+    }
+
+    .main-options-holder {
+        font-family: cursive;
+        display: $d-flex;
+        background-color: $bg-ligherDark;
+        z-index: 0;
+
+
+        @media (max-width:575px) {
+            & {
+                display: $d-flex;
+                position: sticky;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .Options-Holder-W100 {
+            @media (max-width:575px) {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .navbar-menu {
+                list-style: none;
+
+                @media (max-width:575px) {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .elm-contents-holder {
+
+                    @media (max-width:575px) {
+                        margin-top: 1rem;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        &:hover {
+                            background-color: rgb(21, 21, 21);
+                            border-radius: 0.938rem;
+                        }
+                    }
+
+                    .elm-contents {
+                        font-size: 21px;
+                        color: $color-white;
+                        transition: $trans-all-03-eio;
+                        padding: 0.625rem;
+                        padding-left: 1rem;
+                        padding-right: 1rem;
+
+                        &:hover {
+                            background-color: rgb(21, 21, 21);
+                            border-radius: 0.938rem;
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+
+}

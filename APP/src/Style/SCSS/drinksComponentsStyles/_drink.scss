@@ -1,0 +1,156 @@
+@import "../variables.scss";
+
+.main {
+    color: $color-white;
+
+    .drin-window {
+        position: relative;
+        border: 2px solid white;
+        border-radius: 15px;
+
+        .drink-name-holder {
+            color: white;
+            max-height: 80px;
+            height: 70px;
+            overflow-y: scroll;
+        }
+
+        .creator-holder {
+            overflow: hidden;
+            max-width: $n-100px;
+            max-height: $n-100px;
+
+            @media (max-width: 992px) {
+                margin-bottom: 5px;
+            }
+        }
+
+        .drink-info-holder {
+            align-items: start;
+
+            @media (max-width: 992px) {
+                align-items: center;
+                margin-bottom: 5px;
+            }
+        }
+
+        .color-white {
+            color: white
+        }
+
+        @include drinksHolder;
+
+        // @media (max-width: 400px) {
+        //     height: 350px;
+        // }
+
+        // @media (min-width: 1800px) {
+        //     height: 500px;
+        // }
+
+        // @media (min-width: 1200px) {
+        //     width: calc(100% / 5);
+        // }
+
+        .img-holder {
+            background-color: transparent;
+            margin-bottom: 10px;
+
+            .drink-img {
+                object-fit: cover;
+                border-radius: 15px 15px 0px 0px;
+                max-height: $n-300px;
+                height: $n-250px;
+                width: 100%;
+
+                @media (max-width: 400px) {
+                    height: $n-150px;
+                }
+
+                @media (min-width: 1800px) {
+                    height: $n-500px;
+                }
+            }
+
+        }
+
+        .basic-information-drink {
+            @include basicDrinksInf;
+
+            .rate {
+                color: $color-gold;
+                font-size: 20px;
+
+                .star {
+                    fill: $color-gold;
+                }
+            }
+
+            .drink-taste {
+                background-color: $color-light-d-green;
+                color: $color-black;
+            }
+        }
+
+
+        transition: all 0.2s ease-in-out;
+        transform: translate(0, 0);
+
+        &:hover {
+            transform: translate(0, -10px);
+            box-shadow: 8px 8px 5px 8px rgba(0, 0, 0, 0.634);
+
+            .line {
+                position: absolute;
+                height: 3px;
+                width: calc(100% + 350px);
+                background-color: rgb(255, 255, 255);
+                filter: blur(10px);
+                animation: lineAnimate 3s ease-out infinite forwards;
+            }
+
+            @keyframes lineAnimate {
+                0% {
+                    transform: translateY(-10px) translateX(-50px);
+                }
+
+                100% {
+                    transform: translateY(-280px) translateX(50px) rotate(33deg);
+                }
+            }
+        }
+
+        overflow: hidden;
+    }
+
+    .favourite-icon-drink-holder {
+        margin-top: 12px;
+        margin-right: 12px;
+
+        .favouriteStar {
+            fill: gold;
+            transition: $trans-all-02-eio;
+        }
+
+        .un-favouriteStar {
+            fill: black;
+            transition: $trans-all-02-eio;
+            
+            @keyframes starAnimation {
+
+                0%,
+                70% {
+                    fill: rgb(0, 0, 0);
+                }
+
+                50% {
+                    fill: gold;
+                }
+            }
+        }
+
+        &:hover .un-favouriteStar {
+            animation: starAnimation 5s infinite;
+        }
+    }
+}

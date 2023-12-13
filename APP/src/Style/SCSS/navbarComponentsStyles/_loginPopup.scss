@@ -1,0 +1,112 @@
+//Poprwawić pozycję... zrobić jakoś inaczej
+@import "../variables.scss";
+
+.loginPopupHolder {
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 0.625rem;
+    box-shadow: 0 0 30px rgb(55, 55, 55);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(42, 42, 42);
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px) {
+        backdrop-filter: blur(120px);
+    }
+
+    .color-black {
+        color: $rgb-251-242-234;
+    }
+
+    .close-icon-holder {
+        right: 3%;
+        top: 3%;
+
+        .close-icon {
+            fill: $color-red;
+            cursor: pointer;
+        }
+    }
+
+    .log-reg-icon-holder {
+        border-radius: 8px 0px 0px 8px;
+        background-color: rgba(255, 255, 255, 0.838);
+        padding: 10px;
+
+        .login-register-icon {
+            fill: rgb(36, 36, 36);
+        }
+    }
+
+    .input-box {
+        background-color: white;
+        border: $border-1-solid-black;
+        border-radius: 0px 8px 8px 0px;
+        border-left: none;
+        padding: 7px;
+
+        .login-register-input-data {
+            border: none;
+            outline: none;
+        }
+    }
+
+    .registerLink {
+        color: rgb(118, 186, 255);
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .logRegHolder {
+        padding-left: 3rem;
+        padding-right: 3rem;
+
+        .login-icon {
+            height: 260px;
+            width: 260px;
+            padding-bottom: 40px;
+        }
+    }
+
+    .login-reg-header {
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+    }
+
+    .login-input {
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        padding: 6px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        font-size: 21px;
+        color: white;
+        transition: all .3s ease-in-out;
+        color: black;
+
+        &:hover {
+            background-color: rgb(231, 231, 231);
+            border-radius: 15px;
+        }
+
+    }
+
+    .login-register-errors {
+        color: rgb(255, 0, 0);
+        border-bottom: 1px solid white;
+    }
+}
+
+.h-600 {
+    height: 600px;
+}
+
+.h-500 {
+    height: 550px;
+}
