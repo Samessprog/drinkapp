@@ -238,7 +238,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     <div className="d-flex flex-column col-sm-8 col-12  ing-prep-holder">
                                         <ul className="mt-2 fs-5 ps-2 col-12 d-flex justify-content-start ">
                                             {ingredientFlag ? (
-                                                <ul className="ps-0 ps-sm-3 ">
+                                                <ul className="ps-0 ps-sm-3 col-12 ">
                                                     {ingredient.map((ingredient, index) => (
                                                         <li key={index}>
                                                             <input
@@ -250,7 +250,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                                     ))}
                                                 </ul>
                                             ) : (
-                                                <ul className="ps-0 ps-sm-3" >
+                                                <ul className="ps-0 ps-sm-3 col-12" >
                                                     {preparation.map((preparation, index) => (
                                                         <li key={index}>
                                                             <input

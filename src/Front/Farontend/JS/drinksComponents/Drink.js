@@ -21,6 +21,7 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
 
         setFavorites(prevFavorites => [...prevFavorites, id])
         let sessionIDx = userSesion.userID
+
         //POST drink ID to DB with userID
         try {
             fetch(`${API_URL}addToUserFavourite`, {

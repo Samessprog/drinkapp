@@ -48,7 +48,6 @@
         background-color: rgb(255, 255, 255);
         height: 408px;
 
-
         .other-mess {
             display: flex;
             flex-direction: column;
@@ -63,7 +62,6 @@
                 border-radius: 10px 10px 10px 0px;
                 padding: 10px;
                 padding-left: 15px;
-
             }
         }
 
@@ -130,9 +128,8 @@
     }
 }
 
-
 .firends-icon {
-    bottom: 25%;
+    bottom: 27%;
     padding-right: 1.5rem;
     fill: white;
     cursor: pointer;
@@ -169,7 +166,6 @@
     }
 }
 
-
 .chat-room-holder {
     position: fixed;
     top: 50%;
@@ -187,7 +183,6 @@
         font-size: 20px;
         color: red;
         font-weight: 700;
-
     }
 
     .room-id-input {

@@ -56,8 +56,6 @@
             font-size: 19px;
             cursor: pointer;
             border-radius: 10px;
-
-
             &:hover {
                 background-color: rgba(220, 220, 220, 0.479);
                 color: rgb(255, 255, 255);
@@ -79,7 +77,6 @@
 
     .user-data {
         color: white;
-
         .user-friend-img {
             height: 90px;
             width: 90px;
@@ -98,8 +95,6 @@
     }
 
     .user-friends-holder {
-
-
         .users-friend {
             color: white;
             padding-bottom: 5px;

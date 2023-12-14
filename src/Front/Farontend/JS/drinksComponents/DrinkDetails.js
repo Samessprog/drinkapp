@@ -32,6 +32,11 @@ function DrinkDetails() {
     const [showNutritionalValues, setShowNutritionalValues] = useState(false)
     const [showDrinkHistory, setShowDrinkHistory] = useState(false)
 
+    const [detailDrinkIMG, setDetailDrinkIMG] = useState(null)
+    const [convertedIMG, setConvertedIMG] = useState('')
+
+    let userSession = useContext(SessionContext).userSesion
+
     useEffect(() => {
         const fetchDrinkDetails = async () => {
             try {
@@ -67,7 +72,6 @@ function DrinkDetails() {
     const handlePageClick = (data) => {
         const selectedPage = data.selected
         const currentPage = selectedPage * itemPerPage
-
         setCurrentPage(currentPage)
     }
 
@@ -81,11 +85,6 @@ function DrinkDetails() {
         }
         setIngChecked(newIngChecked)
     }
-
-    const [detailDrinkIMG, setDetailDrinkIMG] = useState(null)
-    const [convertedIMG, setConvertedIMG] = useState('')
-
-    let userSession = useContext(SessionContext).userSesion
 
     const sendARating = async (newValue) => {
         let userID = userSession?.userID
