@@ -169,18 +169,20 @@ app.get('/api/getUserFreinds/:userID', (req, res) => {
       console.error(err);
       res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania zaproszeń do znajomych.' });
     } else {
+
       if (results.length === 0) {
         res.json({ success: true, message: 'Brak zaproszeń do znajomych.', pendingFriendRequests: [] });
       } else {
         const friendIDs = results.map(result => {
-          if (result.ID_User === userID) {
-            return result.ID_Friend;
+          if (result.ID_User == userID) {
+            console.log('hello2')
+            return result.ID_Friend !== userID ? result.ID_Friend : null;
           } else {
-            return result.ID_User;
+            console.log('hello')
+            return result.ID_User !== userID ? result.ID_User : null;
           }
-        });
+        }).filter(id => id !== null);
 
-        // Pobranie danych użytkowników na podstawie ID_Friend lub ID_User
         const getUsersQuery = 'SELECT Nick, Role, userIMG, ID_User FROM users WHERE ID_User IN (?)';
         db.query(getUsersQuery, [friendIDs], (usersErr, usersResults) => {
           if (usersErr) {

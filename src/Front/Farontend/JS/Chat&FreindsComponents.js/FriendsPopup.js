@@ -44,8 +44,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                 // Create the image URL using the base64 data
                 const imageURL = `data:image/jpeg;base64,${base64Image}`
                 setUserIMGres(imageURL)
-            } else {
-
             }
         }
     }, [userResults])
@@ -189,7 +187,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                 </div>
                                 <div className="user-friends-content">
                                     {userFreinds.map((elm) =>
-
                                         <div
                                             key={elm.ID_User}
                                             className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center items-holder ">

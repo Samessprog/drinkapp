@@ -10,7 +10,7 @@ function UserFriendsIMG({ elm }) {
     useEffect(() => {
         if (elm) {
             const base64Image = Buffer.from(elm).toString('base64')
-            const imageURL = `data:image/jpegbase64,${base64Image}`
+            const imageURL = `data:image/jpeg;base64,${base64Image}`
             setUserIMGres(imageURL)
             setLoadingFlag(true)
         } else {
@@ -26,7 +26,7 @@ function UserFriendsIMG({ elm }) {
             ) : (
                 <img
                     src={userIMGres}
-                    alt="img errr"
+                    alt="img err"
                     className="user-friend-img"
                 />
             )
