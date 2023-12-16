@@ -17,6 +17,7 @@ function Footer({ searchingDrink, drinkDatas }) {
                             className='drink-footer-img img-fluid'
                             style={{ objectFit: "cover" }}
                             src={drinkIMG}
+                            alt='loading error'
                         ></img>
                     </div>
                 </div>
@@ -29,15 +30,21 @@ function Footer({ searchingDrink, drinkDatas }) {
                         <div className="d-flex mt-4 justify-content-center">
                             <img
                                 className='col-4'
-                                src={facebookIcon}>
+                                src={facebookIcon}
+                                alt='loading error'
+                            >
                             </img>
                             <img
                                 className='col-4 ms-4'
-                                src={instagramIcon}>
+                                src={instagramIcon}
+                                alt='loading error'
+                                >
                             </img>
                             <img
                                 className='col-4 ms-4'
-                                src={tikTok}>
+                                src={tikTok}
+                                alt='loading error'
+                                >
                             </img>
                         </div>
                     </div>

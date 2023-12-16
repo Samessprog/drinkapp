@@ -113,7 +113,9 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                 className="d-flex justify-content-end fs-4 me-2 mt-1 close-friends-modal-icon"
             > X
             </div>
-            <div className="d-flex fs-3 justify-content-center brand-friend">Friends List</div>
+            <header>
+                <div className="d-flex fs-3 justify-content-center brand-friend">Friends List</div>
+            </header>
             <div>
                 <div className="col-12 friend-input-holder">
                     <input
@@ -154,7 +156,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                             <div className="mt-3 mb-3 d-flex user-data justify-content-between align-items-center ">
                                 <div className="d-flex align-items-center">
                                     <div>
-                                        <img src={userIMGres} className="user-friend-img" ></img>
+                                        <img src={userIMGres} className="user-friend-img" alt="loading-error"></img>
                                     </div>
                                     <div className="ms-5 fs-5">
                                         {userResults.Nick}

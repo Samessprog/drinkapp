@@ -242,7 +242,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         <div className="col-12 col-lg-7">
                             <div className="mt-3 file-upload d-flex flex-column justify-content-center col-12 align-items-center ">
                                 <div className={`${previewImageUrl ? 'drink-img-holder col-9 d-flex' : 'd-none'}`}>
-                                    <img className="own-img-holder col-12" src={previewImageUrl}>
+                                    <img className="own-img-holder col-12" src={previewImageUrl}  alt='loading error'>
                                     </img>
                                 </div>
                                 <input

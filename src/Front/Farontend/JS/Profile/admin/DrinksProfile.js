@@ -47,6 +47,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                     ID_DRINK={ID_DRINK}
                                     classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG '
                                     classNameIMG='drink-profile-img img-fluid'
+                                    alt='loading error'
                                 />
                             </Link>
                             <div className="col-12 col-xxl-4  ms-4 drink-name-profile col-5 d-flex justify-content-center justify-content-xxl-start align-items-xxl-start" >

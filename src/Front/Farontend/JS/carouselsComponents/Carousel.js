@@ -44,11 +44,13 @@ const Carousel = ({ favoriteUsersDrink, isHidden, setIsHidden, friendsProfile })
     setCurrentIndex(newIndex)
   }
 
+  console.log(showItems)
+
   return (
     <div className="carousel carousel-holder col-12 ">
       <div className=" d-flex justify-content-center mb-2 col-12 cc ">
-        {showItems === '' ? (
-          <div className="no-fav-drinks fs-4">No favorite drinks</div>
+        {showItems.length === 0 ? (
+          <div className="no-fav-drinks fs-2">No favorite drinks</div>
         ) : (
           showItems.map((elm) => (
             <FavoriteDrinks

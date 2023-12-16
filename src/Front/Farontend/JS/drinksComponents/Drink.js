@@ -44,61 +44,68 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                 className="text-decoration-none"
                 to={`drinkDetail/${ID_DRINK}`}
             >
-                <FetchingDrinkIMG
-                    ID_DRINK={ID_DRINK}
-                    classNameHolder='img-holder card overflow-hidden'
-                    classNameIMG='drink-img img-fluid'
-                />
-                <div className="line"></div>
-                <div className="basic-information-drink p-2 ">
-                    <div className="col-12 d-flex flex-column flex-sm-row align-items-center">
-                        <label className="col-12 fs-4 fw-bolder ps-2 drink-name-holder text-break">{DrinkName}</label>
-                    </div>
-                    <div className="col-12 d-flex mt-2 pt-2 border-top y flex-column flex-lg-row ps-2">
-                        <div className="col-12 col-lg-9 col-xxl-7 drink-info-holder d-flex flex-column fs-5 justify-content-start color-white">
-                            <div>
-                                <label className="">Level: </label>
-                                <label
-                                    className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}
-                                >{DifficultyLevel}
-                                </label>
+                <figure>
+                    <FetchingDrinkIMG
+                        ID_DRINK={ID_DRINK}
+                        classNameHolder='img-holder card overflow-hidden'
+                        classNameIMG='drink-img img-fluid'
+                        alt="loading-error"
+                    />
+                </figure>
+
+                <figcaption>
+                    <div className="line"></div>
+                    <div className="basic-information-drink p-2 ">
+                        <div className="col-12 d-flex flex-column flex-sm-row align-items-center">
+                            <label className="col-12 fs-4 fw-bolder ps-2 drink-name-holder text-break">{DrinkName}</label>
+                        </div>
+                        <div className="col-12 d-flex mt-2 pt-2 border-top y flex-column flex-lg-row ps-2">
+                            <div className="col-12 col-lg-9 col-xxl-7 drink-info-holder d-flex flex-column fs-5 justify-content-start color-white">
+                                <div>
+                                    <label className="">Level: </label>
+                                    <label
+                                        className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}
+                                    >{DifficultyLevel}
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>Taste: </label>
+                                    <label
+                                        className={Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : ''}
+                                    >{Taste}
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>Type: </label>
+                                    <label
+                                        className={`${DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
+                                </div>
+                                <div className="">
+                                    <label>Rate: </label>
+                                    <label className="rate fw-bolder ms-2">{Rate}
+                                        <svg
+                                            className="star mb-2"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="24" width="24">
+                                            <path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" />
+                                        </svg>
+                                    </label>
+                                </div>
                             </div>
-                            <div>
-                                <label>Taste: </label>
-                                <label
-                                    className={Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : ''}
-                                >{Taste}
+                            <div className="col-12 col-lg-3 col-xxl-3 d-flex justify-content-start align-items-center pe-2 fs-5 flex-column color-white">
+                                <label>
+                                    Creator
                                 </label>
-                            </div>
-                            <div>
-                                <label>Type: </label>
-                                <label
-                                    className={`${DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
-                            </div>
-                            <div className="">
-                                <label>Rate: </label>
-                                <label className="rate fw-bolder ms-2">{Rate}
-                                    <svg
-                                        className="star mb-2"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        height="24" width="24">
-                                        <path d="m8.85 17.825 3.15-1.9 3.15 1.925-.825-3.6 2.775-2.4-3.65-.325-1.45-3.4-1.45 3.375-3.65.325 2.775 2.425ZM5.825 22l1.625-7.025L2 10.25l7.2-.625L12 3l2.8 6.625 7.2.625-5.45 4.725L18.175 22 12 18.275ZM12 13.25Z" />
-                                    </svg>
-                                </label>
+                                <div className="d-flex justify-content-center text-break creator-holder fs-6 ">
+                                    {Creator}
+                                </div>
                             </div>
                         </div>
-                        <div className="col-12 col-lg-3 col-xxl-3 d-flex justify-content-start align-items-center pe-2 fs-5 flex-column color-white">
-                            <label>
-                                Creator
-                            </label>
-                            <div className="d-flex justify-content-center text-break creator-holder fs-6 ">
-                                {Creator}
-                            </div>
-                        </div>
                     </div>
-                </div>
+                </figcaption>
             </Link >
-            {userSesion !== null &&
+            {
+                userSesion !== null &&
                 <div
                     onClick={() => favoriteHandler(ID_DRINK)}
                     className="position-absolute top-0 end-0 favourite-icon-drink-holder"
@@ -112,7 +119,7 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                     </svg>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 
