@@ -45,7 +45,7 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
     }, [drinkIMGs])
 
     return (
-        <div className={classNameHolder} >
+        <figure className={classNameHolder} >
             {fetchIMGCompleted ? (
                 <LazyLoadImage
                     src={convertedIMG}
@@ -63,7 +63,7 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
                     />
                 </div>
             )}
-        </div>
+        </figure>
     )
 }
 export default FetchingDrinkIMG

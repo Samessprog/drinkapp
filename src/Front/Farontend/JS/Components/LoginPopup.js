@@ -92,7 +92,9 @@ function LoginPopup() {
                         <div className="col-4 d-none d-xl-flex">
                             <img
                                 className="login-icon"
-                                src={drinkLoginLogo}>
+                                src={drinkLoginLogo}
+                                alt="loading error"
+                            >
                             </img>
                         </div>
                         <div className="col-12 col-xl-8 d-flex flex-column align-items-center justify-content-center me-5 me-xl-0 ">

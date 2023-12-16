@@ -21,6 +21,7 @@ function NewDrink({ elm, setWindowAlert, windowAlert, hiddenDrinkElements }) {
                                 ID_DRINK={ID_DRINK}
                                 classNameHolder='mt-3 mb-3 ms-4 drink-profile-holder-IMG'
                                 classNameIMG='drink-profile-img img-fluid'
+                                alt='loading error'
                             />
                             <div className="ms-4 drink-name-profile">
                                 {elm.DrinkName}

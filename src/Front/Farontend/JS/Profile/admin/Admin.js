@@ -280,7 +280,9 @@ function Admin() {
                     </div>
                 </div>
                 <div className="fs-2 white header-admin ms-3 ">
-                    <header>Database of users and drinks</header>
+                    <header>
+                        Database of users and drinks
+                    </header>
                 </div>
                 <div className="users-AND-drinks-db-holder  ms-sm-1  m-md-3 col-12 d-flex flex-column align-items-center">
                     <div className="d-flex justify-content-between col-11 mb-5 flex-column align-items-center flex-lg-row">
@@ -392,52 +394,55 @@ function Admin() {
                             />
                         </div>
                     </div>
-                    <div className="col-11 d-flex flex-column align-items-center ">
-                        {usersFlag === true && (
-                            <AdminPagination
-                                currentPaginationItem={currentItemsUsers}
-                                hiddenElements={hiddenElements}
-                                setWindowAlert={setWindowAlert}
-                                windowAlert={windowAlert}
-                                setBlockedButton={setBlockedButton}
-                                pageCountItem={pageCountUsers}
-                                setCurrentPage={setCurrentPageUsers}
-                                ComponentRender={UsersAdminControlerProfile}
-                                setChangeUserDataPopup={setChangeUserDataPopup}
-                            />
-                        )}
+                    <main className="col-11 d-flex flex-column align-items-center ">
+                        <div className="col-12 d-flex flex-column align-items-center ">
+                            {usersFlag === true && (
+                                <AdminPagination
+                                    currentPaginationItem={currentItemsUsers}
+                                    hiddenElements={hiddenElements}
+                                    setWindowAlert={setWindowAlert}
+                                    windowAlert={windowAlert}
+                                    setBlockedButton={setBlockedButton}
+                                    pageCountItem={pageCountUsers}
+                                    setCurrentPage={setCurrentPageUsers}
+                                    ComponentRender={UsersAdminControlerProfile}
+                                    setChangeUserDataPopup={setChangeUserDataPopup}
+                                />
+                            )}
 
-                        {drinksFlag && (
+                            {drinksFlag && (
 
-                            <AdminPagination
-                                setDrinkPreview={setDrinkPreview}
-                                currentPaginationItem={currentItems}
-                                hiddenElements={hiddenDrinkElements}
-                                setWindowAlert={setWindowAlert}
-                                windowAlert={windowAlert}
-                                setBlockedButton={setBlockedButton}
-                                pageCountItem={pageCount}
-                                setCurrentPage={setCurrentPage}
-                                ComponentRender={DrinksProfile}
-                            />
+                                <AdminPagination
+                                    setDrinkPreview={setDrinkPreview}
+                                    currentPaginationItem={currentItems}
+                                    hiddenElements={hiddenDrinkElements}
+                                    setWindowAlert={setWindowAlert}
+                                    windowAlert={windowAlert}
+                                    setBlockedButton={setBlockedButton}
+                                    pageCountItem={pageCount}
+                                    setCurrentPage={setCurrentPage}
+                                    ComponentRender={DrinksProfile}
+                                />
 
-                        )}
+                            )}
 
-                        {showNewsFlag && (
-                            <AdminPagination
-                                setDrinkPreview={setDrinkPreview}
-                                hiddenElements={hiddenDrinkElements}
-                                setWindowAlert={setWindowAlert}
-                                windowAlert={windowAlert}
-                                showNewsFlag={showNewsFlag}
-                                currentPaginationItem={currentItemsNewDrink}
-                                pageCountItem={pageCountNewDrink}
-                                setCurrentPage={setCurrentPageNewDrink}
-                                ComponentRender={DrinksProfile}
-                            />
-                        )}
+                            {showNewsFlag && (
+                                <AdminPagination
+                                    setDrinkPreview={setDrinkPreview}
+                                    hiddenElements={hiddenDrinkElements}
+                                    setWindowAlert={setWindowAlert}
+                                    windowAlert={windowAlert}
+                                    showNewsFlag={showNewsFlag}
+                                    currentPaginationItem={currentItemsNewDrink}
+                                    pageCountItem={pageCountNewDrink}
+                                    setCurrentPage={setCurrentPageNewDrink}
+                                    ComponentRender={DrinksProfile}
+                                />
+                            )}
 
-                    </div>
+                        </div>
+                    </main>
+
                 </div>
 
                 {windowAlert.isOpen &&

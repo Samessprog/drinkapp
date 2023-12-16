@@ -7,7 +7,7 @@ function Ingreadinet({ ing, setingredient, ingredient, key }) {
     const deleteHandler = () => {
         dispatch(setingredient(ingredient.filter((el) => el.id !== ing.id)))
     }
-
+    
     return (
         <li
             className="ms-0 drink-ingredient d-flex rounded-pill mt-3 justify-content-between align-items-center"

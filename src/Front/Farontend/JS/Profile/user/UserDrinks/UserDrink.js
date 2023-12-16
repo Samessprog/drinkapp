@@ -56,6 +56,7 @@ function UserDrink({ elm, isHidden, setIsHidden, friendsProfile }) {
                         ID_DRINK={ID_DRINK}
                         classNameHolder='card favourite-img-holder'
                         classNameIMG='img-fluid drink-img-favourite'
+                        alt='loading error'
                     />
                     <div className={`position-absolute favourite-drink-info-box d-flex flex-column justify-content-center align-items-center`}>
                         <div class="d-flex  flex-column justify-content-center align-items-center">
