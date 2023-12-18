@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
 const multer = require('multer');
 const mysql = require('mysql');
-
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -26,16 +24,17 @@ const drinkNameRegex = /^[a-zA-Z0-9]{1,15}$/;
 const drinkdescriptionRegex = /^[a-zA-Z0-9 ]{30,500}$/;
 const drinkHistoryRegex = /^[a-zA-Z0-9 ]{0,500}$/;
 const drinkLevelAndTasteRegex = /^(Easy|Medium|Hard|Sour|Sweet|Bitter)$/;
-const drinkTypeRegex = /^(Alcoholic|Soft)$/;
+const drinkTypeRegex = /^(Fizzy|Still)$/;
 const validTastesRegex = /^(Sour|Sweet|Bitter)$/;
 const nonEmptyRegex = /^.+$/;
 
 router.post('/', upload.single('imageData'), async (req, res) => {
 
+
   const {
     userID,
     drinkName,
-    drinkdescription,
+    drinkDescription,
     drinkLevel,
     drinkTaste,
     drinkType,
@@ -43,9 +42,8 @@ router.post('/', upload.single('imageData'), async (req, res) => {
     drinkHistory,
   } = req.body;
 
-  const imageData = req.file.buffer;
 
-  // Get the image data from the request body
+  const imageData = req.file.buffer;
 
   const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB w bajtach
 
@@ -69,19 +67,15 @@ router.post('/', upload.single('imageData'), async (req, res) => {
   const joinedIngredients = joinItems(ingredientsOfNewDrink);
   const joinedPreparation = joinItems(preparationOfNewDrink);
 
-  if (!drinkName.match(drinkNameRegex)) {
+  if (drinkName.match(drinkNameRegex)) {
     return res.status(400).json({ error: 'Invalid drink name' });
   }
 
-  if (!drinkdescription.match(drinkdescriptionRegex)) {
+  if (drinkDescription.match(drinkdescriptionRegex)) {
     return res.status(400).json({ error: 'Invalid drink description' });
   }
 
-  if (!drinkHistory.match(drinkHistoryRegex)) {
-    return res.status(400).json({ error: 'Invalid drink history' });
-  }
-
-  if (!drinkLevelAndTasteRegex.test(drinkLevel)) {
+  if (!drinkLevel.match(drinkLevelAndTasteRegex)) {
     return res.status(400).json({ error: 'Error: Incorrect beverage level. Allowed values ​​ up to Easy, Medium or Hard.y' });
   }
 
@@ -89,18 +83,17 @@ router.post('/', upload.single('imageData'), async (req, res) => {
     return res.status(400).json({ error: 'Error: Invalid drinkType. Allowed values ​​are Alcoholic or Soft.' });
   }
 
-  if (!validTastesRegex.test(drinkTaste)) {
+  if (!drinkTaste.match(validTastesRegex)) {
     return res.status(400).json({ error: 'Error: Invalid drinkTaste. Allowed values ​​are Sour, Sweet, or Bitter.' });
   }
 
-  if (!nonEmptyRegex.test(joinedIngredients)) {
+  if (!joinedIngredients.match(nonEmptyRegex)) {
     return res.status(400).json({ error: 'Error: Ingredients cannot be empty.' });
   }
 
-  if (!nonEmptyRegex.test(joinedPreparation)) {
+  if (!joinedPreparation.match(nonEmptyRegex)) {
     return res.status(400).json({ error: 'Error: Preparation cannot be empty..' });
   }
-
 
   try {
     const newDrink = await db.query(
@@ -111,7 +104,7 @@ router.post('/', upload.single('imageData'), async (req, res) => {
         userNick,
         drinkTaste,
         drinkType,
-        drinkdescription,
+        drinkDescription,
         joinedIngredients,
         imageData,
         joinedPreparation,

@@ -5,6 +5,8 @@ function Chat({ socket, chatID, setShowChat, minimize, setMinimize, userSesion }
     const [currentMessage, setCurrentMessage] = useState("")
     const [messageList, setMessageList] = useState([])
 
+    console.log(chatID)
+
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
@@ -35,7 +37,10 @@ function Chat({ socket, chatID, setShowChat, minimize, setMinimize, userSesion }
             <div className={`${minimize ? 'minimalize-holder' : 'chat-holder'}`}>
                 <header>
                     <div className="chat-header col-12 ">
-                        <div className="col-9 d-flex align-items-center">Live Chat</div>
+                        <div className="col-9 d-flex align-items-center ">
+                            <label>Live Chat</label>
+                            <label className="ms-3 overflow-hidden">Nr. {chatID}</label>
+                        </div>
                         <div className="d-flex align-items-center">
                             <svg
                                 onClick={() => setMinimize(!minimize)}

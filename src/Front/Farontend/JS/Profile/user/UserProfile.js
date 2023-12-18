@@ -12,6 +12,7 @@ const UserOwnDrinkPopup = lazy(() => import("./UserDrinks/UserOwnDrinkPopup"))
 
 function UserProfile({ drinkDatas, friendsProfile }) {
 
+  const [drinkAddedFlag, setDrinkAddedFlag] = useState(false)
 
   const [addUserNewDrink, setAddUserNewDrink] = useState(false)
   const userSession = useContext(SessionContext).userSesion
@@ -59,6 +60,7 @@ function UserProfile({ drinkDatas, friendsProfile }) {
         setUserIMG={setUserIMG}
         fetchIMGCompleted={fetchIMGCompleted}
         friendsProfile={friendsProfile}
+        drinkAddedFlag={drinkAddedFlag}
       />
 
       <UserFavoriteDrinks
@@ -73,7 +75,7 @@ function UserProfile({ drinkDatas, friendsProfile }) {
         friendsProfile={friendsProfile}
       />
 
-      {addUserNewDrink && <UserOwnDrinkPopup addUserNewDrink={addUserNewDrink} setAddUserNewDrink={setAddUserNewDrink} />}
+      {addUserNewDrink && <UserOwnDrinkPopup setDrinkAddedFlag={setDrinkAddedFlag} addUserNewDrink={addUserNewDrink} setAddUserNewDrink={setAddUserNewDrink} />}
     </div>
   )
 }

@@ -1,10 +1,10 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { v4 as uuid } from 'uuid'
 
 import { SessionContext } from "../../../Session/SessionContext"
 import { API_URL } from '../../../Components/Constants'
 
-function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
+function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedFlag }) {
 
     //fetch user session to fetch needed data
     const userSession = useContext(SessionContext).userSesion
@@ -32,7 +32,6 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
     const addNewDrinkHandler = async (event) => {
         event.preventDefault()
         const selectedFile = event.target.querySelector('input[type="file"]').files[0]
-
         const fileSizeInMB = selectedFile.size / (1024 * 1024)
 
         if (fileSizeInMB > 5) {
@@ -78,6 +77,8 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                 setIsSuccess(true)
                 setIngredientsOfNewDrink([])
                 setPreparationOfNewDrink([])
+                setDrinkAddedFlag(true)
+                setAddUserNewDrink(false)
             }
         } catch (error) {
             console.error(error)
@@ -125,6 +126,13 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
             reader.readAsDataURL(drinkImg.files[0])
         }
     }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDrinkAddedFlag(false)
+        }, 3000)
+        return () => clearTimeout(timer)
+    })
 
     return (
         <div className="col-11 col-sm-12 col-md-8 h-100 align-items-center own-drink-popup-holder ">
@@ -220,10 +228,10 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             type="radio"
                                             name="drinks"
                                             id="alcoholic"
-                                            value="Alcoholic"
+                                            value="Fizzy"
                                         >
                                         </input>
-                                        <label className="ms-1" for="alcoholic">Alcoholic</label>
+                                        <label className="ms-1" for="alcoholic">Fizzy</label>
                                     </div>
                                     <div >
                                         <input
@@ -231,10 +239,10 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                                             type="radio"
                                             name="drinks"
                                             id="soft-drinks"
-                                            value="Soft"
+                                            value="Still"
                                         >
                                         </input>
-                                        <label className="ms-1" for="soft-drinks">Soft drinks</label>
+                                        <label className="ms-1" for="soft-drinks">Still</label>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +250,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         <div className="col-12 col-lg-7">
                             <div className="mt-3 file-upload d-flex flex-column justify-content-center col-12 align-items-center ">
                                 <div className={`${previewImageUrl ? 'drink-img-holder col-9 d-flex' : 'd-none'}`}>
-                                    <img className="own-img-holder col-12" src={previewImageUrl}  alt='loading error'>
+                                    <img className="own-img-holder col-12" src={previewImageUrl} alt='loading error'>
                                     </img>
                                 </div>
                                 <input
@@ -319,7 +327,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink }) {
                         </div>
                     </div>
 
-                    <div className="d-flex flex-row-reverse col-12 mb-5 mb-sm-1">
+                    <div className="d-flex flex-row-reverse col-12 mb-5 mb-sm-1 mt-3">
                         <div className="d-flex justify-content-center  justify-content-xxl-end align-items-center col-12" >
                             <label className=" text-danger fw-bolder me-4 fs-5">{isSuccess === true ? 'you have successfully added a drink to the database wait for admin to approve it' : drinkErrors} </label>
                             <button className="col-10 col-xxl-1  mb-md-2 rounded-pill btn btn-secondary border rounded d-flex p-2 change-data-input-user">

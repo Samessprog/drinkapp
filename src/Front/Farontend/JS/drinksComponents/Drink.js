@@ -78,7 +78,7 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                                 <div>
                                     <label>Type: </label>
                                     <label
-                                        className={`${DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
+                                        className={`${DrinkType === 'Still' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
                                 </div>
                                 <div className="">
                                     <label>Rate: </label>
