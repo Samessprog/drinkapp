@@ -22,7 +22,7 @@ function TypeOfDrink() {
                 <label
                     htmlFor="alcoholicCheckBox"
                     className="ms-2"
-                >Alcoholic
+                >Fizzy
                 </label>
             </div>
 
@@ -37,7 +37,7 @@ function TypeOfDrink() {
                 <label
                     htmlFor="softCheckBox"
                     className="ms-2"
-                >Soft drinks
+                >Still
                 </label>
             </div>
         </div>

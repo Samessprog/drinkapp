@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
             } else {
                 // The user has not rated this drink before, insert a new rating
                 const insertQuery = "INSERT INTO drinksrating (User_ID, Drink_ID, Rate) VALUES (?, ?, ?)";
-                connectionToDrinksDB.query(insertQuery, [userID, ID_DRINK, clickedStar], (insertErr, insertResult) => {
+                connectionToDrinksDB.query(insertQuery, [userID, ID_DRINK, newValue], (insertErr, insertResult) => {
                     if (insertErr) {
                         console.error("Błąd przy wstawianiu oceny drinku:", insertErr);
                         res.status(500).send("Wystąpił błąd podczas oceniania drinku.");

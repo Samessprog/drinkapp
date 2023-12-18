@@ -8,7 +8,7 @@ import { setEmail, setPassword, setRegisterPopup, setLoginPopup, setUserNick, se
 function Registers() {
 
     const dispatch = useDispatch()
-    //take user data drom storage 
+    //take user data from storage 
     const email = useSelector(state => state.user.email)
     const password = useSelector(state => state.user.password)
     const phone = useSelector(state => state.user.phone)
@@ -20,7 +20,7 @@ function Registers() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        //Date Walidate
+        //Data
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
         const phoneRegex = /^\d{9}$/
@@ -77,6 +77,7 @@ function Registers() {
         }
 
     }, [])
+
 
     return (
         <div ref={registerRef} className="col-4 col-12 col-md-6 col-lg-4 loginPopupHolder h-600 position-fixed d-flex align-items-center flex-column ">

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
 
-function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile }) {
+function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, drinkAddedFlag }) {
 
     const dispatch = useDispatch()
 
@@ -86,6 +86,7 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile }
             console.error(error)
         }
     }
+
 
     return (
         <div className="col-12 mt-3 ">
@@ -199,6 +200,13 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile }
                     </div>
                 </div>
             </div >
+            {drinkAddedFlag &&
+                <div className="announcements d-flex flex-column align-items-end pt-3">
+                    <div className="announcements-succes d-flex justify-content-end p-3 fs-4 text-black">
+                        Drink has been added successfully
+                    </div>
+                </div>
+            }
         </div >
     )
 }

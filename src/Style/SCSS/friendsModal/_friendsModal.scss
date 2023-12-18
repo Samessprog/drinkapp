@@ -71,6 +71,11 @@
         border-bottom: 1px solid white;
     }
 
+    .no-found-result {
+        color: white;
+        fill: white;
+    }
+
     .border-white-1 {
         border-top: 1px solid white;
     }
@@ -111,7 +116,12 @@
                 border-radius: 10px;
                 margin-left: .5rem;
             }
+            .no-items-found{
+                color: white;
+                justify-content: center;
+                align-items: center;
+                fill: white;
+            }
         }
-
     }
 }

@@ -21,7 +21,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
 
     return drinkDatas.filter((elm) => {
       //filtration conditions
-      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Alcoholic') || (softDrinks && elm.DrinkType === 'Soft') || (!alcocholic && !softDrinks)
+      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Fizzy') || (softDrinks && elm.DrinkType === 'Still') || (!alcocholic && !softDrinks)
       const isDifficultyLevelMatch = drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel
       const isTasteMatch = drinkTaste === 'All' || drinkTaste === elm.Taste
       const drinkIngredients = elm.Ingredients.toLowerCase()
@@ -78,7 +78,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
           //TU JEST BUG
         } else if (isMatchWithoutText && ingredient.length === 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
           return elm
-        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && alcocholic === true && elm.DrinkType === 'Alcoholic') {
+        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && alcocholic === true && elm.DrinkType === 'Fizzy') {
           return elm
         }
         return false

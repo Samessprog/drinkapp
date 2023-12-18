@@ -32,7 +32,6 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
         }
     }
 
-
     return (
         <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(ID_DRINK) ? 'd-none' : ''} `}>
             <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
@@ -68,7 +67,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
                                 </div>
                                 <div className="d-flex">
                                     <label>Type: </label>
-                                    <label className={`ms-2 ${DrinkType === 'Soft' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
+                                    <label className={`ms-2 ${DrinkType === 'Still' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
                                 </div>
                             </div>
                         </div>

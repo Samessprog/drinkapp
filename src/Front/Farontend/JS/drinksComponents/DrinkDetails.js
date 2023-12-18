@@ -35,6 +35,8 @@ function DrinkDetails() {
     const [detailDrinkIMG, setDetailDrinkIMG] = useState(null)
     const [convertedIMG, setConvertedIMG] = useState('')
 
+    const [rateSuccess, setRateSuccess] = useState(false)
+
     let userSession = useContext(SessionContext).userSesion
 
     useEffect(() => {
@@ -101,11 +103,8 @@ function DrinkDetails() {
                 body: JSON.stringify({ ID_DRINK, newValue, userID }),
             })
             const data = await response.json()
-            if (response.status === 200 || data.message === 'User block successfully') {
-
-            } else if (response.status === 404 && data.error === 'User not found') {
-            }
         } catch (error) {
+            setRateSuccess(true)
             console.error(error)
         }
     }
@@ -145,6 +144,13 @@ function DrinkDetails() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setRateSuccess(false)
+        }, 3000)
+        return () => clearTimeout(timer)
+    }, [rateSuccess])
 
     return (
         <main>
@@ -213,20 +219,52 @@ function DrinkDetails() {
                                         <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4 ">
                                             <section className="">
                                                 <div className="d-flex ">
-                                                    {showNutritionalValues && (
-                                                        <section className="d-flex flex-column">
-                                                            {nutritionalValues.map((elm) =>
-                                                                <div className="d-flex column-flex">
-                                                                    <label>{elm}</label>
+
+                                                    {showNutritionalValues &&
+                                                        <div>
+                                                            {nutritionalValues ? (
+                                                                <section className="d-flex flex-column">
+                                                                    {nutritionalValues.map((elm) =>
+                                                                        <div className="d-flex column-flex">
+                                                                            <label>{elm}</label>
+                                                                        </div>
+                                                                    )}
+                                                                </section>
+                                                            ) : (
+                                                                <div>
+                                                                    drink has no nutritional value wait until they are added
                                                                 </div>
                                                             )}
-                                                        </section>
-                                                    )}
+                                                        </div>
+                                                    }
+
                                                     {showDrinkDescription &&
-                                                        <section className="line-spaced">{Description}</section>
+                                                        <div>
+                                                            {Description ? (
+                                                                <section className="line-spaced">
+                                                                    {Description}
+                                                                </section>
+
+
+                                                            ) : (
+                                                                <div>
+                                                                    The drink has no Description
+                                                                </div>
+
+                                                            )}
+                                                        </div>
                                                     }
                                                     {showDrinkHistory &&
-                                                        <section className="line-spaced">{drinkHistory}</section>
+                                                        <div>
+                                                            {drinkHistory ? (
+                                                                <section className="line-spaced">{drinkHistory}</section>
+
+                                                            ) : (
+                                                                <div>
+                                                                    The drink has no History
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     }
                                                 </div>
                                             </section>
@@ -320,8 +358,15 @@ function DrinkDetails() {
                         </div>
                     </div>
                 </div >
+                {rateSuccess &&
+                    <div className="announcements d-flex flex-column align-items-end pt-3">
+                        <div className="announcements-succes d-flex justify-content-end p-3 fs-4 text-black">
+                            The rating has been added
+                        </div>
+                    </div>
+                }
             </div >
-        </main>
+        </main >
     )
 }
 
