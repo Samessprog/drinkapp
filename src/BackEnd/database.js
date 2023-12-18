@@ -129,8 +129,10 @@ app.post('/api/searchUsers', (req, res) => {
 
 app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
   const userID = req.params.userID;
+
   const getPendingFriendRequestsQuery = 'SELECT ID_User FROM userfriends WHERE ID_Friend = ? AND Waiting = 1';
   db.query(getPendingFriendRequestsQuery, [userID], (err, results) => {
+    console.log(results)
     if (err) {
       console.error(err);
       res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania oczekujących zaproszeń do znajomych.' });
@@ -143,6 +145,7 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
         // Pobranie danych użytkowników na podstawie ID_User
         const getUsersQuery = 'SELECT Nick, Role, userIMG, ID_User FROM users WHERE ID_User IN (?)';
         db.query(getUsersQuery, [pendingFriendRequestsIDs], (usersErr, usersResults) => {
+          console.log(usersResults)
           if (usersErr) {
             console.error(usersErr);
             res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania danych użytkowników.' });

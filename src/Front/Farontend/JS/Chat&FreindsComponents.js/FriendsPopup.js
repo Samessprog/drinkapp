@@ -18,22 +18,25 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
 
     const searchUser = (e) => {
         if (e.key === 'Enter') {
-            fetch(`${API_URL}searchUsers`, {
-                method: 'POST',
-                body: JSON.stringify({ nickName, }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success === false) {
-                        setUsersResults([])
-                    } else {
-                        setUsersResults(data.user)
+            if (nickName !== userSesion.nick) {
+                fetch(`${API_URL}searchUsers`, {
+                    method: 'POST',
+                    body: JSON.stringify({ nickName, }),
+                    headers: {
+                        'Content-Type': 'application/json'
                     }
                 })
-                .catch(error => console.error(error))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success === false) {
+                            setUsersResults([])
+                        } else {
+                            setUsersResults(data.user)
+                        }
+                    })
+                    .catch(error => console.error(error))
+            }
+
         }
     }
 
@@ -55,6 +58,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                 const response = await fetch(`${API_URL}getPendingFriendRequests/${userID}`)
                 const data = await response.json()
                 if (data.success) {
+                    console.log(data.pendingFriendRequests)
                     setWaitingUsers(data.pendingFriendRequests)
                 }
             } catch (error) {
@@ -143,8 +147,12 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                         setUserWaitingFriendsFlag(true)
                         setUserFriendsFlag(false)
                     }} className="button-holder ms-2">
-                        <div className="button-friend-holder">
+                        <div className="button-friend-holder col-12">
                             Invitations
+                            {waitingUsers?.length > 0 &&
+                                <label className="waiting-invitations-counter rounded ms-2">{waitingUsers?.length}</label>
+                            }
+
                         </div>
                     </label>
                 </div>
@@ -193,7 +201,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                             </svg> */}
                         </div>
                     )}
-                    
+
                     <div>
                         {userFriendsFlag &&
                             <div className="user-friends-holder">
@@ -258,7 +266,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                     Waitings
                                 </div>
                                 <div className="user-friends-content">
-                                    {userFreinds.length > 0 ? (
+                                    {waitingUsers.length > 0 ? (
                                         <div>
                                             {waitingUsers.map((elm) =>
                                                 <div
@@ -268,6 +276,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                                     <div className="d-flex align-items-center">
                                                         <div>
                                                             <UserFriendsIMG elm={elm.userIMG} />
+
                                                         </div>
                                                         <div className="ms-5 fs-5">
                                                             {elm.Nick}
@@ -305,7 +314,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                         }
                     </div>
                 </div>
-            </div>
+            </div >
         </div >
     )
 

@@ -78,6 +78,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
                 setIngredientsOfNewDrink([])
                 setPreparationOfNewDrink([])
                 setDrinkAddedFlag(true)
+                setAddUserNewDrink(false)
             }
         } catch (error) {
             console.error(error)
