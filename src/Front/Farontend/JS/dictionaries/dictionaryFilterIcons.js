@@ -70,9 +70,60 @@ const decorateDictionary = [
     'dekorowanie',
 ]
 
+const peelDictionary = [
+    'obierz',
+    'obierać',
+    'odrywać',
+    'odskubnąć',
+    'złuszczać',
+    'obłuszczać',
+    'odderzyć',
+    'obrywać',
+    'odskrobywać',
+    'obrabić',
+    'odskrobać',
+    'odkurzyć',
+    'odskrobać',
+    'odcinać skórkę',
+    'odłupywać',
+    'odpierać',
+    'zdejmować skórkę',
+    'odczyszczać',
+    'odzierać',
+    'odgarniać skórkę',
+    'obierać zewnętrzną warstwę',
+    'obrąbać',
+    'odkroić',
+    'odłuszczyć',
+    'odpruć',
+];
+
+
+const serveDictionary = [
+    'obsługiwać',
+    'serwować',
+    'podawać',
+    'usługiwać',
+    'pełnić służbę',
+    'służyć',
+    'dostarczać',
+    'wydawać',
+    'działać',
+    'świadczyć usługi',
+    'wykonawczy',
+    'wykonywać',
+    'wydobywać',
+    'posługiwać się',
+    'przynosić',
+];
+
+
+
 export {
     pourDictionary,
     shakeDictionary,
     chopDictionary,
     decorateDictionary,
+    peelDictionary,
+    serveDictionary,
 }
