@@ -7,21 +7,20 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
 
   const dispatch = useDispatch()
   //Downloading states from storage needed to search for drinks
-  const alcocholic = useSelector(state => state.drink.alcocholic)
-  const softDrinks = useSelector(state => state.drink.softDrinks)
   const drinkLevel = useSelector(state => state.drink.drinkLevel)
   const drinkTaste = useSelector(state => state.drink.drinkTaste)
   const ingredient = useSelector(state => state.drink.ingredient)
   const inputDrinkText = useSelector(state => state.navbar.inputDrinkText)
   const favouriteDrink = useSelector(state => state.drink.favouriteDrink)
   const userFavouriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
+  const drinkType = useSelector(state => state.drink.drinkType)
 
-
-  const filterDrinks = (drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient) => {
+  const filterDrinks = (drinkDatas, inputDrinkText, drinkLevel, drinkTaste, ingredient) => {
 
     return drinkDatas.filter((elm) => {
+
       //filtration conditions
-      const isCategoryMatch = (alcocholic && elm.DrinkType === 'Fizzy') || (softDrinks && elm.DrinkType === 'Still') || (!alcocholic && !softDrinks)
+      const isCategoryMatch = (elm.DrinkType === drinkType) || (drinkType === 'All')
       const isDifficultyLevelMatch = drinkLevel === 'All' || drinkLevel === elm.DifficultyLevel
       const isTasteMatch = drinkTaste === 'All' || drinkTaste === elm.Taste
       const drinkIngredients = elm.Ingredients.toLowerCase()
@@ -29,7 +28,6 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()))
 
       if (inputDrinkText) {
-
         const drinkName = elm.DrinkName?.toLowerCase()
         const inputText = inputDrinkText.toLowerCase()
         const isMatch = drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch
@@ -52,9 +50,9 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
         }
         return false
       } else if (!inputDrinkText) {
+        
 
         const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch
-
         if (isMatchWithoutText) {
 
           if (!favouriteDrink && ingredient.length !== 0) {
@@ -78,7 +76,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
           //TU JEST BUG
         } else if (isMatchWithoutText && ingredient.length === 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
           return elm
-        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && alcocholic === true && elm.DrinkType === 'Fizzy') {
+        } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && elm.DrinkType === drinkType) {
           return elm
         }
         return false
@@ -89,7 +87,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
   }
   //execute when any variable downloaded from storage changes
   useEffect(() => {
-    const searchingResults = filterDrinks(drinkDatas, inputDrinkText, alcocholic, softDrinks, drinkLevel, drinkTaste, ingredient)
+    const searchingResults = filterDrinks(drinkDatas, inputDrinkText, drinkLevel, drinkTaste, ingredient)
     //filtering by rate value if the state changes
     if (highlyRated) {
       searchingResults.sort((firstDrink, secDrink) => secDrink.Rate - firstDrink.Rate)
@@ -97,7 +95,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
     dispatch(setDrinkCounter(searchingResults.length))
 
     setSearchingDrink(searchingResults)
-  }, [alcocholic, softDrinks, highlyRated, drinkLevel, drinkTaste, inputDrinkText, ingredient, eachdrinkflag, favouriteDrink])
+  }, [highlyRated, drinkLevel, drinkTaste, inputDrinkText, ingredient, eachdrinkflag, favouriteDrink, drinkType])
 }
 
 export default Searching

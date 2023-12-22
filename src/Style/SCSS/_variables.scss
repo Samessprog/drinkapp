@@ -154,18 +154,40 @@ $font-size-13: 13px;
 .drink-creator,
 .diff-level,
 .sourClass,
+.mixed-class,
 .sweetClass,
 .alkoClass,
 .softClass,
 .bitterClass,
 .easyLevelClass,
 .mediumLevelClass,
+.extreme-Level-Class,
+.fizzyClass,
+.stillClass,
+.hotClass,
+.herbalClass,
 .hardLevelClass {
     @include drinks;
     @include d-flex-grow-1-text-align-center-screen575();
 
+    &.stillClass {
+        color: rgb(136, 164, 211);
+    }
+
+    &.fizzyClass {
+        color: rgb(60, 134, 254);
+    }
+
     &.sweetClass {
         color: rgb(247, 71, 124);
+    }
+
+    &.hotClass {
+        color: orangered;
+    }
+
+    &.herbalClass {
+        color: rgb(14, 134, 3);
     }
 
     &.sourClass {
@@ -173,7 +195,7 @@ $font-size-13: 13px;
     }
 
     &.bitterClass {
-        color: rgb(143, 126, 126);
+        color: rgb(146, 123, 123);
     }
 
     &.easyLevelClass {
@@ -188,12 +210,20 @@ $font-size-13: 13px;
         color: rgb(255, 111, 0);
     }
 
+    &.extreme-Level-Class {
+        color: rgb(255, 0, 0);
+    }
+
     &.diff-level {
         color: $color-light-l-green;
     }
 
     &.drink-creator {
         color: $color-black;
+    }
+
+    &.mixed-class {
+        color: rgb(0, 187, 255);
     }
 
     &.softClass {

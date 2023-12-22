@@ -61,6 +61,7 @@ const drinksState = {
   drinkCounter: 0,
   ingredient: [],
   favouriteDrink: false,
+  drinkType: 'All',
 };
 
 function drinksReducer(state = drinksState, action) {
@@ -114,6 +115,11 @@ function drinksReducer(state = drinksState, action) {
       return {
         ...state,
         ingredient: action.payload
+      }
+    case 'SET_DRINK_TYPE':
+      return {
+        ...state,
+        drinkType: action.payload
       }
 
     default:

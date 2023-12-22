@@ -20,6 +20,7 @@ function DrinksOptions() {
                     <option value={'Easy'}>Easy</option>
                     <option value={'Medium'}>Medium</option>
                     <option value={'Hard'}>Hard</option>
+                    <option value={'Extreme'}>Extreme</option>
                 </select>
             </div>
 
@@ -34,6 +35,7 @@ function DrinksOptions() {
                     <option value={'Sour'}>Sour</option>
                     <option value={'Sweet'}> Sweet</option>
                     <option value={'Bitter'}>Bitter</option>
+                    <option value={'Mixed'}>Mixed</option>
                 </select>
             </div>
         </div>
