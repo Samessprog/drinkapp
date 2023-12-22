@@ -64,21 +64,21 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                                 <div>
                                     <label className="">Level: </label>
                                     <label
-                                        className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}
+                                        className={DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : 'extreme-Level-Class '}
                                     >{DifficultyLevel}
                                     </label>
                                 </div>
                                 <div>
                                     <label>Taste: </label>
                                     <label
-                                        className={Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : ''}
+                                        className={Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : 'mixed-class'}
                                     >{Taste}
                                     </label>
                                 </div>
                                 <div>
                                     <label>Type: </label>
                                     <label
-                                        className={`${DrinkType === 'Still' ? 'softClass' : 'alkoClass '}`} >{DrinkType}</label>
+                                        className={`${DrinkType === 'Soft' ? 'softClass' : DrinkType === 'Fizzy' ? 'fizzyClass' : DrinkType === 'Hot' ? 'hotClass' : DrinkType === 'Herbal' ? 'herbalClass' : DrinkType === 'Still' ? 'stillClass' : ''}`} >{DrinkType}</label>
                                 </div>
                                 <div className="">
                                     <label>Rate: </label>

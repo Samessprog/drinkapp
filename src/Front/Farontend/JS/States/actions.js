@@ -22,6 +22,7 @@ const DRINKS_ACTIONS = {
     SET_DRINKS_COUNTER: 'SET_DRINKS_COUNTER',
     SET_INGREDIENTS: 'SET_INGREDIENTS',
     SET_FAVOURITE_FLAG_DRINKS: 'SET_FAVOURITE_FLAG_DRINKS',
+    SET_DRINK_TYPE: 'SET_DRINK_TYPE',
 
 }
 
@@ -80,6 +81,7 @@ export const setSoftDrinks = createDrinkAction(DRINKS_ACTIONS.SET_SOFT_DRINKS);
 export const setHighlyRated = createDrinkAction(DRINKS_ACTIONS.SET_HIGHLY_RATED_DRINKS);
 export const setDrinkLevel = createDrinkAction(DRINKS_ACTIONS.SET_LEVEL_DRINKS);
 export const setDrinkFavouriteFlag = createDrinkAction(DRINKS_ACTIONS.SET_FAVOURITE_FLAG_DRINKS);
+export const setDrinkType = createDrinkAction(DRINKS_ACTIONS.SET_DRINK_TYPE);
 export const setDrinkTaste = createDrinkAction(DRINKS_ACTIONS.SET_TASTE_DRINKS);
 export const setEachdrinkflag = createDrinkAction(DRINKS_ACTIONS.SET_EACH_FLAG_DRINKS);
 export const setDrinkCounter = createDrinkAction(DRINKS_ACTIONS.SET_DRINKS_COUNTER);

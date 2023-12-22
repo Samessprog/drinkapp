@@ -25,9 +25,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                 dispatch(setPopupSetings(false))
             }
         }
-
         document.addEventListener("mousedown", handler)
-
         return () => {
             document.removeEventListener("mousedown", handler)
         }
@@ -58,7 +56,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
             <div className="ms-2 p-2 pe-3 ">
                 <div className="d-flex justify-content-center fs-5 ">Filter</div>
                 <div className="options-holder-settings-popup  mt-3 d-flex font col-12 d-flex ">
-                    <div className="col-5 col-lg-6 d-flex flex-column align-items-lg-start align-items-center">
+                    <div className="col-5 col-lg-6 d-flex flex-column align-items-lg-start align-items-sm-center align-items-start">
                         <div className="d-flex mt-1 pe-3 align-items-center">
                             <div
                                 type="checkbox"
@@ -74,8 +72,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                                 Favorite
                             </label>
                         </div>
-                        <TypeOfDrink />
-                        <div className="d-flex mt-1 ps-2 ps-lg-0 align-items-center" >
+                        <div className="d-flex  ps-sm-2 ps-lg-0 align-items-center mb-2 mt-1" >
                             <div
                                 id='highlyRatedCheckbox'
                                 value={highlyRated}
@@ -89,6 +86,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                             >Highly rated
                             </label>
                         </div>
+                        <TypeOfDrink />
                     </div>
                     <DrinksOptions />
                 </div>

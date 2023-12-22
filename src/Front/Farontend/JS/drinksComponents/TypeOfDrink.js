@@ -1,44 +1,28 @@
 //Imports
 import { useDispatch, useSelector } from 'react-redux'
-import { setAlcocholic, setSoftDrinks } from "../States/actions"
+import { setDrinkType } from "../States/actions"
 
 function TypeOfDrink() {
 
     const dispatch = useDispatch()
-
-    const alcoholic = useSelector(state => state.drink.alcocholic)
-    const softDrinks = useSelector(state => state.drink.softDrinks)
+    const drinkType = useSelector(state => state.drink.drinkType)
 
     return (
-        <div>
-            <div className="d-flex mt-1 pe-2 align-items-center">
-                <div
-                    id="alcoholicCheckBox"
-                    onClick={() => dispatch(setAlcocholic(!alcoholic))}
-                    value={alcoholic}
-                    className={`checkBoxFilter ${alcoholic ? 'checked' : 'unchecked'}`}
-                >
-                </div>
-                <label
-                    htmlFor="alcoholicCheckBox"
-                    className="ms-2"
-                >Fizzy
-                </label>
-            </div>
-
+        <div className=''>
             <div className="d-flex mt-1 align-items-center">
-                <div
-                    id="softCheckBox"
-                    onClick={() => dispatch(setSoftDrinks(!softDrinks))}
-                    value={softDrinks}
-                    className={`checkBoxFilter ${softDrinks ? 'checked' : 'unchecked'}`}
+                <select
+                    onChange={(e) => dispatch(setDrinkType(e.target.value))}
+                    value={drinkType}
+                    className='col-12'
                 >
-                </div>
-                <label
-                    htmlFor="softCheckBox"
-                    className="ms-2"
-                >Still
-                </label>
+                    <option value={'All'}>All</option>
+                    <option value={'Fizzy'}>Fizzy</option>
+                    <option value={'Still'}>Still</option>
+                    <option value={'Hot'}>Hot</option>
+                    <option value={'Soft'}>Soft</option>
+                    <option value={'Herbal'}>Herbal</option>
+                </select>
+
             </div>
         </div>
     )
