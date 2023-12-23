@@ -12,6 +12,10 @@
             height: 550px;
         }
 
+        @media (min-width: 2100px) {
+            height: 600px;
+        }
+
         .drink-name-holder {
             color: white;
             max-height: 80px;
