@@ -9,7 +9,7 @@ import { Ring } from "@uiball/loaders"
 import { API_URL } from '../Components/Constants'
 import axios from 'axios'
 import getIconForPreparation from "../Components/FilterIconsAlgo"
-import shakeIcon from '../../../../Assets/shaker.png'
+import shakeIcon from '../../../../Assets/Normal/shaker.png'
 import Rating from '@mui/material/Rating'
 import localhost from "../../../../config/config"
 
@@ -152,6 +152,7 @@ function DrinkDetails() {
         return () => clearTimeout(timer)
     }, [rateSuccess])
 
+
     return (
         <main>
             <div className="col-12 drink-holder">
@@ -244,13 +245,10 @@ function DrinkDetails() {
                                                                 <section className="line-spaced">
                                                                     {Description}
                                                                 </section>
-
-
                                                             ) : (
                                                                 <div>
                                                                     The drink has no Description
                                                                 </div>
-
                                                             )}
                                                         </div>
                                                     }
@@ -275,15 +273,15 @@ function DrinkDetails() {
                                     <label className=" font-size-19 fw-bolder mt-5">Specifications</label>
                                     <div className="d-flex  mt-3 fs-5">
                                         <label
-                                            className={` me-2 fs-4 ${DifficultyLevel === 'Easy' ? 'easyLevelClass' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : ''}`}>
+                                            className={` me-2 fs-4 ${DifficultyLevel === 'Easy' ? 'easyLevelClass ' : DifficultyLevel === 'Medium' ? 'mediumLevelClass ' : DifficultyLevel === 'Hard' ? 'hardLevelClass ' : 'extreme-Level-Class'}`}>
                                             {DifficultyLevel}
                                         </label>
                                         <label
-                                            className={`me-2 fs-4 ${Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass ' : ''}`} >
+                                            className={`me-2 fs-4 ${Taste === 'Sour' ? 'sourClass ' : Taste === 'Sweet' ? 'sweetClass ' : Taste === 'Bitter' ? 'bitterClass' : 'mixed-class'}`} >
                                             {Taste}
                                         </label>
                                         <label
-                                            className={DrinkType === 'Soft' ? 'softClass me-2 fs-4' : 'alkoClass me-2 fs-4'}>
+                                            className={` me-2 fs-4 ${DrinkType === 'Soft' ? 'softClass' : DrinkType === 'Fizzy' ? 'fizzyClass' : DrinkType === 'Hot' ? 'hotClass' : DrinkType === 'Herbal' ? 'herbalClass' : DrinkType === 'Still' ? 'stillClass' : ''}`}>
                                             {DrinkType}
                                         </label>
                                     </div>
@@ -332,8 +330,8 @@ function DrinkDetails() {
                                 <div>
                                     {currentData.map((preparation, key) => (
                                         <div key={key}>
-                                            <label className="fs-4">{preparation}</label>
-                                            <div className="col mt-5 d-flex justify-content-center align-items-center">
+                                            <label className="preparation-text">{preparation}</label>
+                                            <div className=" mt-5 d-flex justify-content-center align-items-center">
                                                 <img
                                                     src={getIconForPreparation(preparation)}
                                                     alt="loading-error"

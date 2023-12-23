@@ -1,31 +1,41 @@
-import shakeIcon from '../../../../Assets/shaker.png'
-import chopIcon from '../../../../Assets/chop.png'
-import pourIcon from '../../../../Assets/pour.png'
-import decorateIcon from '../../../../Assets/decorate.png'
-import successIcon from '../../../../Assets/victory.png'
-import peelIcon from '../../../../Assets/peel.png'
-import serveIcon from '../../../../Assets/serve.png'
+import shakeIcon from '../../../../Assets/Normal/shaker.png'
+import chopIcon from '../../../../Assets/Normal/chop.png'
+import pourIcon from '../../../../Assets/Normal/pour.png'
+import decorateIcon from '../../../../Assets/Normal/decorate.png'
+import successIcon from '../../../../Assets/Normal/victory.png'
+import peelIcon from '../../../../Assets/Normal/peel.png'
+import serveIcon from '../../../../Assets/Normal/serve.png'
+
+//Icons for mobile
+import chopMobileIcon from '../../../../Assets/Mobile/chop_Mobile.png'
+import decorateMobileIcon from '../../../../Assets/Mobile/cocktail.png'
+import shakerMobileIcon from '../../../../Assets/Mobile/mixer.png'
+import peelMobileIcon from '../../../../Assets/Mobile/peel.png'
+import pourMobileIcon from '../../../../Assets/Mobile/pouring.png'
+import serveMobileIcon from '../../../../Assets/Mobile/serve.png'
 
 import { pourDictionary, shakeDictionary, chopDictionary, decorateDictionary, peelDictionary, serveDictionary } from '../dictionaries/dictionaryFilterIcons'
 
+
 const getIconForPreparation = (text) => {
+    let windowSize = window.innerWidth;
     text = text.toLowerCase()
     if (pourDictionary.some(action => text.includes(action))) {
-        return pourIcon
+        return windowSize > 576 ? pourIcon : pourMobileIcon
     } else if (shakeDictionary.some(action => text.includes(action))) {
-        return shakeIcon
+        return windowSize > 576 ? shakeIcon : shakerMobileIcon
     } else if (chopDictionary.some(action => text.includes(action))) {
-        return chopIcon
+        return windowSize > 576 ? chopIcon : chopMobileIcon
     } else if (decorateDictionary.some(action => text.includes(action))) {
-        return decorateIcon
+        return windowSize > 576 ? decorateIcon : decorateMobileIcon
     } else if (peelDictionary.some(action => text.includes(action))) {
-        return peelIcon
+        return windowSize > 576 ? peelIcon : peelMobileIcon
     } else if (serveDictionary.some(action => text.includes(action))) {
-        return serveIcon
+        return windowSize > 576 ? serveIcon : serveMobileIcon
     } else if (text === '') {
         return successIcon
     }
-    return shakeIcon
+    return windowSize > 576 ? shakeIcon : shakerMobileIcon
 }
 
 export default getIconForPreparation
