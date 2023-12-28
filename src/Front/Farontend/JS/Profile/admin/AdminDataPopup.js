@@ -2,25 +2,28 @@ import React, { useState } from "react"
 import { io } from "socket.io-client"
 import localhost from "../../../../../config/config"
 import { useDispatch } from "react-redux"
+import { useForm } from "react-hook-form"
 
 function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSuccess }) {
 
     const dispatch = useDispatch()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch
+    } = useForm()
+
     const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData
     const socket = io(`http://${localhost}:4000`)
 
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
-    const [newUserEmail, setNewUserEmail] = useState(email)
-    const [newUserPass, setNewUserPass] = useState(Password)
-    const [newUserNick, setNewUserNick] = useState(Nick)
-    const [newUserPhone, setNewUserPhone] = useState(phone)
     const [userRole, setUserRole] = useState(Role)
 
-    const UserDataChange = (event) => {
-
-        event.preventDefault()
-        socket.emit('userDataChanger', { newUserEmail, newUserPass, ID_User, newUserNick, newUserPhone, userRole })
+    const onSubmit = (formData) => {
+        const { email, Nick, password, phoneNumber } = formData
+        socket.emit('userDataChanger', { email, password, ID_User, Nick, phoneNumber, userRole })
     }
 
     socket.on('userDataChangerResponse', ({ success, error }) => {
@@ -39,7 +42,7 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
 
     return (
         <div className="userDataChangeHolder col-12 col-md-10 col-lg-9 col-xl-6 col-xxl-4">
-            <form onSubmit={UserDataChange}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div
                     className="d-flex flex-row-reverse me-3 mt-2 mb-3"
                     onClick={() => setChangeUserDataPopup(false)}
@@ -63,10 +66,21 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                                 <path d="M168 864q-29.7 0-50.85-21.162Q96 821.676 96 791.96V359.717Q96 330 117.15 309T168 288h624q29.7 0 50.85 21.162Q864 330.324 864 360.04v432.243Q864 822 842.85 843T792 864H168Zm312-240L168 445v347h624V445L480 624Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" /></svg>
                         </div>
                         <input
-                            onChange={(e) => setNewUserEmail(e.target.value)}
+                            {...register('email', {
+                                required: 'Email is required!',
+                                // minLength: {
+                                //     value: 5,
+                                //     message: "Minimum length is 5"
+                                // },
+                                maxLength: {
+                                    value: 25,
+                                    message: " Maximum Email length is 20"
+                                }
+                            })}
+                            value={watch("email")}
+                            defaultValue={email}
                             className="col-8 ps-2  login-register-input-data"
                             type="Email"
-                            value={newUserEmail}
                             placeholder="Email">
                         </input>
                     </div>
@@ -80,11 +94,22 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                             </svg>
                         </div>
                         <input
-                            onChange={(e) => setNewUserPhone(e.target.value)}
+                            {...register('phoneNumber', {
+                                required: 'phoneNumber is required!',
+                                // minLength: {
+                                //     value: 5,
+                                //     message: "Minimum length is 5"
+                                // },
+                                maxLength: {
+                                    value: 25,
+                                    message: " Maximum phoneNumber length is 20"
+                                }
+                            })}
+                            value={watch("phoneNumber")}
+                            defaultValue={phone}
                             className="col-8 ps-2  login-register-input-data"
                             type="Phone"
                             placeholder="user phone"
-                            value={newUserPhone}
                         >
                         </input>
                     </div>
@@ -98,11 +123,22 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                             </svg>
                         </div>
                         <input
-                            onChange={(e) => setNewUserNick(e.target.value)}
+                            {...register('Nick', {
+                                required: 'Nick is required!',
+                                // minLength: {
+                                //     value: 5,
+                                //     message: "Minimum length is 5"
+                                // },
+                                maxLength: {
+                                    value: 25,
+                                    message: " Maximum Nick length is 20"
+                                }
+                            })}
+                            value={watch("Nick")}
+                            defaultValue={Nick}
                             className="col-8 ps-2  login-register-input-data"
                             type="text"
-                            placeholder="user nick"
-                            value={newUserNick}
+                            placeholder="user Nick"
                         >
                         </input>
                     </div>
@@ -116,11 +152,23 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
                             </svg>
                         </div>
                         <input
-                            onChange={(e) => setNewUserPass(e.target.value)}
+                            {...register('password', {
+                                required: 'nick is required!',
+                                // minLength: {
+                                //     value: 5,
+                                //     message: "Minimum length is 5"
+                                // },
+                                maxLength: {
+                                    value: 25,
+                                    message: " Maximum nick length is 20"
+                                }
+                            })}
+                            value={watch("password")}
+                            defaultValue={Password}
                             className="col-8 ps-2  login-register-input-data"
                             type="password"
                             placeholder="password"
-                            value={newUserPass}>
+                        >
                         </input>
                     </div>
                     <div className="mt-3 ">
