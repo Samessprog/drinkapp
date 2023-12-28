@@ -1,33 +1,27 @@
 //Imports
 import { useState, useRef, useEffect } from "react"
-import { useDispatch, useSelector } from 'react-redux'
-
+import { useDispatch } from 'react-redux'
 import localhost from "../../../../config/config"
-import { setEmail, setPassword } from "../States/actions"
 import { setUserSession, setLoginPopup, setRegisterPopup } from "../States/actions"
-import { API_URL } from '../Components/Constants'
 import drinkLoginLogo from '../../../../Assets/drinksLoginBrand.png'
+import { useForm } from "react-hook-form"
 
 function LoginPopup() {
     const dispatch = useDispatch()
 
     // take states from storage to login
-    const email = useSelector(state => state.user.email)
-    const password = useSelector(state => state.user.password)
-
     const [loginError, setLoginError] = useState(null)
 
-    const handleLogin = (event) => {
-        event.preventDefault()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch
+    } = useForm()
 
-        // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
 
-        // if (!emailRegex.test(email) || !passwordRegex.test(password)) {
-        //     setLoginError(['Email or Password is valid'])
-        //     return 0
-        // }
-
+    const onSubmit = (formData) => {
+        const { email, password } = formData
         // Send a POST request to the login API endpoint
         fetch(`http://${localhost}:3000/api/login`, {
             method: 'POST',
@@ -66,6 +60,7 @@ function LoginPopup() {
         return () => {
             document.removeEventListener("mousedown", handler)
         }
+
     }, [])
 
     return (
@@ -84,7 +79,7 @@ function LoginPopup() {
             </div>
             <div className="col-12  mt-2 rounded">
                 <form
-                    onSubmit={handleLogin}
+                    onSubmit={handleSubmit(onSubmit)}
                     className=" d-flex flex-column align-items-center"
                 >
                     <div className=" login-reg-header fs-2 color-black mt-5 ">Login</div>
@@ -98,7 +93,7 @@ function LoginPopup() {
                             </img>
                         </div>
                         <div className="col-12 col-xl-8 d-flex flex-column align-items-center justify-content-center me-5 me-xl-0 ">
-                            <div className="col-10  d-flex  align-items-center mb-2 mt-2 ms-2 ms-sm-5">
+                            <div className="col-10  d-flex  align-items-center mb-2 mt-2 ms-2 ms-sm-5 ">
                                 <div className="log-reg-icon-holder d-flex align-items-center justify-content-center">
                                     <svg
                                         className="login-register-icon ps-0 pt-0"
@@ -109,10 +104,21 @@ function LoginPopup() {
                                 </div>
                                 <div className="input-box col-sm-11 col-12">
                                     <input
-                                        onChange={(event) => dispatch(setEmail(event.target.value))}
+                                        {...register('email', {
+                                            required: 'Email is required!',
+                                            // minLength: {
+                                            //     value: 5,
+                                            //     message: "Minimum length is 5"
+                                            // },
+                                            maxLength: {
+                                                value: 20,
+                                                message: " Maximum Email length is 20"
+                                            }
+                                        })}
                                         className="ps-2 col-11 rounded login-register-input-data"
                                         type="text"
                                         placeholder="Email"
+                                        value={watch('email')}
                                     >
                                     </input>
                                 </div>
@@ -128,16 +134,30 @@ function LoginPopup() {
                                 </div>
                                 <div className="col-sm-11 col-12 input-box">
                                     <input
-                                        onChange={(event) => dispatch(setPassword(event.target.value))}
+                                        {...register('password', {
+                                            required: "Password is required!",
+                                            // minLength: {
+                                            //     value: 10,
+                                            //     message: "Min length is 10!"
+                                            // },
+                                            maxLength: {
+                                                value: 50,
+                                                message: "Maximum password length is 50"
+                                            }
+                                        })}
                                         className="col-11 ps-2 rounded login-register-input-data"
                                         type="password"
-                                        placeholder="password"></input>
+                                        placeholder="password"
+                                        value={watch('password')}
+                                    ></input>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div className="login-register-errors mb-3 ">
+                            <p>{errors.email?.message}</p>
+                            <p>{errors.password?.message}</p>
                             {loginError}
                         </div>
                     </div>
