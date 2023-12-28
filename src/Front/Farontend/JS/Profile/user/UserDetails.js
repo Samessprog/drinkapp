@@ -1,21 +1,22 @@
 //Imports
 import { useState } from "react"
-import { useDispatch } from 'react-redux'
 import { Ring } from '@uiball/loaders'
 import { API_URL } from '../../Components/Constants'
+import { useForm } from "react-hook-form"
+
 
 function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, drinkAddedFlag }) {
 
-    const dispatch = useDispatch()
-
-    const [Nick, setUserNick] = useState(userSession.nick)
-    const [email, setUserMain] = useState(userSession.email)
-    const [phone, setUserPhone] = useState(userSession.phone)
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch,
+    } = useForm()
 
     const userID = userSession.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
-
     const [isSuccessChange, setIsSuccessChange] = useState(false)
 
     const setContentTypeHeader = () => {
@@ -23,24 +24,11 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
             'Content-Type': 'application/json'
         }
     }
+
     //Function to change User Data
-    const UserDataChange = async (event) => {
-        event.preventDefault()
+    const onSubmit = async (formData) => {
 
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-        const phoneRegex = /^\d{9}$/
-        const nickRegex = /^[a-zA-Z0-9_-]+$/
-
-        if (!emailRegex.test(email)) {
-            setUserChangesErrors(['Email is valid'])
-            return
-        } else if (!phoneRegex.test(phone)) {
-            setUserChangesErrors(['Phone is valid'])
-            return
-        } else if (!nickRegex.test(Nick)) {
-            setUserChangesErrors(['Nick is valid'])
-            return
-        }
+        const { email, phone, Nick } = formData
 
         try {
             const response = await fetch(`${API_URL}userDataChange`, {
@@ -60,6 +48,7 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
             setUserChangesErrors([error.message])
         }
     }
+
     //Changer user img
     const handleImgChange = async (event) => {
 
@@ -86,7 +75,6 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
             console.error(error)
         }
     }
-
 
     return (
         <div className="col-12 mt-3 ">
@@ -124,15 +112,26 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
                         <div className="d-flex flex-column align-items-center col-12 col-xxl-5 ms-4 mt-5 col-md-5 col-xl-3 col-sm-7">
                             <label className="fs-4 mb-4"> User Personal Data</label>
                             <form
-                                onSubmit={UserDataChange}
+                                onSubmit={handleSubmit(onSubmit)}
                                 className="col-12"
                             >
                                 <div className="user-data-box d-flex justify-content-between align-items-center ">
                                     <input
+                                        {...register("email", {
+                                            required: "",
+                                            maxLength: {
+                                                value: 50,
+                                                message: " Max email length is 50!"
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                                                message: 'Invalid email!'
+                                            }
+                                        })}
+                                        defaultValue={userSession.email}
+                                        value={watch("email")}
                                         type="email"
-                                        onChange={(event) => dispatch(setUserMain(event.target.value))}
                                         className="user-data-box-input ps-2 col-11"
-                                        value={email}
                                     />
                                     <svg
                                         style={{ fill: "white", marginRight: "5px" }}
@@ -144,10 +143,21 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
                                 </div>
                                 <div className="user-data-box d-flex justify-content-between align-items-center mt-3">
                                     <input
-                                        type="tel"
-                                        onChange={(event) => dispatch(setUserPhone(event.target.value))}
+                                        {...register("phone", {
+                                            required: "",
+                                            maxLength: {
+                                                value: 50,
+                                                message: " Max phone length is 50!"
+                                            },
+                                            pattern: {
+                                                value: /^\d{9}$/,
+                                                message: 'Invalid phone!'
+                                            }
+                                        })}
+                                        value={watch("phone")}
+                                        type="phone"
                                         className="user-data-box-input ps-2 col-11"
-                                        value={phone}
+                                        defaultValue={userSession.phone}
                                     />
                                     <svg
                                         style={{ fill: "white", marginRight: "5px" }}
@@ -158,10 +168,21 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
                                 </div>
                                 <div className="user-data-box  d-flex justify-content-between align-items-center mt-3">
                                     <input
+                                        {...register("Nick", {
+                                            required: "",
+                                            maxLength: {
+                                                value: 50,
+                                                message: " Max Nick length is 50!"
+                                            },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9_-]+$/,
+                                                message: 'Invalid Nick!'
+                                            }
+                                        })}
+                                        value={watch("Nick")}
+                                        defaultValue={userSession.nick}
                                         type="text"
                                         className=" user-data-box-input ps-2 col-11"
-                                        value={Nick}
-                                        onChange={(event) => dispatch(setUserNick(event.target.value))}
                                     />
                                     <svg
                                         style={{ fill: "white", marginRight: "5px" }}

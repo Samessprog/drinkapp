@@ -126,6 +126,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
             reader.readAsDataURL(drinkImg.files[0])
         }
     }
+    
 
     useEffect(() => {
         const timer = setTimeout(() => {
