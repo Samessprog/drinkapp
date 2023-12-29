@@ -4,10 +4,19 @@ import { Buffer } from "buffer"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { API_URL } from '../../Components/Constants'
 import { useDispatch } from "react-redux"
+import { useForm } from "react-hook-form"
 
 function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncementSuccess }) {
+
     const dispatch = useDispatch()
     
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        watch
+    } = useForm()
+
     const { isOpenPrev, Drink } = DrinkPreview
 
     const [detailDrinkIMG, setDetalDrinkIMG] = useState(null)
