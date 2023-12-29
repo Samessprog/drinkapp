@@ -23,8 +23,8 @@ const DrinkDetails = lazy(() => import("./drinksComponents/DrinkDetails"))
 const ChatRoomPopup = lazy(() => import("./Chat&FreindsComponents.js/ChatRoomPopup"))
 const FriendsPopup = lazy(() => import("./Chat&FreindsComponents.js/FriendsPopup"))
 const Chat = lazy(() => import("./Chat&FreindsComponents.js/chat"))
-const socket = io(`http://${localhost}:4001`);
-const friendSocket = io(`http://${localhost}:4003`);
+const socket = io(`http://${localhost}:4001`)
+const friendSocket = io(`http://${localhost}:4003`)
 
 function App() {
 
@@ -55,45 +55,31 @@ function App() {
     const setFixed = () => {
       setUserScroll(window.scrollY >= 1)
     }
-
     window.addEventListener("scroll", setFixed)
     return () => window.removeEventListener("scroll", setFixed)
   }, [])
 
-  //Faetch session data from DB
-  useEffect(() => {
-    fetch(`http://${localhost}:3000/api/session`, {
-      credentials: 'include'
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+  useEffect(async () => {
+    try {
+      //Fetch all Drinks from DB
+      const drinksResponse = await axios.get(`http://${localhost}:3001/drinks`)
+      const drinksData = drinksResponse.data
+      setDrinkData(drinksData)
+      setSearchingDrink(drinksData)
+      //Fetch user session
+      const sessionResponse = await fetch(`http://${localhost}:3000/api/session`, {
+        credentials: 'include'
       })
-      .then(data => {
-        if (data.user) {
-          dispatch(setUserSession(data.user));
-        } else {
-        }
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }, []);
+      const sessionData = await sessionResponse.json()
 
-  //Faetch drinks data from DB
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(`http://${localhost}:3001/drinks`)
-        setDrinkData(data)
-        setSearchingDrink(data)
-      } catch (err) {
-        console.log(err)
+      if (sessionData?.user) {
+        dispatch(setUserSession(sessionData.user))
+      } else {
+        return 0
       }
+    } catch (error) {
+      console.error(error)
     }
-    fetchData()
   }, [])
 
   return (

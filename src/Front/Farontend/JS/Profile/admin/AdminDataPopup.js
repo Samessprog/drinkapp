@@ -4,6 +4,8 @@ import localhost from "../../../../../config/config"
 import { useDispatch } from "react-redux"
 import { useForm } from "react-hook-form"
 
+const socket = io(`http://${localhost}:4002`)
+
 function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers, users, setAnnouncementSuccess }) {
 
     const dispatch = useDispatch()
@@ -15,7 +17,6 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
     } = useForm()
 
     const { ID_User, Nick, Password, email, phone, Role } = changeUserDataPopup?.userData
-    const socket = io(`http://${localhost}:4000`)
 
     //User Data changer error
     const [changingUserDataError, setChangingUserDataError] = useState(null)
@@ -39,6 +40,7 @@ function AdminDataPopup({ setChangeUserDataPopup, changeUserDataPopup, setUsers,
             setChangingUserDataError(error)
         }
     })
+
 
     return (
         <div className="userDataChangeHolder col-12 col-md-10 col-lg-9 col-xl-6 col-xxl-4">

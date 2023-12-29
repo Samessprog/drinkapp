@@ -91,9 +91,10 @@ function DrinkDetails() {
     const sendARating = async (newValue) => {
         let userID = userSession?.userID
 
-        if (userSession === '' || !userSession) {
-            return alert('you must be logged in to rate')
+        if (!userSession) {
+            return 0
         }
+
         try {
             const response = await fetch(`${API_URL}drinkRating`, {
                 method: 'POST',
@@ -102,15 +103,14 @@ function DrinkDetails() {
                 },
                 body: JSON.stringify({ ID_DRINK, newValue, userID }),
             })
-            const data = await response.json()
-        } catch (error) {
             setRateSuccess(true)
+        } catch (error) {
             console.error(error)
         }
     }
 
     useEffect(() => {
-        if (ID_DRINK !== undefined) {
+        if (ID_DRINK) {
             const fetchUserFavoriteDrinkImage = async () => {
                 try {
                     const response = await fetch(`http://${localhost}:3000/api/fetchDrinkIMG/${ID_DRINK}`, {
@@ -119,7 +119,7 @@ function DrinkDetails() {
                     if (!response.ok) {
                         throw new Error('Failed to fetch user favorite drink image.')
                     }
-                    // Parsuj odpowiedź jako JSON
+
                     const data = await response.json()
                     setDetailDrinkIMG(data.image)
 
@@ -135,7 +135,6 @@ function DrinkDetails() {
         if (detailDrinkIMG && detailDrinkIMG.data.length > 0) {
             const base64Image = Buffer.from(detailDrinkIMG.data).toString('base64')
             const imageURL = `data:image/jpeg;base64,${base64Image}`
-
             setConvertedIMG(imageURL)
             setLoginImgCompleted(true)
         }
@@ -151,7 +150,6 @@ function DrinkDetails() {
         }, 3000)
         return () => clearTimeout(timer)
     }, [rateSuccess])
-
 
     return (
         <main>

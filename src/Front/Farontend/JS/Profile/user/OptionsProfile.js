@@ -10,6 +10,8 @@ function OptionsProfile({ setUserProfileOptions, setFriendsProfile }) {
     const dispatch = useDispatch()
     const userSesion = useSelector(state => state.user.useSesion)
 
+   
+
     //Logout funciotn
     function logoutUser() {
         fetch(`http://${localhost}:3000/api/logout`, {

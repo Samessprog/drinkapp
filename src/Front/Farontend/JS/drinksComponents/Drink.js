@@ -14,14 +14,12 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
     //ADD your fav drink to DB 
     const favoriteHandler = (id) => {
         //user is not logged in
-        if (userSesion === null) {
-            alert('To add a drink to your favourites, you must first log in')
+        if (!userSesion) {
             return
         }
-
         setFavorites(prevFavorites => [...prevFavorites, id])
         let sessionIDx = userSesion.userID
-        //POST drink ID to DB with userID
+
         try {
             fetch(`${API_URL}addToUserFavourite`, {
                 method: 'POST',
@@ -31,7 +29,6 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                 body: JSON.stringify({ id, sessionIDx }),
                 credentials: 'include',
             })
-
         } catch (error) {
             console.error(error)
         }
