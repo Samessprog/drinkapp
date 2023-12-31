@@ -14,6 +14,8 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
         watch,
     } = useForm()
 
+   
+
     const userID = userSession.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')

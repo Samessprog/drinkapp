@@ -10,20 +10,23 @@ function FetchingDrinkIMG({ ID_DRINK, classNameHolder, classNameIMG }) {
     const [convertedIMG, setConvertedIMG] = useState('')
     const [fetchIMGCompleted, setFetchIMGCompleted] = useState(false)
 
-    useEffect(async () => {
-        try {
-            const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_DRINK}`, {
-                credentials: 'include',
-            })
-            if (!response.ok) {
-                throw new Error('Failed to fetch user favorite drink image.')
-            }
-            const data = await response.json()
-            setDrinkIMG(data.image)
+    useEffect(() => {
+        const getDrinkIMG = async () => {
+            try {
+                const response = await fetch(`${API_URL}fetchDrinkIMG/${ID_DRINK}`, {
+                    credentials: 'include',
+                })
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user favorite drink image.')
+                }
+                const data = await response.json()
+                setDrinkIMG(data.image)
 
-        } catch (error) {
-            console.error(error)
+            } catch (error) {
+                console.error(error)
+            }
         }
+        getDrinkIMG()
     }, [ID_DRINK])
 
     useEffect(() => {

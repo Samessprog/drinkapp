@@ -59,27 +59,30 @@ function App() {
     return () => window.removeEventListener("scroll", setFixed)
   }, [])
 
-  useEffect(async () => {
-    try {
-      //Fetch all Drinks from DB
-      const drinksResponse = await axios.get(`http://${localhost}:3001/drinks`)
-      const drinksData = drinksResponse.data
-      setDrinkData(drinksData)
-      setSearchingDrink(drinksData)
-      //Fetch user session
-      const sessionResponse = await fetch(`http://${localhost}:3000/api/session`, {
-        credentials: 'include'
-      })
-      const sessionData = await sessionResponse.json()
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        //Fetch all Drinks from DB
+        const drinksResponse = await axios.get(`http://${localhost}:3001/drinks`)
+        const drinksData = drinksResponse.data
+        setDrinkData(drinksData)
+        setSearchingDrink(drinksData)
+        //Fetch user session
+        const sessionResponse = await fetch(`http://${localhost}:3000/api/session`, {
+          credentials: 'include'
+        })
+        const sessionData = await sessionResponse.json()
 
-      if (sessionData?.user) {
-        dispatch(setUserSession(sessionData.user))
-      } else {
-        return 0
+        if (sessionData?.user) {
+          dispatch(setUserSession(sessionData.user))
+        } else {
+          return 0
+        }
+      } catch (error) {
+        console.error(error)
       }
-    } catch (error) {
-      console.error(error)
     }
+    getData()
   }, [])
 
   return (
