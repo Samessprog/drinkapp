@@ -1,6 +1,5 @@
 //Imports
 import { useState, useContext, useEffect, lazy } from "react"
-import { useSelector } from "react-redux"
 
 import UserDetails from "./UserDetails"
 import UserFavoriteDrinks from "./UserFavouriteDrinks"
@@ -40,6 +39,7 @@ function UserProfile({ drinkDatas, friendsProfile }) {
 
         const imageUrl = `data:${contentType};base64,${base64ImageData}`
         setUserIMG(imageUrl)
+        console.log(imageUrl)
         setFetchIMGCompleted(true)
       } catch (error) {
         console.error(error)

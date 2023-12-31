@@ -1,7 +1,7 @@
 //Imports
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setDrinkCounter } from "../States/actions"
+import { setDrinkCounter, setPage } from "../States/actions"
 
 function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }) {
 
@@ -28,6 +28,7 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
       const areAllIngredientsIncluded = ingredient.every((ing) => drinkIngredients.includes(ing.text.toLowerCase()))
 
       if (inputDrinkText) {
+        dispatch(setPage(0))
         const drinkName = elm.DrinkName?.toLowerCase()
         const inputText = inputDrinkText.toLowerCase()
         const isMatch = drinkName.includes(inputText) && isCategoryMatch && isDifficultyLevelMatch && isTasteMatch
@@ -45,16 +46,13 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
           }
         }
 
-        if (isMatch && favouriteDrink) {
+        if (isMatch || favouriteDrink) {
           return userFavouriteDrinks.includes(elm.ID_DRINK)
         }
         return false
       } else if (!inputDrinkText) {
-        
-
         const isMatchWithoutText = isCategoryMatch && isDifficultyLevelMatch && isTasteMatch
         if (isMatchWithoutText) {
-
           if (!favouriteDrink && ingredient.length !== 0) {
             if (eachdrinkflag && hasMatchingIngredientSome) {
               return elm
@@ -63,9 +61,12 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
               return elm
             }
           }
-
           if (!favouriteDrink) {
             if (ingredient.length === 0 || (eachdrinkflag && (hasMatchingIngredientSome || areAllIngredientsIncluded)) || areAllIngredientsIncluded) {
+              if (drinkTaste !== 'All' || drinkLevel !== 'All' || drinkType !== 'All') {
+                dispatch(setPage(0))
+                return elm
+              }
               return elm
             }
           } else {
@@ -73,7 +74,6 @@ function Searching({ highlyRated, drinkDatas, setSearchingDrink, eachdrinkflag }
               return userFavouriteDrinks.includes(elm.ID_DRINK)
             }
           }
-          //TU JEST BUG
         } else if (isMatchWithoutText && ingredient.length === 0 && (hasMatchingIngredientSome || areAllIngredientsIncluded)) {
           return elm
         } else if (!isCategoryMatch && !isDifficultyLevelMatch && !isTasteMatch && ingredient.length === 0 && elm.DrinkType === drinkType) {

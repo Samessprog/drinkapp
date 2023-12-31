@@ -135,6 +135,8 @@ const navbarState = {
   popupsetings: false,
   specialOptionsPopupp: false,
   inputDrinkText: "",
+  selectedPage: 0,
+
 };
 
 function navbarReducer(state = navbarState, action) {
@@ -170,6 +172,11 @@ function navbarReducer(state = navbarState, action) {
       return {
         ...state,
         inputDrinkText: action.payload,
+      };
+    case 'SET_PAGE':
+      return {
+        ...state,
+        selectedPage: action.payload,
       };
 
     default:

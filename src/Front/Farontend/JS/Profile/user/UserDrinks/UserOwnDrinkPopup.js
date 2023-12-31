@@ -31,6 +31,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
     //sending data from user as data to new drink
     const addNewDrinkHandler = async (event) => {
         event.preventDefault()
+
         const selectedFile = event.target.querySelector('input[type="file"]').files[0]
         const fileSizeInMB = selectedFile.size / (1024 * 1024)
 
@@ -126,7 +127,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
             reader.readAsDataURL(drinkImg.files[0])
         }
     }
-    
+
 
     useEffect(() => {
         const timer = setTimeout(() => {

@@ -156,6 +156,8 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                         placeholder="Enter drink name"
                                     />
                                     <button
+                                        aria-label="Wyszukaj"
+                                        name="searchingButton"
                                         className="searching-icon-holder border-0 "
                                         id="SignIn"
                                         data-testid="SignIn" >
@@ -224,7 +226,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                                 className="profileButton-holder me-2"
                             >
                                 <svg
-                                    className="ProfileButton ms-5 ms-sm-0" 
+                                    className="ProfileButton ms-5 ms-sm-0"
                                     xmlns="http://www.w3.org/2000/svg"
                                     height={isSmallScreen ? "40" : "48"}
                                     width={isSmallScreen ? "40" : "48"}

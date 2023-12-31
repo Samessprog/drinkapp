@@ -18,6 +18,7 @@ function Registers() {
         getValues
     } = useForm()
 
+
     //State for display errors 
     const [registerError, setRegisterError] = useState(null)
 

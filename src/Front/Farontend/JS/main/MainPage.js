@@ -1,17 +1,17 @@
-import { Suspense, lazy, useEffect, useState, useContext } from "react"
+import { Suspense, lazy, useEffect, useState } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import Pagination from 'react-paginate'
 import { useMediaQuery } from 'react-responsive'
 import { useSelector, useDispatch } from "react-redux"
 
 import localhost from "../../../../config/config"
-import { setDrinkNotFound, setUserFavoriteDrinks } from "../States/actions"
+import { setDrinkNotFound, setUserFavoriteDrinks, setPage } from "../States/actions"
 import Drink from "../drinksComponents/Drink"
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 const DDE = lazy(() => import("../ErrorsComponents/DDE"))
 
 
-function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsProfile }) {
+function MainPage({ searchingDrink, userScroll, offset, setOffset }) {
 
     const dispatch = useDispatch()
 
@@ -19,19 +19,21 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
 
     const drinkNotFound = useSelector(state => state.navbar.drinkNotFound)
     const userFavoriteDrinks = useSelector(state => state.user.userFavouriteDrinks)
+    const paginationPage = useSelector(state => state.navbar.selectedPage)
 
     const itemsPerPage = 15
     const pageCount = Math.ceil(searchingDrink.length / itemsPerPage)
     const currentData = searchingDrink.slice(offset, offset + itemsPerPage)
     const isSmallScreen = useMediaQuery({ maxWidth: 767 })
 
+
     //Pagination handler
-    const handlePageClick = (data) => {
-        const selectedPage = data.selected
-        const offset = selectedPage * itemsPerPage
+    useEffect(() => {
+        const offset = paginationPage * itemsPerPage
         window.scrollTo(0, 0)
         setOffset(offset)
-    }
+    }, [paginationPage])
+
     //check if any drinks are visible
     useEffect(() => {
         dispatch(setDrinkNotFound(searchingDrink.length === 0))
@@ -74,29 +76,44 @@ function MainPage({ searchingDrink, userScroll, offset, setOffset, setFriendsPro
             </div>
 
             {
-                currentData.map((elm) => (
+                currentData.map((elm, index) => (
                     <Drink
                         favorites={favorites}
                         setFavorites={setFavorites}
-                        key={elm.ID_Drink}
+                        key={index} // Użycie indeksu jako klucza
                         elm={elm}
                         userFavoriteDrinks={userFavoriteDrinks}
                     />
                 ))
             }
 
-            {
-                !drinkNotFound && searchingDrink.length > itemsPerPage &&
-                <ul>
-                    <Pagination
-                        pageCount={pageCount}
-                        onPageChange={handlePageClick}
-                        forcePage={offset / itemsPerPage}
-                        className=" d-flex align-items-center justify-content-center pagination pt-5"
-                        nextLabel={<svg className="arroPagi" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" /></svg>}
-                        previousLabel={<svg className="leftArroPagination" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path className="arrowPagination" d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" /></svg>}
-                    />
-                </ul>
+
+            {!drinkNotFound && searchingDrink.length > itemsPerPage &&
+                <Pagination
+                    pageCount={pageCount}
+                    onPageChange={(data) => dispatch(setPage(data.selected))}
+                    forcePage={offset / itemsPerPage}
+                    className=" d-flex align-items-center justify-content-center pagination pt-5"
+                    nextLabel={
+
+                        <svg className="arroPagi"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="40" width="40"
+                            aria-label="Previous"
+                        >
+                            <path d="m15.625 30-1.958-1.958 8.041-8.084-8.041-8.041 1.958-1.959 10.042 10Z" />
+                        </svg>
+                    }
+                    previousLabel={
+                        <svg className="leftArroPagination"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="40" width="40"
+                            aria-label="next"
+                        >
+                            <path d="M23.375 30 13.333 19.958l10.042-10 1.958 1.959-8.041 8.041 8.041 8.084Z" />
+                        </svg>
+                    }
+                />
             }
 
             {

@@ -78,6 +78,7 @@ function DrinkDetails() {
     }
 
     function crossOutIng(key) {
+
         const checkedIndex = ingChecked.indexOf(key)
         const newIngChecked = [...ingChecked]
         if (checkedIndex === -1) {
