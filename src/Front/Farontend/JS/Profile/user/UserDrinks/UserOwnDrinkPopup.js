@@ -8,7 +8,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
 
     //fetch user session to fetch needed data
     const userSession = useContext(SessionContext).userSesion
-
+    const [selectType, setSelectType] = useState('')
     //states for add new drink // drink details
     const [drinkName, setDrinkName] = useState("")
     const [drinkDescription, setDrinkDescription] = useState("")
@@ -44,6 +44,7 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
             setDrinkErrors('No photo selected! ')
             return
         }
+
 
         const formData = new FormData()
         formData.append('imageData', selectedFile)
@@ -222,30 +223,15 @@ function UserOwnDrinkPopup({ setAddUserNewDrink, addUserNewDrink, setDrinkAddedF
                                         </select>
                                     </div>
                                 </div>
-                                <div className="ms-4">
+                                <div className="ms-4 d-flex flex-column">
                                     <label className="fs-5">Select a type</label>
-                                    <div >
-                                        <input
-                                            onChange={(e) => setDrinkType(e.target.value)}
-                                            type="radio"
-                                            name="drinks"
-                                            id="alcoholic"
-                                            value="Fizzy"
-                                        >
-                                        </input>
-                                        <label className="ms-1" for="alcoholic">Fizzy</label>
-                                    </div>
-                                    <div >
-                                        <input
-                                            onChange={(e) => setDrinkType(e.target.value)}
-                                            type="radio"
-                                            name="drinks"
-                                            id="soft-drinks"
-                                            value="Still"
-                                        >
-                                        </input>
-                                        <label className="ms-1" for="soft-drinks">Still</label>
-                                    </div>
+                                    <select onChange={(e) => setSelectType(e.target.value)}>
+                                        <option value={"Fizzy"}>Fizzy</option>
+                                        <option value={"Still"}>Still</option>
+                                        <option value={"Hot"}>Hot</option>
+                                        <option value={"Soft"}>Soft</option>
+                                        <option value={"Herbal"}>Herbal</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

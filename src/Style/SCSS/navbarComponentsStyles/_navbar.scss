@@ -79,8 +79,7 @@
 
         .hamburger-SCROLL {
             display: $d-none;
-
-            @media (max-width:1180px) {
+            @media (max-width:1199px) {
                 & {
                     display: $d-flex;
                 }
