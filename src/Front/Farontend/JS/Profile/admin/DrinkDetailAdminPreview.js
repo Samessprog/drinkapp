@@ -158,14 +158,14 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                 <div className="col-12 d-flex flex-column align-items-center align-items-xxl-start ">
                                     <label className="mb-1 ms-1">Drink name</label>
                                     <input
-                                        className="drink-name-input fs-5 col-xxl-5 col-11 col-sm-10 me-3 me-sm-0"
+                                        className="drink-name-input fs-5 col-xxl-5 col-11 col-sm-10 col-md-7 col-xl-5 me-3 me-sm-0 "
                                         value={drinkNameInput}
                                         onChange={(e) => setDrinknameInput(e.target.value)}>
                                     </input>
                                 </div>
                             </div>
                             <div className="d-flex flex-column align-items-center align-items-xxl-start col-12 ">
-                                <div className="mt-5 fs-4 fw-bolder mb-2 d-flex flex-column flex-sm-row col-12 d-flex pe-5">
+                                <div className="mt-5 fs-4 fw-bolder mb-2 d-flex flex-column flex-sm-row col-12 d-flex pe-5  justify-content-center justify-content-xxl-start">
                                     <label
                                         onClick={() => {
                                             setDescriptionFlag(true)
@@ -275,7 +275,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-center col-12 flex-column flex-sm-row align-items-center">
+                            <div className="d-flex justify-content-center col-12 col-xl-8 flex-column flex-sm-row align-items-center">
                                 <div className="me-2">
                                     <label className=" p-1 ps-2 pe-2 fw-bolder drink-creator me-2 fs-5 mb-2 mb-sm-0">{Drink.Creator}</label>
                                 </div>

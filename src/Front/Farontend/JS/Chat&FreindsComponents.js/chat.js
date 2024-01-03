@@ -5,8 +5,6 @@ function Chat({ socket, chatID, setShowChat, minimize, setMinimize, userSesion }
     const [currentMessage, setCurrentMessage] = useState("")
     const [messageList, setMessageList] = useState([])
 
-    console.log(chatID)
-
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
@@ -31,6 +29,8 @@ function Chat({ socket, chatID, setShowChat, minimize, setMinimize, userSesion }
             socket.off("receiveMessage", handleReceiveMessage)
         }
     }, [socket])
+
+    console.log(messageList)
 
     return (
         <section>
