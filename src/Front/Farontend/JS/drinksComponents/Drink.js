@@ -1,5 +1,5 @@
 //Imports
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 import { SessionContext } from "../Session/SessionContext"
@@ -78,7 +78,8 @@ function Drink({ elm, setFavorites, userFavoriteDrinks }) {
                                 </div>
                                 <div className="">
                                     <label>Rate: </label>
-                                    <label className="rate fw-bolder ms-2">{Rate}
+                                    <label className="rate fw-bolder ms-2">
+                                        {parseFloat(Rate).toFixed(1)}
                                         <svg
                                             className="star mb-2"
                                             xmlns="http://www.w3.org/2000/svg"
