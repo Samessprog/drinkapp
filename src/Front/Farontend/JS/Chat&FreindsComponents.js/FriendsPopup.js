@@ -167,10 +167,10 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                     <div>
                                         <img src={userIMGres} className="user-friend-img" alt="loading-error"></img>
                                     </div>
-                                    <div className="ms-5 fs-5">
+                                    <div className="ms-3 fs-5 nick-holder ">
                                         {userResults.Nick}
                                     </div>
-                                    <div className="ms-5 fs-5">
+                                    <div className="ms-2 fs-5">
                                         {userResults.Role}
                                     </div>
                                 </div>
@@ -224,10 +224,10 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                                             <div>
                                                                 <UserFriendsIMG elm={elm.userIMG} />
                                                             </div>
-                                                            <div className="ms-5 fs-5">
+                                                            <div className="ms-3 fs-5 nick-holder col-8">
                                                                 {elm.Nick}
                                                             </div>
-                                                            <div className="ms-5 fs-5">
+                                                            <div className="ms-2 fs-5">
                                                                 {elm.Role}
                                                             </div>
                                                         </div>
@@ -278,10 +278,10 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                                             <UserFriendsIMG elm={elm.userIMG} />
 
                                                         </div>
-                                                        <div className="ms-5 fs-5">
+                                                        <div className="ms-3 fs-5 nick-holder col-8">
                                                             {elm.Nick}
                                                         </div>
-                                                        <div className="ms-5 fs-5">
+                                                        <div className="ms-2 fs-5">
                                                             {elm.Role}
                                                         </div>
                                                     </div>
