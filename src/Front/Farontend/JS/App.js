@@ -111,8 +111,8 @@ function App() {
               offset={offset}
               setOffset={setOffset}
               setFriendsProfile={setFriendsProfile}
-
-            />}>
+            />
+          }>
           </Route>
           <Route path="/drinkDetail/:id"
             element={
@@ -210,9 +210,7 @@ function App() {
           </Suspense>
         </ErrorBoundary>
       }
-
       <Footer searchingDrink={searchingDrink} drinkDatas={drinkDatas.length} />
-
     </div >
   )
 }

@@ -28,13 +28,12 @@ body {
 .main-holder {
     min-height: 373px;
 
-
     @media (min-width: 2300px) {
         min-height: 743px;
     }
 
     .arrowUP-holder {
-        top: 65%;
+        top: 50%;
 
         .arrow-up {
             fill: rgb(255, 255, 255);
