@@ -115,9 +115,9 @@ function SpecialDrinks({ setSearchingDrink, setSpecialOptionsPopup, drinkDatas, 
                         </svg>
                     </button>
                 </div>
-                <div className="d-flex justify-content-center align-items-center mb-2 flex-column-reverse flex-sm-row ">
+                <div className="d-flex justify-content-center align-items-center mb-2 flex-column-reverse  flex-column ">
                     <div className="mt-2 mt-sm-0 mt-sm-2 d-flex ">
-                        <label className="fs-6 me-2">yes</label>
+                        <label className="fs-5 me-2">yes</label>
                         <input
                             className=" "
                             type="checkbox"

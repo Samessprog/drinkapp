@@ -90,7 +90,7 @@ function SetingsPopup({ setSpecialOptionsPopup, setPopupSetings, specialOptionsP
                     </div>
                     <DrinksOptions />
                 </div>
-                <div className="d-flex justify-content-center mt-3 advanced-button-holder">
+                <div className="d-flex justify-content-center advanced-button-holder mb-2 mt-4">
                     <button onClick={() => {
                         dispatch(setSpecialOptionsPopup(!specialOptionsPopup))
                         dispatch(setPopupSetings(false))

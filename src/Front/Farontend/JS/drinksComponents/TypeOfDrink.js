@@ -10,7 +10,7 @@ function TypeOfDrink() {
     return (
         <div className='d-flex justify-content-center align-items-center'>
             <div className="d-flex mt-1 align-items-center flex-column " >
-                <label>type</label>
+                <label>Type</label>
                 <select
                     onChange={(e) => dispatch(setDrinkType(e.target.value))}
                     value={drinkType}
@@ -23,7 +23,6 @@ function TypeOfDrink() {
                     <option value={'Soft'}>Soft</option>
                     <option value={'Herbal'}>Herbal</option>
                 </select>
-
             </div>
         </div>
     )

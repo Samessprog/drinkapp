@@ -73,14 +73,14 @@ $font-size-13: 13px;
     }
 
     a {
-        font-size: 21px;
+        font-size: 22px;
         font-weight: 700;
         padding-right: 5px;
         border: 2px solid white;
         border-radius: 7px;
         padding: 5px;
-        margin-left: 4px;
-        margin-right: 4px;
+        margin-left: 5px;
+        margin-right: 5px;
         transition: all 0.25s ease-in-out;
 
         &:hover {
@@ -91,7 +91,6 @@ $font-size-13: 13px;
 
     .selected {
         color: rgb(255, 170, 0);
-
     }
 }
 
@@ -117,8 +116,9 @@ $font-size-13: 13px;
     }
 }
 
+
+
 @mixin drinksHolder {
-    background-color: $bg-ligherDark;
     cursor: pointer;
 }
 

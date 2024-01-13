@@ -58,7 +58,6 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                 const response = await fetch(`${API_URL}getPendingFriendRequests/${userID}`)
                 const data = await response.json()
                 if (data.success) {
-                    console.log(data.pendingFriendRequests)
                     setWaitingUsers(data.pendingFriendRequests)
                 }
             } catch (error) {
