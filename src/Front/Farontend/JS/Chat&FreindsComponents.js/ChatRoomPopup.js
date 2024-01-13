@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function ChatRoomPopup({userSesion, socket, chatID, setShowChat, roomFlag, setRoomFlag, setChatID }) {
 
     const joinChat = () => {

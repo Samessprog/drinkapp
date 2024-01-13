@@ -12,7 +12,7 @@
     .favourite-img-holder {
         height: 350px;
         background-color: transparent !important;
-
+        
         @media (max-width: 1200px) {
             max-height: 200px;
             height: 200px;
@@ -40,7 +40,6 @@
         border-radius: 0px 0px 15px 15px;
         transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         transform: translateY(100%);
-
 
         .cc {
             height: 140px;

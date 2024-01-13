@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
-import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText } from "../States/actions"
+import { setLoginPopup, setPopupSetings, setRegisterPopup, setInputDrinkText, setPage } from "../States/actions"
 import ErrorFallback from "../ErrorsComponents/ErrorBoundary"
 import OptionsProfile from "../Profile/user/OptionsProfile"
 import Searching from "../Components/Searching"
@@ -103,6 +103,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
     //     }
     // }, [popupSetings])
 
+
     return (
         <nav className="NavBar position-sticky top-0 ">
 
@@ -116,7 +117,7 @@ function NavBar({ setSearchingDrink, searchingDrink, drinkDatas,
                 <div className={`col-12 d-flex align-items-center ${userScroll ? 'pb-sm-3 pb-0' : 'pb-0'}`} >
                     <div className={userScroll ? `d-none` : `col-xl-4 brand-name-SCROLL d-md-flex ${location.pathname.endsWith('/') ? '' : 'col-xl-10 col-xxl-4'}`}>
                         <Link className="d-flex align-items-center logo-link" to="/">
-                            <label className="brand-name-nav d-none d-xl-flex">
+                            <label onClick={() => dispatch(setPage(0))} className="brand-name-nav d-none d-xl-flex">
                                 𝒞𝑜𝒸𝓀𝓉𝒶𝒾𝓁 𝒫𝒶𝓇𝓉𝓎
                             </label>
                             <svg

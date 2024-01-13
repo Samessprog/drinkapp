@@ -27,6 +27,11 @@
     .close-friends-modal-icon {
         cursor: pointer;
         color: white;
+        transition: all ease .3s;
+        font-weight: 700;
+        &:hover {
+            color: red;
+        }
     }
 
     .friend-input-holder {

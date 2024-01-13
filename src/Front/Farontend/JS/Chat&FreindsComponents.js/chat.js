@@ -30,8 +30,6 @@ function Chat({ socket, chatID, setShowChat, minimize, setMinimize, userSesion }
         }
     }, [socket])
 
-    console.log(messageList)
-
     return (
         <section>
             <div className={`${minimize ? 'minimalize-holder' : 'chat-holder'}`}>

@@ -4,7 +4,7 @@ import pourIcon from '../../../../Assets/Normal/pour.png'
 import decorateIcon from '../../../../Assets/Normal/decorate.png'
 import successIcon from '../../../../Assets/Normal/victory.png'
 import peelIcon from '../../../../Assets/Normal/peel.png'
-import serveIcon from '../../../../Assets/Normal/serve.png'
+import serveIcon from '../../../../Assets/Normal/serve .png'
 
 //Icons for mobile
 import chopMobileIcon from '../../../../Assets/Mobile/chop_Mobile.png'
@@ -15,7 +15,6 @@ import pourMobileIcon from '../../../../Assets/Mobile/pouring.png'
 import serveMobileIcon from '../../../../Assets/Mobile/serve.png'
 
 import { pourDictionary, shakeDictionary, chopDictionary, decorateDictionary, peelDictionary, serveDictionary } from '../dictionaries/dictionaryFilterIcons'
-
 
 const getIconForPreparation = (text) => {
     let windowSize = window.innerWidth;
