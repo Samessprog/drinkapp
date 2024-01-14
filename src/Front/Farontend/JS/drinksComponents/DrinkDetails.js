@@ -95,7 +95,6 @@ function DrinkDetails() {
         if (!userSession) {
             return 0
         }
-
         try {
             const response = await fetch(`${API_URL}drinkRating`, {
                 method: 'POST',
@@ -170,7 +169,7 @@ function DrinkDetails() {
                                 <div className="d-flex ms-4 align-items-center rating-holder pt-2 pt-sm-0 me-5 me-sm-0">
                                     <Rating
                                         name="simple-controlled"
-                                        value={RateStar}
+                                        value={parseInt(RateStar)}
                                         onChange={userSession ?
                                             (event, newValue) => {
                                                 sendARating(newValue)
@@ -179,6 +178,7 @@ function DrinkDetails() {
                                         readOnly={!userSession}
                                         size={"large"}
                                     />
+
                                 </div>
                             </div>
                             <div className="col-12 mt-5">
@@ -219,7 +219,6 @@ function DrinkDetails() {
                                         <div className="col-12 col-xl-10 description-holder overflow-y-auto p-3 ps-4 pe-4 ">
                                             <section className="">
                                                 <div className="d-flex ">
-
                                                     {showNutritionalValues &&
                                                         <div>
                                                             {nutritionalValues ? (

@@ -5,20 +5,38 @@
     background-color: $bg-ligherDark;
     border-top: $border-1-solid-black;
 
-    .drink-footer-img{
+    .drink-footer-img {
         height: 190px;
     }
-    .drink-count{
+
+    .drink-count {
         font-family: $cursive;
     }
 
-    .drink-count-number{
+    .drink-count-number {
         font-size: 48px;
     }
 
     .desc-container {
         max-width: $n-400px;
         @include fs-13-color-light-grey;
+    }
+
+    .icon-footer-animate {
+        cursor: pointer;
+        &:hover {
+            animation: footer-animate 1.3s linear ;
+        }
+    }
+
+    @keyframes footer-animate {
+        0% {
+            transform: rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateY(360deg);
+        }
     }
 
     .contact {

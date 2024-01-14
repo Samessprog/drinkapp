@@ -132,7 +132,6 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
 
   const getPendingFriendRequestsQuery = 'SELECT ID_User FROM userfriends WHERE ID_Friend = ? AND Waiting = 1';
   db.query(getPendingFriendRequestsQuery, [userID], (err, results) => {
-    console.log(results)
     if (err) {
       console.error(err);
       res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania oczekujących zaproszeń do znajomych.' });
@@ -145,7 +144,6 @@ app.get('/api/getPendingFriendRequests/:userID', (req, res) => {
         // Pobranie danych użytkowników na podstawie ID_User
         const getUsersQuery = 'SELECT Nick, Role, userIMG, ID_User FROM users WHERE ID_User IN (?)';
         db.query(getUsersQuery, [pendingFriendRequestsIDs], (usersErr, usersResults) => {
-          console.log(usersResults)
           if (usersErr) {
             console.error(usersErr);
             res.status(500).json({ success: false, message: 'Wystąpił błąd podczas pobierania danych użytkowników.' });
@@ -178,10 +176,8 @@ app.get('/api/getUserFreinds/:userID', (req, res) => {
       } else {
         const friendIDs = results.map(result => {
           if (result.ID_User == userID) {
-            console.log('hello2')
             return result.ID_Friend !== userID ? result.ID_Friend : null;
           } else {
-            console.log('hello')
             return result.ID_User !== userID ? result.ID_User : null;
           }
         }).filter(id => id !== null);
@@ -228,7 +224,6 @@ app.get('/api/getOwnDrinks/:userSession', async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: 'An error occurred while processing the request.' });
   }
 
@@ -276,8 +271,6 @@ app.use('/api/getUserFavouriteDrinks/:userSession', async (req, res) => {
       if (error) {
         return
       } else {
-        console.log(results)
-        console.log(userSession)
         const drinkIDs = results.map(result => result.DrinkID);
         const drinksQuery = `SELECT * FROM drink WHERE ID_Drink IN (?)`;
         connectionToDrinksDB.query(drinksQuery, [drinkIDs], (drinksError, drinksResults) => {

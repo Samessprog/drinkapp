@@ -9,9 +9,9 @@ function AdminPagination({ setChangeUserDataPopup, setDrinkPreview, showNewsFlag
     return (
         <>
             {currentPaginationItem &&
-                currentPaginationItem.map((elm) => (
+                currentPaginationItem.map((elm , index) => (
                     <ComponentRender
-                        key={elm.id}
+                        key={index}
                         elm={elm}
                         setChangeUserDataPopup={setChangeUserDataPopup}
                         setDrinkPreview={setDrinkPreview}

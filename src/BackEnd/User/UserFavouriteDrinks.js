@@ -4,7 +4,6 @@ const db = require('../DB');
 
 
 router.get('/api/takeFavouriteUserDrink', async (req, res) => {
-    console.log('quasoooo')
     const userIDs = req.session.user?.userID;
 
     // Fetch the DrinkIDs for the given UserID

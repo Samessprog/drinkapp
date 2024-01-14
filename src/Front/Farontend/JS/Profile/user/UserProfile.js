@@ -39,7 +39,6 @@ function UserProfile({ drinkDatas, friendsProfile }) {
 
         const imageUrl = `data:${contentType};base64,${base64ImageData}`
         setUserIMG(imageUrl)
-        console.log(imageUrl)
         setFetchIMGCompleted(true)
       } catch (error) {
         console.error(error)

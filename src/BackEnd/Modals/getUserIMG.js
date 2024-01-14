@@ -8,7 +8,6 @@ router.get('/api/fetchUserIMG/:ID_User', async (req, res) => {
     try {
         const sql = 'SELECT userIMG, IsBlocked  FROM users WHERE ID_User = ?';
         db.query(sql, [ID_User], (err, result) => {
-            console.log(result)
             if (err) {
                 res.status(500).json({ error: 'Błąd podczas pobierania zdjęcia' });
             } else {

@@ -29,22 +29,22 @@ function Footer({ searchingDrink, drinkDatas }) {
                         </div>
                         <div className="d-flex mt-4 justify-content-center">
                             <img
-                                className='col-4'
+                                className='col-4 icon-footer-animate'
                                 src={facebookIcon}
                                 alt='loading error'
                             >
                             </img>
                             <img
-                                className='col-4 ms-4'
+                                className='col-4 ms-4 icon-footer-animate'
                                 src={instagramIcon}
                                 alt='loading error'
-                                >
+                            >
                             </img>
                             <img
-                                className='col-4 ms-4'
+                                className='col-4 ms-4 icon-footer-animate'
                                 src={tikTok}
                                 alt='loading error'
-                                >
+                            >
                             </img>
                         </div>
                     </div>

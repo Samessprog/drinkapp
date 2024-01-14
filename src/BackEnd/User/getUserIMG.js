@@ -5,7 +5,6 @@ const db = require('../DB');
 
 router.get('/api/userIMG', (req, res) => {
     const userID = req.query.userID; // Pobieranie userID z zapytania URL
-    console.log(userID)
 
     db.query('SELECT userIMG FROM users WHERE ID_User = ?', userID, (err, results) => {
         if (err) {

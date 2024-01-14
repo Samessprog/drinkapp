@@ -163,6 +163,13 @@
                 border-radius: 0px 15px 15px 15px;
                 font-size: 21px;
 
+                &::-webkit-scrollbar-track {
+                    margin-top: .6rem;
+                    margin-bottom: .6rem;
+                    margin-right: .6rem !important;
+                    border-radius: 0px 15px 15px 0px;
+                }
+
                 .line-spaced {
                     line-height: 1.6;
                     color: rgb(224, 224, 224);

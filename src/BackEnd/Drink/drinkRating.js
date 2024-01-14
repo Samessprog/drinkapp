@@ -16,31 +16,22 @@ router.post('/', async (req, res) => {
             res.status(500).send("Wystąpił błąd podczas sprawdzania oceny drinku.");
         } else {
             if (checkResult.length > 0) {
-                // The user has already rated this drink, so update the existing rating
                 const updateQuery = "UPDATE drinksrating SET Rate = ? WHERE User_ID = ? AND Drink_ID = ?";
                 connectionToDrinksDB.query(updateQuery, [newValue, userID, ID_DRINK], (updateErr, updateResult) => {
                     if (updateErr) {
                         console.error("Błąd przy aktualizowaniu oceny drinku:", updateErr);
                         res.status(500).send("Wystąpił błąd podczas aktualizacji oceny drinku.");
                     } else {
-                        console.log("Ocena drinku została zaktualizowana.");
-
-                        // Calculate the average rating for the drink
                         const averageQuery = "SELECT AVG(Rate) AS AverageRating FROM drinksrating WHERE Drink_ID = ?";
                         connectionToDrinksDB.query(averageQuery, [ID_DRINK], (averageErr, averageResult) => {
                             if (averageErr) {
                                 console.error("Błąd przy obliczaniu średniej oceny drinku:", averageErr);
                             } else {
                                 const averageRating = averageResult[0].AverageRating;
-                                console.log(`Średnia ocena dla drinku (Drink ID: ${ID_DRINK}): ${averageRating}`);
-
-                                // Update the "drink" table with the calculated average rating
                                 const updateDrinkTableQuery = "UPDATE drink SET Rate = ? WHERE ID_Drink = ?";
                                 connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, ID_DRINK], (updateDrinkErr, updateDrinkResult) => {
                                     if (updateDrinkErr) {
                                         console.error("Błąd przy aktualizacji tabeli drink:", updateDrinkErr);
-                                    } else {
-                                        console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${ID_DRINK}): ${averageRating}`);
                                     }
                                 });
                             }
@@ -57,8 +48,6 @@ router.post('/', async (req, res) => {
                         console.error("Błąd przy wstawianiu oceny drinku:", insertErr);
                         res.status(500).send("Wystąpił błąd podczas oceniania drinku.");
                     } else {
-                        console.log("Ocena drinku została pomyślnie dodana.");
-
                         // Calculate the average rating for the drink
                         const averageQuery = "SELECT AVG(Rate) AS AverageRating FROM drinksrating WHERE Drink_ID = ?";
                         connectionToDrinksDB.query(averageQuery, [ID_DRINK], (averageErr, averageResult) => {
@@ -66,16 +55,13 @@ router.post('/', async (req, res) => {
                                 console.error("Błąd przy obliczaniu średniej oceny drinku:", averageErr);
                             } else {
                                 const averageRating = averageResult[0].AverageRating;
-                                console.log(`Średnia ocena dla drinku (Drink ID: ${ID_DRINK}): ${averageRating}`);
 
                                 // Update the "drink" table with the calculated average rating
                                 const updateDrinkTableQuery = "UPDATE drink SET Rate = ? WHERE ID_Drink = ?";
                                 connectionToDrinksDB.query(updateDrinkTableQuery, [averageRating, ID_DRINK], (updateDrinkErr, updateDrinkResult) => {
                                     if (updateDrinkErr) {
                                         console.error("Błąd przy aktualizacji tabeli drink:", updateDrinkErr);
-                                    } else {
-                                        console.log(`Tabela drink została zaktualizowana z nową oceną (Drink ID: ${ID_DRINK}): ${averageRating}`);
-                                    }
+                                    } 
                                 });
                             }
                         });
