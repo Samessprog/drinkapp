@@ -14,8 +14,6 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
         watch,
     } = useForm()
 
-   
-
     const userID = userSession.userID
 
     const [userChangesErrors, setUserChangesErrors] = useState('')
@@ -80,12 +78,12 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
 
     return (
         <div className="col-12 mt-3 ">
-            <div class="d-flex justify-content-between p-5 pt-3 pt-sm-0 flex-column flex-xxl-row align-items-center col-12">
+            <div className="d-flex justify-content-between p-5 pt-3 pt-sm-0 flex-column flex-xxl-row align-items-center col-12">
                 <div className=" d-flex align-items-center flex-column flex-xl-row justify-content-center col-12 col-xxl-5">
-                    <div class="d-flex col-xxl-8  ms-0 ms-sm-5" >
+                    <div className="d-flex col-xxl-8  ms-0 ms-sm-5" >
                         <div className="user-img-holder d-flex ">
                             {fetchIMGCompleted ? (
-                                <img src={userIMG} alt="Img error" class="img-fluid user-img"></img>
+                                <img src={userIMG} alt="Img error" className="img-fluid user-img"></img>
                             ) : (
                                 <Ring
                                     size={150}
@@ -95,7 +93,7 @@ function UserDetails({ userSession, userIMG, fetchIMGCompleted, friendsProfile, 
                                 />
                             )}
                             {friendsProfile.friendID === null &&
-                                < div class="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
+                                < div className="overlay-user-img d-flex align-items-center justify-content-center fw-bolder">
                                     Click to change your img
                                     <input
                                         onChange={handleImgChange}

@@ -86,7 +86,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('blockUser', ({ userID }) => {
-        console.log(userID);
         userDB.query('SELECT IsBlocked FROM users WHERE ID_User = ?', userID, (err, results) => {
             if (err) {
                 console.error(err);

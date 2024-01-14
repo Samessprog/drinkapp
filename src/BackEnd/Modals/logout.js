@@ -14,7 +14,6 @@ router.use(session({
 router.post('/', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({ success: false, message: 'Could not log out' });
     }
 

@@ -21,7 +21,7 @@ function UserFavoriteDrinks({ friendsProfile }) {
         } else {
         }
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     fetchUserFavoriteDrinks()

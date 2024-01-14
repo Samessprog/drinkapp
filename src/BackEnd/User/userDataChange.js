@@ -11,8 +11,6 @@ router.post('/', (req, res) => {
 
     const { email, phone, Nick, userID } = req.body;
 
-    console.log(Nick)
-
     if (!nickRegex.test(Nick)) {
         res.status(400).json({ success: false, message: 'Invalid nick format' });
         return;

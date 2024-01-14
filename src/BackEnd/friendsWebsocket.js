@@ -25,7 +25,6 @@ io.on('connection', (socket) => {
                 console.error(checkErr);
                 socket.emit('addFriendError', 'Wystąpił błąd podczas sprawdzania relacji przyjaźni.');
             } else {
-                console.log(checkResult)
                 if (checkResult.length > 0) {
                     socket.emit('addFriendError', 'Relacja przyjaźni już istnieje.');
                 } else {
@@ -62,7 +61,6 @@ io.on('connection', (socket) => {
                 console.error(err);
                 socket.emit('deleteFriendError', 'Wystąpił błąd podczas usuwania przyjaciela.');
             } else {
-                console.log(result.affectedRows)
                 if (result.affectedRows >= 0) {
                     socket.emit('deleteFriendSuccess', 'Przyjaciel został pomyślnie usunięty.');
                 } else {

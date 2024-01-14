@@ -21,7 +21,7 @@ function UserOwnDrinks({ addUserNewDrink, setAddUserNewDrink, friendsProfile }) 
                     setUserOwnDrink(data.drinks)
                 }
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
 

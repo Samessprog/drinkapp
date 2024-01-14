@@ -59,7 +59,7 @@ function UserDrink({ elm, isHidden, setIsHidden, friendsProfile }) {
                         alt='loading error'
                     />
                     <div className={`position-absolute favourite-drink-info-box d-flex flex-column justify-content-center align-items-center`}>
-                        <div class="d-flex  flex-column justify-content-center align-items-center">
+                        <div className="d-flex  flex-column justify-content-center align-items-center">
                             <div className="cc d-flex  flex-column justify-content-center align-items-center ">
                                 <label className="drink-info-hover fs-4">Drink information</label>
                                 <label className=" drink-info-hover fs-5 mt-2" >{elm?.DifficultyLevel}</label>

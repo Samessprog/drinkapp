@@ -110,7 +110,7 @@ function DrinkDetailAdminPreview({ DrinkPreview, setDrinkPreview, setAnnouncemen
                 dispatch(setAnnouncementSuccess(true))
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

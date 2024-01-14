@@ -61,7 +61,6 @@ function WindowAdminAlert({ setWindowAlert, hiddenDrinkElements, setHiddenDrinkE
 
             setUsers((prevUsers) => {
                 const updatedUsers = prevUsers.filter((user) => user.ID_User !== data.userID)
-                console.log(updatedUsers)
                 return updatedUsers
             })
         } else if (data.error === 'User not found') {
