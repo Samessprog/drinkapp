@@ -5,15 +5,11 @@ import { Link } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 
 function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSuccess, hiddenElements, showNewsFlag, setDrinkPreview }) {
-
     const dispatch = useDispatch()
-
     const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm
 
     const acceptDrink = async () => {
-
         let drinkID = ID_DRINK
-
         try {
             const response = await fetch(`${API_URL}acceptDrinksByAdmin`, {
                 method: 'POST',
@@ -33,7 +29,7 @@ function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSucces
     }
 
     return (
-        <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${hiddenElements.includes(ID_DRINK) ? 'd-none' : ''} `}>
+        <div className={`mb-4 ms-3 me-3 d-flex align-items-center drinks-profile-holder col-12  ${ID_DRINK in elm ? 'd-none' : ''}`}>
             <div className="d-flex align-items-center flex-column flex-xxl-row justify-content-center col-12">
                 <div className="ms-sm-5 fs-2 col-1 mb-3 mb-xxl-0 mt-3 mt-xxl-0 ">
                     {ID_DRINK}.
