@@ -25,6 +25,7 @@ body {
     @include pagination;
 }
 
+
 .main-holder {
     min-height: 373px;
 
@@ -47,7 +48,23 @@ body {
     }
 }
 
-.text-black{
+
+
+.dis {
+    transition: opacity .2s ease-in-out;
+    opacity: 0;
+}
+
+.dis.hide {
+    opacity: 0;
+}
+
+.dis.active {
+    opacity: 1;
+}
+
+
+.text-black {
     color: #000000;
 }
 

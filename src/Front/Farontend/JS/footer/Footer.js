@@ -5,8 +5,18 @@ import VisibilitySensor from 'react-visibility-sensor'
 import facebookIcon from '../../../../Assets/facebook.png'
 import instagramIcon from '../../../../Assets/instagram.png'
 import tikTok from '../../../../Assets/tik-tok.png'
+import { useState } from 'react'
 
 function Footer({ searchingDrink, drinkDatas }) {
+
+    const [countRenderTimes, setCountRenderTimes] = useState(0)
+
+    const countTimes = (start) => {
+        setCountRenderTimes(1)
+        if (countRenderTimes === 0) {
+            start()
+        }
+    }
 
     return (
         <footer className={`mt-5 col-12 ${searchingDrink >= 6 ? ' position-absolute top-100' : ''} `}>
@@ -60,7 +70,7 @@ function Footer({ searchingDrink, drinkDatas }) {
                             >
                                 {({ countUpRef, start }) => (
                                     <VisibilitySensor
-                                        onChange={start}
+                                        onChange={() => countTimes(start)}
                                         delayedCall
                                     >
                                         <span ref={countUpRef} />
@@ -125,7 +135,7 @@ function Footer({ searchingDrink, drinkDatas }) {
                 </div>
             </div>
             <div className="d-flex justify-content-center p-1 copyright ">
-                © 2022 - Sames All rights reserved
+                © 2024 - Sames All rights reserved
             </div>
         </footer>
     )

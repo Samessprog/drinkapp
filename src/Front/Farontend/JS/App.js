@@ -183,33 +183,38 @@ function App() {
         </Suspense>
       </ErrorBoundary>
 
-      {(showChat && userSesion !== null || undefined) &&
-        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Chat
-              setShowChat={setShowChat}
-              socket={socket}
-              chatID={chatID}
-              minimize={minimize}
-              setMinimize={setMinimize}
-              userSesion={userSesion}
-            />
-          </Suspense>
-        </ErrorBoundary>
-      }
+      <div className={`dis ${showChat ? 'active' : 'hide'}`}>
+        {(showChat && userSesion !== null || undefined) &&
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Chat
+                setShowChat={setShowChat}
+                socket={socket}
+                chatID={chatID}
+                minimize={minimize}
+                setMinimize={setMinimize}
+                userSesion={userSesion}
+              />
+            </Suspense>
+          </ErrorBoundary>
+        }
+      </div>
 
-      {friendsModalFlag &&
-        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <FriendsPopup
-              setFriendsModalFlag={setFriendsModalFlag}
-              setFriendsProfile={setFriendsProfile}
-              userSesion={userSesion}
-              friendSocket={friendSocket}
-            />
-          </Suspense>
-        </ErrorBoundary>
-      }
+      <div className={`dis ${friendsModalFlag ? 'active' : 'hide'}`}>
+        {friendsModalFlag &&
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => { }}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <FriendsPopup
+                setFriendsModalFlag={setFriendsModalFlag}
+                setFriendsProfile={setFriendsProfile}
+                userSesion={userSesion}
+                friendSocket={friendSocket}
+              />
+            </Suspense>
+          </ErrorBoundary>
+        }
+      </div>
+
       <Footer searchingDrink={searchingDrink} drinkDatas={drinkDatas.length} />
     </div >
   )
