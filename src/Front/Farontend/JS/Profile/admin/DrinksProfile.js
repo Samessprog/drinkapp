@@ -4,7 +4,7 @@ import { API_URL } from '../../Components/Constants'
 import { Link } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 
-function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSuccess, hiddenElements, showNewsFlag, setDrinkPreview }) {
+function DrinksProfile({ elm, setWindowAlert, windowAlert, setAnnouncementSuccess, showNewsFlag, setDrinkPreview }) {
     const dispatch = useDispatch()
     const { ID_DRINK, DrinkName, Creator, DifficultyLevel, Taste, DrinkType } = elm
 

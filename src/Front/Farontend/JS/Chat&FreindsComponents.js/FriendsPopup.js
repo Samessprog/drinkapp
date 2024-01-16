@@ -223,7 +223,7 @@ function FriendsPopup({ setFriendsModalFlag, setFriendsProfile, userSesion, frie
                                                             <div>
                                                                 <UserFriendsIMG elm={elm.userIMG} />
                                                             </div>
-                                                            <div className="ms-3 fs-5 nick-holder col-8">
+                                                            <div className="ms-3 fs-5 nick-holder ">
                                                                 {elm.Nick}
                                                             </div>
                                                             <div className="ms-2 fs-5">
