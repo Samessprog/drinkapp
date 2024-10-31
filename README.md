@@ -45,7 +45,6 @@ The project is built using the following technologies:
 - **Database**:
   - SQL (relational database)
 
-
 ## Installation
 
 Follow these steps to set up the project locally:
