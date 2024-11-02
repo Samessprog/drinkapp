@@ -49,6 +49,7 @@ The project is built using the following technologies:
 
 Follow these steps to set up the project locally:
 
+
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/YourUsername/MixologyHub.git
