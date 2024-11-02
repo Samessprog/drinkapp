@@ -127,6 +127,10 @@ The **Coctail Party** application features an administrative interface designed 
 
 ![image](https://github.com/user-attachments/assets/59c94b1b-18e0-41a3-943e-b72ab59b33e6)
 
+### Testing
+
+The application was tested manually as well as using **Jest** and **React Testing Library** for unit tests. This combination ensures that the application functions correctly and meets the desired specifications.
+
 
 ## Technologies Used
 
