@@ -60,6 +60,72 @@ The **Coctail Party** application provides a straightforward and secure process 
 
 #### Login Feature:
   
+### User Features After Logging In
+
+After logging in, users gain access to a range of exciting features that enhance their experience on the **Coctail Party** application:
+
+1. **Favorites**:
+   - Users can add drinks to their favorites list for easy access to their preferred beverages.
+
+2. **Ratings**:
+   - Users can rate drinks on a scale from 1 to 5 stars, providing valuable feedback to the community and helping others make informed choices.
+
+3. **Custom Drink Creation**:
+   - Users have the opportunity to create and submit their own drink recipes, showcasing their mixology skills and creativity.
+
+4. **Chat Functionality**:
+   - Users can engage in real-time conversations with their friends through the chat feature, sharing drink recipes, tips, and experiences.
+
+5. **Adding Friends**:
+   - Users can send friend requests to connect with other users, allowing them to build a network of fellow mixology enthusiasts and share their favorite drinks and experiences.
+
+These features promote interaction and engagement within the community, allowing users to fully immerse themselves in the world of mixology while connecting with others who share their passion.
+
+![image](https://github.com/user-attachments/assets/3d0be4bc-0e24-410d-a223-55355e11c667)
+
+![image](https://github.com/user-attachments/assets/98f9297c-e5f3-4a98-85f5-1392ff130e15)
+
+![image](https://github.com/user-attachments/assets/8702ac46-7776-4916-9ddc-74c62425bcc8)
+
+### Drink Details
+
+Upon selecting a drink, users are presented with detailed information that enriches their understanding and appreciation of the beverage. The details include:
+
+- **Name**: The official name of the drink.
+- **Rating**: The average rating, providing insight into how well the drink is received by other users.
+- **Description**: A brief overview of the drink, highlighting its unique characteristics and flavor profile.
+- **History**: An interesting background on the drink's origin and development over time.
+- **Nutritional Information**: Detailed information on the drink's nutritional content, allowing users to make informed choices.
+- **Large Image**: A high-quality image of the drink, showcasing its appearance to entice users.
+- **Specifications**: Additional specifications that might be relevant, such as serving size or ideal glassware.
+- **Ingredients**: A comprehensive list of all ingredients required to prepare the drink.
+- **Preparation Steps**: A step-by-step guide on how to make the drink, ensuring that users can follow along easily to recreate it at home.
+
+![image](https://github.com/user-attachments/assets/bae0e033-aaa1-4d08-8b0c-77dd58f3fc85)
+
+![image](https://github.com/user-attachments/assets/7e92798a-beb6-42ee-9240-9b32232bec41)
+
+![image](https://github.com/user-attachments/assets/633e4873-330f-47da-a315-cc3c15ec7c43)
+
+### Admin Interface
+
+The **Coctail Party** application features an administrative interface designed to empower administrators with robust tools for managing the platform effectively. This interface includes several key functionalities:
+
+1. **Drink Management**:
+   - Administrators have access to a comprehensive database of current drinks, allowing them to **edit** and **delete** drink entries to ensure that the information remains accurate and up-to-date.
+   - They can also **search for drinks** by name or apply selected filters to streamline the process of locating specific beverages.
+
+2. **User Management**:
+   - The admin has access to the user database, where they can **edit**, **delete**, or **block** users as necessary. This capability helps maintain a safe and engaging community environment.
+
+3. **Pending Drink Approvals**:
+   - Administrators can review drinks that are pending approval. They have the option to **accept** these drinks, adding them to the main database, or **edit** them to ensure quality before they become available to users.
+
+![image](https://github.com/user-attachments/assets/e7ec8b37-0ce5-4cc2-88f4-21ac044a2b58)
+
+![image](https://github.com/user-attachments/assets/d78195dc-ed61-4c6b-a11f-aa0bfe4d1c78)
+
+![image](https://github.com/user-attachments/assets/59c94b1b-18e0-41a3-943e-b72ab59b33e6)
 
 
 ## Technologies Used
