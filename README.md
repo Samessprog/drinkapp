@@ -49,6 +49,7 @@ The **Coctail Party** application enhances the user experience by offering sophi
 #### Combined Filtering
 All filtering options can be used in conjunction with one another, allowing users to refine their search and increase the accuracy of their results. By applying multiple filters, users can tailor their drink discovery experience to meet their exact preferences, making it easier to find the perfect cocktail or beverage for any occasion. This powerful search functionality ensures that every user can navigate the extensive database of drinks and find exactly what they're looking for, whether they are seasoned mixologists or casual drink enthusiasts.
 <div align="center"> 
+   
 ![image](https://github.com/user-attachments/assets/56a31ee0-241b-4da7-b143-2f3221764686)
 
 ![image](https://github.com/user-attachments/assets/d95a8fd4-a1ff-4851-b081-ce115c0a4fd3)
@@ -80,11 +81,13 @@ After logging in, users gain access to a range of exciting features that enhance
 
 These features promote interaction and engagement within the community, allowing users to fully immerse themselves in the world of mixology while connecting with others who share their passion.
 <div align="center">  
+   
 ![image](https://github.com/user-attachments/assets/3d0be4bc-0e24-410d-a223-55355e11c667)
 
 ![image](https://github.com/user-attachments/assets/98f9297c-e5f3-4a98-85f5-1392ff130e15)
 
 ![image](https://github.com/user-attachments/assets/8702ac46-7776-4916-9ddc-74c62425bcc8)
+
 </div>
 ### Drink Details
 
@@ -128,8 +131,10 @@ The **Coctail Party** application features an administrative interface designed 
 ![image](https://github.com/user-attachments/assets/e7ec8b37-0ce5-4cc2-88f4-21ac044a2b58)
 
 ![image](https://github.com/user-attachments/assets/d78195dc-ed61-4c6b-a11f-aa0bfe4d1c78)
-
+<div align="center"> 
+   
 ![image](https://github.com/user-attachments/assets/59c94b1b-18e0-41a3-943e-b72ab59b33e6)
+</div>
 
 ### Testing
 
