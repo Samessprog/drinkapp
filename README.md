@@ -4,7 +4,6 @@
 
 ## Features
 
-
 The Home Page of the Coctail Party application serves as the initial gateway for users who have not yet logged in. This page is designed to be visually appealing and intuitive, offering a glimpse of the platform's features and capabilities.
 
 ![image](https://github.com/user-attachments/assets/19629a35-0d8a-41ae-8164-3659dc10f422)
@@ -49,11 +48,11 @@ The **Coctail Party** application enhances the user experience by offering sophi
 
 #### Combined Filtering
 All filtering options can be used in conjunction with one another, allowing users to refine their search and increase the accuracy of their results. By applying multiple filters, users can tailor their drink discovery experience to meet their exact preferences, making it easier to find the perfect cocktail or beverage for any occasion. This powerful search functionality ensures that every user can navigate the extensive database of drinks and find exactly what they're looking for, whether they are seasoned mixologists or casual drink enthusiasts.
-
+<div align="center"> 
 ![image](https://github.com/user-attachments/assets/56a31ee0-241b-4da7-b143-2f3221764686)
 
 ![image](https://github.com/user-attachments/assets/d95a8fd4-a1ff-4851-b081-ce115c0a4fd3)
-
+</div>
 ### User Login and Registration
 
 The **Coctail Party** application provides a straightforward and secure process for users to log in or register for an account. This functionality is essential for accessing personalized features and engaging with the community.
@@ -80,13 +79,13 @@ After logging in, users gain access to a range of exciting features that enhance
    - Users can send friend requests to connect with other users, allowing them to build a network of fellow mixology enthusiasts and share their favorite drinks and experiences.
 
 These features promote interaction and engagement within the community, allowing users to fully immerse themselves in the world of mixology while connecting with others who share their passion.
-
+<div align="center">  
 ![image](https://github.com/user-attachments/assets/3d0be4bc-0e24-410d-a223-55355e11c667)
 
 ![image](https://github.com/user-attachments/assets/98f9297c-e5f3-4a98-85f5-1392ff130e15)
 
 ![image](https://github.com/user-attachments/assets/8702ac46-7776-4916-9ddc-74c62425bcc8)
-
+</div>
 ### Drink Details
 
 Upon selecting a drink, users are presented with detailed information that enriches their understanding and appreciation of the beverage. The details include:
@@ -101,11 +100,16 @@ Upon selecting a drink, users are presented with detailed information that enric
 - **Ingredients**: A comprehensive list of all ingredients required to prepare the drink.
 - **Preparation Steps**: A step-by-step guide on how to make the drink, ensuring that users can follow along easily to recreate it at home.
 
-![image](https://github.com/user-attachments/assets/bae0e033-aaa1-4d08-8b0c-77dd58f3fc85)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bae0e033-aaa1-4d08-8b0c-77dd58f3fc85" alt="image1">
+   
+  <img src="https://github.com/user-attachments/assets/9ab09fd4-b140-4140-b0b4-406406c0ae3e" alt="image2">
+  
+  <img src="https://github.com/user-attachments/assets/cd529b6d-b81d-4cd4-91fc-a5666e35c17c" alt="image3">
+  
+  <img src="https://github.com/user-attachments/assets/633e4873-330f-47da-a315-cc3c15ec7c43" alt="image4">
+</div>
 
-![image](https://github.com/user-attachments/assets/7e92798a-beb6-42ee-9240-9b32232bec41)
-
-![image](https://github.com/user-attachments/assets/633e4873-330f-47da-a315-cc3c15ec7c43)
 
 ### Admin Interface
 
