@@ -2,7 +2,6 @@
 
 **Coctail Party** is a modern web application designed to help users discover, explore, and rate a wide range of drinks and beverages. The platform provides personalized user profiles, social interactions, and advanced search features based on drink ingredients. Whether you're searching for a classic cocktail or creating your own custom drinks, MixologyHub is the place to find inspiration.
 
-
 ## Features
 
 The Home Page of the Coctail Party application serves as the initial gateway for users who have not yet logged in. This page is designed to be visually appealing and intuitive, offering a glimpse of the platform's features and capabilities.
