@@ -10,6 +10,7 @@ The Home Page of the Coctail Party application serves as the initial gateway for
 
 ### Advanced Search Features
 
+
 The **Coctail Party** application enhances the user experience by offering sophisticated search and filtering options for discovering drinks and beverages. Users can effortlessly find their favorites by using a combination of various filters and search criteria. 
 
 #### Filtering Options:
