@@ -15,7 +15,6 @@ The **Coctail Party** application enhances the user experience by offering sophi
 
 #### Filtering Options:
 
-
 1. **Favorites**:
    - Users can filter their searches to display only their favorite drinks, making it easy to revisit preferred selections.
 
